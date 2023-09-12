@@ -13,9 +13,7 @@ def delimit_lex(analysis, delimit_left, delimit_right, regex):
    return lex.join(re.split(regex, analysis))
 
 def delimit_lex_discontinuous(analysis, delimit_left, delimit_right, regex):
-    lex = lambda x: delimit_left+x+delimit_right
+    lex = lambda x: delimit_left+x.group(0)+delimit_right
     return re.sub(regex, lex, analysis)
-   morph = re.split(regex, analysis)
-   h = []
 
 
