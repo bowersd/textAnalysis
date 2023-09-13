@@ -1,0 +1,41 @@
+Mapping:
+     
+  VII - CNJ :
+     
+  #Template Key
+  #1	2	3	4
+  #neg	obv     prt     dub
+     
+     #this is pulled from book (p 260)
+     #Values from slots numbered 2
+     <>+VII+Cnj+0: VII Cnj S:0
+     <>+VII+Cnj+0+4: VII Cnj S:0'
+
+     #Values from slots numbered 2, 3
+     <>+VII+Cnj+0+Prt: VII Cnj S:0 Prt 
+     <>+VII+Cnj+0+4+Prt: VII Cnj S:0' Prt 
+
+     #Values from slots numbered 2, 4
+     PV/CCNJ+<>+VII+Cnj+0+Dub: VII Ccnj S:0 Dub #changed conjunct...
+     PV/CCNJ+<>+VII+Cnj+0+4+Dub: VII Ccnj S:0' Dub 
+
+     #Values from slots numbered 2, 3, 4
+     <>+VII+Cnj+0+Prt+Dub: VII Cnj S:0 Prt Dub 
+     <>+VII+Cnj+0+4+Prt+Dub: VII Cnj S:0' Prt Dub 
+
+     #Values from slots numbered 1, 2
+     <>+VII+Cnj+Neg+0: VII Cnj S:0 Neg 
+     <>+VII+Cnj+Neg+0+4: VII Cnj S:0' Neg 
+
+     #Values from slots numbered 1, 2, 3
+     <>+VII+Cnj+Neg+0+Prt: VII Cnj S:0 Neg Prt 
+     <>+VII+Cnj+Neg+0+4+Prt: VII Cnj S:0' Neg Prt 
+
+     #Values from slots numbered 1, 2, 4
+     PV/CCNJ+<>+VII+Cnj+Neg+0+Dub: VII Ccnj S:0 Neg Dub #changed conjunct expected
+     PV/CCNJ+<>+VII+Cnj+Neg+0+4+Dub: VII Ccnj S:0' Neg Dub #changed conjunct expected
+
+     #Values from slots numbered 1, 2, 3, 4
+     <>+VII+Cnj+Neg+0+Prt+Dub: VII Cnj S:0 Neg Prt Dub 
+     <>+VII+Cnj+Neg+0+4+Prt+Dub: VII Cnj S:0' Neg Prt Dub 
+
