@@ -1,6 +1,6 @@
 Mapping:
      
-  VII - IND :
+  VII - :
      
   #Template Key
   #1	2	3	4
@@ -8,49 +8,49 @@ Mapping:
      
      #this is pulled from book (p 257)
      #Values from slots numbered 2
-     <>+VII+0: VII IND S:0
-     <>+VII+0+4: VII IND S:0'
+     <>+VII+0: VII S:0
+     <>+VII+0+4: VII S:0'
 
      #Values from slots numbered 2, 3
-     <>+VII+0+Prt: VII IND S:0 Prt
-     <>+VII+0+4+Prt: VII IND S:0' Prt
-     <>+VII+0+Dub: VII IND S:0 Dub
-     <>+VII+0+4+Dub: VII IND S:0' Dub
-     <>+VII+0+Prt+Dub: VII IND S:0 Prt Dub
-     <>+VII+0+4+Prt+Dub: VII IND S:0' Prt Dub
+     <>+VII+0+Prt: VII S:0 Prt
+     <>+VII+0+4+Prt: VII S:0' Prt
+     <>+VII+0+Dub: VII S:0 Dub
+     <>+VII+0+4+Dub: VII S:0' Dub
+     <>+VII+0+Prt+Dub: VII S:0 Prt Dub
+     <>+VII+0+4+Prt+Dub: VII S:0' Prt Dub
 
      #Values from slots numbered 2, 3, 4
-     <>+VII+0+Prt+0+Pl: VII IND S:0Pl Prt
-     <>+VII+0+4+Prt+0+Pl: VII IND S:0'Pl Prt
-     <>+VII+0+Dub+0+Pl: VII IND S:0Pl Dub
-     <>+VII+0+4+Dub+0+Pl: VII IND S:0'Pl Dub
-     <>+VII+0+Prt+Dub+0+Pl: VII IND S:0Pl Prt Dub
-     <>+VII+0+4+Prt+Dub+0+Pl: VII IND S:0'Pl Prt Dub
+     <>+VII+0+Prt+0+Pl: VII S:0Pl Prt
+     <>+VII+0+4+Prt+0+Pl: VII S:0'Pl Prt
+     <>+VII+0+Dub+0+Pl: VII S:0Pl Dub
+     <>+VII+0+4+Dub+0+Pl: VII S:0'Pl Dub
+     <>+VII+0+Prt+Dub+0+Pl: VII S:0Pl Prt Dub
+     <>+VII+0+4+Prt+Dub+0+Pl: VII S:0'Pl Prt Dub
 
      #Values from slots numbered 2, 4
-     <>+VII+0+0+Pl: VII IND S:0Pl
-     <>+VII+0+4+0+Pl: VII IND S:0'Pl
+     <>+VII+0+0+Pl: VII S:0Pl
+     <>+VII+0+4+0+Pl: VII S:0'Pl
 
      #Values from slots numbered 1, 2
-     <>+VII+Neg+0: VII IND S:0 Neg
-     <>+VII+Neg+0+4: VII IND S:0' Neg
+     <>+VII+Neg+0: VII S:0 Neg
+     <>+VII+Neg+0+4: VII S:0' Neg
 
      #Values from slots numbered 1, 2, 3
-     <>+VII+Neg+0+Prt: VII IND S:0 Neg Prt
-     <>+VII+Neg+0+4+Prt: VII IND S:0' Neg Prt
-     <>+VII+Neg+0+Dub: VII IND S:0 Neg Dub
-     <>+VII+Neg+0+4+Dub: VII IND S:0' Neg Dub
-     <>+VII+Neg+0+Prt+Dub: VII IND S:0 Neg Prt Dub
-     <>+VII+Neg+0+4+Prt+Dub: VII IND S:0' Neg Prt Dub
+     <>+VII+Neg+0+Prt: VII S:0 Neg Prt
+     <>+VII+Neg+0+4+Prt: VII S:0' Neg Prt
+     <>+VII+Neg+0+Dub: VII S:0 Neg Dub
+     <>+VII+Neg+0+4+Dub: VII S:0' Neg Dub
+     <>+VII+Neg+0+Prt+Dub: VII S:0 Neg Prt Dub
+     <>+VII+Neg+0+4+Prt+Dub: VII S:0' Neg Prt Dub
 
      #Values from slots numbered 1, 2, 3, 4
-     <>+VII+Neg+0+Prt+0+Pl: VII IND S:0Pl Neg Prt
-     <>+VII+Neg+0+4+Prt+0+Pl: VII IND S:0'Pl Neg Prt
-     <>+VII+Neg+0+Dub+0+Pl: VII IND S:0Pl Neg Dub
-     <>+VII+Neg+0+4+Dub+0+Pl: VII IND S:0'Pl Neg Dub
-     <>+VII+Neg+0+Prt+Dub+0+Pl: VII IND S:0Pl Neg Prt Dub
-     <>+VII+Neg+0+4+Prt+Dub+0+Pl: VII IND S:0'Pl Neg Prt Dub
+     <>+VII+Neg+0+Prt+0+Pl: VII S:0Pl Neg Prt
+     <>+VII+Neg+0+4+Prt+0+Pl: VII S:0'Pl Neg Prt
+     <>+VII+Neg+0+Dub+0+Pl: VII S:0Pl Neg Dub
+     <>+VII+Neg+0+4+Dub+0+Pl: VII S:0'Pl Neg Dub
+     <>+VII+Neg+0+Prt+Dub+0+Pl: VII S:0Pl Neg Prt Dub
+     <>+VII+Neg+0+4+Prt+Dub+0+Pl: VII S:0'Pl Neg Prt Dub
 
      #Values from slots numbered 1, 2, 4
-     <>+VII+Neg+0+0+Pl: VII IND S:0Pl Neg
-     <>+VII+Neg+0+4+0+Pl: VII IND S:0'Pl Neg
+     <>+VII+Neg+0+0+Pl: VII S:0Pl Neg
+     <>+VII+Neg+0+4+0+Pl: VII S:0'Pl Neg
