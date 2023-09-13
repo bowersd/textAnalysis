@@ -1,0 +1,97 @@
+Mapping:
+
+  VAI - CNJ :
+
+  #Template Key
+  #1	2	3	4
+  #neg	persnum prt     dub
+     
+    #this is extrapolated from book
+    #Values from slots numbered 2
+    <>+VAI+Cnj+1: VAI Cnj S:1 
+    <>+VAI+Cnj+2: VAI Cnj S:2 
+    <>+VAI+Cnj+3: VAI Cnj S:3 
+    <>+VAI+Cnj+3+4: VAI Cnj S:3' 
+    <>+VAI+Cnj+X: VAI Cnj S:X 
+    <>+VAI+Cnj+1+Pl: VAI Cnj S:1Pl 
+    <>+VAI+Cnj+2+1+Pl: VAI Cnj S:21Pl 
+    <>+VAI+Cnj+2+Pl: VAI Cnj S:2PL 
+    <>+VAI+Cnj+3+Pl: VAI Cnj S:3Pl 
+    
+    #Values from slots numbered 2, 3
+    <>+VAI+Cnj+1+Prt: VAI Cnj S:1 Prt 
+    <>+VAI+Cnj+2+Prt: VAI Cnj S:2 Prt 
+    <>+VAI+Cnj+3+Prt: VAI Cnj S:3 Prt 
+    <>+VAI+Cnj+3+4+Prt: VAI Cnj S:3' Prt 
+    <>+VAI+Cnj+X+Prt: VAI Cnj S:X Prt 
+    <>+VAI+Cnj+1+Pl+Prt: VAI Cnj S:1Pl Prt 
+    <>+VAI+Cnj+2+1+Pl+Prt: VAI Cnj S:21Pl Prt 
+    <>+VAI+Cnj+2+Pl+Prt: VAI Cnj S:2PL Prt 
+    <>+VAI+Cnj+3+Pl+Prt: VAI Cnj S:3Pl Prt 
+    
+    #Values from slots numbered 2, 4 #this is supposed to be changed conjunct??
+    <>+VAI+Cnj+1+Dub: VAI Cnj S:1 Dub 
+    <>+VAI+Cnj+2+Dub: VAI Cnj S:2 Dub 
+    <>+VAI+Cnj+3+Dub: VAI Cnj S:3 Dub 
+    <>+VAI+Cnj+3+4+Dub: VAI Cnj S:3' Dub 
+    <>+VAI+Cnj+X+Dub: VAI Cnj S:X Dub 
+    <>+VAI+Cnj+1+Pl+Dub: VAI Cnj S:1Pl Dub 
+    <>+VAI+Cnj+2+1+Pl+Dub: VAI Cnj S:21Pl Dub 
+    <>+VAI+Cnj+2+Pl+Dub: VAI Cnj S:2PL Dub 
+    <>+VAI+Cnj+3+Pl+Dub: VAI Cnj S:3Pl Dub 
+    
+    #Values from slots numbered 2, 3, 4 
+    <>+VAI+Cnj+1+Prt+Dub: VAI Cnj S:1 Prt Dub 
+    <>+VAI+Cnj+2+Prt+Dub: VAI Cnj S:2 Prt Dub 
+    <>+VAI+Cnj+3+Prt+Dub: VAI Cnj S:3 Prt Dub 
+    <>+VAI+Cnj+3+4+Prt+Dub: VAI Cnj S:3' Prt Dub 
+    <>+VAI+Cnj+X+Prt+Dub: VAI Cnj S:X Prt Dub 
+    <>+VAI+Cnj+1+Pl+Prt+Dub: VAI Cnj S:1Pl Prt Dub 
+    <>+VAI+Cnj+2+1+Pl+Prt+Dub: VAI Cnj S:21Pl Prt Dub
+    <>+VAI+Cnj+2+Pl+Prt+Dub: VAI Cnj S:2PL Prt Dub 
+    <>+VAI+Cnj+3+Pl+Prt+Dub: VAI Cnj S:3Pl Prt Dub 
+    
+    #Values from slots numbered 1, 2
+    <>+VAI+Cnj+Neg+1: VAI Cnj S:1 Neg 
+    <>+VAI+Cnj+Neg+2: VAI Cnj S:2 Neg 
+    <>+VAI+Cnj+Neg+3: VAI Cnj S:3 Neg 
+    <>+VAI+Cnj+Neg+3+4: VAI Cnj S:3' Neg 
+    <>+VAI+Cnj+Neg+X: VAI Cnj S:X Neg 
+    <>+VAI+Cnj+Neg+1+Pl: VAI Cnj S:1Pl Neg 
+    <>+VAI+Cnj+Neg+2+1+Pl: VAI Cnj S:21Pl Neg 
+    <>+VAI+Cnj+Neg+2+Pl: VAI Cnj S:2PL Neg 
+    <>+VAI+Cnj+Neg+3+Pl: VAI Cnj S:3Pl Neg 
+    
+    #Values from slots numbered 1, 2, 3 #sii forms extrapolated conservatively
+    <>+VAI+Cnj+Neg+1+Prt: VAI Cnj S:1 Neg Prt 
+    <>+VAI+Cnj+Neg+2+Prt: VAI Cnj S:2 Neg Prt 
+    <>+VAI+Cnj+Neg+3+Prt: VAI Cnj S:3 Neg Prt 
+    <>+VAI+Cnj+Neg+3+4+Prt: VAI Cnj S:3' Neg Prt 
+    <>+VAI+Cnj+Neg+X+Prt: VAI Cnj S:X Neg Prt 
+    <>+VAI+Cnj+Neg+1+Pl+Prt: VAI Cnj S:1Pl Neg Prt 
+    <>+VAI+Cnj+Neg+2+1+Pl+Prt: VAI Cnj S:21Pl Neg Prt 
+    <>+VAI+Cnj+Neg+2+Pl+Prt: VAI Cnj S:2PL Neg Prt 
+    <>+VAI+Cnj+Neg+3+Pl+Prt: VAI Cnj S:3Pl Neg Prt 
+    
+    #Values from slots numbered 1, 2, 4 #this is supposed to be changed conjunct??
+    <>+VAI+Cnj+Neg+1+Dub: VAI Cnj S:1 Neg Dub 
+    <>+VAI+Cnj+Neg+2+Dub: VAI Cnj S:2 Neg Dub 
+    <>+VAI+Cnj+Neg+3+Dub: VAI Cnj S:3 Neg Dub 
+    <>+VAI+Cnj+Neg+3+4+Dub: VAI Cnj S:3' Neg Dub 
+    <>+VAI+Cnj+Neg+X+Dub: VAI Cnj S:X Neg Dub 
+    <>+VAI+Cnj+Neg+1+Pl+Dub: VAI Cnj S:1Pl Neg Dub 
+    <>+VAI+Cnj+Neg+2+1+Pl+Dub: VAI Cnj S:21Pl Neg Dub 
+    <>+VAI+Cnj+Neg+2+Pl+Dub: VAI Cnj S:2PL Neg Dub 
+    <>+VAI+Cnj+Neg+3+Pl+Dub: VAI Cnj S:3Pl Neg Dub 
+    
+    #Values from slots numbered 1, 2, 3, 4 
+    <>+VAI+Cnj+Neg+1+Prt+Dub: VAI Cnj S:1 Neg Prt Dub 
+    <>+VAI+Cnj+Neg+2+Prt+Dub: VAI Cnj S:2 Neg Prt Dub 
+    <>+VAI+Cnj+Neg+3+Prt+Dub: VAI Cnj S:3 Neg Prt Dub 
+    <>+VAI+Cnj+Neg+3+4+Prt+Dub: VAI Cnj S:3' Neg Prt Dub 
+    <>+VAI+Cnj+Neg+X+Prt+Dub: VAI Cnj S:X Neg Prt Dub 
+    <>+VAI+Cnj+Neg+1+Pl+Prt+Dub: VAI Cnj S:1Pl Neg Prt Dub 
+    <>+VAI+Cnj+Neg+2+1+Pl+Prt+Dub: VAI Cnj S:21Pl Neg Prt Dub 
+    <>+VAI+Cnj+Neg+2+Pl+Prt+Dub: VAI Cnj S:2PL Neg Prt Dub 
+    <>+VAI+Cnj+Neg+3+Pl+Prt+Dub: VAI Cnj S:3Pl Neg Prt Dub 
+    
