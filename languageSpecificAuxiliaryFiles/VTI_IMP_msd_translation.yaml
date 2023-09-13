@@ -1,0 +1,19 @@
+Mapping:
+     
+  VTI - Imp :
+     
+  #Template Key
+  #NO TEMPLATE
+  #dropping Imm tags in higher level, as was done in VAI and will be done in VTA (VIIs do not have imperatives)
+     
+     <>+VTI+Imp+Imm+2: VTI Imp S:2 O:0
+     <>+VTI+Imp+Imm+2+Pl: VTI Imp S:2Pl O:0
+     <>+VTI+Imp+Imm+2+1+Pl+0: VTI Imp S:21Pl O:0
+     <>+VTI+Imp+Imm+2+1+Pl+0+Pl: VTI Imp S:21Pl O:0Pl
+     <>+VTI+Imp+Del+2: VTI Imp S:2 O:0 Del
+     <>+VTI+Imp+Del+2+Pl: VTI Imp S:2Pl O:0 Del
+     <>+VTI+Imp+Del+2+1+Pl: VTI Imp S:21Pl O:0 Del
+     <>+VTI+Imp+Neg+2: VTI Imp S:2 O:0 Neg
+     <>+VTI+Imp+Neg+2+Pl: VTI Imp S:2Pl O:0 Neg
+     <>+VTI+Imp+Neg+2+1+Pl+0: VTI Imp S:21Pl O:0 Neg
+     <>+VTI+Imp+Neg+2+1+Pl+0+Pl: VTI Imp S:21Pl O:0Pl Neg
