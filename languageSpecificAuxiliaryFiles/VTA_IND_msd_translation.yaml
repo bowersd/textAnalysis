@@ -57,20 +57,20 @@ Tests:
      #      -igoo (Thm1Pl 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Prt: VTA S:2 O:1 
-     2+<>+VTA+Thm2+Dub: VTA S:2 O:1 
-     2+<>+VTA+Thm1Sg+Prt: VTA S:1 O:2 
-     2+<>+VTA+Thm1Sg+Dub: VTA S:1 O:2 
-     2+<>+VTA+Thm1Pl+Prt: VTA S:1Pl O:2 
-     2+<>+VTA+Thm1Pl+Dub: VTA S:1Pl O:2 
-     2+<>+VTA+ThmDir+Prt: VTA S:2 O:3 
-     2+<>+VTA+ThmDir+Dub: VTA S:2 O:3 
-     2+<>+VTA+ThmInv+Prt: VTA S:3 O:2 
-     2+<>+VTA+ThmInv+Dub: VTA S:3 O:2 
-     1+<>+VTA+ThmDir+Prt: VTA S:1 O:3 
-     1+<>+VTA+ThmDir+Dub: VTA S:1 O:3 
-     1+<>+VTA+ThmInv+Prt: VTA S:3 O:1 
-     1+<>+VTA+ThmInv+Dub: VTA S:3 O:1 
+     2+<>+VTA+Thm2+Prt: VTA S:2 O:1 Prt 
+     2+<>+VTA+Thm2+Dub: VTA S:2 O:1 Dub 
+     2+<>+VTA+Thm1Sg+Prt: VTA S:1 O:2 Prt 
+     2+<>+VTA+Thm1Sg+Dub: VTA S:1 O:2 Dub 
+     2+<>+VTA+Thm1Pl+Prt: VTA S:1Pl O:2 Prt 
+     2+<>+VTA+Thm1Pl+Dub: VTA S:1Pl O:2 Dub 
+     2+<>+VTA+ThmDir+Prt: VTA S:2 O:3 Prt 
+     2+<>+VTA+ThmDir+Dub: VTA S:2 O:3 Dub 
+     2+<>+VTA+ThmInv+Prt: VTA S:3 O:2 Prt 
+     2+<>+VTA+ThmInv+Dub: VTA S:3 O:2 Dub 
+     1+<>+VTA+ThmDir+Prt: VTA S:1 O:3 Prt 
+     1+<>+VTA+ThmDir+Dub: VTA S:1 O:3 Dub 
+     1+<>+VTA+ThmInv+Prt: VTA S:3 O:1 Prt 
+     1+<>+VTA+ThmInv+Dub: VTA S:3 O:1 Dub 
 
      #Values from slots numbered 1, 2, 7
      #  theme sign order: 
@@ -93,12 +93,12 @@ Tests:
      #Values from slots numbered 1, 2, 4, 6
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+0+Prt: VTA S:0 O:2 
-     2+<>+VTA+ThmInv+0+Dub: VTA S:0 O:2 
-     1+<>+VTA+ThmInv+0+Prt: VTA S:0 O:1 
-     1+<>+VTA+ThmInv+0+Dub: VTA S:0 O:1 
-     3+<>+VTA+ThmInv+0+Prt: VTA S:0 O:3 #0sg v 3sg
-     3+<>+VTA+ThmInv+0+Dub: VTA S:0 O:3 #0sg v 3sg
+     2+<>+VTA+ThmInv+0+Prt: VTA S:0 O:2 Prt 
+     2+<>+VTA+ThmInv+0+Dub: VTA S:0 O:2 Dub 
+     1+<>+VTA+ThmInv+0+Prt: VTA S:0 O:1 Prt 
+     1+<>+VTA+ThmInv+0+Dub: VTA S:0 O:1 Dub 
+     3+<>+VTA+ThmInv+0+Prt: VTA S:0 O:3 Prt #0sg v 3sg
+     3+<>+VTA+ThmInv+0+Dub: VTA S:0 O:3 Dub #0sg v 3sg
 
      #Values from slots numbered 1, 2, 4, 7
      #  theme sign order: 
@@ -114,28 +114,28 @@ Tests:
      #      -igoo (Thm1Pl 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+2+Pl+Prt: VTA S:2Pl O:1 
-     2+<>+VTA+Thm2+2+Pl+Dub: VTA S:2Pl O:1 
-     2+<>+VTA+Thm2+1+Pl+Prt: VTA S:2 O:1Pl #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm2+1+Pl+Dub: VTA S:2 O:1Pl #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm1Sg+2+Pl+Prt: VTA S:1 O:2Pl 
-     #2+<>+VTA+Thm1Sg+2+Pl+Prt: VTA S:1 O:2Pl #1sg v 2pl #book
-     2+<>+VTA+Thm1Sg+2+Pl+Dub: VTA S:1 O:2Pl 
-     #2+<>+VTA+Thm1Sg+2+Pl+Dub: VTA S:1 O:2Pl #1sg v 2pl #book
-     2+<>+VTA+Thm1Pl+2+Pl+Prt: VTA S:1Pl O:2Pl 
-     2+<>+VTA+Thm1Pl+2+Pl+Dub: VTA S:1Pl O:2Pl 
-     2+<>+VTA+ThmDir+1+Pl+Prt: VTA S:21Pl O:3 
-     2+<>+VTA+ThmDir+1+Pl+Dub: VTA S:21Pl O:3 
-     2+<>+VTA+ThmDir+2+Pl+Prt: VTA S:2Pl O:3 
-     2+<>+VTA+ThmDir+2+Pl+Dub: VTA S:2Pl O:3 
-     2+<>+VTA+ThmInv+1+Pl+Prt: VTA S:3 O:21Pl 
-     2+<>+VTA+ThmInv+1+Pl+Dub: VTA S:3 O:21Pl 
-     2+<>+VTA+ThmInv+2+Pl+Prt: VTA S:3 O:2Pl 
-     2+<>+VTA+ThmInv+2+Pl+Dub: VTA S:3 O:2Pl 
-     1+<>+VTA+ThmDir+1+Pl+Prt: VTA S:1Pl O:3 
-     1+<>+VTA+ThmDir+1+Pl+Dub: VTA S:1Pl O:3 
-     1+<>+VTA+ThmInv+1+Pl+Prt: VTA S:3 O:1Pl 
-     1+<>+VTA+ThmInv+1+Pl+Dub: VTA S:3 O:1Pl 
+     2+<>+VTA+Thm2+2+Pl+Prt: VTA S:2Pl O:1 Prt 
+     2+<>+VTA+Thm2+2+Pl+Dub: VTA S:2Pl O:1 Dub 
+     2+<>+VTA+Thm2+1+Pl+Prt: VTA S:2 O:1Pl Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm2+1+Pl+Dub: VTA S:2 O:1Pl Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1Sg+2+Pl+Prt: VTA S:1 O:2Pl Prt 
+     #2+<>+VTA+Thm1Sg+2+Pl+Prt: VTA S:1 O:2Pl Prt #1sg v 2pl #book
+     2+<>+VTA+Thm1Sg+2+Pl+Dub: VTA S:1 O:2Pl Dub 
+     #2+<>+VTA+Thm1Sg+2+Pl+Dub: VTA S:1 O:2Pl Dub #1sg v 2pl #book
+     2+<>+VTA+Thm1Pl+2+Pl+Prt: VTA S:1Pl O:2Pl Prt 
+     2+<>+VTA+Thm1Pl+2+Pl+Dub: VTA S:1Pl O:2Pl Dub 
+     2+<>+VTA+ThmDir+1+Pl+Prt: VTA S:21Pl O:3 Prt 
+     2+<>+VTA+ThmDir+1+Pl+Dub: VTA S:21Pl O:3 Dub 
+     2+<>+VTA+ThmDir+2+Pl+Prt: VTA S:2Pl O:3 Prt 
+     2+<>+VTA+ThmDir+2+Pl+Dub: VTA S:2Pl O:3 Dub 
+     2+<>+VTA+ThmInv+1+Pl+Prt: VTA S:3 O:21Pl Prt 
+     2+<>+VTA+ThmInv+1+Pl+Dub: VTA S:3 O:21Pl Dub 
+     2+<>+VTA+ThmInv+2+Pl+Prt: VTA S:3 O:2Pl Prt 
+     2+<>+VTA+ThmInv+2+Pl+Dub: VTA S:3 O:2Pl Dub 
+     1+<>+VTA+ThmDir+1+Pl+Prt: VTA S:1Pl O:3 Prt 
+     1+<>+VTA+ThmDir+1+Pl+Dub: VTA S:1Pl O:3 Dub 
+     1+<>+VTA+ThmInv+1+Pl+Prt: VTA S:3 O:1Pl Prt 
+     1+<>+VTA+ThmInv+1+Pl+Dub: VTA S:3 O:1Pl Dub 
 
      #Values from slots numbered 1, 2, 5, 7
      #  theme sign order: 
@@ -154,18 +154,18 @@ Tests:
      #  theme sign order: 
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmDir+Prt+3+Pl: VTA S:2 O:3Pl 
-     2+<>+VTA+ThmDir+Dub+3+Pl: VTA S:2 O:3Pl 
-     2+<>+VTA+ThmInv+Prt+3+Pl: VTA S:3Pl O:2 
-     2+<>+VTA+ThmInv+Dub+3+Pl: VTA S:3Pl O:2 
-     1+<>+VTA+ThmDir+Prt+3+Pl: VTA S:1 O:3Pl 
-     1+<>+VTA+ThmDir+Dub+3+Pl: VTA S:1 O:3Pl 
-     1+<>+VTA+ThmInv+Prt+3+Pl: VTA S:3Pl O:1 
-     1+<>+VTA+ThmInv+Dub+3+Pl: VTA S:3Pl O:1 
-     3+<>+VTA+ThmDir+Prt+3+4: VTA S:3 O:3' #3sg v 3obv
-     3+<>+VTA+ThmDir+Dub+3+4: VTA S:3 O:3' #3sg v 3obv
-     3+<>+VTA+ThmInv+Prt+3+4: VTA S:3' O:3 #3obv v 3sg
-     3+<>+VTA+ThmInv+Dub+3+4: VTA S:3' O:3 #3obv v 3sg
+     2+<>+VTA+ThmDir+Prt+3+Pl: VTA S:2 O:3Pl Prt 
+     2+<>+VTA+ThmDir+Dub+3+Pl: VTA S:2 O:3Pl Dub 
+     2+<>+VTA+ThmInv+Prt+3+Pl: VTA S:3Pl O:2 Prt 
+     2+<>+VTA+ThmInv+Dub+3+Pl: VTA S:3Pl O:2 Dub 
+     1+<>+VTA+ThmDir+Prt+3+Pl: VTA S:1 O:3Pl Prt 
+     1+<>+VTA+ThmDir+Dub+3+Pl: VTA S:1 O:3Pl Dub 
+     1+<>+VTA+ThmInv+Prt+3+Pl: VTA S:3Pl O:1 Prt 
+     1+<>+VTA+ThmInv+Dub+3+Pl: VTA S:3Pl O:1 Dub 
+     3+<>+VTA+ThmDir+Prt+3+4: VTA S:3 O:3' Prt #3sg v 3obv
+     3+<>+VTA+ThmDir+Dub+3+4: VTA S:3 O:3' Dub #3sg v 3obv
+     3+<>+VTA+ThmInv+Prt+3+4: VTA S:3' O:3 Prt #3obv v 3sg
+     3+<>+VTA+ThmInv+Dub+3+4: VTA S:3' O:3 Dub #3obv v 3sg
 
      #3 non-neg slots ...   (4, 5, 6), (4, 5, 7), (4, 6, 7)
      #                      (5, 6, 7)
@@ -173,14 +173,14 @@ Tests:
      #Values from slots numbered 1, 2, 4, 5, 6
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+0+2+Pl+Prt: VTA S:0 O:2Pl 
-     2+<>+VTA+ThmInv+0+2+Pl+Dub: VTA S:0 O:2Pl 
-     2+<>+VTA+ThmInv+0+1+Pl+Prt: VTA S:0 O:21Pl 
-     2+<>+VTA+ThmInv+0+1+Pl+Dub: VTA S:0 O:21Pl 
-     1+<>+VTA+ThmInv+0+1+Pl+Prt: VTA S:0 O:1Pl 
-     1+<>+VTA+ThmInv+0+1+Pl+Dub: VTA S:0 O:1Pl 
-     3+<>+VTA+ThmInv+0+2+Pl+Prt: VTA S:0 O:3Pl #0sg v 3sg
-     3+<>+VTA+ThmInv+0+2+Pl+Dub: VTA S:0 O:3Pl #0sg v 3sg
+     2+<>+VTA+ThmInv+0+2+Pl+Prt: VTA S:0 O:2Pl Prt 
+     2+<>+VTA+ThmInv+0+2+Pl+Dub: VTA S:0 O:2Pl Dub 
+     2+<>+VTA+ThmInv+0+1+Pl+Prt: VTA S:0 O:21Pl Prt 
+     2+<>+VTA+ThmInv+0+1+Pl+Dub: VTA S:0 O:21Pl Dub 
+     1+<>+VTA+ThmInv+0+1+Pl+Prt: VTA S:0 O:1Pl Prt 
+     1+<>+VTA+ThmInv+0+1+Pl+Dub: VTA S:0 O:1Pl Dub 
+     3+<>+VTA+ThmInv+0+2+Pl+Prt: VTA S:0 O:3Pl Prt #0sg v 3sg
+     3+<>+VTA+ThmInv+0+2+Pl+Dub: VTA S:0 O:3Pl Dub #0sg v 3sg
 
      #Values from slots numbered 1, 2, 4, 5, 7
      #  theme sign order: 
@@ -193,46 +193,46 @@ Tests:
      #Values from slots numbered 1, 2, 4, 6, 7
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+0+Prt+0+Pl: VTA S:0Pl O:2 
-     2+<>+VTA+ThmInv+0+Dub+0+Pl: VTA S:0Pl O:2 
-     1+<>+VTA+ThmInv+0+Prt+0+Pl: VTA S:0Pl O:1 
-     1+<>+VTA+ThmInv+0+Dub+0+Pl: VTA S:0Pl O:1 
-     3+<>+VTA+ThmInv+0+Prt+0+Pl: VTA S:0Pl O:3 #0pl v 3sg
-     3+<>+VTA+ThmInv+0+Dub+0+Pl: VTA S:0Pl O:3 #0pl v 3sg
+     2+<>+VTA+ThmInv+0+Prt+0+Pl: VTA S:0Pl O:2 Prt 
+     2+<>+VTA+ThmInv+0+Dub+0+Pl: VTA S:0Pl O:2 Dub 
+     1+<>+VTA+ThmInv+0+Prt+0+Pl: VTA S:0Pl O:1 Prt 
+     1+<>+VTA+ThmInv+0+Dub+0+Pl: VTA S:0Pl O:1 Dub 
+     3+<>+VTA+ThmInv+0+Prt+0+Pl: VTA S:0Pl O:3 Prt #0pl v 3sg
+     3+<>+VTA+ThmInv+0+Dub+0+Pl: VTA S:0Pl O:3 Dub #0pl v 3sg
 
      #Values from slots numbered 1, 2, 5, 6, 7
      #  theme sign order: 
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmDir+1+Pl+Prt+3+Pl: VTA S:21Pl O:3Pl 
-     2+<>+VTA+ThmDir+1+Pl+Dub+3+Pl: VTA S:21Pl O:3Pl 
-     2+<>+VTA+ThmDir+2+Pl+Prt+3+Pl: VTA S:2Pl O:3Pl 
-     2+<>+VTA+ThmDir+2+Pl+Dub+3+Pl: VTA S:2Pl O:3Pl 
-     2+<>+VTA+ThmInv+1+Pl+Prt+3+Pl: VTA S:3Pl O:21Pl 
-     2+<>+VTA+ThmInv+1+Pl+Dub+3+Pl: VTA S:3Pl O:21Pl 
-     2+<>+VTA+ThmInv+2+Pl+Prt+3+Pl: VTA S:3Pl O:2Pl 
-     2+<>+VTA+ThmInv+2+Pl+Dub+3+Pl: VTA S:3Pl O:2Pl 
-     1+<>+VTA+ThmDir+1+Pl+Prt+3+Pl: VTA S:1Pl O:3Pl 
-     1+<>+VTA+ThmDir+1+Pl+Dub+3+Pl: VTA S:1Pl O:3Pl 
-     1+<>+VTA+ThmInv+1+Pl+Prt+3+Pl: VTA S:3Pl O:1Pl 
-     1+<>+VTA+ThmInv+1+Pl+Dub+3+Pl: VTA S:3Pl O:1Pl 
-     3+<>+VTA+ThmDir+2+Pl+Prt+3+4: VTA S:3Pl O:3' #3pl v 3obv
-     3+<>+VTA+ThmDir+2+Pl+Dub+3+4: VTA S:3Pl O:3' #3pl v 3obv
-     3+<>+VTA+ThmInv+2+Pl+Prt+3+4: VTA S:3' O:3Pl #3obv v 3pl (0sg too?)
-     3+<>+VTA+ThmInv+2+Pl+Dub+3+4: VTA S:3' O:3Pl #3obv v 3pl (0sg too?)
+     2+<>+VTA+ThmDir+1+Pl+Prt+3+Pl: VTA S:21Pl O:3Pl Prt 
+     2+<>+VTA+ThmDir+1+Pl+Dub+3+Pl: VTA S:21Pl O:3Pl Dub 
+     2+<>+VTA+ThmDir+2+Pl+Prt+3+Pl: VTA S:2Pl O:3Pl Prt 
+     2+<>+VTA+ThmDir+2+Pl+Dub+3+Pl: VTA S:2Pl O:3Pl Dub 
+     2+<>+VTA+ThmInv+1+Pl+Prt+3+Pl: VTA S:3Pl O:21Pl Prt 
+     2+<>+VTA+ThmInv+1+Pl+Dub+3+Pl: VTA S:3Pl O:21Pl Dub 
+     2+<>+VTA+ThmInv+2+Pl+Prt+3+Pl: VTA S:3Pl O:2Pl Prt 
+     2+<>+VTA+ThmInv+2+Pl+Dub+3+Pl: VTA S:3Pl O:2Pl Dub 
+     1+<>+VTA+ThmDir+1+Pl+Prt+3+Pl: VTA S:1Pl O:3Pl Prt 
+     1+<>+VTA+ThmDir+1+Pl+Dub+3+Pl: VTA S:1Pl O:3Pl Dub 
+     1+<>+VTA+ThmInv+1+Pl+Prt+3+Pl: VTA S:3Pl O:1Pl Prt 
+     1+<>+VTA+ThmInv+1+Pl+Dub+3+Pl: VTA S:3Pl O:1Pl Dub 
+     3+<>+VTA+ThmDir+2+Pl+Prt+3+4: VTA S:3Pl O:3' Prt #3pl v 3obv
+     3+<>+VTA+ThmDir+2+Pl+Dub+3+4: VTA S:3Pl O:3' Dub #3pl v 3obv
+     3+<>+VTA+ThmInv+2+Pl+Prt+3+4: VTA S:3' O:3Pl Prt #3obv v 3pl (0sg too?)
+     3+<>+VTA+ThmInv+2+Pl+Dub+3+4: VTA S:3' O:3Pl Dub #3obv v 3pl (0sg too?)
 
      #4 non-neg slots ...   (4, 5, 6, 7)
      #Values from slots numbered 1, 2, 4, 5, 6, 7
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+0+2+Pl+Prt+0+Pl: VTA S:0Pl O:2Pl 
-     2+<>+VTA+ThmInv+0+2+Pl+Dub+0+Pl: VTA S:0Pl O:2Pl 
-     2+<>+VTA+ThmInv+0+1+Pl+Prt+0+Pl: VTA S:0Pl O:21Pl 
-     2+<>+VTA+ThmInv+0+1+Pl+Dub+0+Pl: VTA S:0Pl O:21Pl 
-     1+<>+VTA+ThmInv+0+1+Pl+Prt+0+Pl: VTA S:0Pl O:1Pl 
-     1+<>+VTA+ThmInv+0+1+Pl+Dub+0+Pl: VTA S:0Pl O:1Pl 
-     3+<>+VTA+ThmInv+0+2+Pl+Prt+0+Pl: VTA S:0Pl O:3Pl #0pl v 3pl
-     3+<>+VTA+ThmInv+0+2+Pl+Dub+0+Pl: VTA S:0Pl O:3Pl #0pl v 3pl
+     2+<>+VTA+ThmInv+0+2+Pl+Prt+0+Pl: VTA S:0Pl O:2Pl Prt 
+     2+<>+VTA+ThmInv+0+2+Pl+Dub+0+Pl: VTA S:0Pl O:2Pl Dub 
+     2+<>+VTA+ThmInv+0+1+Pl+Prt+0+Pl: VTA S:0Pl O:21Pl Prt 
+     2+<>+VTA+ThmInv+0+1+Pl+Dub+0+Pl: VTA S:0Pl O:21Pl Dub 
+     1+<>+VTA+ThmInv+0+1+Pl+Prt+0+Pl: VTA S:0Pl O:1Pl Prt 
+     1+<>+VTA+ThmInv+0+1+Pl+Dub+0+Pl: VTA S:0Pl O:1Pl Dub 
+     3+<>+VTA+ThmInv+0+2+Pl+Prt+0+Pl: VTA S:0Pl O:3Pl Prt #0pl v 3pl
+     3+<>+VTA+ThmInv+0+2+Pl+Dub+0+Pl: VTA S:0Pl O:3Pl Dub #0pl v 3pl
 
      #NEGATIVES BELOW
      #Values from slots numbered 1, 2, 3
@@ -242,20 +242,20 @@ Tests:
      #      -igoo (Thm1Pl 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Neg: VTA S:2 O:1 
-     2+<>+VTA+Thm1Sg+Neg: VTA S:1 O:2 
-     2+<>+VTA+Thm1Pl+Neg: VTA S:1Pl O:2 
-     2+<>+VTA+ThmDir+Neg: VTA S:2 O:3 
-     2+<>+VTA+ThmInv+Neg: VTA S:3 O:2 
-     1+<>+VTA+ThmDir+Neg: VTA S:1 O:3 
-     1+<>+VTA+ThmInv+Neg: VTA S:3 O:1 
+     2+<>+VTA+Thm2+Neg: VTA S:2 O:1 Neg 
+     2+<>+VTA+Thm1Sg+Neg: VTA S:1 O:2 Neg 
+     2+<>+VTA+Thm1Pl+Neg: VTA S:1Pl O:2 Neg 
+     2+<>+VTA+ThmDir+Neg: VTA S:2 O:3 Neg 
+     2+<>+VTA+ThmInv+Neg: VTA S:3 O:2 Neg 
+     1+<>+VTA+ThmDir+Neg: VTA S:1 O:3 Neg 
+     1+<>+VTA+ThmInv+Neg: VTA S:3 O:1 Neg 
 
      #Values from slots numbered 1, 2, 3, 4
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+Neg+0: VTA S:0 O:2 
-     1+<>+VTA+ThmInv+Neg+0: VTA S:0 O:1 
-     3+<>+VTA+ThmInv+Neg+0: VTA S:0 O:3 #0sg v 3sg
+     2+<>+VTA+ThmInv+Neg+0: VTA S:0 O:2 Neg 
+     1+<>+VTA+ThmInv+Neg+0: VTA S:0 O:1 Neg 
+     3+<>+VTA+ThmInv+Neg+0: VTA S:0 O:3 Neg #0sg v 3sg
 
      #Values from slots numbered 1, 2, 3, 5
      #  theme sign order: 
@@ -264,17 +264,17 @@ Tests:
      #      -igoo (Thm1Pl 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Neg+2+Pl: VTA S:2Pl O:1 
-     2+<>+VTA+Thm2+Neg+1+Pl: VTA S:2 O:1Pl #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm1Sg+Neg+2+Pl: VTA S:1 O:2Pl 
-     #2+<>+VTA+Thm1Sg+Neg+2+Pl: VTA S:1 O:2Pl #1sg v 2pl #book
-     2+<>+VTA+Thm1Pl+Neg+2+Pl: VTA S:1Pl O:2Pl 
-     2+<>+VTA+ThmDir+Neg+1+Pl: VTA S:21Pl O:3 
-     2+<>+VTA+ThmDir+Neg+2+Pl: VTA S:2Pl O:3 
-     2+<>+VTA+ThmInv+Neg+1+Pl: VTA S:3 O:21Pl 
-     2+<>+VTA+ThmInv+Neg+2+Pl: VTA S:3 O:2Pl 
-     1+<>+VTA+ThmDir+Neg+1+Pl: VTA S:1Pl O:3 
-     1+<>+VTA+ThmInv+Neg+1+Pl: VTA S:3 O:1Pl 
+     2+<>+VTA+Thm2+Neg+2+Pl: VTA S:2Pl O:1 Neg 
+     2+<>+VTA+Thm2+Neg+1+Pl: VTA S:2 O:1Pl Neg #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1Sg+Neg+2+Pl: VTA S:1 O:2Pl Neg 
+     #2+<>+VTA+Thm1Sg+Neg+2+Pl: VTA S:1 O:2Pl Neg #1sg v 2pl #book
+     2+<>+VTA+Thm1Pl+Neg+2+Pl: VTA S:1Pl O:2Pl Neg 
+     2+<>+VTA+ThmDir+Neg+1+Pl: VTA S:21Pl O:3 Neg 
+     2+<>+VTA+ThmDir+Neg+2+Pl: VTA S:2Pl O:3 Neg 
+     2+<>+VTA+ThmInv+Neg+1+Pl: VTA S:3 O:21Pl Neg 
+     2+<>+VTA+ThmInv+Neg+2+Pl: VTA S:3 O:2Pl Neg 
+     1+<>+VTA+ThmDir+Neg+1+Pl: VTA S:1Pl O:3 Neg 
+     1+<>+VTA+ThmInv+Neg+1+Pl: VTA S:3 O:1Pl Neg 
 
      #Values from slots numbered 1, 2, 3, 6
      #  theme sign order: 
@@ -283,27 +283,27 @@ Tests:
      #      -igoo (Thm1Pl 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Neg+Prt: VTA S:2 O:1 
-     2+<>+VTA+Thm2+Neg+Dub: VTA S:2 O:1 
-     2+<>+VTA+Thm1Sg+Neg+Prt: VTA S:1 O:2 
-     2+<>+VTA+Thm1Sg+Neg+Dub: VTA S:1 O:2 
-     2+<>+VTA+Thm1Pl+Neg+Prt: VTA S:1Pl O:2 
-     2+<>+VTA+Thm1Pl+Neg+Dub: VTA S:1Pl O:2 
-     2+<>+VTA+ThmDir+Neg+Prt: VTA S:2 O:3 
-     2+<>+VTA+ThmDir+Neg+Dub: VTA S:2 O:3 
-     2+<>+VTA+ThmInv+Neg+Prt: VTA S:3 O:2 
-     2+<>+VTA+ThmInv+Neg+Dub: VTA S:3 O:2 
-     1+<>+VTA+ThmDir+Neg+Prt: VTA S:1 O:3 
-     1+<>+VTA+ThmDir+Neg+Dub: VTA S:1 O:3 
-     1+<>+VTA+ThmInv+Neg+Prt: VTA S:3 O:1 
-     1+<>+VTA+ThmInv+Neg+Dub: VTA S:3 O:1 
+     2+<>+VTA+Thm2+Neg+Prt: VTA S:2 O:1 Neg Prt 
+     2+<>+VTA+Thm2+Neg+Dub: VTA S:2 O:1 Neg Dub 
+     2+<>+VTA+Thm1Sg+Neg+Prt: VTA S:1 O:2 Neg Prt 
+     2+<>+VTA+Thm1Sg+Neg+Dub: VTA S:1 O:2 Neg Dub 
+     2+<>+VTA+Thm1Pl+Neg+Prt: VTA S:1Pl O:2 Neg Prt 
+     2+<>+VTA+Thm1Pl+Neg+Dub: VTA S:1Pl O:2 Neg Dub 
+     2+<>+VTA+ThmDir+Neg+Prt: VTA S:2 O:3 Neg Prt 
+     2+<>+VTA+ThmDir+Neg+Dub: VTA S:2 O:3 Neg Dub 
+     2+<>+VTA+ThmInv+Neg+Prt: VTA S:3 O:2 Neg Prt 
+     2+<>+VTA+ThmInv+Neg+Dub: VTA S:3 O:2 Neg Dub 
+     1+<>+VTA+ThmDir+Neg+Prt: VTA S:1 O:3 Neg Prt 
+     1+<>+VTA+ThmDir+Neg+Dub: VTA S:1 O:3 Neg Dub 
+     1+<>+VTA+ThmInv+Neg+Prt: VTA S:3 O:1 Neg Prt 
+     1+<>+VTA+ThmInv+Neg+Dub: VTA S:3 O:1 Neg Dub 
 
      #Values from slots numbered 1, 2, 3, 7
      #  theme sign order: 
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     3+<>+VTA+ThmDir+Neg+3+4: VTA S:3 O:3' #3obv v 3sg
-     3+<>+VTA+ThmInv+Neg+3+4: VTA S:3' O:3 #3sg v 3obv
+     3+<>+VTA+ThmDir+Neg+3+4: VTA S:3 O:3' Neg #3obv v 3sg
+     3+<>+VTA+ThmInv+Neg+3+4: VTA S:3' O:3 Neg #3sg v 3obv
 
      #2 non-neg slots ...   (4, 5), (4, 6), (4, 7)
      #                      (5, 6), (5, 7)
@@ -311,27 +311,27 @@ Tests:
      #Values from slots numbered 1, 2, 3, 4, 5
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+Neg+0+2+Pl: VTA S:0 O:2Pl 
-     2+<>+VTA+ThmInv+Neg+0+1+Pl: VTA S:0 O:21Pl 
-     1+<>+VTA+ThmInv+Neg+0+1+Pl: VTA S:0 O:1Pl 
-     3+<>+VTA+ThmInv+Neg+0+2+Pl: VTA S:0 O:3Pl #0sg v 3sg
+     2+<>+VTA+ThmInv+Neg+0+2+Pl: VTA S:0 O:2Pl Neg 
+     2+<>+VTA+ThmInv+Neg+0+1+Pl: VTA S:0 O:21Pl Neg 
+     1+<>+VTA+ThmInv+Neg+0+1+Pl: VTA S:0 O:1Pl Neg 
+     3+<>+VTA+ThmInv+Neg+0+2+Pl: VTA S:0 O:3Pl Neg #0sg v 3sg
 
      #Values from slots numbered 1, 2, 3, 4, 6
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+Neg+0+Prt: VTA S:0 O:2 
-     2+<>+VTA+ThmInv+Neg+0+Dub: VTA S:0 O:2 
-     1+<>+VTA+ThmInv+Neg+0+Prt: VTA S:0 O:1 
-     1+<>+VTA+ThmInv+Neg+0+Dub: VTA S:0 O:1 
-     3+<>+VTA+ThmInv+Neg+0+Prt: VTA S:0 O:3 #0sg v 3sg
-     3+<>+VTA+ThmInv+Neg+0+Dub: VTA S:0 O:3 #0sg v 3sg
+     2+<>+VTA+ThmInv+Neg+0+Prt: VTA S:0 O:2 Neg Prt 
+     2+<>+VTA+ThmInv+Neg+0+Dub: VTA S:0 O:2 Neg Dub 
+     1+<>+VTA+ThmInv+Neg+0+Prt: VTA S:0 O:1 Neg Prt 
+     1+<>+VTA+ThmInv+Neg+0+Dub: VTA S:0 O:1 Neg Dub 
+     3+<>+VTA+ThmInv+Neg+0+Prt: VTA S:0 O:3 Neg Prt #0sg v 3sg
+     3+<>+VTA+ThmInv+Neg+0+Dub: VTA S:0 O:3 Neg Dub #0sg v 3sg
 
      #Values from slots numbered 1, 2, 3, 4, 7
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+Neg+0+0+Pl: VTA S:0Pl O:2 
-     1+<>+VTA+ThmInv+Neg+0+0+Pl: VTA S:0Pl O:1 
-     3+<>+VTA+ThmInv+Neg+0+0+Pl: VTA S:0Pl O:3 #0pl v 3sg
+     2+<>+VTA+ThmInv+Neg+0+0+Pl: VTA S:0Pl O:2 Neg 
+     1+<>+VTA+ThmInv+Neg+0+0+Pl: VTA S:0Pl O:1 Neg 
+     3+<>+VTA+ThmInv+Neg+0+0+Pl: VTA S:0Pl O:3 Neg #0pl v 3sg
 
      #Values from slots numbered 1, 2, 3, 5, 6
      #  theme sign order: 
@@ -340,58 +340,58 @@ Tests:
      #      -igoo (Thm1Pl 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Neg+2+Pl+Prt: VTA S:2Pl O:1 
-     2+<>+VTA+Thm2+Neg+2+Pl+Dub: VTA S:2Pl O:1 
-     2+<>+VTA+Thm2+Neg+1+Pl+Prt: VTA S:2 O:1Pl #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm2+Neg+1+Pl+Dub: VTA S:2 O:1Pl #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm1Sg+Neg+2+Pl+Prt: VTA S:1 O:2Pl 
-     #2+<>+VTA+Thm1Sg+Neg+2+Pl+Prt: VTA S:1 O:2Pl #1sg v 2pl #book
-     2+<>+VTA+Thm1Sg+Neg+2+Pl+Dub: VTA S:1 O:2Pl 
-     #2+<>+VTA+Thm1Sg+Neg+2+Pl+Dub: VTA S:1 O:2Pl #1sg v 2pl #book
-     2+<>+VTA+Thm1Pl+Neg+2+Pl+Prt: VTA S:1Pl O:2Pl 
-     2+<>+VTA+Thm1Pl+Neg+2+Pl+Dub: VTA S:1Pl O:2Pl 
-     2+<>+VTA+ThmDir+Neg+1+Pl+Prt: VTA S:21Pl O:3 
-     2+<>+VTA+ThmDir+Neg+1+Pl+Dub: VTA S:21Pl O:3 
-     2+<>+VTA+ThmDir+Neg+2+Pl+Prt: VTA S:2Pl O:3 
-     2+<>+VTA+ThmDir+Neg+2+Pl+Dub: VTA S:2Pl O:3 
-     2+<>+VTA+ThmInv+Neg+1+Pl+Prt: VTA S:3 O:21Pl 
-     2+<>+VTA+ThmInv+Neg+1+Pl+Dub: VTA S:3 O:21Pl 
-     2+<>+VTA+ThmInv+Neg+2+Pl+Prt: VTA S:3 O:2Pl 
-     2+<>+VTA+ThmInv+Neg+2+Pl+Dub: VTA S:3 O:2Pl 
-     1+<>+VTA+ThmDir+Neg+1+Pl+Prt: VTA S:1Pl O:3 
-     1+<>+VTA+ThmDir+Neg+1+Pl+Dub: VTA S:1Pl O:3 
-     1+<>+VTA+ThmInv+Neg+1+Pl+Prt: VTA S:3 O:1Pl 
-     1+<>+VTA+ThmInv+Neg+1+Pl+Dub: VTA S:3 O:1Pl 
+     2+<>+VTA+Thm2+Neg+2+Pl+Prt: VTA S:2Pl O:1 Neg Prt 
+     2+<>+VTA+Thm2+Neg+2+Pl+Dub: VTA S:2Pl O:1 Neg Dub 
+     2+<>+VTA+Thm2+Neg+1+Pl+Prt: VTA S:2 O:1Pl Neg Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm2+Neg+1+Pl+Dub: VTA S:2 O:1Pl Neg Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1Sg+Neg+2+Pl+Prt: VTA S:1 O:2Pl Neg Prt 
+     #2+<>+VTA+Thm1Sg+Neg+2+Pl+Prt: VTA S:1 O:2Pl Neg Prt #1sg v 2pl #book
+     2+<>+VTA+Thm1Sg+Neg+2+Pl+Dub: VTA S:1 O:2Pl Neg Dub 
+     #2+<>+VTA+Thm1Sg+Neg+2+Pl+Dub: VTA S:1 O:2Pl Neg Dub #1sg v 2pl #book
+     2+<>+VTA+Thm1Pl+Neg+2+Pl+Prt: VTA S:1Pl O:2Pl Neg Prt 
+     2+<>+VTA+Thm1Pl+Neg+2+Pl+Dub: VTA S:1Pl O:2Pl Neg Dub 
+     2+<>+VTA+ThmDir+Neg+1+Pl+Prt: VTA S:21Pl O:3 Neg Prt 
+     2+<>+VTA+ThmDir+Neg+1+Pl+Dub: VTA S:21Pl O:3 Neg Dub 
+     2+<>+VTA+ThmDir+Neg+2+Pl+Prt: VTA S:2Pl O:3 Neg Prt 
+     2+<>+VTA+ThmDir+Neg+2+Pl+Dub: VTA S:2Pl O:3 Neg Dub 
+     2+<>+VTA+ThmInv+Neg+1+Pl+Prt: VTA S:3 O:21Pl Neg Prt 
+     2+<>+VTA+ThmInv+Neg+1+Pl+Dub: VTA S:3 O:21Pl Neg Dub 
+     2+<>+VTA+ThmInv+Neg+2+Pl+Prt: VTA S:3 O:2Pl Neg Prt 
+     2+<>+VTA+ThmInv+Neg+2+Pl+Dub: VTA S:3 O:2Pl Neg Dub 
+     1+<>+VTA+ThmDir+Neg+1+Pl+Prt: VTA S:1Pl O:3 Neg Prt 
+     1+<>+VTA+ThmDir+Neg+1+Pl+Dub: VTA S:1Pl O:3 Neg Dub 
+     1+<>+VTA+ThmInv+Neg+1+Pl+Prt: VTA S:3 O:1Pl Neg Prt 
+     1+<>+VTA+ThmInv+Neg+1+Pl+Dub: VTA S:3 O:1Pl Neg Dub 
 
      #Values from slots numbered 1, 2, 3, 5, 7
      #  theme sign order: 
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmDir+Neg+1+Pl+3+Pl: VTA S:21Pl O:3Pl 
-     2+<>+VTA+ThmDir+Neg+2+Pl+3+Pl: VTA S:2Pl O:3Pl 
-     2+<>+VTA+ThmInv+Neg+1+Pl+3+Pl: VTA S:3Pl O:21Pl 
-     2+<>+VTA+ThmInv+Neg+2+Pl+3+Pl: VTA S:3Pl O:2Pl 
-     1+<>+VTA+ThmDir+Neg+1+Pl+3+Pl: VTA S:1Pl O:3Pl 
-     1+<>+VTA+ThmInv+Neg+1+Pl+3+Pl: VTA S:3Pl O:1Pl 
-     3+<>+VTA+ThmDir+Neg+2+Pl+3+4: VTA S:3Pl O:3' #3pl v 3obv
-     3+<>+VTA+ThmInv+Neg+2+Pl+3+4: VTA S:3' O:3Pl #3obv v 3pl
+     2+<>+VTA+ThmDir+Neg+1+Pl+3+Pl: VTA S:21Pl O:3Pl Neg 
+     2+<>+VTA+ThmDir+Neg+2+Pl+3+Pl: VTA S:2Pl O:3Pl Neg 
+     2+<>+VTA+ThmInv+Neg+1+Pl+3+Pl: VTA S:3Pl O:21Pl Neg 
+     2+<>+VTA+ThmInv+Neg+2+Pl+3+Pl: VTA S:3Pl O:2Pl Neg 
+     1+<>+VTA+ThmDir+Neg+1+Pl+3+Pl: VTA S:1Pl O:3Pl Neg 
+     1+<>+VTA+ThmInv+Neg+1+Pl+3+Pl: VTA S:3Pl O:1Pl Neg 
+     3+<>+VTA+ThmDir+Neg+2+Pl+3+4: VTA S:3Pl O:3' Neg #3pl v 3obv
+     3+<>+VTA+ThmInv+Neg+2+Pl+3+4: VTA S:3' O:3Pl Neg #3obv v 3pl
 
      #Values from slots numbered 1, 2, 3, 6, 7
      #  theme sign order: 
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmDir+Neg+Prt+3+Pl: VTA S:2 O:3Pl 
-     2+<>+VTA+ThmDir+Neg+Dub+3+Pl: VTA S:2 O:3Pl 
-     2+<>+VTA+ThmInv+Neg+Prt+3+Pl: VTA S:3Pl O:2 
-     2+<>+VTA+ThmInv+Neg+Dub+3+Pl: VTA S:3Pl O:2 
-     1+<>+VTA+ThmDir+Neg+Prt+3+Pl: VTA S:1 O:3Pl 
-     1+<>+VTA+ThmDir+Neg+Dub+3+Pl: VTA S:1 O:3Pl 
-     1+<>+VTA+ThmInv+Neg+Prt+3+Pl: VTA S:3Pl O:1 
-     1+<>+VTA+ThmInv+Neg+Dub+3+Pl: VTA S:3Pl O:1 
-     3+<>+VTA+ThmDir+Neg+Prt+3+4: VTA S:3 O:3' #3sg v 3obv
-     3+<>+VTA+ThmDir+Neg+Dub+3+4: VTA S:3 O:3' #3sg v 3obv
-     3+<>+VTA+ThmInv+Neg+Prt+3+4: VTA S:3' O:3 #3obv v 3sg
-     3+<>+VTA+ThmInv+Neg+Dub+3+4: VTA S:3' O:3 #3obv v 3sg
+     2+<>+VTA+ThmDir+Neg+Prt+3+Pl: VTA S:2 O:3Pl Neg Prt 
+     2+<>+VTA+ThmDir+Neg+Dub+3+Pl: VTA S:2 O:3Pl Neg Dub 
+     2+<>+VTA+ThmInv+Neg+Prt+3+Pl: VTA S:3Pl O:2 Neg Prt 
+     2+<>+VTA+ThmInv+Neg+Dub+3+Pl: VTA S:3Pl O:2 Neg Dub 
+     1+<>+VTA+ThmDir+Neg+Prt+3+Pl: VTA S:1 O:3Pl Neg Prt 
+     1+<>+VTA+ThmDir+Neg+Dub+3+Pl: VTA S:1 O:3Pl Neg Dub 
+     1+<>+VTA+ThmInv+Neg+Prt+3+Pl: VTA S:3Pl O:1 Neg Prt 
+     1+<>+VTA+ThmInv+Neg+Dub+3+Pl: VTA S:3Pl O:1 Neg Dub 
+     3+<>+VTA+ThmDir+Neg+Prt+3+4: VTA S:3 O:3' Neg Prt #3sg v 3obv
+     3+<>+VTA+ThmDir+Neg+Dub+3+4: VTA S:3 O:3' Neg Dub #3sg v 3obv
+     3+<>+VTA+ThmInv+Neg+Prt+3+4: VTA S:3' O:3 Neg Prt #3obv v 3sg
+     3+<>+VTA+ThmInv+Neg+Dub+3+4: VTA S:3' O:3 Neg Dub #3obv v 3sg
 
      #3 non-neg slots ...   (4, 5, 6), (4, 5, 7), (4, 6, 7)
      #                      (5, 6, 7)
@@ -399,63 +399,63 @@ Tests:
      #Values from slots numbered 1, 2, 3, 4, 5, 6
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+Neg+0+2+Pl+Prt: VTA S:0 O:2Pl 
-     2+<>+VTA+ThmInv+Neg+0+2+Pl+Dub: VTA S:0 O:2Pl 
-     2+<>+VTA+ThmInv+Neg+0+1+Pl+Prt: VTA S:0 O:21Pl 
-     2+<>+VTA+ThmInv+Neg+0+1+Pl+Dub: VTA S:0 O:21Pl 
-     1+<>+VTA+ThmInv+Neg+0+1+Pl+Prt: VTA S:0 O:1Pl 
-     1+<>+VTA+ThmInv+Neg+0+1+Pl+Dub: VTA S:0 O:1Pl 
-     3+<>+VTA+ThmInv+Neg+0+2+Pl+Prt: VTA S:0 O:3Pl #0sg v 3sg
-     3+<>+VTA+ThmInv+Neg+0+2+Pl+Dub: VTA S:0 O:3Pl #0sg v 3sg
+     2+<>+VTA+ThmInv+Neg+0+2+Pl+Prt: VTA S:0 O:2Pl Neg Prt 
+     2+<>+VTA+ThmInv+Neg+0+2+Pl+Dub: VTA S:0 O:2Pl Neg Dub 
+     2+<>+VTA+ThmInv+Neg+0+1+Pl+Prt: VTA S:0 O:21Pl Neg Prt 
+     2+<>+VTA+ThmInv+Neg+0+1+Pl+Dub: VTA S:0 O:21Pl Neg Dub 
+     1+<>+VTA+ThmInv+Neg+0+1+Pl+Prt: VTA S:0 O:1Pl Neg Prt 
+     1+<>+VTA+ThmInv+Neg+0+1+Pl+Dub: VTA S:0 O:1Pl Neg Dub 
+     3+<>+VTA+ThmInv+Neg+0+2+Pl+Prt: VTA S:0 O:3Pl Neg Prt #0sg v 3sg
+     3+<>+VTA+ThmInv+Neg+0+2+Pl+Dub: VTA S:0 O:3Pl Neg Dub #0sg v 3sg
 
      #Values from slots numbered 1, 2, 3, 4, 5, 7
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+Neg+0+2+Pl+0+Pl: VTA S:0Pl O:2Pl 
-     2+<>+VTA+ThmInv+Neg+0+1+Pl+0+Pl: VTA S:0Pl O:21Pl 
-     1+<>+VTA+ThmInv+Neg+0+1+Pl+0+Pl: VTA S:0Pl O:1Pl 
-     3+<>+VTA+ThmInv+Neg+0+2+Pl+0+Pl: VTA S:0Pl O:3Pl #0pl v 3pl
+     2+<>+VTA+ThmInv+Neg+0+2+Pl+0+Pl: VTA S:0Pl O:2Pl Neg 
+     2+<>+VTA+ThmInv+Neg+0+1+Pl+0+Pl: VTA S:0Pl O:21Pl Neg 
+     1+<>+VTA+ThmInv+Neg+0+1+Pl+0+Pl: VTA S:0Pl O:1Pl Neg 
+     3+<>+VTA+ThmInv+Neg+0+2+Pl+0+Pl: VTA S:0Pl O:3Pl Neg #0pl v 3pl
 
      #Values from slots numbered 1, 2, 3, 4, 6, 7
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+Neg+0+Prt+0+Pl: VTA S:0Pl O:2 
-     2+<>+VTA+ThmInv+Neg+0+Dub+0+Pl: VTA S:0Pl O:2 
-     1+<>+VTA+ThmInv+Neg+0+Prt+0+Pl: VTA S:0Pl O:1 
-     1+<>+VTA+ThmInv+Neg+0+Dub+0+Pl: VTA S:0Pl O:1 
-     3+<>+VTA+ThmInv+Neg+0+Prt+0+Pl: VTA S:0Pl O:3 #0pl v 3sg
-     3+<>+VTA+ThmInv+Neg+0+Dub+0+Pl: VTA S:0Pl O:3 #0pl v 3sg
+     2+<>+VTA+ThmInv+Neg+0+Prt+0+Pl: VTA S:0Pl O:2 Neg Prt 
+     2+<>+VTA+ThmInv+Neg+0+Dub+0+Pl: VTA S:0Pl O:2 Neg Dub 
+     1+<>+VTA+ThmInv+Neg+0+Prt+0+Pl: VTA S:0Pl O:1 Neg Prt 
+     1+<>+VTA+ThmInv+Neg+0+Dub+0+Pl: VTA S:0Pl O:1 Neg Dub 
+     3+<>+VTA+ThmInv+Neg+0+Prt+0+Pl: VTA S:0Pl O:3 Neg Prt #0pl v 3sg
+     3+<>+VTA+ThmInv+Neg+0+Dub+0+Pl: VTA S:0Pl O:3 Neg Dub #0pl v 3sg
 
      #Values from slots numbered 1, 2, 3, 5, 6, 7
      #  theme sign order: 
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmDir+Neg+1+Pl+Prt+3+Pl: VTA S:21Pl O:3Pl 
-     2+<>+VTA+ThmDir+Neg+1+Pl+Dub+3+Pl: VTA S:21Pl O:3Pl 
-     2+<>+VTA+ThmDir+Neg+2+Pl+Prt+3+Pl: VTA S:2Pl O:3Pl 
-     2+<>+VTA+ThmDir+Neg+2+Pl+Dub+3+Pl: VTA S:2Pl O:3Pl 
-     2+<>+VTA+ThmInv+Neg+1+Pl+Prt+3+Pl: VTA S:3Pl O:21Pl 
-     2+<>+VTA+ThmInv+Neg+1+Pl+Dub+3+Pl: VTA S:3Pl O:21Pl 
-     2+<>+VTA+ThmInv+Neg+2+Pl+Prt+3+Pl: VTA S:3Pl O:2Pl 
-     2+<>+VTA+ThmInv+Neg+2+Pl+Dub+3+Pl: VTA S:3Pl O:2Pl 
-     1+<>+VTA+ThmDir+Neg+1+Pl+Prt+3+Pl: VTA S:1Pl O:3Pl 
-     1+<>+VTA+ThmDir+Neg+1+Pl+Dub+3+Pl: VTA S:1Pl O:3Pl 
-     1+<>+VTA+ThmInv+Neg+1+Pl+Prt+3+Pl: VTA S:3Pl O:1Pl 
-     1+<>+VTA+ThmInv+Neg+1+Pl+Dub+3+Pl: VTA S:3Pl O:1Pl 
-     3+<>+VTA+ThmDir+Neg+2+Pl+Prt+3+4: VTA S:3Pl O:3' #3pl v 3obv
-     3+<>+VTA+ThmDir+Neg+2+Pl+Dub+3+4: VTA S:3Pl O:3' #3pl v 3obv
-     3+<>+VTA+ThmInv+Neg+2+Pl+Prt+3+4: VTA S:3' O:3Pl #3obv v 3pl (0sg too?)
-     3+<>+VTA+ThmInv+Neg+2+Pl+Dub+3+4: VTA S:3' O:3Pl #3obv v 3pl (0sg too?)
+     2+<>+VTA+ThmDir+Neg+1+Pl+Prt+3+Pl: VTA S:21Pl O:3Pl Neg Prt 
+     2+<>+VTA+ThmDir+Neg+1+Pl+Dub+3+Pl: VTA S:21Pl O:3Pl Neg Dub 
+     2+<>+VTA+ThmDir+Neg+2+Pl+Prt+3+Pl: VTA S:2Pl O:3Pl Neg Prt 
+     2+<>+VTA+ThmDir+Neg+2+Pl+Dub+3+Pl: VTA S:2Pl O:3Pl Neg Dub 
+     2+<>+VTA+ThmInv+Neg+1+Pl+Prt+3+Pl: VTA S:3Pl O:21Pl Neg Prt 
+     2+<>+VTA+ThmInv+Neg+1+Pl+Dub+3+Pl: VTA S:3Pl O:21Pl Neg Dub 
+     2+<>+VTA+ThmInv+Neg+2+Pl+Prt+3+Pl: VTA S:3Pl O:2Pl Neg Prt 
+     2+<>+VTA+ThmInv+Neg+2+Pl+Dub+3+Pl: VTA S:3Pl O:2Pl Neg Dub 
+     1+<>+VTA+ThmDir+Neg+1+Pl+Prt+3+Pl: VTA S:1Pl O:3Pl Neg Prt 
+     1+<>+VTA+ThmDir+Neg+1+Pl+Dub+3+Pl: VTA S:1Pl O:3Pl Neg Dub 
+     1+<>+VTA+ThmInv+Neg+1+Pl+Prt+3+Pl: VTA S:3Pl O:1Pl Neg Prt 
+     1+<>+VTA+ThmInv+Neg+1+Pl+Dub+3+Pl: VTA S:3Pl O:1Pl Neg Dub 
+     3+<>+VTA+ThmDir+Neg+2+Pl+Prt+3+4: VTA S:3Pl O:3' Neg Prt #3pl v 3obv
+     3+<>+VTA+ThmDir+Neg+2+Pl+Dub+3+4: VTA S:3Pl O:3' Neg Dub #3pl v 3obv
+     3+<>+VTA+ThmInv+Neg+2+Pl+Prt+3+4: VTA S:3' O:3Pl Neg Prt #3obv v 3pl (0sg too?)
+     3+<>+VTA+ThmInv+Neg+2+Pl+Dub+3+4: VTA S:3' O:3Pl Neg Dub #3obv v 3pl (0sg too?)
 
      #4 non-neg slots ...   (4, 5, 6, 7)
      #Values from slots numbered 1, 2, 3, 4, 5, 6, 7
      #  theme sign order: 
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+ThmInv+Neg+0+2+Pl+Prt+0+Pl: VTA S:0Pl O:2Pl 
-     2+<>+VTA+ThmInv+Neg+0+2+Pl+Dub+0+Pl: VTA S:0Pl O:2Pl 
-     2+<>+VTA+ThmInv+Neg+0+1+Pl+Prt+0+Pl: VTA S:0Pl O:21Pl 
-     2+<>+VTA+ThmInv+Neg+0+1+Pl+Dub+0+Pl: VTA S:0Pl O:21Pl 
-     1+<>+VTA+ThmInv+Neg+0+1+Pl+Prt+0+Pl: VTA S:0Pl O:1Pl 
-     1+<>+VTA+ThmInv+Neg+0+1+Pl+Dub+0+Pl: VTA S:0Pl O:1Pl 
-     3+<>+VTA+ThmInv+Neg+0+2+Pl+Prt+0+Pl: VTA S:0Pl O:3Pl #0pl v 3pl
-     3+<>+VTA+ThmInv+Neg+0+2+Pl+Dub+0+Pl: VTA S:0Pl O:3Pl #0pl v 3pl
+     2+<>+VTA+ThmInv+Neg+0+2+Pl+Prt+0+Pl: VTA S:0Pl O:2Pl Neg Prt 
+     2+<>+VTA+ThmInv+Neg+0+2+Pl+Dub+0+Pl: VTA S:0Pl O:2Pl Neg Dub 
+     2+<>+VTA+ThmInv+Neg+0+1+Pl+Prt+0+Pl: VTA S:0Pl O:21Pl Neg Prt 
+     2+<>+VTA+ThmInv+Neg+0+1+Pl+Dub+0+Pl: VTA S:0Pl O:21Pl Neg Dub 
+     1+<>+VTA+ThmInv+Neg+0+1+Pl+Prt+0+Pl: VTA S:0Pl O:1Pl Neg Prt 
+     1+<>+VTA+ThmInv+Neg+0+1+Pl+Dub+0+Pl: VTA S:0Pl O:1Pl Neg Dub 
+     3+<>+VTA+ThmInv+Neg+0+2+Pl+Prt+0+Pl: VTA S:0Pl O:3Pl Neg Prt #0pl v 3pl
+     3+<>+VTA+ThmInv+Neg+0+2+Pl+Dub+0+Pl: VTA S:0Pl O:3Pl Neg Dub #0pl v 3pl
