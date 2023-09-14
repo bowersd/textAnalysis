@@ -1,0 +1,430 @@
+Mapping:
+     
+  VTA - Cnj :
+     
+  #Template Key
+  #1	    2	    3	    4       5       6
+  #theme    neg     persnum periph  prt     dub
+     
+     #this is extrapolated from book (p 295-301)
+     #book has +Dub in -e(n) for positive, -en(h) for negative
+     #regularized to across the board -enh
+ 
+     #Values from slots numbered 1, 2, 3
+     #  theme sign order: 
+     #      -i (1 obj)
+     #      -igo (inversion (here 0sub only)
+     #      -igoo (1pl v 2)
+     #      -inin->isinoon (2 obj)
+     <>+VTA+Cnj+Thm1+Neg+1+Pl: VTA Cnj S:2Pl O:1Pl #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+Neg+2+Pl: VTA Cnj S:2Pl O:1 #2pl v 1sg
+     <>+VTA+Cnj+Thm1+Neg+2: VTA Cnj S:2sg O:1 #2sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+Neg+1: VTA Cnj S:0 O:1 #0 v 1sg
+     <>+VTA+Cnj+ThmInv+Neg+1+Pl: VTA Cnj S:0 O:1Pl #0 v 1pl
+     <>+VTA+Cnj+ThmInv+Neg+2+1+Pl: VTA Cnj S:0 O:21Pl #0 v 21pl
+     <>+VTA+Cnj+ThmInv+Neg+2+Pl: VTA Cnj S:0 O:2Pl #0 v 2pl
+     <>+VTA+Cnj+ThmInv+Neg+2: VTA Cnj S:0 O:2 #0 v 2sg
+
+     <>+VTA+Cnj+Thm1Pl+Neg+2+Pl: VTA Cnj S:1Pl O:2Pl #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl+Neg+2: VTA Cnj S:1Pl O:2 #1pl v 2sg
+
+     <>+VTA+Cnj+Thm2a+Neg+2+Pl: VTA Cnj S:1 O:2Pl #1sg v 2pl'
+     <>+VTA+Cnj+Thm2a+Neg+2: VTA Cnj S:1 O:2 #1sg v 2sg
+
+     #Values from slots numbered 1, 2, 3, 4
+     #  theme sign order: 
+     #      -aa (3 obj) THIS IS REPLACES NULL THEME SIGN
+     #      -i (1 obj)
+     #      -inin->isinow, isinoow  (2 obj)
+     #      -igo (3sg v 2pl) THIS IS NEW -> probable typo
+
+     <>+VTA+Cnj+ThmDir+Neg+1+Pl+3+Pl: VTA Cnj S:1Pl O:3Pl #1pl v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+1+Pl+3: VTA Cnj S:1Pl O:3 #1pl v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+1+3+Pl: VTA Cnj S:1 O:3Pl #1sg v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+1+3: VTA Cnj S:1 O:3 #1sg v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+2+1+Pl+3+Pl: VTA Cnj S:21Pl O:3Pl #21pl v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+2+1+Pl+3: VTA Cnj S:21Pl O:3 #21pl v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+2+Pl+3+Pl: VTA Cnj S:2Pl O:3Pl #2pl v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+2+Pl+3: VTA Cnj S:2Pl O:3 #2pl v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+2+3+Pl: VTA Cnj S:2sg O:3Pl #2sg v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+2+3: VTA Cnj S:2sg O:3 #2sg v 3sg
+
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+3+Pl: VTA Cnj S:3Pl O:1Pl #3pl v 1pl
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+3: VTA Cnj S:3 O:1Pl #3sg v 1pl
+
+     <>+VTA+Cnj+Thm2a+Neg+2+1+Pl+3+Pl: VTA Cnj S:3Pl O:21Pl #3pl v 21pl
+     <>+VTA+Cnj+Thm2a+Neg+2+1+Pl+3: VTA Cnj S:3 O:21Pl #3sg v 21pl
+
+     <>+VTA+Cnj+Thm2a+Neg+2+Pl+3+Pl: VTA Cnj S:3Pl O:2Pl #3pl v 2pl
+
+     #<>+VTA+Cnj+ThmInv+Neg+2+Pl+3: VTA Cnj S:3 O:2Pl #3sg v 2pl !expect this if neg = negprt-prt in book
+     <>+VTA+Cnj+ThmInv+Neg+2+Pl+3: VTA Cnj S:3 O:2Pl #3sg v 2pl !book has this (perhaps an error?)
+
+     #Values from slots numbered 1, 2, 3, 4, 5
+     #  theme sign order: 
+     #      -aa (3 obj) THIS IS NEW (relative to positive forms)
+     #      -i (1 obj)
+     #      -inin->isinow, isinoow  (2 obj)
+     #      NULL THEME ABSENT
+     #      (might expect -igo from neu neg (3sg v 2pl), but not)
+
+     <>+VTA+Cnj+ThmDir+Neg+1+Pl+3+Pl+Prt: VTA Cnj S:1Pl O:3Pl #1pl v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+1+Pl+3+Prt: VTA Cnj S:1Pl O:3 #1pl v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+1+3+Pl+Prt: VTA Cnj S:1 O:3Pl #1sg v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+1+3+Prt: VTA Cnj S:1 O:3 #1sg v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+2+1+Pl+3+Pl+Prt: VTA Cnj S:21Pl O:3Pl #21pl v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+2+1+Pl+3+Prt: VTA Cnj S:21Pl O:3 #21pl v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+2+Pl+3+Pl+Prt: VTA Cnj S:2Pl O:3Pl #2pl v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+2+Pl+3+Prt: VTA Cnj S:2Pl O:3 #2pl v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+2+3+Pl+Prt: VTA Cnj S:2sg O:3Pl #2sg v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+2+3+Prt: VTA Cnj S:2sg O:3 #2sg v 3sg
+     #<>+VTA+Cnj+ThmDir+Neg+2+3+Prt: VTA Cnj S:2sg O:3 #2sg v 3sg !book has wid instead of wad (!)
+
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+3+Pl+Prt: VTA Cnj S:3Pl O:1Pl #3pl v 1pl
+     #<>+VTA+Cnj+Thm1+Neg+1+Pl+3+Pl+Prt: VTA Cnj S:3Pl O:1Pl #3pl v 1pl !book has siiw instead of siw
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+3+Prt: VTA Cnj S:3 O:1Pl #3sg v 1pl
+     #<>+VTA+Cnj+Thm1+Neg+1+Pl+3+Prt: VTA Cnj S:3 O:1Pl #3sg v 1pl !bookindicates variation between siw and siiw
+
+     <>+VTA+Cnj+Thm2a+Neg+2+1+Pl+3+Pl+Prt: VTA Cnj S:3Pl O:21Pl #3pl v 21pl
+     <>+VTA+Cnj+Thm2a+Neg+2+1+Pl+3+Prt: VTA Cnj S:3 O:21Pl #3sg v 21pl
+
+     <>+VTA+Cnj+Thm2a+Neg+2+Pl+3+Pl+Prt: VTA Cnj S:3Pl O:2Pl #3pl v 2pl
+     #<>+VTA+Cnj+Thm2a+Neg+2+Pl+3+Pl+Prt: VTA Cnj S:3Pl O:2Pl #3pl v 2pl !book has isinow ... which makes more sense than isinoow here/in neutral (usually a dub thing)
+     #<>+VTA+Cnj+ThmInv+Neg+2+Pl+3+Prt: VTA Cnj S:3 O:2Pl #3sg v 2pl !book 
+     <>+VTA+Cnj+ThmInv+Neg+2+Pl+3+Prt: VTA Cnj S:3 O:2Pl #3sg v 2pl !expected if prt neg extends neg, but perhaps neg was wrong...
+
+     #Values from slots numbered+Dub: 1, 2, 3, 4, 6
+     #  theme sign order+Dub: 
+     #      -aa (3 obj) THIS IS NEW (relative to positive forms)
+     #      -i (1 obj)
+     #      -inin->isinow, isinoow  (2 obj)
+     #      -igo (3sg v 2pl) THIS IS NEW
+     #      NULL THEME ABSENT
+
+     <>+VTA+Cnj+ThmDir+Neg+1+Pl+3+Pl+Dub: VTA Cnj S:1Pl O:3Pl #1pl v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+1+Pl+3+Dub: VTA Cnj S:1Pl O:3 #1pl v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+1+3+Pl+Dub: VTA Cnj S:1 O:3Pl #1sg v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+1+3+Dub: VTA Cnj S:1 O:3 #1sg v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+2+1+Pl+3+Pl+Dub: VTA Cnj S:21Pl O:3Pl #21pl v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+2+1+Pl+3+Dub: VTA Cnj S:21Pl O:3 #21pl v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+2+Pl+3+Pl+Dub: VTA Cnj S:2Pl O:3Pl #2pl v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+2+Pl+3+Dub: VTA Cnj S:2Pl O:3 #2pl v 3sg
+     <>+VTA+Cnj+ThmDir+Neg+2+3+Pl+Dub: VTA Cnj S:2sg O:3Pl #2sg v 3pl
+     <>+VTA+Cnj+ThmDir+Neg+2+3+Dub: VTA Cnj S:2sg O:3 #2sg v 3sg
+
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+3+Pl+Dub: VTA Cnj S:3Pl O:1Pl #3pl v 1pl
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+3+Dub: VTA Cnj S:3 O:1Pl #3sg v 1pl
+
+     <>+VTA+Cnj+Thm2a+Neg+2+1+Pl+3+Pl+Dub: VTA Cnj S:3Pl O:21Pl #3pl v 21pl
+     <>+VTA+Cnj+Thm2a+Neg+2+1+Pl+3+Dub: VTA Cnj S:3 O:21Pl #3sg v 21pl
+
+     <>+VTA+Cnj+Thm2a+Neg+2+Pl+3+Pl+Dub: VTA Cnj S:3Pl O:2Pl #3pl v 2pl
+
+     <>+VTA+Cnj+ThmInv+Neg+2+Pl+3+Dub: VTA Cnj S:3 O:2Pl #3sg v 2pl !cons
+     #<>+VTA+Cnj+ThmInv+Neg+2+Pl+3+Dub: VTA Cnj S:3 O:2Pl #3sg v 2pl !book guess, currently have isinoo for 3pl but not 3 as a general pattern
+
+
+     #Values from slots numbered 1, 2, 3, 5
+     #  theme sign order: 
+     #      -i (1 obj)
+     #      -igo (inversion (here 0sub only)
+     #      -igoo (1pl v 2)
+     #      -inin->isinoon (2 obj)
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+Prt: VTA Cnj S:2Pl O:1Pl #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+Neg+2+Pl+Prt: VTA Cnj S:2Pl O:1 #2pl v 1sg
+     <>+VTA+Cnj+Thm1+Neg+2+Prt: VTA Cnj S:2sg O:1 #2sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+Neg+1+Pl+Prt: VTA Cnj S:0 O:1Pl #0 v 1pl !book unsure
+     <>+VTA+Cnj+ThmInv+Neg+1+Prt: VTA Cnj S:0 O:1 #0 v 1sg
+     <>+VTA+Cnj+ThmInv+Neg+2+1+Pl+Prt: VTA Cnj S:0 O:21Pl #0 v 21pl !book unsure 
+     <>+VTA+Cnj+ThmInv+Neg+2+Pl+Prt: VTA Cnj S:0 O:2Pl #0 v 2pl !book unsure
+     <>+VTA+Cnj+ThmInv+Neg+2+Prt: VTA Cnj S:0 O:2 #0 v 2sg
+
+     <>+VTA+Cnj+Thm1Pl+Neg+2+Pl+Prt: VTA Cnj S:1Pl O:2Pl #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl+Neg+2+Prt: VTA Cnj S:1Pl O:2 #1pl v 2sg !book indicates optional siiw (yikes)
+
+     <>+VTA+Cnj+Thm2a+Neg+2+Pl+Prt: VTA Cnj S:1 O:2Pl #1sg v 2pl !'predict this
+     #<>+VTA+Cnj+Thm2a+Neg+2+Pl: VTA Cnj S:1 O:2Pl #1sg v 2pl !book has this, is unsure
+     <>+VTA+Cnj+Thm2a+Neg+2+Prt: VTA Cnj S:1 O:2 #1sg v 2sg !cons guess
+     #<>+VTA+Cnj+Thm2a+Neg+2+Prt: VTA Cnj S:1 O:2 #1sg v 2sg !book unsure
+
+     #Values from slots numbered+Dub: 1, 2, 3, 6
+     #  theme sign order+Dub: 
+     #      -i (1 obj)
+     #      -igo (inversion (here 0sub only)
+     #      -igoo (1pl v 2)
+     #      -inin->isiino, isinoon (?) (2 obj)
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+Dub: VTA Cnj S:2Pl O:1Pl #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+Neg+2+Pl+Dub: VTA Cnj S:2Pl O:1 #2pl v 1sg
+     <>+VTA+Cnj+Thm1+Neg+2+Dub: VTA Cnj S:2sg O:1 #2sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+Neg+1+Dub: VTA Cnj S:0 O:1 #0 v 1sg  !cons best guess
+     <>+VTA+Cnj+ThmInv+Neg+1+Pl+Dub: VTA Cnj S:0 O:1Pl #0 v 1pl    !cons best guess
+     <>+VTA+Cnj+ThmInv+Neg+2+1+Pl+Dub: VTA Cnj S:0 O:21Pl #0 v 21pl     !cons best guess
+     <>+VTA+Cnj+ThmInv+Neg+2+Pl+Dub: VTA Cnj S:0 O:2Pl #0 v 2pl  !cons best guess
+     <>+VTA+Cnj+ThmInv+Neg+2+Dub: VTA Cnj S:0 O:2 #0 v 2sg !cons best guess
+
+     <>+VTA+Cnj+Thm1Pl+Neg+2+Pl+Dub: VTA Cnj S:1Pl O:2Pl #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl+Neg+2+Dub: VTA Cnj S:1Pl O:2 #1pl v 2sg
+
+     <>+VTA+Cnj+Thm2a+Neg+2+Pl+Dub: VTA Cnj S:1 O:2Pl #1sg v 2pl !'cons best guess
+     <>+VTA+Cnj+Thm2a+Neg+2+Dub: VTA Cnj S:1 O:2 #1sg v 2sg (cons)
+     #<>+VTA+Cnj+Thm2a+Neg+2+Dub: VTA Cnj S:1 O:2 #1sg v 2sg (book, has irregular sii length, short o)
+
+     #Values from slots numbered 1, 2, 4
+     #  theme sign order: 
+     #      -aa (3 obj)
+     #      -i (1 obj)
+     #      -igo (inversion (ambig: 0sub, 3obv v 3))
+     #      -ik->isinog  (3 v 2sg) (treated as Thm2a!)
+     <>+VTA+Cnj+ThmDir+Neg+3+Pl: VTA Cnj S:3Pl O:3' #3pl v 3obv
+     <>+VTA+Cnj+ThmDir+Neg+3: VTA Cnj S:3 O:3' #3sg v 3obv  !book omits form!
+
+     <>+VTA+Cnj+Thm1+Neg+3+Pl: VTA Cnj S:3Pl O:1 #3pl v 1sg
+     <>+VTA+Cnj+Thm1+Neg+3: VTA Cnj S:3 O:1 #3sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+Neg+3+Pl: VTA Cnj S:3' O:3Pl #0 v 3pl, 3obv v 3pl
+     <>+VTA+Cnj+ThmInv+Neg+3: VTA Cnj S:3' O:3 #0 v 3sg, 3obv v 3sg
+
+     <>+VTA+Cnj+Thm2a+Neg+3+Pl: VTA Cnj S:3Pl O:2 #3pl v 2sg
+     <>+VTA+Cnj+Thm2a+Neg+3: VTA Cnj S:3 O:2 #3sg v 2sg
+ 
+     #Values from slots numbered 1, 2, 4, 5
+     #  theme sign order: 
+     #      -aa (3 obj)
+     #      -i (1 obj)
+     #      -igo (inversion (ambig: 0sub, 3obv v 3))
+     #      -ik->isinog  (3 v 2sg)
+     <>+VTA+Cnj+ThmDir+Neg+3+Pl+Prt: VTA Cnj S:3Pl O:3' #3pl v 3obv
+     <>+VTA+Cnj+ThmDir+Neg+3+Prt: VTA Cnj S:3 O:3' #3sg v 3obv  
+
+     <>+VTA+Cnj+Thm1+Neg+3+Pl+Prt: VTA Cnj S:3Pl O:1 #3pl v 1sg !book unsure
+     <>+VTA+Cnj+Thm1+Neg+3+Prt: VTA Cnj S:3 O:1 #3sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+Neg+3+Pl+Prt: VTA Cnj S:3' O:3Pl #0 v 3pl, 3obv v 3pl !book unsure
+     <>+VTA+Cnj+ThmInv+Neg+3+Prt: VTA Cnj S:3' O:3 #0 v 3sg, 3obv v 3sg !book semi-unsure
+
+     <>+VTA+Cnj+Thm2a+Neg+3+Pl+Prt: VTA Cnj S:3Pl O:2 #3pl v 2sg !predict this, book totally unsure
+     <>+VTA+Cnj+Thm2a+Neg+3+Prt: VTA Cnj S:3 O:2 #3sg v 2sg !predict this
+     #<>+VTA+Cnj+Thm2a+Neg+3: VTA Cnj S:3 O:2 #3sg v 2sg !book has this, is unsure
+ 
+     #Values from slots numbered+Dub: 1, 2, 4, 6
+     #  theme sign order+Dub: 
+     #      -aa (3 obj)
+     #      -i (1 obj)
+     #      -igo (inversion (ambig+Dub: 0sub, 3obv v 3))
+     #      -ik->isinog  (3 v 2sg)
+     <>+VTA+Cnj+ThmDir+Neg+3+Pl+Dub: VTA Cnj S:3Pl O:3' #3pl v 3obv 
+     <>+VTA+Cnj+ThmDir+Neg+3+Dub: VTA Cnj S:3 O:3' #3sg v 3obv  
+
+     <>+VTA+Cnj+Thm1+Neg+3+Pl+Dub: VTA Cnj S:3Pl O:1 #3pl v 1sg
+     <>+VTA+Cnj+Thm1+Neg+3+Dub: VTA Cnj S:3 O:1 #3sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+Neg+3+Pl+Dub: VTA Cnj S:3' O:3Pl #0 v 3pl, 3obv v 3pl
+     <>+VTA+Cnj+ThmInv+Neg+3+Dub: VTA Cnj S:3' O:3 #0 v 3sg, 3obv v 3sg
+
+     <>+VTA+Cnj+Thm2a+Neg+3+Pl+Dub: VTA Cnj S:3Pl O:2 #3pl v 2sg !book omits form
+     <>+VTA+Cnj+Thm2a+Neg+3+Dub: VTA Cnj S:3 O:2 #3sg v 2sg !book omits form
+ 
+     #Values from slots numbered 1, 3
+     #  theme sign order: 
+     #      -i (1 obj)
+     #      -igo (inversion (here 0sub only)
+     #      -igoo (1pl v 2)
+     #      -inin (2 obj)
+     <>+VTA+Cnj+Thm1+1+Pl: VTA Cnj S:2Pl O:1Pl #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+2+Pl: VTA Cnj S:2Pl O:1 #2pl v 1sg
+     <>+VTA+Cnj+Thm1+2: VTA Cnj S:2sg O:1 #2sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+1: VTA Cnj S:0 O:1 #0 v 1sg
+     <>+VTA+Cnj+ThmInv+1+Pl: VTA Cnj S:0 O:1Pl #0 v 1pl
+     <>+VTA+Cnj+ThmInv+2+1+Pl: VTA Cnj S:0 O:21Pl #0 v 21pl
+     <>+VTA+Cnj+ThmInv+2+Pl: VTA Cnj S:0 O:2Pl #0 v 2pl
+     <>+VTA+Cnj+ThmInv+2: VTA Cnj S:0 O:2 #0 v 2sg
+
+     <>+VTA+Cnj+Thm1Pl+2+Pl: VTA Cnj S:1Pl O:2Pl #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl+2: VTA Cnj S:1Pl O:2 #1pl v 2sg
+
+     <>+VTA+Cnj+Thm2a+2+Pl: VTA Cnj S:1 O:2Pl #1sg v 2pl
+     <>+VTA+Cnj+Thm2a+2: VTA Cnj S:1 O:2 #1sg v 2sg
+
+     #Values from slots numbered 1, 3, 4
+     #  theme sign order: 
+     #      -i (1 obj)
+     #      -inin  (2 obj)
+     #      -_  (3 obj)
+     <>+VTA+Cnj+Thm1+1+Pl+3+Pl: VTA Cnj S:3Pl O:1Pl #3pl v 1pl
+     <>+VTA+Cnj+Thm1+1+Pl+3: VTA Cnj S:3 O:1Pl #3sg v 1pl
+
+     <>+VTA+Cnj+Thm2a+2+1+Pl+3+Pl: VTA Cnj S:3Pl O:21Pl #3pl v 21pl
+     <>+VTA+Cnj+Thm2a+2+1+Pl+3: VTA Cnj S:3 O:21Pl #3sg v 21pl
+     <>+VTA+Cnj+Thm2a+2+Pl+3+Pl: VTA Cnj S:3Pl O:2Pl #3pl v 2pl
+     <>+VTA+Cnj+Thm2a+2+Pl+3: VTA Cnj S:3 O:2Pl #3sg v 2pl
+
+     <>+VTA+Cnj+ThmNul+1+Pl+3+Pl: VTA Cnj S:1Pl O:3Pl #1pl v 3pl
+     <>+VTA+Cnj+ThmNul+1+Pl+3: VTA Cnj S:1Pl O:3 #1pl v 3sg
+     <>+VTA+Cnj+ThmNul+1+3+Pl: VTA Cnj S:1 O:3Pl #1sg v 3pl
+     <>+VTA+Cnj+ThmNul+1+3: VTA Cnj S:1 O:3 #1sg v 3sg
+     <>+VTA+Cnj+ThmNul+2+1+Pl+3+Pl: VTA Cnj S:21Pl O:3Pl #21pl v 3pl
+     <>+VTA+Cnj+ThmNul+2+1+Pl+3: VTA Cnj S:21Pl O:3 #21pl v 3sg
+     <>+VTA+Cnj+ThmNul+2+Pl+3+Pl: VTA Cnj S:2Pl O:3Pl #2pl v 3pl
+     <>+VTA+Cnj+ThmNul+2+Pl+3: VTA Cnj S:2Pl O:3 #2pl v 3sg
+     <>+VTA+Cnj+ThmNul+2+3+Pl: VTA Cnj S:2sg O:3Pl #2sg v 3pl
+     <>+VTA+Cnj+ThmNul+2+3: VTA Cnj S:2sg O:3 #2sg v 3sg
+ 
+     #Values from slots numbered 1, 3, 4, 5
+     #  theme sign order: 
+     #      -i (1 obj)
+     #      -inin  (2 obj)
+     #      -_  (3 obj)
+
+     <>+VTA+Cnj+Thm1+1+Pl+3+Pl+Prt: VTA Cnj S:3Pl O:1Pl #3pl v 1pl
+     <>+VTA+Cnj+Thm1+1+Pl+3+Prt: VTA Cnj S:3 O:1Pl #3sg v 1pl
+
+     <>+VTA+Cnj+Thm2a+2+1+Pl+3+Pl+Prt: VTA Cnj S:3Pl O:21Pl #3pl v 21pl
+     <>+VTA+Cnj+Thm2a+2+1+Pl+3+Prt: VTA Cnj S:3 O:21Pl #3sg v 21pl
+     <>+VTA+Cnj+Thm2a+2+Pl+3+Pl+Prt: VTA Cnj S:3Pl O:2Pl #3pl v 2pl
+     <>+VTA+Cnj+Thm2a+2+Pl+3+Prt: VTA Cnj S:3 O:2Pl #3sg v 2pl
+
+     <>+VTA+Cnj+ThmNul+1+Pl+3+Pl+Prt: VTA Cnj S:1Pl O:3Pl #1pl v 3pl
+     <>+VTA+Cnj+ThmNul+1+Pl+3+Prt: VTA Cnj S:1Pl O:3 #1pl v 3sg
+     <>+VTA+Cnj+ThmNul+1+3+Pl+Prt: VTA Cnj S:1 O:3Pl #1sg v 3pl
+     <>+VTA+Cnj+ThmNul+1+3+Prt: VTA Cnj S:1 O:3 #1sg v 3sg
+     <>+VTA+Cnj+ThmNul+2+1+Pl+3+Pl+Prt: VTA Cnj S:21Pl O:3Pl #21pl v 3pl
+     <>+VTA+Cnj+ThmNul+2+1+Pl+3+Prt: VTA Cnj S:21Pl O:3 #21pl v 3sg
+     <>+VTA+Cnj+ThmNul+2+Pl+3+Pl+Prt: VTA Cnj S:2Pl O:3Pl #2pl v 3pl
+     <>+VTA+Cnj+ThmNul+2+Pl+3+Prt: VTA Cnj S:2Pl O:3 #2pl v 3sg
+     <>+VTA+Cnj+ThmNul+2+3+Pl+Prt: VTA Cnj S:2sg O:3Pl #2sg v 3pl
+     <>+VTA+Cnj+ThmNul+2+3+Prt: VTA Cnj S:2sg O:3 #2sg v 3sg
+ 
+     #Values from slots numbered+Dub: 1, 3, 4, 6
+     #  theme sign order+Dub: 
+     #      -i (1 obj)
+     #      -inin  (2 obj)
+     #      -_->aa  (3 obj) 
+
+     <>+VTA+Cnj+Thm1+1+Pl+3+Pl+Dub: VTA Cnj S:3Pl O:1Pl #3pl v 1pl
+     <>+VTA+Cnj+Thm1+1+Pl+3+Dub: VTA Cnj S:3 O:1Pl #3sg v 1pl
+
+     <>+VTA+Cnj+Thm2a+2+1+Pl+3+Pl+Dub: VTA Cnj S:3Pl O:21Pl #3pl v 21pl !cons (?)
+     #<>+VTA+Cnj+Thm2a+2+1+Pl+3+Pl+Dub: VTA Cnj S:3Pl O:21Pl #3pl v 21pl !book
+     <>+VTA+Cnj+Thm2a+2+1+Pl+3+Dub: VTA Cnj S:3 O:21Pl #3sg v 21pl
+     <>+VTA+Cnj+Thm2a+2+Pl+3+Pl+Dub: VTA Cnj S:3Pl O:2Pl #3pl v 2pl
+     <>+VTA+Cnj+Thm2a+2+Pl+3+Dub: VTA Cnj S:3 O:2Pl #3sg v 2pl
+
+     <>+VTA+Cnj+ThmNul+1+Pl+3+Pl+Dub: VTA Cnj S:1Pl O:3Pl #1pl v 3pl
+     <>+VTA+Cnj+ThmNul+1+Pl+3+Dub: VTA Cnj S:1Pl O:3 #1pl v 3sg
+     <>+VTA+Cnj+ThmNul+1+3+Pl+Dub: VTA Cnj S:1 O:3Pl #1sg v 3pl
+     <>+VTA+Cnj+ThmNul+1+3+Dub: VTA Cnj S:1 O:3 #1sg v 3sg
+     <>+VTA+Cnj+ThmNul+2+1+Pl+3+Pl+Dub: VTA Cnj S:21Pl O:3Pl #21pl v 3pl
+     <>+VTA+Cnj+ThmNul+2+1+Pl+3+Dub: VTA Cnj S:21Pl O:3 #21pl v 3sg
+     <>+VTA+Cnj+ThmNul+2+Pl+3+Pl+Dub: VTA Cnj S:2Pl O:3Pl #2pl v 3pl
+     <>+VTA+Cnj+ThmNul+2+Pl+3+Dub: VTA Cnj S:2Pl O:3 #2pl v 3sg
+     <>+VTA+Cnj+ThmNul+2+3+Pl+Dub: VTA Cnj S:2sg O:3Pl #2sg v 3pl
+     <>+VTA+Cnj+ThmNul+2+3+Dub: VTA Cnj S:2sg O:3 #2sg v 3sg
+ 
+     #Values from slots numbered 1, 3, 5
+     #  theme sign order: 
+     #      -i (1 obj)
+     #      -igo (inversion (here 0sub only)
+     #      -igoo (1pl v 2)
+     #      -inin (2 obj)
+     <>+VTA+Cnj+Thm1+1+Pl+Prt: VTA Cnj S:2Pl O:1Pl #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+2+Pl+Prt: VTA Cnj S:2Pl O:1 #2pl v 1sg
+     <>+VTA+Cnj+Thm1+2+Prt: VTA Cnj S:2sg O:1 #2sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+1+Pl+Prt: VTA Cnj S:0 O:1Pl #0 v 1pl
+     <>+VTA+Cnj+ThmInv+1+Prt: VTA Cnj S:0 O:1 #0 v 1sg
+     <>+VTA+Cnj+ThmInv+2+1+Pl+Prt: VTA Cnj S:0 O:21Pl #0 v 21pl
+     <>+VTA+Cnj+ThmInv+2+Pl+Prt: VTA Cnj S:0 O:2Pl #0 v 2pl
+     <>+VTA+Cnj+ThmInv+2+Prt: VTA Cnj S:0 O:2 #0 v 2sg
+
+     <>+VTA+Cnj+Thm1Pl+2+Pl+Prt: VTA Cnj S:1Pl O:2Pl #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl+2+Prt: VTA Cnj S:1Pl O:2 #1pl v 2sg
+
+     <>+VTA+Cnj+Thm2a+2+Pl+Prt: VTA Cnj S:1 O:2Pl #1sg v 2pl
+     <>+VTA+Cnj+Thm2a+2+Prt: VTA Cnj S:1 O:2 #1sg v 2sg
+
+     #Values from slots numbered 1, 3, 6
+     #  theme sign order: 
+     #      -i (1 obj)
+     #      -igo (inversion (here 0sub only)
+     #      -igoo (1pl v 2)
+     #      -inin (2 obj)
+     <>+VTA+Cnj+Thm1+1+Pl+Dub: VTA Cnj S:2Pl O:1Pl #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+2+Pl+Dub: VTA Cnj S:2Pl O:1 #2pl v 1sg
+     <>+VTA+Cnj+Thm1+2+Dub: VTA Cnj S:2sg O:1 #2sg v 1sg !cons (?)
+     #<>+VTA+Cnj+Thm1+2+Dub: VTA Cnj S:2sg O:1 #2sg v 1sg !book
+
+     <>+VTA+Cnj+ThmInv+1+Dub: VTA Cnj S:0 O:1 #0 v 1sg !cons (?)
+     #<>+VTA+Cnj+ThmInv+1+Dub: VTA Cnj S:0 O:1 #0 v 1sg !book (?)
+     <>+VTA+Cnj+ThmInv+1+Pl+Dub: VTA Cnj S:0 O:1Pl #0 v 1pl
+     <>+VTA+Cnj+ThmInv+2+1+Pl+Dub: VTA Cnj S:0 O:21Pl #0 v 21pl
+     <>+VTA+Cnj+ThmInv+2+Pl+Dub: VTA Cnj S:0 O:2Pl #0 v 2pl
+     <>+VTA+Cnj+ThmInv+2+Dub: VTA Cnj S:0 O:2 #0 v 2sg !cons (?)
+     #<>+VTA+Cnj+ThmInv+2+Dub: VTA Cnj S:0 O:2 #0 v 2sg !book
+
+     <>+VTA+Cnj+Thm1Pl+2+Pl+Dub: VTA Cnj S:1Pl O:2Pl #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl+2+Dub: VTA Cnj S:1Pl O:2 #1pl v 2sg !cons (?)
+     #<>+VTA+Cnj+Thm1Pl+2+Dub: VTA Cnj S:1Pl O:2 #1pl v 2sg !book
+
+     <>+VTA+Cnj+Thm2a+2+Pl+Dub: VTA Cnj S:1 O:2Pl #1sg v 2pl
+     <>+VTA+Cnj+Thm2a+2+Dub: VTA Cnj S:1 O:2 #1sg v 2sg !cons (?)
+     #<>+VTA+Cnj+Thm2a+2+Dub: VTA Cnj S:1 O:2 #1sg v 2sg !cons (?)
+
+     #Values from slots numbered 1, 4
+     #  theme sign order: 
+     #      -aa (3 obj)
+     #      -i (1 obj)
+     #      -igo (inversion (ambig: 0sub, 3obv v 3))
+     #      -ik  (3 v 2sg)
+     <>+VTA+Cnj+ThmDir+3+Pl: VTA Cnj S:3Pl O:3' #3pl v 3obv
+     <>+VTA+Cnj+ThmDir+3: VTA Cnj S:3 O:3' #3sg v 3obv
+
+     <>+VTA+Cnj+Thm1+3+Pl: VTA Cnj S:3Pl O:1 #3pl v 1sg
+     <>+VTA+Cnj+Thm1+3: VTA Cnj S:3 O:1 #3sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+3+Pl: VTA Cnj S:3' O:3Pl #0 v 3pl, 3obv v 3pl
+     <>+VTA+Cnj+ThmInv+3: VTA Cnj S:3' O:3 #0 v 3sg, 3obv v 3sg
+
+     <>+VTA+Cnj+Thm2b+3+Pl: VTA Cnj S:3Pl O:2 #3pl v 2sg
+     <>+VTA+Cnj+Thm2b+3: VTA Cnj S:3 O:2 #3sg v 2sg
+ 
+     #Values from slots numbered 1, 4, 5
+     #  theme sign order: 
+     #      -aa (3 obj)
+     #      -i (1 obj)
+     #      -igo (inversion (ambig: 0sub, 3obv v 3))
+     #      -ik  (3 v 2sg)
+     <>+VTA+Cnj+ThmDir+3+Pl+Prt: VTA Cnj S:3Pl O:3' #3pl v 3obv
+     <>+VTA+Cnj+ThmDir+3+Prt: VTA Cnj S:3 O:3' #3sg v 3obv
+
+     <>+VTA+Cnj+Thm1+3+Pl+Prt: VTA Cnj S:3Pl O:1 #3pl v 1sg
+     <>+VTA+Cnj+Thm1+3+Prt: VTA Cnj S:3 O:1 #3sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+3+Pl+Prt: VTA Cnj S:3' O:3Pl #0 v 3pl, 3obv v 3pl
+     <>+VTA+Cnj+ThmInv+3+Prt: VTA Cnj S:3' O:3 #0 v 3sg, 3obv v 3sg
+
+     <>+VTA+Cnj+Thm2b+3+Pl+Prt: VTA Cnj S:3Pl O:2 #3pl v 2sg
+     <>+VTA+Cnj+Thm2b+3+Prt: VTA Cnj S:3 O:2 #3sg v 2sg
+ 
+     #Values from slots numbered+Dub: 1, 4, 6
+     #  theme sign order+Dub: 
+     #      -aa (3 obj)
+     #      -i (1 obj)
+     #      -igo (inversion (ambig+Dub: 0sub, 3obv v 3))
+     #      -ik  (3 v 2sg)
+     <>+VTA+Cnj+ThmDir+3+Pl+Dub: VTA Cnj S:3Pl O:3' #3pl v 3obv !book provides nothing, this is best guess
+     <>+VTA+Cnj+ThmDir+3+Dub: VTA Cnj S:3 O:3' #3sg v 3obv
+
+     <>+VTA+Cnj+Thm1+3+Pl+Dub: VTA Cnj S:3Pl O:1 #3pl v 1sg
+     <>+VTA+Cnj+Thm1+3+Dub: VTA Cnj S:3 O:1 #3sg v 1sg
+
+     <>+VTA+Cnj+ThmInv+3+Pl+Dub: VTA Cnj S:3' O:3Pl #0 v 3pl, 3obv v 3pl !cons
+     #<>+VTA+Cnj+ThmInv+3+Pl+Dub: VTA Cnj S:3' O:3Pl #0 v 3pl, 3obv v 3pl !book (this can't be right, eg is 2pl)
+     <>+VTA+Cnj+ThmInv+3+Dub: VTA Cnj S:3' O:3 #0 v 3sg, 3obv v 3sg !less anomalous than it seems, just lengthen igo in this context (compensatory lenghtenging?) (don't use igoo, that disrupts orderliness)
+
+     <>+VTA+Cnj+Thm2b+3+Pl+Dub: VTA Cnj S:3Pl O:2 #3pl v 2sg !cons (?)
+     #<>+VTA+Cnj+Thm2b+3+Pl+Dub: VTA Cnj S:3Pl O:2 #3pl v 2sg !book 
+     <>+VTA+Cnj+Thm2b+3+Dub: VTA Cnj S:3 O:2 #3sg v 2sg !hm no w4
