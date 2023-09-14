@@ -1,0 +1,1188 @@
+Mapping: NID
+     
+  NID - All: 
+     
+  #Template Key
+  #1	2	3	4	5	6	7
+  #per	dim	the	pej	pos	mod	num
+     
+     #Isolation form
+     
+     #Values from slots numbered 1
+     1+<>+NID: NID Pos:1
+     2+<>+NID: NID Pos:2
+     3+<>+NID: NID Pos:3
+     X+<>+NID: NID Pos:X
+     
+     #Values from slots numbered 2
+     
+     
+     #Values from slots numbered 4 
+     
+     
+     #Values from slots numbered 6
+     
+     #Values from slots numbered 7
+     
+     #Values from slots numbered 1, 2
+     1+<>+NID+Con: NID Con Pos:1
+     1+<>+NID+Dim: NID Dim Pos:1
+     2+<>+NID+Con: NID Con Pos:2
+     2+<>+NID+Dim: NID Dim Pos:2
+     3+<>+NID+Con: NID Con Pos:3
+     3+<>+NID+Dim: NID Dim Pos:3
+     X+<>+NID+Con: NID Con Pos:X
+     X+<>+NID+Dim: NID Dim Pos:X
+     
+     #Values from slots numbered 1, 3
+     1+<>+NID+ThmPos: NID Pos:1
+     2+<>+NID+ThmPos: NID Pos:2
+     3+<>+NID+ThmPos: NID Pos:3
+     X+<>+NID+ThmPos: NID Pos:X
+     
+     #Values from slots numbered 1, 4 
+     1+<>+NID+Pej: NID Pej Pos:1
+     2+<>+NID+Pej: NID Pej Pos:2
+     3+<>+NID+Pej: NID Pej Pos:3
+     X+<>+NID+Pej: NID Pej Pos:X
+     
+     #Values from slots numbered 1, 5
+     1+<>+NID+1+Pl: NID Pos:1Pl
+     2+<>+NID+1+Pl: NID Pos:21Pl
+     2+<>+NID+2+Pl: NID Pos:2Pl
+     3+<>+NID+2+Pl: NID Pos:3Pl
+     3+<>+NID+3+4: NID Pos:3'
+     
+     #Values from slots numbered 1, 6
+     1+<>+NID+Prt: NID Prt Pos:1
+     1+<>+NID+Voc+Pl: NID Pl Voc Pos:1
+     2+<>+NID+Prt: NID Prt Pos:2
+     2+<>+NID+Voc+Pl: NID Pl Voc Pos:2
+     3+<>+NID+Prt: NID Prt Pos:3
+     3+<>+NID+Voc+Pl: NID Pl Voc Pos:3
+     X+<>+NID+Prt: NID Prt Pos:X
+     X+<>+NID+Voc+Pl: NID Pl Voc Pos:X
+     
+     #Values from slots numbered 1, 7
+     1+<>+NID+4: NID Obv Pos:1
+     1+<>+NID+Loc: NID Loc Pos:1
+     1+<>+NID+Pl: NID Pl Pos:1
+     2+<>+NID+4: NID Obv Pos:2
+     2+<>+NID+Loc: NID Loc Pos:2
+     2+<>+NID+Pl: NID Pl Pos:2
+     3+<>+NID+4: NID Obv Pos:3
+     3+<>+NID+Loc: NID Loc Pos:3
+     3+<>+NID+Pl: NID Pl Pos:3
+     X+<>+NID+4: NID Obv Pos:X
+     X+<>+NID+Loc: NID Loc Pos:X
+     X+<>+NID+Pl: NID Pl Pos:X
+     
+     
+     #Values from slots numbered 2, 4 
+     
+     
+     #Values from slots numbered 2, 6
+     
+     #Values from slots numbered 2, 7
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 4, 6 
+     
+     #Values from slots numbered 4, 7 
+     
+     
+     
+     #Values from slots numbered 6, 7
+     
+     #Values from slots numbered 1, 2, 3
+     1+<>+NID+Con+ThmPos: NID Con Pos:1
+     1+<>+NID+Dim+ThmPos: NID Dim Pos:1
+     2+<>+NID+Con+ThmPos: NID Con Pos:2
+     2+<>+NID+Dim+ThmPos: NID Dim Pos:2
+     3+<>+NID+Con+ThmPos: NID Con Pos:3
+     3+<>+NID+Dim+ThmPos: NID Dim Pos:3
+     X+<>+NID+Con+ThmPos: NID Con Pos:X
+     X+<>+NID+Dim+ThmPos: NID Dim Pos:X
+     
+     #Values from slots numbered 1, 2, 4 
+     1+<>+NID+Con+Pej: NID Con Pej Pos:1
+     1+<>+NID+Dim+Pej: NID Dim Pej Pos:1
+     2+<>+NID+Con+Pej: NID Con Pej Pos:2
+     2+<>+NID+Dim+Pej: NID Dim Pej Pos:2
+     3+<>+NID+Con+Pej: NID Con Pej Pos:3
+     3+<>+NID+Dim+Pej: NID Dim Pej Pos:3
+     X+<>+NID+Con+Pej: NID Con Pej Pos:X
+     X+<>+NID+Dim+Pej: NID Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 5
+     1+<>+NID+Con+1+Pl: NID Con Pos:1Pl
+     1+<>+NID+Dim+1+Pl: NID Dim Pos:1Pl
+     2+<>+NID+Con+1+Pl: NID Con Pos:21Pl
+     2+<>+NID+Con+2+Pl: NID Con Pos:2Pl
+     2+<>+NID+Dim+1+Pl: NID Dim Pos:21Pl
+     2+<>+NID+Dim+2+Pl: NID Dim Pos:2Pl
+     3+<>+NID+Con+2+Pl: NID Con Pos:3Pl
+     3+<>+NID+Con+3+4: NID Con Pos:3'
+     3+<>+NID+Dim+2+Pl: NID Dim Pos:3Pl
+     3+<>+NID+Dim+3+4: NID Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 6
+     1+<>+NID+Con+Prt: NID Con Prt Pos:1
+     1+<>+NID+Con+Voc+Pl: NID Pl Con Voc Pos:1
+     1+<>+NID+Dim+Prt: NID Dim Prt Pos:1
+     1+<>+NID+Dim+Voc+Pl: NID Pl Dim Voc Pos:1
+     2+<>+NID+Con+Prt: NID Con Prt Pos:2
+     2+<>+NID+Con+Voc+Pl: NID Pl Con Voc Pos:2
+     2+<>+NID+Dim+Prt: NID Dim Prt Pos:2
+     2+<>+NID+Dim+Voc+Pl: NID Pl Dim Voc Pos:2
+     3+<>+NID+Con+Prt: NID Con Prt Pos:3
+     3+<>+NID+Con+Voc+Pl: NID Pl Con Voc Pos:3
+     3+<>+NID+Dim+Prt: NID Dim Prt Pos:3
+     3+<>+NID+Dim+Voc+Pl: NID Pl Dim Voc Pos:3
+     X+<>+NID+Con+Prt: NID Con Prt Pos:X
+     X+<>+NID+Con+Voc+Pl: NID Pl Con Voc Pos:X
+     X+<>+NID+Dim+Prt: NID Dim Prt Pos:X
+     X+<>+NID+Dim+Voc+Pl: NID Pl Dim Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 7
+     1+<>+NID+Con+4: NID Obv Con Pos:1
+     1+<>+NID+Con+Loc: NID Loc Con Pos:1
+     1+<>+NID+Con+Pl: NID Pl Con Pos:1
+     1+<>+NID+Dim+4: NID Obv Dim Pos:1
+     1+<>+NID+Dim+Loc: NID Loc Dim Pos:1
+     1+<>+NID+Dim+Pl: NID Pl Dim Pos:1
+     2+<>+NID+Con+4: NID Obv Con Pos:2
+     2+<>+NID+Con+Loc: NID Loc Con Pos:2
+     2+<>+NID+Con+Pl: NID Pl Con Pos:2
+     2+<>+NID+Dim+4: NID Obv Dim Pos:2
+     2+<>+NID+Dim+Loc: NID Loc Dim Pos:2
+     2+<>+NID+Dim+Pl: NID Pl Dim Pos:2
+     3+<>+NID+Con+4: NID Obv Con Pos:3
+     3+<>+NID+Con+Loc: NID Loc Con Pos:3
+     3+<>+NID+Con+Pl: NID Pl Con Pos:3
+     3+<>+NID+Dim+4: NID Obv Dim Pos:3
+     3+<>+NID+Dim+Loc: NID Loc Dim Pos:3
+     3+<>+NID+Dim+Pl: NID Pl Dim Pos:3
+     X+<>+NID+Con+4: NID Obv Con Pos:X
+     X+<>+NID+Con+Loc: NID Loc Con Pos:X
+     X+<>+NID+Con+Pl: NID Pl Con Pos:X
+     X+<>+NID+Dim+4: NID Obv Dim Pos:X
+     X+<>+NID+Dim+Loc: NID Loc Dim Pos:X
+     X+<>+NID+Dim+Pl: NID Pl Dim Pos:X
+     
+     #Values from slots numbered 1, 3, 4 
+     1+<>+NID+ThmPos+Pej: NID Pej Pos:1
+     2+<>+NID+ThmPos+Pej: NID Pej Pos:2
+     3+<>+NID+ThmPos+Pej: NID Pej Pos:3
+     X+<>+NID+ThmPos+Pej: NID Pej Pos:X
+     
+     #Values from slots numbered 1, 3, 5
+     1+<>+NID+ThmPos+1+Pl: NID Pos:1Pl
+     2+<>+NID+ThmPos+1+Pl: NID Pos:21Pl
+     2+<>+NID+ThmPos+2+Pl: NID Pos:2Pl
+     3+<>+NID+ThmPos+2+Pl: NID Pos:3Pl
+     3+<>+NID+ThmPos+3+4: NID Pos:3'
+     
+     #Values from slots numbered 1, 3, 6
+     1+<>+NID+ThmPos+Prt: NID Prt Pos:1
+     1+<>+NID+ThmPos+Voc+Pl: NID Pl Voc Pos:1
+     2+<>+NID+ThmPos+Prt: NID Prt Pos:2
+     2+<>+NID+ThmPos+Voc+Pl: NID Pl Voc Pos:2
+     3+<>+NID+ThmPos+Prt: NID Prt Pos:3
+     3+<>+NID+ThmPos+Voc+Pl: NID Pl Voc Pos:3
+     X+<>+NID+ThmPos+Prt: NID Prt Pos:X
+     X+<>+NID+ThmPos+Voc+Pl: NID Pl Voc Pos:X
+     
+     #Values from slots numbered 1, 3, 7
+     1+<>+NID+ThmPos+4: NID Obv Pos:1
+     1+<>+NID+ThmPos+Loc: NID Loc Pos:1
+     1+<>+NID+ThmPos+Pl: NID Pl Pos:1
+     2+<>+NID+ThmPos+4: NID Obv Pos:2
+     2+<>+NID+ThmPos+Loc: NID Loc Pos:2
+     2+<>+NID+ThmPos+Pl: NID Pl Pos:2
+     3+<>+NID+ThmPos+4: NID Obv Pos:3
+     3+<>+NID+ThmPos+Loc: NID Loc Pos:3
+     3+<>+NID+ThmPos+Pl: NID Pl Pos:3
+     X+<>+NID+ThmPos+4: NID Obv Pos:X
+     X+<>+NID+ThmPos+Loc: NID Loc Pos:X
+     X+<>+NID+ThmPos+Pl: NID Pl Pos:X
+     
+     #Values from slots numbered 1, 4, 5 
+     1+<>+NID+Pej+1+Pl: NID Pej Pos:1Pl
+     2+<>+NID+Pej+1+Pl: NID Pej Pos:21Pl
+     2+<>+NID+Pej+2+Pl: NID Pej Pos:2Pl
+     3+<>+NID+Pej+2+Pl: NID Pej Pos:3Pl
+     3+<>+NID+Pej+3+4: NID Pej Pos:3'
+     
+     #Values from slots numbered 1, 4, 6 
+     1+<>+NID+Pej+Prt: NID Pej Prt Pos:1
+     1+<>+NID+Pej+Voc+Pl: NID Pl Pej Voc Pos:1
+     2+<>+NID+Pej+Prt: NID Pej Prt Pos:2
+     2+<>+NID+Pej+Voc+Pl: NID Pl Pej Voc Pos:2
+     3+<>+NID+Pej+Prt: NID Pej Prt Pos:3
+     3+<>+NID+Pej+Voc+Pl: NID Pl Pej Voc Pos:3
+     X+<>+NID+Pej+Prt: NID Pej Prt Pos:X
+     X+<>+NID+Pej+Voc+Pl: NID Pl Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 4, 7 
+     1+<>+NID+Pej+4: NID Obv Pej Pos:1
+     1+<>+NID+Pej+Loc: NID Loc Pej Pos:1
+     1+<>+NID+Pej+Pl: NID Pl Pej Pos:1
+     2+<>+NID+Pej+4: NID Obv Pej Pos:2
+     2+<>+NID+Pej+Loc: NID Loc Pej Pos:2
+     2+<>+NID+Pej+Pl: NID Pl Pej Pos:2
+     3+<>+NID+Pej+4: NID Obv Pej Pos:3
+     3+<>+NID+Pej+Loc: NID Loc Pej Pos:3
+     3+<>+NID+Pej+Pl: NID Pl Pej Pos:3
+     X+<>+NID+Pej+4: NID Obv Pej Pos:X
+     X+<>+NID+Pej+Loc: NID Loc Pej Pos:X
+     X+<>+NID+Pej+Pl: NID Pl Pej Pos:X
+     
+     #Values from slots numbered 1, 5, 6
+     1+<>+NID+1+Pl+Prt: NID Prt Pos:1Pl
+     1+<>+NID+1+Pl+Voc+Pl: NID Pl Voc Pos:1Pl
+     2+<>+NID+1+Pl+Prt: NID Prt Pos:21Pl
+     2+<>+NID+1+Pl+Voc+Pl: NID Pl Voc Pos:21Pl
+     2+<>+NID+2+Pl+Prt: NID Prt Pos:2Pl
+     2+<>+NID+2+Pl+Voc+Pl: NID Pl Voc Pos:2Pl
+     3+<>+NID+2+Pl+Prt: NID Prt Pos:3Pl
+     3+<>+NID+2+Pl+Voc+Pl: NID Pl Voc Pos:3Pl
+     3+<>+NID+3+4+Prt: NID Prt Pos:3'
+     3+<>+NID+3+4+Voc+Pl: NID Pl Voc Pos:3'
+     
+     #Values from slots numbered 1, 5, 7
+     1+<>+NID+1+Pl+4: NID Obv Pos:1Pl
+     1+<>+NID+1+Pl+Loc: NID Loc Pos:1Pl
+     1+<>+NID+1+Pl+Pl: NID Pl Pos:1Pl
+     2+<>+NID+1+Pl+4: NID Obv Pos:21Pl
+     2+<>+NID+1+Pl+Loc: NID Loc Pos:21Pl
+     2+<>+NID+1+Pl+Pl: NID Pl Pos:21Pl
+     2+<>+NID+2+Pl+4: NID Obv Pos:2Pl
+     2+<>+NID+2+Pl+Loc: NID Loc Pos:2Pl
+     2+<>+NID+2+Pl+Pl: NID Pl Pos:2Pl
+     3+<>+NID+2+Pl+4: NID Obv Pos:3Pl
+     3+<>+NID+2+Pl+Loc: NID Loc Pos:3Pl
+     3+<>+NID+2+Pl+Pl: NID Pl Pos:3Pl
+     3+<>+NID+3+4+4: NID Obv Pos:3'
+     3+<>+NID+3+4+Loc: NID Loc Pos:3'
+     3+<>+NID+3+4+Pl: NID Pl Pos:3'
+     
+     #Values from slots numbered 1, 6, 7
+     1+<>+NID+Prt+4: NID Obv Prt Pos:1
+     1+<>+NID+Prt+Loc: NID Loc Prt Pos:1
+     1+<>+NID+Prt+Pl: NID Pl Prt Pos:1
+     2+<>+NID+Prt+4: NID Obv Prt Pos:2
+     2+<>+NID+Prt+Loc: NID Loc Prt Pos:2
+     2+<>+NID+Prt+Pl: NID Pl Prt Pos:2
+     3+<>+NID+Prt+4: NID Obv Prt Pos:3
+     3+<>+NID+Prt+Loc: NID Loc Prt Pos:3
+     3+<>+NID+Prt+Pl: NID Pl Prt Pos:3
+     X+<>+NID+Prt+4: NID Obv Prt Pos:X
+     X+<>+NID+Prt+Loc: NID Loc Prt Pos:X
+     X+<>+NID+Prt+Pl: NID Pl Prt Pos:X
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 2, 4, 6 
+     
+     #Values from slots numbered 2, 4, 7 
+     
+     
+     
+     #Values from slots numbered 2, 6, 7
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 4, 6, 7 
+     
+     
+     #Values from slots numbered 1, 2, 3, 4 
+     1+<>+NID+Con+ThmPos+Pej: NID Con Pej Pos:1
+     1+<>+NID+Dim+ThmPos+Pej: NID Dim Pej Pos:1
+     2+<>+NID+Con+ThmPos+Pej: NID Con Pej Pos:2
+     2+<>+NID+Dim+ThmPos+Pej: NID Dim Pej Pos:2
+     3+<>+NID+Con+ThmPos+Pej: NID Con Pej Pos:3
+     3+<>+NID+Dim+ThmPos+Pej: NID Dim Pej Pos:3
+     X+<>+NID+Con+ThmPos+Pej: NID Con Pej Pos:X
+     X+<>+NID+Dim+ThmPos+Pej: NID Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 5
+     1+<>+NID+Con+ThmPos+1+Pl: NID Con Pos:1Pl
+     1+<>+NID+Dim+ThmPos+1+Pl: NID Dim Pos:1Pl
+     2+<>+NID+Con+ThmPos+1+Pl: NID Con Pos:21Pl
+     2+<>+NID+Con+ThmPos+2+Pl: NID Con Pos:2Pl
+     2+<>+NID+Dim+ThmPos+1+Pl: NID Dim Pos:21Pl
+     2+<>+NID+Dim+ThmPos+2+Pl: NID Dim Pos:2Pl
+     3+<>+NID+Con+ThmPos+2+Pl: NID Con Pos:3Pl
+     3+<>+NID+Con+ThmPos+3+4: NID Con Pos:3'
+     3+<>+NID+Dim+ThmPos+2+Pl: NID Dim Pos:3Pl
+     3+<>+NID+Dim+ThmPos+3+4: NID Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 6
+     1+<>+NID+Con+ThmPos+Prt: NID Con Prt Pos:1
+     1+<>+NID+Con+ThmPos+Voc+Pl: NID Pl Con Voc Pos:1
+     1+<>+NID+Dim+ThmPos+Prt: NID Dim Prt Pos:1
+     1+<>+NID+Dim+ThmPos+Voc+Pl: NID Pl Dim Voc Pos:1
+     2+<>+NID+Con+ThmPos+Prt: NID Con Prt Pos:2
+     2+<>+NID+Con+ThmPos+Voc+Pl: NID Pl Con Voc Pos:2
+     2+<>+NID+Dim+ThmPos+Prt: NID Dim Prt Pos:2
+     2+<>+NID+Dim+ThmPos+Voc+Pl: NID Pl Dim Voc Pos:2
+     3+<>+NID+Con+ThmPos+Prt: NID Con Prt Pos:3
+     3+<>+NID+Con+ThmPos+Voc+Pl: NID Pl Con Voc Pos:3
+     3+<>+NID+Dim+ThmPos+Prt: NID Dim Prt Pos:3
+     3+<>+NID+Dim+ThmPos+Voc+Pl: NID Pl Dim Voc Pos:3
+     X+<>+NID+Con+ThmPos+Prt: NID Con Prt Pos:X
+     X+<>+NID+Con+ThmPos+Voc+Pl: NID Pl Con Voc Pos:X
+     X+<>+NID+Dim+ThmPos+Prt: NID Dim Prt Pos:X
+     X+<>+NID+Dim+ThmPos+Voc+Pl: NID Pl Dim Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 7
+     1+<>+NID+Con+ThmPos+4: NID Obv Con Pos:1
+     1+<>+NID+Con+ThmPos+Loc: NID Loc Con Pos:1
+     1+<>+NID+Con+ThmPos+Pl: NID Pl Con Pos:1
+     1+<>+NID+Dim+ThmPos+4: NID Obv Dim Pos:1
+     1+<>+NID+Dim+ThmPos+Loc: NID Loc Dim Pos:1
+     1+<>+NID+Dim+ThmPos+Pl: NID Pl Dim Pos:1
+     2+<>+NID+Con+ThmPos+4: NID Obv Con Pos:2
+     2+<>+NID+Con+ThmPos+Loc: NID Loc Con Pos:2
+     2+<>+NID+Con+ThmPos+Pl: NID Pl Con Pos:2
+     2+<>+NID+Dim+ThmPos+4: NID Obv Dim Pos:2
+     2+<>+NID+Dim+ThmPos+Loc: NID Loc Dim Pos:2
+     2+<>+NID+Dim+ThmPos+Pl: NID Pl Dim Pos:2
+     3+<>+NID+Con+ThmPos+4: NID Obv Con Pos:3
+     3+<>+NID+Con+ThmPos+Loc: NID Loc Con Pos:3
+     3+<>+NID+Con+ThmPos+Pl: NID Pl Con Pos:3
+     3+<>+NID+Dim+ThmPos+4: NID Obv Dim Pos:3
+     3+<>+NID+Dim+ThmPos+Loc: NID Loc Dim Pos:3
+     3+<>+NID+Dim+ThmPos+Pl: NID Pl Dim Pos:3
+     X+<>+NID+Con+ThmPos+4: NID Obv Con Pos:X
+     X+<>+NID+Con+ThmPos+Loc: NID Loc Con Pos:X
+     X+<>+NID+Con+ThmPos+Pl: NID Pl Con Pos:X
+     X+<>+NID+Dim+ThmPos+4: NID Obv Dim Pos:X
+     X+<>+NID+Dim+ThmPos+Loc: NID Loc Dim Pos:X
+     X+<>+NID+Dim+ThmPos+Pl: NID Pl Dim Pos:X
+     
+     #Values from slots numbered 1, 2, 4, 5 
+     1+<>+NID+Con+Pej+1+Pl: NID Con Pej Pos:1Pl
+     1+<>+NID+Dim+Pej+1+Pl: NID Dim Pej Pos:1Pl
+     2+<>+NID+Con+Pej+1+Pl: NID Con Pej Pos:21Pl
+     2+<>+NID+Con+Pej+2+Pl: NID Con Pej Pos:2Pl
+     2+<>+NID+Dim+Pej+1+Pl: NID Dim Pej Pos:21Pl
+     2+<>+NID+Dim+Pej+2+Pl: NID Dim Pej Pos:2Pl
+     3+<>+NID+Con+Pej+2+Pl: NID Con Pej Pos:3Pl
+     3+<>+NID+Con+Pej+3+4: NID Con Pej Pos:3'
+     3+<>+NID+Dim+Pej+2+Pl: NID Dim Pej Pos:3Pl
+     3+<>+NID+Dim+Pej+3+4: NID Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 6 
+     1+<>+NID+Con+Pej+Prt: NID Con Pej Prt Pos:1
+     1+<>+NID+Con+Pej+Voc+Pl: NID Pl Con Pej Voc Pos:1
+     1+<>+NID+Dim+Pej+Prt: NID Dim Pej Prt Pos:1
+     1+<>+NID+Dim+Pej+Voc+Pl: NID Pl Dim Pej Voc Pos:1
+     2+<>+NID+Con+Pej+Prt: NID Con Pej Prt Pos:2
+     2+<>+NID+Con+Pej+Voc+Pl: NID Pl Con Pej Voc Pos:2
+     2+<>+NID+Dim+Pej+Prt: NID Dim Pej Prt Pos:2
+     2+<>+NID+Dim+Pej+Voc+Pl: NID Pl Dim Pej Voc Pos:2
+     3+<>+NID+Con+Pej+Prt: NID Con Pej Prt Pos:3
+     3+<>+NID+Con+Pej+Voc+Pl: NID Pl Con Pej Voc Pos:3
+     3+<>+NID+Dim+Pej+Prt: NID Dim Pej Prt Pos:3
+     3+<>+NID+Dim+Pej+Voc+Pl: NID Pl Dim Pej Voc Pos:3
+     X+<>+NID+Con+Pej+Prt: NID Con Pej Prt Pos:X
+     X+<>+NID+Con+Pej+Voc+Pl: NID Pl Con Pej Voc Pos:X
+     X+<>+NID+Dim+Pej+Prt: NID Dim Pej Prt Pos:X
+     X+<>+NID+Dim+Pej+Voc+Pl: NID Pl Dim Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 4, 7 
+     1+<>+NID+Con+Pej+4: NID Obv Con Pej Pos:1
+     1+<>+NID+Con+Pej+Loc: NID Loc Con Pej Pos:1
+     1+<>+NID+Con+Pej+Pl: NID Pl Con Pej Pos:1
+     1+<>+NID+Dim+Pej+4: NID Obv Dim Pej Pos:1
+     1+<>+NID+Dim+Pej+Loc: NID Loc Dim Pej Pos:1
+     1+<>+NID+Dim+Pej+Pl: NID Pl Dim Pej Pos:1
+     2+<>+NID+Con+Pej+4: NID Obv Con Pej Pos:2
+     2+<>+NID+Con+Pej+Loc: NID Loc Con Pej Pos:2
+     2+<>+NID+Con+Pej+Pl: NID Pl Con Pej Pos:2
+     2+<>+NID+Dim+Pej+4: NID Obv Dim Pej Pos:2
+     2+<>+NID+Dim+Pej+Loc: NID Loc Dim Pej Pos:2
+     2+<>+NID+Dim+Pej+Pl: NID Pl Dim Pej Pos:2
+     3+<>+NID+Con+Pej+4: NID Obv Con Pej Pos:3
+     3+<>+NID+Con+Pej+Loc: NID Loc Con Pej Pos:3
+     3+<>+NID+Con+Pej+Pl: NID Pl Con Pej Pos:3
+     3+<>+NID+Dim+Pej+4: NID Obv Dim Pej Pos:3
+     3+<>+NID+Dim+Pej+Loc: NID Loc Dim Pej Pos:3
+     3+<>+NID+Dim+Pej+Pl: NID Pl Dim Pej Pos:3
+     X+<>+NID+Con+Pej+4: NID Obv Con Pej Pos:X
+     X+<>+NID+Con+Pej+Loc: NID Loc Con Pej Pos:X
+     X+<>+NID+Con+Pej+Pl: NID Pl Con Pej Pos:X
+     X+<>+NID+Dim+Pej+4: NID Obv Dim Pej Pos:X
+     X+<>+NID+Dim+Pej+Loc: NID Loc Dim Pej Pos:X
+     X+<>+NID+Dim+Pej+Pl: NID Pl Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 5, 6
+     1+<>+NID+Con+1+Pl+Prt: NID Con Prt Pos:1Pl
+     1+<>+NID+Con+1+Pl+Voc+Pl: NID Pl Con Voc Pos:1Pl
+     1+<>+NID+Dim+1+Pl+Prt: NID Dim Prt Pos:1Pl
+     1+<>+NID+Dim+1+Pl+Voc+Pl: NID Pl Dim Voc Pos:1Pl
+     2+<>+NID+Con+1+Pl+Prt: NID Con Prt Pos:21Pl
+     2+<>+NID+Con+1+Pl+Voc+Pl: NID Pl Con Voc Pos:21Pl
+     2+<>+NID+Con+2+Pl+Prt: NID Con Prt Pos:2Pl
+     2+<>+NID+Con+2+Pl+Voc+Pl: NID Pl Con Voc Pos:2Pl
+     2+<>+NID+Dim+1+Pl+Prt: NID Dim Prt Pos:21Pl
+     2+<>+NID+Dim+1+Pl+Voc+Pl: NID Pl Dim Voc Pos:21Pl
+     2+<>+NID+Dim+2+Pl+Prt: NID Dim Prt Pos:2Pl
+     2+<>+NID+Dim+2+Pl+Voc+Pl: NID Pl Dim Voc Pos:2Pl
+     3+<>+NID+Con+2+Pl+Prt: NID Con Prt Pos:3Pl
+     3+<>+NID+Con+2+Pl+Voc+Pl: NID Pl Con Voc Pos:3Pl
+     3+<>+NID+Con+3+4+Prt: NID Con Prt Pos:3'
+     3+<>+NID+Con+3+4+Voc+Pl: NID Pl Con Voc Pos:3'
+     3+<>+NID+Dim+2+Pl+Prt: NID Dim Prt Pos:3Pl
+     3+<>+NID+Dim+2+Pl+Voc+Pl: NID Pl Dim Voc Pos:3Pl
+     3+<>+NID+Dim+3+4+Prt: NID Dim Prt Pos:3'
+     3+<>+NID+Dim+3+4+Voc+Pl: NID Pl Dim Voc Pos:3'
+     
+     #Values from slots numbered 1, 2, 5, 7
+     1+<>+NID+Con+1+Pl+4: NID Obv Con Pos:1Pl
+     1+<>+NID+Con+1+Pl+Loc: NID Loc Con Pos:1Pl
+     1+<>+NID+Con+1+Pl+Pl: NID Pl Con Pos:1Pl
+     1+<>+NID+Dim+1+Pl+4: NID Obv Dim Pos:1Pl
+     1+<>+NID+Dim+1+Pl+Loc: NID Loc Dim Pos:1Pl
+     1+<>+NID+Dim+1+Pl+Pl: NID Pl Dim Pos:1Pl
+     2+<>+NID+Con+1+Pl+4: NID Obv Con Pos:21Pl
+     2+<>+NID+Con+1+Pl+Loc: NID Loc Con Pos:21Pl
+     2+<>+NID+Con+1+Pl+Pl: NID Pl Con Pos:21Pl
+     2+<>+NID+Con+2+Pl+4: NID Obv Con Pos:2Pl
+     2+<>+NID+Con+2+Pl+Loc: NID Loc Con Pos:2Pl
+     2+<>+NID+Con+2+Pl+Pl: NID Pl Con Pos:2Pl
+     2+<>+NID+Dim+1+Pl+4: NID Obv Dim Pos:21Pl
+     2+<>+NID+Dim+1+Pl+Loc: NID Loc Dim Pos:21Pl
+     2+<>+NID+Dim+1+Pl+Pl: NID Pl Dim Pos:21Pl
+     2+<>+NID+Dim+2+Pl+4: NID Obv Dim Pos:2Pl
+     2+<>+NID+Dim+2+Pl+Loc: NID Loc Dim Pos:2Pl
+     2+<>+NID+Dim+2+Pl+Pl: NID Pl Dim Pos:2Pl
+     3+<>+NID+Con+2+Pl+4: NID Obv Con Pos:3Pl
+     3+<>+NID+Con+2+Pl+Loc: NID Loc Con Pos:3Pl
+     3+<>+NID+Con+2+Pl+Pl: NID Pl Con Pos:3Pl
+     3+<>+NID+Con+3+4+4: NID Obv Con Pos:3'
+     3+<>+NID+Con+3+4+Loc: NID Loc Con Pos:3'
+     3+<>+NID+Con+3+4+Pl: NID Pl Con Pos:3'
+     3+<>+NID+Dim+2+Pl+4: NID Obv Dim Pos:3Pl
+     3+<>+NID+Dim+2+Pl+Loc: NID Loc Dim Pos:3Pl
+     3+<>+NID+Dim+2+Pl+Pl: NID Pl Dim Pos:3Pl
+     3+<>+NID+Dim+3+4+4: NID Obv Dim Pos:3'
+     3+<>+NID+Dim+3+4+Loc: NID Loc Dim Pos:3'
+     3+<>+NID+Dim+3+4+Pl: NID Pl Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 6, 7
+     1+<>+NID+Con+Prt+4: NID Obv Con Prt Pos:1
+     1+<>+NID+Con+Prt+Loc: NID Loc Con Prt Pos:1
+     1+<>+NID+Con+Prt+Pl: NID Pl Con Prt Pos:1
+     1+<>+NID+Dim+Prt+4: NID Obv Dim Prt Pos:1
+     1+<>+NID+Dim+Prt+Loc: NID Loc Dim Prt Pos:1
+     1+<>+NID+Dim+Prt+Pl: NID Pl Dim Prt Pos:1
+     2+<>+NID+Con+Prt+4: NID Obv Con Prt Pos:2
+     2+<>+NID+Con+Prt+Loc: NID Loc Con Prt Pos:2
+     2+<>+NID+Con+Prt+Pl: NID Pl Con Prt Pos:2
+     2+<>+NID+Dim+Prt+4: NID Obv Dim Prt Pos:2
+     2+<>+NID+Dim+Prt+Loc: NID Loc Dim Prt Pos:2
+     2+<>+NID+Dim+Prt+Pl: NID Pl Dim Prt Pos:2
+     3+<>+NID+Con+Prt+4: NID Obv Con Prt Pos:3
+     3+<>+NID+Con+Prt+Loc: NID Loc Con Prt Pos:3
+     3+<>+NID+Con+Prt+Pl: NID Pl Con Prt Pos:3
+     3+<>+NID+Dim+Prt+4: NID Obv Dim Prt Pos:3
+     3+<>+NID+Dim+Prt+Loc: NID Loc Dim Prt Pos:3
+     3+<>+NID+Dim+Prt+Pl: NID Pl Dim Prt Pos:3
+     X+<>+NID+Con+Prt+4: NID Obv Con Prt Pos:X
+     X+<>+NID+Con+Prt+Loc: NID Loc Con Prt Pos:X
+     X+<>+NID+Con+Prt+Pl: NID Pl Con Prt Pos:X
+     X+<>+NID+Dim+Prt+4: NID Obv Dim Prt Pos:X
+     X+<>+NID+Dim+Prt+Loc: NID Loc Dim Prt Pos:X
+     X+<>+NID+Dim+Prt+Pl: NID Pl Dim Prt Pos:X
+     
+     #Values from slots numbered 1, 3, 4, 5 
+     1+<>+NID+ThmPos+Pej+1+Pl: NID Pej Pos:1Pl
+     2+<>+NID+ThmPos+Pej+1+Pl: NID Pej Pos:21Pl
+     2+<>+NID+ThmPos+Pej+2+Pl: NID Pej Pos:2Pl
+     3+<>+NID+ThmPos+Pej+2+Pl: NID Pej Pos:3Pl
+     3+<>+NID+ThmPos+Pej+3+4: NID Pej Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 6 
+     1+<>+NID+ThmPos+Pej+Prt: NID Pej Prt Pos:1
+     1+<>+NID+ThmPos+Pej+Voc+Pl: NID Pl Pej Voc Pos:1
+     2+<>+NID+ThmPos+Pej+Prt: NID Pej Prt Pos:2
+     2+<>+NID+ThmPos+Pej+Voc+Pl: NID Pl Pej Voc Pos:2
+     3+<>+NID+ThmPos+Pej+Prt: NID Pej Prt Pos:3
+     3+<>+NID+ThmPos+Pej+Voc+Pl: NID Pl Pej Voc Pos:3
+     X+<>+NID+ThmPos+Pej+Prt: NID Pej Prt Pos:X
+     X+<>+NID+ThmPos+Pej+Voc+Pl: NID Pl Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 3, 4, 7 
+     1+<>+NID+ThmPos+Pej+4: NID Obv Pej Pos:1
+     1+<>+NID+ThmPos+Pej+Loc: NID Loc Pej Pos:1
+     1+<>+NID+ThmPos+Pej+Pl: NID Pl Pej Pos:1
+     2+<>+NID+ThmPos+Pej+4: NID Obv Pej Pos:2
+     2+<>+NID+ThmPos+Pej+Loc: NID Loc Pej Pos:2
+     2+<>+NID+ThmPos+Pej+Pl: NID Pl Pej Pos:2
+     3+<>+NID+ThmPos+Pej+4: NID Obv Pej Pos:3
+     3+<>+NID+ThmPos+Pej+Loc: NID Loc Pej Pos:3
+     3+<>+NID+ThmPos+Pej+Pl: NID Pl Pej Pos:3
+     X+<>+NID+ThmPos+Pej+4: NID Obv Pej Pos:X
+     X+<>+NID+ThmPos+Pej+Loc: NID Loc Pej Pos:X
+     X+<>+NID+ThmPos+Pej+Pl: NID Pl Pej Pos:X
+     
+     #Values from slots numbered 1, 3, 5, 6
+     1+<>+NID+ThmPos+1+Pl+Prt: NID Prt Pos:1Pl
+     1+<>+NID+ThmPos+1+Pl+Voc+Pl: NID Pl Voc Pos:1Pl
+     2+<>+NID+ThmPos+1+Pl+Prt: NID Prt Pos:21Pl
+     2+<>+NID+ThmPos+1+Pl+Voc+Pl: NID Pl Voc Pos:21Pl
+     2+<>+NID+ThmPos+2+Pl+Prt: NID Prt Pos:2Pl
+     2+<>+NID+ThmPos+2+Pl+Voc+Pl: NID Pl Voc Pos:2Pl
+     3+<>+NID+ThmPos+2+Pl+Prt: NID Prt Pos:3Pl
+     3+<>+NID+ThmPos+2+Pl+Voc+Pl: NID Pl Voc Pos:3Pl
+     3+<>+NID+ThmPos+3+4+Prt: NID Prt Pos:3'
+     3+<>+NID+ThmPos+3+4+Voc+Pl: NID Pl Voc Pos:3'
+     
+     #Values from slots numbered 1, 3, 5, 7
+     1+<>+NID+ThmPos+1+Pl+4: NID Obv Pos:1Pl
+     1+<>+NID+ThmPos+1+Pl+Loc: NID Loc Pos:1Pl
+     1+<>+NID+ThmPos+1+Pl+Pl: NID Pl Pos:1Pl
+     2+<>+NID+ThmPos+1+Pl+4: NID Obv Pos:21Pl
+     2+<>+NID+ThmPos+1+Pl+Loc: NID Loc Pos:21Pl
+     2+<>+NID+ThmPos+1+Pl+Pl: NID Pl Pos:21Pl
+     2+<>+NID+ThmPos+2+Pl+4: NID Obv Pos:2Pl
+     2+<>+NID+ThmPos+2+Pl+Loc: NID Loc Pos:2Pl
+     2+<>+NID+ThmPos+2+Pl+Pl: NID Pl Pos:2Pl
+     3+<>+NID+ThmPos+2+Pl+4: NID Obv Pos:3Pl
+     3+<>+NID+ThmPos+2+Pl+Loc: NID Loc Pos:3Pl
+     3+<>+NID+ThmPos+2+Pl+Pl: NID Pl Pos:3Pl
+     3+<>+NID+ThmPos+3+4+4: NID Obv Pos:3'
+     3+<>+NID+ThmPos+3+4+Loc: NID Loc Pos:3'
+     3+<>+NID+ThmPos+3+4+Pl: NID Pl Pos:3'
+     
+     #Values from slots numbered 1, 3, 6, 7
+     1+<>+NID+ThmPos+Prt+4: NID Obv Prt Pos:1
+     1+<>+NID+ThmPos+Prt+Loc: NID Loc Prt Pos:1
+     1+<>+NID+ThmPos+Prt+Pl: NID Pl Prt Pos:1
+     2+<>+NID+ThmPos+Prt+4: NID Obv Prt Pos:2
+     2+<>+NID+ThmPos+Prt+Loc: NID Loc Prt Pos:2
+     2+<>+NID+ThmPos+Prt+Pl: NID Pl Prt Pos:2
+     3+<>+NID+ThmPos+Prt+4: NID Obv Prt Pos:3
+     3+<>+NID+ThmPos+Prt+Loc: NID Loc Prt Pos:3
+     3+<>+NID+ThmPos+Prt+Pl: NID Pl Prt Pos:3
+     X+<>+NID+ThmPos+Prt+4: NID Obv Prt Pos:X
+     X+<>+NID+ThmPos+Prt+Loc: NID Loc Prt Pos:X
+     X+<>+NID+ThmPos+Prt+Pl: NID Pl Prt Pos:X
+     
+     #Values from slots numbered 1, 4, 5, 6 
+     1+<>+NID+Pej+1+Pl+Prt: NID Pej Prt Pos:1Pl
+     1+<>+NID+Pej+1+Pl+Voc+Pl: NID Pl Pej Voc Pos:1Pl
+     2+<>+NID+Pej+1+Pl+Prt: NID Pej Prt Pos:21Pl
+     2+<>+NID+Pej+1+Pl+Voc+Pl: NID Pl Pej Voc Pos:21Pl
+     2+<>+NID+Pej+2+Pl+Prt: NID Pej Prt Pos:2Pl
+     2+<>+NID+Pej+2+Pl+Voc+Pl: NID Pl Pej Voc Pos:2Pl
+     3+<>+NID+Pej+2+Pl+Prt: NID Pej Prt Pos:3Pl
+     3+<>+NID+Pej+2+Pl+Voc+Pl: NID Pl Pej Voc Pos:3Pl
+     3+<>+NID+Pej+3+4+Prt: NID Pej Prt Pos:3'
+     3+<>+NID+Pej+3+4+Voc+Pl: NID Pl Pej Voc Pos:3'
+     
+     #Values from slots numbered 1, 4, 5, 7 
+     1+<>+NID+Pej+1+Pl+4: NID Obv Pej Pos:1Pl
+     1+<>+NID+Pej+1+Pl+Loc: NID Loc Pej Pos:1Pl
+     1+<>+NID+Pej+1+Pl+Pl: NID Pl Pej Pos:1Pl
+     2+<>+NID+Pej+1+Pl+4: NID Obv Pej Pos:21Pl
+     2+<>+NID+Pej+1+Pl+Loc: NID Loc Pej Pos:21Pl
+     2+<>+NID+Pej+1+Pl+Pl: NID Pl Pej Pos:21Pl
+     2+<>+NID+Pej+2+Pl+4: NID Obv Pej Pos:2Pl
+     2+<>+NID+Pej+2+Pl+Loc: NID Loc Pej Pos:2Pl
+     2+<>+NID+Pej+2+Pl+Pl: NID Pl Pej Pos:2Pl
+     3+<>+NID+Pej+2+Pl+4: NID Obv Pej Pos:3Pl
+     3+<>+NID+Pej+2+Pl+Loc: NID Loc Pej Pos:3Pl
+     3+<>+NID+Pej+2+Pl+Pl: NID Pl Pej Pos:3Pl
+     3+<>+NID+Pej+3+4+4: NID Obv Pej Pos:3'
+     3+<>+NID+Pej+3+4+Loc: NID Loc Pej Pos:3'
+     3+<>+NID+Pej+3+4+Pl: NID Pl Pej Pos:3'
+     
+     #Values from slots numbered 1, 4, 6, 7 
+     1+<>+NID+Pej+Prt+4: NID Obv Pej Prt Pos:1
+     1+<>+NID+Pej+Prt+Loc: NID Loc Pej Prt Pos:1
+     1+<>+NID+Pej+Prt+Pl: NID Pl Pej Prt Pos:1
+     2+<>+NID+Pej+Prt+4: NID Obv Pej Prt Pos:2
+     2+<>+NID+Pej+Prt+Loc: NID Loc Pej Prt Pos:2
+     2+<>+NID+Pej+Prt+Pl: NID Pl Pej Prt Pos:2
+     3+<>+NID+Pej+Prt+4: NID Obv Pej Prt Pos:3
+     3+<>+NID+Pej+Prt+Loc: NID Loc Pej Prt Pos:3
+     3+<>+NID+Pej+Prt+Pl: NID Pl Pej Prt Pos:3
+     X+<>+NID+Pej+Prt+4: NID Obv Pej Prt Pos:X
+     X+<>+NID+Pej+Prt+Loc: NID Loc Pej Prt Pos:X
+     X+<>+NID+Pej+Prt+Pl: NID Pl Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 5, 6, 7
+     1+<>+NID+1+Pl+Prt+4: NID Obv Prt Pos:1Pl
+     1+<>+NID+1+Pl+Prt+Loc: NID Loc Prt Pos:1Pl
+     1+<>+NID+1+Pl+Prt+Pl: NID Pl Prt Pos:1Pl
+     2+<>+NID+1+Pl+Prt+4: NID Obv Prt Pos:21Pl
+     2+<>+NID+1+Pl+Prt+Loc: NID Loc Prt Pos:21Pl
+     2+<>+NID+1+Pl+Prt+Pl: NID Pl Prt Pos:21Pl
+     2+<>+NID+2+Pl+Prt+4: NID Obv Prt Pos:2Pl
+     2+<>+NID+2+Pl+Prt+Loc: NID Loc Prt Pos:2Pl
+     2+<>+NID+2+Pl+Prt+Pl: NID Pl Prt Pos:2Pl
+     3+<>+NID+2+Pl+Prt+4: NID Obv Prt Pos:3Pl
+     3+<>+NID+2+Pl+Prt+Loc: NID Loc Prt Pos:3Pl
+     3+<>+NID+2+Pl+Prt+Pl: NID Pl Prt Pos:3Pl
+     3+<>+NID+3+4+Prt+4: NID Obv Prt Pos:3'
+     3+<>+NID+3+4+Prt+Loc: NID Loc Prt Pos:3'
+     3+<>+NID+3+4+Prt+Pl: NID Pl Prt Pos:3'
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 2, 4, 6, 7 
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 1, 2, 3, 4, 5 
+     1+<>+NID+Con+ThmPos+Pej+1+Pl: NID Con Pej Pos:1Pl
+     1+<>+NID+Dim+ThmPos+Pej+1+Pl: NID Dim Pej Pos:1Pl
+     2+<>+NID+Con+ThmPos+Pej+1+Pl: NID Con Pej Pos:21Pl
+     2+<>+NID+Con+ThmPos+Pej+2+Pl: NID Con Pej Pos:2Pl
+     2+<>+NID+Dim+ThmPos+Pej+1+Pl: NID Dim Pej Pos:21Pl
+     2+<>+NID+Dim+ThmPos+Pej+2+Pl: NID Dim Pej Pos:2Pl
+     3+<>+NID+Con+ThmPos+Pej+2+Pl: NID Con Pej Pos:3Pl
+     3+<>+NID+Con+ThmPos+Pej+3+4: NID Con Pej Pos:3'
+     3+<>+NID+Dim+ThmPos+Pej+2+Pl: NID Dim Pej Pos:3Pl
+     3+<>+NID+Dim+ThmPos+Pej+3+4: NID Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 4, 6 
+     1+<>+NID+Con+ThmPos+Pej+Prt: NID Con Pej Prt Pos:1
+     1+<>+NID+Con+ThmPos+Pej+Voc+Pl: NID Pl Con Pej Voc Pos:1
+     1+<>+NID+Dim+ThmPos+Pej+Prt: NID Dim Pej Prt Pos:1
+     1+<>+NID+Dim+ThmPos+Pej+Voc+Pl: NID Pl Dim Pej Voc Pos:1
+     2+<>+NID+Con+ThmPos+Pej+Prt: NID Con Pej Prt Pos:2
+     2+<>+NID+Con+ThmPos+Pej+Voc+Pl: NID Pl Con Pej Voc Pos:2
+     2+<>+NID+Dim+ThmPos+Pej+Prt: NID Dim Pej Prt Pos:2
+     2+<>+NID+Dim+ThmPos+Pej+Voc+Pl: NID Pl Dim Pej Voc Pos:2
+     3+<>+NID+Con+ThmPos+Pej+Prt: NID Con Pej Prt Pos:3
+     3+<>+NID+Con+ThmPos+Pej+Voc+Pl: NID Pl Con Pej Voc Pos:3
+     3+<>+NID+Dim+ThmPos+Pej+Prt: NID Dim Pej Prt Pos:3
+     3+<>+NID+Dim+ThmPos+Pej+Voc+Pl: NID Pl Dim Pej Voc Pos:3
+     X+<>+NID+Con+ThmPos+Pej+Prt: NID Con Pej Prt Pos:X
+     X+<>+NID+Con+ThmPos+Pej+Voc+Pl: NID Pl Con Pej Voc Pos:X
+     X+<>+NID+Dim+ThmPos+Pej+Prt: NID Dim Pej Prt Pos:X
+     X+<>+NID+Dim+ThmPos+Pej+Voc+Pl: NID Pl Dim Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 4, 7 
+     1+<>+NID+Con+ThmPos+Pej+4: NID Obv Con Pej Pos:1
+     1+<>+NID+Con+ThmPos+Pej+Loc: NID Loc Con Pej Pos:1
+     1+<>+NID+Con+ThmPos+Pej+Pl: NID Pl Con Pej Pos:1
+     1+<>+NID+Dim+ThmPos+Pej+4: NID Obv Dim Pej Pos:1
+     1+<>+NID+Dim+ThmPos+Pej+Loc: NID Loc Dim Pej Pos:1
+     1+<>+NID+Dim+ThmPos+Pej+Pl: NID Pl Dim Pej Pos:1
+     2+<>+NID+Con+ThmPos+Pej+4: NID Obv Con Pej Pos:2
+     2+<>+NID+Con+ThmPos+Pej+Loc: NID Loc Con Pej Pos:2
+     2+<>+NID+Con+ThmPos+Pej+Pl: NID Pl Con Pej Pos:2
+     2+<>+NID+Dim+ThmPos+Pej+4: NID Obv Dim Pej Pos:2
+     2+<>+NID+Dim+ThmPos+Pej+Loc: NID Loc Dim Pej Pos:2
+     2+<>+NID+Dim+ThmPos+Pej+Pl: NID Pl Dim Pej Pos:2
+     3+<>+NID+Con+ThmPos+Pej+4: NID Obv Con Pej Pos:3
+     3+<>+NID+Con+ThmPos+Pej+Loc: NID Loc Con Pej Pos:3
+     3+<>+NID+Con+ThmPos+Pej+Pl: NID Pl Con Pej Pos:3
+     3+<>+NID+Dim+ThmPos+Pej+4: NID Obv Dim Pej Pos:3
+     3+<>+NID+Dim+ThmPos+Pej+Loc: NID Loc Dim Pej Pos:3
+     3+<>+NID+Dim+ThmPos+Pej+Pl: NID Pl Dim Pej Pos:3
+     X+<>+NID+Con+ThmPos+Pej+4: NID Obv Con Pej Pos:X
+     X+<>+NID+Con+ThmPos+Pej+Loc: NID Loc Con Pej Pos:X
+     X+<>+NID+Con+ThmPos+Pej+Pl: NID Pl Con Pej Pos:X
+     X+<>+NID+Dim+ThmPos+Pej+4: NID Obv Dim Pej Pos:X
+     X+<>+NID+Dim+ThmPos+Pej+Loc: NID Loc Dim Pej Pos:X
+     X+<>+NID+Dim+ThmPos+Pej+Pl: NID Pl Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 5, 6
+     1+<>+NID+Con+ThmPos+1+Pl+Prt: NID Con Prt Pos:1Pl
+     1+<>+NID+Con+ThmPos+1+Pl+Voc+Pl: NID Pl Con Voc Pos:1Pl
+     1+<>+NID+Dim+ThmPos+1+Pl+Prt: NID Dim Prt Pos:1Pl
+     1+<>+NID+Dim+ThmPos+1+Pl+Voc+Pl: NID Pl Dim Voc Pos:1Pl
+     2+<>+NID+Con+ThmPos+1+Pl+Prt: NID Con Prt Pos:21Pl
+     2+<>+NID+Con+ThmPos+1+Pl+Voc+Pl: NID Pl Con Voc Pos:21Pl
+     2+<>+NID+Con+ThmPos+2+Pl+Prt: NID Con Prt Pos:2Pl
+     2+<>+NID+Con+ThmPos+2+Pl+Voc+Pl: NID Pl Con Voc Pos:2Pl
+     2+<>+NID+Dim+ThmPos+1+Pl+Prt: NID Dim Prt Pos:21Pl
+     2+<>+NID+Dim+ThmPos+1+Pl+Voc+Pl: NID Pl Dim Voc Pos:21Pl
+     2+<>+NID+Dim+ThmPos+2+Pl+Prt: NID Dim Prt Pos:2Pl
+     2+<>+NID+Dim+ThmPos+2+Pl+Voc+Pl: NID Pl Dim Voc Pos:2Pl
+     3+<>+NID+Con+ThmPos+2+Pl+Prt: NID Con Prt Pos:3Pl
+     3+<>+NID+Con+ThmPos+2+Pl+Voc+Pl: NID Pl Con Voc Pos:3Pl
+     3+<>+NID+Con+ThmPos+3+4+Prt: NID Con Prt Pos:3'
+     3+<>+NID+Con+ThmPos+3+4+Voc+Pl: NID Pl Con Voc Pos:3'
+     3+<>+NID+Dim+ThmPos+2+Pl+Prt: NID Dim Prt Pos:3Pl
+     3+<>+NID+Dim+ThmPos+2+Pl+Voc+Pl: NID Pl Dim Voc Pos:3Pl
+     3+<>+NID+Dim+ThmPos+3+4+Prt: NID Dim Prt Pos:3'
+     3+<>+NID+Dim+ThmPos+3+4+Voc+Pl: NID Pl Dim Voc Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 5, 7
+     1+<>+NID+Con+ThmPos+1+Pl+4: NID Obv Con Pos:1Pl
+     1+<>+NID+Con+ThmPos+1+Pl+Loc: NID Loc Con Pos:1Pl
+     1+<>+NID+Con+ThmPos+1+Pl+Pl: NID Pl Con Pos:1Pl
+     1+<>+NID+Dim+ThmPos+1+Pl+4: NID Obv Dim Pos:1Pl
+     1+<>+NID+Dim+ThmPos+1+Pl+Loc: NID Loc Dim Pos:1Pl
+     1+<>+NID+Dim+ThmPos+1+Pl+Pl: NID Pl Dim Pos:1Pl
+     2+<>+NID+Con+ThmPos+1+Pl+4: NID Obv Con Pos:21Pl
+     2+<>+NID+Con+ThmPos+1+Pl+Loc: NID Loc Con Pos:21Pl
+     2+<>+NID+Con+ThmPos+1+Pl+Pl: NID Pl Con Pos:21Pl
+     2+<>+NID+Con+ThmPos+2+Pl+4: NID Obv Con Pos:2Pl
+     2+<>+NID+Con+ThmPos+2+Pl+Loc: NID Loc Con Pos:2Pl
+     2+<>+NID+Con+ThmPos+2+Pl+Pl: NID Pl Con Pos:2Pl
+     2+<>+NID+Dim+ThmPos+1+Pl+4: NID Obv Dim Pos:21Pl
+     2+<>+NID+Dim+ThmPos+1+Pl+Loc: NID Loc Dim Pos:21Pl
+     2+<>+NID+Dim+ThmPos+1+Pl+Pl: NID Pl Dim Pos:21Pl
+     2+<>+NID+Dim+ThmPos+2+Pl+4: NID Obv Dim Pos:2Pl
+     2+<>+NID+Dim+ThmPos+2+Pl+Loc: NID Loc Dim Pos:2Pl
+     2+<>+NID+Dim+ThmPos+2+Pl+Pl: NID Pl Dim Pos:2Pl
+     3+<>+NID+Con+ThmPos+2+Pl+4: NID Obv Con Pos:3Pl
+     3+<>+NID+Con+ThmPos+2+Pl+Loc: NID Loc Con Pos:3Pl
+     3+<>+NID+Con+ThmPos+2+Pl+Pl: NID Pl Con Pos:3Pl
+     3+<>+NID+Con+ThmPos+3+4+4: NID Obv Con Pos:3'
+     3+<>+NID+Con+ThmPos+3+4+Loc: NID Loc Con Pos:3'
+     3+<>+NID+Con+ThmPos+3+4+Pl: NID Pl Con Pos:3'
+     3+<>+NID+Dim+ThmPos+2+Pl+4: NID Obv Dim Pos:3Pl
+     3+<>+NID+Dim+ThmPos+2+Pl+Loc: NID Loc Dim Pos:3Pl
+     3+<>+NID+Dim+ThmPos+2+Pl+Pl: NID Pl Dim Pos:3Pl
+     3+<>+NID+Dim+ThmPos+3+4+4: NID Obv Dim Pos:3'
+     3+<>+NID+Dim+ThmPos+3+4+Loc: NID Loc Dim Pos:3'
+     3+<>+NID+Dim+ThmPos+3+4+Pl: NID Pl Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 6, 7
+     1+<>+NID+Con+ThmPos+Prt+4: NID Obv Con Prt Pos:1
+     1+<>+NID+Con+ThmPos+Prt+Loc: NID Loc Con Prt Pos:1
+     1+<>+NID+Con+ThmPos+Prt+Pl: NID Pl Con Prt Pos:1
+     1+<>+NID+Dim+ThmPos+Prt+4: NID Obv Dim Prt Pos:1
+     1+<>+NID+Dim+ThmPos+Prt+Loc: NID Loc Dim Prt Pos:1
+     1+<>+NID+Dim+ThmPos+Prt+Pl: NID Pl Dim Prt Pos:1
+     2+<>+NID+Con+ThmPos+Prt+4: NID Obv Con Prt Pos:2
+     2+<>+NID+Con+ThmPos+Prt+Loc: NID Loc Con Prt Pos:2
+     2+<>+NID+Con+ThmPos+Prt+Pl: NID Pl Con Prt Pos:2
+     2+<>+NID+Dim+ThmPos+Prt+4: NID Obv Dim Prt Pos:2
+     2+<>+NID+Dim+ThmPos+Prt+Loc: NID Loc Dim Prt Pos:2
+     2+<>+NID+Dim+ThmPos+Prt+Pl: NID Pl Dim Prt Pos:2
+     3+<>+NID+Con+ThmPos+Prt+4: NID Obv Con Prt Pos:3
+     3+<>+NID+Con+ThmPos+Prt+Loc: NID Loc Con Prt Pos:3
+     3+<>+NID+Con+ThmPos+Prt+Pl: NID Pl Con Prt Pos:3
+     3+<>+NID+Dim+ThmPos+Prt+4: NID Obv Dim Prt Pos:3
+     3+<>+NID+Dim+ThmPos+Prt+Loc: NID Loc Dim Prt Pos:3
+     3+<>+NID+Dim+ThmPos+Prt+Pl: NID Pl Dim Prt Pos:3
+     X+<>+NID+Con+ThmPos+Prt+4: NID Obv Con Prt Pos:X
+     X+<>+NID+Con+ThmPos+Prt+Loc: NID Loc Con Prt Pos:X
+     X+<>+NID+Con+ThmPos+Prt+Pl: NID Pl Con Prt Pos:X
+     X+<>+NID+Dim+ThmPos+Prt+4: NID Obv Dim Prt Pos:X
+     X+<>+NID+Dim+ThmPos+Prt+Loc: NID Loc Dim Prt Pos:X
+     X+<>+NID+Dim+ThmPos+Prt+Pl: NID Pl Dim Prt Pos:X
+     
+     #Values from slots numbered 1, 2, 4, 5, 6 
+     1+<>+NID+Con+Pej+1+Pl+Prt: NID Con Pej Prt Pos:1Pl
+     1+<>+NID+Con+Pej+1+Pl+Voc+Pl: NID Pl Con Pej Voc Pos:1Pl
+     1+<>+NID+Dim+Pej+1+Pl+Prt: NID Dim Pej Prt Pos:1Pl
+     1+<>+NID+Dim+Pej+1+Pl+Voc+Pl: NID Pl Dim Pej Voc Pos:1Pl
+     2+<>+NID+Con+Pej+1+Pl+Prt: NID Con Pej Prt Pos:21Pl
+     2+<>+NID+Con+Pej+1+Pl+Voc+Pl: NID Pl Con Pej Voc Pos:21Pl
+     2+<>+NID+Con+Pej+2+Pl+Prt: NID Con Pej Prt Pos:2Pl
+     2+<>+NID+Con+Pej+2+Pl+Voc+Pl: NID Pl Con Pej Voc Pos:2Pl
+     2+<>+NID+Dim+Pej+1+Pl+Prt: NID Dim Pej Prt Pos:21Pl
+     2+<>+NID+Dim+Pej+1+Pl+Voc+Pl: NID Pl Dim Pej Voc Pos:21Pl
+     2+<>+NID+Dim+Pej+2+Pl+Prt: NID Dim Pej Prt Pos:2Pl
+     2+<>+NID+Dim+Pej+2+Pl+Voc+Pl: NID Pl Dim Pej Voc Pos:2Pl
+     3+<>+NID+Con+Pej+2+Pl+Prt: NID Con Pej Prt Pos:3Pl
+     3+<>+NID+Con+Pej+2+Pl+Voc+Pl: NID Pl Con Pej Voc Pos:3Pl
+     3+<>+NID+Con+Pej+3+4+Prt: NID Con Pej Prt Pos:3'
+     3+<>+NID+Con+Pej+3+4+Voc+Pl: NID Pl Con Pej Voc Pos:3'
+     3+<>+NID+Dim+Pej+2+Pl+Prt: NID Dim Pej Prt Pos:3Pl
+     3+<>+NID+Dim+Pej+2+Pl+Voc+Pl: NID Pl Dim Pej Voc Pos:3Pl
+     3+<>+NID+Dim+Pej+3+4+Prt: NID Dim Pej Prt Pos:3'
+     3+<>+NID+Dim+Pej+3+4+Voc+Pl: NID Pl Dim Pej Voc Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 5, 7 
+     1+<>+NID+Con+Pej+1+Pl+4: NID Obv Con Pej Pos:1Pl
+     1+<>+NID+Con+Pej+1+Pl+Loc: NID Loc Con Pej Pos:1Pl
+     1+<>+NID+Con+Pej+1+Pl+Pl: NID Pl Con Pej Pos:1Pl
+     1+<>+NID+Dim+Pej+1+Pl+4: NID Obv Dim Pej Pos:1Pl
+     1+<>+NID+Dim+Pej+1+Pl+Loc: NID Loc Dim Pej Pos:1Pl
+     1+<>+NID+Dim+Pej+1+Pl+Pl: NID Pl Dim Pej Pos:1Pl
+     2+<>+NID+Con+Pej+1+Pl+4: NID Obv Con Pej Pos:21Pl
+     2+<>+NID+Con+Pej+1+Pl+Loc: NID Loc Con Pej Pos:21Pl
+     2+<>+NID+Con+Pej+1+Pl+Pl: NID Pl Con Pej Pos:21Pl
+     2+<>+NID+Con+Pej+2+Pl+4: NID Obv Con Pej Pos:2Pl
+     2+<>+NID+Con+Pej+2+Pl+Loc: NID Loc Con Pej Pos:2Pl
+     2+<>+NID+Con+Pej+2+Pl+Pl: NID Pl Con Pej Pos:2Pl
+     2+<>+NID+Dim+Pej+1+Pl+4: NID Obv Dim Pej Pos:21Pl
+     2+<>+NID+Dim+Pej+1+Pl+Loc: NID Loc Dim Pej Pos:21Pl
+     2+<>+NID+Dim+Pej+1+Pl+Pl: NID Pl Dim Pej Pos:21Pl
+     2+<>+NID+Dim+Pej+2+Pl+4: NID Obv Dim Pej Pos:2Pl
+     2+<>+NID+Dim+Pej+2+Pl+Loc: NID Loc Dim Pej Pos:2Pl
+     2+<>+NID+Dim+Pej+2+Pl+Pl: NID Pl Dim Pej Pos:2Pl
+     3+<>+NID+Con+Pej+2+Pl+4: NID Obv Con Pej Pos:3Pl
+     3+<>+NID+Con+Pej+2+Pl+Loc: NID Loc Con Pej Pos:3Pl
+     3+<>+NID+Con+Pej+2+Pl+Pl: NID Pl Con Pej Pos:3Pl
+     3+<>+NID+Con+Pej+3+4+4: NID Obv Con Pej Pos:3'
+     3+<>+NID+Con+Pej+3+4+Loc: NID Loc Con Pej Pos:3'
+     3+<>+NID+Con+Pej+3+4+Pl: NID Pl Con Pej Pos:3'
+     3+<>+NID+Dim+Pej+2+Pl+4: NID Obv Dim Pej Pos:3Pl
+     3+<>+NID+Dim+Pej+2+Pl+Loc: NID Loc Dim Pej Pos:3Pl
+     3+<>+NID+Dim+Pej+2+Pl+Pl: NID Pl Dim Pej Pos:3Pl
+     3+<>+NID+Dim+Pej+3+4+4: NID Obv Dim Pej Pos:3'
+     3+<>+NID+Dim+Pej+3+4+Loc: NID Loc Dim Pej Pos:3'
+     3+<>+NID+Dim+Pej+3+4+Pl: NID Pl Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 6, 7 
+     1+<>+NID+Con+Pej+Prt+4: NID Obv Con Pej Prt Pos:1
+     1+<>+NID+Con+Pej+Prt+Loc: NID Loc Con Pej Prt Pos:1
+     1+<>+NID+Con+Pej+Prt+Pl: NID Pl Con Pej Prt Pos:1
+     1+<>+NID+Dim+Pej+Prt+4: NID Obv Dim Pej Prt Pos:1
+     1+<>+NID+Dim+Pej+Prt+Loc: NID Loc Dim Pej Prt Pos:1
+     1+<>+NID+Dim+Pej+Prt+Pl: NID Pl Dim Pej Prt Pos:1
+     2+<>+NID+Con+Pej+Prt+4: NID Obv Con Pej Prt Pos:2
+     2+<>+NID+Con+Pej+Prt+Loc: NID Loc Con Pej Prt Pos:2
+     2+<>+NID+Con+Pej+Prt+Pl: NID Pl Con Pej Prt Pos:2
+     2+<>+NID+Dim+Pej+Prt+4: NID Obv Dim Pej Prt Pos:2
+     2+<>+NID+Dim+Pej+Prt+Loc: NID Loc Dim Pej Prt Pos:2
+     2+<>+NID+Dim+Pej+Prt+Pl: NID Pl Dim Pej Prt Pos:2
+     3+<>+NID+Con+Pej+Prt+4: NID Obv Con Pej Prt Pos:3
+     3+<>+NID+Con+Pej+Prt+Loc: NID Loc Con Pej Prt Pos:3
+     3+<>+NID+Con+Pej+Prt+Pl: NID Pl Con Pej Prt Pos:3
+     3+<>+NID+Dim+Pej+Prt+4: NID Obv Dim Pej Prt Pos:3
+     3+<>+NID+Dim+Pej+Prt+Loc: NID Loc Dim Pej Prt Pos:3
+     3+<>+NID+Dim+Pej+Prt+Pl: NID Pl Dim Pej Prt Pos:3
+     X+<>+NID+Con+Pej+Prt+4: NID Obv Con Pej Prt Pos:X
+     X+<>+NID+Con+Pej+Prt+Loc: NID Loc Con Pej Prt Pos:X
+     X+<>+NID+Con+Pej+Prt+Pl: NID Pl Con Pej Prt Pos:X
+     X+<>+NID+Dim+Pej+Prt+4: NID Obv Dim Pej Prt Pos:X
+     X+<>+NID+Dim+Pej+Prt+Loc: NID Loc Dim Pej Prt Pos:X
+     X+<>+NID+Dim+Pej+Prt+Pl: NID Pl Dim Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 2, 5, 6, 7
+     1+<>+NID+Con+1+Pl+Prt+4: NID Obv Con Prt Pos:1Pl
+     1+<>+NID+Con+1+Pl+Prt+Loc: NID Loc Con Prt Pos:1Pl
+     1+<>+NID+Con+1+Pl+Prt+Pl: NID Pl Con Prt Pos:1Pl
+     1+<>+NID+Dim+1+Pl+Prt+4: NID Obv Dim Prt Pos:1Pl
+     1+<>+NID+Dim+1+Pl+Prt+Loc: NID Loc Dim Prt Pos:1Pl
+     1+<>+NID+Dim+1+Pl+Prt+Pl: NID Pl Dim Prt Pos:1Pl
+     2+<>+NID+Con+1+Pl+Prt+4: NID Obv Con Prt Pos:21Pl
+     2+<>+NID+Con+1+Pl+Prt+Loc: NID Loc Con Prt Pos:21Pl
+     2+<>+NID+Con+1+Pl+Prt+Pl: NID Pl Con Prt Pos:21Pl
+     2+<>+NID+Con+2+Pl+Prt+4: NID Obv Con Prt Pos:2Pl
+     2+<>+NID+Con+2+Pl+Prt+Loc: NID Loc Con Prt Pos:2Pl
+     2+<>+NID+Con+2+Pl+Prt+Pl: NID Pl Con Prt Pos:2Pl
+     2+<>+NID+Dim+1+Pl+Prt+4: NID Obv Dim Prt Pos:21Pl
+     2+<>+NID+Dim+1+Pl+Prt+Loc: NID Loc Dim Prt Pos:21Pl
+     2+<>+NID+Dim+1+Pl+Prt+Pl: NID Pl Dim Prt Pos:21Pl
+     2+<>+NID+Dim+2+Pl+Prt+4: NID Obv Dim Prt Pos:2Pl
+     2+<>+NID+Dim+2+Pl+Prt+Loc: NID Loc Dim Prt Pos:2Pl
+     2+<>+NID+Dim+2+Pl+Prt+Pl: NID Pl Dim Prt Pos:2Pl
+     3+<>+NID+Con+2+Pl+Prt+4: NID Obv Con Prt Pos:3Pl
+     3+<>+NID+Con+2+Pl+Prt+Loc: NID Loc Con Prt Pos:3Pl
+     3+<>+NID+Con+2+Pl+Prt+Pl: NID Pl Con Prt Pos:3Pl
+     3+<>+NID+Con+3+4+Prt+4: NID Obv Con Prt Pos:3'
+     3+<>+NID+Con+3+4+Prt+Loc: NID Loc Con Prt Pos:3'
+     3+<>+NID+Con+3+4+Prt+Pl: NID Pl Con Prt Pos:3'
+     3+<>+NID+Dim+2+Pl+Prt+4: NID Obv Dim Prt Pos:3Pl
+     3+<>+NID+Dim+2+Pl+Prt+Loc: NID Loc Dim Prt Pos:3Pl
+     3+<>+NID+Dim+2+Pl+Prt+Pl: NID Pl Dim Prt Pos:3Pl
+     3+<>+NID+Dim+3+4+Prt+4: NID Obv Dim Prt Pos:3'
+     3+<>+NID+Dim+3+4+Prt+Loc: NID Loc Dim Prt Pos:3'
+     3+<>+NID+Dim+3+4+Prt+Pl: NID Pl Dim Prt Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 5, 6 
+     1+<>+NID+ThmPos+Pej+1+Pl+Prt: NID Pej Prt Pos:1Pl
+     1+<>+NID+ThmPos+Pej+1+Pl+Voc+Pl: NID Pl Pej Voc Pos:1Pl
+     2+<>+NID+ThmPos+Pej+1+Pl+Prt: NID Pej Prt Pos:21Pl
+     2+<>+NID+ThmPos+Pej+1+Pl+Voc+Pl: NID Pl Pej Voc Pos:21Pl
+     2+<>+NID+ThmPos+Pej+2+Pl+Prt: NID Pej Prt Pos:2Pl
+     2+<>+NID+ThmPos+Pej+2+Pl+Voc+Pl: NID Pl Pej Voc Pos:2Pl
+     3+<>+NID+ThmPos+Pej+2+Pl+Prt: NID Pej Prt Pos:3Pl
+     3+<>+NID+ThmPos+Pej+2+Pl+Voc+Pl: NID Pl Pej Voc Pos:3Pl
+     3+<>+NID+ThmPos+Pej+3+4+Prt: NID Pej Prt Pos:3'
+     3+<>+NID+ThmPos+Pej+3+4+Voc+Pl: NID Pl Pej Voc Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 5, 7 
+     1+<>+NID+ThmPos+Pej+1+Pl+4: NID Obv Pej Pos:1Pl
+     1+<>+NID+ThmPos+Pej+1+Pl+Loc: NID Loc Pej Pos:1Pl
+     1+<>+NID+ThmPos+Pej+1+Pl+Pl: NID Pl Pej Pos:1Pl
+     2+<>+NID+ThmPos+Pej+1+Pl+4: NID Obv Pej Pos:21Pl
+     2+<>+NID+ThmPos+Pej+1+Pl+Loc: NID Loc Pej Pos:21Pl
+     2+<>+NID+ThmPos+Pej+1+Pl+Pl: NID Pl Pej Pos:21Pl
+     2+<>+NID+ThmPos+Pej+2+Pl+4: NID Obv Pej Pos:2Pl
+     2+<>+NID+ThmPos+Pej+2+Pl+Loc: NID Loc Pej Pos:2Pl
+     2+<>+NID+ThmPos+Pej+2+Pl+Pl: NID Pl Pej Pos:2Pl
+     3+<>+NID+ThmPos+Pej+2+Pl+4: NID Obv Pej Pos:3Pl
+     3+<>+NID+ThmPos+Pej+2+Pl+Loc: NID Loc Pej Pos:3Pl
+     3+<>+NID+ThmPos+Pej+2+Pl+Pl: NID Pl Pej Pos:3Pl
+     3+<>+NID+ThmPos+Pej+3+4+4: NID Obv Pej Pos:3'
+     3+<>+NID+ThmPos+Pej+3+4+Loc: NID Loc Pej Pos:3'
+     3+<>+NID+ThmPos+Pej+3+4+Pl: NID Pl Pej Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 6, 7 
+     1+<>+NID+ThmPos+Pej+Prt+4: NID Obv Pej Prt Pos:1
+     1+<>+NID+ThmPos+Pej+Prt+Loc: NID Loc Pej Prt Pos:1
+     1+<>+NID+ThmPos+Pej+Prt+Pl: NID Pl Pej Prt Pos:1
+     2+<>+NID+ThmPos+Pej+Prt+4: NID Obv Pej Prt Pos:2
+     2+<>+NID+ThmPos+Pej+Prt+Loc: NID Loc Pej Prt Pos:2
+     2+<>+NID+ThmPos+Pej+Prt+Pl: NID Pl Pej Prt Pos:2
+     3+<>+NID+ThmPos+Pej+Prt+4: NID Obv Pej Prt Pos:3
+     3+<>+NID+ThmPos+Pej+Prt+Loc: NID Loc Pej Prt Pos:3
+     3+<>+NID+ThmPos+Pej+Prt+Pl: NID Pl Pej Prt Pos:3
+     X+<>+NID+ThmPos+Pej+Prt+4: NID Obv Pej Prt Pos:X
+     X+<>+NID+ThmPos+Pej+Prt+Loc: NID Loc Pej Prt Pos:X
+     X+<>+NID+ThmPos+Pej+Prt+Pl: NID Pl Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 3, 5, 6, 7
+     1+<>+NID+ThmPos+1+Pl+Prt+4: NID Obv Prt Pos:1Pl
+     1+<>+NID+ThmPos+1+Pl+Prt+Loc: NID Loc Prt Pos:1Pl
+     1+<>+NID+ThmPos+1+Pl+Prt+Pl: NID Pl Prt Pos:1Pl
+     2+<>+NID+ThmPos+1+Pl+Prt+4: NID Obv Prt Pos:21Pl
+     2+<>+NID+ThmPos+1+Pl+Prt+Loc: NID Loc Prt Pos:21Pl
+     2+<>+NID+ThmPos+1+Pl+Prt+Pl: NID Pl Prt Pos:21Pl
+     2+<>+NID+ThmPos+2+Pl+Prt+4: NID Obv Prt Pos:2Pl
+     2+<>+NID+ThmPos+2+Pl+Prt+Loc: NID Loc Prt Pos:2Pl
+     2+<>+NID+ThmPos+2+Pl+Prt+Pl: NID Pl Prt Pos:2Pl
+     3+<>+NID+ThmPos+2+Pl+Prt+4: NID Obv Prt Pos:3Pl
+     3+<>+NID+ThmPos+2+Pl+Prt+Loc: NID Loc Prt Pos:3Pl
+     3+<>+NID+ThmPos+2+Pl+Prt+Pl: NID Pl Prt Pos:3Pl
+     3+<>+NID+ThmPos+3+4+Prt+4: NID Obv Prt Pos:3'
+     3+<>+NID+ThmPos+3+4+Prt+Loc: NID Loc Prt Pos:3'
+     3+<>+NID+ThmPos+3+4+Prt+Pl: NID Pl Prt Pos:3'
+     
+     #Values from slots numbered 1, 4, 5, 6, 7 
+     1+<>+NID+Pej+1+Pl+Prt+4: NID Obv Pej Prt Pos:1Pl
+     1+<>+NID+Pej+1+Pl+Prt+Loc: NID Loc Pej Prt Pos:1Pl
+     1+<>+NID+Pej+1+Pl+Prt+Pl: NID Pl Pej Prt Pos:1Pl
+     2+<>+NID+Pej+1+Pl+Prt+4: NID Obv Pej Prt Pos:21Pl
+     2+<>+NID+Pej+1+Pl+Prt+Loc: NID Loc Pej Prt Pos:21Pl
+     2+<>+NID+Pej+1+Pl+Prt+Pl: NID Pl Pej Prt Pos:21Pl
+     2+<>+NID+Pej+2+Pl+Prt+4: NID Obv Pej Prt Pos:2Pl
+     2+<>+NID+Pej+2+Pl+Prt+Loc: NID Loc Pej Prt Pos:2Pl
+     2+<>+NID+Pej+2+Pl+Prt+Pl: NID Pl Pej Prt Pos:2Pl
+     3+<>+NID+Pej+2+Pl+Prt+4: NID Obv Pej Prt Pos:3Pl
+     3+<>+NID+Pej+2+Pl+Prt+Loc: NID Loc Pej Prt Pos:3Pl
+     3+<>+NID+Pej+2+Pl+Prt+Pl: NID Pl Pej Prt Pos:3Pl
+     3+<>+NID+Pej+3+4+Prt+4: NID Obv Pej Prt Pos:3'
+     3+<>+NID+Pej+3+4+Prt+Loc: NID Loc Pej Prt Pos:3'
+     3+<>+NID+Pej+3+4+Prt+Pl: NID Pl Pej Prt Pos:3'
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 1, 2, 3, 4, 5, 6 
+     1+<>+NID+Con+ThmPos+Pej+1+Pl+Prt: NID Con Pej Prt Pos:1Pl
+     1+<>+NID+Con+ThmPos+Pej+1+Pl+Voc+Pl: NID Pl Con Pej Voc Pos:1Pl
+     1+<>+NID+Dim+ThmPos+Pej+1+Pl+Prt: NID Dim Pej Prt Pos:1Pl
+     1+<>+NID+Dim+ThmPos+Pej+1+Pl+Voc+Pl: NID Pl Dim Pej Voc Pos:1Pl
+     2+<>+NID+Con+ThmPos+Pej+1+Pl+Prt: NID Con Pej Prt Pos:21Pl
+     2+<>+NID+Con+ThmPos+Pej+1+Pl+Voc+Pl: NID Pl Con Pej Voc Pos:21Pl
+     2+<>+NID+Con+ThmPos+Pej+2+Pl+Prt: NID Con Pej Prt Pos:2Pl
+     2+<>+NID+Con+ThmPos+Pej+2+Pl+Voc+Pl: NID Pl Con Pej Voc Pos:2Pl
+     2+<>+NID+Dim+ThmPos+Pej+1+Pl+Prt: NID Dim Pej Prt Pos:21Pl
+     2+<>+NID+Dim+ThmPos+Pej+1+Pl+Voc+Pl: NID Pl Dim Pej Voc Pos:21Pl
+     2+<>+NID+Dim+ThmPos+Pej+2+Pl+Prt: NID Dim Pej Prt Pos:2Pl
+     2+<>+NID+Dim+ThmPos+Pej+2+Pl+Voc+Pl: NID Pl Dim Pej Voc Pos:2Pl
+     3+<>+NID+Con+ThmPos+Pej+2+Pl+Prt: NID Con Pej Prt Pos:3Pl
+     3+<>+NID+Con+ThmPos+Pej+2+Pl+Voc+Pl: NID Pl Con Pej Voc Pos:3Pl
+     3+<>+NID+Con+ThmPos+Pej+3+4+Prt: NID Con Pej Prt Pos:3'
+     3+<>+NID+Con+ThmPos+Pej+3+4+Voc+Pl: NID Pl Con Pej Voc Pos:3'
+     3+<>+NID+Dim+ThmPos+Pej+2+Pl+Prt: NID Dim Pej Prt Pos:3Pl
+     3+<>+NID+Dim+ThmPos+Pej+2+Pl+Voc+Pl: NID Pl Dim Pej Voc Pos:3Pl
+     3+<>+NID+Dim+ThmPos+Pej+3+4+Prt: NID Dim Pej Prt Pos:3'
+     3+<>+NID+Dim+ThmPos+Pej+3+4+Voc+Pl: NID Pl Dim Pej Voc Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 4, 5, 7 
+     1+<>+NID+Con+ThmPos+Pej+1+Pl+4: NID Obv Con Pej Pos:1Pl
+     1+<>+NID+Con+ThmPos+Pej+1+Pl+Loc: NID Loc Con Pej Pos:1Pl
+     1+<>+NID+Con+ThmPos+Pej+1+Pl+Pl: NID Pl Con Pej Pos:1Pl
+     1+<>+NID+Dim+ThmPos+Pej+1+Pl+4: NID Obv Dim Pej Pos:1Pl
+     1+<>+NID+Dim+ThmPos+Pej+1+Pl+Loc: NID Loc Dim Pej Pos:1Pl
+     1+<>+NID+Dim+ThmPos+Pej+1+Pl+Pl: NID Pl Dim Pej Pos:1Pl
+     2+<>+NID+Con+ThmPos+Pej+1+Pl+4: NID Obv Con Pej Pos:21Pl
+     2+<>+NID+Con+ThmPos+Pej+1+Pl+Loc: NID Loc Con Pej Pos:21Pl
+     2+<>+NID+Con+ThmPos+Pej+1+Pl+Pl: NID Pl Con Pej Pos:21Pl
+     2+<>+NID+Con+ThmPos+Pej+2+Pl+4: NID Obv Con Pej Pos:2Pl
+     2+<>+NID+Con+ThmPos+Pej+2+Pl+Loc: NID Loc Con Pej Pos:2Pl
+     2+<>+NID+Con+ThmPos+Pej+2+Pl+Pl: NID Pl Con Pej Pos:2Pl
+     2+<>+NID+Dim+ThmPos+Pej+1+Pl+4: NID Obv Dim Pej Pos:21Pl
+     2+<>+NID+Dim+ThmPos+Pej+1+Pl+Loc: NID Loc Dim Pej Pos:21Pl
+     2+<>+NID+Dim+ThmPos+Pej+1+Pl+Pl: NID Pl Dim Pej Pos:21Pl
+     2+<>+NID+Dim+ThmPos+Pej+2+Pl+4: NID Obv Dim Pej Pos:2Pl
+     2+<>+NID+Dim+ThmPos+Pej+2+Pl+Loc: NID Loc Dim Pej Pos:2Pl
+     2+<>+NID+Dim+ThmPos+Pej+2+Pl+Pl: NID Pl Dim Pej Pos:2Pl
+     3+<>+NID+Con+ThmPos+Pej+2+Pl+4: NID Obv Con Pej Pos:3Pl
+     3+<>+NID+Con+ThmPos+Pej+2+Pl+Loc: NID Loc Con Pej Pos:3Pl
+     3+<>+NID+Con+ThmPos+Pej+2+Pl+Pl: NID Pl Con Pej Pos:3Pl
+     3+<>+NID+Con+ThmPos+Pej+3+4+4: NID Obv Con Pej Pos:3'
+     3+<>+NID+Con+ThmPos+Pej+3+4+Loc: NID Loc Con Pej Pos:3'
+     3+<>+NID+Con+ThmPos+Pej+3+4+Pl: NID Pl Con Pej Pos:3'
+     3+<>+NID+Dim+ThmPos+Pej+2+Pl+4: NID Obv Dim Pej Pos:3Pl
+     3+<>+NID+Dim+ThmPos+Pej+2+Pl+Loc: NID Loc Dim Pej Pos:3Pl
+     3+<>+NID+Dim+ThmPos+Pej+2+Pl+Pl: NID Pl Dim Pej Pos:3Pl
+     3+<>+NID+Dim+ThmPos+Pej+3+4+4: NID Obv Dim Pej Pos:3'
+     3+<>+NID+Dim+ThmPos+Pej+3+4+Loc: NID Loc Dim Pej Pos:3'
+     3+<>+NID+Dim+ThmPos+Pej+3+4+Pl: NID Pl Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 4, 6, 7 
+     1+<>+NID+Con+ThmPos+Pej+Prt+4: NID Obv Con Pej Prt Pos:1
+     1+<>+NID+Con+ThmPos+Pej+Prt+Loc: NID Loc Con Pej Prt Pos:1
+     1+<>+NID+Con+ThmPos+Pej+Prt+Pl: NID Pl Con Pej Prt Pos:1
+     1+<>+NID+Dim+ThmPos+Pej+Prt+4: NID Obv Dim Pej Prt Pos:1
+     1+<>+NID+Dim+ThmPos+Pej+Prt+Loc: NID Loc Dim Pej Prt Pos:1
+     1+<>+NID+Dim+ThmPos+Pej+Prt+Pl: NID Pl Dim Pej Prt Pos:1
+     2+<>+NID+Con+ThmPos+Pej+Prt+4: NID Obv Con Pej Prt Pos:2
+     2+<>+NID+Con+ThmPos+Pej+Prt+Loc: NID Loc Con Pej Prt Pos:2
+     2+<>+NID+Con+ThmPos+Pej+Prt+Pl: NID Pl Con Pej Prt Pos:2
+     2+<>+NID+Dim+ThmPos+Pej+Prt+4: NID Obv Dim Pej Prt Pos:2
+     2+<>+NID+Dim+ThmPos+Pej+Prt+Loc: NID Loc Dim Pej Prt Pos:2
+     2+<>+NID+Dim+ThmPos+Pej+Prt+Pl: NID Pl Dim Pej Prt Pos:2
+     3+<>+NID+Con+ThmPos+Pej+Prt+4: NID Obv Con Pej Prt Pos:3
+     3+<>+NID+Con+ThmPos+Pej+Prt+Loc: NID Loc Con Pej Prt Pos:3
+     3+<>+NID+Con+ThmPos+Pej+Prt+Pl: NID Pl Con Pej Prt Pos:3
+     3+<>+NID+Dim+ThmPos+Pej+Prt+4: NID Obv Dim Pej Prt Pos:3
+     3+<>+NID+Dim+ThmPos+Pej+Prt+Loc: NID Loc Dim Pej Prt Pos:3
+     3+<>+NID+Dim+ThmPos+Pej+Prt+Pl: NID Pl Dim Pej Prt Pos:3
+     X+<>+NID+Con+ThmPos+Pej+Prt+4: NID Obv Con Pej Prt Pos:X
+     X+<>+NID+Con+ThmPos+Pej+Prt+Loc: NID Loc Con Pej Prt Pos:X
+     X+<>+NID+Con+ThmPos+Pej+Prt+Pl: NID Pl Con Pej Prt Pos:X
+     X+<>+NID+Dim+ThmPos+Pej+Prt+4: NID Obv Dim Pej Prt Pos:X
+     X+<>+NID+Dim+ThmPos+Pej+Prt+Loc: NID Loc Dim Pej Prt Pos:X
+     X+<>+NID+Dim+ThmPos+Pej+Prt+Pl: NID Pl Dim Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 5, 6, 7
+     1+<>+NID+Con+ThmPos+1+Pl+Prt+4: NID Obv Con Prt Pos:1Pl
+     1+<>+NID+Con+ThmPos+1+Pl+Prt+Loc: NID Loc Con Prt Pos:1Pl
+     1+<>+NID+Con+ThmPos+1+Pl+Prt+Pl: NID Pl Con Prt Pos:1Pl
+     1+<>+NID+Dim+ThmPos+1+Pl+Prt+4: NID Obv Dim Prt Pos:1Pl
+     1+<>+NID+Dim+ThmPos+1+Pl+Prt+Loc: NID Loc Dim Prt Pos:1Pl
+     1+<>+NID+Dim+ThmPos+1+Pl+Prt+Pl: NID Pl Dim Prt Pos:1Pl
+     2+<>+NID+Con+ThmPos+1+Pl+Prt+4: NID Obv Con Prt Pos:21Pl
+     2+<>+NID+Con+ThmPos+1+Pl+Prt+Loc: NID Loc Con Prt Pos:21Pl
+     2+<>+NID+Con+ThmPos+1+Pl+Prt+Pl: NID Pl Con Prt Pos:21Pl
+     2+<>+NID+Con+ThmPos+2+Pl+Prt+4: NID Obv Con Prt Pos:2Pl
+     2+<>+NID+Con+ThmPos+2+Pl+Prt+Loc: NID Loc Con Prt Pos:2Pl
+     2+<>+NID+Con+ThmPos+2+Pl+Prt+Pl: NID Pl Con Prt Pos:2Pl
+     2+<>+NID+Dim+ThmPos+1+Pl+Prt+4: NID Obv Dim Prt Pos:21Pl
+     2+<>+NID+Dim+ThmPos+1+Pl+Prt+Loc: NID Loc Dim Prt Pos:21Pl
+     2+<>+NID+Dim+ThmPos+1+Pl+Prt+Pl: NID Pl Dim Prt Pos:21Pl
+     2+<>+NID+Dim+ThmPos+2+Pl+Prt+4: NID Obv Dim Prt Pos:2Pl
+     2+<>+NID+Dim+ThmPos+2+Pl+Prt+Loc: NID Loc Dim Prt Pos:2Pl
+     2+<>+NID+Dim+ThmPos+2+Pl+Prt+Pl: NID Pl Dim Prt Pos:2Pl
+     3+<>+NID+Con+ThmPos+2+Pl+Prt+4: NID Obv Con Prt Pos:3Pl
+     3+<>+NID+Con+ThmPos+2+Pl+Prt+Loc: NID Loc Con Prt Pos:3Pl
+     3+<>+NID+Con+ThmPos+2+Pl+Prt+Pl: NID Pl Con Prt Pos:3Pl
+     3+<>+NID+Con+ThmPos+3+4+Prt+4: NID Obv Con Prt Pos:3'
+     3+<>+NID+Con+ThmPos+3+4+Prt+Loc: NID Loc Con Prt Pos:3'
+     3+<>+NID+Con+ThmPos+3+4+Prt+Pl: NID Pl Con Prt Pos:3'
+     3+<>+NID+Dim+ThmPos+2+Pl+Prt+4: NID Obv Dim Prt Pos:3Pl
+     3+<>+NID+Dim+ThmPos+2+Pl+Prt+Loc: NID Loc Dim Prt Pos:3Pl
+     3+<>+NID+Dim+ThmPos+2+Pl+Prt+Pl: NID Pl Dim Prt Pos:3Pl
+     3+<>+NID+Dim+ThmPos+3+4+Prt+4: NID Obv Dim Prt Pos:3'
+     3+<>+NID+Dim+ThmPos+3+4+Prt+Loc: NID Loc Dim Prt Pos:3'
+     3+<>+NID+Dim+ThmPos+3+4+Prt+Pl: NID Pl Dim Prt Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 5, 6, 7 
+     1+<>+NID+Con+Pej+1+Pl+Prt+4: NID Obv Con Pej Prt Pos:1Pl
+     1+<>+NID+Con+Pej+1+Pl+Prt+Loc: NID Loc Con Pej Prt Pos:1Pl
+     1+<>+NID+Con+Pej+1+Pl+Prt+Pl: NID Pl Con Pej Prt Pos:1Pl
+     1+<>+NID+Dim+Pej+1+Pl+Prt+4: NID Obv Dim Pej Prt Pos:1Pl
+     1+<>+NID+Dim+Pej+1+Pl+Prt+Loc: NID Loc Dim Pej Prt Pos:1Pl
+     1+<>+NID+Dim+Pej+1+Pl+Prt+Pl: NID Pl Dim Pej Prt Pos:1Pl
+     2+<>+NID+Con+Pej+1+Pl+Prt+4: NID Obv Con Pej Prt Pos:21Pl
+     2+<>+NID+Con+Pej+1+Pl+Prt+Loc: NID Loc Con Pej Prt Pos:21Pl
+     2+<>+NID+Con+Pej+1+Pl+Prt+Pl: NID Pl Con Pej Prt Pos:21Pl
+     2+<>+NID+Con+Pej+2+Pl+Prt+4: NID Obv Con Pej Prt Pos:2Pl
+     2+<>+NID+Con+Pej+2+Pl+Prt+Loc: NID Loc Con Pej Prt Pos:2Pl
+     2+<>+NID+Con+Pej+2+Pl+Prt+Pl: NID Pl Con Pej Prt Pos:2Pl
+     2+<>+NID+Dim+Pej+1+Pl+Prt+4: NID Obv Dim Pej Prt Pos:21Pl
+     2+<>+NID+Dim+Pej+1+Pl+Prt+Loc: NID Loc Dim Pej Prt Pos:21Pl
+     2+<>+NID+Dim+Pej+1+Pl+Prt+Pl: NID Pl Dim Pej Prt Pos:21Pl
+     2+<>+NID+Dim+Pej+2+Pl+Prt+4: NID Obv Dim Pej Prt Pos:2Pl
+     2+<>+NID+Dim+Pej+2+Pl+Prt+Loc: NID Loc Dim Pej Prt Pos:2Pl
+     2+<>+NID+Dim+Pej+2+Pl+Prt+Pl: NID Pl Dim Pej Prt Pos:2Pl
+     3+<>+NID+Con+Pej+2+Pl+Prt+4: NID Obv Con Pej Prt Pos:3Pl
+     3+<>+NID+Con+Pej+2+Pl+Prt+Loc: NID Loc Con Pej Prt Pos:3Pl
+     3+<>+NID+Con+Pej+2+Pl+Prt+Pl: NID Pl Con Pej Prt Pos:3Pl
+     3+<>+NID+Con+Pej+3+4+Prt+4: NID Obv Con Pej Prt Pos:3'
+     3+<>+NID+Con+Pej+3+4+Prt+Loc: NID Loc Con Pej Prt Pos:3'
+     3+<>+NID+Con+Pej+3+4+Prt+Pl: NID Pl Con Pej Prt Pos:3'
+     3+<>+NID+Dim+Pej+2+Pl+Prt+4: NID Obv Dim Pej Prt Pos:3Pl
+     3+<>+NID+Dim+Pej+2+Pl+Prt+Loc: NID Loc Dim Pej Prt Pos:3Pl
+     3+<>+NID+Dim+Pej+2+Pl+Prt+Pl: NID Pl Dim Pej Prt Pos:3Pl
+     3+<>+NID+Dim+Pej+3+4+Prt+4: NID Obv Dim Pej Prt Pos:3'
+     3+<>+NID+Dim+Pej+3+4+Prt+Loc: NID Loc Dim Pej Prt Pos:3'
+     3+<>+NID+Dim+Pej+3+4+Prt+Pl: NID Pl Dim Pej Prt Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 5, 6, 7 
+     1+<>+NID+ThmPos+Pej+1+Pl+Prt+4: NID Obv Pej Prt Pos:1Pl
+     1+<>+NID+ThmPos+Pej+1+Pl+Prt+Loc: NID Loc Pej Prt Pos:1Pl
+     1+<>+NID+ThmPos+Pej+1+Pl+Prt+Pl: NID Pl Pej Prt Pos:1Pl
+     2+<>+NID+ThmPos+Pej+1+Pl+Prt+4: NID Obv Pej Prt Pos:21Pl
+     2+<>+NID+ThmPos+Pej+1+Pl+Prt+Loc: NID Loc Pej Prt Pos:21Pl
+     2+<>+NID+ThmPos+Pej+1+Pl+Prt+Pl: NID Pl Pej Prt Pos:21Pl
+     2+<>+NID+ThmPos+Pej+2+Pl+Prt+4: NID Obv Pej Prt Pos:2Pl
+     2+<>+NID+ThmPos+Pej+2+Pl+Prt+Loc: NID Loc Pej Prt Pos:2Pl
+     2+<>+NID+ThmPos+Pej+2+Pl+Prt+Pl: NID Pl Pej Prt Pos:2Pl
+     3+<>+NID+ThmPos+Pej+2+Pl+Prt+4: NID Obv Pej Prt Pos:3Pl
+     3+<>+NID+ThmPos+Pej+2+Pl+Prt+Loc: NID Loc Pej Prt Pos:3Pl
+     3+<>+NID+ThmPos+Pej+2+Pl+Prt+Pl: NID Pl Pej Prt Pos:3Pl
+     3+<>+NID+ThmPos+Pej+3+4+Prt+4: NID Obv Pej Prt Pos:3'
+     3+<>+NID+ThmPos+Pej+3+4+Prt+Loc: NID Loc Pej Prt Pos:3'
+     3+<>+NID+ThmPos+Pej+3+4+Prt+Pl: NID Pl Pej Prt Pos:3'
+     
+     
+     #Values from slots numbered 1, 2, 3, 4, 5, 6, 7 
+     1+<>+NID+Con+ThmPos+Pej+1+Pl+Prt+4: NID Obv Con Pej Prt Pos:1Pl
+     1+<>+NID+Con+ThmPos+Pej+1+Pl+Prt+Loc: NID Loc Con Pej Prt Pos:1Pl
+     1+<>+NID+Con+ThmPos+Pej+1+Pl+Prt+Pl: NID Pl Con Pej Prt Pos:1Pl
+     1+<>+NID+Dim+ThmPos+Pej+1+Pl+Prt+4: NID Obv Dim Pej Prt Pos:1Pl
+     1+<>+NID+Dim+ThmPos+Pej+1+Pl+Prt+Loc: NID Loc Dim Pej Prt Pos:1Pl
+     1+<>+NID+Dim+ThmPos+Pej+1+Pl+Prt+Pl: NID Pl Dim Pej Prt Pos:1Pl
+     2+<>+NID+Con+ThmPos+Pej+1+Pl+Prt+4: NID Obv Con Pej Prt Pos:21Pl
+     2+<>+NID+Con+ThmPos+Pej+1+Pl+Prt+Loc: NID Loc Con Pej Prt Pos:21Pl
+     2+<>+NID+Con+ThmPos+Pej+1+Pl+Prt+Pl: NID Pl Con Pej Prt Pos:21Pl
+     2+<>+NID+Con+ThmPos+Pej+2+Pl+Prt+4: NID Obv Con Pej Prt Pos:2Pl
+     2+<>+NID+Con+ThmPos+Pej+2+Pl+Prt+Loc: NID Loc Con Pej Prt Pos:2Pl
+     2+<>+NID+Con+ThmPos+Pej+2+Pl+Prt+Pl: NID Pl Con Pej Prt Pos:2Pl
+     2+<>+NID+Dim+ThmPos+Pej+1+Pl+Prt+4: NID Obv Dim Pej Prt Pos:21Pl
+     2+<>+NID+Dim+ThmPos+Pej+1+Pl+Prt+Loc: NID Loc Dim Pej Prt Pos:21Pl
+     2+<>+NID+Dim+ThmPos+Pej+1+Pl+Prt+Pl: NID Pl Dim Pej Prt Pos:21Pl
+     2+<>+NID+Dim+ThmPos+Pej+2+Pl+Prt+4: NID Obv Dim Pej Prt Pos:2Pl
+     2+<>+NID+Dim+ThmPos+Pej+2+Pl+Prt+Loc: NID Loc Dim Pej Prt Pos:2Pl
+     2+<>+NID+Dim+ThmPos+Pej+2+Pl+Prt+Pl: NID Pl Dim Pej Prt Pos:2Pl
+     3+<>+NID+Con+ThmPos+Pej+2+Pl+Prt+4: NID Obv Con Pej Prt Pos:3Pl
+     3+<>+NID+Con+ThmPos+Pej+2+Pl+Prt+Loc: NID Loc Con Pej Prt Pos:3Pl
+     3+<>+NID+Con+ThmPos+Pej+2+Pl+Prt+Pl: NID Pl Con Pej Prt Pos:3Pl
+     3+<>+NID+Con+ThmPos+Pej+3+4+Prt+4: NID Obv Con Pej Prt Pos:3'
+     3+<>+NID+Con+ThmPos+Pej+3+4+Prt+Loc: NID Loc Con Pej Prt Pos:3'
+     3+<>+NID+Con+ThmPos+Pej+3+4+Prt+Pl: NID Pl Con Pej Prt Pos:3'
+     3+<>+NID+Dim+ThmPos+Pej+2+Pl+Prt+4: NID Obv Dim Pej Prt Pos:3Pl
+     3+<>+NID+Dim+ThmPos+Pej+2+Pl+Prt+Loc: NID Loc Dim Pej Prt Pos:3Pl
+     3+<>+NID+Dim+ThmPos+Pej+2+Pl+Prt+Pl: NID Pl Dim Pej Prt Pos:3Pl
+     3+<>+NID+Dim+ThmPos+Pej+3+4+Prt+4: NID Obv Dim Pej Prt Pos:3'
+     3+<>+NID+Dim+ThmPos+Pej+3+4+Prt+Loc: NID Loc Dim Pej Prt Pos:3'
+     3+<>+NID+Dim+ThmPos+Pej+3+4+Prt+Pl: NID Pl Dim Pej Prt Pos:3'
+     
