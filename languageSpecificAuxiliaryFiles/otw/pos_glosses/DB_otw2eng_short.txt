@@ -6048,7 +6048,7 @@ jiichiibaaksenh	rocking chair
 jiichiibzideni	move ones feet
 jiichiibzidese	tap ones feet
 jiichiibzidetaa	move ones feet
-jiichiigmikwaadaan	
+jiichiigmikwaadaan	<<truncation error>>
 jiichiigwaakmaa	gnaw on sth
 jiichiigwaakndaan	gnaw on sth
 jiichiigwaaknjige	gnaw on things
@@ -6867,7 +6867,7 @@ mdweshmaa	make noise moving
 mdwesin	go off ring
 mdwesjige	ring a bell
 mdwetoo	rattle around
-mdwewaajiinh	
+mdwewaajiinh	<<truncation error>>
 mdwewaakdin	crack audibly from
 mdwewaapi	laugh audibly
 mdwewaashi	make noise from
@@ -7617,7 +7617,7 @@ mooshk'an	flood there be
 mooshkaabwaadaan	fill sth up
 mooshkaabwaanaa	fill sth an
 mooshkaabwe	get a fillup
-mooshkas	
+mooshkas	<<truncation error>>
 mooshkmo	appear surface emerge
 mooshknadmawaa	fill something for
 mooshknadoon	fill sth
@@ -8210,7 +8210,7 @@ Naadwe	Iroquois  2
 Naadwenaang	Six Nations reserve
 Naadwesi	Iroquois  2
 naadwesi	a species of
-naadweyaanak	
+naadweyaanak	<<truncation error>>
 naadzhoonyaawe	go get ones
 naadzi	live in a
 naadzin'amwaa	seek payment from
@@ -11704,7 +11704,7 @@ zaazgokwaadaan	fry sth
 zaazgokwaan	frying pan
 zaazgokwaanaa	fry sth an
 zaaziibweweshkaa	be squeaky squeak
-zaaziimskaajgane	
+zaaziimskaajgane	<<truncation error>>
 zagdebwe	burdock or thistle
 zak'on	cane assistive device
 zambidoon	pull sth into
@@ -12148,7 +12148,7 @@ zhiibiigbidoon	stretch sth
 zhiibiigbinaa	stretch sth an
 zhiibiigniwe	stretch oneself
 zhiibnawii	stretch ones arms
-zhiibskaasjigaade	
+zhiibskaasjigaade	<<truncation error>>
 zhiibtam	rebel
 zhiibwaayaabjigan	telescope
 zhiibwaayaabjignan	binoculars
@@ -13599,7 +13599,7 @@ aazhgidwebnaan	flip sth forcefully
 aazhgijwebnaa	flip sth an
 aazhgijwebnaan	flip sth forcefully
 aazhgijiitaa	turn onto ones
-aazhigijiitwaa	
+aazhigijiitwaa	<<truncation error>>
 aazhoodaaki	on the other
 aazhoozdeshin	lie with ones
 aazhwewzi	have an omen
@@ -14270,4 +14270,3 @@ ekwaabiignike	have tired arms
 ekwaabiigzi	be tired
 ekwaabiigzide	have tired feet
 ekwaabzo	no longer function
-
