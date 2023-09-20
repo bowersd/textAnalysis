@@ -1,5 +1,8 @@
-import pyyaml
+import yaml
 import re
+import sys
+
+import lemmatize as lem
 
 def winnow(analysis_in, *wheat):
     #translation suite does not cover preverbs, clitics, reduplication, participles, derivational morphology (and others)
@@ -31,4 +34,24 @@ def insert_lexmarkers(tagmark, lexmark, *tag_stream):
             h.append(lexmark)
         h.append(tag_stream[i])
     return h
+
+def format_summary(wheat, chaff, lemma, **mapping):
+    attempted = "".join(insert_lexmarkers("+", "<>", *wheat))
+    try:
+        print(lemma, mapping["".join(insert_lexmarkers("+", "<>", *wheat))], "("+", ".join(chaff)+")")
+    except KeyError:
+        print(lemma, "".join(insert_lexmarkers("+", "<>", *wheat)), "("+", ".join(chaff)+") BROKE SUMMARY TOOL")
+
+
+if __name__ == "__main__":
+    mega_tags = [yaml.load(x) for x in sys.argv[2:]]
+    map_dict = {}
+    for d in mega_tags:
+        for x in d:
+            for y in d[x]:
+                for z in d[x][y]:
+                    map_dict[z] = d[x][y][z]
+    tag_set = identify_targets("<>", *[x for x in map_dict])
+
+
 
