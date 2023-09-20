@@ -67,12 +67,14 @@ if __name__ == "__main__":
                 print(inter[1][i])
                 print(inter[2][i])
                 print(inter[3][i])
+                print()
             else:
                 straight_tags = re.findall("[^\+]*\+", inter[1][i].split(inter[2][i])[0])+re.findall("[^\+]*\+", inter[1][i].split(inter[2][i])[1])
                 wheat, chaff = winnow(straight_tags,  *tag_set)
                 print(format_summary(wheat, chaff, inter[2][i], **map_dict))
                 print(inter[2][i])
                 print(inter[3][i])
+                print()
 
 
 
