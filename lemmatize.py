@@ -2,7 +2,6 @@ import os
 import argparse
 import re
 import json
-import csv
 import parse
 import readwrite as rw
 import postprocess as pst
