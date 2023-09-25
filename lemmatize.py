@@ -35,6 +35,17 @@ def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
         holder.append(sub)
     return holder
 
+def jsonify(filename, names, indices, *lists):
+    jsonic = {}
+    for i in range(len(names)):
+        jsonic[names[i]] = lists[indices[i]]
+    with open(filename, 'w') as json_out:
+        json.dump(jsonic, json_out)
+
+
+
+def json_corrections():
+    pass #give sentence id, field and index w/in field plus a new value
 
 def parseargs():
     parser = argparse.ArgumentParser()
