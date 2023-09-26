@@ -41,7 +41,7 @@ def name_lists(names, *lists):
     return named_lists
 
 
-def json_corrections():
+def json_corrections(json_in):
     pass #give sentence id, field and index w/in field plus a new value
 
 def parseargs():
@@ -55,7 +55,7 @@ def parseargs():
     parser.add_argument("-o", "--output", dest="o", nargs="?", help="file name/suffix without filetype extension", default="Lemmatization")
     return parser.parse_args()
 
-def main(fst_file, fst_format, regex_file, gloss_file, text, trans, output):
+def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, output):
     gdict = eng.mk_glossing_dict(*rw.readin(gloss_file))
     pos_regex = "".join(rw.readin(regex_file))
     with open(output, 'w') as file_out:
@@ -68,7 +68,7 @@ def main(fst_file, fst_format, regex_file, gloss_file, text, trans, output):
             subline = [[],[],[],[]]
             for i in range(len(inter[0])):
                 m = max(len(inter[0][i]), len(inter[1][i]), len(inter[2][i]), len(inter[3][i]))
-                if wrap + m > 267:
+                if wrap + m > 200: #wrapping at less than 267 (full screen) to allow lines to be edited
                     wrap = 0
                     mainline.append(subline)
                     subline = [[], [], [], []]
@@ -97,4 +97,4 @@ def main(fst_file, fst_format, regex_file, gloss_file, text, trans, output):
 
 if __name__ == "__main__":
     args = parseargs()
-    main(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
+    human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
