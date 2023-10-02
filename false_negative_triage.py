@@ -6,7 +6,7 @@ import sys
 def isolate_divergences(aligned1, aligned2):
     h = []
     for i in range(len(aligned1)):
-        if aligned1[i] != aligned2[i]: h.append((aligned1[i], aligned2[i], aligned1[i-3:i], aligned1[i+1:i+4], aligned2[i-3:i], aligned2[i+1:i+4], i, len(aligned1))) #diff in, diff out, 3 letters context left in, 3 letters context right in, 3 letters left out, 3 letters context right out, diff loc, len(str)
+        if aligned1[i] != aligned2[i]: h.append((aligned1[i], aligned2[i], aligned1[i-3:i], aligned1[i+1:i+4], aligned2[i-3:i], aligned2[i+1:i+4], i, i+1-len(aligned1))) #diff in, diff out, 3 letters context left in, 3 letters context right in, 3 letters left out, 3 letters context right out, diff loc left, diff loc rightlen(str)
     return h
 
 def compile_reports(*error_expected):
@@ -41,5 +41,8 @@ if __name__ == "__main__":
     with open(sys.argv[1]) as file_in:
         for line in file_in:
             h.append(line.strip().split(','))
+    ald = []
+    for x in h:
+        ald.append(needleman.align(x
     compile_reports(*h)
 
