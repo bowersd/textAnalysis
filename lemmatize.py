@@ -127,4 +127,4 @@ if __name__ == "__main__":
     #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
     data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is sentence id \t sentence
     pos_regex = "".join(rw.readin(regex_file))
-    atomic_json_dump(args.o, ["sentenceID", "lemmata"], [[d[0] for d in data_in], [lemmatize(pos_regex, *analyze_text(fst_file, fst_format, *[d[1] for d in data_in])]))
+    atomic_json_dump(args.o, ["sentenceID", "lemmata"], [[d[0] for d in data_in], lemmatize(pos_regex, *analyze_text(fst_file, fst_format, *[d[1] for d in data_in]))])
