@@ -18,11 +18,17 @@ def analyze_word(fst_file, fst_format, pos_regex, gdict, w):
 def analyze_sent(fst_file, fst_format, *sent):
     analysis = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *sent).decode())
     analyses = []
-    for w in sent: analyses.append(analysis[w][pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])][0])
+    for w in sent: analyses.append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
     return analyses
 
 def analyze_text(fst_file, fst_format, *text_in):
-    return [analyze_sent(fst_file, fst_format, *pre.sep_punct(s.lower()).split()) for s in text_in]
+    analysis = []
+    analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x.lower() for s in text_in for x in pre.sep_punct(s.split())]).decode()) #get all analyses of every word
+    for s in text_in: analysis.append([analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0] for w in pre.sep_punct(s.lower()).split()]) #look up each word's analyses and disambiguate ... better: disambiguate while the analyses are being computed ... though the parse() function should not be troubled with disambiguation questions. modular=siloed?
+    return analysis
+
+def lemmatize(pos_regex, *analysis):
+    return [pst.extract_lemma(a, pos_regex) for a in analysis]
 
 def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
     holder = []
