@@ -7,7 +7,7 @@ def parser_out_string_dict(string):
         if not line: continue 
         split = line.split()
         if split[0] not in proc: proc[split[0]] = [split[1:]]
-        else: proc[split[0]].append(split[1:]) #this will needlessly bloat if the same word has been parsed more than once
+        elif split[1:] not in proc[split[0]]: proc[split[0]].append(split[1:]) 
     return proc
 
 def min_morphs(*msds):
