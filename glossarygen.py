@@ -24,9 +24,10 @@ def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
     #tin = rw.readin(text_in)
     #tin.pop(0) #burning corpus info
     #tin.pop(0) #burning text info
+    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
+    if spellrelax_file: r = pst.parser_out_string_dict(parse.parse(os.path.expanduser(spellrelax_file), fst_format, w).decode())
     for s in text_in:
         for w in pre.sep_punct(s).split():
-            p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
             guess = ""
@@ -36,9 +37,8 @@ def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
                 best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
                 lem = pst.extract_lemma(p[w][best][0], pos_regex)
             if (not lem) and spellrelax_file:
-                p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(spellrelax_file), fst_format, w).decode())
-                best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
-                lem = pst.extract_lemma(p[w][best][0], pos_regex)
+                best = pst.disambiguate(pst.min_morphs(*r[w]), pst.min_morphs, *r[w])
+                lem = pst.extract_lemma(r[w][best][0], pos_regex)
                 if lem: guess = "SPELLING RELAXED"
             if lem and lem not in holder:
                 try: gloss = gdict[lem]
