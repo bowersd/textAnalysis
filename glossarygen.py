@@ -25,30 +25,37 @@ def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
     #tin.pop(0) #burning corpus info
     #tin.pop(0) #burning text info
     p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
-    if spellrelax_file: r = pst.parser_out_string_dict(parse.parse(os.path.expanduser(spellrelax_file), fst_format, w).decode())
     for s in text_in:
-        for w in pre.sep_punct(s).split():
+        for w in pre.sep_punct(s.lower()).split():
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
-            guess = ""
-            if not lem: #kludge until I can figure out how to manage capitalization differences on the FST side the way the giellatekno people do
-                w = w.lower()
-                p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
-                best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
-                lem = pst.extract_lemma(p[w][best][0], pos_regex)
-            if (not lem) and spellrelax_file:
-                best = pst.disambiguate(pst.min_morphs(*r[w]), pst.min_morphs, *r[w])
-                lem = pst.extract_lemma(r[w][best][0], pos_regex)
-                if lem: guess = "SPELLING RELAXED"
+            #if not lem: #kludge until I can figure out how to manage capitalization differences on the FST side the way the giellatekno people do
+            #    w = w.lower()
+            #    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
+            #    best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
+            #    lem = pst.extract_lemma(p[w][best][0], pos_regex)
             if lem and lem not in holder:
                 try: gloss = gdict[lem]
                 except KeyError: gloss = "definition currently unavailable"
-                if w != lem or pst.extract_regex(p[w][best][0], pos_regex) not in ["+Adv", "+Ipc", "+Pron+NA", "+Pron+NI", "+Qnt", "+Interj"]: update(holder, lem, *[1, pst.extract_regex(p[w][best][0], pos_regex), gloss, [(w, p[w][best][0]+guess)]])
+                if w != lem or pst.extract_regex(p[w][best][0], pos_regex) not in ["+Adv", "+Ipc", "+Pron+NA", "+Pron+NI", "+Qnt", "+Interj"]: update(holder, lem, *[1, pst.extract_regex(p[w][best][0], pos_regex), gloss, [(w, p[w][best][0])]])
                 else: update(holder, lem, *[1, pst.extract_regex(p[w][best][0], pos_regex), gloss, []])
                 #holder[lem] = [1, pst.extract_regex(p[w][best][0], pos_regex), gloss, [w]]
-            elif lem in holder: update(holder, lem, *[1, [(w, p[w][best][0]+guess)]])
+            elif lem in holder: update(holder, lem, *[1, [(w, p[w][best][0])]])
             else:  
                 update(holder, "zzzz-UnparsedWords", *[1, [(w,)]]) #no lemma
+    if spellrelax_file: 
+        r = pst.parser_out_string_dict(parse.parse(os.path.expanduser(spellrelax_file), fst_format, *[w[0] for w in holder["zzzz-UnparsedWords"][-1]]).decode())
+        for w in holder["zzzz-UnparsedWords"][-1]:
+            w = w[0]
+            best = pst.disambiguate(pst.min_morphs(*r[w]), pst.min_morphs, *r[w])
+            lem = pst.extract_lemma(r[w][best][0], pos_regex)
+            if lem and lem not in holder:
+                try: gloss = gdict[lem]
+                except KeyError: gloss = "definition currently unavailable"
+                if w != lem or pst.extract_regex(r[w][best][0], pos_regex) not in ["+Adv", "+Ipc", "+Pron+NA", "+Pron+NI", "+Qnt", "+Interj"]: update(holder, lem, *[1, pst.extract_regex(r[w][best][0], pos_regex), gloss, [(w, r[w][best][0]+"SPELLING RELAXED")]])
+                else: update(holder, lem, *[0, pst.extract_regex(r[w][best][0], pos_regex), gloss, []]) #not updating count, since unparsed words are collapsed together, for now need to check count by hand
+                #holder[lem] = [1, pst.extract_regex(p[w][best][0], pos_regex), gloss, [w]]
+            elif lem in holder: update(holder, lem, *[0, [(w, r[w][best][0]+"SPELLING RELAXED")]]) #not updating count, since unparsed words are collapsed together, for now need to check count by hand
     return holder
 
 def flag_cap(*words):
