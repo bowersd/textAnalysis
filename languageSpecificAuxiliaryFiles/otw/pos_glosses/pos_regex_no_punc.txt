@@ -1,0 +1,16 @@
+\+VAI|
+\+VII|
+\+VTI|
+\+VTA|
+\+VAIO|
+\+NA|
+\+NI|
+\+NAD|
+\+NID|
+\+Conj|
+\+Interj|
+\+Num|
+\+Pron(\+NA|\+NI)|
+\+Ipc|
+\+Qnt|
+\+Adv|
