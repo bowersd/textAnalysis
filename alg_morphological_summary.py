@@ -6,6 +6,9 @@ import lemmatize as lem
 import engdict as eng
 import readwrite as rw
 
+def interpret(analysis_in):
+    pass
+
 def winnow(analysis_in, *wheat):
     #translation suite does not cover preverbs, clitics, reduplication, participles, derivational morphology (and others)
     #to allow the translation suite to function, we separate what it can handle from what it can't
