@@ -7,9 +7,20 @@ import engdict as eng
 import readwrite as rw
 
 def interpret(analysis_in):
-    summary = {"S":None, "O":None, "DerivChain":None, "Head":None, "Order":None, "Neg":None, "Mode":None, "Else": []}
-    summary["Else"] = analysis_in
+    summary = {"S":{"Pers":0, "Num":""}, "O":{"Pers":0, "Num":""}, "DerivChain":None, "Head":None, "Order":None, "Neg":None, "Mode":None, "Else": []}
+    #analysis = [x for x in in analysis_in]
+    summary["S"]["Pers"] = analysis_in["prefix"][0]
+    analysis_in["prefix"][1] = True
+    summary["Else"] = [analysis_in[x][0] for x in analysis_in if analysis[x][1] = False]
     return summary
+
+def analysis_dict(analysis_string):
+    adict = {"prefix":[["", False]], "derivation": [], "preverbs":[], "suffixes":[], "clitics":[]}
+    prefix = re.find("^[123X]", analysis_string)
+    if prefix: adict["prefix"] = [prefix[0], False]
+    adict["derivation"] = [re.find("POSTAGS.*POSTAGS", analysis_string)[0], False] #split these?
+    return adict
+
 
 def winnow(analysis_in, *wheat):
     #translation suite does not cover preverbs, clitics, reduplication, participles, derivational morphology (and others)
