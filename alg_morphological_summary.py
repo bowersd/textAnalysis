@@ -7,18 +7,21 @@ import engdict as eng
 import readwrite as rw
 
 def interpret(analysis_in):
-    summary = {"S":{"Pers":0, "Num":""}, "O":{"Pers":0, "Num":""}, "DerivChain":None, "Head":None, "Order":None, "Neg":None, "Mode":None, "Else": []}
+    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":"", "Else": []}
     #analysis = [x for x in in analysis_in]
     summary["S"]["Pers"] = analysis_in["prefix"][0]
     analysis_in["prefix"][1] = True
-    summary["Else"] = [analysis_in[x][0] for x in analysis_in if analysis[x][1] = False]
+    summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
     return summary
 
 def analysis_dict(analysis_string):
-    adict = {"prefix":[["", False]], "derivation": [], "preverbs":[], "suffixes":[], "clitics":[]}
-    prefix = re.find("^[123X]", analysis_string)
-    if prefix: adict["prefix"] = [prefix[0], False]
-    adict["derivation"] = [re.find("POSTAGS.*POSTAGS", analysis_string)[0], False] #split these?
+    adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitics":[]}
+    adict["clitic"].append([re.search("\+dash\+Adv", analysis_string)[0], False])
+    analysis_string = analysis_string.strip("+dash+Adv") #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
+    adict["prefix"].append([re.search("(^[123X])?", analysis_string)[0], False])
+    adict["derivation"] = [[x, False] for x in re.search("POSTAGS(.*POSTAGS)?", analysis_string)[0].split("+")] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    adict["preforms"] = [[x, False] for x in re.search("(PV|PN|PA[^\+]*\+)*", analysis_string)[0].split("+")]
+    #adict["suffixes"] = [[x, False] for x in re.search("(?<!.*POSTAGS).*", analysis_string)[0].split("+")] #everything after the last pos tag
     return adict
 
 
