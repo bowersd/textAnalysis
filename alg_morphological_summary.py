@@ -30,7 +30,7 @@ def interpret(analysis_in):
             analysis_in["suffixes"][1][i] = True
         #{extracting theme sign information CURRENTLY AGNOSTIC TO CNJ VS IND
         #{local theme signs
-        if summary["Head"] == "VTA" and analysis_in["suffixes"][0][i] == "Thm2":
+        elif summary["Head"] == "VTA" and analysis_in["suffixes"][0][i] == "Thm2":
             summary["O"]["Pers"] = "1"
             analysis_in["suffixes"][1][i] = True
         elif summary["Head"] == "VTA" and (analysis_in["suffixes"] == "Thm1Pl" or analysis_in["suffixes"] == "Thm1Sg"):
