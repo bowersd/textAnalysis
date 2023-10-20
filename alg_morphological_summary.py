@@ -35,7 +35,7 @@ def interpret(analysis_in):
             analysis_in["suffixes"][1][i] = True
         elif (analysis_in["suffixes"][0][i] == "Thm1Pl" or analysis_in["suffixes"][0][i] == "Thm1Sg"):
             summary["O"]["Pers"] = "1"
-            if analysis_in["suffixes"][0][i] = "Thm1Pl": summary["O"]["Num"] = "Pl"
+            if analysis_in["suffixes"][0][i] == "Thm1Pl": summary["O"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
             inversion = True
             #local theme signs end}
