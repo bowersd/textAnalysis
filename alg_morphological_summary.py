@@ -28,7 +28,7 @@ def interpret(analysis_in):
         elif analysis_in["suffixes"][0][i] == "Cnj" or analysis_in["suffixes"][0][i] == "Imp":
             summary["Order"] = analysis_in["suffixes"][0][i]
             analysis_in["suffixes"][1][i] = True
-        #{getting number information when prefix information already obtained
+        #{getting number information when prefix information already obtained == NOT CONJUNCT!
         elif analysis_in["prefix"][0][0] == "1" and analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]: 
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
@@ -41,21 +41,20 @@ def interpret(analysis_in):
             elif summary["Head"] == "VTA" and (analysis_in["suffixes"] == "Thm1Pl" or analysis_in["suffixes"] == "Thm1Sg"):
                 summary["O"]["Pers"] = "1"
                 if analysis_in["suffixes"] = "Thm1Pl": summary["O"]["Num"] = "Pl"
-                summary["S"]["Pers"] = "2"
                 analysis_in["suffixes"][1][i] = True
                 inversion = True
                 #arranging persons for VTA local predication end}
             elif analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
-                if summary["Head"] == "VTA"  and summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2": #this is thm2 .*1pl = (2v1pl/2plv1pl)
+                if summary["Head"] == "VTA"  and summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and not inversion: #this is thm2 .*1pl = (2v1pl/2plv1pl) 
                     summary["S"]["Num"] = "Pl/2"
                     summary["O"]["Num"] = "Pl"
                 else: summary["S"]["Num"] = "1Pl"
             elif analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
-                if summary["Head"] == "VTA"  and summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2": summary["S"]["Num"] == "Pl"  #this is thm1sg/thm1pl .*2pl = (1plv2pl, 1sg v 2pl) 
+                if summary["Head"] == "VTA"  and summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2": summary["S"]["Num"] == "Pl"  #this is thm1sg/thm1pl .*2pl = (1plv2pl, 1sg v 2pl) (after inversion)
                 else: summary["S"]["Num"] = "Pl"
         elif analysis_in["prefix"][0][0] == "3" and analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
             summary["S"]["Num"] = "Pl"
