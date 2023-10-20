@@ -55,7 +55,8 @@ def interpret(analysis_in):
             elif analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
-                summary["S"]["Num"] = "Pl"
+                if summary["Head"] == "VTA"  and summary["Order"] != "Cnj" and summary["S"]["Pers"] == "1" and summary["O"]["Pers"] == "2": summary["O"]["Num"] == "Pl"  #this is thm1sg/thm1pl .*2pl = (1plv2pl, 1sg v 2pl)
+                else: summary["S"]["Num"] = "Pl"
         elif analysis_in["prefix"][0][0] == "3" and analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
