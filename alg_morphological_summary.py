@@ -60,12 +60,13 @@ def interpret(analysis_in):
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
                 #if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and inversion: summary["S"]["Num"] == "Pl"  ## before inversion (thm1sg/thm1pl .*2pl) = (2pl v 1sg/2pl v 1pl), so no need to specify a special case here 
+                #note: there is no further number information in another slot for first persons here ... like theme signs really are object agreement and inversion swoops them into subjecthood (and/or peripheral suffixes are just for 3rd persons)
                 summary["S"]["Num"] = "Pl" 
         elif analysis_in["prefix"][0][0] == "3" and analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
             analysis_in["suffixes"][1][i+1] = True
-        #end prefix information obtained}
+        #end prefix number obtained}
         elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "1":
             summary["S"]["Pers"] = "1"
             analysis_in["suffixes"][1][i] = True
