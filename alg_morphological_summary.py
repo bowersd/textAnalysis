@@ -39,10 +39,17 @@ def interpret(analysis_in):
             analysis_in["suffixes"][1][i] = True
             inversion = True
             #local theme signs end}
-        elif (analysis_in["suffixes"][0][i] == "ThmDir" or analysis_in["suffixes"][0][i] == "ThmInv":
+        elif (analysis_in["suffixes"][0][i] == "ThmDir" or analysis_in["suffixes"][0][i] == "ThmInv"):
             analysis_in["suffixes"][1][i] = True
             summary["O"]["Pers"] = "3"
             if analysis_in["suffixes"][0][i] == "ThmInv": inversion = True
+        #} extracting theme sign information end
+        #{getting number information for theme signs
+        elif summary["O"]["Pers"] == "3" and analysis_in["suffixes"][0][i:i+2] == ["3", "4"]:
+            analysis_in["suffixes"][1][i] = True
+            analysis_in["suffixes"][1][i+1] = True
+            summary["O"]["Num"] == "'"
+        #}theme sign number end
         #{getting number information for person values specified by prefix == NOT CONJUNCT!
         elif analysis_in["prefix"][0][0] == "1" and analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]: 
             summary["S"]["Num"] = "Pl"
