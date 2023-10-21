@@ -10,13 +10,13 @@ def interpret(analysis_in):
     summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":"", "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]}
     inversion = False #if true, S/O will be inverted at end
     #analysis = [x for x in in analysis_in]
-    summary["S"]["Pers"] = analysis_in["prefix"][0][0]
-    summary["DerivChain"] = " ".join([x for x in analysis_in["Derivation"][0]])
-    summary["Head"] = analysis_in["Derivation"][0][-1]
+    summary["S"]["Pers"] = analysis_in["prefix"][0]
+    summary["DerivChain"] = " ".join([x for x in analysis_in["Derivation"]])
+    summary["Head"] = analysis_in["Derivation"][-1]
     #probably better to just pop the suffixes and append them to "else" if they don't get satisfied
     #for i in range(len(analysis_in["suffixes"][0])):
-    while analysis_in["suffixes"][0]:
-        s = analysis_in["suffixes"][0].pop(0)
+    while analysis_in["suffixes"]:
+        s = analysis_in["suffixes"].pop(0)
         if s == "Neg": summary["Neg"] = s
         elif s == "Prt": summary["Mode"] = s
         elif s == "Dub": summary["Mode"] += s
@@ -42,11 +42,11 @@ def interpret(analysis_in):
             summary["O"]["Num"] == "Pl"
         #}theme sign number end
         #{getting number information for person values specified by prefix == NOT CONJUNCT!
-        elif analysis_in["prefix"][0][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
+        elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"].pop(0)
-        elif analysis_in["prefix"][0][0] == "2": 
-            if analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
+        elif analysis_in["prefix"][0] == "2": 
+            if analysis_in["suffixes"][0:2] == ["1", "Pl"]:
                 analysis_in["suffixes"].pop(0)
                 if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and not inversion: #this is thm2 .*1pl = (2v1pl/2plv1pl) 
                     summary["S"]["Num"] = "Pl/2"
@@ -57,7 +57,7 @@ def interpret(analysis_in):
                 #if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and inversion: summary["S"]["Num"] == "Pl"  ## before inversion (thm1sg/thm1pl .*2pl) = (2pl v 1sg/2pl v 1pl), so no need to specify a special case here 
                 #note: there is no further number information in another slot for first persons here ... like theme signs really are object agreement and inversion swoops them into subjecthood (and/or peripheral suffixes are just for 3rd persons)
                 summary["S"]["Num"] = "Pl" 
-        elif analysis_in["prefix"][0][0] == "3" and and s = "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
+        elif analysis_in["prefix"][0] == "3" and and s = "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"].pop(0)
         #end prefix number obtained}
@@ -95,12 +95,12 @@ def interpret(analysis_in):
 
 def analysis_dict(analysis_string):
     adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitic":[]}
-    adict["clitic"] = [[re.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]], [False]]
+    adict["clitic"] = [re.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]]
     analysis_string = analysis_string.strip("+dash+Adv") #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
-    adict["prefix"] = [[re.search("(^[123X])?", analysis_string)[0]], [False]]
-    adict["derivation"] = [re.search("POSTAGS(.*POSTAGS)?", analysis_string)[0].split("+"), [False for x in re.search("POSTAGS(.*POSTAGS)?", analysis_string)[0].split("+")]] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-    adict["preforms"] = [re.search("(PV|PN|PA[^\+]*\+)*", analysis_string)[0].split("+"), [False for x in re.search("(PV|PN|PA[^\+]*\+)*", analysis_string)[0].split("+")]
-    adict["suffixes"] = [[x for x in reversed(re.search(".*(?!POSTAGS)", "+".join(reversed(analysis_string.split("+"))))[0].split("+"))], [False for x in re.search(".*(?!POSTAGS)", "+".join(reversed(analysis_string.split("+"))))[0].split("+")]]
+    adict["prefix"] = [re.search("(^[123X])?", analysis_string)[0]]
+    adict["derivation"] = re.search("POSTAGS(.*POSTAGS)?", analysis_string)[0].split("+") #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    adict["preforms"] = re.search("(PV|PN|PA[^\+]*\+)*", analysis_string)[0].split("+")
+    adict["suffixes"] = [x for x in reversed(re.search(".*(?!POSTAGS)", "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
     #adict["suffixes"] = list(reversed([["".join(reversed(x)), False] for x in re.search(".*(?!REVPOSTAGS)", "".join(reversed(analysis_string)))[0].split("+")])) #reading everything backwards then re-reversing it (in order to avoid non-fixed width negative lookbehind
     return adict
 
