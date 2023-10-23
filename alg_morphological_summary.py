@@ -42,9 +42,9 @@ def interpret(analysis_in):
             summary["O"]["Num"] == "Pl"
         elif summary["O"]["Pers"] == "3" and s == "0": 
             summary["O"]["Pers"] = "0"
-            if analysis_in["suffixes"][0:1] == ["Pl"]:
-                analysis_in["suffixes"].pop(0)
-                summary["O"]["Num"] == "Pl"
+        elif summary["O"]["Pers"] == "0" and s == "0" and analysis_in["suffixes"][0:1] == ["Pl"]:
+            analysis_in["suffixes"].pop(0)
+            summary["O"]["Num"] == "Pl"
         #}theme sign number end
         #{getting number information for person values specified by prefix == NOT CONJUNCT!
         elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
@@ -104,10 +104,10 @@ def analysis_dict(analysis_string):
     postags = "\+VAI|\+VII|\+VTI|\+VTA|\+VAIO|\+NA|\+NI|\+NAD|\+NID|\+Conj|\+Interj|\+Num|\+Pron(\+NA|\+NI)|\+Ipc|\+Qnt|\+Adv"
     adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitic":[]}
     adict["clitic"] = [re.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]]
-    analysis_string = analysis_string.strip("+dash+Adv") #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
+    analysis_string = re.sub("\+dash\+Adv", "", analysis_string) #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
     adict["prefix"] = [re.search("(^[123X])?", analysis_string)[0]]
-    adict["derivation"] = re.search("{}(.*)?".format(postags), analysis_string)[0].split("+") #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-    adict["preforms"] = re.search("((PV|PN|PA[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
+    adict["derivation"] = re.search("{0}(.*{0})?".format(postags), analysis_string)[0].split("+") #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    adict["preforms"] = re.search("(((PV|PN|PA)[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
     adict["suffixes"] = [x for x in reversed(re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
     return adict
 
@@ -154,6 +154,6 @@ def format_summary(wheat, chaff, lemma, **mapping):
 if __name__ == "__main__":
     with open(sys.argv[1]) as file_in:
         mega_tags = yaml.load(file_in)
-    for x in mega_tags["Mapping"]["VAI - IND"]: 
+    for x in mega_tags["Mapping"]["VTA - IND"]: 
         print(x)
         print(interpret(analysis_dict(x)))
