@@ -35,7 +35,9 @@ def interpret(analysis_in):
         elif (s == "Thm1Pl2" or s == "Thm1" or s == "Thm2"):
             summary["O"]["Pers"] = "1"
             if s == "Thm2" or s == "Thm1Pl2": inversion = True
-            if s == "Thm1Pl2": summary["O"]["Num"] = "Pl"
+            if s == "Thm1Pl2": 
+                summary["O"]["Num"] = "Pl"
+                summary["S"]["Pers"] = "2"
             #local theme signs end}
         elif (s == "ThmDir" or s == "ThmInv"):
             summary["O"]["Pers"] = "3"
@@ -48,7 +50,7 @@ def interpret(analysis_in):
             #Thm1 .* 1Pl precludes 2pl marking, and so is ambiguous for second person number.  1 obj...1pl = 2Pl/2 vs 1pl.  it never means 21pl bc ban on XvX
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "Pl"
-            summary["S"]["Pers"] = "2"
+            #summary["S"]["Pers"] = "2" #not needed because 2 is independently spelled out in suffixes for cnj, and appears as a prefix for ind
             summary["S"]["Num"] = "Pl/2"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["4"]:
             analysis_in["suffixes"].pop(0)
@@ -69,7 +71,7 @@ def interpret(analysis_in):
         elif analysis_in["prefix"][0] == "2" and s == "1" and analysis_in["suffixes"][0:2] == ["Pl"]: #this does not mess up VTA local themes, since it is a lower elif (2...Thm1...1Pl = 2Pl/2 v 1pl != 21Pl)
             analysis_in["suffixes"].pop(0)
             summary["S"]["Num"] = "1Pl"
-        elif analysis_in["prefix"][0] == "1" and s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
+        elif analysis_in["prefix"][0] == "2" and s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
             analysis_in["suffixes"].pop(0)
             #if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and inversion: summary["S"]["Num"] == "Pl"  ## before inversion (thm1sg/thm1pl .*2pl) = (2pl v 1sg/2pl v 1pl), so no need to specify a special case here 
             #note: there is no further number information in another slot for first persons here ... like theme signs really are object agreement and inversion swoops them into subjecthood (and/or peripheral suffixes are just for 3rd persons)
