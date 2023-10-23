@@ -23,33 +23,33 @@ def interpret(analysis_in):
         elif s == "Cnj" or s == "Imp": summary["Order"] = s
         #{extracting theme sign information CURRENTLY AGNOSTIC TO CNJ VS IND
         #IND    CNJ
-        #       Thm1
-        #Thm1Pl Thm1Pl
-        #Thm1Sg
-        #       Thm2a
-        #       Thm2b
-        #Thm2   
-        #ThmDir ThmDir
-        #ThmInv ThmInv
-        #       ThmNul
+        #Thm1       Thm1
+        #Thm1Pl2    Thm1Pl2
+        #           Thm2a
+        #           Thm2b
+        #Thm2       
+        #ThmDir     ThmDir
+        #ThmInv     ThmInv
+        #           ThmNul
         #{local theme signs
-        elif s == "Thm2": summary["O"]["Pers"] = "1"
-        elif (s == "Thm1Pl" or s == "Thm1"):
+        elif (s == "Thm1Pl2" or s == "Thm1" or s == "Thm2"):
             summary["O"]["Pers"] = "1"
+            if s == "Thm2" or s == "Thm1Pl2": inversion = True
             if s == "Thm1Pl": summary["O"]["Num"] = "Pl"
-            if not (s == "Thm1" and summary["Order"] == "Cnj"): inversion = True #Thm1Pl is always subject marker, Thm1 is subject marker in indep, object marker in cnj
             #local theme signs end}
         elif (s == "ThmDir" or s == "ThmInv"):
             summary["O"]["Pers"] = "3"
             if s == "ThmInv": inversion = True
         #} extracting theme sign information end
         #{getting number information for theme signs/objects, also finding inanimate subjects
-        elif summary["O"]["Pers"] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: #first person objects are only written in with Thm1, Thm2, Thm1Pl. Thm1Pl never is followed by another 1pl. All other cases have ambiguous number for subject if followed by 1pl. 1 obj...1pl = 2Pl/2 vs 1pl.  it never means 21pl bc ban on XvX
+        elif summary["O"]["Pers"] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
+            #first person objects are only written in with Thm1, Thm2, Thm1Pl2. 
+            #Thm2, Thm1Pl2 are never followed by 1pl (bc Thm1Pl2 is how you indicate first person plurals). 
+            #Thm1 .* 1Pl precludes 2pl marking, and so is ambiguous for second person number.  1 obj...1pl = 2Pl/2 vs 1pl.  it never means 21pl bc ban on XvX
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "Pl"
-            if summary["S"] == "2" or not summary["S"]: #need to specify default here because VTA cnj can terminate without any further suffixes
-                summary["S"]["Pers"] = "2"
-                summary["S"]["Num"] = "Pl/2"
+            summary["S"]["Pers"] = "2"
+            summary["S"]["Num"] = "Pl/2"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["4"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "'"
@@ -66,7 +66,7 @@ def interpret(analysis_in):
         elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"].pop(0)
-        elif analysis_in["prefix"][0] == "2" and s == "1" and analysis_in["suffixes"][0:2] == ["Pl"]:
+        elif analysis_in["prefix"][0] == "2" and s == "1" and analysis_in["suffixes"][0:2] == ["Pl"]: #this may mess up VTA local themes, but since it is a lower elif, it may not
             analysis_in["suffixes"].pop(0)
             summary["S"]["Num"] = "1Pl"
         elif analysis_in["prefix"][0] == "1" and s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
