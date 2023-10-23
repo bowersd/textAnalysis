@@ -34,7 +34,7 @@ def interpret(analysis_in):
             if s == "ThmInv": inversion = True
         #} extracting theme sign information end
         #{getting number information for theme signs/objects
-        elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["3"]:
+        elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["4"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "'"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["Pl"]:
