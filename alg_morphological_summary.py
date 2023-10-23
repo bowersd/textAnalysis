@@ -35,7 +35,7 @@ def interpret(analysis_in):
         elif (s == "Thm1Pl2" or s == "Thm1" or s == "Thm2"):
             summary["O"]["Pers"] = "1"
             if s == "Thm2" or s == "Thm1Pl2": inversion = True
-            if s == "Thm1Pl": summary["O"]["Num"] = "Pl"
+            if s == "Thm1Pl2": summary["O"]["Num"] = "Pl"
             #local theme signs end}
         elif (s == "ThmDir" or s == "ThmInv"):
             summary["O"]["Pers"] = "3"
@@ -66,7 +66,7 @@ def interpret(analysis_in):
         elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"].pop(0)
-        elif analysis_in["prefix"][0] == "2" and s == "1" and analysis_in["suffixes"][0:2] == ["Pl"]: #this does not mess up VTA local themes, since it is a lower elif
+        elif analysis_in["prefix"][0] == "2" and s == "1" and analysis_in["suffixes"][0:2] == ["Pl"]: #this does not mess up VTA local themes, since it is a lower elif (2...Thm1...1Pl = 2Pl/2 v 1pl != 21Pl)
             analysis_in["suffixes"].pop(0)
             summary["S"]["Num"] = "1Pl"
         elif analysis_in["prefix"][0] == "1" and s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
