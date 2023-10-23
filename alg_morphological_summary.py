@@ -22,9 +22,19 @@ def interpret(analysis_in):
         elif s == "Dub": summary["Mode"] += s
         elif s == "Cnj" or s == "Imp": summary["Order"] = s
         #{extracting theme sign information CURRENTLY AGNOSTIC TO CNJ VS IND
+        #IND    CNJ
+        #       Thm1
+        #Thm1Pl Thm1Pl
+        #Thm1Sg
+        #       Thm2a
+        #       Thm2b
+        #Thm2   
+        #ThmDir ThmDir
+        #ThmInv ThmInv
+        #       ThmNul
         #{local theme signs
         elif s == "Thm2": summary["O"]["Pers"] = "1"
-        elif (s == "Thm1Pl" or s == "Thm1Sg"):
+        elif (s == "Thm1Pl" or s == "Thm1"):
             summary["O"]["Pers"] = "1"
             if s == "Thm1Pl": summary["O"]["Num"] = "Pl"
             inversion = True
