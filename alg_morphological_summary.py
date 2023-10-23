@@ -44,9 +44,12 @@ def interpret(analysis_in):
             if s == "ThmInv": inversion = True
         #} extracting theme sign information end
         #{getting number information for theme signs/objects, also finding inanimate subjects
-        elif summary["O"]["Pers"] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: #1 obj...1pl = 1pl (suffix seq does not occur with thm1pl, does occur with thm2 and thm1) it never means 21pl bc ban on XvX
+        elif summary["O"]["Pers"] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: #first person objects are only written in with Thm1, Thm2, Thm1Pl. Thm1Pl never is followed by another 1pl. All other cases have ambiguous number for subject if followed by 1pl. 1 obj...1pl = 2Pl/2 vs 1pl.  it never means 21pl bc ban on XvX
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "Pl"
+            if summary["S"] == "2" or not summary["S"]: #need to specify default here because VTA cnj can terminate without any further suffixes
+                summary["S"]["Pers"] = "2"
+                summary["S"]["Num"] = "Pl/2"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["4"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "'"
@@ -63,17 +66,14 @@ def interpret(analysis_in):
         elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"].pop(0)
-        elif analysis_in["prefix"][0] == "2": 
-            if s == "1" and analysis_in["suffixes"][0:2] == ["Pl"]:
-                analysis_in["suffixes"].pop(0)
-                if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and not inversion: #this is thm2 .*1pl = (2v1pl/2plv1pl) 
-                    summary["S"]["Num"] = "Pl/2"
-                else: summary["S"]["Num"] = "1Pl"
-            elif s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
-                analysis_in["suffixes"].pop(0)
-                #if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and inversion: summary["S"]["Num"] == "Pl"  ## before inversion (thm1sg/thm1pl .*2pl) = (2pl v 1sg/2pl v 1pl), so no need to specify a special case here 
-                #note: there is no further number information in another slot for first persons here ... like theme signs really are object agreement and inversion swoops them into subjecthood (and/or peripheral suffixes are just for 3rd persons)
-                summary["S"]["Num"] = "Pl" 
+        elif analysis_in["prefix"][0] == "2" and s == "1" and analysis_in["suffixes"][0:2] == ["Pl"]:
+            analysis_in["suffixes"].pop(0)
+            summary["S"]["Num"] = "1Pl"
+        elif analysis_in["prefix"][0] == "1" and s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
+            analysis_in["suffixes"].pop(0)
+            #if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and inversion: summary["S"]["Num"] == "Pl"  ## before inversion (thm1sg/thm1pl .*2pl) = (2pl v 1sg/2pl v 1pl), so no need to specify a special case here 
+            #note: there is no further number information in another slot for first persons here ... like theme signs really are object agreement and inversion swoops them into subjecthood (and/or peripheral suffixes are just for 3rd persons)
+            summary["S"]["Num"] = "Pl" 
         elif analysis_in["prefix"][0] == "3" and s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"].pop(0)
