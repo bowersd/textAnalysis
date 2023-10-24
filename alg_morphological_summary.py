@@ -120,12 +120,16 @@ def interpret(analysis_in):
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "0": 
             summary["S"]["Pers"] = "0"
-            if analysis_in["suffixes"][0:1] == ["Pl"]:
-                summary["S"]["Num"] = "Pl"
+            if analysis_in["suffixes"][0:1] == ["4"]:
+                summary["S"]["Num"] = "'"
                 analysis_in["suffixes"].pop(0)
-        elif (not summary["S"]["Pers"]) and s == "X": 
-            summary["S"]["Pers"] = "X"
+            elif analysis_in["suffixes"][0:1] == ["Pl"]:
+                summary["S"]["Num"] += "Pl" #NB: += used since 0'Pl is possible
+                analysis_in["suffixes"].pop(0)
+        elif (not summary["S"]["Pers"]) and s == "X": summary["S"]["Pers"] = "X"
         #}end person/number information from suffixes
+        elif summary["Head"].startswith("N") and s == "4": summary["Periph"] = "Obv"
+        elif summary["Head"].startswith("N") and s in ["Loc", "Pl"]: summary["Periph"] = s
         else: summary["Else"].append(s)
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers"] = "1" #default person for Thm2a keep at end
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers"] = "2" #default person for Thm1  keep at end
