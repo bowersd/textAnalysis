@@ -35,23 +35,33 @@ def interpret(analysis_in):
         elif (s == "Thm1Pl2" or s == "Thm1" or s == "Thm2"):
             summary["O"]["Pers"] = "1"
             if s == "Thm2" or s == "Thm1Pl2": inversion = True
-            if s == "Thm1Pl2": 
-                summary["O"]["Num"] = "Pl"
-                summary["S"]["Pers"] = "2"
+            if s == "Thm1Pl2": summary["O"]["Num"] = "Pl"
+                #summary["S"]["Pers"] = "2" #not needed because in ind there is a prefix and in cnj there is a following +2
+        elif (s == "Thm2a" or s == "Thm2b"):
+            summary["O"]["Pers"] = "2"
+            #summary["S"]["Pers"] = "1" #default, though later 3 may over ride
             #local theme signs end}
         elif (s == "ThmDir" or s == "ThmInv"):
             summary["O"]["Pers"] = "3"
             if s == "ThmInv": inversion = True
+            if summary["Order"] == "Cnj": summary["O"]["Pers"] = "0" #will need to revise if 3 is encountered later
         #} extracting theme sign information end
         #{getting number information for theme signs/objects, also finding inanimate subjects
-        elif summary["O"]["Pers"] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
+        elif summary["O"]["Pers"] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]:  #this should only happen with thm1 (see below)
             #first person objects are only written in with Thm1, Thm2, Thm1Pl2. 
             #Thm2, Thm1Pl2 are never followed by 1pl (bc Thm1Pl2 is how you indicate first person plurals). 
             #Thm1 .* 1Pl precludes 2pl marking, and so is ambiguous for second person number.  1 obj...1pl = 2Pl/2 vs 1pl.  it never means 21pl bc ban on XvX
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "Pl"
-            #summary["S"]["Pers"] = "2" #not needed because 2 is independently spelled out in suffixes for cnj, and appears as a prefix for ind
+            #summary["S"]["Pers"] = "2" #redundant, but VTA Cnj Thm1 1Pl needs a default value. because 1Pl blocks 2 person marking ... maybe just add that marking in the model?, no because there are later markings that can appear
             summary["S"]["Num"] = "Pl/2"
+        elif summary["O"]["Pers"] == "2" and s == "2" and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
+            analysis_in["suffixes"].pop(0)
+            analysis_in["suffixes"].pop(0)
+            summary["O"]["Num"] = "1Pl"
+        elif summary["O"]["Pers"] == "2" and s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
+            analysis_in["suffixes"].pop(0)
+            summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["4"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "'"
@@ -102,13 +112,15 @@ def interpret(analysis_in):
             if analysis_in["suffixes"][0:1] == ["4"]:
                 summary["S"]["Num"] = "'"
                 analysis_in["suffixes"].pop(0)
-        elif (not summary["S"]["Pers"]) and s == "0": #VTIs/VTAs still not covered
+        elif (not summary["S"]["Pers"]) and s == "0": #VTIs?
             summary["S"]["Pers"] = "0"
-            if analysis_in["suffixes"][0:1] == ["Pl"]: #VTIs/VTAs still not covered
+            if analysis_in["suffixes"][0:1] == ["Pl"]: #VTIs?
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "X": 
             summary["S"]["Pers"] = "X"
+        elif (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers" = "1" #default person for Thm2a keep at end
+        elif (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers" = "2" #default person for Thm1  keep at end
         else: summary["Else"].append(s)
     #summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
     if inversion == True: summary["S"], summary["O"] = summary["O"], summary["S"]
