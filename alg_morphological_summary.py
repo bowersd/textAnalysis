@@ -28,9 +28,9 @@ def interpret(analysis_in):
         #           Thm2a
         #           Thm2b
         #Thm2       
-        #ThmDir     ThmDir
-        #ThmInv     ThmInv
-        #           ThmNul
+        #ThmDir     ThmDir #still to do
+        #ThmInv     ThmInv #still to do
+        #           ThmNul #still to do
         #{local theme signs
         elif (s == "Thm1Pl2" or s == "Thm1" or s == "Thm2"):
             summary["O"]["Pers"] = "1"
