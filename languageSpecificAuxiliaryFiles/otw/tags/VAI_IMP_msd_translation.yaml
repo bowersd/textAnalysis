@@ -8,9 +8,9 @@ Mapping:
     #morpheme order and abbreviations reflect Valentine 2001 
     #Values from slots numbered 2
     #Not explicitly marking immediate imperatives in the translation (probably a mistake to have +Imm in the first place)
-    <>+VAI+Imp+Imm+2: VAI Imp S:2
-    <>+VAI+Imp+Imm+2+Pl: VAI Imp S:2Pl 
-    <>+VAI+Imp+Imm+2+1+Pl: VAI Imp S:21Pl 
+    <>+VAI+Imp+2: VAI Imp S:2
+    <>+VAI+Imp+2+Pl: VAI Imp S:2Pl 
+    <>+VAI+Imp+2+1+Pl: VAI Imp S:21Pl 
     <>+VAI+Imp+Del+2: VAI Imp S:2 Del 
     <>+VAI+Imp+Del+2+Pl: VAI Imp S:2Pl Del 
     <>+VAI+Imp+Del+2+1+Pl: VAI Imp S:21Pl Del 
