@@ -9,11 +9,12 @@ import readwrite as rw
 def interpret(analysis_in):
     summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":"", "Periph":"", "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
     inversion = False #if true, S/O will be inverted at end
-    #analysis = [x for x in in analysis_in]
     summary["S"]["Pers"] = analysis_in["prefix"][0]
     summary["DerivChain"] = " ".join([x for x in analysis_in["derivation"]])
     summary["Head"] = analysis_in["derivation"][-1]
     while analysis_in["suffixes"]:
+        #gnarly list of elif statements
+        #general strategy: fill object information with theme sign, then fill object number information, then unify prefix information with number information in subject field, then fill in subject information with remaining suffixes 
         s = analysis_in["suffixes"].pop(0)
         if s == "Neg": summary["Neg"] = s
         elif s == "Prt": summary["Mode"] = s
@@ -90,6 +91,7 @@ def interpret(analysis_in):
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"].pop(0)
         #end prefix number obtained}
+        #{getting person/number information from suffixes
         elif (not summary["S"]["Pers"]) and s == "1":
             summary["S"]["Pers"] = "1"
             if analysis_in["suffixes"][0:1] == ["Pl"]:
@@ -109,8 +111,7 @@ def interpret(analysis_in):
                     analysis_in["suffixes"].pop()
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == '3') and s == "3":
             summary["S"]["Pers"] = "3"
-            if inversion = True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj": #VTA CNJ THMINV 3
-                summary["O"]["Pers"] = "3'/0"
+            if inversion = True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj":  summary["O"]["Pers"] = "3'/0" #VTA CNJ THMINV 3
             if analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
@@ -124,6 +125,7 @@ def interpret(analysis_in):
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "X": 
             summary["S"]["Pers"] = "X"
+        #}end person/number information from suffixes
         else: summary["Else"].append(s)
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers"] = "1" #default person for Thm2a keep at end
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers"] = "2" #default person for Thm1  keep at end
