@@ -11,14 +11,14 @@ Mapping:
      #this is extrapolated from book (p 287-294)
      #Values from slots numbered 1, 2
      #  theme sign order: 
-     #      -i    (Thm2, 1 obj)
-     #      -in   (Thm1Sg, 2 obj)
-     #      -igoo (Thm1Pl 1pl v 2)
+     #      -i    (Thm1, 1 obj)
+     #      -in   (Thm2, 2 obj)
+     #      -igoo (Thm1Pl2 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2: VTA S:2 O:1 
-     2+<>+VTA+Thm1Sg: VTA S:1 O:2 
-     2+<>+VTA+Thm1Pl: VTA S:1Pl O:2 
+     2+<>+VTA+Thm1: VTA S:2 O:1 
+     2+<>+VTA+Thm2: VTA S:1 O:2 
+     2+<>+VTA+Thm1Pl2: VTA S:1Pl O:2 
      2+<>+VTA+ThmDir: VTA S:2 O:3 
      2+<>+VTA+ThmInv: VTA S:3 O:2 
      1+<>+VTA+ThmDir: VTA S:1 O:3 
@@ -33,16 +33,16 @@ Mapping:
 
      #Values from slots numbered 1, 2, 5
      #  theme sign order: 
-     #      -i    (Thm2, 1 obj)
-     #      -in   (Thm1Sg, 2 obj)
-     #      -igoo (Thm1Pl 1pl v 2)
+     #      -i    (Thm1, 1 obj)
+     #      -in   (Thm2, 2 obj)
+     #      -igoo (Thm1Pl2 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+2+Pl: VTA S:2Pl O:1 
-     2+<>+VTA+Thm2+1+Pl: VTA S:2 O:1Pl #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm1Sg+2+Pl: VTA S:1 O:2Pl 
-     #2+<>+VTA+Thm1Sg+2+Pl: VTA S:1 O:2Pl #1sg v 2pl #book
-     2+<>+VTA+Thm1Pl+2+Pl: VTA S:1Pl O:2Pl 
+     2+<>+VTA+Thm1+2+Pl: VTA S:2Pl O:1 
+     2+<>+VTA+Thm1+1+Pl: VTA S:2 O:1Pl #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm2+2+Pl: VTA S:1 O:2Pl 
+     #2+<>+VTA+Thm2+2+Pl: VTA S:1 O:2Pl #1sg v 2pl #book
+     2+<>+VTA+Thm1Pl2+2+Pl: VTA S:1Pl O:2Pl 
      2+<>+VTA+ThmDir+1+Pl: VTA S:21Pl O:3 
      2+<>+VTA+ThmDir+2+Pl: VTA S:2Pl O:3 
      2+<>+VTA+ThmInv+1+Pl: VTA S:3 O:21Pl 
@@ -52,17 +52,17 @@ Mapping:
 
      #Values from slots numbered 1, 2, 6
      #  theme sign order: 
-     #      -i    (Thm2, 1 obj)
-     #      -in   (Thm1Sg, 2 obj)
-     #      -igoo (Thm1Pl 1pl v 2)
+     #      -i    (Thm1, 1 obj)
+     #      -in   (Thm2, 2 obj)
+     #      -igoo (Thm1Pl2 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Prt: VTA S:2 O:1 Prt 
-     2+<>+VTA+Thm2+Dub: VTA S:2 O:1 Dub 
-     2+<>+VTA+Thm1Sg+Prt: VTA S:1 O:2 Prt 
-     2+<>+VTA+Thm1Sg+Dub: VTA S:1 O:2 Dub 
-     2+<>+VTA+Thm1Pl+Prt: VTA S:1Pl O:2 Prt 
-     2+<>+VTA+Thm1Pl+Dub: VTA S:1Pl O:2 Dub 
+     2+<>+VTA+Thm1+Prt: VTA S:2 O:1 Prt 
+     2+<>+VTA+Thm1+Dub: VTA S:2 O:1 Dub 
+     2+<>+VTA+Thm2+Prt: VTA S:1 O:2 Prt 
+     2+<>+VTA+Thm2+Dub: VTA S:1 O:2 Dub 
+     2+<>+VTA+Thm1Pl2+Prt: VTA S:1Pl O:2 Prt 
+     2+<>+VTA+Thm1Pl2+Dub: VTA S:1Pl O:2 Dub 
      2+<>+VTA+ThmDir+Prt: VTA S:2 O:3 Prt 
      2+<>+VTA+ThmDir+Dub: VTA S:2 O:3 Dub 
      2+<>+VTA+ThmInv+Prt: VTA S:3 O:2 Prt 
@@ -109,21 +109,21 @@ Mapping:
 
      #Values from slots numbered 1, 2, 5, 6
      #  theme sign order: 
-     #      -i    (Thm2, 1 obj)
-     #      -in   (Thm1Sg, 2 obj)
-     #      -igoo (Thm1Pl 1pl v 2)
+     #      -i    (Thm1, 1 obj)
+     #      -in   (Thm2, 2 obj)
+     #      -igoo (Thm1Pl2 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+2+Pl+Prt: VTA S:2Pl O:1 Prt 
-     2+<>+VTA+Thm2+2+Pl+Dub: VTA S:2Pl O:1 Dub 
-     2+<>+VTA+Thm2+1+Pl+Prt: VTA S:2 O:1Pl Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm2+1+Pl+Dub: VTA S:2 O:1Pl Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm1Sg+2+Pl+Prt: VTA S:1 O:2Pl Prt 
-     #2+<>+VTA+Thm1Sg+2+Pl+Prt: VTA S:1 O:2Pl Prt #1sg v 2pl #book
-     2+<>+VTA+Thm1Sg+2+Pl+Dub: VTA S:1 O:2Pl Dub 
-     #2+<>+VTA+Thm1Sg+2+Pl+Dub: VTA S:1 O:2Pl Dub #1sg v 2pl #book
-     2+<>+VTA+Thm1Pl+2+Pl+Prt: VTA S:1Pl O:2Pl Prt 
-     2+<>+VTA+Thm1Pl+2+Pl+Dub: VTA S:1Pl O:2Pl Dub 
+     2+<>+VTA+Thm1+2+Pl+Prt: VTA S:2Pl O:1 Prt 
+     2+<>+VTA+Thm1+2+Pl+Dub: VTA S:2Pl O:1 Dub 
+     2+<>+VTA+Thm1+1+Pl+Prt: VTA S:2 O:1Pl Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1+1+Pl+Dub: VTA S:2 O:1Pl Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm2+2+Pl+Prt: VTA S:1 O:2Pl Prt 
+     #2+<>+VTA+Thm2+2+Pl+Prt: VTA S:1 O:2Pl Prt #1sg v 2pl #book
+     2+<>+VTA+Thm2+2+Pl+Dub: VTA S:1 O:2Pl Dub 
+     #2+<>+VTA+Thm2+2+Pl+Dub: VTA S:1 O:2Pl Dub #1sg v 2pl #book
+     2+<>+VTA+Thm1Pl2+2+Pl+Prt: VTA S:1Pl O:2Pl Prt 
+     2+<>+VTA+Thm1Pl2+2+Pl+Dub: VTA S:1Pl O:2Pl Dub 
      2+<>+VTA+ThmDir+1+Pl+Prt: VTA S:21Pl O:3 Prt 
      2+<>+VTA+ThmDir+1+Pl+Dub: VTA S:21Pl O:3 Dub 
      2+<>+VTA+ThmDir+2+Pl+Prt: VTA S:2Pl O:3 Prt 
@@ -237,14 +237,14 @@ Mapping:
      #NEGATIVES BELOW
      #Values from slots numbered 1, 2, 3
      #  theme sign order: 
-     #      -i    (Thm2, 1 obj)
-     #      -in   (Thm1Sg, 2 obj)
-     #      -igoo (Thm1Pl 1pl v 2)
+     #      -i    (Thm1, 1 obj)
+     #      -in   (Thm2, 2 obj)
+     #      -igoo (Thm1Pl2 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Neg: VTA S:2 O:1 Neg 
-     2+<>+VTA+Thm1Sg+Neg: VTA S:1 O:2 Neg 
-     2+<>+VTA+Thm1Pl+Neg: VTA S:1Pl O:2 Neg 
+     2+<>+VTA+Thm1+Neg: VTA S:2 O:1 Neg 
+     2+<>+VTA+Thm2+Neg: VTA S:1 O:2 Neg 
+     2+<>+VTA+Thm1Pl2+Neg: VTA S:1Pl O:2 Neg 
      2+<>+VTA+ThmDir+Neg: VTA S:2 O:3 Neg 
      2+<>+VTA+ThmInv+Neg: VTA S:3 O:2 Neg 
      1+<>+VTA+ThmDir+Neg: VTA S:1 O:3 Neg 
@@ -259,16 +259,16 @@ Mapping:
 
      #Values from slots numbered 1, 2, 3, 5
      #  theme sign order: 
-     #      -i    (Thm2, 1 obj)
-     #      -in   (Thm1Sg, 2 obj)
-     #      -igoo (Thm1Pl 1pl v 2)
+     #      -i    (Thm1, 1 obj)
+     #      -in   (Thm2, 2 obj)
+     #      -igoo (Thm1Pl2 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Neg+2+Pl: VTA S:2Pl O:1 Neg 
-     2+<>+VTA+Thm2+Neg+1+Pl: VTA S:2 O:1Pl Neg #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm1Sg+Neg+2+Pl: VTA S:1 O:2Pl Neg 
-     #2+<>+VTA+Thm1Sg+Neg+2+Pl: VTA S:1 O:2Pl Neg #1sg v 2pl #book
-     2+<>+VTA+Thm1Pl+Neg+2+Pl: VTA S:1Pl O:2Pl Neg 
+     2+<>+VTA+Thm1+Neg+2+Pl: VTA S:2Pl O:1 Neg 
+     2+<>+VTA+Thm1+Neg+1+Pl: VTA S:2 O:1Pl Neg #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm2+Neg+2+Pl: VTA S:1 O:2Pl Neg 
+     #2+<>+VTA+Thm2+Neg+2+Pl: VTA S:1 O:2Pl Neg #1sg v 2pl #book
+     2+<>+VTA+Thm1Pl2+Neg+2+Pl: VTA S:1Pl O:2Pl Neg 
      2+<>+VTA+ThmDir+Neg+1+Pl: VTA S:21Pl O:3 Neg 
      2+<>+VTA+ThmDir+Neg+2+Pl: VTA S:2Pl O:3 Neg 
      2+<>+VTA+ThmInv+Neg+1+Pl: VTA S:3 O:21Pl Neg 
@@ -278,17 +278,17 @@ Mapping:
 
      #Values from slots numbered 1, 2, 3, 6
      #  theme sign order: 
-     #      -i    (Thm2, 1 obj)
-     #      -in   (Thm1Sg, 2 obj)
-     #      -igoo (Thm1Pl 1pl v 2)
+     #      -i    (Thm1, 1 obj)
+     #      -in   (Thm2, 2 obj)
+     #      -igoo (Thm1Pl2 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Neg+Prt: VTA S:2 O:1 Neg Prt 
-     2+<>+VTA+Thm2+Neg+Dub: VTA S:2 O:1 Neg Dub 
-     2+<>+VTA+Thm1Sg+Neg+Prt: VTA S:1 O:2 Neg Prt 
-     2+<>+VTA+Thm1Sg+Neg+Dub: VTA S:1 O:2 Neg Dub 
-     2+<>+VTA+Thm1Pl+Neg+Prt: VTA S:1Pl O:2 Neg Prt 
-     2+<>+VTA+Thm1Pl+Neg+Dub: VTA S:1Pl O:2 Neg Dub 
+     2+<>+VTA+Thm1+Neg+Prt: VTA S:2 O:1 Neg Prt 
+     2+<>+VTA+Thm1+Neg+Dub: VTA S:2 O:1 Neg Dub 
+     2+<>+VTA+Thm2+Neg+Prt: VTA S:1 O:2 Neg Prt 
+     2+<>+VTA+Thm2+Neg+Dub: VTA S:1 O:2 Neg Dub 
+     2+<>+VTA+Thm1Pl2+Neg+Prt: VTA S:1Pl O:2 Neg Prt 
+     2+<>+VTA+Thm1Pl2+Neg+Dub: VTA S:1Pl O:2 Neg Dub 
      2+<>+VTA+ThmDir+Neg+Prt: VTA S:2 O:3 Neg Prt 
      2+<>+VTA+ThmDir+Neg+Dub: VTA S:2 O:3 Neg Dub 
      2+<>+VTA+ThmInv+Neg+Prt: VTA S:3 O:2 Neg Prt 
@@ -335,21 +335,21 @@ Mapping:
 
      #Values from slots numbered 1, 2, 3, 5, 6
      #  theme sign order: 
-     #      -i    (Thm2, 1 obj)
-     #      -in   (Thm1Sg, 2 obj)
-     #      -igoo (Thm1Pl 1pl v 2)
+     #      -i    (Thm1, 1 obj)
+     #      -in   (Thm2, 2 obj)
+     #      -igoo (Thm1Pl2 1pl v 2)
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
-     2+<>+VTA+Thm2+Neg+2+Pl+Prt: VTA S:2Pl O:1 Neg Prt 
-     2+<>+VTA+Thm2+Neg+2+Pl+Dub: VTA S:2Pl O:1 Neg Dub 
-     2+<>+VTA+Thm2+Neg+1+Pl+Prt: VTA S:2 O:1Pl Neg Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm2+Neg+1+Pl+Dub: VTA S:2 O:1Pl Neg Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm1Sg+Neg+2+Pl+Prt: VTA S:1 O:2Pl Neg Prt 
-     #2+<>+VTA+Thm1Sg+Neg+2+Pl+Prt: VTA S:1 O:2Pl Neg Prt #1sg v 2pl #book
-     2+<>+VTA+Thm1Sg+Neg+2+Pl+Dub: VTA S:1 O:2Pl Neg Dub 
-     #2+<>+VTA+Thm1Sg+Neg+2+Pl+Dub: VTA S:1 O:2Pl Neg Dub #1sg v 2pl #book
-     2+<>+VTA+Thm1Pl+Neg+2+Pl+Prt: VTA S:1Pl O:2Pl Neg Prt 
-     2+<>+VTA+Thm1Pl+Neg+2+Pl+Dub: VTA S:1Pl O:2Pl Neg Dub 
+     2+<>+VTA+Thm1+Neg+2+Pl+Prt: VTA S:2Pl O:1 Neg Prt 
+     2+<>+VTA+Thm1+Neg+2+Pl+Dub: VTA S:2Pl O:1 Neg Dub 
+     2+<>+VTA+Thm1+Neg+1+Pl+Prt: VTA S:2 O:1Pl Neg Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1+Neg+1+Pl+Dub: VTA S:2 O:1Pl Neg Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm2+Neg+2+Pl+Prt: VTA S:1 O:2Pl Neg Prt 
+     #2+<>+VTA+Thm2+Neg+2+Pl+Prt: VTA S:1 O:2Pl Neg Prt #1sg v 2pl #book
+     2+<>+VTA+Thm2+Neg+2+Pl+Dub: VTA S:1 O:2Pl Neg Dub 
+     #2+<>+VTA+Thm2+Neg+2+Pl+Dub: VTA S:1 O:2Pl Neg Dub #1sg v 2pl #book
+     2+<>+VTA+Thm1Pl2+Neg+2+Pl+Prt: VTA S:1Pl O:2Pl Neg Prt 
+     2+<>+VTA+Thm1Pl2+Neg+2+Pl+Dub: VTA S:1Pl O:2Pl Neg Dub 
      2+<>+VTA+ThmDir+Neg+1+Pl+Prt: VTA S:21Pl O:3 Neg Prt 
      2+<>+VTA+ThmDir+Neg+1+Pl+Dub: VTA S:21Pl O:3 Neg Dub 
      2+<>+VTA+ThmDir+Neg+2+Pl+Prt: VTA S:2Pl O:3 Neg Prt 
