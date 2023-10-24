@@ -20,13 +20,12 @@ def interpret(analysis_in):
         elif s == "Prt": summary["Mode"] = s
         elif s == "Dub": summary["Mode"] += s
         elif s == "Cnj" or s == "Imp": summary["Order"] = s
-        #{extracting theme sign information 
-        #IND    CNJ
+        #{extracting theme sign (primarily object person) information 
+        #IND        CNJ
         #Thm1       Thm1
         #Thm1Pl2    Thm1Pl2
-        #           Thm2a
+        #Thm2       Thm2a
         #           Thm2b
-        #Thm2       
         #ThmDir     ThmDir #3|3pl -> 3(pl) v 3', NEG ONLY:  #1|1pl 3|3pl        -> 1(pl) v 3(pl), 
                                                             #2|21pl|2pl 3|3pl   -> 2(1(pl)) v 3(pl)
         #           ThmNul #                     POS ONLY:  #1|1pl 3|3pl        -> 1(pl) v 3(pl), 
