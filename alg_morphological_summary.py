@@ -12,6 +12,7 @@ def interpret(analysis_in):
     summary["S"]["Pers"] = analysis_in["prefix"][0]
     summary["DerivChain"] = " ".join([x for x in analysis_in["derivation"]])
     summary["Head"] = analysis_in["derivation"][-1]
+    if summary["Head"] == "VTI": summary["O"]["Pers"] = "0" #cheating a little and not putting this in the theme sign info because we don't actually have a suffix tag for VTI themes
     while analysis_in["suffixes"]:
         #gnarly list of elif statements
         #general strategy: fill object information with theme sign, then fill object number information, then unify prefix information with number information in subject field, then fill in subject information with remaining suffixes 
@@ -68,11 +69,11 @@ def interpret(analysis_in):
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["Pl"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "Pl"
-        elif summary["O"]["Pers"] == "3" and s == "0": #VTA indep, VTI indep have overt suffs for inanimates
+        elif summary["O"]["Pers"] == "3" and s == "0": #VTA indep (inverses), have overt suffs for inanimates, need to over ride the default 3 here
             summary["O"]["Pers"] = "0"
-        elif summary["O"]["Pers"] == "0" and s == "0" and analysis_in["suffixes"][0:1] == ["Pl"]:
-            analysis_in["suffixes"].pop(0)
-            summary["O"]["Num"] == "Pl"
+        elif summary["O"]["Pers"] == "0" and s == "0" and analysis_in["suffixes"][0:1] == ["Pl"]: #there is no longer a gratuitous +0 suffix in VTI indeps with singular actors, so no deliberately clunky syntax needed to drop the +0 tag
+                analysis_in["suffixes"].pop(0)
+                summary["O"]["Num"] == "Pl"
         #}theme sign number end
         #{getting number information for person values specified by prefix == NOT CONJUNCT!
         elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
@@ -117,9 +118,9 @@ def interpret(analysis_in):
             elif analysis_in["suffixes"][0:1] == ["4"]:
                 summary["S"]["Num"] = "'"
                 analysis_in["suffixes"].pop(0)
-        elif (not summary["S"]["Pers"]) and s == "0": #VTIs?
+        elif (not summary["S"]["Pers"]) and s == "0": 
             summary["S"]["Pers"] = "0"
-            if analysis_in["suffixes"][0:1] == ["Pl"]: #VTIs?
+            if analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "X": 
