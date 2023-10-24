@@ -32,7 +32,7 @@ def interpret(analysis_in):
                                                             #2|21pl|2pl 3|3pl   -> 2(1(pl)) v 3(pl)
         #           ThmNul #                     POS ONLY:  #1|1pl 3|3pl        -> 1(pl) v 3(pl), 
                                                             #2|21pl|2pl 3|3pl   -> 2(1(pl)) v 3(pl)
-        #ThmInv     ThmInv #1|1pl -> 0 v 1(pl), 2|21pl|2pl -> 0 v 2(1(pl)), 3|3pl -> 0/3' v 3(pl) NEG ONLY: 2pl 3 -> 3 v 2pl (Thm2a not present)
+        #ThmInv     ThmInv #1|1pl -> 0 v 1(pl), 2|21pl|2pl -> 0 v 2(1(pl)), 3|3pl -> 0/3' v 3(pl) NEG ONLY: 2pl 3 -> 3 v 2pl (Thm2a not present, handled when 2 Pl is filled into prefixless subject information)
         #{local theme signs
         elif (s == "Thm1Pl2" or s == "Thm1" or s == "Thm2"):
             summary["O"]["Pers"] = "1"
@@ -106,6 +106,9 @@ def interpret(analysis_in):
             elif analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
+                if summary["O"]["Pers"] == "0" and inversion == True and summary["Neg"] and summary["Order"] and analysis_in["suffixes"][0:1] == "3": #VTA CNJ THMINV NEG 2 PL 3(PL)
+                    summary["O"]["Pers"] == "3"
+                    analysis_in["suffixes"].pop()
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == '3') and s == "3":
             summary["S"]["Pers"] = "3"
             if analysis_in["suffixes"][0:1] == ["Pl"]:
