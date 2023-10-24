@@ -20,7 +20,7 @@ def interpret(analysis_in):
         elif s == "Prt": summary["Mode"] = s
         elif s == "Dub": summary["Mode"] += s
         elif s == "Cnj" or s == "Imp": summary["Order"] = s
-        #{extracting theme sign information CURRENTLY AGNOSTIC TO CNJ VS IND
+        #{extracting theme sign information 
         #IND    CNJ
         #Thm1       Thm1
         #Thm1Pl2    Thm1Pl2
