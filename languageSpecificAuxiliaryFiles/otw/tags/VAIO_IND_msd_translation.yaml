@@ -7,150 +7,150 @@ Mapping:
     #per  neg   num     mod periph
     
     #Values from slots numbered 1, 5
-    1+<>+VAIO+0: VAIO S:1
-    1+<>+VAIO+0+Pl: VAIO S:1
-    1+<>+VAIO+3: VAIO S:1
-    1+<>+VAIO+3+Pl: VAIO S:1
-    2+<>+VAIO+0: VAIO S:2
-    2+<>+VAIO+0+Pl: VAIO S:2
-    2+<>+VAIO+3: VAIO S:2
-    2+<>+VAIO+3+Pl: VAIO S:2
-    3+<>+VAIO+0: VAIO S:3
-    3+<>+VAIO+0+Pl: VAIO S:3
-    3+<>+VAIO+3+4: VAIO S:3
+    1+<>+VAIO+0: VAIO S:1 O:0
+    1+<>+VAIO+0+Pl: VAIO S:1 O:0Pl
+    1+<>+VAIO+3: VAIO S:1 O:3
+    1+<>+VAIO+3+Pl: VAIO S:1 O:3Pl
+    2+<>+VAIO+0: VAIO S:2 O:0
+    2+<>+VAIO+0+Pl: VAIO S:2 O:0Pl
+    2+<>+VAIO+3: VAIO S:2 O:3
+    2+<>+VAIO+3+Pl: VAIO S:2 O:3Pl
+    3+<>+VAIO+0: VAIO S:3 O:0
+    3+<>+VAIO+0+Pl: VAIO S:3 O:0Pl
+    3+<>+VAIO+3+4: VAIO S:3 O:3'
     
     #Values from slots numbered 1, 3
-    1+<>+VAIO+1+Pl: VAIO S:1Pl 
-    2+<>+VAIO+1+Pl: VAIO S:21Pl
-    2+<>+VAIO+2+Pl: VAIO S:2Pl
-    1+<>+VAIO+1+Pl: VAIO S:1Pl 
-    2+<>+VAIO+1+Pl: VAIO S:21Pl
-    2+<>+VAIO+2+Pl: VAIO S:2Pl
+    1+<>+VAIO+1+Pl: VAIO S:1Pl O:3 
+    2+<>+VAIO+1+Pl: VAIO S:21Pl O:3
+    2+<>+VAIO+2+Pl: VAIO S:2Pl O:3
+    1+<>+VAIO+1+Pl: VAIO S:1Pl O:3 
+    2+<>+VAIO+1+Pl: VAIO S:21Pl O:3
+    2+<>+VAIO+2+Pl: VAIO S:2Pl O:3
 
     #Values from slots numbered 1, 3, 5
-    1+<>+VAIO+1+Pl+3+Pl: VAIO S:1Pl 
-    2+<>+VAIO+1+Pl+3+Pl: VAIO S:21Pl
-    2+<>+VAIO+2+Pl+3+Pl: VAIO S:2Pl
-    3+<>+VAIO+2+Pl+3+4: VAIO S:3Pl
-    1+<>+VAIO+1+Pl+0+Pl: VAIO S:1Pl 
-    2+<>+VAIO+1+Pl+0+Pl: VAIO S:21Pl
-    2+<>+VAIO+2+Pl+0+Pl: VAIO S:2Pl
-    3+<>+VAIO+2+Pl+0+Pl: VAIO S:3Pl
+    1+<>+VAIO+1+Pl+3+Pl: VAIO S:1Pl O:3Pl 
+    2+<>+VAIO+1+Pl+3+Pl: VAIO S:21Pl O:3Pl
+    2+<>+VAIO+2+Pl+3+Pl: VAIO S:2Pl O:3Pl
+    3+<>+VAIO+2+Pl+3+4: VAIO S:3Pl O:3'
+    1+<>+VAIO+1+Pl+0+Pl: VAIO S:1Pl O:0Pl 
+    2+<>+VAIO+1+Pl+0+Pl: VAIO S:21Pl O:0Pl
+    2+<>+VAIO+2+Pl+0+Pl: VAIO S:2Pl O:0Pl
+    3+<>+VAIO+2+Pl+0+Pl: VAIO S:3Pl O:0Pl
     
     #Values from slots numbered 1, 4
-    1+<>+VAIO+Prt: VAIO S:1 Prt
-    2+<>+VAIO+Prt: VAIO S:2 Prt
-    3+<>+VAIO+Prt: VAIO S:3 Prt
-    1+<>+VAIO+Dub: VAIO S:1 Dub
-    2+<>+VAIO+Dub: VAIO S:2 Dub
-    3+<>+VAIO+Dub: VAIO S:3 Dub
+    1+<>+VAIO+Prt: VAIO S:1 O:3 Prt
+    2+<>+VAIO+Prt: VAIO S:2 O:3 Prt
+    3+<>+VAIO+Prt: VAIO S:3 O:3 Prt
+    1+<>+VAIO+Dub: VAIO S:1 O:3 Dub
+    2+<>+VAIO+Dub: VAIO S:2 O:3 Dub
+    3+<>+VAIO+Dub: VAIO S:3 O:3 Dub
     
     #Values from slots numbered 1, 4, 5
-    1+<>+VAIO+Prt+3+Pl: VAIO S:1 Prt
-    2+<>+VAIO+Prt+3+Pl: VAIO S:2 Prt
-    3+<>+VAIO+Prt+3+4: VAIO S:3 Prt
-    1+<>+VAIO+Dub+0+Pl: VAIO S:1 Dub
-    2+<>+VAIO+Dub+0+Pl: VAIO S:2 Dub
-    3+<>+VAIO+Dub+0+Pl: VAIO S:3 Prt
+    1+<>+VAIO+Prt+3+Pl: VAIO S:1 O:3Pl Prt
+    2+<>+VAIO+Prt+3+Pl: VAIO S:2 O:3Pl Prt
+    3+<>+VAIO+Prt+3+4: VAIO S:3 O:3' Prt
+    1+<>+VAIO+Dub+0+Pl: VAIO S:1 O:0Pl Dub
+    2+<>+VAIO+Dub+0+Pl: VAIO S:2 O:0Pl Dub
+    3+<>+VAIO+Dub+0+Pl: VAIO S:3 O:0Pl Prt
 
     #Values from slots numbered 1, 3, 4
-    1+<>+VAIO+1+Pl+Prt: VAIO S:1Pl Prt
-    2+<>+VAIO+1+Pl+Prt: VAIO S:21Pl Prt
-    2+<>+VAIO+2+Pl+Prt: VAIO S:2Pl Prt
-    3+<>+VAIO+2+Pl+Prt: VAIO S:3Pl Prt
-    1+<>+VAIO+1+Pl+Dub: VAIO S:1Pl Dub
-    2+<>+VAIO+1+Pl+Dub: VAIO S:21Pl Dub
-    2+<>+VAIO+2+Pl+Dub: VAIO S:2Pl Dub
-    3+<>+VAIO+2+Pl+Dub: VAIO S:3Pl Prt
+    1+<>+VAIO+1+Pl+Prt: VAIO S:1Pl O:3 Prt
+    2+<>+VAIO+1+Pl+Prt: VAIO S:21Pl O:3 Prt
+    2+<>+VAIO+2+Pl+Prt: VAIO S:2Pl O:3 Prt
+    3+<>+VAIO+2+Pl+Prt: VAIO S:3Pl O:3 Prt
+    1+<>+VAIO+1+Pl+Dub: VAIO S:1Pl O:3 Dub
+    2+<>+VAIO+1+Pl+Dub: VAIO S:21Pl O:3 Dub
+    2+<>+VAIO+2+Pl+Dub: VAIO S:2Pl O:3 Dub
+    3+<>+VAIO+2+Pl+Dub: VAIO S:3Pl O:3 Prt
     
     #Values from slots numbered 1, 3, 4, 5
-    1+<>+VAIO+1+Pl+Prt+3+Pl: VAIO S:1Pl Prt
-    2+<>+VAIO+1+Pl+Prt+3+Pl: VAIO S:21Pl Prt
-    2+<>+VAIO+2+Pl+Prt+3+Pl: VAIO S:2Pl Prt
-    3+<>+VAIO+2+Pl+Prt+3+4:  VAIO S:3Pl Prt
-    1+<>+VAIO+1+Pl+Dub+3+Pl: VAIO S:1Pl Dub
-    2+<>+VAIO+1+Pl+Dub+3+Pl: VAIO S:21Pl Dub
-    2+<>+VAIO+2+Pl+Dub+3+Pl: VAIO S:2Pl Dub
-    3+<>+VAIO+2+Pl+Dub+3+4:  VAIO S:3Pl Dub
-    1+<>+VAIO+1+Pl+Prt+0+Pl: VAIO S:1Pl Prt
-    2+<>+VAIO+1+Pl+Prt+0+Pl: VAIO S:21Pl Prt
-    2+<>+VAIO+2+Pl+Prt+0+Pl: VAIO S:2Pl Prt
-    3+<>+VAIO+2+Pl+Prt+0+Pl: VAIO S:3Pl Prt
-    1+<>+VAIO+1+Pl+Dub+0+Pl: VAIO S:1Pl Dub
-    2+<>+VAIO+1+Pl+Dub+0+Pl: VAIO S:21Pl Dub
-    2+<>+VAIO+2+Pl+Dub+0+Pl: VAIO S:2Pl Dub
-    3+<>+VAIO+2+Pl+Dub+0+Pl: VAIO S:3Pl Dub
+    1+<>+VAIO+1+Pl+Prt+3+Pl: VAIO S:1Pl O:3Pl Prt
+    2+<>+VAIO+1+Pl+Prt+3+Pl: VAIO S:21Pl O:3Pl Prt
+    2+<>+VAIO+2+Pl+Prt+3+Pl: VAIO S:2Pl O:3Pl Prt
+    3+<>+VAIO+2+Pl+Prt+3+4:  VAIO S:3Pl O:3' Prt
+    1+<>+VAIO+1+Pl+Dub+3+Pl: VAIO S:1Pl O:3Pl Dub
+    2+<>+VAIO+1+Pl+Dub+3+Pl: VAIO S:21Pl O:3Pl Dub
+    2+<>+VAIO+2+Pl+Dub+3+Pl: VAIO S:2Pl O:3Pl Dub
+    3+<>+VAIO+2+Pl+Dub+3+4:  VAIO S:3Pl O:3' Dub
+    1+<>+VAIO+1+Pl+Prt+0+Pl: VAIO S:1Pl O:0Pl Prt
+    2+<>+VAIO+1+Pl+Prt+0+Pl: VAIO S:21Pl O:0Pl Prt
+    2+<>+VAIO+2+Pl+Prt+0+Pl: VAIO S:2Pl O:0Pl Prt
+    3+<>+VAIO+2+Pl+Prt+0+Pl: VAIO S:3Pl O:0Pl Prt
+    1+<>+VAIO+1+Pl+Dub+0+Pl: VAIO S:1Pl O:0Pl Dub
+    2+<>+VAIO+1+Pl+Dub+0+Pl: VAIO S:21Pl O:0Pl Dub
+    2+<>+VAIO+2+Pl+Dub+0+Pl: VAIO S:2Pl O:0Pl Dub
+    3+<>+VAIO+2+Pl+Dub+0+Pl: VAIO S:3Pl O:0Pl Dub
 
     #Values from slots numbered 1, 2, 5
-    1+<>+VAIO+Neg+3: VAIO S:1 Neg
-    2+<>+VAIO+Neg+3: VAIO S:2 Neg
-    3+<>+VAIO+Neg+3+4: VAIO S:3 Neg
-    1+<>+VAIO+Neg+3+Pl: VAIO S:1 Neg
-    2+<>+VAIO+Neg+3+Pl: VAIO S:2 Neg
-    1+<>+VAIO+Neg+0: VAIO S:1 Neg
-    2+<>+VAIO+Neg+0: VAIO S:2 Neg
-    3+<>+VAIO+Neg+0: VAIO S:3 Neg
-    1+<>+VAIO+Neg+0+Pl: VAIO S:1 Neg
-    2+<>+VAIO+Neg+0+Pl: VAIO S:2 Neg
-    3+<>+VAIO+Neg+0+Pl: VAIO S:3 Neg
+    1+<>+VAIO+Neg+3: VAIO S:1 O:3 Neg
+    2+<>+VAIO+Neg+3: VAIO S:2 O:3 Neg
+    3+<>+VAIO+Neg+3+4: VAIO S:3 O:3' Neg
+    1+<>+VAIO+Neg+3+Pl: VAIO S:1 O:3Pl Neg
+    2+<>+VAIO+Neg+3+Pl: VAIO S:2 O:3Pl Neg
+    1+<>+VAIO+Neg+0: VAIO S:1 O:0 Neg
+    2+<>+VAIO+Neg+0: VAIO S:2 O:0 Neg
+    3+<>+VAIO+Neg+0: VAIO S:3 O:0 Neg
+    1+<>+VAIO+Neg+0+Pl: VAIO S:1 O:0Pl Neg
+    2+<>+VAIO+Neg+0+Pl: VAIO S:2 O:0Pl Neg
+    3+<>+VAIO+Neg+0+Pl: VAIO S:3 O:0Pl Neg
     
     #Values from slots numbered 1, 2, 3
-    1+<>+VAIO+Neg+1+Pl: VAIO S:1Pl Neg
-    2+<>+VAIO+Neg+1+Pl: VAIO S:21Pl Neg
-    2+<>+VAIO+Neg+2+Pl: VAIO S:2Pl Neg
+    1+<>+VAIO+Neg+1+Pl: VAIO S:1Pl O:3 Neg
+    2+<>+VAIO+Neg+1+Pl: VAIO S:21Pl O:3 Neg
+    2+<>+VAIO+Neg+2+Pl: VAIO S:2Pl O:3 Neg
     
     #Values from slots numbered 1, 2, 3, 5
-    1+<>+VAIO+Neg+1+Pl+3+Pl: VAIO S:1Pl Neg
-    2+<>+VAIO+Neg+1+Pl+3+Pl: VAIO S:21Pl Neg
-    2+<>+VAIO+Neg+2+Pl+3+Pl: VAIO S:2Pl Neg
-    3+<>+VAIO+Neg+2+Pl+3+4: VAIO S:3Pl Neg
-    1+<>+VAIO+Neg+1+Pl+0+Pl: VAIO S:1Pl Neg
-    2+<>+VAIO+Neg+1+Pl+0+Pl: VAIO S:21Pl Neg
-    2+<>+VAIO+Neg+2+Pl+0+Pl: VAIO S:2Pl Neg
-    3+<>+VAIO+Neg+2+Pl+0: VAIO S:3Pl Neg
+    1+<>+VAIO+Neg+1+Pl+3+Pl: VAIO S:1Pl O:3Pl Neg
+    2+<>+VAIO+Neg+1+Pl+3+Pl: VAIO S:21Pl O:3Pl Neg
+    2+<>+VAIO+Neg+2+Pl+3+Pl: VAIO S:2Pl O:3Pl Neg
+    3+<>+VAIO+Neg+2+Pl+3+4: VAIO S:3Pl O:3' Neg
+    1+<>+VAIO+Neg+1+Pl+0+Pl: VAIO S:1Pl O:0Pl Neg
+    2+<>+VAIO+Neg+1+Pl+0+Pl: VAIO S:21Pl O:0Pl Neg
+    2+<>+VAIO+Neg+2+Pl+0+Pl: VAIO S:2Pl O:0Pl Neg
+    3+<>+VAIO+Neg+2+Pl+0: VAIO S:3Pl O:0 Neg
 
     #Values from slots numbered 1, 2, 4
-    1+<>+VAIO+Neg+Prt: VAIO S:1 Neg Prt
-    2+<>+VAIO+Neg+Prt: VAIO S:2 Neg Prt
-    1+<>+VAIO+Neg+Dub: VAIO S:1 Neg Dub
-    2+<>+VAIO+Neg+Dub: VAIO S:2 Neg Dub
+    1+<>+VAIO+Neg+Prt: VAIO S:1 O:3 Neg Prt
+    2+<>+VAIO+Neg+Prt: VAIO S:2 O:3 Neg Prt
+    1+<>+VAIO+Neg+Dub: VAIO S:1 O:3 Neg Dub
+    2+<>+VAIO+Neg+Dub: VAIO S:2 O:3 Neg Dub
     
     #Values from slots numbered 1, 2, 4, 5
-    1+<>+VAIO+Neg+Prt+3+Pl: VAIO S:1 Neg Prt
-    2+<>+VAIO+Neg+Prt+3+Pl: VAIO S:2 Neg Prt
-    3+<>+VAIO+Neg+Prt+3+4:  VAIO S:2 Neg Prt
-    1+<>+VAIO+Neg+Dub+3+Pl: VAIO S:1 Neg Dub
-    2+<>+VAIO+Neg+Dub+3+Pl: VAIO S:2 Neg Dub
-    3+<>+VAIO+Neg+Dub+3+4:  VAIO S:2 Neg Dub
-    1+<>+VAIO+Neg+Prt+0+Pl: VAIO S:1 Neg Prt
-    2+<>+VAIO+Neg+Prt+0+Pl: VAIO S:2 Neg Prt
-    3+<>+VAIO+Neg+Prt+0+Pl: VAIO S:2 Neg Prt
-    1+<>+VAIO+Neg+Dub+0+Pl: VAIO S:1 Neg Dub
-    2+<>+VAIO+Neg+Dub+0+Pl: VAIO S:2 Neg Dub
-    3+<>+VAIO+Neg+Dub+0+Pl: VAIO S:2 Neg Dub
+    1+<>+VAIO+Neg+Prt+3+Pl: VAIO S:1 O:3Pl Neg Prt
+    2+<>+VAIO+Neg+Prt+3+Pl: VAIO S:2 O:3Pl Neg Prt
+    3+<>+VAIO+Neg+Prt+3+4:  VAIO S:2 O:3' Neg Prt
+    1+<>+VAIO+Neg+Dub+3+Pl: VAIO S:1 O:3Pl Neg Dub
+    2+<>+VAIO+Neg+Dub+3+Pl: VAIO S:2 O:3Pl Neg Dub
+    3+<>+VAIO+Neg+Dub+3+4:  VAIO S:2 O:3' Neg Dub
+    1+<>+VAIO+Neg+Prt+0+Pl: VAIO S:1 O:0Pl Neg Prt
+    2+<>+VAIO+Neg+Prt+0+Pl: VAIO S:2 O:0Pl Neg Prt
+    3+<>+VAIO+Neg+Prt+0+Pl: VAIO S:2 O:0Pl Neg Prt
+    1+<>+VAIO+Neg+Dub+0+Pl: VAIO S:1 O:0Pl Neg Dub
+    2+<>+VAIO+Neg+Dub+0+Pl: VAIO S:2 O:0Pl Neg Dub
+    3+<>+VAIO+Neg+Dub+0+Pl: VAIO S:2 O:0Pl Neg Dub
     
     #Values from slots numbered 1, 2, 3, 4
-    1+<>+VAIO+Neg+1+Pl+Prt: VAIO S:1Pl Neg Prt
-    2+<>+VAIO+Neg+1+Pl+Prt: VAIO S:21Pl Neg Prt
-    2+<>+VAIO+Neg+2+Pl+Prt: VAIO S:2Pl Neg Prt
-    1+<>+VAIO+Neg+1+Pl+Dub: VAIO S:1Pl Neg Dub
-    2+<>+VAIO+Neg+1+Pl+Dub: VAIO S:21Pl Neg Dub
-    2+<>+VAIO+Neg+2+Pl+Dub: VAIO S:2Pl Neg Dub
+    1+<>+VAIO+Neg+1+Pl+Prt: VAIO S:1Pl O:3 Neg Prt
+    2+<>+VAIO+Neg+1+Pl+Prt: VAIO S:21Pl O:3 Neg Prt
+    2+<>+VAIO+Neg+2+Pl+Prt: VAIO S:2Pl O:3 Neg Prt
+    1+<>+VAIO+Neg+1+Pl+Dub: VAIO S:1Pl O:3 Neg Dub
+    2+<>+VAIO+Neg+1+Pl+Dub: VAIO S:21Pl O:3 Neg Dub
+    2+<>+VAIO+Neg+2+Pl+Dub: VAIO S:2Pl O:3 Neg Dub
 
     #Values from slots numbered 1, 2, 3, 4, 5
-    1+<>+VAIO+Neg+1+Pl+Prt+3+Pl: VAIO S:1Pl Neg Prt
-    2+<>+VAIO+Neg+1+Pl+Prt+3+Pl: VAIO S:21Pl Neg Prt
-    2+<>+VAIO+Neg+2+Pl+Prt+3+Pl: VAIO S:2Pl Neg Prt
-    3+<>+VAIO+Neg+2+Pl+Prt+3+4:  VAIO S:3Pl Neg Prt
-    1+<>+VAIO+Neg+1+Pl+Dub+3+Pl: VAIO S:1Pl Neg Dub
-    2+<>+VAIO+Neg+1+Pl+Dub+3+Pl: VAIO S:21Pl Neg Dub
-    2+<>+VAIO+Neg+2+Pl+Dub+3+Pl: VAIO S:2Pl Neg Dub
-    3+<>+VAIO+Neg+2+Pl+Dub+3+4:  VAIO S:3Pl Neg Dub
-    1+<>+VAIO+Neg+1+Pl+Prt+0+Pl: VAIO S:1Pl Neg Prt
-    2+<>+VAIO+Neg+1+Pl+Prt+0+Pl: VAIO S:21Pl Neg Prt
-    2+<>+VAIO+Neg+2+Pl+Prt+0+Pl: VAIO S:2Pl Neg Prt
-    3+<>+VAIO+Neg+2+Pl+Prt+0+Pl: VAIO S:3Pl Neg Prt
-    1+<>+VAIO+Neg+1+Pl+Dub+0+Pl: VAIO S:1Pl Neg Dub
-    2+<>+VAIO+Neg+1+Pl+Dub+0+Pl: VAIO S:21Pl Neg Dub
-    2+<>+VAIO+Neg+2+Pl+Dub+0+Pl: VAIO S:2Pl Neg Dub
-    3+<>+VAIO+Neg+2+Pl+Dub+0+Pl: VAIO S:3Pl Neg Dub
+    1+<>+VAIO+Neg+1+Pl+Prt+3+Pl: VAIO S:1Pl O:3Pl Neg Prt
+    2+<>+VAIO+Neg+1+Pl+Prt+3+Pl: VAIO S:21Pl O:3Pl Neg Prt
+    2+<>+VAIO+Neg+2+Pl+Prt+3+Pl: VAIO S:2Pl O:3Pl Neg Prt
+    3+<>+VAIO+Neg+2+Pl+Prt+3+4:  VAIO S:3Pl O:3' Neg Prt
+    1+<>+VAIO+Neg+1+Pl+Dub+3+Pl: VAIO S:1Pl O:3Pl Neg Dub
+    2+<>+VAIO+Neg+1+Pl+Dub+3+Pl: VAIO S:21Pl O:3Pl Neg Dub
+    2+<>+VAIO+Neg+2+Pl+Dub+3+Pl: VAIO S:2Pl O:3Pl Neg Dub
+    3+<>+VAIO+Neg+2+Pl+Dub+3+4:  VAIO S:3Pl O:3' Neg Dub
+    1+<>+VAIO+Neg+1+Pl+Prt+0+Pl: VAIO S:1Pl O:0Pl Neg Prt
+    2+<>+VAIO+Neg+1+Pl+Prt+0+Pl: VAIO S:21Pl O:0Pl Neg Prt
+    2+<>+VAIO+Neg+2+Pl+Prt+0+Pl: VAIO S:2Pl O:0Pl Neg Prt
+    3+<>+VAIO+Neg+2+Pl+Prt+0+Pl: VAIO S:3Pl O:0Pl Neg Prt
+    1+<>+VAIO+Neg+1+Pl+Dub+0+Pl: VAIO S:1Pl O:0Pl Neg Dub
+    2+<>+VAIO+Neg+1+Pl+Dub+0+Pl: VAIO S:21Pl O:0Pl Neg Dub
+    2+<>+VAIO+Neg+2+Pl+Dub+0+Pl: VAIO S:2Pl O:0Pl Neg Dub
+    3+<>+VAIO+Neg+2+Pl+Dub+0+Pl: VAIO S:3Pl O:0Pl Neg Dub
