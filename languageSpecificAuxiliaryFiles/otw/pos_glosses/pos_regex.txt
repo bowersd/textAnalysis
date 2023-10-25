@@ -1,0 +1,17 @@
+\+VAI(O)?|
+\+VII|
+\+VTI|
+\+VTA|
+\+NA(D)?|
+\+NI(D)?|
+\+Conj|
+\+Interj|
+\+Num|
+\+Pron(\+NA|\+NI)|
+\+Ipc|
+\+Qnt|
+\+Adv|
+\+CLB|
+\+PUNCT|
+\+LEFT|
+\+RIGHT
