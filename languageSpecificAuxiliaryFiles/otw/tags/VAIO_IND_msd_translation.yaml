@@ -1,0 +1,102 @@
+Mapping:
+
+  VAIO - IND :
+
+    #Template Key
+    #1	  2	3	4   5
+    #per  neg   num     mod periph
+    
+    #morpheme order and abbreviations reflect Valentine 2001 (p 232)
+    #Values from slots numbered 1
+    1+<>+VAIO: VAIO S:1
+    2+<>+VAIO: VAIO S:2
+    
+    #Values from slots numbered 3
+    <>+VAIO+3: VAIO S:3
+    <>+VAIO+X: VAIO S:X
+    
+    #Values from slots numbered 1, 3
+    1+<>+VAIO+1+Pl: VAIO S:1Pl 
+    2+<>+VAIO+1+Pl: VAIO S:21Pl
+    2+<>+VAIO+2+Pl: VAIO S:2Pl
+    
+    #Values from slots numbered 3, 5
+    <>+VAIO+3+3+4: VAIO S:3'
+    <>+VAIO+3+3+Pl: VAIO S:3Pl
+    
+    #Values from slots numbered 1, 4
+    1+<>+VAIO+Prt: VAIO S:1 Prt
+    2+<>+VAIO+Prt: VAIO S:2 Prt
+    1+<>+VAIO+Dub: VAIO S:1 Dub
+    2+<>+VAIO+Dub: VAIO S:2 Dub
+    
+    #Values from slots numbered 3, 4
+    <>+VAIO+3+Prt: VAIO S:3 Prt
+    <>+VAIO+3+Dub: VAIO S:3 Dub
+    <>+VAIO+X+Prt: VAIO S:X Prt
+    <>+VAIO+X+Dub: VAIO S:X Dub
+    <>+VAIO+3+Prt+Dub: VAIO S:3 Prt Dub
+    <>+VAIO+3+4+Prt+Dub: VAIO S:3' Prt Dub
+    <>+VAIO+3+2+Pl+Prt+Dub: VAIO S:3Pl Prt Dub
+    <>+VAIO+X+Prt+Dub: VAIO S:X Prt Dub
+    
+    #Values from slots numbered 1, 3, 4
+    1+<>+VAIO+1+Pl+Prt: VAIO S:1Pl Prt
+    2+<>+VAIO+1+Pl+Prt: VAIO S:21Pl Prt
+    2+<>+VAIO+2+Pl+Prt: VAIO S:2Pl Prt
+    1+<>+VAIO+1+Pl+Dub: VAIO S:1Pl Dub
+    2+<>+VAIO+1+Pl+Dub: VAIO S:21Pl Dub
+    2+<>+VAIO+2+Pl+Dub: VAIO S:2Pl Dub
+    
+    #Values from slots numbered 3, 4, 5
+    <>+VAIO+3+Prt+3+4: VAIO S:3' Prt
+    <>+VAIO+3+Prt+3+Pl: VAIO S:3Pl Prt
+    <>+VAIO+3+Dub+3+4: VAIO S:3' Dub
+    <>+VAIO+3+Dub+3+Pl: VAIO S:3Pl Dub
+    
+    #Values from slots numbered 1, 2
+    1+<>+VAIO+Neg: VAIO S:1 Neg
+    2+<>+VAIO+Neg: VAIO S:2 Neg
+    
+    #Values from slots numbered 2, 3
+    <>+VAIO+Neg+3: VAIO S:3 Neg
+    <>+VAIO+Neg+X: VAIO S:X Neg
+    
+    #Values from slots numbered 1, 2, 3
+    1+<>+VAIO+Neg+1+Pl: VAIO S:1Pl Neg
+    2+<>+VAIO+Neg+1+Pl: VAIO S:21Pl Neg
+    2+<>+VAIO+Neg+2+Pl: VAIO S:2Pl Neg
+    
+    #Values from slots numbered 3, 2, 5
+    <>+VAIO+Neg+3+3+4: VAIO S:3' Neg
+    <>+VAIO+Neg+3+3+Pl: VAIO S:3Pl Neg
+    
+    #Values from slots numbered 1, 2, 4
+    1+<>+VAIO+Neg+Prt: VAIO S:1 Neg Prt
+    2+<>+VAIO+Neg+Prt: VAIO S:2 Neg Prt
+    1+<>+VAIO+Neg+Dub: VAIO S:1 Neg Dub
+    2+<>+VAIO+Neg+Dub: VAIO S:2 Neg Dub
+    
+    #Values from slots numbered 2, 3, 4
+    <>+VAIO+Neg+3+Prt: VAIO S:3 Neg Prt
+    <>+VAIO+Neg+3+Dub: VAIO S:3 Neg Dub
+    <>+VAIO+Neg+X+Prt: VAIO S:X Neg Prt
+    <>+VAIO+Neg+X+Dub: VAIO S:X Neg Dub
+    <>+VAIO+Neg+3+Prt+Dub: VAIO S:3 Neg Prt Dub
+    <>+VAIO+Neg+3+4+Prt+Dub: VAIO S:3' Neg Prt Dub
+    <>+VAIO+Neg+3+2+Pl+Prt+Dub: VAIO S:3Pl Neg Prt Dub
+    <>+VAIO+Neg+X+Prt+Dub: VAIO S:X Neg Prt Dub
+    
+    #Values from slots numbered 1, 2, 3, 4
+    1+<>+VAIO+Neg+1+Pl+Prt: VAIO S:1Pl Neg Prt
+    2+<>+VAIO+Neg+1+Pl+Prt: VAIO S:21Pl Neg Prt
+    2+<>+VAIO+Neg+2+Pl+Prt: VAIO S:2Pl Neg Prt
+    1+<>+VAIO+Neg+1+Pl+Dub: VAIO S:1Pl Neg Dub
+    2+<>+VAIO+Neg+1+Pl+Dub: VAIO S:21Pl Neg Dub
+    2+<>+VAIO+Neg+2+Pl+Dub: VAIO S:2Pl Neg Dub
+    
+    #Values from slots numbered 2, 3, 4, 5
+    <>+VAIO+Neg+3+Prt+3+4: VAIO S:3' Neg Prt
+    <>+VAIO+Neg+3+Prt+3+Pl: VAIO S:3Pl Neg Prt
+    <>+VAIO+Neg+3+Dub+3+4: VAIO S:3' Neg Dub
+    <>+VAIO+Neg+3+Dub+3+Pl: VAIO S:3Pl Neg Dub
