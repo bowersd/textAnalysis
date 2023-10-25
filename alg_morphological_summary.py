@@ -8,16 +8,16 @@ import readwrite as rw
 
 def formatted(interpreted):
     out = []
-    out.append(analysis_in["Head"])
-    if analysis_in["DerivChain"] != analysis_in["Head"]: out.append("("+analysis_in["DerivChain"]+")")
-    if analysis_in["Periph"]: out.append(analysis_in["Periph"])
-    if analysis_in["Head"].startswith("N") and analysis_in["S"]["Pers"]: out.append("Pos: "+"".join([analysis_in["S"]["Pers"], analysis_in["S"]["Num"]]))
-    if analysis_in["S"]["Pers"]: out.append("S: "+"".join([analysis_in["S"]["Pers"], analysis_in["S"]["Num"]]))
-    if analysis_in["O"]["Pers"]: out.append("S: "+"".join([analysis_in["O"]["Pers"], analysis_in["O"]["Num"]]))
-    if analysis_in["Order"]: out.append(analysis_in["Order"])
-    if analysis_in["Neg"]: out.append(analysis_in["Neg"])
-    if analysis_in["Mode"]: out.append(analysis_in["Mode"])
-    if analysis_in["Else"]: out.append(analysis_in["Else"])
+    out.append(interpreted["Head"])
+    if interpreted["DerivChain"] != interpreted["Head"]: out.append("("+interpreted["DerivChain"]+")")
+    if interpreted["Periph"]: out.append(interpreted["Periph"])
+    if interpreted["Head"].startswith("N") and interpreted["S"]["Pers"]: out.append("Pos: "+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
+    if interpreted["S"]["Pers"]: out.append("S: "+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
+    if interpreted["O"]["Pers"]: out.append("S: "+"".join([interpreted["O"]["Pers"], interpreted["O"]["Num"]]))
+    if interpreted["Order"]: out.append(interpreted["Order"])
+    if interpreted["Neg"]: out.append(interpreted["Neg"])
+    if interpreted["Mode"]: out.append(interpreted["Mode"])
+    if interpreted["Else"]: out.append(interpreted["Else"])
     return out
 
 
@@ -147,7 +147,7 @@ def interpret(analysis_in):
                 analysis_in["suffixes"].pop(0)
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == '3') and s == "3":
             summary["S"]["Pers"] = "3"
-            if inversion = True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj":  summary["O"]["Pers"] = "3'/0" #VTA CNJ THMINV 3
+            if inversion == True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj":  summary["O"]["Pers"] = "3'/0" #VTA CNJ THMINV 3
             if analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
@@ -175,7 +175,7 @@ def interpret(analysis_in):
     return summary
 
 def analysis_dict(analysis_string):
-    postags = "\+VAI|\+VII|\+VTI|\+VTA|\+VAIO|\+NA|\+NI|\+NAD|\+NID|\+Conj|\+Interj|\+Num|\+Pron(\+NA|\+NI)|\+Ipc|\+Qnt|\+Adv"
+    postags = "\+VAI(O)?|\+VII|\+VTI|\+VTA|\+NA(D)?|\+NI(D)?|\+Conj|\+Interj|\+Num|\+Pron(\+NA|\+NI)|\+Ipc|\+Qnt|\+Adv"
     adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitic":[]}
     adict["clitic"] = [re.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]]
     analysis_string = re.sub("\+dash\+Adv", "", analysis_string) #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
@@ -226,8 +226,12 @@ def format_summary(wheat, chaff, lemma, **mapping):
 
 
 if __name__ == "__main__":
-    with open(sys.argv[1]) as file_in:
-        mega_tags = yaml.load(file_in)
-    for x in mega_tags["Mapping"]["VTA - IND"]: 
-        print(x)
-        print(interpret(analysis_dict(x)))
+    for x in sys.argv[1:]:
+        with open(x) as file_in:
+            minor_tags = yaml.load(file_in)
+            for x in minor_tags:
+                for y in minor_tags[x]:
+                    for z in minor_tags[x][y]:
+                        print("in ", z)
+                        print("intended ", minor_tags[x][y][z])
+                        print("produced ", formatted(interpret(analysis_dict(z))))
