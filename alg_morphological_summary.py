@@ -13,7 +13,7 @@ def formatted(interpreted):
     if interpreted["Periph"]: out.append(interpreted["Periph"])
     if interpreted["Head"].startswith("N") and interpreted["S"]["Pers"]: out.append("Pos: "+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
     if interpreted["S"]["Pers"]: out.append("S: "+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
-    if interpreted["O"]["Pers"]: out.append("S: "+"".join([interpreted["O"]["Pers"], interpreted["O"]["Num"]]))
+    if interpreted["O"]["Pers"]: out.append("O: "+"".join([interpreted["O"]["Pers"], interpreted["O"]["Num"]]))
     if interpreted["Order"]: out.append(interpreted["Order"])
     if interpreted["Neg"]: out.append(interpreted["Neg"])
     if interpreted["Mode"]: out.append(interpreted["Mode"])
@@ -180,7 +180,7 @@ def analysis_dict(analysis_string):
     adict["clitic"] = [re.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]]
     analysis_string = re.sub("\+dash\+Adv", "", analysis_string) #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
     adict["prefix"] = [re.search("(^[123X])?", analysis_string)[0]]
-    adict["derivation"] = re.search("{0}(.*{0})?".format(postags), analysis_string)[0].split("+") #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    adict["derivation"] = [x for x in re.search("{0}(.*{0})?".format(postags), analysis_string)[0].split("+") if x] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
     adict["preforms"] = re.search("(((PV|PN|PA)[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
     adict["suffixes"] = [x for x in reversed(re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
     return adict
