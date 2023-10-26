@@ -233,7 +233,7 @@ if __name__ == "__main__":
     minor_results = []
     for x in sys.argv[1:]:
         with open(x) as file_in:
-            minor_tags = yaml.load(file_in)
+            minor_tags = yaml.load(file_in, Loader = yaml.FullLoader)
             minor_cnt = 0
             minor_cnt_fail = 0
             for x in minor_tags:
