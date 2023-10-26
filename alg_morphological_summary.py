@@ -101,7 +101,7 @@ def interpret(analysis_in):
             summary["O"]["Num"] == "'"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["Pl"]:
             analysis_in["suffixes"].pop(0)
-            summary["O"]["Num"] == "Pl"
+            summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "3" and s == "0": #VTA indep (inverses), have overt suffs for inanimates, need to over ride the default 3 here
             summary["O"]["Pers"] = "0"
             if analysis_in["suffixes"][0:1] == ["Pl"]: #there is a gratuitous +0 suffix in VAIO indeps with singular actors, so it is possible to encounter solitary 0 and 0+Pl. if VTIs had a gratuitous +0 suffix, we would still need next elif, because there would be +0.*+0+Pl strings
