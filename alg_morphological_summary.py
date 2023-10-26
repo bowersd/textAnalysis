@@ -12,13 +12,13 @@ def formatted(interpreted):
     if interpreted["DerivChain"] != interpreted["Head"]: out.append("("+interpreted["DerivChain"]+")")
     if interpreted["Periph"]: out.append(interpreted["Periph"])
     if interpreted["Head"].startswith("N") and interpreted["S"]["Pers"]: out.append("Pos: "+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
-    if interpreted["S"]["Pers"]: out.append("S: "+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
-    if interpreted["O"]["Pers"]: out.append("O: "+"".join([interpreted["O"]["Pers"], interpreted["O"]["Num"]]))
+    if interpreted["S"]["Pers"]: out.append("S:"+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
+    if interpreted["O"]["Pers"]: out.append("O:"+"".join([interpreted["O"]["Pers"], interpreted["O"]["Num"]]))
     if interpreted["Order"]: out.append(interpreted["Order"])
     if interpreted["Neg"]: out.append(interpreted["Neg"])
     if interpreted["Mode"]: out.append(interpreted["Mode"])
-    if any(interpreted["Else"]): out.append(interpreted["Else"])
-    return " ".join("Else")
+    if any(interpreted["Else"]): out.append(" ".join([x for x in interpreted["Else"] if x]))
+    return " ".join(out)
 
 
 def interpret(analysis_in):
@@ -226,12 +226,23 @@ def format_summary(wheat, chaff, lemma, **mapping):
 
 
 if __name__ == "__main__":
+    major_cnt = 0
+    major_cnt_fail = 0
     for x in sys.argv[1:]:
         with open(x) as file_in:
             minor_tags = yaml.load(file_in)
+            minor_cnt = 0
+            minor_cnt_fail = 0
             for x in minor_tags:
                 for y in minor_tags[x]:
                     for z in minor_tags[x][y]:
-                        print("in ", z)
-                        print("intended ", minor_tags[x][y][z])
-                        print("produced ", formatted(interpret(analysis_dict(z))))
+                        minor_cnt += 1
+                        if formatted(interpret(analysis_dict(z))) != minor_tags[x][y][z]:
+                            minor_cnt_fail += 1
+                            print("in ", z)
+                            print("intended ", minor_tags[x][y][z])
+                            print("produced ", formatted(interpret(analysis_dict(z))))
+            print("{0} results ... successes: {1}, failures: {2}, failure pct: {3}".format(str(y), str(minor_cnt-minor_cnt_fail), str(minor_cnt_fail), str(minor_cnt_fail)/minor_cnt))
+        major_cnt += minor_cnt
+        major_cnt_fail += minor_cnt_fail
+    print("Overall results ... successes: {0}, failures: {1}, failure pct: {2}".format(str(major_cnt-major_cnt_fail), str(major_cnt_fail), str(major_cnt_fail)/major_cnt))
