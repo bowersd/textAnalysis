@@ -88,7 +88,7 @@ def interpret(analysis_in):
             #Thm2, Thm1Pl2 are never followed by 1pl (bc Thm1Pl2 is how you indicate first person plurals). 
             #Thm1 .* 1Pl precludes 2pl marking, and so is ambiguous for second person number.  1 obj...1pl = 2Pl/2 vs 1pl.  it never means 21pl bc ban on XvX
             analysis_in["suffixes"].pop(0)
-            summary["O"]["Num"] == "Pl"
+            summary["O"]["Num"] = "Pl"
             #summary["S"]["Pers"] = "2" #redundant, but VTA Cnj Thm1 1Pl needs a default value. because 1Pl blocks 2 person marking ... maybe just add that marking in the model?, no because there are later markings that can appear
             summary["S"]["Num"] = "Pl/2"
         elif summary["O"]["Pers"] == "2" and s == "2" and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
