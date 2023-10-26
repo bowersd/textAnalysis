@@ -135,14 +135,15 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
             file_out.write('\n')
 
 if __name__ == "__main__":
-    #args = parseargs()
-    #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
-    data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is sentence id \t sentence
+    args = parseargs()
+    data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is 0 1 2 oji eng id
+    #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, [d[3] for d in data_in], [d[4] for d in data_in], "rand_sents_rn_human_readable.txt")
     pos_regex = "".join(rw.readin(args.pos_regex))
     lemmata = []
     summaries = []
-    analyses = analyze_text(args.fst_file, args.fst_format, *[d[0] for d in data_in])
+    analyses = analyze_text(args.fst_file, args.fst_format, *[d[3] for d in data_in])
     for a in analyses: 
+        print(a)
         lemmata.append([x for x in lemmatize(pos_regex, *a) if x])
-        summaries.append([algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) for x in a if pst.extract_lemma(x, pos_regex)])
-    atomic_json_dump(args.o, ["sentenceID", "lemmata", "summaries"], [[d[1] for d in data_in], lemmata, summaries])
+        summaries.append([algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) for x in a if algsum.analysis_dict(x)])
+    atomic_json_dump(args.o, ["sentenceID", "sentences", "lemmata", "summaries"], [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
