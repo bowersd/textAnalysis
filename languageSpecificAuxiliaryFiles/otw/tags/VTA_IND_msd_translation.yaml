@@ -39,7 +39,7 @@ Mapping:
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
      2+<>+VTA+Thm1+2+Pl: VTA S:2Pl O:1 
-     2+<>+VTA+Thm1+1+Pl: VTA S:2 O:1Pl #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1+1+Pl: VTA S:2Pl/2 O:1Pl #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
      2+<>+VTA+Thm2+2+Pl: VTA S:1 O:2Pl 
      #2+<>+VTA+Thm2+2+Pl: VTA S:1 O:2Pl #1sg v 2pl #book
      2+<>+VTA+Thm1Pl2+2+Pl: VTA S:1Pl O:2Pl 
@@ -116,8 +116,8 @@ Mapping:
      #      -igo  (ThmInv, pre=obj)
      2+<>+VTA+Thm1+2+Pl+Prt: VTA S:2Pl O:1 Prt 
      2+<>+VTA+Thm1+2+Pl+Dub: VTA S:2Pl O:1 Dub 
-     2+<>+VTA+Thm1+1+Pl+Prt: VTA S:2 O:1Pl Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm1+1+Pl+Dub: VTA S:2 O:1Pl Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1+1+Pl+Prt: VTA S:2Pl/2 O:1Pl Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1+1+Pl+Dub: VTA S:2Pl/2 O:1Pl Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
      2+<>+VTA+Thm2+2+Pl+Prt: VTA S:1 O:2Pl Prt 
      #2+<>+VTA+Thm2+2+Pl+Prt: VTA S:1 O:2Pl Prt #1sg v 2pl #book
      2+<>+VTA+Thm2+2+Pl+Dub: VTA S:1 O:2Pl Dub 
@@ -265,7 +265,7 @@ Mapping:
      #      -aa   (ThmDir, 3 obj)
      #      -igo  (ThmInv, pre=obj)
      2+<>+VTA+Thm1+Neg+2+Pl: VTA S:2Pl O:1 Neg 
-     2+<>+VTA+Thm1+Neg+1+Pl: VTA S:2 O:1Pl Neg #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1+Neg+1+Pl: VTA S:2Pl/2 O:1Pl Neg #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
      2+<>+VTA+Thm2+Neg+2+Pl: VTA S:1 O:2Pl Neg 
      #2+<>+VTA+Thm2+Neg+2+Pl: VTA S:1 O:2Pl Neg #1sg v 2pl #book
      2+<>+VTA+Thm1Pl2+Neg+2+Pl: VTA S:1Pl O:2Pl Neg 
@@ -342,8 +342,8 @@ Mapping:
      #      -igo  (ThmInv, pre=obj)
      2+<>+VTA+Thm1+Neg+2+Pl+Prt: VTA S:2Pl O:1 Neg Prt 
      2+<>+VTA+Thm1+Neg+2+Pl+Dub: VTA S:2Pl O:1 Neg Dub 
-     2+<>+VTA+Thm1+Neg+1+Pl+Prt: VTA S:2 O:1Pl Neg Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
-     2+<>+VTA+Thm1+Neg+1+Pl+Dub: VTA S:2 O:1Pl Neg Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1+Neg+1+Pl+Prt: VTA S:2Pl/2 O:1Pl Neg Prt #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
+     2+<>+VTA+Thm1+Neg+1+Pl+Dub: VTA S:2Pl/2 O:1Pl Neg Dub #Thm2.*1+Pl is ambiguous between 2v1Pl and 2Plv1Pl
      2+<>+VTA+Thm2+Neg+2+Pl+Prt: VTA S:1 O:2Pl Neg Prt 
      #2+<>+VTA+Thm2+Neg+2+Pl+Prt: VTA S:1 O:2Pl Neg Prt #1sg v 2pl #book
      2+<>+VTA+Thm2+Neg+2+Pl+Dub: VTA S:1 O:2Pl Neg Dub 
