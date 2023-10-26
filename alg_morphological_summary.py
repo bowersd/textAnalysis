@@ -240,7 +240,6 @@ if __name__ == "__main__":
                 for y in minor_tags[x]:
                     for z in minor_tags[x][y]:
                         minor_cnt += 1
-                        print(z)
                         if formatted(interpret(analysis_dict(z))) != minor_tags[x][y][z]:
                             minor_cnt_fail += 1
                             print("in ", z)
