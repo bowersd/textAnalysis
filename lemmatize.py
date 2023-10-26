@@ -7,6 +7,7 @@ import readwrite as rw
 import postprocess as pst
 import preprocess as pre
 import engdict as eng
+import alg_morphological_summary as algsum
 
 #def analyze_word(fst_file, fst_format, pos_regex, gdict, w):
 #    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
@@ -139,6 +140,9 @@ if __name__ == "__main__":
     data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is sentence id \t sentence
     pos_regex = "".join(rw.readin(args.pos_regex))
     lemmata = []
+    summaries = []
     analyses = analyze_text(args.fst_file, args.fst_format, *[d[0] for d in data_in])
-    for a in analyses: lemmata.append([x for x in lemmatize(pos_regex, *a) if x])
-    atomic_json_dump(args.o, ["sentenceID", "lemmata"], [[d[1] for d in data_in], lemmata])
+    for a in analyses: 
+        lemmata.append([x for x in lemmatize(pos_regex, *a) if x])
+        summaries.append([algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) for x in a if pst.extract_lemma(x, pos_regex)])
+    atomic_json_dump(args.o, ["sentenceID", "lemmata", "summaries"], [[d[1] for d in data_in], lemmata, summaries])
