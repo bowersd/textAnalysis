@@ -12,7 +12,7 @@ def formatted(interpreted):
     if interpreted["DerivChain"] != interpreted["Head"]: out.append("("+interpreted["DerivChain"]+")")
     if interpreted["Periph"]: out.append(interpreted["Periph"])
     if interpreted["Head"].startswith("N") and interpreted["S"]["Pers"]: out.append("Pos: "+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
-    if interpreted["S"]["Pers"]: out.append("S:"+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
+    if interpreted["S"]["Pers"] and not interpreted["Head"].startswith("N"): out.append("S:"+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
     if interpreted["O"]["Pers"]: out.append("O:"+"".join([interpreted["O"]["Pers"], interpreted["O"]["Num"]]))
     if interpreted["Order"]: out.append(interpreted["Order"])
     if interpreted["Neg"]: out.append(interpreted["Neg"])
@@ -47,7 +47,7 @@ def interpret(analysis_in):
                 subject = True
                 while "3" in analysis_in["suffixes"] or "2" in analysis_in["suffixes"] or "1" in analysis_in["suffixes"]:
                     h.append(analysis_in["suffixes"].pop())
-                    if "3" in h or "2" in h or ("1" in h and analysis_in["suffixes"][-1] != "2"):
+                    if "3" in h or "2" in h or ("1" in h and analysis_in["suffixes"][-1:] != ["2"]):
                         if subject: 
                             summary["S"]["Pers"] = h[0]
                             summary["S"]["Num"] = "".join(h[1:])
@@ -111,7 +111,7 @@ def interpret(analysis_in):
                 summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "0" and s == "0" and analysis_in["suffixes"][0:1] == ["Pl"]: #there is no longer a gratuitous +0 suffix in VTI indeps with singular actors, so no deliberately clunky syntax needed to drop the +0 tag
             analysis_in["suffixes"].pop(0)
-            summary["O"]["Num"] == "Pl"
+            summary["O"]["Num"] = "Pl"
         #}theme sign number end
         #{getting number information for person values specified by prefix == NOT CONJUNCT!
         elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
@@ -230,6 +230,7 @@ def format_summary(wheat, chaff, lemma, **mapping):
 if __name__ == "__main__":
     major_cnt = 0
     major_cnt_fail = 0
+    minor_results = []
     for x in sys.argv[1:]:
         with open(x) as file_in:
             minor_tags = yaml.load(file_in)
@@ -239,12 +240,14 @@ if __name__ == "__main__":
                 for y in minor_tags[x]:
                     for z in minor_tags[x][y]:
                         minor_cnt += 1
+                        print(z)
                         if formatted(interpret(analysis_dict(z))) != minor_tags[x][y][z]:
                             minor_cnt_fail += 1
                             print("in ", z)
                             print("intended ", minor_tags[x][y][z])
                             print("produced ", formatted(interpret(analysis_dict(z))))
-            print("{0} results ... successes: {1}, failures: {2}, failure pct: {3}".format(str(y), str(minor_cnt-minor_cnt_fail), str(minor_cnt_fail), str(round(100*minor_cnt_fail/minor_cnt, 3))))
+            minor_results.append("{0} results ... successes: {1}, failures: {2}, failure pct: {3}".format(str(y), str(minor_cnt-minor_cnt_fail), str(minor_cnt_fail), str(round(100*minor_cnt_fail/minor_cnt, 3))))
         major_cnt += minor_cnt
         major_cnt_fail += minor_cnt_fail
+    for x in minor_results: print(x)
     print("Overall results ... successes: {0}, failures: {1}, failure pct: {2}".format(str(major_cnt-major_cnt_fail), str(major_cnt_fail), str(round(100*major_cnt_fail/major_cnt, 3))))
