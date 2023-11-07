@@ -54,19 +54,6 @@ def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
                 elif lem in holder: update(holder, lem, *[1, [(w, r[w][best][0]+"SPELLING RELAXED")]]) 
             else:  
                 update(holder, "zzzz-UnparsedWords", *[1, [(w,)]]) #no lemma
-    #if spellrelax_file: 
-    #    r = pst.parser_out_string_dict(parse.parse(os.path.expanduser(spellrelax_file), fst_format, *[w[0] for w in holder["zzzz-UnparsedWords"][-1]]).decode())
-    #    for w in holder["zzzz-UnparsedWords"][-1]:
-    #        w = w[0]
-    #        best = pst.disambiguate(pst.min_morphs(*r[w]), pst.min_morphs, *r[w])
-    #        lem = pst.extract_lemma(r[w][best][0], pos_regex)
-    #        if lem and lem not in holder:
-    #            try: gloss = gdict[lem]
-    #            except KeyError: gloss = "definition currently unavailable"
-    #            if w != lem or pst.extract_regex(r[w][best][0], pos_regex) not in ["+Adv", "+Ipc", "+Pron+NA", "+Pron+NI", "+Qnt", "+Interj"]: update(holder, lem, *[1, pst.extract_regex(r[w][best][0], pos_regex), gloss, [(w, r[w][best][0]+"SPELLING RELAXED")]])
-    #            else: update(holder, lem, *[0, pst.extract_regex(r[w][best][0], pos_regex), gloss, []]) #not updating count, since unparsed words are collapsed together, for now need to check count by hand
-    #            #holder[lem] = [1, pst.extract_regex(p[w][best][0], pos_regex), gloss, [w]]
-    #        elif lem in holder: update(holder, lem, *[0, [(w, r[w][best][0]+"SPELLING RELAXED")]]) #not updating count, since unparsed words are collapsed together, for now need to check count by hand
     return holder
 
 def flag_cap(*words):
