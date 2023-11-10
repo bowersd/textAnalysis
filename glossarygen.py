@@ -25,7 +25,9 @@ def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
     #tin.pop(0) #burning corpus info
     #tin.pop(0) #burning text info
     p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
+    cnt = 0
     for s in text_in:
+        cnt += 1
         for w in pre.sep_punct(s.lower()).split():
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
@@ -52,6 +54,8 @@ def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
                     else: update(holder, lem, *[1, pst.extract_regex(r[w][best][0], pos_regex), gloss, []]) 
                     #holder[lem] = [1, pst.extract_regex(p[w][best][0], pos_regex), gloss, [w]]
                 elif lem in holder: update(holder, lem, *[1, [(w, r[w][best][0]+"SPELLING RELAXED")]]) 
+                else:  
+                    update(holder, "zzzz-UnparsedWords", *[1, [(w,)]]) #no lemma
             else:  
                 update(holder, "zzzz-UnparsedWords", *[1, [(w,)]]) #no lemma
     return holder
