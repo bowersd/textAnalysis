@@ -82,7 +82,7 @@ def pad(*lists_of_strings):
     padlen = []
     for i in range(len(lists_of_strings)):
         nu = []
-        for j in range(len(lists_of_strings[i])) #pad items in list to max length at their indices
+        for j in range(len(lists_of_strings[i])): #pad items in list to max length at their indices
             if not i: padlen.append(max([len(lists_of_strings[k][j]) for k in range(len(lists_of_strings))]))
             nu.append(lists_of_strings[i][j]+" "*(padlen[j]-len(lists_of_strings[i][j])))
         nu_lists.append(nu)
@@ -90,8 +90,7 @@ def pad(*lists_of_strings):
 
 def unpad(*lists_of_strings):
     nu_lists = []
-    for x in lists_of_strings:
-        nu_lists.append([y.strip() for y in x])
+    for x in lists_of_strings: nu_lists.append([y.strip() for y in x])
     return nu_lists
 
 def atomic_json_dump(filename, names, lists):
@@ -150,7 +149,7 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
             file_out.write('\n')
 
 if __name__ == "__main__":
-    #args = parseargs()
+    args = parseargs()
     #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
     ##for generating lemmata from rand files
     #data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is 0 1 2 oji eng id
@@ -164,13 +163,13 @@ if __name__ == "__main__":
             "speaker_text_num":[],
             "speaker_text_sent_num":[],
             "sentence":[],
-            "chunked":[]
+            "chunked":[],
             "lemmata":[],
             "m_parse_hi":[],
             "m_parse_lo":[],
             #"fiero_orth":[], #new machine with UR as top, then run UR back down to SRs minus corb spelling
             #"unsyncopated":[], #new machine with UR as top, then run UR back down to SRs minus syncope
-            "tiny_gloss":[]
+            "tiny_gloss":[],
             "english":[],
             }
     names = [ #ordering for easy reading
@@ -178,10 +177,10 @@ if __name__ == "__main__":
             "speakerID",
             "speaker_text_num",
             "speaker_text_sent_num",
-            "chunked"
+            "chunked",
             "m_parse_lo",
             "lemmata",
-            "tiny_gloss"
+            "tiny_gloss",
             "english",
             "sentence",
             #"fiero_orth", #new machine with UR as top, then run UR back down to SRs minus corb spelling
@@ -195,17 +194,17 @@ if __name__ == "__main__":
             full["speaker_text_num"].append(split[1])
             full["speaker_text_sent_num"].append(split[2])
             full["sentence"].append(split[3])
-            full["chunked"].append(split[3].split(" "))
+            full["chunked"].append(pre.sep_punct(split[3]).split())
             full["english"].append(split[4])
             full["sentenceID"].append(split[5])
     full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, *full["sentence"])
-    gdict = eng.mk_glossing_dict(*rw.readin(gloss_file))
+    gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
     for i in range(len(full["m_parse_lo"])): 
-        lem = [x for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
-        summ = [algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) for x in full["m_parse_lo"][i]] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
+        lem = [x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
+        summ = [algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) if algsum.analysis_dict(x) else "?" for x in full["m_parse_lo"][i] ] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
         tinies = []
-        for lem in full["lemmata"][-1]:
-            try: gloss = gdict[lem]
+        for l in lem:
+            try: gloss = gdict[l]
             except KeyError: 
                 gloss = "NODEF" 
             tinies.append(re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1"))
@@ -216,5 +215,6 @@ if __name__ == "__main__":
         full["tiny_gloss"].append(padded[3])
         full["m_parse_lo"][i] = padded[4]
     with open(args.o, 'w') as fo:
-        json.dump([{x:full[x][i] for x in names for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
+        json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
     #atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
+    #needed args: (args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, args.text, args.trans, args.o) args.trans is required but will be ignored for Rand sentences
