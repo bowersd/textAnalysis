@@ -209,9 +209,12 @@ if __name__ == "__main__":
             except KeyError: 
                 gloss = "NODEF" 
             tinies.append(re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1"))
-        full["tiny_gloss"].append(tinies)
-        full["lemmata"].append(lem)
-        full["m_parse_hi"].append(summ)
+        padded = pad(full["chunked"][i], lem, summ, tinies, full["m_parse_lo"][i])
+        full["chunked"][i] = padded[0]
+        full["lemmata"].append(padded[1])
+        full["m_parse_hi"].append(padded[2])
+        full["tiny_gloss"].append(padded[3])
+        full["m_parse_lo"][i] = padded[4]
     with open(args.o, 'w') as fo:
         json.dump([{x:full[x][i] for x in names for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
     #atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
