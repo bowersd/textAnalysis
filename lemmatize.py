@@ -76,7 +76,7 @@ def name_lists(names, *lists):
     for i in range(len(names)): named_lists[names[i]] = lists[i]
     return named_lists
 
-def pad(lists_of_strings):
+def pad(*lists_of_strings):
     #lists must be same length!
     nu_lists = []
     padlen = []
@@ -88,7 +88,7 @@ def pad(lists_of_strings):
         nu_lists.append(nu)
     return nu_lists
 
-def unpad(lists_of_strings):
+def unpad(*lists_of_strings):
     nu_lists = []
     for x in lists_of_strings:
         nu_lists.append([y.strip() for y in x])
