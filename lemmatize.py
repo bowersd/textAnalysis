@@ -87,6 +87,12 @@ def pad(lists_of_strings):
         nu_lists.append(nu)
     return nu_lists
 
+def unpad(lists_of_strings):
+    nu_lists = []
+    for x in lists_of_strings:
+        nu_lists.append([y.strip() for y in x])
+    return nu_lists
+
 def atomic_json_dump(filename, names, lists):
     with open(filename, 'w') as file_out:
         json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out, indent=1) 
