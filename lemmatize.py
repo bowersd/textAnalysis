@@ -153,27 +153,65 @@ if __name__ == "__main__":
     #args = parseargs()
     #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
     ##for generating lemmata from rand files
-    data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is 0 1 2 oji eng id
+    #data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is 0 1 2 oji eng id
     #for d in data_in: 
     #    if len(d) < 5: print(d)
     #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, [d[3] for d in data_in], [d[4] for d in data_in], "rand_sents_corbiere_spelling_human_readable.txt")
     pos_regex = "".join(rw.readin(args.pos_regex))
-    names = [
+    full = {
+            "sentenceID":[],
+            "speakerID":[],
+            "speaker_text_num":[],
+            "speaker_text_sent_num":[],
+            "sentence":[],
+            "chunked":[]
+            "lemmata":[],
+            "m_parse_hi":[],
+            "m_parse_lo":[],
+            #"fiero_orth":[], #new machine with UR as top, then run UR back down to SRs minus corb spelling
+            #"unsyncopated":[], #new machine with UR as top, then run UR back down to SRs minus syncope
+            "tiny_gloss":[]
+            "english":[],
+            }
+    names = [ #ordering for easy reading
             "sentenceID",
             "speakerID",
             "speaker_text_num",
             "speaker_text_sent_num",
-            "sentence",
-            "lemmata",
-            "m_parse_hi",
+            "chunked"
             "m_parse_lo",
-            "fiero_orth",
+            "lemmata",
+            "tiny_gloss"
             "english",
+            "sentence",
+            #"fiero_orth", #new machine with UR as top, then run UR back down to SRs minus corb spelling
+            #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
+            "m_parse_hi",
             ]
-    lemmata = []
-    summaries = []
-    analyses = analyze_text(args.fst_file, args.fst_format, *[d[3] for d in data_in])
-    for a in analyses: 
-        lemmata.append([x for x in lemmatize(pos_regex, *a) if x])
-        summaries.append([algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) for x in a if algsum.analysis_dict(x)])
-    atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
+    with open(args.text) as f:
+        for line in f:
+            split = line.strip().split()
+            full["speakerID"].append(split[0])
+            full["speaker_text_num"].append(split[1])
+            full["speaker_text_sent_num"].append(split[2])
+            full["sentence"].append(split[3])
+            full["chunked"].append(split[3].split(" "))
+            full["english"].append(split[4])
+            full["sentenceID"].append(split[5])
+    full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, *full["sentence"])
+    gdict = eng.mk_glossing_dict(*rw.readin(gloss_file))
+    for i in range(len(full["m_parse_lo"])): 
+        lem = [x for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
+        summ = [algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) for x in full["m_parse_lo"][i]] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
+        tinies = []
+        for lem in full["lemmata"][-1]:
+            try: gloss = gdict[lem]
+            except KeyError: 
+                gloss = "NODEF" 
+            tinies.append(re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1"))
+        full["tiny_gloss"].append(tinies)
+        full["lemmata"].append(lem)
+        full["m_parse_hi"].append(summ)
+    with open(args.o, 'w') as fo:
+        json.dump([{x:full[x][i] for x in names for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
+    #atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
