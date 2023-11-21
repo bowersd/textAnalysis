@@ -4,7 +4,6 @@ import argparse
 import re
 import json
 import json_encoder
-import jsonlines
 import parse
 import readwrite as rw
 import postprocess as pst
@@ -220,11 +219,6 @@ if __name__ == "__main__":
         full["m_parse_hi"].append(" ".join(padded[2]))
         full["tiny_gloss"].append(" ".join(padded[3]))
         full["m_parse_lo"][i] = " ".join(padded[4])
-    #with jsonlines.open(args.o, mode="w") as writer:
-    #    #writer.write_all([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))])
-    #    for i in range(len(full["sentenceID"])):
-    #        #for x in names: writer.write({x:full[x][i]})
-    #        writer.write([{x:full[x][i]} for x in names])
     with open(args.o, 'w') as fo:
         json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
     #atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
