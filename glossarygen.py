@@ -1,6 +1,7 @@
 import os
 import argparse
 import parse
+import re
 import readwrite as rw
 import postprocess as pst
 import preprocess as pre
@@ -18,7 +19,7 @@ def update(holder, key, *vals):
         holder[key][0] += vals[0]
         holder[key][-1] += [w for w in vals[-1] if w not in holder[key][-1]]
 
-def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
+def glossify(fst_file, spellrelax_file,  pos_regex, gdict, corrections, text_in): #fst_format used to be the third argument
     holder = {"zzzz-UnparsedWords":[0, "", "", []]}
     #bad form below, data should already be correctly formatted see readwrite.burn_metadata()
     #tin = rw.readin(text_in)
@@ -44,6 +45,12 @@ def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
                 else: update(holder, lem, *[1, pst.extract_regex(p[w][best][0], pos_regex), gloss, []])
                 #holder[lem] = [1, pst.extract_regex(p[w][best][0], pos_regex), gloss, [w]]
             elif lem in holder: update(holder, lem, *[1, [(w, p[w][best][0])]])
+            elif corrections:
+                for c in corrections: #lemma, word, edited word, analysis, comment
+                    try: gloss = gdict[c[0]]
+                    except KeyError: gloss = "definition currently unavailable"
+                    if c[1] != c[0] or pst.extract_regex(c[3], pos_regex) not in ["+Adv", "+Ipc", "+Pron+NA", "+Pron+NI", "+Qnt", "+Interj"]: update(holder, lem, *[1, pst.extract_regex(c[3], pos_regex), gloss, [(w, c[3])]])
+                    else: update(holder, lem, *[1, pst.extract_regex(c[3], pos_regex), gloss, []])
             elif spellrelax_file:
                 r = parse.parse_native(os.path.expanduser(spellrelax_file), w)
                 #r = pst.parser_out_string_dict(parse.parse(os.path.expanduser(spellrelax_file), fst_format, w).decode())
@@ -171,18 +178,18 @@ def stringify_abbrev_key(*encountered, **mapping):
     return ["Abbreviation Key:"]+sorted(h)
 
 
-def main(fst_file, spellrelax_file, fst_format, regex_file, gloss_file, output, unique, *texts_in):
+def main(fst_file, spellrelax_file, regex_file, gloss_file, corrections, output, unique, *texts_in):
     gdict = eng.mk_glossing_dict(*rw.readin(gloss_file)) 
     pos_regex = "".join(rw.readin(regex_file))
     if unique:
         for t in texts_in: 
             addr = t.split("/")
-            g = glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, rw.burn_metadata(2, *rw.readin(t)))
+            g = glossify(fst_file, spellrelax_file,  pos_regex, gdict, [re.split(" +", x) for x in rw.readin(corrections)], rw.burn_metadata(2, *rw.readin(t)))
             rw.writeout("/".join(addr[:-1])+'/'+(output+".").join(addr[-1].split(".")), *stringify(**g)+stringify_abbrev_key(*mk_abbrev_key(**g), **abbreviations))
     else: 
         gholder = {}
         for t in texts_in:
-            sub = glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, rw.burn_metadata(2, *rw.readin(t)))
+            sub = glossify(fst_file, spellrelax_file,  pos_regex, gdict, [re.split(" +", x) for x in rw.readin(corrections)], rw.burn_metadata(2, *rw.readin(t)))
             for x in sub:
                 update(gholder, x, *sub[x])
         #path = "/".join(t.split("/")[:-1])+"/"
@@ -193,9 +200,10 @@ def parseargs():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("fst_file", help="file path to primary analyser")
-    parser.add_argument("fst_format", help="hfst or xfst")
+    #parser.add_argument("fst_format", help="hfst or xfst")
     parser.add_argument("pos_regex", help="regexes for part of speech")
     parser.add_argument("gloss_file", help="file path to translation dictionary")
+    parser.add_argument("-c", "--corrections_file", dest = "c", nargs = "?", default = "", help="file with hand corrections")
     parser.add_argument("-s", "--spellrelax", dest = "spellrelax_file", nargs = "?", help="file path to  analyser with spelling conventions relaxed", default="")
     parser.add_argument("-u", "--unique", dest="u", action="store_true", help="whether to make unique glossaries for each input file")
     parser.add_argument("-o", "--output", dest="o", nargs="?", help="file name/suffix without filetype extension", default="Glossary")
@@ -204,4 +212,4 @@ def parseargs():
 
 if __name__ == "__main__":
     args = parseargs()
-    main(args.fst_file, args.spellrelax_file, args.fst_format, args.pos_regex, args.gloss_file, args.o, args.u, *args.input_files)
+    main(args.fst_file, args.spellrelax_file,  args.pos_regex, args.gloss_file, args.c, args.o, args.u, *args.input_files)
