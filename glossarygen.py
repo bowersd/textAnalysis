@@ -24,7 +24,8 @@ def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
     #tin = rw.readin(text_in)
     #tin.pop(0) #burning corpus info
     #tin.pop(0) #burning text info
-    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
+    p = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]) #get all analyses of every word
+    #p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
     cnt = 0
     for s in text_in:
         cnt += 1
@@ -44,7 +45,8 @@ def glossify(fst_file, spellrelax_file, fst_format, pos_regex, gdict, text_in):
                 #holder[lem] = [1, pst.extract_regex(p[w][best][0], pos_regex), gloss, [w]]
             elif lem in holder: update(holder, lem, *[1, [(w, p[w][best][0])]])
             elif spellrelax_file:
-                r = pst.parser_out_string_dict(parse.parse(os.path.expanduser(spellrelax_file), fst_format, w).decode())
+                r = parse.parse_native(os.path.expanduser(spellrelax_file), w)
+                #r = pst.parser_out_string_dict(parse.parse(os.path.expanduser(spellrelax_file), fst_format, w).decode())
                 best = pst.disambiguate(pst.min_morphs(*r[w]), pst.min_morphs, *r[w])
                 lem = pst.extract_lemma(r[w][best][0], pos_regex)
                 if lem and lem not in holder:
