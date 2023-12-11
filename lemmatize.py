@@ -52,7 +52,8 @@ def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
         sub = [[],[],[], [], [], [trans_in[i]]]
         for w in pre.sep_punct(text_in[i]).split():
             w=w.lower()
-            p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
+            #p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
+            p = parse.parse_native(os.path.expanduser(fst_file), fst_format, w)
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
             try: gloss = gdict[lem]
@@ -152,79 +153,79 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
 
 if __name__ == "__main__":
     args = parseargs()
-    #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) #this throws a sigsev error now
+    human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) #this throws a sigsev error now
     #for generating lemmata from rand files
-    pos_regex = "".join(rw.readin(args.pos_regex))
-    full = {
-            "sentenceID":[],
-            "speakerID":[],
-            "speaker_text_num":[],
-            "speaker_text_sent_num":[],
-            "sentence":[],
-            "chunked":[],
-            "edited":[],
-            "lemmata":[],
-            "m_parse_hi":[],
-            "m_parse_lo":[],
-            #"fiero_orth":[], #new machine with UR as top, then run UR back down to SRs minus corb spelling
-            #"unsyncopated":[], #new machine with UR as top, then run UR back down to SRs minus syncope
-            "tiny_gloss":[],
-            "english":[],
-            }
-    names = [ #ordering for easy reading
-            "sentenceID",
-            "speakerID",
-            "speaker_text_num",
-            "speaker_text_sent_num",
-            "chunked",
-            "edited",
-            "m_parse_lo",
-            "m_parse_hi",
-            "lemmata",
-            "tiny_gloss",
-            "english",
-            "sentence",
-            #"fiero_orth", #new machine with UR as top, then run UR back down to SRs minus corb spelling
-            #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
-            ]
-    with open(args.text) as f:
-        for line in f:
-            split = line.strip().split('\t')
-            full["speakerID"].append(split[0])
-            full["speaker_text_num"].append(split[1])
-            full["speaker_text_sent_num"].append(split[2])
-            full["sentence"].append(split[3])
-            full["chunked"].append(pre.sep_punct(split[3]).split())
-            full["edited"].append(pre.sep_punct(split[3]).split())
-            full["english"].append(split[4])
-            full["sentenceID"].append(split[5])
-    full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, *full["sentence"])
-    gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
-    for i in range(len(full["m_parse_lo"])): 
-        lem = [x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
-        summ = [algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) if algsum.analysis_dict(x) else "?" for x in full["m_parse_lo"][i] ] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
-        tinies = []
-        for l in lem:
-            try: gloss = gdict[l]
-            except KeyError: 
-                gloss = "NODEF" 
-            tinies.append(re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1"))
-        padded = pad(full["chunked"][i], lem, summ, tinies, full["m_parse_lo"][i])
-        full["chunked"][i] = " ".join(padded[0])
-        full["edited"][i] = " ".join(padded[0])
-        full["lemmata"].append(" ".join(padded[1]))
-        full["m_parse_hi"].append(" ".join(padded[2]))
-        full["tiny_gloss"].append(" ".join(padded[3]))
-        full["m_parse_lo"][i] = " ".join(padded[4])
-    #    full["chunked"][i] = padded[0]
-    #    full["edited"][i] = padded[0]
-    #    full["lemmata"].append(padded[1])
-    #    full["m_parse_hi"].append(padded[2])
-    #    full["tiny_gloss"].append(padded[3])
-    #    full["m_parse_lo"][i] = padded[4]
-    #by_sent = [{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))]
-    #code.interact(local=locals())
-    with open(args.o, 'w') as fo:
-        json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
-    ##atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
-    ##needed args: (args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, args.text, args.trans, args.o) args.trans is required but will be ignored for Rand sentences
+    #pos_regex = "".join(rw.readin(args.pos_regex))
+    #full = {
+    #        "sentenceID":[],
+    #        "speakerID":[],
+    #        "speaker_text_num":[],
+    #        "speaker_text_sent_num":[],
+    #        "sentence":[],
+    #        "chunked":[],
+    #        "edited":[],
+    #        "lemmata":[],
+    #        "m_parse_hi":[],
+    #        "m_parse_lo":[],
+    #        #"fiero_orth":[], #new machine with UR as top, then run UR back down to SRs minus corb spelling
+    #        #"unsyncopated":[], #new machine with UR as top, then run UR back down to SRs minus syncope
+    #        "tiny_gloss":[],
+    #        "english":[],
+    #        }
+    #names = [ #ordering for easy reading
+    #        "sentenceID",
+    #        "speakerID",
+    #        "speaker_text_num",
+    #        "speaker_text_sent_num",
+    #        "chunked",
+    #        "edited",
+    #        "m_parse_lo",
+    #        "m_parse_hi",
+    #        "lemmata",
+    #        "tiny_gloss",
+    #        "english",
+    #        "sentence",
+    #        #"fiero_orth", #new machine with UR as top, then run UR back down to SRs minus corb spelling
+    #        #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
+    #        ]
+    #with open(args.text) as f:
+    #    for line in f:
+    #        split = line.strip().split('\t')
+    #        full["speakerID"].append(split[0])
+    #        full["speaker_text_num"].append(split[1])
+    #        full["speaker_text_sent_num"].append(split[2])
+    #        full["sentence"].append(split[3])
+    #        full["chunked"].append(pre.sep_punct(split[3]).split())
+    #        full["edited"].append(pre.sep_punct(split[3]).split())
+    #        full["english"].append(split[4])
+    #        full["sentenceID"].append(split[5])
+    #full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, *full["sentence"])
+    #gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
+    #for i in range(len(full["m_parse_lo"])): 
+    #    lem = [x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
+    #    summ = [algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) if algsum.analysis_dict(x) else "?" for x in full["m_parse_lo"][i] ] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
+    #    tinies = []
+    #    for l in lem:
+    #        try: gloss = gdict[l]
+    #        except KeyError: 
+    #            gloss = "NODEF" 
+    #        tinies.append(re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1"))
+    #    padded = pad(full["chunked"][i], lem, summ, tinies, full["m_parse_lo"][i])
+    #    full["chunked"][i] = " ".join(padded[0])
+    #    full["edited"][i] = " ".join(padded[0])
+    #    full["lemmata"].append(" ".join(padded[1]))
+    #    full["m_parse_hi"].append(" ".join(padded[2]))
+    #    full["tiny_gloss"].append(" ".join(padded[3]))
+    #    full["m_parse_lo"][i] = " ".join(padded[4])
+    ##    full["chunked"][i] = padded[0]
+    ##    full["edited"][i] = padded[0]
+    ##    full["lemmata"].append(padded[1])
+    ##    full["m_parse_hi"].append(padded[2])
+    ##    full["tiny_gloss"].append(padded[3])
+    ##    full["m_parse_lo"][i] = padded[4]
+    ##by_sent = [{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))]
+    ##code.interact(local=locals())
+    #with open(args.o, 'w') as fo:
+    #    json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
+    ###atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
+    ###needed args: (args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, args.text, args.trans, args.o) args.trans is required but will be ignored for Rand sentences
