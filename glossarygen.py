@@ -33,6 +33,10 @@ def glossify(fst_file, spellrelax_file,  pos_regex, gdict, corrections, text_in)
         for w in pre.sep_punct(s.lower()).split():
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
+            if w in corrections:
+                lem = corrections[w][0] #lemma, word, edited word, analysis, comment
+                p[w] = [(corrections[w][3], 0.0)]
+                best = 0
             #if not lem: #kludge until I can figure out how to manage capitalization differences on the FST side the way the giellatekno people do
             #    w = w.lower()
             #    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
@@ -45,12 +49,6 @@ def glossify(fst_file, spellrelax_file,  pos_regex, gdict, corrections, text_in)
                 else: update(holder, lem, *[1, pst.extract_regex(p[w][best][0], pos_regex), gloss, []])
                 #holder[lem] = [1, pst.extract_regex(p[w][best][0], pos_regex), gloss, [w]]
             elif lem in holder: update(holder, lem, *[1, [(w, p[w][best][0])]])
-            elif corrections:
-                for c in corrections: #lemma, word, edited word, analysis, comment
-                    try: gloss = gdict[c[0]]
-                    except KeyError: gloss = "definition currently unavailable"
-                    if c[1] != c[0] or pst.extract_regex(c[3], pos_regex) not in ["+Adv", "+Ipc", "+Pron+NA", "+Pron+NI", "+Qnt", "+Interj"]: update(holder, lem, *[1, pst.extract_regex(c[3], pos_regex), gloss, [(w, c[3])]])
-                    else: update(holder, lem, *[1, pst.extract_regex(c[3], pos_regex), gloss, []])
             elif spellrelax_file:
                 r = parse.parse_native(os.path.expanduser(spellrelax_file), w)
                 #r = pst.parser_out_string_dict(parse.parse(os.path.expanduser(spellrelax_file), fst_format, w).decode())
