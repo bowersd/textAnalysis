@@ -35,8 +35,8 @@ def glossify(fst_file, spellrelax_file,  pos_regex, gdict, corrections, text_in)
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
             if w in corrections:
                 best = 0
-                lem = pst.extract_lemma(corrections[w][2], pos_regex) #word, edited word, analysis, comment
-                p[w] = [(corrections[w][2], 0.0)]
+                lem = pst.extract_lemma(corrections[w][1], pos_regex) #word, edited word, analysis, comment
+                p[w] = [(corrections[w][1], 0.0)]
             #if not lem: #kludge until I can figure out how to manage capitalization differences on the FST side the way the giellatekno people do
             #    w = w.lower()
             #    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
@@ -188,7 +188,7 @@ def main(fst_file, spellrelax_file, regex_file, gloss_file, corrections, output,
     if corrections: 
         for c in rw.readin(corrections):
             s  = re.split(" +", c)
-            cdict[s[1]] = s[2:]
+            cdict[s[2]] = s[3:]
     if unique:
         for t in texts_in: 
             addr = t.split("/")
