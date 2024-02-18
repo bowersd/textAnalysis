@@ -156,6 +156,10 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
 
 if __name__ == "__main__":
     args = parseargs()
+    cdict = {}
+    if args.c: 
+        for cor in rw.readin(args.c):
+            pass
     if args.r: human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) 
     else:
         #for generating lemmata from rand files
