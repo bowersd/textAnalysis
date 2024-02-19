@@ -215,8 +215,7 @@ if __name__ == "__main__":
                 revised = data[3]
                 for adj in adjustments: #words that need to be split in two or joined together
                     if adj in revised: revised = re.sub(adj, adjustments[adj], revised)
-                print(revised)
-                tokenized = pre.sep_punct(revised.split())
+                tokenized = pre.sep_punct(revised).split()
                 full["chunked"].append(tokenized)
                 full["edited"].append(tokenized)
                 full["english"].append(data[4])
