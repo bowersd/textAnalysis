@@ -164,7 +164,7 @@ if __name__ == "__main__":
         for correction in rw.readin(args.c):
             cor = correction.split()
             if any(["XX" in x for x in correction.split()]): adjustments[" ".join("XX".split(cor[2]))] = " ".join("XX".split(cor[3])) #this drops analysis of the splitting/joining ... all split/joined words should probably already get good analyses, or have them specified elsewhere in the corrections file
-            else: cdict[cor[2]] = cdict[cor[3:5]]
+            else: cdict[cor[2]] = cor[3:5]
     if args.r: human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) 
     else:
         #for generating lemmata from rand files
@@ -215,6 +215,7 @@ if __name__ == "__main__":
                 revised = data[3]
                 for adj in adjustments: #words that need to be split in two or joined together
                     if adj in revised: revised = re.sub(adj, adjustments[adj], revised)
+                print(revised)
                 tokenized = pre.sep_punct(revised.split())
                 full["chunked"].append(tokenized)
                 full["edited"].append(tokenized)
