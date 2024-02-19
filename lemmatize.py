@@ -158,8 +158,9 @@ if __name__ == "__main__":
     args = parseargs()
     cdict = {}
     if args.c: 
-        for cor in rw.readin(args.c):
-            pass
+        for correction in rw.readin(args.c):
+            cor = [" ".join("XX".split(x)) for x in correction.split()]
+            cdict[cor[2]] = cdict[cor[3:5]]
     if args.r: human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) 
     else:
         #for generating lemmata from rand files
@@ -202,18 +203,19 @@ if __name__ == "__main__":
         with open(args.text) as f:
             performance = [0, 0.01] #hits, misses
             for line in f:
-                split = line.strip().split('\t')
-                full["speakerID"].append(split[0])
-                full["speaker_text_num"].append(split[1])
-                full["speaker_text_sent_num"].append(split[2])
-                full["sentence"].append(split[3])
-                full["chunked"].append(pre.sep_punct(split[3]).split())
-                full["edited"].append(pre.sep_punct(split[3]).split())
-                full["english"].append(split[4])
-                full["sentenceID"].append(split[5])
+                data = line.strip().split('\t')
+                full["speakerID"].append(data[0])
+                full["speaker_text_num"].append(data[1])
+                full["speaker_text_sent_num"].append(data[2])
+                full["sentence"].append(data[3])
+                tokenized = pre.sep_punct(data[3]).split()
+                full["chunked"].append(pre.sep_punct(data[3]).split())
+                full["edited"].append(pre.sep_punct(data[3]).split())
+                full["english"].append(data[4])
+                full["sentenceID"].append(data[5])
                 if args.a:
                     full["m_parse_lo"].append([])
-                    for w in pre.sep_punct(split[3].lower()).split(): 
+                    for w in pre.sep_punct(data[3].lower()).split(): 
                         full["m_parse_lo"][-1].append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
                         performance[int(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0].endswith("+?"))] += 1 
             print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
