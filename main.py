@@ -1,6 +1,6 @@
-import hfst
+#import hfst
 import re
-#import pyhfst
+import pyhfst
 
 print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
 print("mkizin")
@@ -8,7 +8,7 @@ print("mkizin+NI ... this was hard coded")
 
 def parse_pyhfst(transducer, *strings):
     h = {}
-    parser = hfst.HfstInputStream(transducer).read()
+    parser = pyhfst.HfstInputStream(transducer).read()
     for s in strings: 
         if s not in h: 
             h[s] = []
