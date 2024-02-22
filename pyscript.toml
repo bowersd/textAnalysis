@@ -1,2 +1,2 @@
-packages = ["re", "pyhfst"]
+packages = ["pyhfst"]
 files = ["morphophonologyclitics_analyze.hfstol"]
