@@ -1,2 +1,7 @@
-packages = ["pyhfst"]
-files = ["morphophonologyclitics_analyze.hfstol"]
+packages = [
+            "hfst",
+            #"regex",
+            ]
+files = [
+            "morphophonologyclitics_analyze.hfstol",
+            ]
