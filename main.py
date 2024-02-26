@@ -5,7 +5,7 @@ import pyhfst
 print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
 print("mkizin")
 print("mkizin+NI ... this was hard coded")
-print("test")
+print("toast")
 
 def parse_pyhfst(transducer, *strings):
     h = {}
