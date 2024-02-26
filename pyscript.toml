@@ -1,5 +1,5 @@
 packages = [
-            "pyhfst",
+            "pyhfst>=1.2.0",
             "regex",
             ]
 files = [
