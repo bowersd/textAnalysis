@@ -3,6 +3,7 @@ packages = [
             #"pyhfst>=1.2.0",
             #"emfs://pyhfst-1.2.0-py2.py3-none-any.whl",
             "regex",
+            "os"
             ]
 [files] 
 "/pyhfst-1.2.0-py2.py3-none-any.whl"=""
