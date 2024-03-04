@@ -5,5 +5,5 @@ packages = [
             "regex",
             ]
 [files] 
-#"pyhfst-1.2.0-py2.py3-none-any.whl",
+"/pyhfst-1.2.0-py2.py3-none-any.whl"=""
 "/morphophonologyclitics_analyze.hfstol" = ""
