@@ -25,7 +25,4 @@ def parse_pyhfst(transducer, *strings):
                 for q in p: h[s].append((regex.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
 
-print(os.getcwd())
-print(os.listdir('/'))
-print(os.listdir('./'))
 print(parse_pyhfst("./morphophonologyclitics_analyze.hfstol", "mkizin"))
