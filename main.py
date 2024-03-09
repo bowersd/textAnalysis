@@ -30,4 +30,13 @@ def parse_words(event):
     output_div = document.querySelector("#output")
     output_div.innerText = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *freeNish.split(" "))
 
+def parse_text(event):
+    analysis = []
+    textIn = []
+    with open(document.querySelector("#targetText").value) as fileIn:
+        for line in fileIn: textIn.append(line.strip())
+    analyses = parse_pyhfst("./morphphonologyclitics_analyze.hfstol", *[x for s in textIn for x in s.lower().split()])
+    for s in textIn:
+        pass
+
 #print(parse_pyhfst("./morphophonologyclitics_analyze.hfstol", "mkizin"))
