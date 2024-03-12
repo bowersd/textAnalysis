@@ -241,7 +241,7 @@ if __name__ == "__main__":
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
             for x in full["chunked"][i]:
-                elif x in cdict: edited.append(cdict[x][0])
+                if x in cdict: edited.append(cdict[x][0])
                 else: edited.append(x)
             for l in lem:
                 try: gloss = gdict[l]
