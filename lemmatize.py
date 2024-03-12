@@ -238,7 +238,11 @@ if __name__ == "__main__":
             lem = [x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
             summ = [algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) if algsum.analysis_dict(x) else "?" for x in full["m_parse_lo"][i] ] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
             tinies = []
-            edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
+            #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
+            edited = []
+            for x in full["chunked"][i]:
+                elif x in cdict: edited.append(cdict[x][0])
+                else: edited.append(x)
             for l in lem:
                 try: gloss = gdict[l]
                 except KeyError: 
