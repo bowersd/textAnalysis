@@ -102,8 +102,11 @@ def atomic_json_dump(filename, names, lists):
     with open(filename, 'w') as file_out:
         json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1) 
 
-def e_ccnj_ambiguous(string):
-    return string.startswith("e-")
+def e_ccnj_ambiguous(analyzer, string):
+    if string.startswith("e-"): 
+        pass #attempt analysis without the hyphen, if successful, return true
+    return False
+
 
 def e_ccnj_conservation(string):
     return "e"+string[2:]
@@ -242,6 +245,7 @@ if __name__ == "__main__":
             edited = []
             for x in full["chunked"][i]:
                 if x in cdict: edited.append(cdict[x][0])
+                elif e_ccnj_ambiguous(x): edited.append(e_ccnj_conservation(x)) #also need to update the analysis
                 else: edited.append(x)
             for l in lem:
                 try: gloss = gdict[l]
