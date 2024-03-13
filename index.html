@@ -16,11 +16,9 @@
 <body>
     <p>Get analyses of Nishnaabemwin words</p>
     <input type="text" name = "freeNish" id="freeNish" placeholder="Type Nishnaabemwin words here..."/>
-    <!--
     <button py-click="parse_words">Analyze Words</button>
     <div id="output"></div>
     <script type="py" src="./main.py" config="./pyscript.toml" async></script>
-    -->
     <p>Click on the "Browse..." button to select a plain text file in Nishnaabemwin, click on "Analyze Text" to analyze it:</p>
     <form action='/action_page.php'>
         <input type="file" id="targetLanguageText" name="targetText" accept=".txt">
@@ -28,7 +26,7 @@
     <form action='/action_page.php'>
         <input type="file" id="translationText" name="translationText" accept=".txt">
     </form>
-    <button py-click="main">Analyze Text</button>
+    <button py-click="parse_text">Analyze Text</button>
     <script type="py" src="./main.py" config="./pyscript.toml" async></script>
     <!--
     <p>Download the analyzed text below:</p>
@@ -44,7 +42,7 @@
     <p>This is why this service is free (yay!) and it protects your data privacy (great!).</p>
     <!--button name="load_nish">Add Nishnaabemwin Text (one sentence per line, txt file ... inactive)</button>
     <button name="load_trans">Add Sentence-by-Sentence Translation (optional, inactive)</button>
-    <button name="do_it">Make Interlinearization (inactive)</button>
-    <a href="mailto:bowersd@reed.edu">Email the author</a-->
+    <button name="do_it">Make Interlinearization (inactive)</button-->
+    <a href="mailto:bowersd@reed.edu">Email the author</a>
 </body>
 </html>
