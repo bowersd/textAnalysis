@@ -103,8 +103,9 @@ def atomic_json_dump(filename, names, lists):
         json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1) 
 
 def e_ccnj_ambiguous(analyzer, string):
-    if string.startswith("e-"): 
-        pass #attempt analysis without the hyphen, if successful, return true
+    if string.startswith("e-"): #attempt analysis without the hyphen, if successful, return true
+        ccnj = e_ccnj_conservation(string)
+        if not parse.parse_native(os.path.expanduser(analyzer), ccnj)[ccnj][0][0].endswith('+?'): return True
     return False
 
 
