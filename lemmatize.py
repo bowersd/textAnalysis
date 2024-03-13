@@ -227,7 +227,7 @@ if __name__ == "__main__":
                     if adj in revised: revised = re.sub(adj, adjustments[adj], revised)
                 tokenized = pre.sep_punct(revised).split()
                 full["chunked"].append(tokenized)
-                full["edited"].append(tokenized)
+                full["edited"].append(tokenized) #this gets rewritten below...
                 full["english"].append(data[4])
                 full["sentenceID"].append(data[5])
                 if args.a:
@@ -244,10 +244,14 @@ if __name__ == "__main__":
             tinies = []
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
-            for x in full["chunked"][i]:
-                if x in cdict: edited.append(cdict[x][0])
-                elif e_ccnj_ambiguous(x): edited.append(e_ccnj_conservation(x)) #also need to update the analysis
-                else: edited.append(x)
+            for j in range(len(full["chunked"][i])):
+                if full["chunked"][i][j] in cdict: edited.append(cdict[full["chunked"][i][j]][0])
+                elif e_ccnj_ambiguous(args.fst_file, full["chunked"][i][j]): 
+                    ccnj = e_ccnj+conservation(full["chunked"][i][j])
+                    edited.append(ccnj)
+                    revised_analysis = parse.parse_native(os.path.expanduser(args.fst_file), ccnj)
+                    full["m_parse_lo"][i][j] = revised_analysis[ccnj][pst.disambiguate(pst.min_morphs(*revised_analysis[ccnj]), pst.min_morphs, *revised_analysis[ccnj])][0]
+                else: edited.append(full["chunked"][i][j])
             for l in lem:
                 try: gloss = gdict[l]
                 except KeyError: 
