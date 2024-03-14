@@ -70,7 +70,7 @@ def interpret(analysis_in):
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["Pl"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "Pl"
-        elif summary["O"]["Pers"] == "3" and s == "0": 
+        elif summary["O"]["Pers"] == "3" and s == "0": #VTA indep, VTI indep have overt suffs for inanimates
             summary["O"]["Pers"] = "0"
         elif summary["O"]["Pers"] == "0" and s == "0" and analysis_in["suffixes"][0:1] == ["Pl"]:
             analysis_in["suffixes"].pop(0)
@@ -111,10 +111,12 @@ def interpret(analysis_in):
                     analysis_in["suffixes"].pop()
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == '3') and s == "3":
             summary["S"]["Pers"] = "3"
+            if inversion = True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj": #VTA CNJ THMINV 3
+                summary["O"]["Pers"] = "3'/0"
             if analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
-            if analysis_in["suffixes"][0:1] == ["4"]:
+            elif analysis_in["suffixes"][0:1] == ["4"]:
                 summary["S"]["Num"] = "'"
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "0": #VTIs?
@@ -127,6 +129,7 @@ def interpret(analysis_in):
         else: summary["Else"].append(s)
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers"] = "1" #default person for Thm2a keep at end
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers"] = "2" #default person for Thm1  keep at end
+    if not inversion and summary["S"]["Pers"] == "3" and summary["O"]["Pers"] == "3": summary["O"]["Num"] = "'" #default obviation for direct themes. should only be necessary for VTA CNJ, which never overtly signals obviation, but kept general
     #summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
     if inversion == True: summary["S"], summary["O"] = summary["O"], summary["S"]
     return summary
