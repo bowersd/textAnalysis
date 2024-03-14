@@ -1,0 +1,1032 @@
+Mapping:
+     
+  NAD - All:
+     
+  #Template Key
+  #1	2	3	4	5	6	7
+  #per	dim	the	pej	pos	mod	num
+     
+     #Isolation form
+     
+     #Values from slots numbered 1
+    1+<>+NAD: NAD Pos:1
+    2+<>+NAD: NAD Pos:2
+    X+<>+NAD: NAD Pos:X
+     
+     #Values from slots numbered 2
+     
+     
+     #Values from slots numbered 4
+     
+     
+     #Values from slots numbered 6
+     
+     #Values from slots numbered 7
+     
+     #Values from slots numbered 1, 2
+    1+<>+NAD+Con: NAD Con Pos:1
+    1+<>+NAD+Dim: NAD Dim Pos:1
+    2+<>+NAD+Con: NAD Con Pos:2
+    2+<>+NAD+Dim: NAD Dim Pos:2
+    X+<>+NAD+Con: NAD Con Pos:X
+    X+<>+NAD+Dim: NAD Dim Pos:X
+     
+     #Values from slots numbered 1, 3
+    1+<>+NAD+ThmPos: NAD Pos:1
+    2+<>+NAD+ThmPos: NAD Pos:2
+    X+<>+NAD+ThmPos: NAD Pos:X
+     
+     #Values from slots numbered 1, 4
+    1+<>+NAD+Pej: NAD Pej Pos:1
+    2+<>+NAD+Pej: NAD Pej Pos:2
+    X+<>+NAD+Pej: NAD Pej Pos:X
+     
+     #Values from slots numbered 1, 5
+    1+<>+NAD+1+Pl: NAD Pos:1Pl
+    2+<>+NAD+1+Pl: NAD Pos:21Pl
+    2+<>+NAD+2+Pl: NAD Pos:2Pl
+    3+<>+NAD+3+4: NAD Pos:3'
+     
+     #Values from slots numbered 1, 6
+    1+<>+NAD+Prt: NAD Prt Pos:1
+    1+<>+NAD+Voc+Pl: NAD Pl Voc Pos:1
+    2+<>+NAD+Prt: NAD Prt Pos:2
+    2+<>+NAD+Voc+Pl: NAD Pl Voc Pos:2
+    X+<>+NAD+Prt: NAD Prt Pos:X
+    X+<>+NAD+Voc+Pl: NAD Pl Voc Pos:X
+     
+     #Values from slots numbered 1, 7
+    1+<>+NAD+4: NAD Obv Pos:1
+    1+<>+NAD+Loc: NAD Loc Pos:1
+    1+<>+NAD+Pl: NAD Pl Pos:1
+    2+<>+NAD+4: NAD Obv Pos:2
+    2+<>+NAD+Loc: NAD Loc Pos:2
+    2+<>+NAD+Pl: NAD Pl Pos:2
+    3+<>+NAD+4: NAD Obv Pos:3
+    3+<>+NAD+Loc: NAD Loc Pos:3
+    X+<>+NAD+4: NAD Obv Pos:X
+    X+<>+NAD+Loc: NAD Loc Pos:X
+    X+<>+NAD+Pl: NAD Pl Pos:X
+     
+     
+     #Values from slots numbered 2, 4
+     
+     
+     #Values from slots numbered 2, 6
+     
+     #Values from slots numbered 2, 7
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 4, 6
+     
+     #Values from slots numbered 4, 7
+     
+     
+     
+     #Values from slots numbered 6, 7
+     
+     #Values from slots numbered 1, 2, 3
+    1+<>+NAD+Con+ThmPos: NAD Con Pos:1
+    1+<>+NAD+Dim+ThmPos: NAD Dim Pos:1
+    2+<>+NAD+Con+ThmPos: NAD Con Pos:2
+    2+<>+NAD+Dim+ThmPos: NAD Dim Pos:2
+    X+<>+NAD+Con+ThmPos: NAD Con Pos:X
+    X+<>+NAD+Dim+ThmPos: NAD Dim Pos:X
+     
+     #Values from slots numbered 1, 2, 4
+    1+<>+NAD+Con+Pej: NAD Con Pej Pos:1
+    1+<>+NAD+Dim+Pej: NAD Dim Pej Pos:1
+    2+<>+NAD+Con+Pej: NAD Con Pej Pos:2
+    2+<>+NAD+Dim+Pej: NAD Dim Pej Pos:2
+    X+<>+NAD+Con+Pej: NAD Con Pej Pos:X
+    X+<>+NAD+Dim+Pej: NAD Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 5
+    1+<>+NAD+Con+1+Pl: NAD Con Pos:1Pl
+    1+<>+NAD+Dim+1+Pl: NAD Dim Pos:1Pl
+    2+<>+NAD+Con+1+Pl: NAD Con Pos:21Pl
+    2+<>+NAD+Con+2+Pl: NAD Con Pos:2Pl
+    2+<>+NAD+Dim+1+Pl: NAD Dim Pos:21Pl
+    2+<>+NAD+Dim+2+Pl: NAD Dim Pos:2Pl
+    3+<>+NAD+Con+3+4: NAD Con Pos:3'
+    3+<>+NAD+Dim+3+4: NAD Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 6
+    1+<>+NAD+Con+Prt: NAD Con Prt Pos:1
+    1+<>+NAD+Con+Voc+Pl: NAD Pl Con Voc Pos:1
+    1+<>+NAD+Dim+Prt: NAD Dim Prt Pos:1
+    1+<>+NAD+Dim+Voc+Pl: NAD Pl Dim Voc Pos:1
+    2+<>+NAD+Con+Prt: NAD Con Prt Pos:2
+    2+<>+NAD+Con+Voc+Pl: NAD Pl Con Voc Pos:2
+    2+<>+NAD+Dim+Prt: NAD Dim Prt Pos:2
+    2+<>+NAD+Dim+Voc+Pl: NAD Pl Dim Voc Pos:2
+    X+<>+NAD+Con+Prt: NAD Con Prt Pos:X
+    X+<>+NAD+Con+Voc+Pl: NAD Pl Con Voc Pos:X
+    X+<>+NAD+Dim+Prt: NAD Dim Prt Pos:X
+    X+<>+NAD+Dim+Voc+Pl: NAD Pl Dim Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 7
+    1+<>+NAD+Con+4: NAD Obv Con Pos:1
+    1+<>+NAD+Con+Loc: NAD Loc Con Pos:1
+    1+<>+NAD+Con+Pl: NAD Pl Con Pos:1
+    1+<>+NAD+Dim+4: NAD Obv Dim Pos:1
+    1+<>+NAD+Dim+Loc: NAD Loc Dim Pos:1
+    1+<>+NAD+Dim+Pl: NAD Pl Dim Pos:1
+    2+<>+NAD+Con+4: NAD Obv Con Pos:2
+    2+<>+NAD+Con+Loc: NAD Loc Con Pos:2
+    2+<>+NAD+Con+Pl: NAD Pl Con Pos:2
+    2+<>+NAD+Dim+4: NAD Obv Dim Pos:2
+    2+<>+NAD+Dim+Loc: NAD Loc Dim Pos:2
+    2+<>+NAD+Dim+Pl: NAD Pl Dim Pos:2
+    3+<>+NAD+Con+4: NAD Obv Con Pos:3
+    3+<>+NAD+Con+Loc: NAD Loc Con Pos:3
+    3+<>+NAD+Dim+4: NAD Obv Dim Pos:3
+    3+<>+NAD+Dim+Loc: NAD Loc Dim Pos:3
+    X+<>+NAD+Con+4: NAD Obv Con Pos:X
+    X+<>+NAD+Con+Loc: NAD Loc Con Pos:X
+    X+<>+NAD+Con+Pl: NAD Pl Con Pos:X
+    X+<>+NAD+Dim+4: NAD Obv Dim Pos:X
+    X+<>+NAD+Dim+Loc: NAD Loc Dim Pos:X
+    X+<>+NAD+Dim+Pl: NAD Pl Dim Pos:X
+     
+     #Values from slots numbered 1, 3, 4
+    1+<>+NAD+ThmPos+Pej: NAD Pej Pos:1
+    2+<>+NAD+ThmPos+Pej: NAD Pej Pos:2
+    X+<>+NAD+ThmPos+Pej: NAD Pej Pos:X
+     
+     #Values from slots numbered 1, 3, 5
+    1+<>+NAD+ThmPos+1+Pl: NAD Pos:1Pl
+    2+<>+NAD+ThmPos+1+Pl: NAD Pos:21Pl
+    2+<>+NAD+ThmPos+2+Pl: NAD Pos:2Pl
+    3+<>+NAD+ThmPos+3+4: NAD Pos:3'
+     
+     #Values from slots numbered 1, 3, 6
+    1+<>+NAD+ThmPos+Prt: NAD Prt Pos:1
+    1+<>+NAD+ThmPos+Voc+Pl: NAD Pl Voc Pos:1
+    2+<>+NAD+ThmPos+Prt: NAD Prt Pos:2
+    2+<>+NAD+ThmPos+Voc+Pl: NAD Pl Voc Pos:2
+    X+<>+NAD+ThmPos+Prt: NAD Prt Pos:X
+    X+<>+NAD+ThmPos+Voc+Pl: NAD Pl Voc Pos:X
+     
+     #Values from slots numbered 1, 3, 7
+    1+<>+NAD+ThmPos+4: NAD Obv Pos:1
+    1+<>+NAD+ThmPos+Loc: NAD Loc Pos:1
+    1+<>+NAD+ThmPos+Pl: NAD Pl Pos:1
+    2+<>+NAD+ThmPos+4: NAD Obv Pos:2
+    2+<>+NAD+ThmPos+Loc: NAD Loc Pos:2
+    2+<>+NAD+ThmPos+Pl: NAD Pl Pos:2
+    3+<>+NAD+ThmPos+4: NAD Obv Pos:3
+    3+<>+NAD+ThmPos+Loc: NAD Loc Pos:3
+    X+<>+NAD+ThmPos+4: NAD Obv Pos:X
+    X+<>+NAD+ThmPos+Loc: NAD Loc Pos:X
+    X+<>+NAD+ThmPos+Pl: NAD Pl Pos:X
+     
+     #Values from slots numbered 1, 4, 5
+    1+<>+NAD+Pej+1+Pl: NAD Pej Pos:1Pl
+    2+<>+NAD+Pej+1+Pl: NAD Pej Pos:21Pl
+    2+<>+NAD+Pej+2+Pl: NAD Pej Pos:2Pl
+    3+<>+NAD+Pej+3+4: NAD Pej Pos:3'
+     
+     #Values from slots numbered 1, 4, 6
+    1+<>+NAD+Pej+Prt: NAD Pej Prt Pos:1
+    1+<>+NAD+Pej+Voc+Pl: NAD Pl Pej Voc Pos:1
+    2+<>+NAD+Pej+Prt: NAD Pej Prt Pos:2
+    2+<>+NAD+Pej+Voc+Pl: NAD Pl Pej Voc Pos:2
+    X+<>+NAD+Pej+Prt: NAD Pej Prt Pos:X
+    X+<>+NAD+Pej+Voc+Pl: NAD Pl Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 4, 7
+    1+<>+NAD+Pej+4: NAD Obv Pej Pos:1
+    1+<>+NAD+Pej+Loc: NAD Loc Pej Pos:1
+    1+<>+NAD+Pej+Pl: NAD Pl Pej Pos:1
+    2+<>+NAD+Pej+4: NAD Obv Pej Pos:2
+    2+<>+NAD+Pej+Loc: NAD Loc Pej Pos:2
+    2+<>+NAD+Pej+Pl: NAD Pl Pej Pos:2
+    3+<>+NAD+Pej+4: NAD Obv Pej Pos:3
+    3+<>+NAD+Pej+Loc: NAD Loc Pej Pos:3
+    X+<>+NAD+Pej+4: NAD Obv Pej Pos:X
+    X+<>+NAD+Pej+Loc: NAD Loc Pej Pos:X
+    X+<>+NAD+Pej+Pl: NAD Pl Pej Pos:X
+     
+     #Values from slots numbered 1, 5, 6
+    1+<>+NAD+1+Pl+Prt: NAD Prt Pos:1Pl
+    1+<>+NAD+1+Pl+Voc+Pl: NAD Pl Voc Pos:1Pl
+    2+<>+NAD+1+Pl+Prt: NAD Prt Pos:21Pl
+    2+<>+NAD+1+Pl+Voc+Pl: NAD Pl Voc Pos:21Pl
+    2+<>+NAD+2+Pl+Prt: NAD Prt Pos:2Pl
+    2+<>+NAD+2+Pl+Voc+Pl: NAD Pl Voc Pos:2Pl
+    3+<>+NAD+3+4+Prt: NAD Prt Pos:3'
+     
+     #Values from slots numbered 1, 5, 7
+    1+<>+NAD+1+Pl+4: NAD Obv Pos:1Pl
+    1+<>+NAD+1+Pl+Loc: NAD Loc Pos:1Pl
+    1+<>+NAD+1+Pl+Pl: NAD Pl Pos:1Pl
+    2+<>+NAD+1+Pl+4: NAD Obv Pos:21Pl
+    2+<>+NAD+1+Pl+Loc: NAD Loc Pos:21Pl
+    2+<>+NAD+1+Pl+Pl: NAD Pl Pos:21Pl
+    2+<>+NAD+2+Pl+4: NAD Obv Pos:2Pl
+    2+<>+NAD+2+Pl+Loc: NAD Loc Pos:2Pl
+    2+<>+NAD+2+Pl+Pl: NAD Pl Pos:2Pl
+    3+<>+NAD+2+Pl+4: NAD Obv Pos:3Pl
+    3+<>+NAD+2+Pl+Loc: NAD Loc Pos:3Pl
+    3+<>+NAD+3+4+4: NAD Obv Pos:3'
+    3+<>+NAD+3+4+Loc: NAD Loc Pos:3'
+     
+     #Values from slots numbered 1, 6, 7
+    1+<>+NAD+Prt+4: NAD Obv Prt Pos:1
+    1+<>+NAD+Prt+Loc: NAD Loc Prt Pos:1
+    1+<>+NAD+Prt+Pl: NAD Pl Prt Pos:1
+    2+<>+NAD+Prt+4: NAD Obv Prt Pos:2
+    2+<>+NAD+Prt+Loc: NAD Loc Prt Pos:2
+    2+<>+NAD+Prt+Pl: NAD Pl Prt Pos:2
+    3+<>+NAD+Prt+4: NAD Obv Prt Pos:3
+    3+<>+NAD+Prt+Loc: NAD Loc Prt Pos:3
+    X+<>+NAD+Prt+4: NAD Obv Prt Pos:X
+    X+<>+NAD+Prt+Loc: NAD Loc Prt Pos:X
+    X+<>+NAD+Prt+Pl: NAD Pl Prt Pos:X
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 2, 4, 6
+     
+     #Values from slots numbered 2, 4, 7
+     
+     
+     
+     #Values from slots numbered 2, 6, 7
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 4, 6, 7
+     
+     
+     #Values from slots numbered 1, 2, 3, 4
+    1+<>+NAD+Con+ThmPos+Pej: NAD Con Pej Pos:1
+    1+<>+NAD+Dim+ThmPos+Pej: NAD Dim Pej Pos:1
+    2+<>+NAD+Con+ThmPos+Pej: NAD Con Pej Pos:2
+    2+<>+NAD+Dim+ThmPos+Pej: NAD Dim Pej Pos:2
+    X+<>+NAD+Con+ThmPos+Pej: NAD Con Pej Pos:X
+    X+<>+NAD+Dim+ThmPos+Pej: NAD Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 5
+    1+<>+NAD+Con+ThmPos+1+Pl: NAD Con Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+1+Pl: NAD Dim Pos:1Pl
+    2+<>+NAD+Con+ThmPos+1+Pl: NAD Con Pos:21Pl
+    2+<>+NAD+Con+ThmPos+2+Pl: NAD Con Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+1+Pl: NAD Dim Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+2+Pl: NAD Dim Pos:2Pl
+    3+<>+NAD+Con+ThmPos+3+4: NAD Con Pos:3'
+    3+<>+NAD+Dim+ThmPos+3+4: NAD Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 6
+    1+<>+NAD+Con+ThmPos+Prt: NAD Con Prt Pos:1
+    1+<>+NAD+Con+ThmPos+Voc+Pl: NAD Pl Con Voc Pos:1
+    1+<>+NAD+Dim+ThmPos+Prt: NAD Dim Prt Pos:1
+    1+<>+NAD+Dim+ThmPos+Voc+Pl: NAD Pl Dim Voc Pos:1
+    2+<>+NAD+Con+ThmPos+Prt: NAD Con Prt Pos:2
+    2+<>+NAD+Con+ThmPos+Voc+Pl: NAD Pl Con Voc Pos:2
+    2+<>+NAD+Dim+ThmPos+Prt: NAD Dim Prt Pos:2
+    2+<>+NAD+Dim+ThmPos+Voc+Pl: NAD Pl Dim Voc Pos:2
+    X+<>+NAD+Con+ThmPos+Prt: NAD Con Prt Pos:X
+    X+<>+NAD+Con+ThmPos+Voc+Pl: NAD Pl Con Voc Pos:X
+    X+<>+NAD+Dim+ThmPos+Prt: NAD Dim Prt Pos:X
+    X+<>+NAD+Dim+ThmPos+Voc+Pl: NAD Pl Dim Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 7
+    1+<>+NAD+Con+ThmPos+4: NAD Obv Con Pos:1
+    1+<>+NAD+Con+ThmPos+Loc: NAD Loc Con Pos:1
+    1+<>+NAD+Con+ThmPos+Pl: NAD Pl Con Pos:1
+    1+<>+NAD+Dim+ThmPos+4: NAD Obv Dim Pos:1
+    1+<>+NAD+Dim+ThmPos+Loc: NAD Loc Dim Pos:1
+    1+<>+NAD+Dim+ThmPos+Pl: NAD Pl Dim Pos:1
+    2+<>+NAD+Con+ThmPos+4: NAD Obv Con Pos:2
+    2+<>+NAD+Con+ThmPos+Loc: NAD Loc Con Pos:2
+    2+<>+NAD+Con+ThmPos+Pl: NAD Pl Con Pos:2
+    2+<>+NAD+Dim+ThmPos+4: NAD Obv Dim Pos:2
+    2+<>+NAD+Dim+ThmPos+Loc: NAD Loc Dim Pos:2
+    2+<>+NAD+Dim+ThmPos+Pl: NAD Pl Dim Pos:2
+    3+<>+NAD+Con+ThmPos+4: NAD Obv Con Pos:3
+    3+<>+NAD+Con+ThmPos+Loc: NAD Loc Con Pos:3
+    3+<>+NAD+Dim+ThmPos+4: NAD Obv Dim Pos:3
+    3+<>+NAD+Dim+ThmPos+Loc: NAD Loc Dim Pos:3
+    X+<>+NAD+Con+ThmPos+4: NAD Obv Con Pos:X
+    X+<>+NAD+Con+ThmPos+Loc: NAD Loc Con Pos:X
+    X+<>+NAD+Con+ThmPos+Pl: NAD Pl Con Pos:X
+    X+<>+NAD+Dim+ThmPos+4: NAD Obv Dim Pos:X
+    X+<>+NAD+Dim+ThmPos+Loc: NAD Loc Dim Pos:X
+    X+<>+NAD+Dim+ThmPos+Pl: NAD Pl Dim Pos:X
+     
+     #Values from slots numbered 1, 2, 4, 5
+    1+<>+NAD+Con+Pej+1+Pl: NAD Con Pej Pos:1Pl
+    1+<>+NAD+Dim+Pej+1+Pl: NAD Dim Pej Pos:1Pl
+    2+<>+NAD+Con+Pej+1+Pl: NAD Con Pej Pos:21Pl
+    2+<>+NAD+Con+Pej+2+Pl: NAD Con Pej Pos:2Pl
+    2+<>+NAD+Dim+Pej+1+Pl: NAD Dim Pej Pos:21Pl
+    2+<>+NAD+Dim+Pej+2+Pl: NAD Dim Pej Pos:2Pl
+    3+<>+NAD+Con+Pej+3+4: NAD Con Pej Pos:3'
+    3+<>+NAD+Dim+Pej+3+4: NAD Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 6
+    1+<>+NAD+Con+Pej+Prt: NAD Con Pej Prt Pos:1
+    1+<>+NAD+Con+Pej+Voc+Pl: NAD Pl Con Pej Voc Pos:1
+    1+<>+NAD+Dim+Pej+Prt: NAD Dim Pej Prt Pos:1
+    1+<>+NAD+Dim+Pej+Voc+Pl: NAD Pl Dim Pej Voc Pos:1
+    2+<>+NAD+Con+Pej+Prt: NAD Con Pej Prt Pos:2
+    2+<>+NAD+Con+Pej+Voc+Pl: NAD Pl Con Pej Voc Pos:2
+    2+<>+NAD+Dim+Pej+Prt: NAD Dim Pej Prt Pos:2
+    2+<>+NAD+Dim+Pej+Voc+Pl: NAD Pl Dim Pej Voc Pos:2
+    X+<>+NAD+Con+Pej+Prt: NAD Con Pej Prt Pos:X
+    X+<>+NAD+Con+Pej+Voc+Pl: NAD Pl Con Pej Voc Pos:X
+    X+<>+NAD+Dim+Pej+Prt: NAD Dim Pej Prt Pos:X
+    X+<>+NAD+Dim+Pej+Voc+Pl: NAD Pl Dim Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 4, 7
+    1+<>+NAD+Con+Pej+4: NAD Obv Con Pej Pos:1
+    1+<>+NAD+Con+Pej+Loc: NAD Loc Con Pej Pos:1
+    1+<>+NAD+Con+Pej+Pl: NAD Pl Con Pej Pos:1
+    1+<>+NAD+Dim+Pej+4: NAD Obv Dim Pej Pos:1
+    1+<>+NAD+Dim+Pej+Loc: NAD Loc Dim Pej Pos:1
+    1+<>+NAD+Dim+Pej+Pl: NAD Pl Dim Pej Pos:1
+    2+<>+NAD+Con+Pej+4: NAD Obv Con Pej Pos:2
+    2+<>+NAD+Con+Pej+Loc: NAD Loc Con Pej Pos:2
+    2+<>+NAD+Con+Pej+Pl: NAD Pl Con Pej Pos:2
+    2+<>+NAD+Dim+Pej+4: NAD Obv Dim Pej Pos:2
+    2+<>+NAD+Dim+Pej+Loc: NAD Loc Dim Pej Pos:2
+    2+<>+NAD+Dim+Pej+Pl: NAD Pl Dim Pej Pos:2
+    3+<>+NAD+Con+Pej+4: NAD Obv Con Pej Pos:3
+    3+<>+NAD+Con+Pej+Loc: NAD Loc Con Pej Pos:3
+    3+<>+NAD+Dim+Pej+4: NAD Obv Dim Pej Pos:3
+    3+<>+NAD+Dim+Pej+Loc: NAD Loc Dim Pej Pos:3
+    X+<>+NAD+Con+Pej+4: NAD Obv Con Pej Pos:X
+    X+<>+NAD+Con+Pej+Loc: NAD Loc Con Pej Pos:X
+    X+<>+NAD+Con+Pej+Pl: NAD Pl Con Pej Pos:X
+    X+<>+NAD+Dim+Pej+4: NAD Obv Dim Pej Pos:X
+    X+<>+NAD+Dim+Pej+Loc: NAD Loc Dim Pej Pos:X
+    X+<>+NAD+Dim+Pej+Pl: NAD Pl Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 5, 6
+    1+<>+NAD+Con+1+Pl+Prt: NAD Con Prt Pos:1Pl
+    1+<>+NAD+Con+1+Pl+Voc+Pl: NAD Pl Con Voc Pos:1Pl
+    1+<>+NAD+Dim+1+Pl+Prt: NAD Dim Prt Pos:1Pl
+    1+<>+NAD+Dim+1+Pl+Voc+Pl: NAD Pl Dim Voc Pos:1Pl
+    2+<>+NAD+Con+1+Pl+Prt: NAD Con Prt Pos:21Pl
+    2+<>+NAD+Con+1+Pl+Voc+Pl: NAD Pl Con Voc Pos:21Pl
+    2+<>+NAD+Con+2+Pl+Prt: NAD Con Prt Pos:2Pl
+    2+<>+NAD+Con+2+Pl+Voc+Pl: NAD Pl Con Voc Pos:2Pl
+    2+<>+NAD+Dim+1+Pl+Prt: NAD Dim Prt Pos:21Pl
+    2+<>+NAD+Dim+1+Pl+Voc+Pl: NAD Pl Dim Voc Pos:21Pl
+    2+<>+NAD+Dim+2+Pl+Prt: NAD Dim Prt Pos:2Pl
+    2+<>+NAD+Dim+2+Pl+Voc+Pl: NAD Pl Dim Voc Pos:2Pl
+    3+<>+NAD+Con+3+4+Prt: NAD Con Prt Pos:3'
+    3+<>+NAD+Dim+3+4+Prt: NAD Dim Prt Pos:3'
+     
+     #Values from slots numbered 1, 2, 5, 7
+    1+<>+NAD+Con+1+Pl+4: NAD Obv Con Pos:1Pl
+    1+<>+NAD+Con+1+Pl+Loc: NAD Loc Con Pos:1Pl
+    1+<>+NAD+Con+1+Pl+Pl: NAD Pl Con Pos:1Pl
+    1+<>+NAD+Dim+1+Pl+4: NAD Obv Dim Pos:1Pl
+    1+<>+NAD+Dim+1+Pl+Loc: NAD Loc Dim Pos:1Pl
+    1+<>+NAD+Dim+1+Pl+Pl: NAD Pl Dim Pos:1Pl
+    2+<>+NAD+Con+1+Pl+4: NAD Obv Con Pos:21Pl
+    2+<>+NAD+Con+1+Pl+Loc: NAD Loc Con Pos:21Pl
+    2+<>+NAD+Con+1+Pl+Pl: NAD Pl Con Pos:21Pl
+    2+<>+NAD+Con+2+Pl+4: NAD Obv Con Pos:2Pl
+    2+<>+NAD+Con+2+Pl+Loc: NAD Loc Con Pos:2Pl
+    2+<>+NAD+Con+2+Pl+Pl: NAD Pl Con Pos:2Pl
+    2+<>+NAD+Dim+1+Pl+4: NAD Obv Dim Pos:21Pl
+    2+<>+NAD+Dim+1+Pl+Loc: NAD Loc Dim Pos:21Pl
+    2+<>+NAD+Dim+1+Pl+Pl: NAD Pl Dim Pos:21Pl
+    2+<>+NAD+Dim+2+Pl+4: NAD Obv Dim Pos:2Pl
+    2+<>+NAD+Dim+2+Pl+Loc: NAD Loc Dim Pos:2Pl
+    2+<>+NAD+Dim+2+Pl+Pl: NAD Pl Dim Pos:2Pl
+    3+<>+NAD+Con+2+Pl+4: NAD Obv Con Pos:3Pl
+    3+<>+NAD+Con+2+Pl+Loc: NAD Loc Con Pos:3Pl
+    3+<>+NAD+Con+3+4+4: NAD Obv Con Pos:3'
+    3+<>+NAD+Con+3+4+Loc: NAD Loc Con Pos:3'
+    3+<>+NAD+Dim+2+Pl+4: NAD Obv Dim Pos:3Pl
+    3+<>+NAD+Dim+2+Pl+Loc: NAD Loc Dim Pos:3Pl
+    3+<>+NAD+Dim+3+4+4: NAD Obv Dim Pos:3'
+    3+<>+NAD+Dim+3+4+Loc: NAD Loc Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 6, 7
+    1+<>+NAD+Con+Prt+4: NAD Obv Con Prt Pos:1
+    1+<>+NAD+Con+Prt+Loc: NAD Loc Con Prt Pos:1
+    1+<>+NAD+Con+Prt+Pl: NAD Pl Con Prt Pos:1
+    1+<>+NAD+Dim+Prt+4: NAD Obv Dim Prt Pos:1
+    1+<>+NAD+Dim+Prt+Loc: NAD Loc Dim Prt Pos:1
+    1+<>+NAD+Dim+Prt+Pl: NAD Pl Dim Prt Pos:1
+    2+<>+NAD+Con+Prt+4: NAD Obv Con Prt Pos:2
+    2+<>+NAD+Con+Prt+Loc: NAD Loc Con Prt Pos:2
+    2+<>+NAD+Con+Prt+Pl: NAD Pl Con Prt Pos:2
+    2+<>+NAD+Dim+Prt+4: NAD Obv Dim Prt Pos:2
+    2+<>+NAD+Dim+Prt+Loc: NAD Loc Dim Prt Pos:2
+    2+<>+NAD+Dim+Prt+Pl: NAD Pl Dim Prt Pos:2
+    3+<>+NAD+Con+Prt+4: NAD Obv Con Prt Pos:3
+    3+<>+NAD+Con+Prt+Loc: NAD Loc Con Prt Pos:3
+    3+<>+NAD+Dim+Prt+4: NAD Obv Dim Prt Pos:3
+    3+<>+NAD+Dim+Prt+Loc: NAD Loc Dim Prt Pos:3
+    X+<>+NAD+Con+Prt+4: NAD Obv Con Prt Pos:X
+    X+<>+NAD+Con+Prt+Loc: NAD Loc Con Prt Pos:X
+    X+<>+NAD+Con+Prt+Pl: NAD Pl Con Prt Pos:X
+    X+<>+NAD+Dim+Prt+4: NAD Obv Dim Prt Pos:X
+    X+<>+NAD+Dim+Prt+Loc: NAD Loc Dim Prt Pos:X
+    X+<>+NAD+Dim+Prt+Pl: NAD Pl Dim Prt Pos:X
+     
+     #Values from slots numbered 1, 3, 4, 5
+    1+<>+NAD+ThmPos+Pej+1+Pl: NAD Pej Pos:1Pl
+    2+<>+NAD+ThmPos+Pej+1+Pl: NAD Pej Pos:21Pl
+    2+<>+NAD+ThmPos+Pej+2+Pl: NAD Pej Pos:2Pl
+    3+<>+NAD+ThmPos+Pej+3+4: NAD Pej Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 6
+    1+<>+NAD+ThmPos+Pej+Prt: NAD Pej Prt Pos:1
+    1+<>+NAD+ThmPos+Pej+Voc+Pl: NAD Pl Pej Voc Pos:1
+    2+<>+NAD+ThmPos+Pej+Prt: NAD Pej Prt Pos:2
+    2+<>+NAD+ThmPos+Pej+Voc+Pl: NAD Pl Pej Voc Pos:2
+    X+<>+NAD+ThmPos+Pej+Prt: NAD Pej Prt Pos:X
+    X+<>+NAD+ThmPos+Pej+Voc+Pl: NAD Pl Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 3, 4, 7
+    1+<>+NAD+ThmPos+Pej+4: NAD Obv Pej Pos:1
+    1+<>+NAD+ThmPos+Pej+Loc: NAD Loc Pej Pos:1
+    1+<>+NAD+ThmPos+Pej+Pl: NAD Pl Pej Pos:1
+    2+<>+NAD+ThmPos+Pej+4: NAD Obv Pej Pos:2
+    2+<>+NAD+ThmPos+Pej+Loc: NAD Loc Pej Pos:2
+    2+<>+NAD+ThmPos+Pej+Pl: NAD Pl Pej Pos:2
+    3+<>+NAD+ThmPos+Pej+4: NAD Obv Pej Pos:3
+    3+<>+NAD+ThmPos+Pej+Loc: NAD Loc Pej Pos:3
+    X+<>+NAD+ThmPos+Pej+4: NAD Obv Pej Pos:X
+    X+<>+NAD+ThmPos+Pej+Loc: NAD Loc Pej Pos:X
+    X+<>+NAD+ThmPos+Pej+Pl: NAD Pl Pej Pos:X
+     
+     #Values from slots numbered 1, 3, 5, 6
+    1+<>+NAD+ThmPos+1+Pl+Prt: NAD Prt Pos:1Pl
+    1+<>+NAD+ThmPos+1+Pl+Voc+Pl: NAD Pl Voc Pos:1Pl
+    2+<>+NAD+ThmPos+1+Pl+Prt: NAD Prt Pos:21Pl
+    2+<>+NAD+ThmPos+1+Pl+Voc+Pl: NAD Pl Voc Pos:21Pl
+    2+<>+NAD+ThmPos+2+Pl+Prt: NAD Prt Pos:2Pl
+    2+<>+NAD+ThmPos+2+Pl+Voc+Pl: NAD Pl Voc Pos:2Pl
+    3+<>+NAD+ThmPos+3+4+Prt: NAD Prt Pos:3'
+     
+     #Values from slots numbered 1, 3, 5, 7
+    1+<>+NAD+ThmPos+1+Pl+4: NAD Obv Pos:1Pl
+    1+<>+NAD+ThmPos+1+Pl+Loc: NAD Loc Pos:1Pl
+    1+<>+NAD+ThmPos+1+Pl+Pl: NAD Pl Pos:1Pl
+    2+<>+NAD+ThmPos+1+Pl+4: NAD Obv Pos:21Pl
+    2+<>+NAD+ThmPos+1+Pl+Loc: NAD Loc Pos:21Pl
+    2+<>+NAD+ThmPos+1+Pl+Pl: NAD Pl Pos:21Pl
+    2+<>+NAD+ThmPos+2+Pl+4: NAD Obv Pos:2Pl
+    2+<>+NAD+ThmPos+2+Pl+Loc: NAD Loc Pos:2Pl
+    2+<>+NAD+ThmPos+2+Pl+Pl: NAD Pl Pos:2Pl
+    3+<>+NAD+ThmPos+2+Pl+4: NAD Obv Pos:3Pl
+    3+<>+NAD+ThmPos+2+Pl+Loc: NAD Loc Pos:3Pl
+    3+<>+NAD+ThmPos+3+4+4: NAD Obv Pos:3'
+    3+<>+NAD+ThmPos+3+4+Loc: NAD Loc Pos:3'
+     
+     #Values from slots numbered 1, 3, 6, 7
+    1+<>+NAD+ThmPos+Prt+4: NAD Obv Prt Pos:1
+    1+<>+NAD+ThmPos+Prt+Loc: NAD Loc Prt Pos:1
+    1+<>+NAD+ThmPos+Prt+Pl: NAD Pl Prt Pos:1
+    2+<>+NAD+ThmPos+Prt+4: NAD Obv Prt Pos:2
+    2+<>+NAD+ThmPos+Prt+Loc: NAD Loc Prt Pos:2
+    2+<>+NAD+ThmPos+Prt+Pl: NAD Pl Prt Pos:2
+    3+<>+NAD+ThmPos+Prt+4: NAD Obv Prt Pos:3
+    3+<>+NAD+ThmPos+Prt+Loc: NAD Loc Prt Pos:3
+    X+<>+NAD+ThmPos+Prt+4: NAD Obv Prt Pos:X
+    X+<>+NAD+ThmPos+Prt+Loc: NAD Loc Prt Pos:X
+    X+<>+NAD+ThmPos+Prt+Pl: NAD Pl Prt Pos:X
+     
+     #Values from slots numbered 1, 4, 5, 6
+    1+<>+NAD+Pej+1+Pl+Prt: NAD Pej Prt Pos:1Pl
+    1+<>+NAD+Pej+1+Pl+Voc+Pl: NAD Pl Pej Voc Pos:1Pl
+    2+<>+NAD+Pej+1+Pl+Prt: NAD Pej Prt Pos:21Pl
+    2+<>+NAD+Pej+1+Pl+Voc+Pl: NAD Pl Pej Voc Pos:21Pl
+    2+<>+NAD+Pej+2+Pl+Prt: NAD Pej Prt Pos:2Pl
+    2+<>+NAD+Pej+2+Pl+Voc+Pl: NAD Pl Pej Voc Pos:2Pl
+    3+<>+NAD+Pej+3+4+Prt: NAD Pej Prt Pos:3'
+     
+     #Values from slots numbered 1, 4, 5, 7
+    1+<>+NAD+Pej+1+Pl+4: NAD Obv Pej Pos:1Pl
+    1+<>+NAD+Pej+1+Pl+Loc: NAD Loc Pej Pos:1Pl
+    1+<>+NAD+Pej+1+Pl+Pl: NAD Pl Pej Pos:1Pl
+    2+<>+NAD+Pej+1+Pl+4: NAD Obv Pej Pos:21Pl
+    2+<>+NAD+Pej+1+Pl+Loc: NAD Loc Pej Pos:21Pl
+    2+<>+NAD+Pej+1+Pl+Pl: NAD Pl Pej Pos:21Pl
+    2+<>+NAD+Pej+2+Pl+4: NAD Obv Pej Pos:2Pl
+    2+<>+NAD+Pej+2+Pl+Loc: NAD Loc Pej Pos:2Pl
+    2+<>+NAD+Pej+2+Pl+Pl: NAD Pl Pej Pos:2Pl
+    3+<>+NAD+Pej+2+Pl+4: NAD Obv Pej Pos:3Pl
+    3+<>+NAD+Pej+2+Pl+Loc: NAD Loc Pej Pos:3Pl
+    3+<>+NAD+Pej+3+4+4: NAD Obv Pej Pos:3'
+    3+<>+NAD+Pej+3+4+Loc: NAD Loc Pej Pos:3'
+     
+     #Values from slots numbered 1, 4, 6, 7
+    1+<>+NAD+Pej+Prt+4: NAD Obv Pej Prt Pos:1
+    1+<>+NAD+Pej+Prt+Loc: NAD Loc Pej Prt Pos:1
+    1+<>+NAD+Pej+Prt+Pl: NAD Pl Pej Prt Pos:1
+    2+<>+NAD+Pej+Prt+4: NAD Obv Pej Prt Pos:2
+    2+<>+NAD+Pej+Prt+Loc: NAD Loc Pej Prt Pos:2
+    2+<>+NAD+Pej+Prt+Pl: NAD Pl Pej Prt Pos:2
+    3+<>+NAD+Pej+Prt+4: NAD Obv Pej Prt Pos:3
+    3+<>+NAD+Pej+Prt+Loc: NAD Loc Pej Prt Pos:3
+    X+<>+NAD+Pej+Prt+4: NAD Obv Pej Prt Pos:X
+    X+<>+NAD+Pej+Prt+Loc: NAD Loc Pej Prt Pos:X
+    X+<>+NAD+Pej+Prt+Pl: NAD Pl Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 5, 6, 7
+    1+<>+NAD+1+Pl+Prt+4: NAD Obv Prt Pos:1Pl
+    1+<>+NAD+1+Pl+Prt+Loc: NAD Loc Prt Pos:1Pl
+    1+<>+NAD+1+Pl+Prt+Pl: NAD Pl Prt Pos:1Pl
+    2+<>+NAD+1+Pl+Prt+4: NAD Obv Prt Pos:21Pl
+    2+<>+NAD+1+Pl+Prt+Loc: NAD Loc Prt Pos:21Pl
+    2+<>+NAD+1+Pl+Prt+Pl: NAD Pl Prt Pos:21Pl
+    2+<>+NAD+2+Pl+Prt+4: NAD Obv Prt Pos:2Pl
+    2+<>+NAD+2+Pl+Prt+Loc: NAD Loc Prt Pos:2Pl
+    2+<>+NAD+2+Pl+Prt+Pl: NAD Pl Prt Pos:2Pl
+    3+<>+NAD+2+Pl+Prt+4: NAD Obv Prt Pos:3Pl
+    3+<>+NAD+2+Pl+Prt+Loc: NAD Loc Prt Pos:3Pl
+    3+<>+NAD+3+4+Prt+4: NAD Obv Prt Pos:3'
+    3+<>+NAD+3+4+Prt+Loc: NAD Loc Prt Pos:3'
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 2, 4, 6, 7
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 1, 2, 3, 4, 5
+    1+<>+NAD+Con+ThmPos+Pej+1+Pl: NAD Con Pej Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+Pej+1+Pl: NAD Dim Pej Pos:1Pl
+    2+<>+NAD+Con+ThmPos+Pej+1+Pl: NAD Con Pej Pos:21Pl
+    2+<>+NAD+Con+ThmPos+Pej+2+Pl: NAD Con Pej Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+Pej+1+Pl: NAD Dim Pej Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+Pej+2+Pl: NAD Dim Pej Pos:2Pl
+    3+<>+NAD+Con+ThmPos+Pej+3+4: NAD Con Pej Pos:3'
+    3+<>+NAD+Dim+ThmPos+Pej+3+4: NAD Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 4, 6
+    1+<>+NAD+Con+ThmPos+Pej+Prt: NAD Con Pej Prt Pos:1
+    1+<>+NAD+Con+ThmPos+Pej+Voc+Pl: NAD Pl Con Pej Voc Pos:1
+    1+<>+NAD+Dim+ThmPos+Pej+Prt: NAD Dim Pej Prt Pos:1
+    1+<>+NAD+Dim+ThmPos+Pej+Voc+Pl: NAD Pl Dim Pej Voc Pos:1
+    2+<>+NAD+Con+ThmPos+Pej+Prt: NAD Con Pej Prt Pos:2
+    2+<>+NAD+Con+ThmPos+Pej+Voc+Pl: NAD Pl Con Pej Voc Pos:2
+    2+<>+NAD+Dim+ThmPos+Pej+Prt: NAD Dim Pej Prt Pos:2
+    2+<>+NAD+Dim+ThmPos+Pej+Voc+Pl: NAD Pl Dim Pej Voc Pos:2
+    X+<>+NAD+Con+ThmPos+Pej+Prt: NAD Con Pej Prt Pos:X
+    X+<>+NAD+Con+ThmPos+Pej+Voc+Pl: NAD Pl Con Pej Voc Pos:X
+    X+<>+NAD+Dim+ThmPos+Pej+Prt: NAD Dim Pej Prt Pos:X
+    X+<>+NAD+Dim+ThmPos+Pej+Voc+Pl: NAD Pl Dim Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 4, 7
+    1+<>+NAD+Con+ThmPos+Pej+4: NAD Obv Con Pej Pos:1
+    1+<>+NAD+Con+ThmPos+Pej+Loc: NAD Loc Con Pej Pos:1
+    1+<>+NAD+Con+ThmPos+Pej+Pl: NAD Pl Con Pej Pos:1
+    1+<>+NAD+Dim+ThmPos+Pej+4: NAD Obv Dim Pej Pos:1
+    1+<>+NAD+Dim+ThmPos+Pej+Loc: NAD Loc Dim Pej Pos:1
+    1+<>+NAD+Dim+ThmPos+Pej+Pl: NAD Pl Dim Pej Pos:1
+    2+<>+NAD+Con+ThmPos+Pej+4: NAD Obv Con Pej Pos:2
+    2+<>+NAD+Con+ThmPos+Pej+Loc: NAD Loc Con Pej Pos:2
+    2+<>+NAD+Con+ThmPos+Pej+Pl: NAD Pl Con Pej Pos:2
+    2+<>+NAD+Dim+ThmPos+Pej+4: NAD Obv Dim Pej Pos:2
+    2+<>+NAD+Dim+ThmPos+Pej+Loc: NAD Loc Dim Pej Pos:2
+    2+<>+NAD+Dim+ThmPos+Pej+Pl: NAD Pl Dim Pej Pos:2
+    3+<>+NAD+Con+ThmPos+Pej+4: NAD Obv Con Pej Pos:3
+    3+<>+NAD+Con+ThmPos+Pej+Loc: NAD Loc Con Pej Pos:3
+    3+<>+NAD+Dim+ThmPos+Pej+4: NAD Obv Dim Pej Pos:3
+    3+<>+NAD+Dim+ThmPos+Pej+Loc: NAD Loc Dim Pej Pos:3
+    X+<>+NAD+Con+ThmPos+Pej+4: NAD Obv Con Pej Pos:X
+    X+<>+NAD+Con+ThmPos+Pej+Loc: NAD Loc Con Pej Pos:X
+    X+<>+NAD+Con+ThmPos+Pej+Pl: NAD Pl Con Pej Pos:X
+    X+<>+NAD+Dim+ThmPos+Pej+4: NAD Obv Dim Pej Pos:X
+    X+<>+NAD+Dim+ThmPos+Pej+Loc: NAD Loc Dim Pej Pos:X
+    X+<>+NAD+Dim+ThmPos+Pej+Pl: NAD Pl Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 5, 6
+    1+<>+NAD+Con+ThmPos+1+Pl+Prt: NAD Con Prt Pos:1Pl
+    1+<>+NAD+Con+ThmPos+1+Pl+Voc+Pl: NAD Pl Con Voc Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+1+Pl+Prt: NAD Dim Prt Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+1+Pl+Voc+Pl: NAD Pl Dim Voc Pos:1Pl
+    2+<>+NAD+Con+ThmPos+1+Pl+Prt: NAD Con Prt Pos:21Pl
+    2+<>+NAD+Con+ThmPos+1+Pl+Voc+Pl: NAD Pl Con Voc Pos:21Pl
+    2+<>+NAD+Con+ThmPos+2+Pl+Prt: NAD Con Prt Pos:2Pl
+    2+<>+NAD+Con+ThmPos+2+Pl+Voc+Pl: NAD Pl Con Voc Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+1+Pl+Prt: NAD Dim Prt Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+1+Pl+Voc+Pl: NAD Pl Dim Voc Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+2+Pl+Prt: NAD Dim Prt Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+2+Pl+Voc+Pl: NAD Pl Dim Voc Pos:2Pl
+    3+<>+NAD+Con+ThmPos+3+4+Prt: NAD Con Prt Pos:3'
+    3+<>+NAD+Dim+ThmPos+3+4+Prt: NAD Dim Prt Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 5, 7
+    1+<>+NAD+Con+ThmPos+1+Pl+4: NAD Obv Con Pos:1Pl
+    1+<>+NAD+Con+ThmPos+1+Pl+Loc: NAD Loc Con Pos:1Pl
+    1+<>+NAD+Con+ThmPos+1+Pl+Pl: NAD Pl Con Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+1+Pl+4: NAD Obv Dim Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+1+Pl+Loc: NAD Loc Dim Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+1+Pl+Pl: NAD Pl Dim Pos:1Pl
+    2+<>+NAD+Con+ThmPos+1+Pl+4: NAD Obv Con Pos:21Pl
+    2+<>+NAD+Con+ThmPos+1+Pl+Loc: NAD Loc Con Pos:21Pl
+    2+<>+NAD+Con+ThmPos+1+Pl+Pl: NAD Pl Con Pos:21Pl
+    2+<>+NAD+Con+ThmPos+2+Pl+4: NAD Obv Con Pos:2Pl
+    2+<>+NAD+Con+ThmPos+2+Pl+Loc: NAD Loc Con Pos:2Pl
+    2+<>+NAD+Con+ThmPos+2+Pl+Pl: NAD Pl Con Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+1+Pl+4: NAD Obv Dim Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+1+Pl+Loc: NAD Loc Dim Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+1+Pl+Pl: NAD Pl Dim Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+2+Pl+4: NAD Obv Dim Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+2+Pl+Loc: NAD Loc Dim Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+2+Pl+Pl: NAD Pl Dim Pos:2Pl
+    3+<>+NAD+Con+ThmPos+2+Pl+4: NAD Obv Con Pos:3Pl
+    3+<>+NAD+Con+ThmPos+2+Pl+Loc: NAD Loc Con Pos:3Pl
+    3+<>+NAD+Con+ThmPos+3+4+4: NAD Obv Con Pos:3'
+    3+<>+NAD+Con+ThmPos+3+4+Loc: NAD Loc Con Pos:3'
+    3+<>+NAD+Dim+ThmPos+2+Pl+4: NAD Obv Dim Pos:3Pl
+    3+<>+NAD+Dim+ThmPos+2+Pl+Loc: NAD Loc Dim Pos:3Pl
+    3+<>+NAD+Dim+ThmPos+3+4+4: NAD Obv Dim Pos:3'
+    3+<>+NAD+Dim+ThmPos+3+4+Loc: NAD Loc Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 6, 7
+    1+<>+NAD+Con+ThmPos+Prt+4: NAD Obv Con Prt Pos:1
+    1+<>+NAD+Con+ThmPos+Prt+Loc: NAD Loc Con Prt Pos:1
+    1+<>+NAD+Con+ThmPos+Prt+Pl: NAD Pl Con Prt Pos:1
+    1+<>+NAD+Dim+ThmPos+Prt+4: NAD Obv Dim Prt Pos:1
+    1+<>+NAD+Dim+ThmPos+Prt+Loc: NAD Loc Dim Prt Pos:1
+    1+<>+NAD+Dim+ThmPos+Prt+Pl: NAD Pl Dim Prt Pos:1
+    2+<>+NAD+Con+ThmPos+Prt+4: NAD Obv Con Prt Pos:2
+    2+<>+NAD+Con+ThmPos+Prt+Loc: NAD Loc Con Prt Pos:2
+    2+<>+NAD+Con+ThmPos+Prt+Pl: NAD Pl Con Prt Pos:2
+    2+<>+NAD+Dim+ThmPos+Prt+4: NAD Obv Dim Prt Pos:2
+    2+<>+NAD+Dim+ThmPos+Prt+Loc: NAD Loc Dim Prt Pos:2
+    2+<>+NAD+Dim+ThmPos+Prt+Pl: NAD Pl Dim Prt Pos:2
+    3+<>+NAD+Con+ThmPos+Prt+4: NAD Obv Con Prt Pos:3
+    3+<>+NAD+Con+ThmPos+Prt+Loc: NAD Loc Con Prt Pos:3
+    3+<>+NAD+Dim+ThmPos+Prt+4: NAD Obv Dim Prt Pos:3
+    3+<>+NAD+Dim+ThmPos+Prt+Loc: NAD Loc Dim Prt Pos:3
+    X+<>+NAD+Con+ThmPos+Prt+4: NAD Obv Con Prt Pos:X
+    X+<>+NAD+Con+ThmPos+Prt+Loc: NAD Loc Con Prt Pos:X
+    X+<>+NAD+Con+ThmPos+Prt+Pl: NAD Pl Con Prt Pos:X
+    X+<>+NAD+Dim+ThmPos+Prt+4: NAD Obv Dim Prt Pos:X
+    X+<>+NAD+Dim+ThmPos+Prt+Loc: NAD Loc Dim Prt Pos:X
+    X+<>+NAD+Dim+ThmPos+Prt+Pl: NAD Pl Dim Prt Pos:X
+     
+     #Values from slots numbered 1, 2, 4, 5, 6
+    1+<>+NAD+Con+Pej+1+Pl+Prt: NAD Con Pej Prt Pos:1Pl
+    1+<>+NAD+Con+Pej+1+Pl+Voc+Pl: NAD Pl Con Pej Voc Pos:1Pl
+    1+<>+NAD+Dim+Pej+1+Pl+Prt: NAD Dim Pej Prt Pos:1Pl
+    1+<>+NAD+Dim+Pej+1+Pl+Voc+Pl: NAD Pl Dim Pej Voc Pos:1Pl
+    2+<>+NAD+Con+Pej+1+Pl+Prt: NAD Con Pej Prt Pos:21Pl
+    2+<>+NAD+Con+Pej+1+Pl+Voc+Pl: NAD Pl Con Pej Voc Pos:21Pl
+    2+<>+NAD+Con+Pej+2+Pl+Prt: NAD Con Pej Prt Pos:2Pl
+    2+<>+NAD+Con+Pej+2+Pl+Voc+Pl: NAD Pl Con Pej Voc Pos:2Pl
+    2+<>+NAD+Dim+Pej+1+Pl+Prt: NAD Dim Pej Prt Pos:21Pl
+    2+<>+NAD+Dim+Pej+1+Pl+Voc+Pl: NAD Pl Dim Pej Voc Pos:21Pl
+    2+<>+NAD+Dim+Pej+2+Pl+Prt: NAD Dim Pej Prt Pos:2Pl
+    2+<>+NAD+Dim+Pej+2+Pl+Voc+Pl: NAD Pl Dim Pej Voc Pos:2Pl
+    3+<>+NAD+Con+Pej+3+4+Prt: NAD Con Pej Prt Pos:3'
+    3+<>+NAD+Dim+Pej+3+4+Prt: NAD Dim Pej Prt Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 5, 7
+    1+<>+NAD+Con+Pej+1+Pl+4: NAD Obv Con Pej Pos:1Pl
+    1+<>+NAD+Con+Pej+1+Pl+Loc: NAD Loc Con Pej Pos:1Pl
+    1+<>+NAD+Con+Pej+1+Pl+Pl: NAD Pl Con Pej Pos:1Pl
+    1+<>+NAD+Dim+Pej+1+Pl+4: NAD Obv Dim Pej Pos:1Pl
+    1+<>+NAD+Dim+Pej+1+Pl+Loc: NAD Loc Dim Pej Pos:1Pl
+    1+<>+NAD+Dim+Pej+1+Pl+Pl: NAD Pl Dim Pej Pos:1Pl
+    2+<>+NAD+Con+Pej+1+Pl+4: NAD Obv Con Pej Pos:21Pl
+    2+<>+NAD+Con+Pej+1+Pl+Loc: NAD Loc Con Pej Pos:21Pl
+    2+<>+NAD+Con+Pej+1+Pl+Pl: NAD Pl Con Pej Pos:21Pl
+    2+<>+NAD+Con+Pej+2+Pl+4: NAD Obv Con Pej Pos:2Pl
+    2+<>+NAD+Con+Pej+2+Pl+Loc: NAD Loc Con Pej Pos:2Pl
+    2+<>+NAD+Con+Pej+2+Pl+Pl: NAD Pl Con Pej Pos:2Pl
+    2+<>+NAD+Dim+Pej+1+Pl+4: NAD Obv Dim Pej Pos:21Pl
+    2+<>+NAD+Dim+Pej+1+Pl+Loc: NAD Loc Dim Pej Pos:21Pl
+    2+<>+NAD+Dim+Pej+1+Pl+Pl: NAD Pl Dim Pej Pos:21Pl
+    2+<>+NAD+Dim+Pej+2+Pl+4: NAD Obv Dim Pej Pos:2Pl
+    2+<>+NAD+Dim+Pej+2+Pl+Loc: NAD Loc Dim Pej Pos:2Pl
+    2+<>+NAD+Dim+Pej+2+Pl+Pl: NAD Pl Dim Pej Pos:2Pl
+    3+<>+NAD+Con+Pej+2+Pl+4: NAD Obv Con Pej Pos:3Pl
+    3+<>+NAD+Con+Pej+2+Pl+Loc: NAD Loc Con Pej Pos:3Pl
+    3+<>+NAD+Con+Pej+3+4+4: NAD Obv Con Pej Pos:3'
+    3+<>+NAD+Con+Pej+3+4+Loc: NAD Loc Con Pej Pos:3'
+    3+<>+NAD+Dim+Pej+2+Pl+4: NAD Obv Dim Pej Pos:3Pl
+    3+<>+NAD+Dim+Pej+2+Pl+Loc: NAD Loc Dim Pej Pos:3Pl
+    3+<>+NAD+Dim+Pej+3+4+4: NAD Obv Dim Pej Pos:3'
+    3+<>+NAD+Dim+Pej+3+4+Loc: NAD Loc Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 6, 7
+    1+<>+NAD+Con+Pej+Prt+4: NAD Obv Con Pej Prt Pos:1
+    1+<>+NAD+Con+Pej+Prt+Loc: NAD Loc Con Pej Prt Pos:1
+    1+<>+NAD+Con+Pej+Prt+Pl: NAD Pl Con Pej Prt Pos:1
+    1+<>+NAD+Dim+Pej+Prt+4: NAD Obv Dim Pej Prt Pos:1
+    1+<>+NAD+Dim+Pej+Prt+Loc: NAD Loc Dim Pej Prt Pos:1
+    1+<>+NAD+Dim+Pej+Prt+Pl: NAD Pl Dim Pej Prt Pos:1
+    2+<>+NAD+Con+Pej+Prt+4: NAD Obv Con Pej Prt Pos:2
+    2+<>+NAD+Con+Pej+Prt+Loc: NAD Loc Con Pej Prt Pos:2
+    2+<>+NAD+Con+Pej+Prt+Pl: NAD Pl Con Pej Prt Pos:2
+    2+<>+NAD+Dim+Pej+Prt+4: NAD Obv Dim Pej Prt Pos:2
+    2+<>+NAD+Dim+Pej+Prt+Loc: NAD Loc Dim Pej Prt Pos:2
+    2+<>+NAD+Dim+Pej+Prt+Pl: NAD Pl Dim Pej Prt Pos:2
+    3+<>+NAD+Con+Pej+Prt+4: NAD Obv Con Pej Prt Pos:3
+    3+<>+NAD+Con+Pej+Prt+Loc: NAD Loc Con Pej Prt Pos:3
+    3+<>+NAD+Dim+Pej+Prt+4: NAD Obv Dim Pej Prt Pos:3
+    3+<>+NAD+Dim+Pej+Prt+Loc: NAD Loc Dim Pej Prt Pos:3
+    X+<>+NAD+Con+Pej+Prt+4: NAD Obv Con Pej Prt Pos:X
+    X+<>+NAD+Con+Pej+Prt+Loc: NAD Loc Con Pej Prt Pos:X
+    X+<>+NAD+Con+Pej+Prt+Pl: NAD Pl Con Pej Prt Pos:X
+    X+<>+NAD+Dim+Pej+Prt+4: NAD Obv Dim Pej Prt Pos:X
+    X+<>+NAD+Dim+Pej+Prt+Loc: NAD Loc Dim Pej Prt Pos:X
+    X+<>+NAD+Dim+Pej+Prt+Pl: NAD Pl Dim Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 2, 5, 6, 7
+    1+<>+NAD+Con+1+Pl+Prt+4: NAD Obv Con Prt Pos:1Pl
+    1+<>+NAD+Con+1+Pl+Prt+Loc: NAD Loc Con Prt Pos:1Pl
+    1+<>+NAD+Con+1+Pl+Prt+Pl: NAD Pl Con Prt Pos:1Pl
+    1+<>+NAD+Dim+1+Pl+Prt+4: NAD Obv Dim Prt Pos:1Pl
+    1+<>+NAD+Dim+1+Pl+Prt+Loc: NAD Loc Dim Prt Pos:1Pl
+    1+<>+NAD+Dim+1+Pl+Prt+Pl: NAD Pl Dim Prt Pos:1Pl
+    2+<>+NAD+Con+1+Pl+Prt+4: NAD Obv Con Prt Pos:21Pl
+    2+<>+NAD+Con+1+Pl+Prt+Loc: NAD Loc Con Prt Pos:21Pl
+    2+<>+NAD+Con+1+Pl+Prt+Pl: NAD Pl Con Prt Pos:21Pl
+    2+<>+NAD+Con+2+Pl+Prt+4: NAD Obv Con Prt Pos:2Pl
+    2+<>+NAD+Con+2+Pl+Prt+Loc: NAD Loc Con Prt Pos:2Pl
+    2+<>+NAD+Con+2+Pl+Prt+Pl: NAD Pl Con Prt Pos:2Pl
+    2+<>+NAD+Dim+1+Pl+Prt+4: NAD Obv Dim Prt Pos:21Pl
+    2+<>+NAD+Dim+1+Pl+Prt+Loc: NAD Loc Dim Prt Pos:21Pl
+    2+<>+NAD+Dim+1+Pl+Prt+Pl: NAD Pl Dim Prt Pos:21Pl
+    2+<>+NAD+Dim+2+Pl+Prt+4: NAD Obv Dim Prt Pos:2Pl
+    2+<>+NAD+Dim+2+Pl+Prt+Loc: NAD Loc Dim Prt Pos:2Pl
+    2+<>+NAD+Dim+2+Pl+Prt+Pl: NAD Pl Dim Prt Pos:2Pl
+    3+<>+NAD+Con+2+Pl+Prt+4: NAD Obv Con Prt Pos:3Pl
+    3+<>+NAD+Con+2+Pl+Prt+Loc: NAD Loc Con Prt Pos:3Pl
+    3+<>+NAD+Con+3+4+Prt+4: NAD Obv Con Prt Pos:3'
+    3+<>+NAD+Con+3+4+Prt+Loc: NAD Loc Con Prt Pos:3'
+    3+<>+NAD+Dim+2+Pl+Prt+4: NAD Obv Dim Prt Pos:3Pl
+    3+<>+NAD+Dim+2+Pl+Prt+Loc: NAD Loc Dim Prt Pos:3Pl
+    3+<>+NAD+Dim+3+4+Prt+4: NAD Obv Dim Prt Pos:3'
+    3+<>+NAD+Dim+3+4+Prt+Loc: NAD Loc Dim Prt Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 5, 6
+    1+<>+NAD+ThmPos+Pej+1+Pl+Prt: NAD Pej Prt Pos:1Pl
+    1+<>+NAD+ThmPos+Pej+1+Pl+Voc+Pl: NAD Pl Pej Voc Pos:1Pl
+    2+<>+NAD+ThmPos+Pej+1+Pl+Prt: NAD Pej Prt Pos:21Pl
+    2+<>+NAD+ThmPos+Pej+1+Pl+Voc+Pl: NAD Pl Pej Voc Pos:21Pl
+    2+<>+NAD+ThmPos+Pej+2+Pl+Prt: NAD Pej Prt Pos:2Pl
+    2+<>+NAD+ThmPos+Pej+2+Pl+Voc+Pl: NAD Pl Pej Voc Pos:2Pl
+    3+<>+NAD+ThmPos+Pej+3+4+Prt: NAD Pej Prt Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 5, 7
+    1+<>+NAD+ThmPos+Pej+1+Pl+4: NAD Obv Pej Pos:1Pl
+    1+<>+NAD+ThmPos+Pej+1+Pl+Loc: NAD Loc Pej Pos:1Pl
+    1+<>+NAD+ThmPos+Pej+1+Pl+Pl: NAD Pl Pej Pos:1Pl
+    2+<>+NAD+ThmPos+Pej+1+Pl+4: NAD Obv Pej Pos:21Pl
+    2+<>+NAD+ThmPos+Pej+1+Pl+Loc: NAD Loc Pej Pos:21Pl
+    2+<>+NAD+ThmPos+Pej+1+Pl+Pl: NAD Pl Pej Pos:21Pl
+    2+<>+NAD+ThmPos+Pej+2+Pl+4: NAD Obv Pej Pos:2Pl
+    2+<>+NAD+ThmPos+Pej+2+Pl+Loc: NAD Loc Pej Pos:2Pl
+    2+<>+NAD+ThmPos+Pej+2+Pl+Pl: NAD Pl Pej Pos:2Pl
+    3+<>+NAD+ThmPos+Pej+2+Pl+4: NAD Obv Pej Pos:3Pl
+    3+<>+NAD+ThmPos+Pej+2+Pl+Loc: NAD Loc Pej Pos:3Pl
+    3+<>+NAD+ThmPos+Pej+3+4+4: NAD Obv Pej Pos:3'
+    3+<>+NAD+ThmPos+Pej+3+4+Loc: NAD Loc Pej Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 6, 7
+    1+<>+NAD+ThmPos+Pej+Prt+4: NAD Obv Pej Prt Pos:1
+    1+<>+NAD+ThmPos+Pej+Prt+Loc: NAD Loc Pej Prt Pos:1
+    1+<>+NAD+ThmPos+Pej+Prt+Pl: NAD Pl Pej Prt Pos:1
+    2+<>+NAD+ThmPos+Pej+Prt+4: NAD Obv Pej Prt Pos:2
+    2+<>+NAD+ThmPos+Pej+Prt+Loc: NAD Loc Pej Prt Pos:2
+    2+<>+NAD+ThmPos+Pej+Prt+Pl: NAD Pl Pej Prt Pos:2
+    3+<>+NAD+ThmPos+Pej+Prt+4: NAD Obv Pej Prt Pos:3
+    3+<>+NAD+ThmPos+Pej+Prt+Loc: NAD Loc Pej Prt Pos:3
+    X+<>+NAD+ThmPos+Pej+Prt+4: NAD Obv Pej Prt Pos:X
+    X+<>+NAD+ThmPos+Pej+Prt+Loc: NAD Loc Pej Prt Pos:X
+    X+<>+NAD+ThmPos+Pej+Prt+Pl: NAD Pl Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 3, 5, 6, 7
+    1+<>+NAD+ThmPos+1+Pl+Prt+4: NAD Obv Prt Pos:1Pl
+    1+<>+NAD+ThmPos+1+Pl+Prt+Loc: NAD Loc Prt Pos:1Pl
+    1+<>+NAD+ThmPos+1+Pl+Prt+Pl: NAD Pl Prt Pos:1Pl
+    2+<>+NAD+ThmPos+1+Pl+Prt+4: NAD Obv Prt Pos:21Pl
+    2+<>+NAD+ThmPos+1+Pl+Prt+Loc: NAD Loc Prt Pos:21Pl
+    2+<>+NAD+ThmPos+1+Pl+Prt+Pl: NAD Pl Prt Pos:21Pl
+    2+<>+NAD+ThmPos+2+Pl+Prt+4: NAD Obv Prt Pos:2Pl
+    2+<>+NAD+ThmPos+2+Pl+Prt+Loc: NAD Loc Prt Pos:2Pl
+    2+<>+NAD+ThmPos+2+Pl+Prt+Pl: NAD Pl Prt Pos:2Pl
+    3+<>+NAD+ThmPos+2+Pl+Prt+4: NAD Obv Prt Pos:3Pl
+    3+<>+NAD+ThmPos+2+Pl+Prt+Loc: NAD Loc Prt Pos:3Pl
+    3+<>+NAD+ThmPos+3+4+Prt+4: NAD Obv Prt Pos:3'
+    3+<>+NAD+ThmPos+3+4+Prt+Loc: NAD Loc Prt Pos:3'
+     
+     #Values from slots numbered 1, 4, 5, 6, 7
+    1+<>+NAD+Pej+1+Pl+Prt+4: NAD Obv Pej Prt Pos:1Pl
+    1+<>+NAD+Pej+1+Pl+Prt+Loc: NAD Loc Pej Prt Pos:1Pl
+    1+<>+NAD+Pej+1+Pl+Prt+Pl: NAD Pl Pej Prt Pos:1Pl
+    2+<>+NAD+Pej+1+Pl+Prt+4: NAD Obv Pej Prt Pos:21Pl
+    2+<>+NAD+Pej+1+Pl+Prt+Loc: NAD Loc Pej Prt Pos:21Pl
+    2+<>+NAD+Pej+1+Pl+Prt+Pl: NAD Pl Pej Prt Pos:21Pl
+    2+<>+NAD+Pej+2+Pl+Prt+4: NAD Obv Pej Prt Pos:2Pl
+    2+<>+NAD+Pej+2+Pl+Prt+Loc: NAD Loc Pej Prt Pos:2Pl
+    2+<>+NAD+Pej+2+Pl+Prt+Pl: NAD Pl Pej Prt Pos:2Pl
+    3+<>+NAD+Pej+2+Pl+Prt+4: NAD Obv Pej Prt Pos:3Pl
+    3+<>+NAD+Pej+2+Pl+Prt+Loc: NAD Loc Pej Prt Pos:3Pl
+    3+<>+NAD+Pej+3+4+Prt+4: NAD Obv Pej Prt Pos:3'
+    3+<>+NAD+Pej+3+4+Prt+Loc: NAD Loc Pej Prt Pos:3'
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 1, 2, 3, 4, 5, 6
+    1+<>+NAD+Con+ThmPos+Pej+1+Pl+Prt: NAD Con Pej Prt Pos:1Pl
+    1+<>+NAD+Con+ThmPos+Pej+1+Pl+Voc+Pl: NAD Pl Con Pej Voc Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+Pej+1+Pl+Prt: NAD Dim Pej Prt Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+Pej+1+Pl+Voc+Pl: NAD Pl Dim Pej Voc Pos:1Pl
+    2+<>+NAD+Con+ThmPos+Pej+1+Pl+Prt: NAD Con Pej Prt Pos:21Pl
+    2+<>+NAD+Con+ThmPos+Pej+1+Pl+Voc+Pl: NAD Pl Con Pej Voc Pos:21Pl
+    2+<>+NAD+Con+ThmPos+Pej+2+Pl+Prt: NAD Con Pej Prt Pos:2Pl
+    2+<>+NAD+Con+ThmPos+Pej+2+Pl+Voc+Pl: NAD Pl Con Pej Voc Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+Pej+1+Pl+Prt: NAD Dim Pej Prt Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+Pej+1+Pl+Voc+Pl: NAD Pl Dim Pej Voc Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+Pej+2+Pl+Prt: NAD Dim Pej Prt Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+Pej+2+Pl+Voc+Pl: NAD Pl Dim Pej Voc Pos:2Pl
+    3+<>+NAD+Con+ThmPos+Pej+3+4+Prt: NAD Con Pej Prt Pos:3'
+    3+<>+NAD+Dim+ThmPos+Pej+3+4+Prt: NAD Dim Pej Prt Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 4, 5, 7
+    1+<>+NAD+Con+ThmPos+Pej+1+Pl+4: NAD Obv Con Pej Pos:1Pl
+    1+<>+NAD+Con+ThmPos+Pej+1+Pl+Loc: NAD Loc Con Pej Pos:1Pl
+    1+<>+NAD+Con+ThmPos+Pej+1+Pl+Pl: NAD Pl Con Pej Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+Pej+1+Pl+4: NAD Obv Dim Pej Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+Pej+1+Pl+Loc: NAD Loc Dim Pej Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+Pej+1+Pl+Pl: NAD Pl Dim Pej Pos:1Pl
+    2+<>+NAD+Con+ThmPos+Pej+1+Pl+4: NAD Obv Con Pej Pos:21Pl
+    2+<>+NAD+Con+ThmPos+Pej+1+Pl+Loc: NAD Loc Con Pej Pos:21Pl
+    2+<>+NAD+Con+ThmPos+Pej+1+Pl+Pl: NAD Pl Con Pej Pos:21Pl
+    2+<>+NAD+Con+ThmPos+Pej+2+Pl+4: NAD Obv Con Pej Pos:2Pl
+    2+<>+NAD+Con+ThmPos+Pej+2+Pl+Loc: NAD Loc Con Pej Pos:2Pl
+    2+<>+NAD+Con+ThmPos+Pej+2+Pl+Pl: NAD Pl Con Pej Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+Pej+1+Pl+4: NAD Obv Dim Pej Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+Pej+1+Pl+Loc: NAD Loc Dim Pej Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+Pej+1+Pl+Pl: NAD Pl Dim Pej Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+Pej+2+Pl+4: NAD Obv Dim Pej Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+Pej+2+Pl+Loc: NAD Loc Dim Pej Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+Pej+2+Pl+Pl: NAD Pl Dim Pej Pos:2Pl
+    3+<>+NAD+Con+ThmPos+Pej+2+Pl+4: NAD Obv Con Pej Pos:3Pl
+    3+<>+NAD+Con+ThmPos+Pej+2+Pl+Loc: NAD Loc Con Pej Pos:3Pl
+    3+<>+NAD+Con+ThmPos+Pej+3+4+4: NAD Obv Con Pej Pos:3'
+    3+<>+NAD+Con+ThmPos+Pej+3+4+Loc: NAD Loc Con Pej Pos:3'
+    3+<>+NAD+Dim+ThmPos+Pej+2+Pl+4: NAD Obv Dim Pej Pos:3Pl
+    3+<>+NAD+Dim+ThmPos+Pej+2+Pl+Loc: NAD Loc Dim Pej Pos:3Pl
+    3+<>+NAD+Dim+ThmPos+Pej+3+4+4: NAD Obv Dim Pej Pos:3'
+    3+<>+NAD+Dim+ThmPos+Pej+3+4+Loc: NAD Loc Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 4, 6, 7
+    1+<>+NAD+Con+ThmPos+Pej+Prt+4: NAD Obv Con Pej Prt Pos:1
+    1+<>+NAD+Con+ThmPos+Pej+Prt+Loc: NAD Loc Con Pej Prt Pos:1
+    1+<>+NAD+Con+ThmPos+Pej+Prt+Pl: NAD Pl Con Pej Prt Pos:1
+    1+<>+NAD+Dim+ThmPos+Pej+Prt+4: NAD Obv Dim Pej Prt Pos:1
+    1+<>+NAD+Dim+ThmPos+Pej+Prt+Loc: NAD Loc Dim Pej Prt Pos:1
+    1+<>+NAD+Dim+ThmPos+Pej+Prt+Pl: NAD Pl Dim Pej Prt Pos:1
+    2+<>+NAD+Con+ThmPos+Pej+Prt+4: NAD Obv Con Pej Prt Pos:2
+    2+<>+NAD+Con+ThmPos+Pej+Prt+Loc: NAD Loc Con Pej Prt Pos:2
+    2+<>+NAD+Con+ThmPos+Pej+Prt+Pl: NAD Pl Con Pej Prt Pos:2
+    2+<>+NAD+Dim+ThmPos+Pej+Prt+4: NAD Obv Dim Pej Prt Pos:2
+    2+<>+NAD+Dim+ThmPos+Pej+Prt+Loc: NAD Loc Dim Pej Prt Pos:2
+    2+<>+NAD+Dim+ThmPos+Pej+Prt+Pl: NAD Pl Dim Pej Prt Pos:2
+    3+<>+NAD+Con+ThmPos+Pej+Prt+4: NAD Obv Con Pej Prt Pos:3
+    3+<>+NAD+Con+ThmPos+Pej+Prt+Loc: NAD Loc Con Pej Prt Pos:3
+    3+<>+NAD+Dim+ThmPos+Pej+Prt+4: NAD Obv Dim Pej Prt Pos:3
+    3+<>+NAD+Dim+ThmPos+Pej+Prt+Loc: NAD Loc Dim Pej Prt Pos:3
+    X+<>+NAD+Con+ThmPos+Pej+Prt+4: NAD Obv Con Pej Prt Pos:X
+    X+<>+NAD+Con+ThmPos+Pej+Prt+Loc: NAD Loc Con Pej Prt Pos:X
+    X+<>+NAD+Con+ThmPos+Pej+Prt+Pl: NAD Pl Con Pej Prt Pos:X
+    X+<>+NAD+Dim+ThmPos+Pej+Prt+4: NAD Obv Dim Pej Prt Pos:X
+    X+<>+NAD+Dim+ThmPos+Pej+Prt+Loc: NAD Loc Dim Pej Prt Pos:X
+    X+<>+NAD+Dim+ThmPos+Pej+Prt+Pl: NAD Pl Dim Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 5, 6, 7
+    1+<>+NAD+Con+ThmPos+1+Pl+Prt+4: NAD Obv Con Prt Pos:1Pl
+    1+<>+NAD+Con+ThmPos+1+Pl+Prt+Loc: NAD Loc Con Prt Pos:1Pl
+    1+<>+NAD+Con+ThmPos+1+Pl+Prt+Pl: NAD Pl Con Prt Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+1+Pl+Prt+4: NAD Obv Dim Prt Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+1+Pl+Prt+Loc: NAD Loc Dim Prt Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+1+Pl+Prt+Pl: NAD Pl Dim Prt Pos:1Pl
+    2+<>+NAD+Con+ThmPos+1+Pl+Prt+4: NAD Obv Con Prt Pos:21Pl
+    2+<>+NAD+Con+ThmPos+1+Pl+Prt+Loc: NAD Loc Con Prt Pos:21Pl
+    2+<>+NAD+Con+ThmPos+1+Pl+Prt+Pl: NAD Pl Con Prt Pos:21Pl
+    2+<>+NAD+Con+ThmPos+2+Pl+Prt+4: NAD Obv Con Prt Pos:2Pl
+    2+<>+NAD+Con+ThmPos+2+Pl+Prt+Loc: NAD Loc Con Prt Pos:2Pl
+    2+<>+NAD+Con+ThmPos+2+Pl+Prt+Pl: NAD Pl Con Prt Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+1+Pl+Prt+4: NAD Obv Dim Prt Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+1+Pl+Prt+Loc: NAD Loc Dim Prt Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+1+Pl+Prt+Pl: NAD Pl Dim Prt Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+2+Pl+Prt+4: NAD Obv Dim Prt Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+2+Pl+Prt+Loc: NAD Loc Dim Prt Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+2+Pl+Prt+Pl: NAD Pl Dim Prt Pos:2Pl
+    3+<>+NAD+Con+ThmPos+2+Pl+Prt+4: NAD Obv Con Prt Pos:3Pl
+    3+<>+NAD+Con+ThmPos+2+Pl+Prt+Loc: NAD Loc Con Prt Pos:3Pl
+    3+<>+NAD+Con+ThmPos+3+4+Prt+4: NAD Obv Con Prt Pos:3'
+    3+<>+NAD+Con+ThmPos+3+4+Prt+Loc: NAD Loc Con Prt Pos:3'
+    3+<>+NAD+Dim+ThmPos+2+Pl+Prt+4: NAD Obv Dim Prt Pos:3Pl
+    3+<>+NAD+Dim+ThmPos+2+Pl+Prt+Loc: NAD Loc Dim Prt Pos:3Pl
+    3+<>+NAD+Dim+ThmPos+3+4+Prt+4: NAD Obv Dim Prt Pos:3'
+    3+<>+NAD+Dim+ThmPos+3+4+Prt+Loc: NAD Loc Dim Prt Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 5, 6, 7
+    1+<>+NAD+Con+Pej+1+Pl+Prt+4: NAD Obv Con Pej Prt Pos:1Pl
+    1+<>+NAD+Con+Pej+1+Pl+Prt+Loc: NAD Loc Con Pej Prt Pos:1Pl
+    1+<>+NAD+Con+Pej+1+Pl+Prt+Pl: NAD Pl Con Pej Prt Pos:1Pl
+    1+<>+NAD+Dim+Pej+1+Pl+Prt+4: NAD Obv Dim Pej Prt Pos:1Pl
+    1+<>+NAD+Dim+Pej+1+Pl+Prt+Loc: NAD Loc Dim Pej Prt Pos:1Pl
+    1+<>+NAD+Dim+Pej+1+Pl+Prt+Pl: NAD Pl Dim Pej Prt Pos:1Pl
+    2+<>+NAD+Con+Pej+1+Pl+Prt+4: NAD Obv Con Pej Prt Pos:21Pl
+    2+<>+NAD+Con+Pej+1+Pl+Prt+Loc: NAD Loc Con Pej Prt Pos:21Pl
+    2+<>+NAD+Con+Pej+1+Pl+Prt+Pl: NAD Pl Con Pej Prt Pos:21Pl
+    2+<>+NAD+Con+Pej+2+Pl+Prt+4: NAD Obv Con Pej Prt Pos:2Pl
+    2+<>+NAD+Con+Pej+2+Pl+Prt+Loc: NAD Loc Con Pej Prt Pos:2Pl
+    2+<>+NAD+Con+Pej+2+Pl+Prt+Pl: NAD Pl Con Pej Prt Pos:2Pl
+    2+<>+NAD+Dim+Pej+1+Pl+Prt+4: NAD Obv Dim Pej Prt Pos:21Pl
+    2+<>+NAD+Dim+Pej+1+Pl+Prt+Loc: NAD Loc Dim Pej Prt Pos:21Pl
+    2+<>+NAD+Dim+Pej+1+Pl+Prt+Pl: NAD Pl Dim Pej Prt Pos:21Pl
+    2+<>+NAD+Dim+Pej+2+Pl+Prt+4: NAD Obv Dim Pej Prt Pos:2Pl
+    2+<>+NAD+Dim+Pej+2+Pl+Prt+Loc: NAD Loc Dim Pej Prt Pos:2Pl
+    2+<>+NAD+Dim+Pej+2+Pl+Prt+Pl: NAD Pl Dim Pej Prt Pos:2Pl
+    3+<>+NAD+Con+Pej+2+Pl+Prt+4: NAD Obv Con Pej Prt Pos:3Pl
+    3+<>+NAD+Con+Pej+2+Pl+Prt+Loc: NAD Loc Con Pej Prt Pos:3Pl
+    3+<>+NAD+Con+Pej+3+4+Prt+4: NAD Obv Con Pej Prt Pos:3'
+    3+<>+NAD+Con+Pej+3+4+Prt+Loc: NAD Loc Con Pej Prt Pos:3'
+    3+<>+NAD+Dim+Pej+2+Pl+Prt+4: NAD Obv Dim Pej Prt Pos:3Pl
+    3+<>+NAD+Dim+Pej+2+Pl+Prt+Loc: NAD Loc Dim Pej Prt Pos:3Pl
+    3+<>+NAD+Dim+Pej+3+4+Prt+4: NAD Obv Dim Pej Prt Pos:3'
+    3+<>+NAD+Dim+Pej+3+4+Prt+Loc: NAD Loc Dim Pej Prt Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 5, 6, 7
+    1+<>+NAD+ThmPos+Pej+1+Pl+Prt+4: NAD Obv Pej Prt Pos:1Pl
+    1+<>+NAD+ThmPos+Pej+1+Pl+Prt+Loc: NAD Loc Pej Prt Pos:1Pl
+    1+<>+NAD+ThmPos+Pej+1+Pl+Prt+Pl: NAD Pl Pej Prt Pos:1Pl
+    2+<>+NAD+ThmPos+Pej+1+Pl+Prt+4: NAD Obv Pej Prt Pos:21Pl
+    2+<>+NAD+ThmPos+Pej+1+Pl+Prt+Loc: NAD Loc Pej Prt Pos:21Pl
+    2+<>+NAD+ThmPos+Pej+1+Pl+Prt+Pl: NAD Pl Pej Prt Pos:21Pl
+    2+<>+NAD+ThmPos+Pej+2+Pl+Prt+4: NAD Obv Pej Prt Pos:2Pl
+    2+<>+NAD+ThmPos+Pej+2+Pl+Prt+Loc: NAD Loc Pej Prt Pos:2Pl
+    2+<>+NAD+ThmPos+Pej+2+Pl+Prt+Pl: NAD Pl Pej Prt Pos:2Pl
+    3+<>+NAD+ThmPos+Pej+2+Pl+Prt+4: NAD Obv Pej Prt Pos:3Pl
+    3+<>+NAD+ThmPos+Pej+2+Pl+Prt+Loc: NAD Loc Pej Prt Pos:3Pl
+    3+<>+NAD+ThmPos+Pej+3+4+Prt+4: NAD Obv Pej Prt Pos:3'
+    3+<>+NAD+ThmPos+Pej+3+4+Prt+Loc: NAD Loc Pej Prt Pos:3'
+     
+     
+     #Values from slots numbered 1, 2, 3, 4, 5, 6, 7
+    1+<>+NAD+Con+ThmPos+Pej+1+Pl+Prt+4: NAD Obv Con Pej Prt Pos:1Pl
+    1+<>+NAD+Con+ThmPos+Pej+1+Pl+Prt+Loc: NAD Loc Con Pej Prt Pos:1Pl
+    1+<>+NAD+Con+ThmPos+Pej+1+Pl+Prt+Pl: NAD Pl Con Pej Prt Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+Pej+1+Pl+Prt+4: NAD Obv Dim Pej Prt Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+Pej+1+Pl+Prt+Loc: NAD Loc Dim Pej Prt Pos:1Pl
+    1+<>+NAD+Dim+ThmPos+Pej+1+Pl+Prt+Pl: NAD Pl Dim Pej Prt Pos:1Pl
+    2+<>+NAD+Con+ThmPos+Pej+1+Pl+Prt+4: NAD Obv Con Pej Prt Pos:21Pl
+    2+<>+NAD+Con+ThmPos+Pej+1+Pl+Prt+Loc: NAD Loc Con Pej Prt Pos:21Pl
+    2+<>+NAD+Con+ThmPos+Pej+1+Pl+Prt+Pl: NAD Pl Con Pej Prt Pos:21Pl
+    2+<>+NAD+Con+ThmPos+Pej+2+Pl+Prt+4: NAD Obv Con Pej Prt Pos:2Pl
+    2+<>+NAD+Con+ThmPos+Pej+2+Pl+Prt+Loc: NAD Loc Con Pej Prt Pos:2Pl
+    2+<>+NAD+Con+ThmPos+Pej+2+Pl+Prt+Pl: NAD Pl Con Pej Prt Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+Pej+1+Pl+Prt+4: NAD Obv Dim Pej Prt Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+Pej+1+Pl+Prt+Loc: NAD Loc Dim Pej Prt Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+Pej+1+Pl+Prt+Pl: NAD Pl Dim Pej Prt Pos:21Pl
+    2+<>+NAD+Dim+ThmPos+Pej+2+Pl+Prt+4: NAD Obv Dim Pej Prt Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+Pej+2+Pl+Prt+Loc: NAD Loc Dim Pej Prt Pos:2Pl
+    2+<>+NAD+Dim+ThmPos+Pej+2+Pl+Prt+Pl: NAD Pl Dim Pej Prt Pos:2Pl
+    3+<>+NAD+Con+ThmPos+Pej+2+Pl+Prt+4: NAD Obv Con Pej Prt Pos:3Pl
+    3+<>+NAD+Con+ThmPos+Pej+2+Pl+Prt+Loc: NAD Loc Con Pej Prt Pos:3Pl
+    3+<>+NAD+Con+ThmPos+Pej+3+4+Prt+4: NAD Obv Con Pej Prt Pos:3'
+    3+<>+NAD+Con+ThmPos+Pej+3+4+Prt+Loc: NAD Loc Con Pej Prt Pos:3'
+    3+<>+NAD+Dim+ThmPos+Pej+2+Pl+Prt+4: NAD Obv Dim Pej Prt Pos:3Pl
+    3+<>+NAD+Dim+ThmPos+Pej+2+Pl+Prt+Loc: NAD Loc Dim Pej Prt Pos:3Pl
+    3+<>+NAD+Dim+ThmPos+Pej+3+4+Prt+4: NAD Obv Dim Pej Prt Pos:3'
+    3+<>+NAD+Dim+ThmPos+Pej+3+4+Prt+Loc: NAD Loc Dim Pej Prt Pos:3'
+     
