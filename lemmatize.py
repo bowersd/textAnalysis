@@ -8,32 +8,30 @@ import postprocess as pst
 import preprocess as pre
 import engdict as eng
 
-def analyze(fst_file, fst_format, pos_regex, gdict, text_in):
-    holder = []
-    for i in range(len(text_in)):
-        sub = [[],[],[], [], []]
-        for w in pre.sep_punct(text_in[i]).split():
-            w=w.lower()
-            p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
-            best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
-            lem = pst.extract_lemma(p[w][best][0], pos_regex)
-            try: gloss = gdict[lem]
-            except KeyError: 
-                gloss = "NODEF" 
-            abbr = re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")
-            if lem: 
-                sub[0].append(w)
-                sub[1].append(p[w][best][0])
-                sub[2].append(lem)
-                sub[3].append(abbr)
-                if (w, gloss) not in sub[4]: sub[4].append((w, gloss))
-            else: 
-                sub[0].append(w)
-                sub[1].append("?")
-                sub[2].append("?")
-                sub[3].append("?")
-        holder.append(sub)
-    return holder
+def analyze_word(fst_file, fst_format, pos_regex, gdict, w):
+    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
+    best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
+    lem = pst.extract_lemma(p[w][best][0], pos_regex)
+    if lem: return [p[w][best][0], lem]
+    else: return ["?", "?"]
+
+def analyze_sent(fst_file, fst_format, pos_regex, gdict, *sent):
+    analyses = []
+    lemmata = []
+    for w in sent:
+        analysis = analyze_word(fst_file, fst_format, pos_regex, gdict, w.lower())
+        analyses.append(analysis[0])
+        lemmata.append(analysis[1])
+    return [analyses, lemmata]
+
+def analyze_text(fst_file, fst_format, pos_regex, gdict, text_in):
+    analyses = []
+    lemmata = []
+    for s in text_in:
+        analysis = analyze_sent(fst_file, fst_format, pos_regex, gdict,  *pre.sep_punct(sent).split())
+        analyses.append(analysis[0])
+        lemmata.append(analysis[1])
+    return [analyses, lemmata]
 
 def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
     holder = []
