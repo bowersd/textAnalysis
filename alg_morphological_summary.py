@@ -13,8 +13,6 @@ def interpret(analysis_in):
     summary["S"]["Pers"] = analysis_in["prefix"][0]
     summary["DerivChain"] = " ".join([x for x in analysis_in["derivation"]])
     summary["Head"] = analysis_in["derivation"][-1]
-    #probably better to just pop the suffixes and append them to "else" if they don't get satisfied
-    #for i in range(len(analysis_in["suffixes"][0])):
     while analysis_in["suffixes"]:
         s = analysis_in["suffixes"].pop(0)
         if s == "Neg": summary["Neg"] = s
