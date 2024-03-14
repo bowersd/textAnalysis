@@ -1,5 +1,3 @@
-import code
-import os
 import argparse
 import re
 import json
@@ -11,23 +9,9 @@ import preprocess as pre
 import engdict as eng
 import alg_morphological_summary as algsum
 
-#def analyze_word(fst_file, fst_format, pos_regex, gdict, w):
-#    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
-#    best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
-#    lem = pst.extract_lemma(p[w][best][0], pos_regex)
-#    if lem: return [p[w][best][0], lem]
-#    else: return ["?", "?"]
-#
-#def analyze_sent(fst_file, fst_format, *sent):
-#    analysis = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *sent).decode())
-#    analyses = []
-#    for w in sent: analyses.append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
-#    return analyses
-
 def analyze_text(fst_file, fst_format, corrections, *text_in):
     analysis = []
-    analyses = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]) #get all analyses of every word
-    #analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
+    analyses = parse.parse_native(fst_file, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]) #get all analyses of every word
     #for s in text_in: analysis.append([analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0] for w in pre.sep_punct(s.lower()).split()]) #look up each word's analyses and disambiguate ... better: disambiguate while the analyses are being computed ... though the parse() function should not be troubled with disambiguation questions. modular=siloed?
     performance = [0, 0.01] #hits, misses
     for s in text_in: 
@@ -54,8 +38,7 @@ def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
         sub = [[],[],[], [], [], [trans_in[i]]]
         for w in pre.sep_punct(text_in[i]).split():
             w=w.lower()
-            p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
-            #p = parse.parse_native(os.path.expanduser(fst_file), fst_format, w)
+            p = pst.parser_out_string_dict(parse.parse(fst_file, fst_format, w).decode())
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
             try: gloss = gdict[lem]
@@ -252,7 +235,6 @@ if __name__ == "__main__":
         #    full["tiny_gloss"].append(padded[3])
         #    full["m_parse_lo"][i] = padded[4]
         #by_sent = [{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))]
-        #code.interact(local=locals())
         with open(args.o, 'w') as fo:
             json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
         ##atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
