@@ -46,13 +46,13 @@ def interpret(analysis_in):
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"].pop(0)
         elif analysis_in["prefix"][0] == "2": 
-            if analysis_in["suffixes"][0:2] == ["1", "Pl"]:
+            if s = "1" and analysis_in["suffixes"][0:2] == ["Pl"]:
                 analysis_in["suffixes"].pop(0)
                 if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and not inversion: #this is thm2 .*1pl = (2v1pl/2plv1pl) 
                     summary["S"]["Num"] = "Pl/2"
                     summary["O"]["Num"] = "Pl"
                 else: summary["S"]["Num"] = "1Pl"
-            elif analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
+            elif s = "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
                 analysis_in["suffixes"].pop(0)
                 #if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and inversion: summary["S"]["Num"] == "Pl"  ## before inversion (thm1sg/thm1pl .*2pl) = (2pl v 1sg/2pl v 1pl), so no need to specify a special case here 
                 #note: there is no further number information in another slot for first persons here ... like theme signs really are object agreement and inversion swoops them into subjecthood (and/or peripheral suffixes are just for 3rd persons)
@@ -63,29 +63,29 @@ def interpret(analysis_in):
         #end prefix number obtained}
         elif (not summary["S"]["Pers"]) and s == "1":
             summary["S"]["Pers"] = "1"
-            if analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
+            if analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "2": 
             summary["S"]["Pers"] = "2"
-            if analysis_in["suffixes"][0][i:i+3] == ["2", "1", "Pl"]:
+            if analysis_in["suffixes"][0:2] == ["1", "Pl"]:
                 summary["S"]["Num"] = "1Pl"
                 analysis_in["suffixes"].pop(0)
                 analysis_in["suffixes"].pop(0)
-            elif analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
+            elif analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "3":
             summary["S"]["Pers"] = "3"
-            if analysis_in["suffixes"][0][i:i+2] == ["3", "Pl"]:
+            if analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
-            if analysis_in["suffixes"][0][i:i+2] == ["3", "4"]:
+            if analysis_in["suffixes"][0:1] == ["3", "4"]:
                 summary["S"]["Num"] = "'"
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "0": #VTIs/VTAs still not covered
             summary["S"]["Pers"] = "0"
-            if analysis_in["suffixes"][0][i:i+2] == ["0", "Pl"]: #VTIs/VTAs still not covered
+            if analysis_in["suffixes"][0:1] == ["Pl"]: #VTIs/VTAs still not covered
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
         else: summary["Else"].append(s)
