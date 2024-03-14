@@ -8,6 +8,7 @@ import readwrite as rw
 
 def interpret(analysis_in):
     summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":"", "Else": []}
+    inversion = False #if true, S/O will be inverted at end
     #analysis = [x for x in in analysis_in]
     summary["S"]["Pers"] = analysis_in["prefix"][0][0]
     analysis_in["prefix"][1][0] = True
@@ -33,18 +34,22 @@ def interpret(analysis_in):
             analysis_in["suffixes"][1][i] = True
             analysis_in["suffixes"][1][i+1] = True
         elif analysis_in["prefix"][0][0] == "2": 
+            #{arranging persons for VTA local predication (extracting theme sign information)
             if summary["Head"] == "VTA" and analysis_in["suffixes"][0][i] == "Thm2":
                 summary["O"]["Pers"] = "1"
                 analysis_in["suffixes"][1][i] = True
             elif summary["Head"] == "VTA" and analysis_in["suffixes"] == "Thm1Pl":
-                summary["S"]["Pers"] = "1"
-                summary["S"]["Num"] = "Pl"
-                summary["O"]["Pers"] = "2"
+                summary["O"]["Pers"] = "1"
+                summary["O"]["Num"] = "Pl"
+                summary["S"]["Pers"] = "2"
                 analysis_in["suffixes"][1][i] = True
+                inversion = True
             elif summary["Head"] == "VTA" and analysis_in["suffixes"] == "Thm1Sg":
-                summary["S"]["Pers"] = "1"
-                summary["O"]["Pers"] = "2"
+                summary["O"]["Pers"] = "1"
+                summary["S"]["Pers"] = "2"
                 analysis_in["suffixes"][1][i] = True
+                inversion = True 
+                #arranging persons for VTA local predication end}
             elif analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
@@ -55,7 +60,7 @@ def interpret(analysis_in):
             elif analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
-                if summary["Head"] == "VTA"  and summary["S"]["Pers"] == "1" and summary["O"]["Pers"] == "2": summary["O"]["Num"] == "Pl"  #this is thm1sg/thm1pl .*2pl = (1plv2pl, 1sg v 2pl)
+                if summary["Head"] == "VTA"  and summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2": summary["S"]["Num"] == "Pl"  #this is thm1sg/thm1pl .*2pl = (1plv2pl, 1sg v 2pl) 
                 else: summary["S"]["Num"] = "Pl"
         elif analysis_in["prefix"][0][0] == "3" and analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
             summary["S"]["Num"] = "Pl"
@@ -92,6 +97,7 @@ def interpret(analysis_in):
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"][1][i+1] = True
     summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
+    if inversion = True: summary["S"], summary["O"] = summary["O"], summary["S"]
     return summary
 
 def analysis_dict(analysis_string):
