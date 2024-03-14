@@ -33,12 +33,14 @@ def interpret(analysis_in):
         elif analysis_in["suffixes"][0][i] == "Thm2":
             summary["O"]["Pers"] = "1"
             analysis_in["suffixes"][1][i] = True
-        elif (analysis_in["suffixes"] == "Thm1Pl" or analysis_in["suffixes"] == "Thm1Sg"):
+        elif (analysis_in["suffixes"][0][i] == "Thm1Pl" or analysis_in["suffixes"][0][i] == "Thm1Sg"):
             summary["O"]["Pers"] = "1"
-            if analysis_in["suffixes"] = "Thm1Pl": summary["O"]["Num"] = "Pl"
+            if analysis_in["suffixes"][0][i] = "Thm1Pl": summary["O"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
             inversion = True
             #local theme signs end}
+        elif analysis_in["suffixes"][0][i] == "ThmDir":
+            pass
         #{getting number information when prefix information already obtained == NOT CONJUNCT!
         elif analysis_in["prefix"][0][0] == "1" and analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]: 
             summary["S"]["Num"] = "Pl"
