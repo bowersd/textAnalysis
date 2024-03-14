@@ -6,7 +6,11 @@ await micropip.install(
 #import hfst
 import regex
 import pyhfst
-from pyscript import document
+import pyscript
+#from pyscript import document
+#from js import document, window, Uint8Array
+from pyodide.ffi.wrappers import add_event_listener
+import js
 from pyweb import pydom
 
 #print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
@@ -25,15 +29,15 @@ def parse_pyhfst(transducer, *strings):
     return h
 
 def parse_words(event):
-    input_text = document.querySelector("#freeNish")
+    input_text = pyscript.document.querySelector("#freeNish")
     freeNish = input_text.value
-    output_div = document.querySelector("#output")
+    output_div = pyscript.document.querySelector("#output")
     output_div.innerText = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *freeNish.split(" "))
 
 def parse_text(event):
     analysis = []
     textIn = []
-    with open(document.querySelector("#targetLanguageText").text) as fileIn:
+    with open(pyscript.document.querySelector("#targetLanguageText").text) as fileIn:
         for line in fileIn: textIn.append(line.strip()) #split on sentence final punctuation to make life easier on users?
     analyses = parse_pyhfst("./morphphonologyclitics_analyze.hfstol", *[x for s in textIn for x in s.lower().split()]) #need tokenization
     for s in textIn:
@@ -45,3 +49,18 @@ def parse_text(event):
 
 
 #print(parse_pyhfst("./morphophonologyclitics_analyze.hfstol", "mkizin"))
+##from js import document, window, Uint8Array
+##from pyodide.ffi.wrappers import add_event_listener
+
+async def upload_file_and_show(e):
+    file_list = e.target.files
+    first_item = file_list.item(0)
+
+    my_bytes: bytes = await get_bytes_from_file(first_item)
+    print(my_bytes[:10]) # Do something with file contents
+
+async def get_bytes_from_file(file):
+    array_buf = await file.arrayBuffer()
+    return array_buf.to_bytes()
+
+add_event_listener(js.document.getElementById("file-upload"), "change", upload_file_and_show)
