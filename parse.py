@@ -31,5 +31,8 @@ def parse_native(transducer, *strings):
     for s in strings: 
         if s not in h: 
             h[s] = []
-            for p in parser.lookup(s): h[s].append((re.sub("@.*?@", "" ,p[0]), p[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
+            p = parser.lookup(s)
+            if not p: h[s].append((s+"+?", 0.00))
+            else: 
+                for q in p: h[s].append((re.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
