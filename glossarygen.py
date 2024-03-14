@@ -106,7 +106,7 @@ abbreviations = {
         "VAIO": "'Intransitive' Verb with an Animate subject and an Object",
         "VII": "Intransitive Verb with an Inanimate subject",
         "VTA": "Transitive Verb with an Animate object",
-        "VTI": "Transitive Verb with an Inanimate subject",
+        "VTI": "Transitive Verb with an Inanimate object",
         "Cnj": "Conjunct order (used in questions, relative clauses, if-then statements)",
         "Itr": "Iterative (marks repeated actions)",
         "Imp": "Imperative order (used in commands)",
