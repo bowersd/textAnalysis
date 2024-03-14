@@ -33,7 +33,7 @@ def analyze_text(fst_file, fst_format, *text_in):
             a.append(best)
             performance[int(best.endswith("+?"))] += 1 
         analysis.append(a)
-    print("hit rate:", performance[0]/performance[1], "hits:", performance[0], "misses:", performance[1])
+    print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
     return analysis
 
 def lemmatize(pos_regex, *analysis):
