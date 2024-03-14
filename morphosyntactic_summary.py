@@ -17,4 +17,8 @@ def delimit_lex_discontinuous(analysis, delimit_left, delimit_right, regex):
     lex = lambda x: delimit_left+x.group(0)+delimit_right
     return re.sub(regex, lex, analysis)
 
+def translate_msd(analysis, delimit_left, delimit_right, **msd_trans):
+    return msd_trans[re.sub(delimit_left+"[^"+delimit_right+"]*"+delimit_right, delimit_left+delimit_right, analysis)]
 
+def gloss_lex(analysis, delimit_left, delimit_right, **gloss_dict):
+    return gloss_dict[re.search(delimit_left+"\([^"+delimit_right+"]*\)"+delimit_right, analysis)[1]]
