@@ -75,7 +75,7 @@ def parse_text(event):
 #    e.addEventListener("change", file_event, False)
 #    print(e)
  
-from js import document, window Uint8Array
+from js import document, window, Uint8Array
 from pyodide.ffi.wrappers import add_event_listener
 
 async def upload_file_and_show(e):
