@@ -6,9 +6,10 @@ await micropip.install(
 #import hfst
 import regex
 import pyhfst
+from pyscript import document
 
-print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
-print("For now, a demonstration that a functioning analyzer is loaded")
+#print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
+#print("For now, a demonstration that a functioning analyzer is loaded")
 
 def parse_pyhfst(transducer, *strings):
     h = {}
@@ -22,4 +23,10 @@ def parse_pyhfst(transducer, *strings):
                 for q in p: h[s].append((regex.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
 
-print(parse_pyhfst("./morphophonologyclitics_analyze.hfstol", "mkizin"))
+def parse_words(event):
+    input_text = document.querySelector("#freeNish")
+    freeNish = input_text.value
+    output_div = document.querySelector("#output")
+    output_div.innerText = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *freeNish.split(" "))
+
+#print(parse_pyhfst("./morphophonologyclitics_analyze.hfstol", "mkizin"))
