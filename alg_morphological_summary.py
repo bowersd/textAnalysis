@@ -6,11 +6,26 @@ import lemmatize as lem
 import engdict as eng
 import readwrite as rw
 
+def formatted(interpreted):
+    out = []
+    out.append(analysis_in["Head"])
+    if analysis_in["DerivChain"] != analysis_in["Head"]: out.append("("+analysis_in["DerivChain"]+")")
+    if analysis_in["Periph"]: out.append(analysis_in["Periph"])
+    if analysis_in["Head"].startswith("N") and analysis_in["S"]["Pers"]: out.append("Pos: "+"".join([analysis_in["S"]["Pers"], analysis_in["S"]["Num"]]))
+    if analysis_in["S"]["Pers"]: out.append("S: "+"".join([analysis_in["S"]["Pers"], analysis_in["S"]["Num"]]))
+    if analysis_in["O"]["Pers"]: out.append("S: "+"".join([analysis_in["O"]["Pers"], analysis_in["O"]["Num"]]))
+    if analysis_in["Order"]: out.append(analysis_in["Order"])
+    if analysis_in["Neg"]: out.append(analysis_in["Neg"])
+    if analysis_in["Mode"]: out.append(analysis_in["Mode"])
+    if analysis_in["Else"]: out.append(analysis_in["Else"])
+    return out
+
+
 def interpret(analysis_in):
     summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":"", "Periph":"", "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
     inversion = False #if true, S/O will be inverted at end
     summary["S"]["Pers"] = analysis_in["prefix"][0]
-    summary["DerivChain"] = " ".join([x for x in analysis_in["derivation"]])
+    summary["DerivChain"] = ">".join([x for x in analysis_in["derivation"]])
     summary["Head"] = analysis_in["derivation"][-1]
     if summary["Head"] == "VTI": summary["O"]["Pers"] = "0" #cheating a little and not putting this in the theme sign info because we don't actually have a suffix tag for VTI themes
     if summary["Head"] == "VAIO": summary["O"]["Pers"] = "3" #cheating a little and not putting this in the theme sign info because VAIOs don't actually have themes
