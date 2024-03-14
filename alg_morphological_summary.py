@@ -11,6 +11,11 @@ def interpret(analysis_in):
     #analysis = [x for x in in analysis_in]
     summary["S"]["Pers"] = analysis_in["prefix"][0]
     analysis_in["prefix"][1] = True
+    if summary["S"]["Pers"]: 
+        for s in analysis_in["suffixes"]:
+            if summary["S"]["Pers"] == "1" and s[0] == "1Pl": #need to join 1+Pl to 1Pl in analysis_dict()
+                summary["S"]["Num"] = "Pl"
+                s[1] = True
     summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
     return summary
 
