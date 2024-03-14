@@ -11,12 +11,12 @@ Mapping:
     <>+VTI+3+4: VTI S:3' O:0
 
     #Values from slots numbered 1, 3
-    1+<>+VTI+0: VTI S:1 O:0
+    1+<>+VTI: VTI S:1 O:0
     1+<>+VTI+1+Pl: VTI S:1Pl O:0
-    2+<>+VTI+0: VTI S:2 O:0
+    2+<>+VTI: VTI S:2 O:0
     2+<>+VTI+1+Pl: VTI S:21Pl O:0
     2+<>+VTI+2+Pl: VTI S:2Pl O:0
-    3+<>+VTI+0: VTI S:3 O:0
+    3+<>+VTI: VTI S:3 O:0
     3+<>+VTI+2+Pl: VTI S:3Pl O:0
     #<>+VTI+X: NO IDEA
     
@@ -26,20 +26,20 @@ Mapping:
     <>+VTI+3+4+Prt+Dub: VTI S:3' O:0 Prt Dub 
 
     #Values from slots numbered: 1, 3, 4
-    1+<>+VTI+0+Prt: VTI S:1 O:0 Prt  
+    1+<>+VTI+Prt: VTI S:1 O:0 Prt  
     1+<>+VTI+1+Pl+Prt: VTI S:1Pl O:0 Prt  
-    2+<>+VTI+0+Prt: VTI S:2 O:0 Prt  
+    2+<>+VTI+Prt: VTI S:2 O:0 Prt  
     2+<>+VTI+1+Pl+Prt: VTI S:21Pl O:0 Prt  
     2+<>+VTI+2+Pl+Prt: VTI S:2Pl O:0 Prt  
-    3+<>+VTI+0+Prt: VTI S:3 O:0 Prt  
+    3+<>+VTI+Prt: VTI S:3 O:0 Prt  
     3+<>+VTI+2+Pl+Prt: VTI S:3Pl O:0 Prt  
     #<>+VTI+X+Prt: NO IDEA Prt  
-    1+<>+VTI+0+Dub: VTI S:1 O:0 Dub  
+    1+<>+VTI+Dub: VTI S:1 O:0 Dub  
     1+<>+VTI+1+Pl+Dub: VTI S:1Pl O:0 Dub  
-    2+<>+VTI+0+Dub: VTI S:2 O:0 Dub  
+    2+<>+VTI+Dub: VTI S:2 O:0 Dub  
     2+<>+VTI+1+Pl+Dub: VTI S:21Pl O:0 Dub  
     2+<>+VTI+2+Pl+Dub: VTI S:2Pl O:0 Dub  
-    3+<>+VTI+0+Dub: VTI S:3 O:0 Dub  
+    3+<>+VTI+Dub: VTI S:3 O:0 Dub  
     3+<>+VTI+2+Pl+Dub: VTI S:3Pl O:0 Dub  
     #<>+VTI+X+Dub: NO IDEA Dub  
     3+<>+VTI+Prt+Dub: VTI S:3 O:0 Prt Dub 
@@ -49,12 +49,12 @@ Mapping:
     #<>+VTI+3+4+0+Pl: waabndamniwan #? book mum, may not be possible 
 
     #Values from slots numbered 1, 3, 5
-    1+<>+VTI+0+0+Pl: VTI S:1 O:0Pl
+    1+<>+VTI+0+Pl: VTI S:1 O:0Pl
     1+<>+VTI+1+Pl+0+Pl: VTI S:1Pl O:0Pl
-    2+<>+VTI+0+0+Pl: VTI S:2 O:0Pl
+    2+<>+VTI+0+Pl: VTI S:2 O:0Pl
     2+<>+VTI+1+Pl+0+Pl: VTI S:21Pl O:0Pl
     2+<>+VTI+2+Pl+0+Pl: VTI S:2Pl O:0Pl
-    3+<>+VTI+0+0+Pl: VTI S:3 O:0Pl
+    3+<>+VTI+0+Pl: VTI S:3 O:0Pl
     3+<>+VTI+2+Pl+0+Pl: VTI S:3Pl O:0Pl
     #<>+VTI+X: NO IDEA
 
@@ -63,20 +63,20 @@ Mapping:
     #<>+VTI+3+4+Dub+0+Pl: NO IDEA Dub  
 
     #Values from slots numbered: 1, 3, 4, 5
-    1+<>+VTI+0+Prt+0+Pl: VTI S:1 O:0Pl Prt  
+    1+<>+VTI+Prt+0+Pl: VTI S:1 O:0Pl Prt  
     1+<>+VTI+1+Pl+Prt+0+Pl: VTI S:1Pl O:0Pl Prt  
-    2+<>+VTI+0+Prt+0+Pl: VTI S:2 O:0Pl Prt  
+    2+<>+VTI+Prt+0+Pl: VTI S:2 O:0Pl Prt  
     2+<>+VTI+1+Pl+Prt+0+Pl: VTI S:21Pl O:0Pl Prt  
     2+<>+VTI+2+Pl+Prt+0+Pl: VTI S:2Pl O:0Pl Prt  
-    3+<>+VTI+0+Prt+0+Pl: VTI S:3 O:0Pl Prt  
+    3+<>+VTI+Prt+0+Pl: VTI S:3 O:0Pl Prt  
     3+<>+VTI+2+Pl+Prt+0+Pl: VTI S:3Pl O:0Pl Prt  
     #<>+VTI+X+Prt+0+Pl: NO IDEA Prt  
-    1+<>+VTI+0+Dub+0+Pl: VTI S:1 O:0Pl Dub  
+    1+<>+VTI+Dub+0+Pl: VTI S:1 O:0Pl Dub  
     1+<>+VTI+1+Pl+Dub+0+Pl: VTI S:1Pl O:0Pl Dub  
-    2+<>+VTI+0+Dub+0+Pl: VTI S:2 O:0Pl Dub  
+    2+<>+VTI+Dub+0+Pl: VTI S:2 O:0Pl Dub  
     2+<>+VTI+1+Pl+Dub+0+Pl: VTI S:21Pl O:0Pl Dub  
     2+<>+VTI+2+Pl+Dub+0+Pl: VTI S:2Pl O:0Pl Dub  
-    3+<>+VTI+0+Dub+0+Pl: VTI S:3 O:0Pl Dub  
+    3+<>+VTI+Dub+0+Pl: VTI S:3 O:0Pl Dub  
     3+<>+VTI+2+Pl+Dub+0+Pl: VTI S:3Pl O:0Pl Dub  
     #<>+VTI+X+Dub+0+Pl: NO IDEA Dub  
 
@@ -85,12 +85,12 @@ Mapping:
     <>+VTI+Neg+3+4: VTI S:3' O:0 Neg 
 
     #Values from slots numbered: 1, 2, 3
-    1+<>+VTI+Neg+0: VTI S:1 O:0 Neg 
+    1+<>+VTI+Neg: VTI S:1 O:0 Neg 
     1+<>+VTI+Neg+1+Pl: VTI S:1Pl O:0 Neg 
-    2+<>+VTI+Neg+0: VTI S:2 O:0 Neg 
+    2+<>+VTI+Neg: VTI S:2 O:0 Neg 
     2+<>+VTI+Neg+1+Pl: VTI S:21Pl O:0 Neg 
     2+<>+VTI+Neg+2+Pl: VTI S:2Pl O:0 Neg 
-    3+<>+VTI+Neg+0: VTI S:3 O:0 Neg 
+    3+<>+VTI+Neg: VTI S:3 O:0 Neg 
     3+<>+VTI+Neg+2+Pl: VTI S:3Pl O:0 Neg 
     #<>+VTI+Neg+X: NO IDEA Neg 
     
@@ -100,20 +100,20 @@ Mapping:
     <>+VTI+Neg+3+4+Prt+Dub: VTI S:3' O:0 Neg Prt Dub 
 
     #Values from slots numbered: 1, 2, 3, 4
-    1+<>+VTI+Neg+0+Prt: VTI S:1 O:0 Neg Prt 
+    1+<>+VTI+Neg+Prt: VTI S:1 O:0 Neg Prt 
     1+<>+VTI+Neg+1+Pl+Prt: VTI S:1Pl O:0 Neg Prt 
-    2+<>+VTI+Neg+0+Prt: VTI S:2 O:0 Neg Prt 
+    2+<>+VTI+Neg+Prt: VTI S:2 O:0 Neg Prt 
     2+<>+VTI+Neg+1+Pl+Prt: VTI S:21Pl O:0 Neg Prt 
     2+<>+VTI+Neg+2+Pl+Prt: VTI S:2Pl O:0 Neg Prt 
-    3+<>+VTI+Neg+0+Prt: VTI S:3 O:0 Neg Prt 
+    3+<>+VTI+Neg+Prt: VTI S:3 O:0 Neg Prt 
     3+<>+VTI+Neg+2+Pl+Prt: VTI S:3Pl O:0 Neg Prt 
     #<>+VTI+Neg+X+Prt: NO IDEA Neg Prt 
-    1+<>+VTI+Neg+0+Dub: VTI S:1 O:0 Neg Dub 
+    1+<>+VTI+Neg+Dub: VTI S:1 O:0 Neg Dub 
     1+<>+VTI+Neg+1+Pl+Dub: VTI S:1Pl O:0 Neg Dub 
-    2+<>+VTI+Neg+0+Dub: VTI S:2 O:0 Neg Dub 
+    2+<>+VTI+Neg+Dub: VTI S:2 O:0 Neg Dub 
     2+<>+VTI+Neg+1+Pl+Dub: VTI S:21Pl O:0 Neg Dub 
     2+<>+VTI+Neg+2+Pl+Dub: VTI S:2Pl O:0 Neg Dub 
-    3+<>+VTI+Neg+0+Dub: VTI S:3 O:0 Neg Dub 
+    3+<>+VTI+Neg+Dub: VTI S:3 O:0 Neg Dub 
     3+<>+VTI+Neg+2+Pl+Dub: VTI S:3Pl O:0 Neg Dub 
     #<>+VTI+Neg+X+Dub: NO IDEA Neg Dub 
     3+<>+VTI+Neg+Prt+Dub: VTI S:3 O:0 Neg Prt Dub 
@@ -123,12 +123,12 @@ Mapping:
     #<>+VTI+Neg+3+4+0+Pl: waabndamniwan  Neg #? book mum, may not be possible 
 
     #Values from slots numbered 1, 2, 3, 5
-    1+<>+VTI+Neg+0+0+Pl: VTI S:1 O:0Pl Neg 
+    1+<>+VTI+Neg+0+Pl: VTI S:1 O:0Pl Neg 
     1+<>+VTI+Neg+1+Pl+0+Pl: VTI S:1Pl O:0Pl Neg 
-    2+<>+VTI+Neg+0+0+Pl: VTI S:2 O:0Pl Neg 
+    2+<>+VTI+Neg+0+Pl: VTI S:2 O:0Pl Neg 
     2+<>+VTI+Neg+1+Pl+0+Pl: VTI S:21Pl O:0Pl Neg 
     2+<>+VTI+Neg+2+Pl+0+Pl: VTI S:2Pl O:0Pl Neg 
-    3+<>+VTI+Neg+0+0+Pl: VTI S:3 O:0Pl Neg 
+    3+<>+VTI+Neg+0+Pl: VTI S:3 O:0Pl Neg 
     3+<>+VTI+Neg+2+Pl+0+Pl: VTI S:3Pl O:0Pl Neg 
     #<>+VTI+Neg+X: NO IDEA Neg 
 
@@ -137,20 +137,20 @@ Mapping:
     #<>+VTI+Neg+3+4+Dub+0+Pl: NO IDEA Neg Dub 
 
     #Values from slots numbered: 1, 2, 3, 4, 5
-    1+<>+VTI+Neg+0+Prt+0+Pl: VTI S:1 O:0Pl Neg Prt 
+    1+<>+VTI+Neg+Prt+0+Pl: VTI S:1 O:0Pl Neg Prt 
     1+<>+VTI+Neg+1+Pl+Prt+0+Pl: VTI S:1Pl O:0Pl Neg Prt 
-    2+<>+VTI+Neg+0+Prt+0+Pl: VTI S:2 O:0Pl Neg Prt 
+    2+<>+VTI+Neg+Prt+0+Pl: VTI S:2 O:0Pl Neg Prt 
     2+<>+VTI+Neg+1+Pl+Prt+0+Pl: VTI S:21Pl O:0Pl Neg Prt 
     2+<>+VTI+Neg+2+Pl+Prt+0+Pl: VTI S:2Pl O:0Pl Neg Prt 
-    3+<>+VTI+Neg+0+Prt+0+Pl: VTI S:3 O:0Pl Neg Prt 
+    3+<>+VTI+Neg+Prt+0+Pl: VTI S:3 O:0Pl Neg Prt 
     3+<>+VTI+Neg+2+Pl+Prt+0+Pl: VTI S:3Pl O:0Pl Neg Prt 
     #<>+VTI+Neg+X+Prt+0+Pl: NO IDEA Neg Prt 
-    1+<>+VTI+Neg+0+Dub+0+Pl: VTI S:1 O:0Pl Neg Dub 
+    1+<>+VTI+Neg+Dub+0+Pl: VTI S:1 O:0Pl Neg Dub 
     1+<>+VTI+Neg+1+Pl+Dub+0+Pl: VTI S:1Pl O:0Pl Neg Dub 
-    2+<>+VTI+Neg+0+Dub+0+Pl: VTI S:2 O:0Pl Neg Dub 
+    2+<>+VTI+Neg+Dub+0+Pl: VTI S:2 O:0Pl Neg Dub 
     2+<>+VTI+Neg+1+Pl+Dub+0+Pl: VTI S:21Pl O:0Pl Neg Dub 
     2+<>+VTI+Neg+2+Pl+Dub+0+Pl: VTI S:2Pl O:0Pl Neg Dub 
-    3+<>+VTI+Neg+0+Dub+0+Pl: VTI S:3 O:0Pl Neg Dub 
+    3+<>+VTI+Neg+Dub+0+Pl: VTI S:3 O:0Pl Neg Dub 
     3+<>+VTI+Neg+2+Pl+Dub+0+Pl: VTI S:3Pl O:0Pl Neg Dub 
     #<>+VTI+Neg+X+Dub+0+Pl: NO IDEA Neg Dub 
 
