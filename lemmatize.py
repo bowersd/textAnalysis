@@ -2,6 +2,7 @@ import os
 import argparse
 import re
 import json
+import json_encoder
 import parse
 import readwrite as rw
 import postprocess as pst
@@ -95,7 +96,7 @@ def unpad(lists_of_strings):
 
 def atomic_json_dump(filename, names, lists):
     with open(filename, 'w') as file_out:
-        json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out, indent=1) 
+        json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1) 
 
 def parseargs():
     parser = argparse.ArgumentParser()
