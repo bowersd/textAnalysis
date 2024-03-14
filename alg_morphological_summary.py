@@ -28,55 +28,68 @@ def interpret(analysis_in):
             summary["Order"] = analysis_in["suffixes"][0][i]
             analysis_in["suffixes"][1][i] = True
         #{prefix information already obtained
-        elif analysis_in["prefix"][0][0] == "1" and analysis_in["suffixes"][0][i:i+1] == ["1", "Pl"]: 
+        elif analysis_in["prefix"][0][0] == "1" and analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]: 
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
             analysis_in["suffixes"][1][i+1] = True
-        elif analysis_in["prefix"][0][0] == "2" and analysis_in["suffixes"][0][i:i+1] == ["1", "Pl"]:
-            summary["S"]["Num"] = "1Pl"
-            analysis_in["suffixes"][1][i] = True
-            analysis_in["suffixes"][1][i+1] = True
-        elif analysis_in["prefix"][0][0] == "2" and analysis_in["suffixes"][0][i:i+1] == ["2", "Pl"]:
-            summary["S"]["Num"] = "Pl"
-            analysis_in["suffixes"][1][i] = True
-            analysis_in["suffixes"][1][i+1] = True
-        elif analysis_in["prefix"][0][0] == "3" and analysis_in["suffixes"][0][i:i+1] == ["2", "Pl"]:
+        elif analysis_in["prefix"][0][0] == "2": 
+            if summary["Head"] == "VTA" and summary["Order"] != "Cnj" and analysis_in["suffixes"][0][i] == "Thm2":
+                summary["O"]["Pers"] = "1"
+                analysis_in["suffixes"][1][i] = True
+            elif summary["Head"] == "VTA" and summary["Order"] != "Cnj" and analysis_in["suffixes"] == "Thm1Pl":
+                summary["S"]["Pers"] = "1"
+                summary["S"]["Num"] = "Pl"
+                summary["O"]["Pers"] = "2"
+                analysis_in["suffixes"][1][i] = True
+            elif summary["Head"] == "VTA" and summary["Order"] != "Cnj" and analysis_in["suffixes"] == "Thm1Sg":
+                summary["S"]["Pers"] = "1"
+                summary["O"]["Pers"] = "2"
+                analysis_in["suffixes"][1][i] = True
+            elif analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
+                analysis_in["suffixes"][1][i] = True
+                analysis_in["suffixes"][1][i+1] = True
+                if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and summary["Order"] != "Cnj": 
+                    summary["S"]["Num"] = "Pl/2"
+                    summary["O"]["Num"] = "Pl"
+                else: summary["S"]["Num"] = "1Pl"
+            elif analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
+                summary["S"]["Num"] = "Pl"
+                analysis_in["suffixes"][1][i] = True
+                analysis_in["suffixes"][1][i+1] = True
+        elif analysis_in["prefix"][0][0] == "3" and analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
             analysis_in["suffixes"][1][i+1] = True
         #end prefix information obtained}
-        elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i:i+1] == "1Pl": #need to join 1+Pl to 1Pl in analysis_dict()
-            summary["S"]["Pers"] = "1"
-            summary["S"]["Num"] = "Pl"
-            analysis_in["suffixes"][1][i] = True
-        elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "21Pl": #need to join 2+1+Pl to 21Pl in analysis_dict()
-            summary["S"]["Pers"] = "2"
-            summary["S"]["Num"] = "1Pl"
-            analysis_in["suffixes"][1][i] = True
-        elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "2Pl": #need to join 2+Pl to 2Pl in analysis_dict()
-            summary["S"]["Pers"] = "2"
-            summary["S"]["Num"] = "Pl"
-            analysis_in["suffixes"][1][i] = True
-        elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "3Pl": #need to join 3+Pl to 3Pl in analysis_dict()
-            summary["S"]["Pers"] = "3"
-            summary["S"]["Num"] = "Pl"
-            analysis_in["suffixes"][1][i] = True
         elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "1":
             summary["S"]["Pers"] = "1"
             analysis_in["suffixes"][1][i] = True
-        elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "2":
+            if analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
+                summary["S"]["Num"] = "Pl"
+                analysis_in["suffixes"][1][i+1] = True
+        elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "2": 
             summary["S"]["Pers"] = "2"
-            analysis_in["suffixes"][1][i] = True
-        elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "3": #VAI independent/conjunct, VTI conjunct
+            if analysis_in["suffixes"][0][i:i+3] == ["2", "1", "Pl"]:
+                summary["S"]["Num"] = "1Pl"
+                analysis_in["suffixes"][1][i+1] = True
+                analysis_in["suffixes"][1][i+2] = True
+            elif analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
+                summary["S"]["Num"] = "Pl"
+                analysis_in["suffixes"][1][i+1] = True
+        elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "3":
             summary["S"]["Pers"] = "3"
-            analysis_in["suffixes"][1][i] = True
+            if analysis_in["suffixes"][0][i:i+2] == ["3", "Pl"]:
+                summary["S"]["Num"] = "Pl"
+                analysis_in["suffixes"][1][i+1] = True
+            if analysis_in["suffixes"][0][i:i+2] == ["3", "4"]:
+                summary["S"]["Num"] = "'"
+                analysis_in["suffixes"][1][i+1] = True
         elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "0": #VTIs/VTAs still not covered
             summary["S"]["Pers"] = "0"
             analysis_in["suffixes"][1][i] = True
-        elif (not summary["S"]["Pers"]) and analysis_in["suffixes"][0][i] == "0Pl": #VTIs/VTAs still not covered
-            summary["S"]["Pers"] = "0"
-            summary["S"]["Num"] = "Pl"
-            analysis_in["suffixes"][1][i] = True
+            if analysis_in["suffixes"][0][i:i+2] == ["0", "Pl"]: #VTIs/VTAs still not covered
+                summary["S"]["Num"] = "Pl"
+                analysis_in["suffixes"][1][i+1] = True
     summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
     return summary
 
