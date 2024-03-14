@@ -11,7 +11,7 @@ def formatted(interpreted):
     out.append(interpreted["Head"])
     if interpreted["DerivChain"] != interpreted["Head"]: out.append("("+interpreted["DerivChain"]+")")
     if interpreted["Periph"]: out.append(interpreted["Periph"])
-    if interpreted["Head"].startswith("N") and interpreted["S"]["Pers"]: out.append("Pos: "+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
+    if interpreted["Head"].startswith("N") and interpreted["S"]["Pers"]: out.append("Pos:"+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
     if interpreted["S"]["Pers"] and not interpreted["Head"].startswith("N"): out.append("S:"+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
     if interpreted["O"]["Pers"]: out.append("O:"+"".join([interpreted["O"]["Pers"], interpreted["O"]["Num"]]))
     if interpreted["Order"]: out.append(interpreted["Order"])
@@ -156,7 +156,7 @@ def interpret(analysis_in):
             elif analysis_in["suffixes"][0:1] == ["4"]:
                 summary["S"]["Num"] = "'"
                 analysis_in["suffixes"].pop(0)
-        elif (not summary["S"]["Pers"]) and s == "0": 
+        elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == "0") and s == "0": 
             summary["S"]["Pers"] = "0"
             if analysis_in["suffixes"][0:1] == ["4"]:
                 summary["S"]["Num"] = "'"
