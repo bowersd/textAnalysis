@@ -30,7 +30,6 @@ def analyze_text(fst_file, fst_format, *text_in):
 def lemmatize(pos_regex, *analysis):
     return [pst.extract_lemma(a, pos_regex) for a in analysis]
 
-
 def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
     holder = []
     for i in range(len(text_in)):
@@ -126,3 +125,5 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
 if __name__ == "__main__":
     args = parseargs()
     human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
+    data_in = rw.burn_metadata(2, *rw.readin(args.text)
+    atomic_json_dump(args.o, ["sentenceID", "lemmata"], )
