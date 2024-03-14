@@ -20,6 +20,7 @@
     <div id="output"></div>
     <script type="py" src="./main.py" config="./pyscript.toml" async></script>
     <p>Click on the "Browse..." button to select a plain text file in Nishnaabemwin, click on "Analyze Text" to analyze it:</p>
+    <!--
     <form action='/action_page.php'>
         <input type="file" id="targetLanguageText" name="targetText" accept=".txt">
     </form>
@@ -28,6 +29,10 @@
     </form>
     <button py-click="main">Analyze Text</button>
     <script type="py" src="./main.py" config="./pyscript.toml" async></script>
+    -->
+    <label for="Upload a File"></label>
+    <input type="file" id="file-upload">
+
     <!--
     <p>Download the analyzed text below:</p>
     <a download="analyzed_file">

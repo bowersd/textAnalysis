@@ -43,36 +43,50 @@ def parse_text(event):
     return analysis
 
 
-import asyncio
-import js
-from js import document, FileReader
-from pyodide.ffi import create_proxy
+#import asyncio
+#import js
+#from js import document, FileReader
+#from pyodide.ffi import create_proxy
+# 
+#def read_complete(event):
+#    # event is ProgressEvent
+#    content = document.getElementById("content");
+#    content.innerText = event.target.result
+#
+# 
+#async def process_file(x):
+#    fileList = document.getElementById('targetLanguageText').files
+#    for f in fileList:
+#        # reader is a pyodide.JsProxy
+#        reader = FileReader.new()
+#        # Create a Python proxy for the callback function
+#        onload_event = create_proxy(read_complete)
+#        #console.log("done")
+#        reader.onload = onload_event
+#        reader.readAsText(f)
+#    return
+# 
+#def main(x):
+#    # Create a Python proxy for the callback function
+#    file_event = create_proxy(process_file)
+#
+#    # Set the listener to the callback
+#    e = document.getElementById("targetLanguageText")
+#    e.addEventListener("change", file_event, False)
+#    print(e)
  
-def read_complete(event):
-  # event is ProgressEvent
-  content = document.getElementById("content");
-  content.innerText = event.target.result
+from js import document, window Uint8Array
+from pyodide.ffi.wrappers import add_event_listener
 
- 
-async def process_file(x):
-  fileList = document.getElementById('targetLanguageText').files
-  for f in fileList:
-    # reader is a pyodide.JsProxy
-    reader = FileReader.new()
-    # Create a Python proxy for the callback function
-    onload_event = create_proxy(read_complete)
-    #console.log("done")
-    reader.onload = onload_event
-    reader.readAsText(f)
-  return
- 
-def main(x):
-  # Create a Python proxy for the callback function
-  file_event = create_proxy(process_file)
- 
-  # Set the listener to the callback
-  e = document.getElementById("targetLanguageText")
-  e.addEventListener("change", file_event, False)
-  print(e)
- 
+async def upload_file_and_show(e):
+    file_list = e.target.files
+    first_item = file_list.item(0)
 
+    my_bytes: bytes = await get_bytes_from_file(first_item)
+    print(my_bytes[:10]) # Do something with file contents
+
+async def get_bytes_from_file(file):
+    array_buf = await file.arrayBuffer()
+    return array_buf.to_bytes()
+
+add_event_listener(document.getElementById("file-upload"), "change", upload_file_and_show)
