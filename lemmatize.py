@@ -77,11 +77,14 @@ def name_lists(names, *lists):
 
 def pad(lists_of_strings):
     #lists must be same length!
-    nu_lists = [[] for x in lists_of_strings]
-    for i in range(len(lists_of_strings[0])):
-        m = max([len(x[i]) for x in lists_of_strings])
-        for j in range(len(lists_of_strings)): 
-            nu_lists[j].append(lists_of_strings[j][i]+" "*(m-len(lists_of_strings[j][i])))
+    nu_lists = []
+    padlen = []
+    for i in range(len(lists_of_strings)):
+        nu = []
+        for j in range(len(lists_of_strings[i]))
+            if not i: padlen.append(max([len(lists_of_strings[k][j]) for k in range(len(lists_of_strings))]))
+            nu.append(lists_of_strings[i][j]+" "*(padlen[j]-len(lists_of_strings[i][j])))
+        nu_lists.append(nu)
     return nu_lists
 
 def atomic_json_dump(filename, names, lists):
