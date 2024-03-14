@@ -44,6 +44,9 @@ def interpret(analysis_in):
             if s == "ThmInv": inversion = True
         #} extracting theme sign information end
         #{getting number information for theme signs/objects, also finding inanimate subjects
+        elif summary["O"]["Pers"] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: #1 obj...1pl = 1pl (suffix seq does not occur with thm1pl, does occur with thm2 and thm1) it never means 21pl bc ban on XvX
+            analysis_in["suffixes"].pop(0)
+            summary["O"]["Num"] == "Pl"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["4"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "'"
