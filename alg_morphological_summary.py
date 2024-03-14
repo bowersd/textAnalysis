@@ -33,29 +33,29 @@ def interpret(analysis_in):
             analysis_in["suffixes"][1][i] = True
             analysis_in["suffixes"][1][i+1] = True
         elif analysis_in["prefix"][0][0] == "2": 
-            if summary["Head"] == "VTA" and summary["Order"] != "Cnj" and analysis_in["suffixes"][0][i] == "Thm2":
+            if summary["Head"] == "VTA" and analysis_in["suffixes"][0][i] == "Thm2":
                 summary["O"]["Pers"] = "1"
                 analysis_in["suffixes"][1][i] = True
-            elif summary["Head"] == "VTA" and summary["Order"] != "Cnj" and analysis_in["suffixes"] == "Thm1Pl":
+            elif summary["Head"] == "VTA" and analysis_in["suffixes"] == "Thm1Pl":
                 summary["S"]["Pers"] = "1"
                 summary["S"]["Num"] = "Pl"
                 summary["O"]["Pers"] = "2"
                 analysis_in["suffixes"][1][i] = True
-            elif summary["Head"] == "VTA" and summary["Order"] != "Cnj" and analysis_in["suffixes"] == "Thm1Sg":
+            elif summary["Head"] == "VTA" and analysis_in["suffixes"] == "Thm1Sg":
                 summary["S"]["Pers"] = "1"
                 summary["O"]["Pers"] = "2"
                 analysis_in["suffixes"][1][i] = True
             elif analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
-                if summary["Head"] == "VTA"  and summary["Order"] != "Cnj" and summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2": #this is thm2 .*1pl = (2v1pl/2plv1pl)
+                if summary["Head"] == "VTA"  and summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2": #this is thm2 .*1pl = (2v1pl/2plv1pl)
                     summary["S"]["Num"] = "Pl/2"
                     summary["O"]["Num"] = "Pl"
                 else: summary["S"]["Num"] = "1Pl"
             elif analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
-                if summary["Head"] == "VTA"  and summary["Order"] != "Cnj" and summary["S"]["Pers"] == "1" and summary["O"]["Pers"] == "2": summary["O"]["Num"] == "Pl"  #this is thm1sg/thm1pl .*2pl = (1plv2pl, 1sg v 2pl)
+                if summary["Head"] == "VTA"  and summary["S"]["Pers"] == "1" and summary["O"]["Pers"] == "2": summary["O"]["Num"] == "Pl"  #this is thm1sg/thm1pl .*2pl = (1plv2pl, 1sg v 2pl)
                 else: summary["S"]["Num"] = "Pl"
         elif analysis_in["prefix"][0][0] == "3" and analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
             summary["S"]["Num"] = "Pl"
