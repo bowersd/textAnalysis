@@ -54,8 +54,8 @@ def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
         sub = [[],[],[], [], [], [trans_in[i]]]
         for w in pre.sep_punct(text_in[i]).split():
             w=w.lower()
-            p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
-            #p = parse.parse_native(os.path.expanduser(fst_file), fst_format, w)
+            #p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
+            p = parse.parse_native(os.path.expanduser(fst_file), fst_format, w)
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
             try: gloss = gdict[lem]
@@ -101,6 +101,12 @@ def unpad(*lists_of_strings):
 def atomic_json_dump(filename, names, lists):
     with open(filename, 'w') as file_out:
         json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1) 
+
+def e_ccnj_ambiguous(string):
+    return string.startswith("e-")
+
+def e_ccnj_conservation(string):
+    return "e"+string[2:]
 
 def parseargs():
     parser = argparse.ArgumentParser()
@@ -159,7 +165,7 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
 if __name__ == "__main__":
     args = parseargs()
     cdict = {} #corrections are original: [edited, analyzed]
-    adjustments = {}
+    adjustments = {} #changes for white space (specified in notes files aka corrections)
     if args.c: 
         for correction in rw.readin(args.c):
             cor = correction.split()
