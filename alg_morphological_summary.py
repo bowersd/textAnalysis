@@ -13,6 +13,7 @@ def interpret(analysis_in):
     summary["DerivChain"] = " ".join([x for x in analysis_in["derivation"]])
     summary["Head"] = analysis_in["derivation"][-1]
     if summary["Head"] == "VTI": summary["O"]["Pers"] = "0" #cheating a little and not putting this in the theme sign info because we don't actually have a suffix tag for VTI themes
+    if summary["Head"] == "VAIO": summary["O"]["Pers"] = "3" #cheating a little and not putting this in the theme sign info because VAIOs don't actually have themes
     while analysis_in["suffixes"]:
         #gnarly list of elif statements
         #general strategy: fill object information with theme sign, then fill object number information, then unify prefix information with number information in subject field, then fill in subject information with remaining suffixes 
@@ -88,9 +89,12 @@ def interpret(analysis_in):
             summary["O"]["Num"] == "Pl"
         elif summary["O"]["Pers"] == "3" and s == "0": #VTA indep (inverses), have overt suffs for inanimates, need to over ride the default 3 here
             summary["O"]["Pers"] = "0"
-        elif summary["O"]["Pers"] == "0" and s == "0" and analysis_in["suffixes"][0:1] == ["Pl"]: #there is no longer a gratuitous +0 suffix in VTI indeps with singular actors, so no deliberately clunky syntax needed to drop the +0 tag
+            if analysis_in["suffixes"][0:1] == ["Pl"]: #there is a gratuitous +0 suffix in VAIO indeps with singular actors, so it is possible to encounter solitary 0 and 0+Pl. if VTIs had a gratuitous +0 suffix, we would still need next elif, because there would be +0.*+0+Pl strings
                 analysis_in["suffixes"].pop(0)
                 summary["O"]["Num"] == "Pl"
+        elif summary["O"]["Pers"] == "0" and s == "0" and analysis_in["suffixes"][0:1] == ["Pl"]: #there is no longer a gratuitous +0 suffix in VTI indeps with singular actors, so no deliberately clunky syntax needed to drop the +0 tag
+            analysis_in["suffixes"].pop(0)
+            summary["O"]["Num"] == "Pl"
         #}theme sign number end
         #{getting number information for person values specified by prefix == NOT CONJUNCT!
         elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
