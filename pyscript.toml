@@ -1,6 +1,6 @@
 packages = [
-            "hfst",
-            #"regex",
+            "pyhfst",
+            "regex",
             ]
 files = [
             "morphophonologyclitics_analyze.hfstol",
