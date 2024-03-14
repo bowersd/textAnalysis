@@ -81,7 +81,7 @@ def pad(lists_of_strings):
     padlen = []
     for i in range(len(lists_of_strings)):
         nu = []
-        for j in range(len(lists_of_strings[i]))
+        for j in range(len(lists_of_strings[i])) #pad items in list to max length at their indices
             if not i: padlen.append(max([len(lists_of_strings[k][j]) for k in range(len(lists_of_strings))]))
             nu.append(lists_of_strings[i][j]+" "*(padlen[j]-len(lists_of_strings[i][j])))
         nu_lists.append(nu)
