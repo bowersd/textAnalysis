@@ -15,6 +15,7 @@ def interpret(analysis_in):
     summary["DerivChain"] = " ".join([x for x in analysis_in["Derivation"][0]])
     summary["Head"] = analysis_in["Derivation"][0][-1]
     for i in range(len(analysis_in["Derivation"][1])): analysis_in["Derivation"][1][i] = True
+    #probably better to just pop the suffixes and append them to "else" if they don't get satisfied
     for i in range(len(analysis_in["suffixes"][0])):
         if analysis_in["suffixes"][0][i] == "Neg": 
             summary["Neg"] = analysis_in["suffixes"][0][i]
