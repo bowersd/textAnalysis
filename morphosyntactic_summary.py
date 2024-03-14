@@ -21,6 +21,7 @@ def translate_msd(analysis, delimit_left, delimit_right, **msd_trans):
     return msd_trans[re.sub(delimit_left+"[^"+delimit_right+"]*"+delimit_right, delimit_left+delimit_right, analysis)]
 
 def gloss_lex(analysis, delimit_left, delimit_right, **gloss_dict):
-    return gloss_dict["_".join(re.findall("(?<="+delimit_left+")"+"[^"+delimit_right+"]*(?="+delimit_right+")", analysis)] #assumes discontinuous lexical material is eventually written together with hyphens
+    return gloss_dict["-".join(re.findall("(?<="+delimit_left+")"+"[^"+delimit_right+"]*(?="+delimit_right+")", analysis))] #assumes discontinuous lexical material is eventually written together with hyphens
     #return gloss_dict[re.search(delimit_left+"\([^"+delimit_right+"]*\)"+delimit_right, analysis)[1]] #won't handle discontinuous lexical material ... perhaps findall()
+
 
