@@ -151,12 +151,8 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
 
 if __name__ == "__main__":
     args = parseargs()
-    #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
+    #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) #this throws a sigsev error now
     ##for generating lemmata from rand files
-    #data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is 0 1 2 oji eng id
-    #for d in data_in: 
-    #    if len(d) < 5: print(d)
-    #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, [d[3] for d in data_in], [d[4] for d in data_in], "rand_sents_corbiere_spelling_human_readable.txt")
     pos_regex = "".join(rw.readin(args.pos_regex))
     full = {
             "sentenceID":[],
@@ -219,7 +215,15 @@ if __name__ == "__main__":
         full["m_parse_hi"].append(" ".join(padded[2]))
         full["tiny_gloss"].append(" ".join(padded[3]))
         full["m_parse_lo"][i] = " ".join(padded[4])
+    #    full["chunked"][i] = padded[0]
+    #    full["edited"][i] = padded[0]
+    #    full["lemmata"].append(padded[1])
+    #    full["m_parse_hi"].append(padded[2])
+    #    full["tiny_gloss"].append(padded[3])
+    #    full["m_parse_lo"][i] = padded[4]
+    #by_sent = [{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))]
+    #code.interact(local=locals())
     with open(args.o, 'w') as fo:
         json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
-    #atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
-    #needed args: (args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, args.text, args.trans, args.o) args.trans is required but will be ignored for Rand sentences
+    ##atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
+    ##needed args: (args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, args.text, args.trans, args.o) args.trans is required but will be ignored for Rand sentences
