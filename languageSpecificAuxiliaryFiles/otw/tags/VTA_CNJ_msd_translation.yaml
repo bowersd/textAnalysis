@@ -16,7 +16,7 @@ Mapping:
      #      -igo (inversion (here 0sub only)
      #      -igoo (1pl v 2)
      #      -inin->isinoon (2 obj)
-     <>+VTA+Cnj+Thm1+Neg+1+Pl: VTA Cnj S:2Pl O:1Pl Neg #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+Neg+1+Pl: VTA Cnj S:2Pl/2 O:1Pl Neg #2pl v 1pl, 2sg v 1pl
      <>+VTA+Cnj+Thm1+Neg+2+Pl: VTA Cnj S:2Pl O:1 Neg #2pl v 1sg
      <>+VTA+Cnj+Thm1+Neg+2: VTA Cnj S:2sg O:1 Neg #2sg v 1sg
 
@@ -131,7 +131,7 @@ Mapping:
      #      -igo (inversion (here 0sub only)
      #      -igoo (1pl v 2)
      #      -inin->isinoon (2 obj)
-     <>+VTA+Cnj+Thm1+Neg+1+Pl+Prt: VTA Cnj S:2Pl O:1Pl Neg Prt #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+Prt: VTA Cnj S:2Pl/2 O:1Pl Neg Prt #2pl v 1pl, 2sg v 1pl
      <>+VTA+Cnj+Thm1+Neg+2+Pl+Prt: VTA Cnj S:2Pl O:1 Neg Prt #2pl v 1sg
      <>+VTA+Cnj+Thm1+Neg+2+Prt: VTA Cnj S:2sg O:1 Neg Prt #2sg v 1sg
 
@@ -155,7 +155,7 @@ Mapping:
      #      -igo (inversion (here 0sub only)
      #      -igoo (1pl v 2)
      #      -inin->isiino, isinoon (?) (2 obj)
-     <>+VTA+Cnj+Thm1+Neg+1+Pl+Dub: VTA Cnj S:2Pl O:1Pl Neg Dub #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+Neg+1+Pl+Dub: VTA Cnj S:2Pl/2 O:1Pl Neg Dub #2pl v 1pl, 2sg v 1pl
      <>+VTA+Cnj+Thm1+Neg+2+Pl+Dub: VTA Cnj S:2Pl O:1 Neg Dub #2pl v 1sg
      <>+VTA+Cnj+Thm1+Neg+2+Dub: VTA Cnj S:2sg O:1 Neg Dub #2sg v 1sg
 
@@ -233,7 +233,7 @@ Mapping:
      #      -igo (inversion (here 0sub only)
      #      -igoo (1pl v 2)
      #      -inin (2 obj)
-     <>+VTA+Cnj+Thm1+1+Pl: VTA Cnj S:2Pl O:1Pl #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+1+Pl: VTA Cnj S:2Pl/2 O:1Pl #2pl v 1pl, 2sg v 1pl
      <>+VTA+Cnj+Thm1+2+Pl: VTA Cnj S:2Pl O:1 #2pl v 1sg
      <>+VTA+Cnj+Thm1+2: VTA Cnj S:2sg O:1 #2sg v 1sg
 
@@ -330,7 +330,7 @@ Mapping:
      #      -igo (inversion (here 0sub only)
      #      -igoo (1pl v 2)
      #      -inin (2 obj)
-     <>+VTA+Cnj+Thm1+1+Pl+Prt: VTA Cnj S:2Pl O:1Pl Prt #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+1+Pl+Prt: VTA Cnj S:2Pl/2 O:1Pl Prt #2pl v 1pl, 2sg v 1pl
      <>+VTA+Cnj+Thm1+2+Pl+Prt: VTA Cnj S:2Pl O:1 Prt #2pl v 1sg
      <>+VTA+Cnj+Thm1+2+Prt: VTA Cnj S:2sg O:1 Prt #2sg v 1sg
 
@@ -352,7 +352,7 @@ Mapping:
      #      -igo (inversion (here 0sub only)
      #      -igoo (1pl v 2)
      #      -inin (2 obj)
-     <>+VTA+Cnj+Thm1+1+Pl+Dub: VTA Cnj S:2Pl O:1Pl Dub #2pl v 1pl, 2sg v 1pl
+     <>+VTA+Cnj+Thm1+1+Pl+Dub: VTA Cnj S:2Pl/2 O:1Pl Dub #2pl v 1pl, 2sg v 1pl
      <>+VTA+Cnj+Thm1+2+Pl+Dub: VTA Cnj S:2Pl O:1 Dub #2pl v 1sg
      <>+VTA+Cnj+Thm1+2+Dub: VTA Cnj S:2sg O:1 Dub #2sg v 1sg !cons (?)
      #<>+VTA+Cnj+Thm1+2+Dub: VTA Cnj S:2sg O:1 Dub #2sg v 1sg !book
