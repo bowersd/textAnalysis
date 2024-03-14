@@ -6,7 +6,7 @@ import sys
 def isolate_divergences(aligned1, aligned2):
     h = []
     for i in range(len(aligned1)):
-        if aligned1[i] != aligned2[i]: h.append((aligned1, aligned2, aligned1[i], aligned2[i], aligned1[i-3:i], aligned1[i+1:i+4], aligned2[i-3:i], aligned2[i+1:i+4], i, i+1-len(aligned1))) #diff in, diff out, 3 letters context left in, 3 letters context right in, 3 letters left out, 3 letters context right out, diff loc left, diff loc rightlen(str)
+        if aligned1[i] != aligned2[i]: h.append((aligned1, aligned2, aligned1[i], aligned2[i], aligned1[i]+":"+aligned2[i], aligned1[i-3:i], aligned1[i+1:i+4], aligned2[i-3:i], aligned2[i+1:i+4], i, i+1-len(aligned1))) #diff in, diff out, 3 letters context left in, 3 letters context right in, 3 letters left out, 3 letters context right out, diff loc left, diff loc rightlen(str)
     return h
 
 def compile_reports(*error_expected):
@@ -43,7 +43,7 @@ if __name__ == "__main__":
             h.append(line.strip().split(','))
     #compile_reports(*h)
     with open(sys.argv[2], 'w') as file_out:
-        file_out.write("redir_in, redir_out, diff in, diff out, trilit_left_in, trilit_right_in, trilit_left_out, trilit_right_out, diff_loc_left, diff_loc_right\n")
+        file_out.write("redir_in,redir_out,diffin,diffout,diff_complete,trilit_left_in,trilit_right_in,trilit_left_out,trilit_right_out,diff_loc_left,diff_loc_right\n")
         for x in h:
             ald = needleman.align(x[1], x[6], -1, needleman.make_id_matrix(x[1], x[6]))
             isolated = isolate_divergences(ald[0], ald[1])
