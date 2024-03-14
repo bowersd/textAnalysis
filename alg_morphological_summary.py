@@ -48,7 +48,7 @@ def interpret(analysis_in):
             if analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
-                if summary["Head"] == "VTA"  and summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and not inversion: #this is thm2 .*1pl = (2v1pl/2plv1pl) 
+                if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and not inversion: #this is thm2 .*1pl = (2v1pl/2plv1pl) 
                     summary["S"]["Num"] = "Pl/2"
                     summary["O"]["Num"] = "Pl"
                 else: summary["S"]["Num"] = "1Pl"
