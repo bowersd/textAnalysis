@@ -77,13 +77,14 @@ def interpret(analysis_in):
     return summary
 
 def analysis_dict(analysis_string):
-    adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitics":[]}
-    adict["clitic"].append([re.search("\+dash\+Adv", analysis_string)[0], False])
+    adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitic":[]}
+    adict["clitic"] = [[re.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]], [False]]
     analysis_string = analysis_string.strip("+dash+Adv") #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
-    adict["prefix"].append([re.search("(^[123X])?", analysis_string)[0], False])
-    adict["derivation"] = [[x, False] for x in re.search("POSTAGS(.*POSTAGS)?", analysis_string)[0].split("+")] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-    adict["preforms"] = [[x, False] for x in re.search("(PV|PN|PA[^\+]*\+)*", analysis_string)[0].split("+")]
-    adict["suffixes"] = list(reversed([["".join(reversed(x)), False] for x in re.search(".*(?!REVPOSTAGS)", "".join(reversed(analysis_string)))[0].split("+")])) #reading everything backwards then re-reversing it (in order to avoid non-fixed width negative lookbehind
+    adict["prefix"] = [[re.search("(^[123X])?", analysis_string)[0]], [False]]
+    adict["derivation"] = [re.search("POSTAGS(.*POSTAGS)?", analysis_string)[0].split("+"), [False for x in re.search("POSTAGS(.*POSTAGS)?", analysis_string)[0].split("+")]] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    adict["preforms"] = [re.search("(PV|PN|PA[^\+]*\+)*", analysis_string)[0].split("+"), [False for x in re.search("(PV|PN|PA[^\+]*\+)*", analysis_string)[0].split("+")]
+    adict["suffixes"] = [[x for x in reversed(re.search(".*(?!POSTAGS)", "+".join(reversed(analysis_string.split("+"))))[0].split("+"))], [False for x in re.search(".*(?!POSTAGS)", "+".join(reversed(analysis_string.split("+"))))[0].split("+")]]
+    #adict["suffixes"] = list(reversed([["".join(reversed(x)), False] for x in re.search(".*(?!REVPOSTAGS)", "".join(reversed(analysis_string)))[0].split("+")])) #reading everything backwards then re-reversing it (in order to avoid non-fixed width negative lookbehind
     return adict
 
 
