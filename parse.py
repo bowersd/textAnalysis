@@ -6,7 +6,8 @@ def parse(fst_file, fst_format, *strings):
     #no foma option...
     if fst_format == "xfst": com = ['lookup', '-q', '-flags', 'mbTT']
     #this can produce a hang by clogging buffers
-    echo = subprocess.Popen(('echo', "\n".join(strings)), stdout=subprocess.PIPE)
+    with open('__tmp.txt', 'w') as file_out: file_out.write("\n".join(strings))
+    echo = subprocess.Popen(('cat', '__tmp.txt'), stdout=subprocess.PIPE)
     parse = subprocess.check_output(com + [fst_file], stdin=echo.stdout)
     echo.wait() #forces echo to wait until parse has completed
                 #unclear why needed, as value of interest is in parse
