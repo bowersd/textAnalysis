@@ -115,7 +115,7 @@ def interpret(analysis_in):
         elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"].pop(0)
-        elif analysis_in["prefix"][0] == "2" and s == "1" and analysis_in["suffixes"][0:2] == ["Pl"]: #this does not mess up VTA local themes, since it is a lower elif (2...Thm1...1Pl = 2Pl/2 v 1pl != 21Pl)
+        elif analysis_in["prefix"][0] == "2" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: #this does not mess up VTA local themes, since it is a lower elif (2...Thm1...1Pl = 2Pl/2 v 1pl != 21Pl)
             analysis_in["suffixes"].pop(0)
             summary["S"]["Num"] = "1Pl"
         elif analysis_in["prefix"][0] == "2" and s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
@@ -242,7 +242,7 @@ if __name__ == "__main__":
                             print("in ", z)
                             print("intended ", minor_tags[x][y][z])
                             print("produced ", formatted(interpret(analysis_dict(z))))
-            print("{0} results ... successes: {1}, failures: {2}, failure pct: {3}".format(str(y), str(minor_cnt-minor_cnt_fail), str(minor_cnt_fail), str(minor_cnt_fail)/minor_cnt))
+            print("{0} results ... successes: {1}, failures: {2}, failure pct: {3}".format(str(y), str(minor_cnt-minor_cnt_fail), str(minor_cnt_fail), str(round(100*minor_cnt_fail/minor_cnt, 3))))
         major_cnt += minor_cnt
         major_cnt_fail += minor_cnt_fail
-    print("Overall results ... successes: {0}, failures: {1}, failure pct: {2}".format(str(major_cnt-major_cnt_fail), str(major_cnt_fail), str(major_cnt_fail)/major_cnt))
+    print("Overall results ... successes: {0}, failures: {1}, failure pct: {2}".format(str(major_cnt-major_cnt_fail), str(major_cnt_fail), str(round(100*major_cnt_fail/major_cnt, 3))))
