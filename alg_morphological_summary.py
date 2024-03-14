@@ -55,8 +55,8 @@ def interpret(analysis_in):
             elif analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
-                if summary["Head"] == "VTA"  and summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2": summary["S"]["Num"] == "Pl"  #this is thm1sg/thm1pl .*2pl = (1plv2pl, 1sg v 2pl) (after inversion)
-                else: summary["S"]["Num"] = "Pl"
+                #if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and inversion: summary["S"]["Num"] == "Pl"  ## before inversion (thm1sg/thm1pl .*2pl) = (2pl v 1sg/2pl v 1pl), so no need to specify a special case here 
+                summary["S"]["Num"] = "Pl" 
         elif analysis_in["prefix"][0][0] == "3" and analysis_in["suffixes"][0][i:i+2] == ["2", "Pl"]:
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
