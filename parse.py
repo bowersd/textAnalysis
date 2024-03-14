@@ -1,6 +1,7 @@
 import subprocess
 #import externalcommand
 import hfst
+import re
 
 def parse(fst_file, fst_format, *strings):
     com = ['hfst-lookup', "-q"]
@@ -22,8 +23,10 @@ def parse(fst_file, fst_format, *strings):
     #return parse.communicate()[0] #0=std out, 1=stderr
 
 def parse_native(transducer, *strings):
-    parser = hfst.HfstInputStream(transducer).read()
+    parser = hfst.HfstInputStream(transducer).read().lookup_optimize()
     h = {}
     for s in strings: 
-        if s not in h: h[s] = parser.lookup(s)
+        if s not in h: 
+            h[s] = []
+            for p in parser.lookup(s): h[s].append((re.sub("@.*?@", "" ,p[0]), p[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
