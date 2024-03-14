@@ -20,6 +20,7 @@ def interpret(analysis_in):
         if s == "Neg": summary["Neg"] = s
         elif s == "Prt": summary["Mode"] = s
         elif s == "Dub": summary["Mode"] += s
+        elif s == "Voc": summary["Mode"] += s
         elif s == "Cnj" or s == "Imp": summary["Order"] = s
         #{extracting theme sign (primarily object person) information 
         #IND        CNJ
