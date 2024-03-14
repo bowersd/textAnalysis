@@ -50,37 +50,28 @@ from pyodide.ffi import create_proxy
  
 def read_complete(event):
   # event is ProgressEvent
- 
   content = document.getElementById("content");
   content.innerText = event.target.result
 
  
 async def process_file(x):
-  fileList = document.getElementById('upload').files
- 
+  fileList = document.getElementById('targetLanguageText').files
   for f in fileList:
     # reader is a pyodide.JsProxy
     reader = FileReader.new()
- 
     # Create a Python proxy for the callback function
     onload_event = create_proxy(read_complete)
-
     #console.log("done")
- 
     reader.onload = onload_event
- 
     reader.readAsText(f)
- 
   return
  
-def main():
+def main(x):
   # Create a Python proxy for the callback function
   file_event = create_proxy(process_file)
  
   # Set the listener to the callback
-  e = document.getElementById("upload")
+  e = document.getElementById("targetLanguageText")
   e.addEventListener("change", file_event, False)
  
-main()
-   
 
