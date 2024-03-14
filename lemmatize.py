@@ -245,9 +245,9 @@ if __name__ == "__main__":
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
             for j in range(len(full["chunked"][i])):
-                if full["chunked"][i][j] in cdict: edited.append(cdict[full["chunked"][i][j]][0])
+                if full["chunked"][i][j] in cdict: edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                 elif e_ccnj_ambiguous(args.fst_file, full["chunked"][i][j]): 
-                    ccnj = e_ccnj+conservation(full["chunked"][i][j])
+                    ccnj = e_ccnj_conservation(full["chunked"][i][j])
                     edited.append(ccnj)
                     revised_analysis = parse.parse_native(os.path.expanduser(args.fst_file), ccnj)
                     full["m_parse_lo"][i][j] = revised_analysis[ccnj][pst.disambiguate(pst.min_morphs(*revised_analysis[ccnj]), pst.min_morphs, *revised_analysis[ccnj])][0]
