@@ -106,7 +106,12 @@ def analysis_dict(analysis_string):
     adict["prefix"] = [re.search("(^[123X])?", analysis_string)[0]]
     adict["derivation"] = re.search("{}(.*)?".format(postags), analysis_string)[0].split("+") #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
     adict["preforms"] = re.search("((PV|PN|PA[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
-    adict["suffixes"] = [x for x in reversed(re.search("{}.*(?!)".format(postags), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
+    adict["suffixes"] = [x for x in reversed(re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
+    #adict["suffixes"] = []
+    #print("+".join(reversed(analysis_string.split("+"))))
+    #adict["suffixes"] = list(reversed([["".join(reversed(x)), False] for x in re.search(".*(?!REVPOSTAGS)", "".join(reversed(analysis_string)))[0].split("+")])) #reading everything backwards then re-reversing it (in order to avoid non-fixed width negative lookbehind
+    return adict
+    #adict["suffixes"] = [re.search(".*(?!{})".format(postags), "+".join(reversed(analysis_string.split("+"))) [0].split("+"))]
     #adict["suffixes"] = list(reversed([["".join(reversed(x)), False] for x in re.search(".*(?!REVPOSTAGS)", "".join(reversed(analysis_string)))[0].split("+")])) #reading everything backwards then re-reversing it (in order to avoid non-fixed width negative lookbehind
     return adict
 
@@ -151,8 +156,8 @@ def format_summary(wheat, chaff, lemma, **mapping):
 
 
 if __name__ == "__main__":
-    mega_tags = []
-    for x in sys.argv[1:]:
-        with open(x) as file_in:
-            mega_tags.append(yaml.load(file_in))
-    for x in mega_tags: print(x)
+    with open(sys.argv[1]) as file_in:
+        mega_tags = yaml.load(file_in)
+    for x in mega_tags["Mapping"]["VAI - IND"]: 
+        print(x)
+        print(analysis_dict(x))
