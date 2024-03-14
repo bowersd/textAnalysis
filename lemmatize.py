@@ -29,7 +29,7 @@ def analyze_text(fst_file, fst_format, *text_in):
     analyses = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]) #get all analyses of every word
     #analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
     #for s in text_in: analysis.append([analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0] for w in pre.sep_punct(s.lower()).split()]) #look up each word's analyses and disambiguate ... better: disambiguate while the analyses are being computed ... though the parse() function should not be troubled with disambiguation questions. modular=siloed?
-    performance = [0, 0] #hits, misses
+    performance = [0, 0.01] #hits, misses
     for s in text_in: 
         a = []
         for w in pre.sep_punct(s.lower()).split():
@@ -109,7 +109,8 @@ def parseargs():
     parser.add_argument("text", help="file path to target text")
     parser.add_argument("trans", help="file path to text translation")
     parser.add_argument("-o", "--output", dest="o", nargs="?", help="file name/suffix without filetype extension", default="Lemmatization")
-    parser.add_argument("-a", "--analysis", dest="a", nargs="?", help="name of analysis file", default="")
+    parser.add_argument("-a", "--analysis", dest="a", nargs="?", help="name of analysis file", default="") #I don't remember what this is for! (DAB 2/2024)
+    parser.add_argument("-c", "--corrections", dest="c", nargs="?", help="name of corrections file", default="") #feed in hand-curated notes 
     parser.add_argument("-r", "--human-readable", dest="r", action="store_true", help="whether to write output as a txt file with user-friendly line wrapping")
     return parser.parse_args()
 
@@ -195,7 +196,7 @@ if __name__ == "__main__":
                 #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
                 ]
         with open(args.text) as f:
-            performance = [0, 0] #hits, misses
+            performance = [0, 0.01] #hits, misses
             for line in f:
                 split = line.strip().split('\t')
                 full["speakerID"].append(split[0])
