@@ -68,7 +68,6 @@ def interpret(analysis_in):
                 analysis_in["suffixes"].pop(0)
                 if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and not inversion: #this is thm2 .*1pl = (2v1pl/2plv1pl) 
                     summary["S"]["Num"] = "Pl/2"
-                    summary["O"]["Num"] = "Pl"
                 else: summary["S"]["Num"] = "1Pl"
             elif s == "2" and analysis_in["suffixes"][0:1] == ["Pl"]:
                 analysis_in["suffixes"].pop(0)
