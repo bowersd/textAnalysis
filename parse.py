@@ -1,6 +1,7 @@
 import subprocess
 #import externalcommand
 import hfst
+import pyhfst
 import re
 
 def parse(fst_file, fst_format, *strings):
@@ -36,3 +37,16 @@ def parse_native(transducer, *strings):
             else: 
                 for q in p: h[s].append((re.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
+
+def parse_pyhfst(transducer, *strings):
+    parser = pyhfst.HfstInputStream(transducer).read()
+    h = {}
+    for s in strings: 
+        if s not in h: 
+            h[s] = []
+            p = parser.lookup(s)
+            if not p: h[s].append((s+"+?", 0.00))
+            else: 
+                for q in p: h[s].append((re.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
+    return h
+
