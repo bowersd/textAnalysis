@@ -189,7 +189,7 @@ if __name__ == "__main__":
             ]
     with open(args.text) as f:
         for line in f:
-            split = line.strip().split()
+            split = line.strip().split('\t')
             full["speakerID"].append(split[0])
             full["speaker_text_num"].append(split[1])
             full["speaker_text_sent_num"].append(split[2])
