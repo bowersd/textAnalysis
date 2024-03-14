@@ -134,11 +134,11 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
             file_out.write('\n')
 
 if __name__ == "__main__":
-    args = parseargs()
-    human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
-    #data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is sentence id \t sentence
-    #pos_regex = "".join(rw.readin(args.pos_regex))
-    #lemmata = []
-    #analyses = analyze_text(args.fst_file, args.fst_format, *[d[0] for d in data_in])
-    #for a in analyses: lemmata.append(lemmatize(pos_regex, *a))
-    #atomic_json_dump(args.o, ["sentenceID", "lemmata"], [[d[1] for d in data_in], lemmata])
+    #args = parseargs()
+    #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
+    data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is sentence id \t sentence
+    pos_regex = "".join(rw.readin(args.pos_regex))
+    lemmata = []
+    analyses = analyze_text(args.fst_file, args.fst_format, *[d[0] for d in data_in])
+    for a in analyses: lemmata.append([x for x in lemmatize(pos_regex, *a) if x])
+    atomic_json_dump(args.o, ["sentenceID", "lemmata"], [[d[1] for d in data_in], lemmata])
