@@ -77,12 +77,7 @@ def name_lists(names, *lists):
 
 def atomic_json_dump(filename, names, lists):
     with open(filename, 'w') as file_out:
-        json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out) 
-
-def human_json_dump(filename, names, lists):
-    with open(filename, 'w') as file_out:
-        for i in range(len(lists[0])):
-            json.dump([{names[j]:lists[j][i] for j in range(len(lists))}], file_out, indent=4) 
+        json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out, indent=1) 
 
 def json_corrections(json_in):
     pass #give sentence id, field and index w/in field plus a new value
