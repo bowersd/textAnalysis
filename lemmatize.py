@@ -1,8 +1,10 @@
+import code
 import os
 import argparse
 import re
 import json
 import json_encoder
+import jsonlines
 import parse
 import readwrite as rw
 import postprocess as pst
@@ -164,6 +166,7 @@ if __name__ == "__main__":
             "speaker_text_sent_num":[],
             "sentence":[],
             "chunked":[],
+            "edited":[],
             "lemmata":[],
             "m_parse_hi":[],
             "m_parse_lo":[],
@@ -178,14 +181,15 @@ if __name__ == "__main__":
             "speaker_text_num",
             "speaker_text_sent_num",
             "chunked",
+            "edited",
             "m_parse_lo",
+            "m_parse_hi",
             "lemmata",
             "tiny_gloss",
             "english",
             "sentence",
             #"fiero_orth", #new machine with UR as top, then run UR back down to SRs minus corb spelling
             #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
-            "m_parse_hi",
             ]
     with open(args.text) as f:
         for line in f:
@@ -195,6 +199,7 @@ if __name__ == "__main__":
             full["speaker_text_sent_num"].append(split[2])
             full["sentence"].append(split[3])
             full["chunked"].append(pre.sep_punct(split[3]).split())
+            full["edited"].append(pre.sep_punct(split[3]).split())
             full["english"].append(split[4])
             full["sentenceID"].append(split[5])
     full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, *full["sentence"])
@@ -209,11 +214,17 @@ if __name__ == "__main__":
                 gloss = "NODEF" 
             tinies.append(re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1"))
         padded = pad(full["chunked"][i], lem, summ, tinies, full["m_parse_lo"][i])
-        full["chunked"][i] = padded[0]
-        full["lemmata"].append(padded[1])
-        full["m_parse_hi"].append(padded[2])
-        full["tiny_gloss"].append(padded[3])
-        full["m_parse_lo"][i] = padded[4]
+        full["chunked"][i] = " ".join(padded[0])
+        full["edited"][i] = " ".join(padded[0])
+        full["lemmata"].append(" ".join(padded[1]))
+        full["m_parse_hi"].append(" ".join(padded[2]))
+        full["tiny_gloss"].append(" ".join(padded[3]))
+        full["m_parse_lo"][i] = " ".join(padded[4])
+    #with jsonlines.open(args.o, mode="w") as writer:
+    #    #writer.write_all([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))])
+    #    for i in range(len(full["sentenceID"])):
+    #        #for x in names: writer.write({x:full[x][i]})
+    #        writer.write([{x:full[x][i]} for x in names])
     with open(args.o, 'w') as fo:
         json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
     #atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
