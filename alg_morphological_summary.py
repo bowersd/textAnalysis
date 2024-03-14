@@ -19,8 +19,8 @@ def interpret(analysis_in):
         s = analysis_in["suffixes"].pop(0)
         if s == "Neg": summary["Neg"] = s
         elif s == "Prt": summary["Mode"] = s
-        elif s == "Dub": summary["Mode"] += s
-        elif s == "Voc": summary["Mode"] += s
+        elif s == "Dub": summary["Mode"] += s #NB: += bc preterite dubitatives are possible
+        elif s == "Voc": summary["Mode"] = s
         elif s == "Cnj" or s == "Imp": summary["Order"] = s
         #{extracting theme sign (primarily object person) information 
         #IND        CNJ
