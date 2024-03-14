@@ -73,8 +73,7 @@ def name_lists(names, *lists):
 
 def atomic_json_dump(filename, names, lists):
     with open(filename, 'w') as file_out:
-        for i in range(len(lists[0])):
-            json.dump({names[j]:lists[j][i] for j in range(len(lists))}, file_out) 
+        json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out) 
 
 
 def json_corrections(json_in):
@@ -133,10 +132,10 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
 
 if __name__ == "__main__":
     args = parseargs()
-    #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
-    data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is sentence id \t sentence
-    pos_regex = "".join(rw.readin(args.pos_regex))
-    lemmata = []
-    analyses = analyze_text(args.fst_file, args.fst_format, *[d[0] for d in data_in])
-    for a in analyses: lemmata.append(lemmatize(pos_regex, *a))
-    atomic_json_dump(args.o, ["sentenceID", "lemmata"], [[d[1] for d in data_in], lemmata])
+    human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
+    #data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is sentence id \t sentence
+    #pos_regex = "".join(rw.readin(args.pos_regex))
+    #lemmata = []
+    #analyses = analyze_text(args.fst_file, args.fst_format, *[d[0] for d in data_in])
+    #for a in analyses: lemmata.append(lemmatize(pos_regex, *a))
+    #atomic_json_dump(args.o, ["sentenceID", "lemmata"], [[d[1] for d in data_in], lemmata])
