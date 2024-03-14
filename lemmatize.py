@@ -79,9 +79,6 @@ def atomic_json_dump(filename, names, lists):
     with open(filename, 'w') as file_out:
         json.dump([{names[j]:lists[j][i] for j in range(len(lists))} for i in range(len(lists[0]))], file_out, indent=1) 
 
-def json_corrections(json_in):
-    pass #give sentence id, field and index w/in field plus a new value
-
 def parseargs():
     parser = argparse.ArgumentParser()
     parser.add_argument("fst_file", help="file path to primary analyser")
