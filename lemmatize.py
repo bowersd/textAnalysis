@@ -8,6 +8,33 @@ import postprocess as pst
 import preprocess as pre
 import engdict as eng
 
+def analyze(fst_file, fst_format, pos_regex, gdict, text_in):
+    holder = []
+    for i in range(len(text_in)):
+        sub = [[],[],[], [], []]
+        for w in pre.sep_punct(text_in[i]).split():
+            w=w.lower()
+            p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
+            best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
+            lem = pst.extract_lemma(p[w][best][0], pos_regex)
+            try: gloss = gdict[lem]
+            except KeyError: 
+                gloss = "NODEF" 
+            abbr = re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")
+            if lem: 
+                sub[0].append(w)
+                sub[1].append(p[w][best][0])
+                sub[2].append(lem)
+                sub[3].append(abbr)
+                if (w, gloss) not in sub[4]: sub[4].append((w, gloss))
+            else: 
+                sub[0].append(w)
+                sub[1].append("?")
+                sub[2].append("?")
+                sub[3].append("?")
+        holder.append(sub)
+    return holder
+
 def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
     holder = []
     for i in range(len(text_in)):
