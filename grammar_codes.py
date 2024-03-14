@@ -104,7 +104,7 @@ abbreviations_high = {
         "Con": "Contemptive (dislike/disdain/teasing for X)",
         "Dim": "Diminutive (cuteness/smallness/affection for X)",
         "Pej": "Pejorative (stronger dislike for X)",
-        "ThmPos": "Posessive theme (marks some possessed nouns)",
+        #"ThmPos": "Posessive theme (marks some possessed nouns)",
         "Del": "Delayed ('do it in a while!')",
         "Conj": "Conjunctions (and, or, but)",
         "Interj": "Interjections (ah!)",
