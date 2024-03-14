@@ -26,11 +26,11 @@ Mapping:
      <>+VTA+Cnj+ThmInv+Neg+2+Pl: VTA Cnj S:0 O:2Pl Neg #0 v 2pl
      <>+VTA+Cnj+ThmInv+Neg+2: VTA Cnj S:0 O:2 Neg #0 v 2sg
 
-     <>+VTA+Cnj+Thm1Pl+Neg+2+Pl: VTA Cnj S:1Pl O:2Pl Neg #1pl v 2pl
-     <>+VTA+Cnj+Thm1Pl+Neg+2: VTA Cnj S:1Pl O:2 Neg #1pl v 2sg
+     <>+VTA+Cnj+Thm1Pl2+Neg+2+Pl: VTA Cnj S:1Pl O:2Pl Neg #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl2+Neg+2: VTA Cnj S:1Pl O:2 Neg #1pl v 2sg
 
      <>+VTA+Cnj+Thm2a+Neg+2+Pl: VTA Cnj S:1 O:2Pl Neg #1sg v 2pl'
-     <>+VTA+Cnj+Thm2a+Neg+2: VTA Cnj S:1 O:2 Neg #1sg v 2sg
+     <>+VTA+Cnj+Thm2a+Neg: VTA Cnj S:1 O:2 Neg #1sg v 2sg
 
      #Values from slots numbered 1, 2, 3, 4
      #  theme sign order: 
@@ -141,13 +141,13 @@ Mapping:
      <>+VTA+Cnj+ThmInv+Neg+2+Pl+Prt: VTA Cnj S:0 O:2Pl Neg Prt #0 v 2pl !book unsure
      <>+VTA+Cnj+ThmInv+Neg+2+Prt: VTA Cnj S:0 O:2 Neg Prt #0 v 2sg
 
-     <>+VTA+Cnj+Thm1Pl+Neg+2+Pl+Prt: VTA Cnj S:1Pl O:2Pl Neg Prt #1pl v 2pl
-     <>+VTA+Cnj+Thm1Pl+Neg+2+Prt: VTA Cnj S:1Pl O:2 Neg Prt #1pl v 2sg !book indicates optional siiw (yikes)
+     <>+VTA+Cnj+Thm1Pl2+Neg+2+Pl+Prt: VTA Cnj S:1Pl O:2Pl Neg Prt #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl2+Neg+2+Prt: VTA Cnj S:1Pl O:2 Neg Prt #1pl v 2sg !book indicates optional siiw (yikes)
 
      <>+VTA+Cnj+Thm2a+Neg+2+Pl+Prt: VTA Cnj S:1 O:2Pl Neg Prt #1sg v 2pl !'predict this
      #<>+VTA+Cnj+Thm2a+Neg+2+Pl: VTA Cnj S:1 O:2Pl Neg #1sg v 2pl !book has this, is unsure
      <>+VTA+Cnj+Thm2a+Neg+2+Prt: VTA Cnj S:1 O:2 Neg Prt #1sg v 2sg !cons guess
-     #<>+VTA+Cnj+Thm2a+Neg+2+Prt: VTA Cnj S:1 O:2 Neg Prt #1sg v 2sg !book unsure
+     #<>+VTA+Cnj+Thm2a+Neg+Prt: VTA Cnj S:1 O:2 Neg Prt #1sg v 2sg !book unsure
 
      #Values from slots numbered+Dub: 1, 2, 3, 6
      #  theme sign order+Dub: 
@@ -165,12 +165,12 @@ Mapping:
      <>+VTA+Cnj+ThmInv+Neg+2+Pl+Dub: VTA Cnj S:0 O:2Pl Neg Dub #0 v 2pl  !cons best guess
      <>+VTA+Cnj+ThmInv+Neg+2+Dub: VTA Cnj S:0 O:2 Neg Dub #0 v 2sg !cons best guess
 
-     <>+VTA+Cnj+Thm1Pl+Neg+2+Pl+Dub: VTA Cnj S:1Pl O:2Pl Neg Dub #1pl v 2pl
-     <>+VTA+Cnj+Thm1Pl+Neg+2+Dub: VTA Cnj S:1Pl O:2 Neg Dub #1pl v 2sg
+     <>+VTA+Cnj+Thm1Pl2+Neg+2+Pl+Dub: VTA Cnj S:1Pl O:2Pl Neg Dub #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl2+Neg+2+Dub: VTA Cnj S:1Pl O:2 Neg Dub #1pl v 2sg
 
      <>+VTA+Cnj+Thm2a+Neg+2+Pl+Dub: VTA Cnj S:1 O:2Pl Neg Dub #1sg v 2pl !'cons best guess
-     <>+VTA+Cnj+Thm2a+Neg+2+Dub: VTA Cnj S:1 O:2 Neg Dub #1sg v 2sg (cons)
-     #<>+VTA+Cnj+Thm2a+Neg+2+Dub: VTA Cnj S:1 O:2 Neg Dub #1sg v 2sg (book, has irregular sii length, short o)
+     <>+VTA+Cnj+Thm2a+Neg+Dub: VTA Cnj S:1 O:2 Neg Dub #1sg v 2sg (cons)
+     #<>+VTA+Cnj+Thm2a+Neg+Dub: VTA Cnj S:1 O:2 Neg Dub #1sg v 2sg (book, has irregular sii length, short o)
 
      #Values from slots numbered 1, 2, 4
      #  theme sign order: 
@@ -243,11 +243,11 @@ Mapping:
      <>+VTA+Cnj+ThmInv+2+Pl: VTA Cnj S:0 O:2Pl #0 v 2pl
      <>+VTA+Cnj+ThmInv+2: VTA Cnj S:0 O:2 #0 v 2sg
 
-     <>+VTA+Cnj+Thm1Pl+2+Pl: VTA Cnj S:1Pl O:2Pl #1pl v 2pl
-     <>+VTA+Cnj+Thm1Pl+2: VTA Cnj S:1Pl O:2 #1pl v 2sg
+     <>+VTA+Cnj+Thm1Pl2+2+Pl: VTA Cnj S:1Pl O:2Pl #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl2+2: VTA Cnj S:1Pl O:2 #1pl v 2sg
 
      <>+VTA+Cnj+Thm2a+2+Pl: VTA Cnj S:1 O:2Pl #1sg v 2pl
-     <>+VTA+Cnj+Thm2a+2: VTA Cnj S:1 O:2 #1sg v 2sg
+     <>+VTA+Cnj+Thm2a: VTA Cnj S:1 O:2 #1sg v 2sg
 
      #Values from slots numbered 1, 3, 4
      #  theme sign order: 
@@ -340,11 +340,11 @@ Mapping:
      <>+VTA+Cnj+ThmInv+2+Pl+Prt: VTA Cnj S:0 O:2Pl Prt #0 v 2pl
      <>+VTA+Cnj+ThmInv+2+Prt: VTA Cnj S:0 O:2 Prt #0 v 2sg
 
-     <>+VTA+Cnj+Thm1Pl+2+Pl+Prt: VTA Cnj S:1Pl O:2Pl Prt #1pl v 2pl
-     <>+VTA+Cnj+Thm1Pl+2+Prt: VTA Cnj S:1Pl O:2 Prt #1pl v 2sg
+     <>+VTA+Cnj+Thm1Pl2+2+Pl+Prt: VTA Cnj S:1Pl O:2Pl Prt #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl2+2+Prt: VTA Cnj S:1Pl O:2 Prt #1pl v 2sg
 
      <>+VTA+Cnj+Thm2a+2+Pl+Prt: VTA Cnj S:1 O:2Pl Prt #1sg v 2pl
-     <>+VTA+Cnj+Thm2a+2+Prt: VTA Cnj S:1 O:2 Prt #1sg v 2sg
+     <>+VTA+Cnj+Thm2a+Prt: VTA Cnj S:1 O:2 Prt #1sg v 2sg
 
      #Values from slots numbered 1, 3, 6
      #  theme sign order: 
@@ -365,13 +365,13 @@ Mapping:
      <>+VTA+Cnj+ThmInv+2+Dub: VTA Cnj S:0 O:2 Dub #0 v 2sg !cons (?)
      #<>+VTA+Cnj+ThmInv+2+Dub: VTA Cnj S:0 O:2 Dub #0 v 2sg !book
 
-     <>+VTA+Cnj+Thm1Pl+2+Pl+Dub: VTA Cnj S:1Pl O:2Pl Dub #1pl v 2pl
-     <>+VTA+Cnj+Thm1Pl+2+Dub: VTA Cnj S:1Pl O:2 Dub #1pl v 2sg !cons (?)
-     #<>+VTA+Cnj+Thm1Pl+2+Dub: VTA Cnj S:1Pl O:2 Dub #1pl v 2sg !book
+     <>+VTA+Cnj+Thm1Pl2+2+Pl+Dub: VTA Cnj S:1Pl O:2Pl Dub #1pl v 2pl
+     <>+VTA+Cnj+Thm1Pl2+2+Dub: VTA Cnj S:1Pl O:2 Dub #1pl v 2sg !cons (?)
+     #<>+VTA+Cnj+Thm1Pl2+2+Dub: VTA Cnj S:1Pl O:2 Dub #1pl v 2sg !book
 
      <>+VTA+Cnj+Thm2a+2+Pl+Dub: VTA Cnj S:1 O:2Pl Dub #1sg v 2pl
-     <>+VTA+Cnj+Thm2a+2+Dub: VTA Cnj S:1 O:2 Dub #1sg v 2sg !cons (?)
-     #<>+VTA+Cnj+Thm2a+2+Dub: VTA Cnj S:1 O:2 Dub #1sg v 2sg !cons (?)
+     <>+VTA+Cnj+Thm2a+Dub: VTA Cnj S:1 O:2 Dub #1sg v 2sg !cons (?)
+     #<>+VTA+Cnj+Thm2a+Dub: VTA Cnj S:1 O:2 Dub #1sg v 2sg !cons (?)
 
      #Values from slots numbered 1, 4
      #  theme sign order: 
