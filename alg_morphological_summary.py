@@ -40,6 +40,11 @@ def interpret(analysis_in):
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["Pl"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] == "Pl"
+        elif summary["O"]["Pers"] == "3" and s == "0": 
+            summary["O"]["Pers"] = "0"
+            if analysis_in["suffixes"][0:1] == ["Pl"]:
+                analysis_in["suffixes"].pop(0)
+                summary["O"]["Num"] == "Pl"
         #}theme sign number end
         #{getting number information for person values specified by prefix == NOT CONJUNCT!
         elif analysis_in["prefix"][0] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]: 
