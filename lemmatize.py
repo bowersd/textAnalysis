@@ -8,18 +8,18 @@ import postprocess as pst
 import preprocess as pre
 import engdict as eng
 
-def analyze_word(fst_file, fst_format, pos_regex, gdict, w):
-    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
-    best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
-    lem = pst.extract_lemma(p[w][best][0], pos_regex)
-    if lem: return [p[w][best][0], lem]
-    else: return ["?", "?"]
-
-def analyze_sent(fst_file, fst_format, *sent):
-    analysis = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *sent).decode())
-    analyses = []
-    for w in sent: analyses.append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
-    return analyses
+#def analyze_word(fst_file, fst_format, pos_regex, gdict, w):
+#    p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
+#    best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
+#    lem = pst.extract_lemma(p[w][best][0], pos_regex)
+#    if lem: return [p[w][best][0], lem]
+#    else: return ["?", "?"]
+#
+#def analyze_sent(fst_file, fst_format, *sent):
+#    analysis = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *sent).decode())
+#    analyses = []
+#    for w in sent: analyses.append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
+#    return analyses
 
 def analyze_text(fst_file, fst_format, *text_in):
     analysis = []
@@ -29,6 +29,7 @@ def analyze_text(fst_file, fst_format, *text_in):
 
 def lemmatize(pos_regex, *analysis):
     return [pst.extract_lemma(a, pos_regex) for a in analysis]
+
 
 def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
     holder = []
