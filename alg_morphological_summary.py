@@ -11,8 +11,8 @@ def interpret(analysis_in):
     inversion = False #if true, S/O will be inverted at end
     #analysis = [x for x in in analysis_in]
     summary["S"]["Pers"] = analysis_in["prefix"][0]
-    summary["DerivChain"] = " ".join([x for x in analysis_in["Derivation"]])
-    summary["Head"] = analysis_in["Derivation"][-1]
+    summary["DerivChain"] = " ".join([x for x in analysis_in["derivation"]])
+    summary["Head"] = analysis_in["derivation"][-1]
     #probably better to just pop the suffixes and append them to "else" if they don't get satisfied
     #for i in range(len(analysis_in["suffixes"][0])):
     while analysis_in["suffixes"]:
@@ -107,12 +107,6 @@ def analysis_dict(analysis_string):
     adict["derivation"] = re.search("{}(.*)?".format(postags), analysis_string)[0].split("+") #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
     adict["preforms"] = re.search("((PV|PN|PA[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
     adict["suffixes"] = [x for x in reversed(re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
-    #adict["suffixes"] = []
-    #print("+".join(reversed(analysis_string.split("+"))))
-    #adict["suffixes"] = list(reversed([["".join(reversed(x)), False] for x in re.search(".*(?!REVPOSTAGS)", "".join(reversed(analysis_string)))[0].split("+")])) #reading everything backwards then re-reversing it (in order to avoid non-fixed width negative lookbehind
-    return adict
-    #adict["suffixes"] = [re.search(".*(?!{})".format(postags), "+".join(reversed(analysis_string.split("+"))) [0].split("+"))]
-    #adict["suffixes"] = list(reversed([["".join(reversed(x)), False] for x in re.search(".*(?!REVPOSTAGS)", "".join(reversed(analysis_string)))[0].split("+")])) #reading everything backwards then re-reversing it (in order to avoid non-fixed width negative lookbehind
     return adict
 
 
@@ -160,4 +154,4 @@ if __name__ == "__main__":
         mega_tags = yaml.load(file_in)
     for x in mega_tags["Mapping"]["VAI - IND"]: 
         print(x)
-        print(analysis_dict(x))
+        print(interpret(analysis_dict(x)))
