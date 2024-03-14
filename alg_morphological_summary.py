@@ -119,9 +119,10 @@ def interpret(analysis_in):
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "X": 
             summary["S"]["Pers"] = "X"
-        elif (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers" = "1" #default person for Thm2a keep at end
-        elif (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers" = "2" #default person for Thm1  keep at end
         else: summary["Else"].append(s)
+    else: 
+        if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers" = "1" #default person for Thm2a keep at end
+        if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers" = "2" #default person for Thm1  keep at end
     #summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
     if inversion == True: summary["S"], summary["O"] = summary["O"], summary["S"]
     return summary
