@@ -28,7 +28,7 @@ def interpret(analysis_in):
         elif analysis_in["suffixes"][0][i] == "Cnj" or analysis_in["suffixes"][0][i] == "Imp":
             summary["Order"] = analysis_in["suffixes"][0][i]
             analysis_in["suffixes"][1][i] = True
-        #{prefix information already obtained
+        #{getting number information when prefix information already obtained
         elif analysis_in["prefix"][0][0] == "1" and analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]: 
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
@@ -38,9 +38,10 @@ def interpret(analysis_in):
             if summary["Head"] == "VTA" and analysis_in["suffixes"][0][i] == "Thm2":
                 summary["O"]["Pers"] = "1"
                 analysis_in["suffixes"][1][i] = True
-            elif summary["Head"] == "VTA" and analysis_in["suffixes"] == "Thm1Pl":
+            elif summary["Head"] == "VTA" and (analysis_in["suffixes"] == "Thm1Pl" or analysis_in["suffixes"] == "Thm1Sg"):
                 summary["O"]["Pers"] = "1"
-                summary["O"]["Num"] = "Pl"
+                if analysis_in["suffixes"] = "Thm1Pl":
+                    summary["O"]["Num"] = "Pl"
                 summary["S"]["Pers"] = "2"
                 analysis_in["suffixes"][1][i] = True
                 inversion = True
