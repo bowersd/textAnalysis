@@ -1,16 +1,13 @@
 import re
 
-def parser_out_string_dict(string, form):
+def parser_out_string_dict(string):
     """reformats STRING in output FORM to dict keyed by first word"""
     proc = {}
-    if form == "xerox":
-        for line in string.split('\n'):
-            if not line: continue 
-            split = line.split()
-            if split[0] not in proc: proc[split[0]] = [split[1:]]
-            elif split[1:] not in proc[split[0]]: proc[split[0]].append(split[1:]) 
-    if form == "apertium":
-        pass
+    for line in string.split('\n'):
+        if not line: continue 
+        split = line.split()
+        if split[0] not in proc: proc[split[0]] = [split[1:]]
+        elif split[1:] not in proc[split[0]]: proc[split[0]].append(split[1:]) 
     return proc
 
 def min_morphs(*msds):
