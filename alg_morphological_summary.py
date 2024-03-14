@@ -21,7 +21,7 @@ def analysis_dict(analysis_string):
     adict["prefix"].append([re.search("(^[123X])?", analysis_string)[0], False])
     adict["derivation"] = [[x, False] for x in re.search("POSTAGS(.*POSTAGS)?", analysis_string)[0].split("+")] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
     adict["preforms"] = [[x, False] for x in re.search("(PV|PN|PA[^\+]*\+)*", analysis_string)[0].split("+")]
-    #adict["suffixes"] = [[x, False] for x in re.search("(?<!.*POSTAGS).*", analysis_string)[0].split("+")] #everything after the last pos tag
+    adict["suffixes"] = list(reversed([["".join(reversed(x)), False] for x in re.search(".*(?!REVPOSTAGS)", "".join(reversed(analysis_string)))[0].split("+")])) #reading everything backwards then re-reversing it (in order to avoid non-fixed width negative lookbehind
     return adict
 
 
