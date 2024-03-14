@@ -40,16 +40,10 @@ def interpret(analysis_in):
                 analysis_in["suffixes"][1][i] = True
             elif summary["Head"] == "VTA" and (analysis_in["suffixes"] == "Thm1Pl" or analysis_in["suffixes"] == "Thm1Sg"):
                 summary["O"]["Pers"] = "1"
-                if analysis_in["suffixes"] = "Thm1Pl":
-                    summary["O"]["Num"] = "Pl"
+                if analysis_in["suffixes"] = "Thm1Pl": summary["O"]["Num"] = "Pl"
                 summary["S"]["Pers"] = "2"
                 analysis_in["suffixes"][1][i] = True
                 inversion = True
-            elif summary["Head"] == "VTA" and analysis_in["suffixes"] == "Thm1Sg":
-                summary["O"]["Pers"] = "1"
-                summary["S"]["Pers"] = "2"
-                analysis_in["suffixes"][1][i] = True
-                inversion = True 
                 #arranging persons for VTA local predication end}
             elif analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
