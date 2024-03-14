@@ -46,7 +46,7 @@ def parse_text(event):
 import asyncio
 import js
 from js import document, FileReader
-from pyodide import create_proxy
+from pyodide.ffi import create_proxy
  
 def read_complete(event):
   # event is ProgressEvent
