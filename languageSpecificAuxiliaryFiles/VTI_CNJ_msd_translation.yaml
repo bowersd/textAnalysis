@@ -1,0 +1,97 @@
+Mapping: VTI Cnj S:
+     
+  VTI - Cnj : VTI Cnj S:
+     
+  #Template Key
+  #1	2	3	4
+  #neg	persnum prt     dub
+     
+     #this is pulled from book (p 313)
+     #Values from slots numbered 2
+     <>+VTI+Cnj+1: VTI Cnj S:1 O:0
+     <>+VTI+Cnj+2: VTI Cnj S:2 O:0
+     <>+VTI+Cnj+3: VTI Cnj S:3 O:0
+     <>+VTI+Cnj+3+4: VTI Cnj S:3' O:0
+     <>+VTI+Cnj+X: VTI Cnj S:X O:0
+     <>+VTI+Cnj+1+Pl: VTI Cnj S:1Pl O:0
+     <>+VTI+Cnj+2+1+Pl: VTI Cnj S:21Pl O:0
+     <>+VTI+Cnj+2+Pl: VTI Cnj S:2Pl O:0
+     <>+VTI+Cnj+3+Pl: VTI Cnj S:3Pl O:0
+     
+     #Values from slots numbered 2, 3
+     <>+VTI+Cnj+1+Prt: VTI Cnj S:1 O:0 Prt
+     <>+VTI+Cnj+2+Prt: VTI Cnj S:2 O:0 Prt
+     <>+VTI+Cnj+3+Prt: VTI Cnj S:3 O:0 Prt
+     <>+VTI+Cnj+3+4+Prt: VTI Cnj S:3' O:0 Prt
+     <>+VTI+Cnj+X+Prt: VTI Cnj S:X O:0 Prt
+     <>+VTI+Cnj+1+Pl+Prt: VTI Cnj S:1Pl O:0 Prt
+     <>+VTI+Cnj+2+1+Pl+Prt: VTI Cnj S:21Pl O:0 Prt
+     <>+VTI+Cnj+2+Pl+Prt: VTI Cnj S:2Pl O:0 Prt
+     <>+VTI+Cnj+3+Pl+Prt: VTI Cnj S:3Pl O:0 Prt
+     
+     #Values from slots numbered 2, 4 
+     <>+VTI+Cnj+1+Dub: VTI Cnj S:1 O:0 Dub
+     <>+VTI+Cnj+2+Dub: VTI Cnj S:2 O:0 Dub
+     <>+VTI+Cnj+3+Dub: VTI Cnj S:3 O:0 Dub
+     <>+VTI+Cnj+3+4+Dub: VTI Cnj S:3' O:0 Dub
+     <>+VTI+Cnj+X+Dub: VTI Cnj S:X O:0 Dub
+     <>+VTI+Cnj+1+Pl+Dub: VTI Cnj S:1Pl O:0 Dub
+     <>+VTI+Cnj+2+1+Pl+Dub: VTI Cnj S:21Pl O:0 Dub
+     <>+VTI+Cnj+2+Pl+Dub: VTI Cnj S:2Pl O:0 Dub
+     <>+VTI+Cnj+3+Pl+Dub: VTI Cnj S:3Pl O:0 Dub
+     
+     #Values from slots numbered 2, 3, 4 
+     <>+VTI+Cnj+1+Prt+Dub: VTI Cnj S:1 O:0 Prt Dub
+     <>+VTI+Cnj+2+Prt+Dub: VTI Cnj S:2 O:0 Prt Dub
+     <>+VTI+Cnj+3+Prt+Dub: VTI Cnj S:3 O:0 Prt Dub
+     <>+VTI+Cnj+3+4+Prt+Dub: VTI Cnj S:3' O:0 Prt Dub
+     <>+VTI+Cnj+X+Prt+Dub: VTI Cnj S:X O:0 Prt Dub
+     <>+VTI+Cnj+1+Pl+Prt+Dub: VTI Cnj S:1Pl O:0 Prt Dub
+     <>+VTI+Cnj+2+1+Pl+Prt+Dub: VTI Cnj S:21Pl O:0 Prt Dub
+     <>+VTI+Cnj+2+Pl+Prt+Dub: VTI Cnj S:2Pl O:0 Prt Dub
+     <>+VTI+Cnj+3+Pl+Prt+Dub: VTI Cnj S:3Pl O:0 Prt Dub
+     
+     #Values from slots numbered 1, 2
+     <>+VTI+Cnj+Neg+1: VTI Cnj S:1 O:0 Neg
+     <>+VTI+Cnj+Neg+2: VTI Cnj S:2 O:0 Neg
+     <>+VTI+Cnj+Neg+3: VTI Cnj S:3 O:0 Neg
+     <>+VTI+Cnj+Neg+3+4: VTI Cnj S:3' O:0 Neg
+     <>+VTI+Cnj+Neg+X: VTI Cnj S:X O:0 Neg
+     <>+VTI+Cnj+Neg+1+Pl: VTI Cnj S:1Pl O:0 Neg
+     <>+VTI+Cnj+Neg+2+1+Pl: VTI Cnj S:21Pl O:0 Neg
+     <>+VTI+Cnj+Neg+2+Pl: VTI Cnj S:2Pl O:0 Neg
+     <>+VTI+Cnj+Neg+3+Pl: VTI Cnj S:3Pl O:0 Neg
+     
+     #Values from slots numbered 1, 2, 3 
+     <>+VTI+Cnj+Neg+1+Prt: VTI Cnj S:1 O:0 Neg Prt
+     <>+VTI+Cnj+Neg+2+Prt: VTI Cnj S:2 O:0 Neg Prt
+     <>+VTI+Cnj+Neg+3+Prt: VTI Cnj S:3 O:0 Neg Prt
+     <>+VTI+Cnj+Neg+3+4+Prt: VTI Cnj S:3' O:0 Neg Prt
+     <>+VTI+Cnj+Neg+X+Prt: VTI Cnj S:X O:0 Neg Prt
+     <>+VTI+Cnj+Neg+1+Pl+Prt: VTI Cnj S:1Pl O:0 Neg Prt
+     <>+VTI+Cnj+Neg+2+1+Pl+Prt: VTI Cnj S:21Pl O:0 Neg Prt
+     <>+VTI+Cnj+Neg+2+Pl+Prt: VTI Cnj S:2Pl O:0 Neg Prt
+     <>+VTI+Cnj+Neg+3+Pl+Prt: VTI Cnj S:3Pl O:0 Neg Prt
+     
+     #Values from slots numbered 1, 2, 4 
+     <>+VTI+Cnj+Neg+1+Dub: VTI Cnj S:1 O:0 Neg Dub
+     <>+VTI+Cnj+Neg+2+Dub: VTI Cnj S:2 O:0 Neg Dub
+     <>+VTI+Cnj+Neg+3+Dub: VTI Cnj S:3 O:0 Neg Dub
+     <>+VTI+Cnj+Neg+3+4+Dub: VTI Cnj S:3' O:0 Neg Dub
+     <>+VTI+Cnj+Neg+X+Dub: VTI Cnj S:X O:0 Neg Dub
+     <>+VTI+Cnj+Neg+1+Pl+Dub: VTI Cnj S:1Pl O:0 Neg Dub
+     <>+VTI+Cnj+Neg+2+1+Pl+Dub: VTI Cnj S:21Pl O:0 Neg Dub
+     <>+VTI+Cnj+Neg+2+Pl+Dub: VTI Cnj S:2Pl O:0 Neg Dub
+     <>+VTI+Cnj+Neg+3+Pl+Dub: VTI Cnj S:3Pl O:0 Neg Dub
+     
+     #Values from slots numbered 1, 2, 3, 4 
+     <>+VTI+Cnj+Neg+1+Prt+Dub: VTI Cnj S:1 O:0 Neg Prt Dub
+     <>+VTI+Cnj+Neg+2+Prt+Dub: VTI Cnj S:2 O:0 Neg Prt Dub
+     <>+VTI+Cnj+Neg+3+Prt+Dub: VTI Cnj S:3 O:0 Neg Prt Dub
+     <>+VTI+Cnj+Neg+3+4+Prt+Dub: VTI Cnj S:3' O:0 Neg Prt Dub
+     <>+VTI+Cnj+Neg+X+Prt+Dub: VTI Cnj S:X O:0 Neg Prt Dub
+     <>+VTI+Cnj+Neg+1+Pl+Prt+Dub: VTI Cnj S:1Pl O:0 Neg Prt Dub
+     <>+VTI+Cnj+Neg+2+1+Pl+Prt+Dub: VTI Cnj S:21Pl O:0 Neg Prt Dub
+     <>+VTI+Cnj+Neg+2+Pl+Prt+Dub: VTI Cnj S:2Pl O:0 Neg Prt Dub
+     <>+VTI+Cnj+Neg+3+Pl+Prt+Dub: VTI Cnj S:3Pl O:0 Neg Prt Dub
+     
