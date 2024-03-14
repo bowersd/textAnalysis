@@ -18,17 +18,19 @@
     <input type="text" name = "freeNish" id="freeNish" placeholder="Type Nishnaabemwin words here..."/>
     <button py-click="parse_words">Analyze Words</button>
     <div id="output"></div>
-    <script type="py" src="./main.py" config="./pyscript.toml" terminal async></script>
+    <script type="py" src="./main.py" config="./pyscript.toml" async></script>
+    <!--
     <p>Click on the "Browse..." button to select a plain text file in Nishnaabemwin, and "Analyze Text" analyze it:</p>
     <form action='/action_page.php'>
         <input type="file" id="targetLanguageText" name="targetText">
-        <!--button py-click="analyzeText">Analyze Text</button-->
-        <!--script type="py" src="./main.py" config="./pyscript.toml" terminal async></script-->
+        <button py-click="analyzeText">Analyze Text</button>
+        <script type="py" src="./main.py" config="./pyscript.toml" terminal async></script>
     </form>
     <p>Download the analyzed text below:</p>
     <a download="analyzed_file">
         <button type="button">Download</button>
     </a>
+    -->
     <p>You will get the most user-friendly results if you put each sentence on a new line.</p>
     <p>Translation files need to have exactly as many lines as the original text.</p>
     <!--Coming soon: translation files, txt, json format, short translations, high level analysis, alternate spelling systems (have a light version of page and heavy version?), error fixing (query the analyzer, generate forms, commonly encountered problems), send files to linguist/contact me, ads-->
