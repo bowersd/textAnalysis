@@ -15,23 +15,14 @@ def analyze_word(fst_file, fst_format, pos_regex, gdict, w):
     if lem: return [p[w][best][0], lem]
     else: return ["?", "?"]
 
-def analyze_sent(fst_file, fst_format, pos_regex, gdict, *sent):
+def analyze_sent(fst_file, fst_format, *sent):
+    analysis = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *sent).decode())
     analyses = []
-    lemmata = []
-    for w in sent:
-        analysis = analyze_word(fst_file, fst_format, pos_regex, gdict, w.lower())
-        analyses.append(analysis[0])
-        lemmata.append(analysis[1])
-    return [analyses, lemmata]
+    for w in sent: analyses.append(analysis[w][pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])][0])
+    return analyses
 
-def analyze_text(fst_file, fst_format, pos_regex, gdict, text_in):
-    analyses = []
-    lemmata = []
-    for s in text_in:
-        analysis = analyze_sent(fst_file, fst_format, pos_regex, gdict,  *pre.sep_punct(sent).split())
-        analyses.append(analysis[0])
-        lemmata.append(analysis[1])
-    return [analyses, lemmata]
+def analyze_text(fst_file, fst_format, *text_in):
+    return [analyze_sent(fst_file, fst_format, *pre.sep_punct(s.lower()).split()) for s in text_in]
 
 def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
     holder = []
