@@ -80,12 +80,12 @@ def interpret(analysis_in):
             elif analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
-        elif (not summary["S"]["Pers"]) and s == "3":
+        elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == '3') and s == "3":
             summary["S"]["Pers"] = "3"
             if analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
-            if analysis_in["suffixes"][0:1] == ["3", "4"]:
+            if analysis_in["suffixes"][0:1] == ["4"]:
                 summary["S"]["Num"] = "'"
                 analysis_in["suffixes"].pop(0)
         elif (not summary["S"]["Pers"]) and s == "0": #VTIs/VTAs still not covered
@@ -93,6 +93,8 @@ def interpret(analysis_in):
             if analysis_in["suffixes"][0:1] == ["Pl"]: #VTIs/VTAs still not covered
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
+        elif (not summary["S"]["Pers"]) and s == "X": 
+            summary["S"]["Pers"] = "X"
         else: summary["Else"].append(s)
     #summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
     if inversion == True: summary["S"], summary["O"] = summary["O"], summary["S"]
