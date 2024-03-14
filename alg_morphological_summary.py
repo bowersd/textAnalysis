@@ -28,22 +28,22 @@ def interpret(analysis_in):
         elif analysis_in["suffixes"][0][i] == "Cnj" or analysis_in["suffixes"][0][i] == "Imp":
             summary["Order"] = analysis_in["suffixes"][0][i]
             analysis_in["suffixes"][1][i] = True
+        #{arranging persons for VTA local predication (extracting theme sign information)
+        if summary["Head"] == "VTA" and analysis_in["suffixes"][0][i] == "Thm2":
+            summary["O"]["Pers"] = "1"
+            analysis_in["suffixes"][1][i] = True
+        elif summary["Head"] == "VTA" and (analysis_in["suffixes"] == "Thm1Pl" or analysis_in["suffixes"] == "Thm1Sg"):
+            summary["O"]["Pers"] = "1"
+            if analysis_in["suffixes"] = "Thm1Pl": summary["O"]["Num"] = "Pl"
+            analysis_in["suffixes"][1][i] = True
+            inversion = True
+            #arranging persons for VTA local predication end}
         #{getting number information when prefix information already obtained == NOT CONJUNCT!
         elif analysis_in["prefix"][0][0] == "1" and analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]: 
             summary["S"]["Num"] = "Pl"
             analysis_in["suffixes"][1][i] = True
             analysis_in["suffixes"][1][i+1] = True
         elif analysis_in["prefix"][0][0] == "2": 
-            #{arranging persons for VTA local predication (extracting theme sign information)
-            if summary["Head"] == "VTA" and analysis_in["suffixes"][0][i] == "Thm2":
-                summary["O"]["Pers"] = "1"
-                analysis_in["suffixes"][1][i] = True
-            elif summary["Head"] == "VTA" and (analysis_in["suffixes"] == "Thm1Pl" or analysis_in["suffixes"] == "Thm1Sg"):
-                summary["O"]["Pers"] = "1"
-                if analysis_in["suffixes"] = "Thm1Pl": summary["O"]["Num"] = "Pl"
-                analysis_in["suffixes"][1][i] = True
-                inversion = True
-                #arranging persons for VTA local predication end}
             elif analysis_in["suffixes"][0][i:i+2] == ["1", "Pl"]:
                 analysis_in["suffixes"][1][i] = True
                 analysis_in["suffixes"][1][i+1] = True
