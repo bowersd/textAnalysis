@@ -7,7 +7,7 @@ import engdict as eng
 import readwrite as rw
 
 def interpret(analysis_in):
-    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":"", "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
+    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":"", "Periph":"", "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
     inversion = False #if true, S/O will be inverted at end
     #analysis = [x for x in in analysis_in]
     summary["S"]["Pers"] = analysis_in["prefix"][0]
