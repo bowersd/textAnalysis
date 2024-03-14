@@ -1,7 +1,7 @@
 import micropip
 await micropip.install(
-    'https://files.pythonhosted.org/packages/eb/f5/3ea71e974dd0117b95a54ab2c79d781b4376d257d91e4c2249605f4a54ae/pyhfst-1.2.0-py2.py3-none-any.whl'
-    #'emfs://pyhfst-1.2.0-py2.py3-none-any.whl'
+    #'https://files.pythonhosted.org/packages/eb/f5/3ea71e974dd0117b95a54ab2c79d781b4376d257d91e4c2249605f4a54ae/pyhfst-1.2.0-py2.py3-none-any.whl'
+    'emfs://pyhfst-1.2.0-py2.py3-none-any.whl'
 )
 #import hfst
 import regex
