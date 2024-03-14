@@ -24,7 +24,7 @@ import alg_morphological_summary as algsum
 #    for w in sent: analyses.append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
 #    return analyses
 
-def analyze_text(fst_file, fst_format, *text_in):
+def analyze_text(fst_file, fst_format, corrections, *text_in):
     analysis = []
     analyses = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]) #get all analyses of every word
     #analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
@@ -33,9 +33,11 @@ def analyze_text(fst_file, fst_format, *text_in):
     for s in text_in: 
         a = []
         for w in pre.sep_punct(s.lower()).split():
-            best = analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0]
-            a.append(best)
-            performance[int(best.endswith("+?"))] += 1 
+            if w in corrections: a.append(corrections[w][1]) #corrections are original: [edited, analyzed]
+            else:
+                best = analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0]
+                a.append(best)
+                performance[int(best.endswith("+?"))] += 1 
         analysis.append(a)
     print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
     return analysis
@@ -156,7 +158,7 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
 
 if __name__ == "__main__":
     args = parseargs()
-    cdict = {}
+    cdict = {} #corrections are original: [edited, analyzed]
     adjustments = {}
     if args.c: 
         for correction in rw.readin(args.c):
@@ -224,24 +226,25 @@ if __name__ == "__main__":
                         full["m_parse_lo"][-1].append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
                         performance[int(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0].endswith("+?"))] += 1 
             print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
-        if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, *full["sentence"])
+        if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         for i in range(len(full["m_parse_lo"])): 
             lem = [x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
             summ = [algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) if algsum.analysis_dict(x) else "?" for x in full["m_parse_lo"][i] ] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
             tinies = []
+            edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             for l in lem:
                 try: gloss = gdict[l]
                 except KeyError: 
                     gloss = "NODEF" 
                 tinies.append(re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1"))
-            padded = pad(full["chunked"][i], lem, summ, tinies, full["m_parse_lo"][i])
+            padded = pad(full["chunked"][i], edited, lem, summ, tinies, full["m_parse_lo"][i])
             full["chunked"][i] = " ".join(padded[0])
-            full["edited"][i] = " ".join(padded[0])
-            full["lemmata"].append(" ".join(padded[1]))
-            full["m_parse_hi"].append(" ".join(padded[2]))
-            full["tiny_gloss"].append(" ".join(padded[3]))
-            full["m_parse_lo"][i] = " ".join(padded[4])
+            full["edited"][i] = " ".join(padded[1])
+            full["lemmata"].append(" ".join(padded[2]))
+            full["m_parse_hi"].append(" ".join(padded[3]))
+            full["tiny_gloss"].append(" ".join(padded[4]))
+            full["m_parse_lo"][i] = " ".join(padded[5])
         #    full["chunked"][i] = padded[0]
         #    full["edited"][i] = padded[0]
         #    full["lemmata"].append(padded[1])
