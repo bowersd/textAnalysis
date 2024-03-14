@@ -37,7 +37,7 @@ def interpret(analysis_in):
         elif (s == "Thm1Pl" or s == "Thm1"):
             summary["O"]["Pers"] = "1"
             if s == "Thm1Pl": summary["O"]["Num"] = "Pl"
-            inversion = True
+            if not (s == "Thm1" and summary["Order"] == "Cnj"): inversion = True #Thm1Pl is always subject marker, Thm1 is subject marker in indep, object marker in cnj
             #local theme signs end}
         elif (s == "ThmDir" or s == "ThmInv"):
             summary["O"]["Pers"] = "3"
