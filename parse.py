@@ -25,10 +25,10 @@ def parse(fst_file, fst_format, *strings):
 
 def parse_native(transducer, *strings):
     parser = hfst.HfstInputStream(transducer).read()
-    print("optimizing transducer")
+    #print("optimizing transducer")
     parser.lookup_optimize()
     h = {}
-    print("looking up strings")
+    #print("looking up strings")
     for s in strings: 
         if s not in h: 
             h[s] = []
