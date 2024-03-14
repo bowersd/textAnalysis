@@ -14,3 +14,7 @@ def writeout(filename, *lines):
         for l in lines:
             f_out.write(l+"\n")
 
+def convert_interlinear_corrections_to_json(filename_in, *keys):
+    with open(filename_in) as data:
+        for i in range(len(data)): pass #cycle through the keys as a modulus
+
