@@ -7,6 +7,7 @@ await micropip.install(
 import regex
 import pyhfst
 from pyscript import document
+from pyweb import pydom
 
 #print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
 #print("For now, a demonstration that a functioning analyzer is loaded")
