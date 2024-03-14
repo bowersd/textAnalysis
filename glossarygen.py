@@ -184,15 +184,20 @@ def stringify_abbrev_key(*encountered, **mapping):
 def main(fst_file, spellrelax_file, regex_file, gloss_file, corrections, output, unique, *texts_in):
     gdict = eng.mk_glossing_dict(*rw.readin(gloss_file)) 
     pos_regex = "".join(rw.readin(regex_file))
+    cdict = {}#x[1]:re.split(" +", x) for x in rw.readin(corrections)}
+    if corrections: 
+        for c in rw.readin(corrections):
+            s  = re.split(" +", c)
+            cdict[s[1]] = s
     if unique:
         for t in texts_in: 
             addr = t.split("/")
-            g = glossify(fst_file, spellrelax_file,  pos_regex, gdict, [re.split(" +", x) for x in rw.readin(corrections)], rw.burn_metadata(2, *rw.readin(t)))
+            g = glossify(fst_file, spellrelax_file,  pos_regex, gdict, cdict, rw.burn_metadata(2, *rw.readin(t)))
             rw.writeout("/".join(addr[:-1])+'/'+(output+".").join(addr[-1].split(".")), *stringify(**g)+stringify_abbrev_key(*mk_abbrev_key(**g), **abbreviations))
     else: 
         gholder = {}
         for t in texts_in:
-            sub = glossify(fst_file, spellrelax_file,  pos_regex, gdict, [re.split(" +", x) for x in rw.readin(corrections)], rw.burn_metadata(2, *rw.readin(t)))
+            sub = glossify(fst_file, spellrelax_file,  pos_regex, gdict, cdict, rw.burn_metadata(2, *rw.readin(t)))
             for x in sub:
                 update(gholder, x, *sub[x])
         #path = "/".join(t.split("/")[:-1])+"/"
