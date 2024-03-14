@@ -89,7 +89,7 @@ def stringify(**entries):
         holder.append('\t'.join([flag2string(flag_cap(*[v[0] for v in entries[e][-1]]))+e,str(entries[e][0])]+[x.strip('+') for x in entries[e][1:-1]]))
         #holder.append(f"{flag2string(flag_cap(*[v[0] for v in entries[e][-1]]))+e:{left}}  {str(entries[e][0])}  {'  '.join([x.strip('+') for x in entries[e][1:-1]])}")
         #holder.append("    ".join([flag2string(flag_cap(*[v[0] for v in entries[e][-1]]))+e, str(entries[e][0])] + entries[e][1:-1]))
-        for w in adjust_cap(*entries[e][-1]): holder.append('\t'+'\t'.join(w))
+        for w in adjust_cap(*sorted(entries[e][-1])): holder.append('\t'+'\t'.join(w))
         #for w in adjust_cap(*entries[e][-1]): holder.append(f"{' '*((left//2))}{w[0]:{sec}}  {'  '.join(w[1:])}")
             #holder.append("    "+"    ".join(w))
     return holder
