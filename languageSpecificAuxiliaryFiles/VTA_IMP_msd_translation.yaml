@@ -1,0 +1,41 @@
+Mapping: 
+     
+  VTA - Imp :
+     
+  #Template Key
+  #Dropped Imm tags in line with other imperatives. Imm tags may be dropped from analyzer too.
+  #NO TEMPLATE
+    <>+VTA+Imp+Imm+2+1: VTA Imp S:2 O:1 #2sg v 1sg
+    <>+VTA+Imp+Imm+2+1+Pl: VTA Imp S:2 O:1 #2sg v 1pl
+    <>+VTA+Imp+Imm+2+Pl+1+Pl: VTA Imp S:2Pl O:1 #2pl v 1pl !2v1pl ambig elsewhere...
+    <>+VTA+Imp+Imm+2+Pl+1: VTA Imp S:2Pl O:1 #2pl v 1sg 
+    <>+VTA+Imp+Imm+2+3: VTA Imp S:2 O:3 #2sg v 3sg 
+    <>+VTA+Imp+Imm+2+3: VTA Imp S:2 O:3 #2sg v 3sg 
+    <>+VTA+Imp+Imm+2+3+Pl: VTA Imp S:2 O:3Pl #2sg v 3pl 
+    <>+VTA+Imp+Imm+2+3+Pl: VTA Imp S:2 O:3Pl #2sg v 3pl 
+    <>+VTA+Imp+Imm+2+1+Pl+3: VTA Imp S:21Pl O:3 #21pl v 3sg 
+    <>+VTA+Imp+Imm+2+1+Pl+3+Pl: VTA Imp S:21Pl O:3Pl #21pl v 3pl 
+    <>+VTA+Imp+Imm+2+Pl+3: VTA Imp S:2Pl O:3 #2pl v 3sg 
+    <>+VTA+Imp+Imm+2+Pl+3+Pl: VTA Imp S:2Pl O:3Pl #2pl v 3pl 
+
+    <>+VTA+Imp+Del+2+1: VTA Imp S:2 O:1 Del #2sg v 1sg
+    #<>+VTA+Imp+Del+2+1+Pl: VTA Imp S:2 O:1 Del #2sg v 1pl Form unknown
+    #<>+VTA+Imp+Del+2+Pl+1+Pl: VTA Imp S:2Pl O:1 Del #2pl v 1pl !2v1pl ambig elsewhere... Form unknown
+    <>+VTA+Imp+Del+2+Pl+1: VTA Imp S:2Pl O:1 Del #2pl v 1sg 
+    <>+VTA+Imp+Del+2+3: VTA Imp S:2 O:3 Del #2sg v 3sg 
+    <>+VTA+Imp+Del+2+3+Pl: VTA Imp S:2 O:3Pl Del #2sg v 3pl 
+    #<>+VTA+Imp+Del+2+1+Pl+3: VTA Imp S:21Pl O:3 Del #21pl v 3sg  Form unknown
+    #<>+VTA+Imp+Del+2+1+Pl+3+Pl: VTA Imp S:21Pl O:3Pl Del #21pl v 3pl  Form unknown
+    <>+VTA+Imp+Del+2+Pl+3: VTA Imp S:2Pl O:3 Del #2pl v 3sg 
+    <>+VTA+Imp+Del+2+Pl+3+Pl: VTA Imp S:2Pl O:3Pl Del #2pl v 3pl 
+
+    <>+VTA+Imp+Neg+2+1: VTA Imp S:2 O:1 Neg #2sg v 1sg
+    #<>+VTA+Imp+Neg+2+1+Pl: VTA Imp S:2 O:1 Neg #2sg v 1pl Form unknown
+    #<>+VTA+Imp+Neg+2+Pl+1+Pl: VTA Imp S:2Pl O:1 Neg #2pl v 1pl !2v1pl ambig elsewhere... Form unknown
+    <>+VTA+Imp+Neg+2+Pl+1: VTA Imp S:2Pl O:1 Neg #2pl v 1sg 
+    <>+VTA+Imp+Neg+2+3: VTA Imp S:2 O:3 Neg #2sg v 3sg 
+    <>+VTA+Imp+Neg+2+3+Pl: VTA Imp S:2 O:3Pl Neg #2sg v 3pl 
+    <>+VTA+Imp+Neg+2+1+Pl+3: VTA Imp S:21Pl O:3 Neg #21pl v 3sg 
+    <>+VTA+Imp+Neg+2+1+Pl+3+Pl: VTA Imp S:21Pl O:3Pl Neg #21pl v 3pl 
+    #<>+VTA+Imp+Neg+2+Pl+3: VTA Imp S:2Pl O:3 Neg #2pl v 3sg  Form unknown
+    #<>+VTA+Imp+Neg+2+Pl+3+Pl: VTA Imp S:2Pl O:3Pl Neg #2pl v 3pl  Form unknown
