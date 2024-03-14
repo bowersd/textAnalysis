@@ -21,3 +21,14 @@ def identify_targets(sep, *tag_strings):
         for suff in re.findall("\+[^\+]*", lr[1]):
             if suff not in h: h.append(suff)
     return h
+
+def insert_lexmarkers(tagmark, lexmark, *tag_stream):
+    h = []
+    root_seen = False
+    for i in range(len(tag_stream)):
+        if tag_stream[i].startswith(tagmark) and not root_seen:
+            root_seen = True
+            h.append(lexmark)
+        h.append(tag_stream[i])
+    return h
+
