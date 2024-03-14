@@ -5,4 +5,10 @@
 #check morphosyntax against reference unit, obtain user friendly translation
 #check lexical material against gloss mapping (if available, else, it will just be the lemma)
 
+import re
+
+def delimit_lex(analysis, delimit_left, delimit_right, regex):
+    #regex should match lexical material, possibly by referring to POS tags that are near lexical material
+   lex = delimit_left+re.search(regex, analysis)[0]+delimit_right #would not allow for discontinuous lexical material (aka very low level analysis of Arabic?)
+   return re.split(regex, analysis)
 
