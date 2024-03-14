@@ -38,10 +38,14 @@ def compile_reports(*error_expected):
 
 if __name__ == "__main__":
     h = []
-    #with open(sys.argv[1]) as file_in:
-    #    for line in file_in:
-    #        h.append(line.strip().split(','))
+    with open(sys.argv[1]) as file_in:
+        for line in file_in:
+            h.append(line.strip().split(','))
     #compile_reports(*h)
-    for x in h:
-        print(ald.append(needleman.align(x[1], x[6]))
+    with open(sys.argv[2], 'w') as file_out:
+        file_out.write("redir_in, redir_out, diff in, diff out, trilit_left_in, trilit_right_in, trilit_left_out, trilit_right_out, diff_loc_left, diff_loc_right\n")
+        for x in h:
+            ald = needleman.align(x[1], x[6], -1, needleman.make_id_matrix(x[1], x[6]))
+            isolated = isolate_divergences(ald[0], ald[1])
+            for iso in isolated: file_out.write(','.join([str(y) for y in iso])+'\n')
 
