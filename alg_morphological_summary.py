@@ -100,16 +100,18 @@ def interpret(analysis_in):
                 analysis_in["suffixes"].pop(0)
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"]=='3') and s == "2": 
             if not summary["S"]["Pers"]: summary["S"]["Pers"] = "2"
-            if summary["S"]["Pers"] == "2" and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
-                summary["S"]["Num"] = "1Pl"
-                analysis_in["suffixes"].pop(0)
-                analysis_in["suffixes"].pop(0)
-            elif analysis_in["suffixes"][0:1] == ["Pl"]:
+            if analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
                 if summary["O"]["Pers"] == "0" and inversion == True and summary["Neg"] and summary["Order"] and analysis_in["suffixes"][0:1] == "3": #VTA CNJ THMINV NEG 2 PL 3(PL)
                     summary["O"]["Pers"] == "3"
                     analysis_in["suffixes"].pop()
+            if summary["Order"] == "Imp" and summary["Head"] == "VTA":
+                pass #and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
+            elif summary["S"]["Pers"] == "2" and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
+                summary["S"]["Num"] = "1Pl"
+                analysis_in["suffixes"].pop(0)
+                analysis_in["suffixes"].pop(0)
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == '3') and s == "3":
             summary["S"]["Pers"] = "3"
             if inversion = True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj":  summary["O"]["Pers"] = "3'/0" #VTA CNJ THMINV 3
