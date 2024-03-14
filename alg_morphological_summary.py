@@ -28,9 +28,11 @@ def interpret(analysis_in):
         #           Thm2a
         #           Thm2b
         #Thm2       
-        #ThmDir     ThmDir #still to do
-        #ThmInv     ThmInv #still to do
-        #           ThmNul #still to do
+        #ThmDir     ThmDir #3|3pl -> 3(pl) v 3', NEG ONLY:  #1|1pl 3|3pl        -> 1(pl) v 3(pl), 
+                                                            #2|21pl|2pl 3|3pl   -> 2(1(pl)) v 3(pl)
+        #           ThmNul #                     POS ONLY:  #1|1pl 3|3pl        -> 1(pl) v 3(pl), 
+                                                            #2|21pl|2pl 3|3pl   -> 2(1(pl)) v 3(pl)
+        #ThmInv     ThmInv #1|1pl -> 0 v 1(pl), 2|21pl|2pl -> 0 v 2(1(pl)), 3|3pl -> 0/3' v 3(pl) NEG ONLY: 2pl 3 -> 3 v 2pl (Thm2a not present)
         #{local theme signs
         elif (s == "Thm1Pl2" or s == "Thm1" or s == "Thm2"):
             summary["O"]["Pers"] = "1"
@@ -41,10 +43,10 @@ def interpret(analysis_in):
             summary["O"]["Pers"] = "2"
             #summary["S"]["Pers"] = "1" #default, though later 3 may over ride
             #local theme signs end}
-        elif (s == "ThmDir" or s == "ThmInv"):
+        elif (s == "ThmDir" or s == "ThmInv" or s == "ThmNul"):
             summary["O"]["Pers"] = "3"
             if s == "ThmInv": inversion = True
-            if summary["Order"] == "Cnj": summary["O"]["Pers"] = "0" #will need to revise if 3 is encountered later
+            if summary["Order"] == "Cnj" and s == "ThmInv": summary["O"]["Pers"] = "0" #will need to revise if 3 is encountered later
         #} extracting theme sign information end
         #{getting number information for theme signs/objects, also finding inanimate subjects
         elif summary["O"]["Pers"] == "1" and s == "1" and analysis_in["suffixes"][0:1] == ["Pl"]:  #this should only happen with thm1 (see below)
