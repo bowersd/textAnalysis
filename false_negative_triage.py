@@ -42,10 +42,20 @@ if __name__ == "__main__":
         for line in file_in:
             h.append(line.strip().split(','))
     #compile_reports(*h)
+    summ = {}
     with open(sys.argv[2], 'w') as file_out:
-        file_out.write("redir_in,redir_out,diffin,diffout,diff_complete,trilit_left_in,trilit_right_in,trilit_left_out,trilit_right_out,diff_loc_left,diff_loc_right\n")
+        file_out.write("redir_in,redir_out,diff_in,diff_out,diff_complete,trilit_left_in,trilit_right_in,trilit_left_out,trilit_right_out,diff_loc_left,diff_loc_right\n")
         for x in h:
             ald = needleman.align(x[1], x[6], -1, needleman.make_id_matrix(x[1], x[6]))
             isolated = isolate_divergences(ald[0], ald[1])
-            for iso in isolated: file_out.write(','.join([str(y) for y in iso])+'\n')
+            for iso in isolated: 
+                file_out.write(','.join([str(y) for y in iso])+'\n')
+                if iso[4] not in summ: summ[iso[4]] = {iso[7]+"^"+iso[8]:1}
+                elif iso[7]+"^"+iso[8] not in summ[iso[4]]: summ[iso[4]][iso[7]+"^"+iso[8]] = 1
+                else: summ[iso[4]][iso[7]+"^"+iso[8]] += 1
+    ordered = []
+    for x in summ: 
+        for y in summ[x]:
+            ordered.append((x, y, summ[x][y]))
+    for x in sorted(ordered, key = lambda y: y[2]): print(x)
 
