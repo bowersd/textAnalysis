@@ -28,7 +28,9 @@ def interpret(analysis_in):
     summary["DerivChain"] = ">".join([x for x in analysis_in["derivation"]])
     summary["Head"] = analysis_in["derivation"][-1]
     if summary["Head"] == "VTI": summary["O"]["Pers"] = "0" #cheating a little and not putting this in the theme sign info because we don't actually have a suffix tag for VTI themes
-    if summary["Head"] == "VAIO": summary["O"]["Pers"] = "3" #cheating a little and not putting this in the theme sign info because VAIOs don't actually have themes
+    if summary["Head"] == "VAIO": 
+        summary["O"]["Pers"] = "3" #cheating a little and not putting this in the theme sign info because VAIOs don't actually have themes
+        if analysis_in["suffixes"][-1] == "3": analysis_in["suffixes"].pop() #in some VAIO forms there is a real third person object morpheme, but it is redundant, so dropping it
     while analysis_in["suffixes"]:
         #gnarly list of elif statements
         #general strategy: fill object information with theme sign, then fill object number information, then unify prefix information with number information in subject field, then fill in subject information with remaining suffixes 
