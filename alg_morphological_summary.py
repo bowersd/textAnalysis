@@ -18,58 +18,58 @@ def interpret(analysis_in):
         if s[0] == "Neg": 
             summary["Neg"] = s[0]
             s[1] = True
-        if s[0] == "Prt":
+        elif s[0] == "Prt":
             summary["Mode"] = s[0]
             s[1] = True
-        if s[0] == "Dub":
+        elif s[0] == "Dub":
             summary["Mode"] += s[0]
             s[1] = True
-        if s[0] == "Cnj" or s[0] == "Imp":
+        elif s[0] == "Cnj" or s[0] == "Imp":
             summary["Order"] = s[0]
             s[1] = True
         #{prefix information already obtained
-        if summary["S"]["Pers"] == "1" and s[0] == "1Pl": #need to join 1+Pl to 1Pl in analysis_dict()
+        elif summary["S"]["Pers"] == "1" and s[0] == "1Pl": #need to join 1+Pl to 1Pl in analysis_dict()
             summary["S"]["Num"] = "Pl"
             s[1] = True
-        if summary["S"]["Pers"] == "2" and s[0] == "1Pl": #need to join 1+Pl to 1Pl in analysis_dict()
+        elif summary["S"]["Pers"] == "2" and s[0] == "1Pl": #need to join 1+Pl to 1Pl in analysis_dict()
             summary["S"]["Num"] = "1Pl"
             s[1] = True
-        if summary["S"]["Pers"] == "2" and s[0] == "2Pl": #need to join 2+Pl to 2Pl in analysis_dict()
+        elif summary["S"]["Pers"] == "2" and s[0] == "2Pl": #need to join 2+Pl to 2Pl in analysis_dict()
             summary["S"]["Num"] = "Pl"
             s[1] = True
-        if summary["S"]["Pers"] == "3" and s[0] == "2Pl": #need to join 2+Pl to 2Pl in analysis_dict()
+        elif summary["S"]["Pers"] == "3" and s[0] == "2Pl": #need to join 2+Pl to 2Pl in analysis_dict()
             summary["S"]["Num"] = "Pl"
             s[1] = True
         #end prefix information obtained}
-        if (not summary["S"]["Pers"]) and s[0] == "1Pl": #need to join 1+Pl to 1Pl in analysis_dict()
+        elif (not summary["S"]["Pers"]) and s[0] == "1Pl": #need to join 1+Pl to 1Pl in analysis_dict()
             summary["S"]["Pers"] = "1"
             summary["S"]["Num"] = "Pl"
             s[1] = True
-        if (not summary["S"]["Pers"]) and s[0] == "21Pl": #need to join 2+1+Pl to 21Pl in analysis_dict()
+        elif (not summary["S"]["Pers"]) and s[0] == "21Pl": #need to join 2+1+Pl to 21Pl in analysis_dict()
             summary["S"]["Pers"] = "2"
             summary["S"]["Num"] = "1Pl"
             s[1] = True
-        if (not summary["S"]["Pers"]) and s[0] == "2Pl": #need to join 2+Pl to 2Pl in analysis_dict()
+        elif (not summary["S"]["Pers"]) and s[0] == "2Pl": #need to join 2+Pl to 2Pl in analysis_dict()
             summary["S"]["Pers"] = "2"
             summary["S"]["Num"] = "Pl"
             s[1] = True
-        if (not summary["S"]["Pers"]) and s[0] == "3Pl": #need to join 3+Pl to 3Pl in analysis_dict()
+        elif (not summary["S"]["Pers"]) and s[0] == "3Pl": #need to join 3+Pl to 3Pl in analysis_dict()
             summary["S"]["Pers"] = "3"
             summary["S"]["Num"] = "Pl"
             s[1] = True
-        if (not summary["S"]["Pers"]) and s[0] == "1":
+        elif (not summary["S"]["Pers"]) and s[0] == "1":
             summary["S"]["Pers"] = "1"
             s[1] = True
-        if (not summary["S"]["Pers"]) and s[0] == "2":
+        elif (not summary["S"]["Pers"]) and s[0] == "2":
             summary["S"]["Pers"] = "2"
             s[1] = True
-        if (not summary["S"]["Pers"]) and s[0] == "3": #VAI independent/conjunct, VTI conjunct
+        elif (not summary["S"]["Pers"]) and s[0] == "3": #VAI independent/conjunct, VTI conjunct
             summary["S"]["Pers"] = "3"
             s[1] = True
-        if (not summary["S"]["Pers"]) and s[0] == "0": #VTIs/VTAs still not covered
+        elif (not summary["S"]["Pers"]) and s[0] == "0": #VTIs/VTAs still not covered
             summary["S"]["Pers"] = "0"
             s[1] = True
-        if (not summary["S"]["Pers"]) and s[0] == "0Pl": #VTIs/VTAs still not covered
+        elif (not summary["S"]["Pers"]) and s[0] == "0Pl": #VTIs/VTAs still not covered
             summary["S"]["Pers"] = "0"
             summary["S"]["Num"] = "Pl"
             s[1] = True
