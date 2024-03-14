@@ -16,13 +16,13 @@ def formatted(interpreted):
     if interpreted["O"]["Pers"]: out.append("O:"+"".join([interpreted["O"]["Pers"], interpreted["O"]["Num"]]))
     if interpreted["Order"]: out.append(interpreted["Order"])
     if interpreted["Neg"]: out.append(interpreted["Neg"])
-    if interpreted["Mode"]: out.append(interpreted["Mode"])
+    if interpreted["Mode"]: out.append(" ".join(interpreted["Mode"]))
     if any(interpreted["Else"]): out.append(" ".join([x for x in interpreted["Else"] if x]))
     return " ".join(out)
 
 
 def interpret(analysis_in):
-    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":"", "Periph":"", "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
+    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
     inversion = False #if true, S/O will be inverted at end
     summary["S"]["Pers"] = analysis_in["prefix"][0]
     summary["DerivChain"] = ">".join([x for x in analysis_in["derivation"]])
@@ -36,9 +36,9 @@ def interpret(analysis_in):
         #general strategy: fill object information with theme sign, then fill object number information, then unify prefix information with number information in subject field, then fill in subject information with remaining suffixes 
         s = analysis_in["suffixes"].pop(0)
         if s == "Neg": summary["Neg"] = s
-        elif s == "Prt": summary["Mode"] = s
-        elif s == "Dub": summary["Mode"] += s #NB: += bc preterite dubitatives are possible
-        elif s == "Voc": summary["Mode"] = s
+        elif s == "Prt": summary["Mode"].append(s)
+        elif s == "Dub": summary["Mode"].append(s)
+        elif s == "Voc": summary["Mode"].append(s)
         elif s == "Cnj": summary["Order"] = s
         elif s == "Imp": 
             summary["Order"] = s
@@ -100,7 +100,7 @@ def interpret(analysis_in):
             summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["4"]:
             analysis_in["suffixes"].pop(0)
-            summary["O"]["Num"] == "'"
+            summary["O"]["Num"] = "'"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["Pl"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] = "Pl"
