@@ -130,7 +130,7 @@ abbreviations = {
         "Thm2": "Second person theme [I X you] ('-in', marks first person singular subject and second person object for VTAs (prefix is object), often called an 'indirect local theme')",
         "ThmInv": "Inverse theme [he/she/it Xs Y] ('-igo/ig', marks third person/inanimate subject for VTAs (prefix is object), often called an 'indirect local theme')",
         "ThmPas": "Passive theme [Y is Xed] ('-igoo/aa/ind', marks passive voice (prefix is patient) for VAIs derived from VTAs, often called an 'unspecified actor theme')",
-        "Thm1": "Conjunct order first person theme [Y Xs me] ('-i', marks first person object for conjunct order VTAs)",
+        #"Thm1": "Conjunct order first person theme [Y Xs me] ('-i', marks first person object for conjunct order VTAs)",
         "Thm2a": "Conjunct order second person theme A [I X you] ('-inin', marks second person object, non-third person subject for conjunct order VTAs)",
         "Thm2b": "Conjunct order second person theme B [He/she Xs you] ('-ik', marks second person object, third person subject for conjunct order VTAs)",
         "ThmNul": "Conjunct order third person theme [I/you X him/her] ('--', marks third person object, non-third person subject for conjunct order VTAs)",
