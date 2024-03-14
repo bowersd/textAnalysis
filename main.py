@@ -73,5 +73,6 @@ def main(x):
   # Set the listener to the callback
   e = document.getElementById("targetLanguageText")
   e.addEventListener("change", file_event, False)
+  print(e)
  
 
