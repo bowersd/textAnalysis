@@ -104,6 +104,7 @@ def atomic_json_dump(filename, names, lists):
 
 def e_ccnj_ambiguous(analyzer, string):
     if string.startswith("e-"): #attempt analysis without the hyphen, if successful, return true
+        print(string)
         ccnj = e_ccnj_conservation(string)
         if not parse.parse_native(os.path.expanduser(analyzer), ccnj)[ccnj][0][0].endswith('+?'): return True
     return False
