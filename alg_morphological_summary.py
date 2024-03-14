@@ -17,8 +17,8 @@ def formatted(interpreted):
     if interpreted["Order"]: out.append(interpreted["Order"])
     if interpreted["Neg"]: out.append(interpreted["Neg"])
     if interpreted["Mode"]: out.append(interpreted["Mode"])
-    if interpreted["Else"]: out.append(interpreted["Else"])
-    return out
+    if any(interpreted["Else"]): out.append(interpreted["Else"])
+    return " ".join("Else")
 
 
 def interpret(analysis_in):
