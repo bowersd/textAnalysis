@@ -4,7 +4,6 @@ await micropip.install(
     './pyhfst-1.2.0-py2.py3-none-any.whl'
 )
 #import hfst
-import os
 import regex
 import pyhfst
 
