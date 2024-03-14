@@ -75,6 +75,7 @@ def parse_text(event):
 #    e.addEventListener("change", file_event, False)
 #    print(e)
  
+import asyncio
 from js import document, window, Uint8Array
 from pyodide.ffi.wrappers import add_event_listener
 
