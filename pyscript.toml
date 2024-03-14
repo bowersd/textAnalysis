@@ -4,7 +4,6 @@ packages = [
             #"emfs://pyhfst-1.2.0-py2.py3-none-any.whl",
             "regex",
             ]
-files = [
-            "pyhfst-1.2.0-py2.py3-none-any.whl",
-            "morphophonologyclitics_analyze.hfstol",
-            ]
+[files] 
+#"pyhfst-1.2.0-py2.py3-none-any.whl",
+"/morphophonologyclitics_analyze.hfstol" = ""
