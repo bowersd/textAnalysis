@@ -40,10 +40,8 @@ Mapping:
     #Values from slots numbered 1, 4
     1+<>+VAIO+Prt: VAIO S:1 O:3 Prt
     2+<>+VAIO+Prt: VAIO S:2 O:3 Prt
-    3+<>+VAIO+Prt: VAIO S:3 O:3 Prt
     1+<>+VAIO+Dub: VAIO S:1 O:3 Dub
     2+<>+VAIO+Dub: VAIO S:2 O:3 Dub
-    3+<>+VAIO+Dub: VAIO S:3 O:3 Dub
     
     #Values from slots numbered 1, 4, 5
     1+<>+VAIO+Prt+3+Pl: VAIO S:1 O:3Pl Prt
@@ -51,17 +49,15 @@ Mapping:
     3+<>+VAIO+Prt+3+4: VAIO S:3 O:3' Prt
     1+<>+VAIO+Dub+0+Pl: VAIO S:1 O:0Pl Dub
     2+<>+VAIO+Dub+0+Pl: VAIO S:2 O:0Pl Dub
-    3+<>+VAIO+Dub+0+Pl: VAIO S:3 O:0Pl Prt
+    3+<>+VAIO+Dub+0+Pl: VAIO S:3 O:0Pl Dub
 
     #Values from slots numbered 1, 3, 4
     1+<>+VAIO+1+Pl+Prt: VAIO S:1Pl O:3 Prt
     2+<>+VAIO+1+Pl+Prt: VAIO S:21Pl O:3 Prt
     2+<>+VAIO+2+Pl+Prt: VAIO S:2Pl O:3 Prt
-    3+<>+VAIO+2+Pl+Prt: VAIO S:3Pl O:3 Prt
     1+<>+VAIO+1+Pl+Dub: VAIO S:1Pl O:3 Dub
     2+<>+VAIO+1+Pl+Dub: VAIO S:21Pl O:3 Dub
     2+<>+VAIO+2+Pl+Dub: VAIO S:2Pl O:3 Dub
-    3+<>+VAIO+2+Pl+Dub: VAIO S:3Pl O:3 Prt
     
     #Values from slots numbered 1, 3, 4, 5
     1+<>+VAIO+1+Pl+Prt+3+Pl: VAIO S:1Pl O:3Pl Prt
@@ -118,16 +114,16 @@ Mapping:
     #Values from slots numbered 1, 2, 4, 5
     1+<>+VAIO+Neg+Prt+3+Pl: VAIO S:1 O:3Pl Neg Prt
     2+<>+VAIO+Neg+Prt+3+Pl: VAIO S:2 O:3Pl Neg Prt
-    3+<>+VAIO+Neg+Prt+3+4:  VAIO S:2 O:3' Neg Prt
+    3+<>+VAIO+Neg+Prt+3+4:  VAIO S:3 O:3' Neg Prt
     1+<>+VAIO+Neg+Dub+3+Pl: VAIO S:1 O:3Pl Neg Dub
     2+<>+VAIO+Neg+Dub+3+Pl: VAIO S:2 O:3Pl Neg Dub
-    3+<>+VAIO+Neg+Dub+3+4:  VAIO S:2 O:3' Neg Dub
+    3+<>+VAIO+Neg+Dub+3+4:  VAIO S:3 O:3' Neg Dub
     1+<>+VAIO+Neg+Prt+0+Pl: VAIO S:1 O:0Pl Neg Prt
     2+<>+VAIO+Neg+Prt+0+Pl: VAIO S:2 O:0Pl Neg Prt
-    3+<>+VAIO+Neg+Prt+0+Pl: VAIO S:2 O:0Pl Neg Prt
+    3+<>+VAIO+Neg+Prt+0+Pl: VAIO S:3 O:0Pl Neg Prt
     1+<>+VAIO+Neg+Dub+0+Pl: VAIO S:1 O:0Pl Neg Dub
     2+<>+VAIO+Neg+Dub+0+Pl: VAIO S:2 O:0Pl Neg Dub
-    3+<>+VAIO+Neg+Dub+0+Pl: VAIO S:2 O:0Pl Neg Dub
+    3+<>+VAIO+Neg+Dub+0+Pl: VAIO S:3 O:0Pl Neg Dub
     
     #Values from slots numbered 1, 2, 3, 4
     1+<>+VAIO+Neg+1+Pl+Prt: VAIO S:1Pl O:3 Neg Prt
