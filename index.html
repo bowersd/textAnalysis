@@ -14,9 +14,17 @@
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
-    <button name="load_nish">Add Nishnaabemwin Text (one sentence per line, txt file ... inactive)</button>
+    <p>Click on the "Browse..." button to select a plain text file in Nishnaabemwin, and "Submit" to load it:</p>
+    <form action='/action_page.php'>
+        <input type="file" id="targetLanguageText" name="targetText">
+        <input type="submit">
+    </form>
+    <p>Your browser makes a self-contained file system in your computer's memory when it visits a page.</p>
+    <p>Your uploaded files are put into this file system. They never leave your computer.</p>
+    <p>This is why this service is free (yay!) and it protects your data privacy (great!).</p>
+    <!--button name="load_nish">Add Nishnaabemwin Text (one sentence per line, txt file ... inactive)</button>
     <button name="load_trans">Add Sentence-by-Sentence Translation (optional, inactive)</button>
-    <button name="do_it">Make Interlinearization (inactive)</button>
+    <button name="do_it">Make Interlinearization (inactive)</button-->
     <script type="py" src="./main.py" config="./pyscript.toml" terminal async></script>
 </body>
 </html>
