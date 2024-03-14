@@ -26,7 +26,8 @@ import alg_morphological_summary as algsum
 
 def analyze_text(fst_file, fst_format, *text_in):
     analysis = []
-    analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
+    analyses = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]) #get all analyses of every word
+    #analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
     #for s in text_in: analysis.append([analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0] for w in pre.sep_punct(s.lower()).split()]) #look up each word's analyses and disambiguate ... better: disambiguate while the analyses are being computed ... though the parse() function should not be troubled with disambiguation questions. modular=siloed?
     performance = [0, 0] #hits, misses
     for s in text_in: 
@@ -152,7 +153,7 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, ou
 if __name__ == "__main__":
     args = parseargs()
     #human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) #this throws a sigsev error now
-    ##for generating lemmata from rand files
+    #for generating lemmata from rand files
     pos_regex = "".join(rw.readin(args.pos_regex))
     full = {
             "sentenceID":[],
