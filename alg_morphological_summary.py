@@ -7,7 +7,7 @@ import engdict as eng
 import readwrite as rw
 
 def interpret(analysis_in):
-    summary = {"S":None, "O":None, "DerivChain":None, "Head":None, "Pos":None, "Order":None, "Neg":None, "Mode":None, "Else": None}
+    summary = {"S":None, "O":None, "DerivChain":None, "Head":None, "Order":None, "Neg":None, "Mode":None, "Else": None}
     return summary
 
 def winnow(analysis_in, *wheat):
