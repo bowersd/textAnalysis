@@ -6,4 +6,4 @@ packages = [
             ]
 [files] 
 "/pyhfst-1.2.0-py2.py3-none-any.whl"=""
-"/morphophonologyclitics_analyze.hfstol" = ""
+"/morphophonologyclitics_analyze.hfstol" = "./morphophonologyclitics_analyze.hfstol"
