@@ -1,5 +1,6 @@
 import subprocess
 #import externalcommand
+import hfst
 
 def parse(fst_file, fst_format, *strings):
     com = ['hfst-lookup', "-q"]
@@ -20,3 +21,9 @@ def parse(fst_file, fst_format, *strings):
     #parse = subprocess.Popen(com, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     #return parse.communicate()[0] #0=std out, 1=stderr
 
+def parse_native(transducer, *strings):
+    parser = hfst.HfstInputStream(transducer).read()
+    h = {}
+    for s in strings: 
+        if s not in h: h[s] = parser.lookup(s)
+    return h
