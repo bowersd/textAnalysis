@@ -1,0 +1,1242 @@
+Mapping: NI
+     
+  NI - All: NI
+     
+  #Template Key
+  #1	2	3	4	5	6	7
+  #per	dim	the	pej	pos	mod	num
+     
+     #Isolation form
+     <>+NI: NI
+     
+     #Values from slots numbered 1
+     1+<>+NI: NI Pos:1
+     2+<>+NI: NI Pos:2
+     3+<>+NI: NI Pos:3
+     X+<>+NI: NI Pos:X
+     
+     #Values from slots numbered 2
+     <>+NI+Con: NI Con
+     <>+NI+Dim: NI Dim
+     
+     
+     #Values from slots numbered 4 
+     <>+NI+Pej: NI Pej
+     
+     
+     #Values from slots numbered 6
+     <>+NI+Prt: NI Prt
+     <>+NI+Voc+Pl: NI Pl Voc
+     
+     #Values from slots numbered 7
+     <>+NI+4: NI Obv
+     <>+NI+Loc: NI Loc
+     <>+NI+Pl: NI Pl
+     
+     #Values from slots numbered 1, 2
+     1+<>+NI+Con: NI Con Pos:1
+     1+<>+NI+Dim: NI Dim Pos:1
+     2+<>+NI+Con: NI Con Pos:2
+     2+<>+NI+Dim: NI Dim Pos:2
+     3+<>+NI+Con: NI Con Pos:3
+     3+<>+NI+Dim: NI Dim Pos:3
+     X+<>+NI+Con: NI Con Pos:X
+     X+<>+NI+Dim: NI Dim Pos:X
+     
+     #Values from slots numbered 1, 3
+     1+<>+NI+ThmPos: NI Pos:1
+     2+<>+NI+ThmPos: NI Pos:2
+     3+<>+NI+ThmPos: NI Pos:3
+     X+<>+NI+ThmPos: NI Pos:X
+     
+     #Values from slots numbered 1, 4 
+     1+<>+NI+Pej: NI Pej Pos:1
+     2+<>+NI+Pej: NI Pej Pos:2
+     3+<>+NI+Pej: NI Pej Pos:3
+     X+<>+NI+Pej: NI Pej Pos:X
+     
+     #Values from slots numbered 1, 5
+     1+<>+NI+1+Pl: NI Pos:1Pl
+     2+<>+NI+1+Pl: NI Pos:21Pl
+     2+<>+NI+2+Pl: NI Pos:2Pl
+     3+<>+NI+2+Pl: NI Pos:3Pl
+     3+<>+NI+3+4: NI Pos:3'
+     
+     #Values from slots numbered 1, 6
+     1+<>+NI+Prt: NI Prt Pos:1
+     1+<>+NI+Voc+Pl: NI Pl Voc Pos:1
+     2+<>+NI+Prt: NI Prt Pos:2
+     2+<>+NI+Voc+Pl: NI Pl Voc Pos:2
+     3+<>+NI+Prt: NI Prt Pos:3
+     3+<>+NI+Voc+Pl: NI Pl Voc Pos:3
+     X+<>+NI+Prt: NI Prt Pos:X
+     X+<>+NI+Voc+Pl: NI Pl Voc Pos:X
+     
+     #Values from slots numbered 1, 7
+     1+<>+NI+4: NI Obv Pos:1
+     1+<>+NI+Loc: NI Loc Pos:1
+     1+<>+NI+Pl: NI Pl Pos:1
+     2+<>+NI+4: NI Obv Pos:2
+     2+<>+NI+Loc: NI Loc Pos:2
+     2+<>+NI+Pl: NI Pl Pos:2
+     3+<>+NI+4: NI Obv Pos:3
+     3+<>+NI+Loc: NI Loc Pos:3
+     3+<>+NI+Pl: NI Pl Pos:3
+     X+<>+NI+4: NI Obv Pos:X
+     X+<>+NI+Loc: NI Loc Pos:X
+     X+<>+NI+Pl: NI Pl Pos:X
+     
+     
+     #Values from slots numbered 2, 4 
+     <>+NI+Con+Pej: NI Con Pej
+     <>+NI+Dim+Pej: NI Dim Pej
+     
+     
+     #Values from slots numbered 2, 6
+     <>+NI+Con+Prt: NI Con Prt
+     <>+NI+Con+Voc+Pl: NI Pl Con Voc
+     <>+NI+Dim+Prt: NI Dim Prt
+     <>+NI+Dim+Voc+Pl: NI Pl Dim Voc
+     
+     #Values from slots numbered 2, 7
+     <>+NI+Con+4: NI Obv Con
+     <>+NI+Con+Loc: NI Loc Con
+     <>+NI+Con+Pl: NI Pl Con
+     <>+NI+Dim+4: NI Obv Dim
+     <>+NI+Dim+Loc: NI Loc Dim
+     <>+NI+Dim+Pl: NI Pl Dim
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 4, 6 
+     <>+NI+Pej+Prt: NI Pej Prt
+     <>+NI+Pej+Voc+Pl: NI Pl Pej Voc
+     
+     #Values from slots numbered 4, 7 
+     <>+NI+Pej+4: NI Obv Pej
+     <>+NI+Pej+Loc: NI Loc Pej
+     <>+NI+Pej+Pl: NI Pl Pej
+     
+     
+     
+     #Values from slots numbered 6, 7
+     <>+NI+Prt+4: NI Obv Prt
+     <>+NI+Prt+Loc: NI Loc Prt
+     <>+NI+Prt+Pl: NI Pl Prt
+     
+     #Values from slots numbered 1, 2, 3
+     1+<>+NI+Con+ThmPos: NI Con Pos:1
+     1+<>+NI+Dim+ThmPos: NI Dim Pos:1
+     2+<>+NI+Con+ThmPos: NI Con Pos:2
+     2+<>+NI+Dim+ThmPos: NI Dim Pos:2
+     3+<>+NI+Con+ThmPos: NI Con Pos:3
+     3+<>+NI+Dim+ThmPos: NI Dim Pos:3
+     X+<>+NI+Con+ThmPos: NI Con Pos:X
+     X+<>+NI+Dim+ThmPos: NI Dim Pos:X
+     
+     #Values from slots numbered 1, 2, 4 
+     1+<>+NI+Con+Pej: NI Con Pej Pos:1
+     1+<>+NI+Dim+Pej: NI Dim Pej Pos:1
+     2+<>+NI+Con+Pej: NI Con Pej Pos:2
+     2+<>+NI+Dim+Pej: NI Dim Pej Pos:2
+     3+<>+NI+Con+Pej: NI Con Pej Pos:3
+     3+<>+NI+Dim+Pej: NI Dim Pej Pos:3
+     X+<>+NI+Con+Pej: NI Con Pej Pos:X
+     X+<>+NI+Dim+Pej: NI Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 5
+     1+<>+NI+Con+1+Pl: NI Con Pos:1Pl
+     1+<>+NI+Dim+1+Pl: NI Dim Pos:1Pl
+     2+<>+NI+Con+1+Pl: NI Con Pos:21Pl
+     2+<>+NI+Con+2+Pl: NI Con Pos:2Pl
+     2+<>+NI+Dim+1+Pl: NI Dim Pos:21Pl
+     2+<>+NI+Dim+2+Pl: NI Dim Pos:2Pl
+     3+<>+NI+Con+2+Pl: NI Con Pos:3Pl
+     3+<>+NI+Con+3+4: NI Con Pos:3'
+     3+<>+NI+Dim+2+Pl: NI Dim Pos:3Pl
+     3+<>+NI+Dim+3+4: NI Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 6
+     1+<>+NI+Con+Prt: NI Con Prt Pos:1
+     1+<>+NI+Con+Voc+Pl: NI Pl Con Voc Pos:1
+     1+<>+NI+Dim+Prt: NI Dim Prt Pos:1
+     1+<>+NI+Dim+Voc+Pl: NI Pl Dim Voc Pos:1
+     2+<>+NI+Con+Prt: NI Con Prt Pos:2
+     2+<>+NI+Con+Voc+Pl: NI Pl Con Voc Pos:2
+     2+<>+NI+Dim+Prt: NI Dim Prt Pos:2
+     2+<>+NI+Dim+Voc+Pl: NI Pl Dim Voc Pos:2
+     3+<>+NI+Con+Prt: NI Con Prt Pos:3
+     3+<>+NI+Con+Voc+Pl: NI Pl Con Voc Pos:3
+     3+<>+NI+Dim+Prt: NI Dim Prt Pos:3
+     3+<>+NI+Dim+Voc+Pl: NI Pl Dim Voc Pos:3
+     X+<>+NI+Con+Prt: NI Con Prt Pos:X
+     X+<>+NI+Con+Voc+Pl: NI Pl Con Voc Pos:X
+     X+<>+NI+Dim+Prt: NI Dim Prt Pos:X
+     X+<>+NI+Dim+Voc+Pl: NI Pl Dim Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 7
+     1+<>+NI+Con+4: NI Obv Con Pos:1
+     1+<>+NI+Con+Loc: NI Loc Con Pos:1
+     1+<>+NI+Con+Pl: NI Pl Con Pos:1
+     1+<>+NI+Dim+4: NI Obv Dim Pos:1
+     1+<>+NI+Dim+Loc: NI Loc Dim Pos:1
+     1+<>+NI+Dim+Pl: NI Pl Dim Pos:1
+     2+<>+NI+Con+4: NI Obv Con Pos:2
+     2+<>+NI+Con+Loc: NI Loc Con Pos:2
+     2+<>+NI+Con+Pl: NI Pl Con Pos:2
+     2+<>+NI+Dim+4: NI Obv Dim Pos:2
+     2+<>+NI+Dim+Loc: NI Loc Dim Pos:2
+     2+<>+NI+Dim+Pl: NI Pl Dim Pos:2
+     3+<>+NI+Con+4: NI Obv Con Pos:3
+     3+<>+NI+Con+Loc: NI Loc Con Pos:3
+     3+<>+NI+Con+Pl: NI Pl Con Pos:3
+     3+<>+NI+Dim+4: NI Obv Dim Pos:3
+     3+<>+NI+Dim+Loc: NI Loc Dim Pos:3
+     3+<>+NI+Dim+Pl: NI Pl Dim Pos:3
+     X+<>+NI+Con+4: NI Obv Con Pos:X
+     X+<>+NI+Con+Loc: NI Loc Con Pos:X
+     X+<>+NI+Con+Pl: NI Pl Con Pos:X
+     X+<>+NI+Dim+4: NI Obv Dim Pos:X
+     X+<>+NI+Dim+Loc: NI Loc Dim Pos:X
+     X+<>+NI+Dim+Pl: NI Pl Dim Pos:X
+     
+     #Values from slots numbered 1, 3, 4 
+     1+<>+NI+ThmPos+Pej: NI Pej Pos:1
+     2+<>+NI+ThmPos+Pej: NI Pej Pos:2
+     3+<>+NI+ThmPos+Pej: NI Pej Pos:3
+     X+<>+NI+ThmPos+Pej: NI Pej Pos:X
+     
+     #Values from slots numbered 1, 3, 5
+     1+<>+NI+ThmPos+1+Pl: NI Pos:1Pl
+     2+<>+NI+ThmPos+1+Pl: NI Pos:21Pl
+     2+<>+NI+ThmPos+2+Pl: NI Pos:2Pl
+     3+<>+NI+ThmPos+2+Pl: NI Pos:3Pl
+     3+<>+NI+ThmPos+3+4: NI Pos:3'
+     
+     #Values from slots numbered 1, 3, 6
+     1+<>+NI+ThmPos+Prt: NI Prt Pos:1
+     1+<>+NI+ThmPos+Voc+Pl: NI Pl Voc Pos:1
+     2+<>+NI+ThmPos+Prt: NI Prt Pos:2
+     2+<>+NI+ThmPos+Voc+Pl: NI Pl Voc Pos:2
+     3+<>+NI+ThmPos+Prt: NI Prt Pos:3
+     3+<>+NI+ThmPos+Voc+Pl: NI Pl Voc Pos:3
+     X+<>+NI+ThmPos+Prt: NI Prt Pos:X
+     X+<>+NI+ThmPos+Voc+Pl: NI Pl Voc Pos:X
+     
+     #Values from slots numbered 1, 3, 7
+     1+<>+NI+ThmPos+4: NI Obv Pos:1
+     1+<>+NI+ThmPos+Loc: NI Loc Pos:1
+     1+<>+NI+ThmPos+Pl: NI Pl Pos:1
+     2+<>+NI+ThmPos+4: NI Obv Pos:2
+     2+<>+NI+ThmPos+Loc: NI Loc Pos:2
+     2+<>+NI+ThmPos+Pl: NI Pl Pos:2
+     3+<>+NI+ThmPos+4: NI Obv Pos:3
+     3+<>+NI+ThmPos+Loc: NI Loc Pos:3
+     3+<>+NI+ThmPos+Pl: NI Pl Pos:3
+     X+<>+NI+ThmPos+4: NI Obv Pos:X
+     X+<>+NI+ThmPos+Loc: NI Loc Pos:X
+     X+<>+NI+ThmPos+Pl: NI Pl Pos:X
+     
+     #Values from slots numbered 1, 4, 5 
+     1+<>+NI+Pej+1+Pl: NI Pej Pos:1Pl
+     2+<>+NI+Pej+1+Pl: NI Pej Pos:21Pl
+     2+<>+NI+Pej+2+Pl: NI Pej Pos:2Pl
+     3+<>+NI+Pej+2+Pl: NI Pej Pos:3Pl
+     3+<>+NI+Pej+3+4: NI Pej Pos:3'
+     
+     #Values from slots numbered 1, 4, 6 
+     1+<>+NI+Pej+Prt: NI Pej Prt Pos:1
+     1+<>+NI+Pej+Voc+Pl: NI Pl Pej Voc Pos:1
+     2+<>+NI+Pej+Prt: NI Pej Prt Pos:2
+     2+<>+NI+Pej+Voc+Pl: NI Pl Pej Voc Pos:2
+     3+<>+NI+Pej+Prt: NI Pej Prt Pos:3
+     3+<>+NI+Pej+Voc+Pl: NI Pl Pej Voc Pos:3
+     X+<>+NI+Pej+Prt: NI Pej Prt Pos:X
+     X+<>+NI+Pej+Voc+Pl: NI Pl Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 4, 7 
+     1+<>+NI+Pej+4: NI Obv Pej Pos:1
+     1+<>+NI+Pej+Loc: NI Loc Pej Pos:1
+     1+<>+NI+Pej+Pl: NI Pl Pej Pos:1
+     2+<>+NI+Pej+4: NI Obv Pej Pos:2
+     2+<>+NI+Pej+Loc: NI Loc Pej Pos:2
+     2+<>+NI+Pej+Pl: NI Pl Pej Pos:2
+     3+<>+NI+Pej+4: NI Obv Pej Pos:3
+     3+<>+NI+Pej+Loc: NI Loc Pej Pos:3
+     3+<>+NI+Pej+Pl: NI Pl Pej Pos:3
+     X+<>+NI+Pej+4: NI Obv Pej Pos:X
+     X+<>+NI+Pej+Loc: NI Loc Pej Pos:X
+     X+<>+NI+Pej+Pl: NI Pl Pej Pos:X
+     
+     #Values from slots numbered 1, 5, 6
+     1+<>+NI+1+Pl+Prt: NI Prt Pos:1Pl
+     1+<>+NI+1+Pl+Voc+Pl: NI Pl Voc Pos:1Pl
+     2+<>+NI+1+Pl+Prt: NI Prt Pos:21Pl
+     2+<>+NI+1+Pl+Voc+Pl: NI Pl Voc Pos:21Pl
+     2+<>+NI+2+Pl+Prt: NI Prt Pos:2Pl
+     2+<>+NI+2+Pl+Voc+Pl: NI Pl Voc Pos:2Pl
+     3+<>+NI+2+Pl+Prt: NI Prt Pos:3Pl
+     3+<>+NI+2+Pl+Voc+Pl: NI Pl Voc Pos:3Pl
+     3+<>+NI+3+4+Prt: NI Prt Pos:3'
+     3+<>+NI+3+4+Voc+Pl: NI Pl Voc Pos:3'
+     
+     #Values from slots numbered 1, 5, 7
+     1+<>+NI+1+Pl+4: NI Obv Pos:1Pl
+     1+<>+NI+1+Pl+Loc: NI Loc Pos:1Pl
+     1+<>+NI+1+Pl+Pl: NI Pl Pos:1Pl
+     2+<>+NI+1+Pl+4: NI Obv Pos:21Pl
+     2+<>+NI+1+Pl+Loc: NI Loc Pos:21Pl
+     2+<>+NI+1+Pl+Pl: NI Pl Pos:21Pl
+     2+<>+NI+2+Pl+4: NI Obv Pos:2Pl
+     2+<>+NI+2+Pl+Loc: NI Loc Pos:2Pl
+     2+<>+NI+2+Pl+Pl: NI Pl Pos:2Pl
+     3+<>+NI+2+Pl+4: NI Obv Pos:3Pl
+     3+<>+NI+2+Pl+Loc: NI Loc Pos:3Pl
+     3+<>+NI+2+Pl+Pl: NI Pl Pos:3Pl
+     3+<>+NI+3+4+4: NI Obv Pos:3'
+     3+<>+NI+3+4+Loc: NI Loc Pos:3'
+     3+<>+NI+3+4+Pl: NI Pl Pos:3'
+     
+     #Values from slots numbered 1, 6, 7
+     1+<>+NI+Prt+4: NI Obv Prt Pos:1
+     1+<>+NI+Prt+Loc: NI Loc Prt Pos:1
+     1+<>+NI+Prt+Pl: NI Pl Prt Pos:1
+     2+<>+NI+Prt+4: NI Obv Prt Pos:2
+     2+<>+NI+Prt+Loc: NI Loc Prt Pos:2
+     2+<>+NI+Prt+Pl: NI Pl Prt Pos:2
+     3+<>+NI+Prt+4: NI Obv Prt Pos:3
+     3+<>+NI+Prt+Loc: NI Loc Prt Pos:3
+     3+<>+NI+Prt+Pl: NI Pl Prt Pos:3
+     X+<>+NI+Prt+4: NI Obv Prt Pos:X
+     X+<>+NI+Prt+Loc: NI Loc Prt Pos:X
+     X+<>+NI+Prt+Pl: NI Pl Prt Pos:X
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 2, 4, 6 
+     <>+NI+Con+Pej+Prt: NI Con Pej Prt
+     <>+NI+Con+Pej+Voc+Pl: NI Pl Con Pej Voc
+     <>+NI+Dim+Pej+Prt: NI Dim Pej Prt
+     <>+NI+Dim+Pej+Voc+Pl: NI Pl Dim Pej Voc
+     
+     #Values from slots numbered 2, 4, 7 
+     <>+NI+Con+Pej+4: NI Obv Con Pej
+     <>+NI+Con+Pej+Loc: NI Loc Con Pej
+     <>+NI+Con+Pej+Pl: NI Pl Con Pej
+     <>+NI+Dim+Pej+4: NI Obv Dim Pej
+     <>+NI+Dim+Pej+Loc: NI Loc Dim Pej
+     <>+NI+Dim+Pej+Pl: NI Pl Dim Pej
+     
+     
+     
+     #Values from slots numbered 2, 6, 7
+     <>+NI+Con+Prt+4: NI Obv Con Prt
+     <>+NI+Con+Prt+Loc: NI Loc Con Prt
+     <>+NI+Con+Prt+Pl: NI Pl Con Prt
+     <>+NI+Dim+Prt+4: NI Obv Dim Prt
+     <>+NI+Dim+Prt+Loc: NI Loc Dim Prt
+     <>+NI+Dim+Prt+Pl: NI Pl Dim Prt
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 4, 6, 7 
+     <>+NI+Pej+Prt+4: NI Obv Pej Prt
+     <>+NI+Pej+Prt+Loc: NI Loc Pej Prt
+     <>+NI+Pej+Prt+Pl: NI Pl Pej Prt
+     
+     
+     #Values from slots numbered 1, 2, 3, 4 
+     1+<>+NI+Con+ThmPos+Pej: NI Con Pej Pos:1
+     1+<>+NI+Dim+ThmPos+Pej: NI Dim Pej Pos:1
+     2+<>+NI+Con+ThmPos+Pej: NI Con Pej Pos:2
+     2+<>+NI+Dim+ThmPos+Pej: NI Dim Pej Pos:2
+     3+<>+NI+Con+ThmPos+Pej: NI Con Pej Pos:3
+     3+<>+NI+Dim+ThmPos+Pej: NI Dim Pej Pos:3
+     X+<>+NI+Con+ThmPos+Pej: NI Con Pej Pos:X
+     X+<>+NI+Dim+ThmPos+Pej: NI Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 5
+     1+<>+NI+Con+ThmPos+1+Pl: NI Con Pos:1Pl
+     1+<>+NI+Dim+ThmPos+1+Pl: NI Dim Pos:1Pl
+     2+<>+NI+Con+ThmPos+1+Pl: NI Con Pos:21Pl
+     2+<>+NI+Con+ThmPos+2+Pl: NI Con Pos:2Pl
+     2+<>+NI+Dim+ThmPos+1+Pl: NI Dim Pos:21Pl
+     2+<>+NI+Dim+ThmPos+2+Pl: NI Dim Pos:2Pl
+     3+<>+NI+Con+ThmPos+2+Pl: NI Con Pos:3Pl
+     3+<>+NI+Con+ThmPos+3+4: NI Con Pos:3'
+     3+<>+NI+Dim+ThmPos+2+Pl: NI Dim Pos:3Pl
+     3+<>+NI+Dim+ThmPos+3+4: NI Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 6
+     1+<>+NI+Con+ThmPos+Prt: NI Con Prt Pos:1
+     1+<>+NI+Con+ThmPos+Voc+Pl: NI Pl Con Voc Pos:1
+     1+<>+NI+Dim+ThmPos+Prt: NI Dim Prt Pos:1
+     1+<>+NI+Dim+ThmPos+Voc+Pl: NI Pl Dim Voc Pos:1
+     2+<>+NI+Con+ThmPos+Prt: NI Con Prt Pos:2
+     2+<>+NI+Con+ThmPos+Voc+Pl: NI Pl Con Voc Pos:2
+     2+<>+NI+Dim+ThmPos+Prt: NI Dim Prt Pos:2
+     2+<>+NI+Dim+ThmPos+Voc+Pl: NI Pl Dim Voc Pos:2
+     3+<>+NI+Con+ThmPos+Prt: NI Con Prt Pos:3
+     3+<>+NI+Con+ThmPos+Voc+Pl: NI Pl Con Voc Pos:3
+     3+<>+NI+Dim+ThmPos+Prt: NI Dim Prt Pos:3
+     3+<>+NI+Dim+ThmPos+Voc+Pl: NI Pl Dim Voc Pos:3
+     X+<>+NI+Con+ThmPos+Prt: NI Con Prt Pos:X
+     X+<>+NI+Con+ThmPos+Voc+Pl: NI Pl Con Voc Pos:X
+     X+<>+NI+Dim+ThmPos+Prt: NI Dim Prt Pos:X
+     X+<>+NI+Dim+ThmPos+Voc+Pl: NI Pl Dim Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 7
+     1+<>+NI+Con+ThmPos+4: NI Obv Con Pos:1
+     1+<>+NI+Con+ThmPos+Loc: NI Loc Con Pos:1
+     1+<>+NI+Con+ThmPos+Pl: NI Pl Con Pos:1
+     1+<>+NI+Dim+ThmPos+4: NI Obv Dim Pos:1
+     1+<>+NI+Dim+ThmPos+Loc: NI Loc Dim Pos:1
+     1+<>+NI+Dim+ThmPos+Pl: NI Pl Dim Pos:1
+     2+<>+NI+Con+ThmPos+4: NI Obv Con Pos:2
+     2+<>+NI+Con+ThmPos+Loc: NI Loc Con Pos:2
+     2+<>+NI+Con+ThmPos+Pl: NI Pl Con Pos:2
+     2+<>+NI+Dim+ThmPos+4: NI Obv Dim Pos:2
+     2+<>+NI+Dim+ThmPos+Loc: NI Loc Dim Pos:2
+     2+<>+NI+Dim+ThmPos+Pl: NI Pl Dim Pos:2
+     3+<>+NI+Con+ThmPos+4: NI Obv Con Pos:3
+     3+<>+NI+Con+ThmPos+Loc: NI Loc Con Pos:3
+     3+<>+NI+Con+ThmPos+Pl: NI Pl Con Pos:3
+     3+<>+NI+Dim+ThmPos+4: NI Obv Dim Pos:3
+     3+<>+NI+Dim+ThmPos+Loc: NI Loc Dim Pos:3
+     3+<>+NI+Dim+ThmPos+Pl: NI Pl Dim Pos:3
+     X+<>+NI+Con+ThmPos+4: NI Obv Con Pos:X
+     X+<>+NI+Con+ThmPos+Loc: NI Loc Con Pos:X
+     X+<>+NI+Con+ThmPos+Pl: NI Pl Con Pos:X
+     X+<>+NI+Dim+ThmPos+4: NI Obv Dim Pos:X
+     X+<>+NI+Dim+ThmPos+Loc: NI Loc Dim Pos:X
+     X+<>+NI+Dim+ThmPos+Pl: NI Pl Dim Pos:X
+     
+     #Values from slots numbered 1, 2, 4, 5 
+     1+<>+NI+Con+Pej+1+Pl: NI Con Pej Pos:1Pl
+     1+<>+NI+Dim+Pej+1+Pl: NI Dim Pej Pos:1Pl
+     2+<>+NI+Con+Pej+1+Pl: NI Con Pej Pos:21Pl
+     2+<>+NI+Con+Pej+2+Pl: NI Con Pej Pos:2Pl
+     2+<>+NI+Dim+Pej+1+Pl: NI Dim Pej Pos:21Pl
+     2+<>+NI+Dim+Pej+2+Pl: NI Dim Pej Pos:2Pl
+     3+<>+NI+Con+Pej+2+Pl: NI Con Pej Pos:3Pl
+     3+<>+NI+Con+Pej+3+4: NI Con Pej Pos:3'
+     3+<>+NI+Dim+Pej+2+Pl: NI Dim Pej Pos:3Pl
+     3+<>+NI+Dim+Pej+3+4: NI Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 6 
+     1+<>+NI+Con+Pej+Prt: NI Con Pej Prt Pos:1
+     1+<>+NI+Con+Pej+Voc+Pl: NI Pl Con Pej Voc Pos:1
+     1+<>+NI+Dim+Pej+Prt: NI Dim Pej Prt Pos:1
+     1+<>+NI+Dim+Pej+Voc+Pl: NI Pl Dim Pej Voc Pos:1
+     2+<>+NI+Con+Pej+Prt: NI Con Pej Prt Pos:2
+     2+<>+NI+Con+Pej+Voc+Pl: NI Pl Con Pej Voc Pos:2
+     2+<>+NI+Dim+Pej+Prt: NI Dim Pej Prt Pos:2
+     2+<>+NI+Dim+Pej+Voc+Pl: NI Pl Dim Pej Voc Pos:2
+     3+<>+NI+Con+Pej+Prt: NI Con Pej Prt Pos:3
+     3+<>+NI+Con+Pej+Voc+Pl: NI Pl Con Pej Voc Pos:3
+     3+<>+NI+Dim+Pej+Prt: NI Dim Pej Prt Pos:3
+     3+<>+NI+Dim+Pej+Voc+Pl: NI Pl Dim Pej Voc Pos:3
+     X+<>+NI+Con+Pej+Prt: NI Con Pej Prt Pos:X
+     X+<>+NI+Con+Pej+Voc+Pl: NI Pl Con Pej Voc Pos:X
+     X+<>+NI+Dim+Pej+Prt: NI Dim Pej Prt Pos:X
+     X+<>+NI+Dim+Pej+Voc+Pl: NI Pl Dim Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 4, 7 
+     1+<>+NI+Con+Pej+4: NI Obv Con Pej Pos:1
+     1+<>+NI+Con+Pej+Loc: NI Loc Con Pej Pos:1
+     1+<>+NI+Con+Pej+Pl: NI Pl Con Pej Pos:1
+     1+<>+NI+Dim+Pej+4: NI Obv Dim Pej Pos:1
+     1+<>+NI+Dim+Pej+Loc: NI Loc Dim Pej Pos:1
+     1+<>+NI+Dim+Pej+Pl: NI Pl Dim Pej Pos:1
+     2+<>+NI+Con+Pej+4: NI Obv Con Pej Pos:2
+     2+<>+NI+Con+Pej+Loc: NI Loc Con Pej Pos:2
+     2+<>+NI+Con+Pej+Pl: NI Pl Con Pej Pos:2
+     2+<>+NI+Dim+Pej+4: NI Obv Dim Pej Pos:2
+     2+<>+NI+Dim+Pej+Loc: NI Loc Dim Pej Pos:2
+     2+<>+NI+Dim+Pej+Pl: NI Pl Dim Pej Pos:2
+     3+<>+NI+Con+Pej+4: NI Obv Con Pej Pos:3
+     3+<>+NI+Con+Pej+Loc: NI Loc Con Pej Pos:3
+     3+<>+NI+Con+Pej+Pl: NI Pl Con Pej Pos:3
+     3+<>+NI+Dim+Pej+4: NI Obv Dim Pej Pos:3
+     3+<>+NI+Dim+Pej+Loc: NI Loc Dim Pej Pos:3
+     3+<>+NI+Dim+Pej+Pl: NI Pl Dim Pej Pos:3
+     X+<>+NI+Con+Pej+4: NI Obv Con Pej Pos:X
+     X+<>+NI+Con+Pej+Loc: NI Loc Con Pej Pos:X
+     X+<>+NI+Con+Pej+Pl: NI Pl Con Pej Pos:X
+     X+<>+NI+Dim+Pej+4: NI Obv Dim Pej Pos:X
+     X+<>+NI+Dim+Pej+Loc: NI Loc Dim Pej Pos:X
+     X+<>+NI+Dim+Pej+Pl: NI Pl Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 5, 6
+     1+<>+NI+Con+1+Pl+Prt: NI Con Prt Pos:1Pl
+     1+<>+NI+Con+1+Pl+Voc+Pl: NI Pl Con Voc Pos:1Pl
+     1+<>+NI+Dim+1+Pl+Prt: NI Dim Prt Pos:1Pl
+     1+<>+NI+Dim+1+Pl+Voc+Pl: NI Pl Dim Voc Pos:1Pl
+     2+<>+NI+Con+1+Pl+Prt: NI Con Prt Pos:21Pl
+     2+<>+NI+Con+1+Pl+Voc+Pl: NI Pl Con Voc Pos:21Pl
+     2+<>+NI+Con+2+Pl+Prt: NI Con Prt Pos:2Pl
+     2+<>+NI+Con+2+Pl+Voc+Pl: NI Pl Con Voc Pos:2Pl
+     2+<>+NI+Dim+1+Pl+Prt: NI Dim Prt Pos:21Pl
+     2+<>+NI+Dim+1+Pl+Voc+Pl: NI Pl Dim Voc Pos:21Pl
+     2+<>+NI+Dim+2+Pl+Prt: NI Dim Prt Pos:2Pl
+     2+<>+NI+Dim+2+Pl+Voc+Pl: NI Pl Dim Voc Pos:2Pl
+     3+<>+NI+Con+2+Pl+Prt: NI Con Prt Pos:3Pl
+     3+<>+NI+Con+2+Pl+Voc+Pl: NI Pl Con Voc Pos:3Pl
+     3+<>+NI+Con+3+4+Prt: NI Con Prt Pos:3'
+     3+<>+NI+Con+3+4+Voc+Pl: NI Pl Con Voc Pos:3'
+     3+<>+NI+Dim+2+Pl+Prt: NI Dim Prt Pos:3Pl
+     3+<>+NI+Dim+2+Pl+Voc+Pl: NI Pl Dim Voc Pos:3Pl
+     3+<>+NI+Dim+3+4+Prt: NI Dim Prt Pos:3'
+     3+<>+NI+Dim+3+4+Voc+Pl: NI Pl Dim Voc Pos:3'
+     
+     #Values from slots numbered 1, 2, 5, 7
+     1+<>+NI+Con+1+Pl+4: NI Obv Con Pos:1Pl
+     1+<>+NI+Con+1+Pl+Loc: NI Loc Con Pos:1Pl
+     1+<>+NI+Con+1+Pl+Pl: NI Pl Con Pos:1Pl
+     1+<>+NI+Dim+1+Pl+4: NI Obv Dim Pos:1Pl
+     1+<>+NI+Dim+1+Pl+Loc: NI Loc Dim Pos:1Pl
+     1+<>+NI+Dim+1+Pl+Pl: NI Pl Dim Pos:1Pl
+     2+<>+NI+Con+1+Pl+4: NI Obv Con Pos:21Pl
+     2+<>+NI+Con+1+Pl+Loc: NI Loc Con Pos:21Pl
+     2+<>+NI+Con+1+Pl+Pl: NI Pl Con Pos:21Pl
+     2+<>+NI+Con+2+Pl+4: NI Obv Con Pos:2Pl
+     2+<>+NI+Con+2+Pl+Loc: NI Loc Con Pos:2Pl
+     2+<>+NI+Con+2+Pl+Pl: NI Pl Con Pos:2Pl
+     2+<>+NI+Dim+1+Pl+4: NI Obv Dim Pos:21Pl
+     2+<>+NI+Dim+1+Pl+Loc: NI Loc Dim Pos:21Pl
+     2+<>+NI+Dim+1+Pl+Pl: NI Pl Dim Pos:21Pl
+     2+<>+NI+Dim+2+Pl+4: NI Obv Dim Pos:2Pl
+     2+<>+NI+Dim+2+Pl+Loc: NI Loc Dim Pos:2Pl
+     2+<>+NI+Dim+2+Pl+Pl: NI Pl Dim Pos:2Pl
+     3+<>+NI+Con+2+Pl+4: NI Obv Con Pos:3Pl
+     3+<>+NI+Con+2+Pl+Loc: NI Loc Con Pos:3Pl
+     3+<>+NI+Con+2+Pl+Pl: NI Pl Con Pos:3Pl
+     3+<>+NI+Con+3+4+4: NI Obv Con Pos:3'
+     3+<>+NI+Con+3+4+Loc: NI Loc Con Pos:3'
+     3+<>+NI+Con+3+4+Pl: NI Pl Con Pos:3'
+     3+<>+NI+Dim+2+Pl+4: NI Obv Dim Pos:3Pl
+     3+<>+NI+Dim+2+Pl+Loc: NI Loc Dim Pos:3Pl
+     3+<>+NI+Dim+2+Pl+Pl: NI Pl Dim Pos:3Pl
+     3+<>+NI+Dim+3+4+4: NI Obv Dim Pos:3'
+     3+<>+NI+Dim+3+4+Loc: NI Loc Dim Pos:3'
+     3+<>+NI+Dim+3+4+Pl: NI Pl Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 6, 7
+     1+<>+NI+Con+Prt+4: NI Obv Con Prt Pos:1
+     1+<>+NI+Con+Prt+Loc: NI Loc Con Prt Pos:1
+     1+<>+NI+Con+Prt+Pl: NI Pl Con Prt Pos:1
+     1+<>+NI+Dim+Prt+4: NI Obv Dim Prt Pos:1
+     1+<>+NI+Dim+Prt+Loc: NI Loc Dim Prt Pos:1
+     1+<>+NI+Dim+Prt+Pl: NI Pl Dim Prt Pos:1
+     2+<>+NI+Con+Prt+4: NI Obv Con Prt Pos:2
+     2+<>+NI+Con+Prt+Loc: NI Loc Con Prt Pos:2
+     2+<>+NI+Con+Prt+Pl: NI Pl Con Prt Pos:2
+     2+<>+NI+Dim+Prt+4: NI Obv Dim Prt Pos:2
+     2+<>+NI+Dim+Prt+Loc: NI Loc Dim Prt Pos:2
+     2+<>+NI+Dim+Prt+Pl: NI Pl Dim Prt Pos:2
+     3+<>+NI+Con+Prt+4: NI Obv Con Prt Pos:3
+     3+<>+NI+Con+Prt+Loc: NI Loc Con Prt Pos:3
+     3+<>+NI+Con+Prt+Pl: NI Pl Con Prt Pos:3
+     3+<>+NI+Dim+Prt+4: NI Obv Dim Prt Pos:3
+     3+<>+NI+Dim+Prt+Loc: NI Loc Dim Prt Pos:3
+     3+<>+NI+Dim+Prt+Pl: NI Pl Dim Prt Pos:3
+     X+<>+NI+Con+Prt+4: NI Obv Con Prt Pos:X
+     X+<>+NI+Con+Prt+Loc: NI Loc Con Prt Pos:X
+     X+<>+NI+Con+Prt+Pl: NI Pl Con Prt Pos:X
+     X+<>+NI+Dim+Prt+4: NI Obv Dim Prt Pos:X
+     X+<>+NI+Dim+Prt+Loc: NI Loc Dim Prt Pos:X
+     X+<>+NI+Dim+Prt+Pl: NI Pl Dim Prt Pos:X
+     
+     #Values from slots numbered 1, 3, 4, 5 
+     1+<>+NI+ThmPos+Pej+1+Pl: NI Pej Pos:1Pl
+     2+<>+NI+ThmPos+Pej+1+Pl: NI Pej Pos:21Pl
+     2+<>+NI+ThmPos+Pej+2+Pl: NI Pej Pos:2Pl
+     3+<>+NI+ThmPos+Pej+2+Pl: NI Pej Pos:3Pl
+     3+<>+NI+ThmPos+Pej+3+4: NI Pej Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 6 
+     1+<>+NI+ThmPos+Pej+Prt: NI Pej Prt Pos:1
+     1+<>+NI+ThmPos+Pej+Voc+Pl: NI Pl Pej Voc Pos:1
+     2+<>+NI+ThmPos+Pej+Prt: NI Pej Prt Pos:2
+     2+<>+NI+ThmPos+Pej+Voc+Pl: NI Pl Pej Voc Pos:2
+     3+<>+NI+ThmPos+Pej+Prt: NI Pej Prt Pos:3
+     3+<>+NI+ThmPos+Pej+Voc+Pl: NI Pl Pej Voc Pos:3
+     X+<>+NI+ThmPos+Pej+Prt: NI Pej Prt Pos:X
+     X+<>+NI+ThmPos+Pej+Voc+Pl: NI Pl Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 3, 4, 7 
+     1+<>+NI+ThmPos+Pej+4: NI Obv Pej Pos:1
+     1+<>+NI+ThmPos+Pej+Loc: NI Loc Pej Pos:1
+     1+<>+NI+ThmPos+Pej+Pl: NI Pl Pej Pos:1
+     2+<>+NI+ThmPos+Pej+4: NI Obv Pej Pos:2
+     2+<>+NI+ThmPos+Pej+Loc: NI Loc Pej Pos:2
+     2+<>+NI+ThmPos+Pej+Pl: NI Pl Pej Pos:2
+     3+<>+NI+ThmPos+Pej+4: NI Obv Pej Pos:3
+     3+<>+NI+ThmPos+Pej+Loc: NI Loc Pej Pos:3
+     3+<>+NI+ThmPos+Pej+Pl: NI Pl Pej Pos:3
+     X+<>+NI+ThmPos+Pej+4: NI Obv Pej Pos:X
+     X+<>+NI+ThmPos+Pej+Loc: NI Loc Pej Pos:X
+     X+<>+NI+ThmPos+Pej+Pl: NI Pl Pej Pos:X
+     
+     #Values from slots numbered 1, 3, 5, 6
+     1+<>+NI+ThmPos+1+Pl+Prt: NI Prt Pos:1Pl
+     1+<>+NI+ThmPos+1+Pl+Voc+Pl: NI Pl Voc Pos:1Pl
+     2+<>+NI+ThmPos+1+Pl+Prt: NI Prt Pos:21Pl
+     2+<>+NI+ThmPos+1+Pl+Voc+Pl: NI Pl Voc Pos:21Pl
+     2+<>+NI+ThmPos+2+Pl+Prt: NI Prt Pos:2Pl
+     2+<>+NI+ThmPos+2+Pl+Voc+Pl: NI Pl Voc Pos:2Pl
+     3+<>+NI+ThmPos+2+Pl+Prt: NI Prt Pos:3Pl
+     3+<>+NI+ThmPos+2+Pl+Voc+Pl: NI Pl Voc Pos:3Pl
+     3+<>+NI+ThmPos+3+4+Prt: NI Prt Pos:3'
+     3+<>+NI+ThmPos+3+4+Voc+Pl: NI Pl Voc Pos:3'
+     
+     #Values from slots numbered 1, 3, 5, 7
+     1+<>+NI+ThmPos+1+Pl+4: NI Obv Pos:1Pl
+     1+<>+NI+ThmPos+1+Pl+Loc: NI Loc Pos:1Pl
+     1+<>+NI+ThmPos+1+Pl+Pl: NI Pl Pos:1Pl
+     2+<>+NI+ThmPos+1+Pl+4: NI Obv Pos:21Pl
+     2+<>+NI+ThmPos+1+Pl+Loc: NI Loc Pos:21Pl
+     2+<>+NI+ThmPos+1+Pl+Pl: NI Pl Pos:21Pl
+     2+<>+NI+ThmPos+2+Pl+4: NI Obv Pos:2Pl
+     2+<>+NI+ThmPos+2+Pl+Loc: NI Loc Pos:2Pl
+     2+<>+NI+ThmPos+2+Pl+Pl: NI Pl Pos:2Pl
+     3+<>+NI+ThmPos+2+Pl+4: NI Obv Pos:3Pl
+     3+<>+NI+ThmPos+2+Pl+Loc: NI Loc Pos:3Pl
+     3+<>+NI+ThmPos+2+Pl+Pl: NI Pl Pos:3Pl
+     3+<>+NI+ThmPos+3+4+4: NI Obv Pos:3'
+     3+<>+NI+ThmPos+3+4+Loc: NI Loc Pos:3'
+     3+<>+NI+ThmPos+3+4+Pl: NI Pl Pos:3'
+     
+     #Values from slots numbered 1, 3, 6, 7
+     1+<>+NI+ThmPos+Prt+4: NI Obv Prt Pos:1
+     1+<>+NI+ThmPos+Prt+Loc: NI Loc Prt Pos:1
+     1+<>+NI+ThmPos+Prt+Pl: NI Pl Prt Pos:1
+     2+<>+NI+ThmPos+Prt+4: NI Obv Prt Pos:2
+     2+<>+NI+ThmPos+Prt+Loc: NI Loc Prt Pos:2
+     2+<>+NI+ThmPos+Prt+Pl: NI Pl Prt Pos:2
+     3+<>+NI+ThmPos+Prt+4: NI Obv Prt Pos:3
+     3+<>+NI+ThmPos+Prt+Loc: NI Loc Prt Pos:3
+     3+<>+NI+ThmPos+Prt+Pl: NI Pl Prt Pos:3
+     X+<>+NI+ThmPos+Prt+4: NI Obv Prt Pos:X
+     X+<>+NI+ThmPos+Prt+Loc: NI Loc Prt Pos:X
+     X+<>+NI+ThmPos+Prt+Pl: NI Pl Prt Pos:X
+     
+     #Values from slots numbered 1, 4, 5, 6 
+     1+<>+NI+Pej+1+Pl+Prt: NI Pej Prt Pos:1Pl
+     1+<>+NI+Pej+1+Pl+Voc+Pl: NI Pl Pej Voc Pos:1Pl
+     2+<>+NI+Pej+1+Pl+Prt: NI Pej Prt Pos:21Pl
+     2+<>+NI+Pej+1+Pl+Voc+Pl: NI Pl Pej Voc Pos:21Pl
+     2+<>+NI+Pej+2+Pl+Prt: NI Pej Prt Pos:2Pl
+     2+<>+NI+Pej+2+Pl+Voc+Pl: NI Pl Pej Voc Pos:2Pl
+     3+<>+NI+Pej+2+Pl+Prt: NI Pej Prt Pos:3Pl
+     3+<>+NI+Pej+2+Pl+Voc+Pl: NI Pl Pej Voc Pos:3Pl
+     3+<>+NI+Pej+3+4+Prt: NI Pej Prt Pos:3'
+     3+<>+NI+Pej+3+4+Voc+Pl: NI Pl Pej Voc Pos:3'
+     
+     #Values from slots numbered 1, 4, 5, 7 
+     1+<>+NI+Pej+1+Pl+4: NI Obv Pej Pos:1Pl
+     1+<>+NI+Pej+1+Pl+Loc: NI Loc Pej Pos:1Pl
+     1+<>+NI+Pej+1+Pl+Pl: NI Pl Pej Pos:1Pl
+     2+<>+NI+Pej+1+Pl+4: NI Obv Pej Pos:21Pl
+     2+<>+NI+Pej+1+Pl+Loc: NI Loc Pej Pos:21Pl
+     2+<>+NI+Pej+1+Pl+Pl: NI Pl Pej Pos:21Pl
+     2+<>+NI+Pej+2+Pl+4: NI Obv Pej Pos:2Pl
+     2+<>+NI+Pej+2+Pl+Loc: NI Loc Pej Pos:2Pl
+     2+<>+NI+Pej+2+Pl+Pl: NI Pl Pej Pos:2Pl
+     3+<>+NI+Pej+2+Pl+4: NI Obv Pej Pos:3Pl
+     3+<>+NI+Pej+2+Pl+Loc: NI Loc Pej Pos:3Pl
+     3+<>+NI+Pej+2+Pl+Pl: NI Pl Pej Pos:3Pl
+     3+<>+NI+Pej+3+4+4: NI Obv Pej Pos:3'
+     3+<>+NI+Pej+3+4+Loc: NI Loc Pej Pos:3'
+     3+<>+NI+Pej+3+4+Pl: NI Pl Pej Pos:3'
+     
+     #Values from slots numbered 1, 4, 6, 7 
+     1+<>+NI+Pej+Prt+4: NI Obv Pej Prt Pos:1
+     1+<>+NI+Pej+Prt+Loc: NI Loc Pej Prt Pos:1
+     1+<>+NI+Pej+Prt+Pl: NI Pl Pej Prt Pos:1
+     2+<>+NI+Pej+Prt+4: NI Obv Pej Prt Pos:2
+     2+<>+NI+Pej+Prt+Loc: NI Loc Pej Prt Pos:2
+     2+<>+NI+Pej+Prt+Pl: NI Pl Pej Prt Pos:2
+     3+<>+NI+Pej+Prt+4: NI Obv Pej Prt Pos:3
+     3+<>+NI+Pej+Prt+Loc: NI Loc Pej Prt Pos:3
+     3+<>+NI+Pej+Prt+Pl: NI Pl Pej Prt Pos:3
+     X+<>+NI+Pej+Prt+4: NI Obv Pej Prt Pos:X
+     X+<>+NI+Pej+Prt+Loc: NI Loc Pej Prt Pos:X
+     X+<>+NI+Pej+Prt+Pl: NI Pl Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 5, 6, 7
+     1+<>+NI+1+Pl+Prt+4: NI Obv Prt Pos:1Pl
+     1+<>+NI+1+Pl+Prt+Loc: NI Loc Prt Pos:1Pl
+     1+<>+NI+1+Pl+Prt+Pl: NI Pl Prt Pos:1Pl
+     2+<>+NI+1+Pl+Prt+4: NI Obv Prt Pos:21Pl
+     2+<>+NI+1+Pl+Prt+Loc: NI Loc Prt Pos:21Pl
+     2+<>+NI+1+Pl+Prt+Pl: NI Pl Prt Pos:21Pl
+     2+<>+NI+2+Pl+Prt+4: NI Obv Prt Pos:2Pl
+     2+<>+NI+2+Pl+Prt+Loc: NI Loc Prt Pos:2Pl
+     2+<>+NI+2+Pl+Prt+Pl: NI Pl Prt Pos:2Pl
+     3+<>+NI+2+Pl+Prt+4: NI Obv Prt Pos:3Pl
+     3+<>+NI+2+Pl+Prt+Loc: NI Loc Prt Pos:3Pl
+     3+<>+NI+2+Pl+Prt+Pl: NI Pl Prt Pos:3Pl
+     3+<>+NI+3+4+Prt+4: NI Obv Prt Pos:3'
+     3+<>+NI+3+4+Prt+Loc: NI Loc Prt Pos:3'
+     3+<>+NI+3+4+Prt+Pl: NI Pl Prt Pos:3'
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 2, 4, 6, 7 
+     <>+NI+Con+Pej+Prt+4: NI Obv Con Pej Prt
+     <>+NI+Con+Pej+Prt+Loc: NI Loc Con Pej Prt
+     <>+NI+Con+Pej+Prt+Pl: NI Pl Con Pej Prt
+     <>+NI+Dim+Pej+Prt+4: NI Obv Dim Pej Prt
+     <>+NI+Dim+Pej+Prt+Loc: NI Loc Dim Pej Prt
+     <>+NI+Dim+Pej+Prt+Pl: NI Pl Dim Pej Prt
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 1, 2, 3, 4, 5 
+     1+<>+NI+Con+ThmPos+Pej+1+Pl: NI Con Pej Pos:1Pl
+     1+<>+NI+Dim+ThmPos+Pej+1+Pl: NI Dim Pej Pos:1Pl
+     2+<>+NI+Con+ThmPos+Pej+1+Pl: NI Con Pej Pos:21Pl
+     2+<>+NI+Con+ThmPos+Pej+2+Pl: NI Con Pej Pos:2Pl
+     2+<>+NI+Dim+ThmPos+Pej+1+Pl: NI Dim Pej Pos:21Pl
+     2+<>+NI+Dim+ThmPos+Pej+2+Pl: NI Dim Pej Pos:2Pl
+     3+<>+NI+Con+ThmPos+Pej+2+Pl: NI Con Pej Pos:3Pl
+     3+<>+NI+Con+ThmPos+Pej+3+4: NI Con Pej Pos:3'
+     3+<>+NI+Dim+ThmPos+Pej+2+Pl: NI Dim Pej Pos:3Pl
+     3+<>+NI+Dim+ThmPos+Pej+3+4: NI Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 4, 6 
+     1+<>+NI+Con+ThmPos+Pej+Prt: NI Con Pej Prt Pos:1
+     1+<>+NI+Con+ThmPos+Pej+Voc+Pl: NI Pl Con Pej Voc Pos:1
+     1+<>+NI+Dim+ThmPos+Pej+Prt: NI Dim Pej Prt Pos:1
+     1+<>+NI+Dim+ThmPos+Pej+Voc+Pl: NI Pl Dim Pej Voc Pos:1
+     2+<>+NI+Con+ThmPos+Pej+Prt: NI Con Pej Prt Pos:2
+     2+<>+NI+Con+ThmPos+Pej+Voc+Pl: NI Pl Con Pej Voc Pos:2
+     2+<>+NI+Dim+ThmPos+Pej+Prt: NI Dim Pej Prt Pos:2
+     2+<>+NI+Dim+ThmPos+Pej+Voc+Pl: NI Pl Dim Pej Voc Pos:2
+     3+<>+NI+Con+ThmPos+Pej+Prt: NI Con Pej Prt Pos:3
+     3+<>+NI+Con+ThmPos+Pej+Voc+Pl: NI Pl Con Pej Voc Pos:3
+     3+<>+NI+Dim+ThmPos+Pej+Prt: NI Dim Pej Prt Pos:3
+     3+<>+NI+Dim+ThmPos+Pej+Voc+Pl: NI Pl Dim Pej Voc Pos:3
+     X+<>+NI+Con+ThmPos+Pej+Prt: NI Con Pej Prt Pos:X
+     X+<>+NI+Con+ThmPos+Pej+Voc+Pl: NI Pl Con Pej Voc Pos:X
+     X+<>+NI+Dim+ThmPos+Pej+Prt: NI Dim Pej Prt Pos:X
+     X+<>+NI+Dim+ThmPos+Pej+Voc+Pl: NI Pl Dim Pej Voc Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 4, 7 
+     1+<>+NI+Con+ThmPos+Pej+4: NI Obv Con Pej Pos:1
+     1+<>+NI+Con+ThmPos+Pej+Loc: NI Loc Con Pej Pos:1
+     1+<>+NI+Con+ThmPos+Pej+Pl: NI Pl Con Pej Pos:1
+     1+<>+NI+Dim+ThmPos+Pej+4: NI Obv Dim Pej Pos:1
+     1+<>+NI+Dim+ThmPos+Pej+Loc: NI Loc Dim Pej Pos:1
+     1+<>+NI+Dim+ThmPos+Pej+Pl: NI Pl Dim Pej Pos:1
+     2+<>+NI+Con+ThmPos+Pej+4: NI Obv Con Pej Pos:2
+     2+<>+NI+Con+ThmPos+Pej+Loc: NI Loc Con Pej Pos:2
+     2+<>+NI+Con+ThmPos+Pej+Pl: NI Pl Con Pej Pos:2
+     2+<>+NI+Dim+ThmPos+Pej+4: NI Obv Dim Pej Pos:2
+     2+<>+NI+Dim+ThmPos+Pej+Loc: NI Loc Dim Pej Pos:2
+     2+<>+NI+Dim+ThmPos+Pej+Pl: NI Pl Dim Pej Pos:2
+     3+<>+NI+Con+ThmPos+Pej+4: NI Obv Con Pej Pos:3
+     3+<>+NI+Con+ThmPos+Pej+Loc: NI Loc Con Pej Pos:3
+     3+<>+NI+Con+ThmPos+Pej+Pl: NI Pl Con Pej Pos:3
+     3+<>+NI+Dim+ThmPos+Pej+4: NI Obv Dim Pej Pos:3
+     3+<>+NI+Dim+ThmPos+Pej+Loc: NI Loc Dim Pej Pos:3
+     3+<>+NI+Dim+ThmPos+Pej+Pl: NI Pl Dim Pej Pos:3
+     X+<>+NI+Con+ThmPos+Pej+4: NI Obv Con Pej Pos:X
+     X+<>+NI+Con+ThmPos+Pej+Loc: NI Loc Con Pej Pos:X
+     X+<>+NI+Con+ThmPos+Pej+Pl: NI Pl Con Pej Pos:X
+     X+<>+NI+Dim+ThmPos+Pej+4: NI Obv Dim Pej Pos:X
+     X+<>+NI+Dim+ThmPos+Pej+Loc: NI Loc Dim Pej Pos:X
+     X+<>+NI+Dim+ThmPos+Pej+Pl: NI Pl Dim Pej Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 5, 6
+     1+<>+NI+Con+ThmPos+1+Pl+Prt: NI Con Prt Pos:1Pl
+     1+<>+NI+Con+ThmPos+1+Pl+Voc+Pl: NI Pl Con Voc Pos:1Pl
+     1+<>+NI+Dim+ThmPos+1+Pl+Prt: NI Dim Prt Pos:1Pl
+     1+<>+NI+Dim+ThmPos+1+Pl+Voc+Pl: NI Pl Dim Voc Pos:1Pl
+     2+<>+NI+Con+ThmPos+1+Pl+Prt: NI Con Prt Pos:21Pl
+     2+<>+NI+Con+ThmPos+1+Pl+Voc+Pl: NI Pl Con Voc Pos:21Pl
+     2+<>+NI+Con+ThmPos+2+Pl+Prt: NI Con Prt Pos:2Pl
+     2+<>+NI+Con+ThmPos+2+Pl+Voc+Pl: NI Pl Con Voc Pos:2Pl
+     2+<>+NI+Dim+ThmPos+1+Pl+Prt: NI Dim Prt Pos:21Pl
+     2+<>+NI+Dim+ThmPos+1+Pl+Voc+Pl: NI Pl Dim Voc Pos:21Pl
+     2+<>+NI+Dim+ThmPos+2+Pl+Prt: NI Dim Prt Pos:2Pl
+     2+<>+NI+Dim+ThmPos+2+Pl+Voc+Pl: NI Pl Dim Voc Pos:2Pl
+     3+<>+NI+Con+ThmPos+2+Pl+Prt: NI Con Prt Pos:3Pl
+     3+<>+NI+Con+ThmPos+2+Pl+Voc+Pl: NI Pl Con Voc Pos:3Pl
+     3+<>+NI+Con+ThmPos+3+4+Prt: NI Con Prt Pos:3'
+     3+<>+NI+Con+ThmPos+3+4+Voc+Pl: NI Pl Con Voc Pos:3'
+     3+<>+NI+Dim+ThmPos+2+Pl+Prt: NI Dim Prt Pos:3Pl
+     3+<>+NI+Dim+ThmPos+2+Pl+Voc+Pl: NI Pl Dim Voc Pos:3Pl
+     3+<>+NI+Dim+ThmPos+3+4+Prt: NI Dim Prt Pos:3'
+     3+<>+NI+Dim+ThmPos+3+4+Voc+Pl: NI Pl Dim Voc Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 5, 7
+     1+<>+NI+Con+ThmPos+1+Pl+4: NI Obv Con Pos:1Pl
+     1+<>+NI+Con+ThmPos+1+Pl+Loc: NI Loc Con Pos:1Pl
+     1+<>+NI+Con+ThmPos+1+Pl+Pl: NI Pl Con Pos:1Pl
+     1+<>+NI+Dim+ThmPos+1+Pl+4: NI Obv Dim Pos:1Pl
+     1+<>+NI+Dim+ThmPos+1+Pl+Loc: NI Loc Dim Pos:1Pl
+     1+<>+NI+Dim+ThmPos+1+Pl+Pl: NI Pl Dim Pos:1Pl
+     2+<>+NI+Con+ThmPos+1+Pl+4: NI Obv Con Pos:21Pl
+     2+<>+NI+Con+ThmPos+1+Pl+Loc: NI Loc Con Pos:21Pl
+     2+<>+NI+Con+ThmPos+1+Pl+Pl: NI Pl Con Pos:21Pl
+     2+<>+NI+Con+ThmPos+2+Pl+4: NI Obv Con Pos:2Pl
+     2+<>+NI+Con+ThmPos+2+Pl+Loc: NI Loc Con Pos:2Pl
+     2+<>+NI+Con+ThmPos+2+Pl+Pl: NI Pl Con Pos:2Pl
+     2+<>+NI+Dim+ThmPos+1+Pl+4: NI Obv Dim Pos:21Pl
+     2+<>+NI+Dim+ThmPos+1+Pl+Loc: NI Loc Dim Pos:21Pl
+     2+<>+NI+Dim+ThmPos+1+Pl+Pl: NI Pl Dim Pos:21Pl
+     2+<>+NI+Dim+ThmPos+2+Pl+4: NI Obv Dim Pos:2Pl
+     2+<>+NI+Dim+ThmPos+2+Pl+Loc: NI Loc Dim Pos:2Pl
+     2+<>+NI+Dim+ThmPos+2+Pl+Pl: NI Pl Dim Pos:2Pl
+     3+<>+NI+Con+ThmPos+2+Pl+4: NI Obv Con Pos:3Pl
+     3+<>+NI+Con+ThmPos+2+Pl+Loc: NI Loc Con Pos:3Pl
+     3+<>+NI+Con+ThmPos+2+Pl+Pl: NI Pl Con Pos:3Pl
+     3+<>+NI+Con+ThmPos+3+4+4: NI Obv Con Pos:3'
+     3+<>+NI+Con+ThmPos+3+4+Loc: NI Loc Con Pos:3'
+     3+<>+NI+Con+ThmPos+3+4+Pl: NI Pl Con Pos:3'
+     3+<>+NI+Dim+ThmPos+2+Pl+4: NI Obv Dim Pos:3Pl
+     3+<>+NI+Dim+ThmPos+2+Pl+Loc: NI Loc Dim Pos:3Pl
+     3+<>+NI+Dim+ThmPos+2+Pl+Pl: NI Pl Dim Pos:3Pl
+     3+<>+NI+Dim+ThmPos+3+4+4: NI Obv Dim Pos:3'
+     3+<>+NI+Dim+ThmPos+3+4+Loc: NI Loc Dim Pos:3'
+     3+<>+NI+Dim+ThmPos+3+4+Pl: NI Pl Dim Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 6, 7
+     1+<>+NI+Con+ThmPos+Prt+4: NI Obv Con Prt Pos:1
+     1+<>+NI+Con+ThmPos+Prt+Loc: NI Loc Con Prt Pos:1
+     1+<>+NI+Con+ThmPos+Prt+Pl: NI Pl Con Prt Pos:1
+     1+<>+NI+Dim+ThmPos+Prt+4: NI Obv Dim Prt Pos:1
+     1+<>+NI+Dim+ThmPos+Prt+Loc: NI Loc Dim Prt Pos:1
+     1+<>+NI+Dim+ThmPos+Prt+Pl: NI Pl Dim Prt Pos:1
+     2+<>+NI+Con+ThmPos+Prt+4: NI Obv Con Prt Pos:2
+     2+<>+NI+Con+ThmPos+Prt+Loc: NI Loc Con Prt Pos:2
+     2+<>+NI+Con+ThmPos+Prt+Pl: NI Pl Con Prt Pos:2
+     2+<>+NI+Dim+ThmPos+Prt+4: NI Obv Dim Prt Pos:2
+     2+<>+NI+Dim+ThmPos+Prt+Loc: NI Loc Dim Prt Pos:2
+     2+<>+NI+Dim+ThmPos+Prt+Pl: NI Pl Dim Prt Pos:2
+     3+<>+NI+Con+ThmPos+Prt+4: NI Obv Con Prt Pos:3
+     3+<>+NI+Con+ThmPos+Prt+Loc: NI Loc Con Prt Pos:3
+     3+<>+NI+Con+ThmPos+Prt+Pl: NI Pl Con Prt Pos:3
+     3+<>+NI+Dim+ThmPos+Prt+4: NI Obv Dim Prt Pos:3
+     3+<>+NI+Dim+ThmPos+Prt+Loc: NI Loc Dim Prt Pos:3
+     3+<>+NI+Dim+ThmPos+Prt+Pl: NI Pl Dim Prt Pos:3
+     X+<>+NI+Con+ThmPos+Prt+4: NI Obv Con Prt Pos:X
+     X+<>+NI+Con+ThmPos+Prt+Loc: NI Loc Con Prt Pos:X
+     X+<>+NI+Con+ThmPos+Prt+Pl: NI Pl Con Prt Pos:X
+     X+<>+NI+Dim+ThmPos+Prt+4: NI Obv Dim Prt Pos:X
+     X+<>+NI+Dim+ThmPos+Prt+Loc: NI Loc Dim Prt Pos:X
+     X+<>+NI+Dim+ThmPos+Prt+Pl: NI Pl Dim Prt Pos:X
+     
+     #Values from slots numbered 1, 2, 4, 5, 6 
+     1+<>+NI+Con+Pej+1+Pl+Prt: NI Con Pej Prt Pos:1Pl
+     1+<>+NI+Con+Pej+1+Pl+Voc+Pl: NI Pl Con Pej Voc Pos:1Pl
+     1+<>+NI+Dim+Pej+1+Pl+Prt: NI Dim Pej Prt Pos:1Pl
+     1+<>+NI+Dim+Pej+1+Pl+Voc+Pl: NI Pl Dim Pej Voc Pos:1Pl
+     2+<>+NI+Con+Pej+1+Pl+Prt: NI Con Pej Prt Pos:21Pl
+     2+<>+NI+Con+Pej+1+Pl+Voc+Pl: NI Pl Con Pej Voc Pos:21Pl
+     2+<>+NI+Con+Pej+2+Pl+Prt: NI Con Pej Prt Pos:2Pl
+     2+<>+NI+Con+Pej+2+Pl+Voc+Pl: NI Pl Con Pej Voc Pos:2Pl
+     2+<>+NI+Dim+Pej+1+Pl+Prt: NI Dim Pej Prt Pos:21Pl
+     2+<>+NI+Dim+Pej+1+Pl+Voc+Pl: NI Pl Dim Pej Voc Pos:21Pl
+     2+<>+NI+Dim+Pej+2+Pl+Prt: NI Dim Pej Prt Pos:2Pl
+     2+<>+NI+Dim+Pej+2+Pl+Voc+Pl: NI Pl Dim Pej Voc Pos:2Pl
+     3+<>+NI+Con+Pej+2+Pl+Prt: NI Con Pej Prt Pos:3Pl
+     3+<>+NI+Con+Pej+2+Pl+Voc+Pl: NI Pl Con Pej Voc Pos:3Pl
+     3+<>+NI+Con+Pej+3+4+Prt: NI Con Pej Prt Pos:3'
+     3+<>+NI+Con+Pej+3+4+Voc+Pl: NI Pl Con Pej Voc Pos:3'
+     3+<>+NI+Dim+Pej+2+Pl+Prt: NI Dim Pej Prt Pos:3Pl
+     3+<>+NI+Dim+Pej+2+Pl+Voc+Pl: NI Pl Dim Pej Voc Pos:3Pl
+     3+<>+NI+Dim+Pej+3+4+Prt: NI Dim Pej Prt Pos:3'
+     3+<>+NI+Dim+Pej+3+4+Voc+Pl: NI Pl Dim Pej Voc Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 5, 7 
+     1+<>+NI+Con+Pej+1+Pl+4: NI Obv Con Pej Pos:1Pl
+     1+<>+NI+Con+Pej+1+Pl+Loc: NI Loc Con Pej Pos:1Pl
+     1+<>+NI+Con+Pej+1+Pl+Pl: NI Pl Con Pej Pos:1Pl
+     1+<>+NI+Dim+Pej+1+Pl+4: NI Obv Dim Pej Pos:1Pl
+     1+<>+NI+Dim+Pej+1+Pl+Loc: NI Loc Dim Pej Pos:1Pl
+     1+<>+NI+Dim+Pej+1+Pl+Pl: NI Pl Dim Pej Pos:1Pl
+     2+<>+NI+Con+Pej+1+Pl+4: NI Obv Con Pej Pos:21Pl
+     2+<>+NI+Con+Pej+1+Pl+Loc: NI Loc Con Pej Pos:21Pl
+     2+<>+NI+Con+Pej+1+Pl+Pl: NI Pl Con Pej Pos:21Pl
+     2+<>+NI+Con+Pej+2+Pl+4: NI Obv Con Pej Pos:2Pl
+     2+<>+NI+Con+Pej+2+Pl+Loc: NI Loc Con Pej Pos:2Pl
+     2+<>+NI+Con+Pej+2+Pl+Pl: NI Pl Con Pej Pos:2Pl
+     2+<>+NI+Dim+Pej+1+Pl+4: NI Obv Dim Pej Pos:21Pl
+     2+<>+NI+Dim+Pej+1+Pl+Loc: NI Loc Dim Pej Pos:21Pl
+     2+<>+NI+Dim+Pej+1+Pl+Pl: NI Pl Dim Pej Pos:21Pl
+     2+<>+NI+Dim+Pej+2+Pl+4: NI Obv Dim Pej Pos:2Pl
+     2+<>+NI+Dim+Pej+2+Pl+Loc: NI Loc Dim Pej Pos:2Pl
+     2+<>+NI+Dim+Pej+2+Pl+Pl: NI Pl Dim Pej Pos:2Pl
+     3+<>+NI+Con+Pej+2+Pl+4: NI Obv Con Pej Pos:3Pl
+     3+<>+NI+Con+Pej+2+Pl+Loc: NI Loc Con Pej Pos:3Pl
+     3+<>+NI+Con+Pej+2+Pl+Pl: NI Pl Con Pej Pos:3Pl
+     3+<>+NI+Con+Pej+3+4+4: NI Obv Con Pej Pos:3'
+     3+<>+NI+Con+Pej+3+4+Loc: NI Loc Con Pej Pos:3'
+     3+<>+NI+Con+Pej+3+4+Pl: NI Pl Con Pej Pos:3'
+     3+<>+NI+Dim+Pej+2+Pl+4: NI Obv Dim Pej Pos:3Pl
+     3+<>+NI+Dim+Pej+2+Pl+Loc: NI Loc Dim Pej Pos:3Pl
+     3+<>+NI+Dim+Pej+2+Pl+Pl: NI Pl Dim Pej Pos:3Pl
+     3+<>+NI+Dim+Pej+3+4+4: NI Obv Dim Pej Pos:3'
+     3+<>+NI+Dim+Pej+3+4+Loc: NI Loc Dim Pej Pos:3'
+     3+<>+NI+Dim+Pej+3+4+Pl: NI Pl Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 6, 7 
+     1+<>+NI+Con+Pej+Prt+4: NI Obv Con Pej Prt Pos:1
+     1+<>+NI+Con+Pej+Prt+Loc: NI Loc Con Pej Prt Pos:1
+     1+<>+NI+Con+Pej+Prt+Pl: NI Pl Con Pej Prt Pos:1
+     1+<>+NI+Dim+Pej+Prt+4: NI Obv Dim Pej Prt Pos:1
+     1+<>+NI+Dim+Pej+Prt+Loc: NI Loc Dim Pej Prt Pos:1
+     1+<>+NI+Dim+Pej+Prt+Pl: NI Pl Dim Pej Prt Pos:1
+     2+<>+NI+Con+Pej+Prt+4: NI Obv Con Pej Prt Pos:2
+     2+<>+NI+Con+Pej+Prt+Loc: NI Loc Con Pej Prt Pos:2
+     2+<>+NI+Con+Pej+Prt+Pl: NI Pl Con Pej Prt Pos:2
+     2+<>+NI+Dim+Pej+Prt+4: NI Obv Dim Pej Prt Pos:2
+     2+<>+NI+Dim+Pej+Prt+Loc: NI Loc Dim Pej Prt Pos:2
+     2+<>+NI+Dim+Pej+Prt+Pl: NI Pl Dim Pej Prt Pos:2
+     3+<>+NI+Con+Pej+Prt+4: NI Obv Con Pej Prt Pos:3
+     3+<>+NI+Con+Pej+Prt+Loc: NI Loc Con Pej Prt Pos:3
+     3+<>+NI+Con+Pej+Prt+Pl: NI Pl Con Pej Prt Pos:3
+     3+<>+NI+Dim+Pej+Prt+4: NI Obv Dim Pej Prt Pos:3
+     3+<>+NI+Dim+Pej+Prt+Loc: NI Loc Dim Pej Prt Pos:3
+     3+<>+NI+Dim+Pej+Prt+Pl: NI Pl Dim Pej Prt Pos:3
+     X+<>+NI+Con+Pej+Prt+4: NI Obv Con Pej Prt Pos:X
+     X+<>+NI+Con+Pej+Prt+Loc: NI Loc Con Pej Prt Pos:X
+     X+<>+NI+Con+Pej+Prt+Pl: NI Pl Con Pej Prt Pos:X
+     X+<>+NI+Dim+Pej+Prt+4: NI Obv Dim Pej Prt Pos:X
+     X+<>+NI+Dim+Pej+Prt+Loc: NI Loc Dim Pej Prt Pos:X
+     X+<>+NI+Dim+Pej+Prt+Pl: NI Pl Dim Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 2, 5, 6, 7
+     1+<>+NI+Con+1+Pl+Prt+4: NI Obv Con Prt Pos:1Pl
+     1+<>+NI+Con+1+Pl+Prt+Loc: NI Loc Con Prt Pos:1Pl
+     1+<>+NI+Con+1+Pl+Prt+Pl: NI Pl Con Prt Pos:1Pl
+     1+<>+NI+Dim+1+Pl+Prt+4: NI Obv Dim Prt Pos:1Pl
+     1+<>+NI+Dim+1+Pl+Prt+Loc: NI Loc Dim Prt Pos:1Pl
+     1+<>+NI+Dim+1+Pl+Prt+Pl: NI Pl Dim Prt Pos:1Pl
+     2+<>+NI+Con+1+Pl+Prt+4: NI Obv Con Prt Pos:21Pl
+     2+<>+NI+Con+1+Pl+Prt+Loc: NI Loc Con Prt Pos:21Pl
+     2+<>+NI+Con+1+Pl+Prt+Pl: NI Pl Con Prt Pos:21Pl
+     2+<>+NI+Con+2+Pl+Prt+4: NI Obv Con Prt Pos:2Pl
+     2+<>+NI+Con+2+Pl+Prt+Loc: NI Loc Con Prt Pos:2Pl
+     2+<>+NI+Con+2+Pl+Prt+Pl: NI Pl Con Prt Pos:2Pl
+     2+<>+NI+Dim+1+Pl+Prt+4: NI Obv Dim Prt Pos:21Pl
+     2+<>+NI+Dim+1+Pl+Prt+Loc: NI Loc Dim Prt Pos:21Pl
+     2+<>+NI+Dim+1+Pl+Prt+Pl: NI Pl Dim Prt Pos:21Pl
+     2+<>+NI+Dim+2+Pl+Prt+4: NI Obv Dim Prt Pos:2Pl
+     2+<>+NI+Dim+2+Pl+Prt+Loc: NI Loc Dim Prt Pos:2Pl
+     2+<>+NI+Dim+2+Pl+Prt+Pl: NI Pl Dim Prt Pos:2Pl
+     3+<>+NI+Con+2+Pl+Prt+4: NI Obv Con Prt Pos:3Pl
+     3+<>+NI+Con+2+Pl+Prt+Loc: NI Loc Con Prt Pos:3Pl
+     3+<>+NI+Con+2+Pl+Prt+Pl: NI Pl Con Prt Pos:3Pl
+     3+<>+NI+Con+3+4+Prt+4: NI Obv Con Prt Pos:3'
+     3+<>+NI+Con+3+4+Prt+Loc: NI Loc Con Prt Pos:3'
+     3+<>+NI+Con+3+4+Prt+Pl: NI Pl Con Prt Pos:3'
+     3+<>+NI+Dim+2+Pl+Prt+4: NI Obv Dim Prt Pos:3Pl
+     3+<>+NI+Dim+2+Pl+Prt+Loc: NI Loc Dim Prt Pos:3Pl
+     3+<>+NI+Dim+2+Pl+Prt+Pl: NI Pl Dim Prt Pos:3Pl
+     3+<>+NI+Dim+3+4+Prt+4: NI Obv Dim Prt Pos:3'
+     3+<>+NI+Dim+3+4+Prt+Loc: NI Loc Dim Prt Pos:3'
+     3+<>+NI+Dim+3+4+Prt+Pl: NI Pl Dim Prt Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 5, 6 
+     1+<>+NI+ThmPos+Pej+1+Pl+Prt: NI Pej Prt Pos:1Pl
+     1+<>+NI+ThmPos+Pej+1+Pl+Voc+Pl: NI Pl Pej Voc Pos:1Pl
+     2+<>+NI+ThmPos+Pej+1+Pl+Prt: NI Pej Prt Pos:21Pl
+     2+<>+NI+ThmPos+Pej+1+Pl+Voc+Pl: NI Pl Pej Voc Pos:21Pl
+     2+<>+NI+ThmPos+Pej+2+Pl+Prt: NI Pej Prt Pos:2Pl
+     2+<>+NI+ThmPos+Pej+2+Pl+Voc+Pl: NI Pl Pej Voc Pos:2Pl
+     3+<>+NI+ThmPos+Pej+2+Pl+Prt: NI Pej Prt Pos:3Pl
+     3+<>+NI+ThmPos+Pej+2+Pl+Voc+Pl: NI Pl Pej Voc Pos:3Pl
+     3+<>+NI+ThmPos+Pej+3+4+Prt: NI Pej Prt Pos:3'
+     3+<>+NI+ThmPos+Pej+3+4+Voc+Pl: NI Pl Pej Voc Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 5, 7 
+     1+<>+NI+ThmPos+Pej+1+Pl+4: NI Obv Pej Pos:1Pl
+     1+<>+NI+ThmPos+Pej+1+Pl+Loc: NI Loc Pej Pos:1Pl
+     1+<>+NI+ThmPos+Pej+1+Pl+Pl: NI Pl Pej Pos:1Pl
+     2+<>+NI+ThmPos+Pej+1+Pl+4: NI Obv Pej Pos:21Pl
+     2+<>+NI+ThmPos+Pej+1+Pl+Loc: NI Loc Pej Pos:21Pl
+     2+<>+NI+ThmPos+Pej+1+Pl+Pl: NI Pl Pej Pos:21Pl
+     2+<>+NI+ThmPos+Pej+2+Pl+4: NI Obv Pej Pos:2Pl
+     2+<>+NI+ThmPos+Pej+2+Pl+Loc: NI Loc Pej Pos:2Pl
+     2+<>+NI+ThmPos+Pej+2+Pl+Pl: NI Pl Pej Pos:2Pl
+     3+<>+NI+ThmPos+Pej+2+Pl+4: NI Obv Pej Pos:3Pl
+     3+<>+NI+ThmPos+Pej+2+Pl+Loc: NI Loc Pej Pos:3Pl
+     3+<>+NI+ThmPos+Pej+2+Pl+Pl: NI Pl Pej Pos:3Pl
+     3+<>+NI+ThmPos+Pej+3+4+4: NI Obv Pej Pos:3'
+     3+<>+NI+ThmPos+Pej+3+4+Loc: NI Loc Pej Pos:3'
+     3+<>+NI+ThmPos+Pej+3+4+Pl: NI Pl Pej Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 6, 7 
+     1+<>+NI+ThmPos+Pej+Prt+4: NI Obv Pej Prt Pos:1
+     1+<>+NI+ThmPos+Pej+Prt+Loc: NI Loc Pej Prt Pos:1
+     1+<>+NI+ThmPos+Pej+Prt+Pl: NI Pl Pej Prt Pos:1
+     2+<>+NI+ThmPos+Pej+Prt+4: NI Obv Pej Prt Pos:2
+     2+<>+NI+ThmPos+Pej+Prt+Loc: NI Loc Pej Prt Pos:2
+     2+<>+NI+ThmPos+Pej+Prt+Pl: NI Pl Pej Prt Pos:2
+     3+<>+NI+ThmPos+Pej+Prt+4: NI Obv Pej Prt Pos:3
+     3+<>+NI+ThmPos+Pej+Prt+Loc: NI Loc Pej Prt Pos:3
+     3+<>+NI+ThmPos+Pej+Prt+Pl: NI Pl Pej Prt Pos:3
+     X+<>+NI+ThmPos+Pej+Prt+4: NI Obv Pej Prt Pos:X
+     X+<>+NI+ThmPos+Pej+Prt+Loc: NI Loc Pej Prt Pos:X
+     X+<>+NI+ThmPos+Pej+Prt+Pl: NI Pl Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 3, 5, 6, 7
+     1+<>+NI+ThmPos+1+Pl+Prt+4: NI Obv Prt Pos:1Pl
+     1+<>+NI+ThmPos+1+Pl+Prt+Loc: NI Loc Prt Pos:1Pl
+     1+<>+NI+ThmPos+1+Pl+Prt+Pl: NI Pl Prt Pos:1Pl
+     2+<>+NI+ThmPos+1+Pl+Prt+4: NI Obv Prt Pos:21Pl
+     2+<>+NI+ThmPos+1+Pl+Prt+Loc: NI Loc Prt Pos:21Pl
+     2+<>+NI+ThmPos+1+Pl+Prt+Pl: NI Pl Prt Pos:21Pl
+     2+<>+NI+ThmPos+2+Pl+Prt+4: NI Obv Prt Pos:2Pl
+     2+<>+NI+ThmPos+2+Pl+Prt+Loc: NI Loc Prt Pos:2Pl
+     2+<>+NI+ThmPos+2+Pl+Prt+Pl: NI Pl Prt Pos:2Pl
+     3+<>+NI+ThmPos+2+Pl+Prt+4: NI Obv Prt Pos:3Pl
+     3+<>+NI+ThmPos+2+Pl+Prt+Loc: NI Loc Prt Pos:3Pl
+     3+<>+NI+ThmPos+2+Pl+Prt+Pl: NI Pl Prt Pos:3Pl
+     3+<>+NI+ThmPos+3+4+Prt+4: NI Obv Prt Pos:3'
+     3+<>+NI+ThmPos+3+4+Prt+Loc: NI Loc Prt Pos:3'
+     3+<>+NI+ThmPos+3+4+Prt+Pl: NI Pl Prt Pos:3'
+     
+     #Values from slots numbered 1, 4, 5, 6, 7 
+     1+<>+NI+Pej+1+Pl+Prt+4: NI Obv Pej Prt Pos:1Pl
+     1+<>+NI+Pej+1+Pl+Prt+Loc: NI Loc Pej Prt Pos:1Pl
+     1+<>+NI+Pej+1+Pl+Prt+Pl: NI Pl Pej Prt Pos:1Pl
+     2+<>+NI+Pej+1+Pl+Prt+4: NI Obv Pej Prt Pos:21Pl
+     2+<>+NI+Pej+1+Pl+Prt+Loc: NI Loc Pej Prt Pos:21Pl
+     2+<>+NI+Pej+1+Pl+Prt+Pl: NI Pl Pej Prt Pos:21Pl
+     2+<>+NI+Pej+2+Pl+Prt+4: NI Obv Pej Prt Pos:2Pl
+     2+<>+NI+Pej+2+Pl+Prt+Loc: NI Loc Pej Prt Pos:2Pl
+     2+<>+NI+Pej+2+Pl+Prt+Pl: NI Pl Pej Prt Pos:2Pl
+     3+<>+NI+Pej+2+Pl+Prt+4: NI Obv Pej Prt Pos:3Pl
+     3+<>+NI+Pej+2+Pl+Prt+Loc: NI Loc Pej Prt Pos:3Pl
+     3+<>+NI+Pej+2+Pl+Prt+Pl: NI Pl Pej Prt Pos:3Pl
+     3+<>+NI+Pej+3+4+Prt+4: NI Obv Pej Prt Pos:3'
+     3+<>+NI+Pej+3+4+Prt+Loc: NI Loc Pej Prt Pos:3'
+     3+<>+NI+Pej+3+4+Prt+Pl: NI Pl Pej Prt Pos:3'
+     
+     
+     
+     
+     
+     
+     
+     #Values from slots numbered 1, 2, 3, 4, 5, 6 
+     1+<>+NI+Con+ThmPos+Pej+1+Pl+Prt: NI Con Pej Prt Pos:1Pl
+     1+<>+NI+Con+ThmPos+Pej+1+Pl+Voc+Pl: NI Pl Con Pej Voc Pos:1Pl
+     1+<>+NI+Dim+ThmPos+Pej+1+Pl+Prt: NI Dim Pej Prt Pos:1Pl
+     1+<>+NI+Dim+ThmPos+Pej+1+Pl+Voc+Pl: NI Pl Dim Pej Voc Pos:1Pl
+     2+<>+NI+Con+ThmPos+Pej+1+Pl+Prt: NI Con Pej Prt Pos:21Pl
+     2+<>+NI+Con+ThmPos+Pej+1+Pl+Voc+Pl: NI Pl Con Pej Voc Pos:21Pl
+     2+<>+NI+Con+ThmPos+Pej+2+Pl+Prt: NI Con Pej Prt Pos:2Pl
+     2+<>+NI+Con+ThmPos+Pej+2+Pl+Voc+Pl: NI Pl Con Pej Voc Pos:2Pl
+     2+<>+NI+Dim+ThmPos+Pej+1+Pl+Prt: NI Dim Pej Prt Pos:21Pl
+     2+<>+NI+Dim+ThmPos+Pej+1+Pl+Voc+Pl: NI Pl Dim Pej Voc Pos:21Pl
+     2+<>+NI+Dim+ThmPos+Pej+2+Pl+Prt: NI Dim Pej Prt Pos:2Pl
+     2+<>+NI+Dim+ThmPos+Pej+2+Pl+Voc+Pl: NI Pl Dim Pej Voc Pos:2Pl
+     3+<>+NI+Con+ThmPos+Pej+2+Pl+Prt: NI Con Pej Prt Pos:3Pl
+     3+<>+NI+Con+ThmPos+Pej+2+Pl+Voc+Pl: NI Pl Con Pej Voc Pos:3Pl
+     3+<>+NI+Con+ThmPos+Pej+3+4+Prt: NI Con Pej Prt Pos:3'
+     3+<>+NI+Con+ThmPos+Pej+3+4+Voc+Pl: NI Pl Con Pej Voc Pos:3'
+     3+<>+NI+Dim+ThmPos+Pej+2+Pl+Prt: NI Dim Pej Prt Pos:3Pl
+     3+<>+NI+Dim+ThmPos+Pej+2+Pl+Voc+Pl: NI Pl Dim Pej Voc Pos:3Pl
+     3+<>+NI+Dim+ThmPos+Pej+3+4+Prt: NI Dim Pej Prt Pos:3'
+     3+<>+NI+Dim+ThmPos+Pej+3+4+Voc+Pl: NI Pl Dim Pej Voc Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 4, 5, 7 
+     1+<>+NI+Con+ThmPos+Pej+1+Pl+4: NI Obv Con Pej Pos:1Pl
+     1+<>+NI+Con+ThmPos+Pej+1+Pl+Loc: NI Loc Con Pej Pos:1Pl
+     1+<>+NI+Con+ThmPos+Pej+1+Pl+Pl: NI Pl Con Pej Pos:1Pl
+     1+<>+NI+Dim+ThmPos+Pej+1+Pl+4: NI Obv Dim Pej Pos:1Pl
+     1+<>+NI+Dim+ThmPos+Pej+1+Pl+Loc: NI Loc Dim Pej Pos:1Pl
+     1+<>+NI+Dim+ThmPos+Pej+1+Pl+Pl: NI Pl Dim Pej Pos:1Pl
+     2+<>+NI+Con+ThmPos+Pej+1+Pl+4: NI Obv Con Pej Pos:21Pl
+     2+<>+NI+Con+ThmPos+Pej+1+Pl+Loc: NI Loc Con Pej Pos:21Pl
+     2+<>+NI+Con+ThmPos+Pej+1+Pl+Pl: NI Pl Con Pej Pos:21Pl
+     2+<>+NI+Con+ThmPos+Pej+2+Pl+4: NI Obv Con Pej Pos:2Pl
+     2+<>+NI+Con+ThmPos+Pej+2+Pl+Loc: NI Loc Con Pej Pos:2Pl
+     2+<>+NI+Con+ThmPos+Pej+2+Pl+Pl: NI Pl Con Pej Pos:2Pl
+     2+<>+NI+Dim+ThmPos+Pej+1+Pl+4: NI Obv Dim Pej Pos:21Pl
+     2+<>+NI+Dim+ThmPos+Pej+1+Pl+Loc: NI Loc Dim Pej Pos:21Pl
+     2+<>+NI+Dim+ThmPos+Pej+1+Pl+Pl: NI Pl Dim Pej Pos:21Pl
+     2+<>+NI+Dim+ThmPos+Pej+2+Pl+4: NI Obv Dim Pej Pos:2Pl
+     2+<>+NI+Dim+ThmPos+Pej+2+Pl+Loc: NI Loc Dim Pej Pos:2Pl
+     2+<>+NI+Dim+ThmPos+Pej+2+Pl+Pl: NI Pl Dim Pej Pos:2Pl
+     3+<>+NI+Con+ThmPos+Pej+2+Pl+4: NI Obv Con Pej Pos:3Pl
+     3+<>+NI+Con+ThmPos+Pej+2+Pl+Loc: NI Loc Con Pej Pos:3Pl
+     3+<>+NI+Con+ThmPos+Pej+2+Pl+Pl: NI Pl Con Pej Pos:3Pl
+     3+<>+NI+Con+ThmPos+Pej+3+4+4: NI Obv Con Pej Pos:3'
+     3+<>+NI+Con+ThmPos+Pej+3+4+Loc: NI Loc Con Pej Pos:3'
+     3+<>+NI+Con+ThmPos+Pej+3+4+Pl: NI Pl Con Pej Pos:3'
+     3+<>+NI+Dim+ThmPos+Pej+2+Pl+4: NI Obv Dim Pej Pos:3Pl
+     3+<>+NI+Dim+ThmPos+Pej+2+Pl+Loc: NI Loc Dim Pej Pos:3Pl
+     3+<>+NI+Dim+ThmPos+Pej+2+Pl+Pl: NI Pl Dim Pej Pos:3Pl
+     3+<>+NI+Dim+ThmPos+Pej+3+4+4: NI Obv Dim Pej Pos:3'
+     3+<>+NI+Dim+ThmPos+Pej+3+4+Loc: NI Loc Dim Pej Pos:3'
+     3+<>+NI+Dim+ThmPos+Pej+3+4+Pl: NI Pl Dim Pej Pos:3'
+     
+     #Values from slots numbered 1, 2, 3, 4, 6, 7 
+     1+<>+NI+Con+ThmPos+Pej+Prt+4: NI Obv Con Pej Prt Pos:1
+     1+<>+NI+Con+ThmPos+Pej+Prt+Loc: NI Loc Con Pej Prt Pos:1
+     1+<>+NI+Con+ThmPos+Pej+Prt+Pl: NI Pl Con Pej Prt Pos:1
+     1+<>+NI+Dim+ThmPos+Pej+Prt+4: NI Obv Dim Pej Prt Pos:1
+     1+<>+NI+Dim+ThmPos+Pej+Prt+Loc: NI Loc Dim Pej Prt Pos:1
+     1+<>+NI+Dim+ThmPos+Pej+Prt+Pl: NI Pl Dim Pej Prt Pos:1
+     2+<>+NI+Con+ThmPos+Pej+Prt+4: NI Obv Con Pej Prt Pos:2
+     2+<>+NI+Con+ThmPos+Pej+Prt+Loc: NI Loc Con Pej Prt Pos:2
+     2+<>+NI+Con+ThmPos+Pej+Prt+Pl: NI Pl Con Pej Prt Pos:2
+     2+<>+NI+Dim+ThmPos+Pej+Prt+4: NI Obv Dim Pej Prt Pos:2
+     2+<>+NI+Dim+ThmPos+Pej+Prt+Loc: NI Loc Dim Pej Prt Pos:2
+     2+<>+NI+Dim+ThmPos+Pej+Prt+Pl: NI Pl Dim Pej Prt Pos:2
+     3+<>+NI+Con+ThmPos+Pej+Prt+4: NI Obv Con Pej Prt Pos:3
+     3+<>+NI+Con+ThmPos+Pej+Prt+Loc: NI Loc Con Pej Prt Pos:3
+     3+<>+NI+Con+ThmPos+Pej+Prt+Pl: NI Pl Con Pej Prt Pos:3
+     3+<>+NI+Dim+ThmPos+Pej+Prt+4: NI Obv Dim Pej Prt Pos:3
+     3+<>+NI+Dim+ThmPos+Pej+Prt+Loc: NI Loc Dim Pej Prt Pos:3
+     3+<>+NI+Dim+ThmPos+Pej+Prt+Pl: NI Pl Dim Pej Prt Pos:3
+     X+<>+NI+Con+ThmPos+Pej+Prt+4: NI Obv Con Pej Prt Pos:X
+     X+<>+NI+Con+ThmPos+Pej+Prt+Loc: NI Loc Con Pej Prt Pos:X
+     X+<>+NI+Con+ThmPos+Pej+Prt+Pl: NI Pl Con Pej Prt Pos:X
+     X+<>+NI+Dim+ThmPos+Pej+Prt+4: NI Obv Dim Pej Prt Pos:X
+     X+<>+NI+Dim+ThmPos+Pej+Prt+Loc: NI Loc Dim Pej Prt Pos:X
+     X+<>+NI+Dim+ThmPos+Pej+Prt+Pl: NI Pl Dim Pej Prt Pos:X
+     
+     #Values from slots numbered 1, 2, 3, 5, 6, 7
+     1+<>+NI+Con+ThmPos+1+Pl+Prt+4: NI Obv Con Prt Pos:1Pl
+     1+<>+NI+Con+ThmPos+1+Pl+Prt+Loc: NI Loc Con Prt Pos:1Pl
+     1+<>+NI+Con+ThmPos+1+Pl+Prt+Pl: NI Pl Con Prt Pos:1Pl
+     1+<>+NI+Dim+ThmPos+1+Pl+Prt+4: NI Obv Dim Prt Pos:1Pl
+     1+<>+NI+Dim+ThmPos+1+Pl+Prt+Loc: NI Loc Dim Prt Pos:1Pl
+     1+<>+NI+Dim+ThmPos+1+Pl+Prt+Pl: NI Pl Dim Prt Pos:1Pl
+     2+<>+NI+Con+ThmPos+1+Pl+Prt+4: NI Obv Con Prt Pos:21Pl
+     2+<>+NI+Con+ThmPos+1+Pl+Prt+Loc: NI Loc Con Prt Pos:21Pl
+     2+<>+NI+Con+ThmPos+1+Pl+Prt+Pl: NI Pl Con Prt Pos:21Pl
+     2+<>+NI+Con+ThmPos+2+Pl+Prt+4: NI Obv Con Prt Pos:2Pl
+     2+<>+NI+Con+ThmPos+2+Pl+Prt+Loc: NI Loc Con Prt Pos:2Pl
+     2+<>+NI+Con+ThmPos+2+Pl+Prt+Pl: NI Pl Con Prt Pos:2Pl
+     2+<>+NI+Dim+ThmPos+1+Pl+Prt+4: NI Obv Dim Prt Pos:21Pl
+     2+<>+NI+Dim+ThmPos+1+Pl+Prt+Loc: NI Loc Dim Prt Pos:21Pl
+     2+<>+NI+Dim+ThmPos+1+Pl+Prt+Pl: NI Pl Dim Prt Pos:21Pl
+     2+<>+NI+Dim+ThmPos+2+Pl+Prt+4: NI Obv Dim Prt Pos:2Pl
+     2+<>+NI+Dim+ThmPos+2+Pl+Prt+Loc: NI Loc Dim Prt Pos:2Pl
+     2+<>+NI+Dim+ThmPos+2+Pl+Prt+Pl: NI Pl Dim Prt Pos:2Pl
+     3+<>+NI+Con+ThmPos+2+Pl+Prt+4: NI Obv Con Prt Pos:3Pl
+     3+<>+NI+Con+ThmPos+2+Pl+Prt+Loc: NI Loc Con Prt Pos:3Pl
+     3+<>+NI+Con+ThmPos+2+Pl+Prt+Pl: NI Pl Con Prt Pos:3Pl
+     3+<>+NI+Con+ThmPos+3+4+Prt+4: NI Obv Con Prt Pos:3'
+     3+<>+NI+Con+ThmPos+3+4+Prt+Loc: NI Loc Con Prt Pos:3'
+     3+<>+NI+Con+ThmPos+3+4+Prt+Pl: NI Pl Con Prt Pos:3'
+     3+<>+NI+Dim+ThmPos+2+Pl+Prt+4: NI Obv Dim Prt Pos:3Pl
+     3+<>+NI+Dim+ThmPos+2+Pl+Prt+Loc: NI Loc Dim Prt Pos:3Pl
+     3+<>+NI+Dim+ThmPos+2+Pl+Prt+Pl: NI Pl Dim Prt Pos:3Pl
+     3+<>+NI+Dim+ThmPos+3+4+Prt+4: NI Obv Dim Prt Pos:3'
+     3+<>+NI+Dim+ThmPos+3+4+Prt+Loc: NI Loc Dim Prt Pos:3'
+     3+<>+NI+Dim+ThmPos+3+4+Prt+Pl: NI Pl Dim Prt Pos:3'
+     
+     #Values from slots numbered 1, 2, 4, 5, 6, 7 
+     1+<>+NI+Con+Pej+1+Pl+Prt+4: NI Obv Con Pej Prt Pos:1Pl
+     1+<>+NI+Con+Pej+1+Pl+Prt+Loc: NI Loc Con Pej Prt Pos:1Pl
+     1+<>+NI+Con+Pej+1+Pl+Prt+Pl: NI Pl Con Pej Prt Pos:1Pl
+     1+<>+NI+Dim+Pej+1+Pl+Prt+4: NI Obv Dim Pej Prt Pos:1Pl
+     1+<>+NI+Dim+Pej+1+Pl+Prt+Loc: NI Loc Dim Pej Prt Pos:1Pl
+     1+<>+NI+Dim+Pej+1+Pl+Prt+Pl: NI Pl Dim Pej Prt Pos:1Pl
+     2+<>+NI+Con+Pej+1+Pl+Prt+4: NI Obv Con Pej Prt Pos:21Pl
+     2+<>+NI+Con+Pej+1+Pl+Prt+Loc: NI Loc Con Pej Prt Pos:21Pl
+     2+<>+NI+Con+Pej+1+Pl+Prt+Pl: NI Pl Con Pej Prt Pos:21Pl
+     2+<>+NI+Con+Pej+2+Pl+Prt+4: NI Obv Con Pej Prt Pos:2Pl
+     2+<>+NI+Con+Pej+2+Pl+Prt+Loc: NI Loc Con Pej Prt Pos:2Pl
+     2+<>+NI+Con+Pej+2+Pl+Prt+Pl: NI Pl Con Pej Prt Pos:2Pl
+     2+<>+NI+Dim+Pej+1+Pl+Prt+4: NI Obv Dim Pej Prt Pos:21Pl
+     2+<>+NI+Dim+Pej+1+Pl+Prt+Loc: NI Loc Dim Pej Prt Pos:21Pl
+     2+<>+NI+Dim+Pej+1+Pl+Prt+Pl: NI Pl Dim Pej Prt Pos:21Pl
+     2+<>+NI+Dim+Pej+2+Pl+Prt+4: NI Obv Dim Pej Prt Pos:2Pl
+     2+<>+NI+Dim+Pej+2+Pl+Prt+Loc: NI Loc Dim Pej Prt Pos:2Pl
+     2+<>+NI+Dim+Pej+2+Pl+Prt+Pl: NI Pl Dim Pej Prt Pos:2Pl
+     3+<>+NI+Con+Pej+2+Pl+Prt+4: NI Obv Con Pej Prt Pos:3Pl
+     3+<>+NI+Con+Pej+2+Pl+Prt+Loc: NI Loc Con Pej Prt Pos:3Pl
+     3+<>+NI+Con+Pej+2+Pl+Prt+Pl: NI Pl Con Pej Prt Pos:3Pl
+     3+<>+NI+Con+Pej+3+4+Prt+4: NI Obv Con Pej Prt Pos:3'
+     3+<>+NI+Con+Pej+3+4+Prt+Loc: NI Loc Con Pej Prt Pos:3'
+     3+<>+NI+Con+Pej+3+4+Prt+Pl: NI Pl Con Pej Prt Pos:3'
+     3+<>+NI+Dim+Pej+2+Pl+Prt+4: NI Obv Dim Pej Prt Pos:3Pl
+     3+<>+NI+Dim+Pej+2+Pl+Prt+Loc: NI Loc Dim Pej Prt Pos:3Pl
+     3+<>+NI+Dim+Pej+2+Pl+Prt+Pl: NI Pl Dim Pej Prt Pos:3Pl
+     3+<>+NI+Dim+Pej+3+4+Prt+4: NI Obv Dim Pej Prt Pos:3'
+     3+<>+NI+Dim+Pej+3+4+Prt+Loc: NI Loc Dim Pej Prt Pos:3'
+     3+<>+NI+Dim+Pej+3+4+Prt+Pl: NI Pl Dim Pej Prt Pos:3'
+     
+     #Values from slots numbered 1, 3, 4, 5, 6, 7 
+     1+<>+NI+ThmPos+Pej+1+Pl+Prt+4: NI Obv Pej Prt Pos:1Pl
+     1+<>+NI+ThmPos+Pej+1+Pl+Prt+Loc: NI Loc Pej Prt Pos:1Pl
+     1+<>+NI+ThmPos+Pej+1+Pl+Prt+Pl: NI Pl Pej Prt Pos:1Pl
+     2+<>+NI+ThmPos+Pej+1+Pl+Prt+4: NI Obv Pej Prt Pos:21Pl
+     2+<>+NI+ThmPos+Pej+1+Pl+Prt+Loc: NI Loc Pej Prt Pos:21Pl
+     2+<>+NI+ThmPos+Pej+1+Pl+Prt+Pl: NI Pl Pej Prt Pos:21Pl
+     2+<>+NI+ThmPos+Pej+2+Pl+Prt+4: NI Obv Pej Prt Pos:2Pl
+     2+<>+NI+ThmPos+Pej+2+Pl+Prt+Loc: NI Loc Pej Prt Pos:2Pl
+     2+<>+NI+ThmPos+Pej+2+Pl+Prt+Pl: NI Pl Pej Prt Pos:2Pl
+     3+<>+NI+ThmPos+Pej+2+Pl+Prt+4: NI Obv Pej Prt Pos:3Pl
+     3+<>+NI+ThmPos+Pej+2+Pl+Prt+Loc: NI Loc Pej Prt Pos:3Pl
+     3+<>+NI+ThmPos+Pej+2+Pl+Prt+Pl: NI Pl Pej Prt Pos:3Pl
+     3+<>+NI+ThmPos+Pej+3+4+Prt+4: NI Obv Pej Prt Pos:3'
+     3+<>+NI+ThmPos+Pej+3+4+Prt+Loc: NI Loc Pej Prt Pos:3'
+     3+<>+NI+ThmPos+Pej+3+4+Prt+Pl: NI Pl Pej Prt Pos:3'
+     
+     
+     #Values from slots numbered 1, 2, 3, 4, 5, 6, 7 
+     1+<>+NI+Con+ThmPos+Pej+1+Pl+Prt+4: NI Obv Con Pej Prt Pos:1Pl
+     1+<>+NI+Con+ThmPos+Pej+1+Pl+Prt+Loc: NI Loc Con Pej Prt Pos:1Pl
+     1+<>+NI+Con+ThmPos+Pej+1+Pl+Prt+Pl: NI Pl Con Pej Prt Pos:1Pl
+     1+<>+NI+Dim+ThmPos+Pej+1+Pl+Prt+4: NI Obv Dim Pej Prt Pos:1Pl
+     1+<>+NI+Dim+ThmPos+Pej+1+Pl+Prt+Loc: NI Loc Dim Pej Prt Pos:1Pl
+     1+<>+NI+Dim+ThmPos+Pej+1+Pl+Prt+Pl: NI Pl Dim Pej Prt Pos:1Pl
+     2+<>+NI+Con+ThmPos+Pej+1+Pl+Prt+4: NI Obv Con Pej Prt Pos:21Pl
+     2+<>+NI+Con+ThmPos+Pej+1+Pl+Prt+Loc: NI Loc Con Pej Prt Pos:21Pl
+     2+<>+NI+Con+ThmPos+Pej+1+Pl+Prt+Pl: NI Pl Con Pej Prt Pos:21Pl
+     2+<>+NI+Con+ThmPos+Pej+2+Pl+Prt+4: NI Obv Con Pej Prt Pos:2Pl
+     2+<>+NI+Con+ThmPos+Pej+2+Pl+Prt+Loc: NI Loc Con Pej Prt Pos:2Pl
+     2+<>+NI+Con+ThmPos+Pej+2+Pl+Prt+Pl: NI Pl Con Pej Prt Pos:2Pl
+     2+<>+NI+Dim+ThmPos+Pej+1+Pl+Prt+4: NI Obv Dim Pej Prt Pos:21Pl
+     2+<>+NI+Dim+ThmPos+Pej+1+Pl+Prt+Loc: NI Loc Dim Pej Prt Pos:21Pl
+     2+<>+NI+Dim+ThmPos+Pej+1+Pl+Prt+Pl: NI Pl Dim Pej Prt Pos:21Pl
+     2+<>+NI+Dim+ThmPos+Pej+2+Pl+Prt+4: NI Obv Dim Pej Prt Pos:2Pl
+     2+<>+NI+Dim+ThmPos+Pej+2+Pl+Prt+Loc: NI Loc Dim Pej Prt Pos:2Pl
+     2+<>+NI+Dim+ThmPos+Pej+2+Pl+Prt+Pl: NI Pl Dim Pej Prt Pos:2Pl
+     3+<>+NI+Con+ThmPos+Pej+2+Pl+Prt+4: NI Obv Con Pej Prt Pos:3Pl
+     3+<>+NI+Con+ThmPos+Pej+2+Pl+Prt+Loc: NI Loc Con Pej Prt Pos:3Pl
+     3+<>+NI+Con+ThmPos+Pej+2+Pl+Prt+Pl: NI Pl Con Pej Prt Pos:3Pl
+     3+<>+NI+Con+ThmPos+Pej+3+4+Prt+4: NI Obv Con Pej Prt Pos:3'
+     3+<>+NI+Con+ThmPos+Pej+3+4+Prt+Loc: NI Loc Con Pej Prt Pos:3'
+     3+<>+NI+Con+ThmPos+Pej+3+4+Prt+Pl: NI Pl Con Pej Prt Pos:3'
+     3+<>+NI+Dim+ThmPos+Pej+2+Pl+Prt+4: NI Obv Dim Pej Prt Pos:3Pl
+     3+<>+NI+Dim+ThmPos+Pej+2+Pl+Prt+Loc: NI Loc Dim Pej Prt Pos:3Pl
+     3+<>+NI+Dim+ThmPos+Pej+2+Pl+Prt+Pl: NI Pl Dim Pej Prt Pos:3Pl
+     3+<>+NI+Dim+ThmPos+Pej+3+4+Prt+4: NI Obv Dim Pej Prt Pos:3'
+     3+<>+NI+Dim+ThmPos+Pej+3+4+Prt+Loc: NI Loc Dim Pej Prt Pos:3'
+     3+<>+NI+Dim+ThmPos+Pej+3+4+Prt+Pl: NI Pl Dim Pej Prt Pos:3'
+     
