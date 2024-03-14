@@ -21,7 +21,23 @@ def interpret(analysis_in):
         elif s == "Prt": summary["Mode"] = s
         elif s == "Dub": summary["Mode"] += s #NB: += bc preterite dubitatives are possible
         elif s == "Voc": summary["Mode"] = s
-        elif s == "Cnj" or s == "Imp": summary["Order"] = s
+        elif s == "Cnj": summary["Order"] = s
+        elif s == "Imp": 
+            summary["Order"] = s
+            if summary["Head"] == "VTA": #VTA imperative object information is not in a theme sign, but directly spelled out in tags that are not always immediately adjacent to order tag, so here's a hack
+                h = []
+                subject = True
+                while "3" in analysis_in["suffixes"] or "2" in analysis_in["suffixes"] or "1" in analysis_in["suffixes"]:
+                    h.append(analysis_in["suffixes"].pop())
+                    if "3" in h or "2" in h or ("1" in h and analysis_in["suffixes"][-1] != "2"):
+                        if subject: 
+                            summary["S"]["Pers"] = h[0]
+                            summary["S"]["Num"] = "".join(h[1:])
+                            h = []
+                            subject = False
+                        else:
+                            summary["O"]["Pers"] = h[0]
+                            summary["O"]["Num"] = "".join(h[1:])
         #{extracting theme sign (primarily object person) information 
         #IND        CNJ
         #Thm1       Thm1
@@ -106,8 +122,6 @@ def interpret(analysis_in):
                 if summary["O"]["Pers"] == "0" and inversion == True and summary["Neg"] and summary["Order"] and analysis_in["suffixes"][0:1] == "3": #VTA CNJ THMINV NEG 2 PL 3(PL)
                     summary["O"]["Pers"] == "3"
                     analysis_in["suffixes"].pop()
-            #if summary["Order"] == "Imp" and summary["Head"] == "VTA":
-            #    pass #and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
             elif summary["S"]["Pers"] == "2" and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
                 summary["S"]["Num"] = "1Pl"
                 analysis_in["suffixes"].pop(0)
