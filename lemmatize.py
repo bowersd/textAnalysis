@@ -24,9 +24,7 @@ import engdict as eng
 def analyze_text(fst_file, fst_format, *text_in):
     analysis = []
     analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x.lower() for s in text_in for x in pre.sep_punct(s).split()]).decode()) #get all analyses of every word
-    for s in text_in: 
-        analysis.append([analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0] for w in pre.sep_punct(s.lower()).split()]) #look up each word's analyses and disambiguate ... better: disambiguate while the analyses are being computed ... though the parse() function should not be troubled with disambiguation questions. modular=siloed?
-    for x in analysis: print(x)
+    for s in text_in: analysis.append([analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0] for w in pre.sep_punct(s.lower()).split()]) #look up each word's analyses and disambiguate ... better: disambiguate while the analyses are being computed ... though the parse() function should not be troubled with disambiguation questions. modular=siloed?
     return analysis
 
 def lemmatize(pos_regex, *analysis):
@@ -130,6 +128,6 @@ if __name__ == "__main__":
     data_in = [x.split('\t') for x in rw.burn_metadata(2, *rw.readin(args.text))] #data is sentence id \t sentence
     pos_regex = "".join(rw.readin(args.pos_regex))
     lemmata = []
-    analyses = analyze_text(args.fst_file, args.fst_format, *[d[1] for d in data_in])
+    analyses = analyze_text(args.fst_file, args.fst_format, *[d[0] for d in data_in])
     for a in analyses: lemmata.append(lemmatize(pos_regex, *a))
-    atomic_json_dump(args.o, ["sentenceID", "lemmata"], [[d[0] for d in data_in], lemmata])
+    atomic_json_dump(args.o, ["sentenceID", "lemmata"], [[d[1] for d in data_in], lemmata])
