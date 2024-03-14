@@ -99,13 +99,14 @@ def interpret(analysis_in):
     return summary
 
 def analysis_dict(analysis_string):
+    postags = "\+VAI|\+VII|\+VTI|\+VTA|\+VAIO|\+NA|\+NI|\+NAD|\+NID|\+Conj|\+Interj|\+Num|\+Pron(\+NA|\+NI)|\+Ipc|\+Qnt|\+Adv"
     adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitic":[]}
     adict["clitic"] = [re.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]]
     analysis_string = analysis_string.strip("+dash+Adv") #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
     adict["prefix"] = [re.search("(^[123X])?", analysis_string)[0]]
-    adict["derivation"] = re.search("POSTAGS(.*POSTAGS)?", analysis_string)[0].split("+") #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    adict["derivation"] = re.search("{}(.*)?".format(postags), analysis_string)[0].split("+") #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
     adict["preforms"] = re.search("((PV|PN|PA[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
-    adict["suffixes"] = [x for x in reversed(re.search(".*(?!POSTAGS)", "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
+    adict["suffixes"] = [x for x in reversed(re.search("{}.*(?!)".format(postags), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
     #adict["suffixes"] = list(reversed([["".join(reversed(x)), False] for x in re.search(".*(?!REVPOSTAGS)", "".join(reversed(analysis_string)))[0].split("+")])) #reading everything backwards then re-reversing it (in order to avoid non-fixed width negative lookbehind
     return adict
 
