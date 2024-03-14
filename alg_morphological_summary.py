@@ -26,9 +26,9 @@ def interpret(analysis_in):
         #Thm1Pl2    Thm1Pl2
         #Thm2       Thm2a
         #           Thm2b
-        #ThmDir     ThmDir #3|3pl -> 3(pl) v 3', NEG ONLY:  #1|1pl 3|3pl        -> 1(pl) v 3(pl), 
+        #ThmDir     ThmDir #3|3pl -> 3(pl) v 3', NEG ONLY:  #1|1pl      3|3pl   -> 1(pl)    v 3(pl), 
                                                             #2|21pl|2pl 3|3pl   -> 2(1(pl)) v 3(pl)
-        #           ThmNul #                     POS ONLY:  #1|1pl 3|3pl        -> 1(pl) v 3(pl), 
+        #           ThmNul #                     POS ONLY:  #1|1pl      3|3pl   -> 1(pl)    v 3(pl), 
                                                             #2|21pl|2pl 3|3pl   -> 2(1(pl)) v 3(pl)
         #ThmInv     ThmInv #1|1pl -> 0 v 1(pl), 2|21pl|2pl -> 0 v 2(1(pl)), 3|3pl -> 0/3' v 3(pl) NEG ONLY: 2pl 3 -> 3 v 2pl (Thm2a not present, handled when 2 Pl is filled into prefixless subject information)
         #{local theme signs
