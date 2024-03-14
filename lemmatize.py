@@ -39,6 +39,9 @@ def analyze_text(fst_file, fst_format, *text_in):
 def lemmatize(pos_regex, *analysis):
     return [pst.extract_lemma(a, pos_regex) for a in analysis]
 
+def drop_vals(vector, *values):
+    return [x for x in vector if x not in values]
+
 def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
     holder = []
     for i in range(len(text_in)):
