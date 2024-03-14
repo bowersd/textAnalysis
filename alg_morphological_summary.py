@@ -106,8 +106,8 @@ def interpret(analysis_in):
                 if summary["O"]["Pers"] == "0" and inversion == True and summary["Neg"] and summary["Order"] and analysis_in["suffixes"][0:1] == "3": #VTA CNJ THMINV NEG 2 PL 3(PL)
                     summary["O"]["Pers"] == "3"
                     analysis_in["suffixes"].pop()
-            if summary["Order"] == "Imp" and summary["Head"] == "VTA":
-                pass #and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
+            #if summary["Order"] == "Imp" and summary["Head"] == "VTA":
+            #    pass #and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
             elif summary["S"]["Pers"] == "2" and analysis_in["suffixes"][0:2] == ["1", "Pl"]:
                 summary["S"]["Num"] = "1Pl"
                 analysis_in["suffixes"].pop(0)
