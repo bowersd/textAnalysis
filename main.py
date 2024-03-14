@@ -34,7 +34,7 @@ def parse_text(event):
     analysis = []
     textIn = []
     with open(document.querySelector("#targetText").value) as fileIn:
-        for line in fileIn: textIn.append(line.strip())
+        for line in fileIn: textIn.append(line.strip()) #split on sentence final punctuation to make life easier on users?
     analyses = parse_pyhfst("./morphphonologyclitics_analyze.hfstol", *[x for s in textIn for x in s.lower().split()])
     for s in textIn:
         pass
