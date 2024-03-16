@@ -91,4 +91,5 @@ async def get_bytes_from_file(file):
     array_buf = await file.arrayBuffer()
     return array_buf.to_bytes()
 
+print("the script has been run")
 add_event_listener(document.getElementById("file-upload"), "change", upload_file_and_show)
