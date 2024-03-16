@@ -106,7 +106,7 @@ def _upload_file_and_show(e):
 
     new_image = pyscript.document.createElement('img')
     new_image.src = pyscript.window.URL.createObjectURL(first_item)
-    pyscript.document.getElementByID("output_upload").appendChild(new_image)
+    pyscript.document.getElementById("output_upload").appendChild(new_image)
 
 upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_show) #maybe "click" instead of "change"
