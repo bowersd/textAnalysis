@@ -7,7 +7,6 @@ from pyweb import pydom
 import pyscript
 import asyncio
 from js import console
-#from pyodide.ffi import create_proxy #this was initially from pyodide import create_proxy, but the location has apparently changed, and there is a new wrapper that apparently makes it so you do not need to manually use create_proxy() and then have a separate line where you use an addEventListener() method
 from pyodide.ffi.wrappers import add_event_listener
 import regex
 import pyhfst
@@ -51,9 +50,15 @@ def _upload_file_and_show(e):
     file_list = e.target.files
     first_item = file_list.item(0)
 
-    new_txt = pyscript.document.createElement('txt')
-    new_txt.src = pyscript.window.URL.createObjectURL(first_item)
-    pyscript.document.getElementById("output_upload").appendChild(new_txt)
+    my_bytes: bytes = await get_bytes_from_file(first_item)
+    print(my_bytes[:10])
+    #new_txt = pyscript.document.createElement('txt')
+    #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
+    #pyscript.document.getElementById("output_upload").appendChild(new_txt)
+
+def get_bytes_from_file(file):
+    array_buf = await file.arrayBuffer()
+    return array_buf.to_bytes()
 
 upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_show) #maybe "click" instead of "change"
