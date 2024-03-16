@@ -110,3 +110,6 @@ def _upload_file_and_show(e):
 
 upload_file = document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_show) #maybe "click" instead of "change"
+#under the version where we used create_proxy(), it read:
+#upload_file = create_proxy(_upload_file_and_show)
+#document.getElementById("file-upload").addEventListener("change", upload_file)
