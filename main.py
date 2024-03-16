@@ -45,7 +45,7 @@ def parse_text(event):
     return analysis
 
 
-def _upload_file_and_show(e):
+async def _upload_file_and_show(e):
     console.log("Attempted file upload: " + e.target.value)
     file_list = e.target.files
     first_item = file_list.item(0)
@@ -56,7 +56,7 @@ def _upload_file_and_show(e):
     #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
     #pyscript.document.getElementById("output_upload").appendChild(new_txt)
 
-def get_bytes_from_file(file):
+async def get_bytes_from_file(file):
     array_buf = await file.arrayBuffer()
     return array_buf.to_bytes()
 
