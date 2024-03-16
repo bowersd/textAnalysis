@@ -80,6 +80,7 @@ from js import document, window, Uint8Array
 from pyodide.ffi.wrappers import add_event_listener
 
 async def upload_file_and_show(e):
+    print("I'm here!")
     file_list = e.target.files
     first_item = file_list.item(0)
 
