@@ -95,7 +95,7 @@ def parse_text(event):
 #print("the script has been run")
 #add_event_listener(document.getElementById("file-upload"), "change", upload_file_and_show)
 import asyncio
-from js import document, window, console
+from js import console
 #from pyodide.ffi import create_proxy #this was initially from pyodide import create_proxy, but the location has apparently changed, and there is a new wrapper that apparently makes it so you do not need to manually use create_proxy() and then have a separate line where you use an addEventListener() method
 from pyodide.ffi.wrappers import add_event_listener
 
@@ -104,12 +104,12 @@ def _upload_file_and_show(e):
     file_list = e.target.files
     first_item = file_list.item(0)
 
-    new_image = document.createElement('img')
-    new_image.src = window.URL.createObjectURL(first_item)
-    document.getElementByID("output_upload").appendChild(new_image)
+    new_image = pyscript.document.createElement('img')
+    new_image.src = pyscript.window.URL.createObjectURL(first_item)
+    pyscript.document.getElementByID("output_upload").appendChild(new_image)
 
-upload_file = document.getElementById("file-upload")
+upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_show) #maybe "click" instead of "change"
 #under the version where we used create_proxy(), it read:
 #upload_file = create_proxy(_upload_file_and_show)
-#document.getElementById("file-upload").addEventListener("change", upload_file)
+#pyscript.document.getElementById("file-upload").addEventListener("change", upload_file)
