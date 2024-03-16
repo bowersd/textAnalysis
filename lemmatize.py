@@ -241,7 +241,7 @@ if __name__ == "__main__":
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         for i in range(len(full["m_parse_lo"])): 
             lem = [x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
-            summ = [algsum.formatted(algsum.interpret(algsum.analysis_dict(x))) if algsum.analysis_dict(x) else "?" for x in full["m_parse_lo"][i] ] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
+            summ = ["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
             tinies = []
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
@@ -257,7 +257,7 @@ if __name__ == "__main__":
                 try: gloss = gdict[l]
                 except KeyError: 
                     gloss = "NODEF" 
-                tinies.append(re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1"))
+                tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
             padded = pad(full["chunked"][i], edited, lem, summ, tinies, full["m_parse_lo"][i])
             full["chunked"][i] = " ".join(padded[0])
             full["edited"][i] = " ".join(padded[1])
