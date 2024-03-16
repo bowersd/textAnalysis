@@ -3,11 +3,14 @@ await micropip.install(
     'https://files.pythonhosted.org/packages/eb/f5/3ea71e974dd0117b95a54ab2c79d781b4376d257d91e4c2249605f4a54ae/pyhfst-1.2.0-py2.py3-none-any.whl'
     #'./pyhfst-1.2.0-py2.py3-none-any.whl'
 )
-import regex
-import pyhfst
 from pyweb import pydom
 import pyscript
-
+import asyncio
+from js import console
+#from pyodide.ffi import create_proxy #this was initially from pyodide import create_proxy, but the location has apparently changed, and there is a new wrapper that apparently makes it so you do not need to manually use create_proxy() and then have a separate line where you use an addEventListener() method
+from pyodide.ffi.wrappers import add_event_listener
+import regex
+import pyhfst
 #print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
 #print("For now, a demonstration that a functioning analyzer is loaded")
 
@@ -43,73 +46,14 @@ def parse_text(event):
     return analysis
 
 
-#import asyncio
-#import js
-#from js import document, FileReader
-#from pyodide.ffi import create_proxy
-# 
-#def read_complete(event):
-#    # event is ProgressEvent
-#    content = document.getElementById("content");
-#    content.innerText = event.target.result
-#
-# 
-#async def process_file(x):
-#    fileList = document.getElementById('targetLanguageText').files
-#    for f in fileList:
-#        # reader is a pyodide.JsProxy
-#        reader = FileReader.new()
-#        # Create a Python proxy for the callback function
-#        onload_event = create_proxy(read_complete)
-#        #console.log("done")
-#        reader.onload = onload_event
-#        reader.readAsText(f)
-#    return
-# 
-#def main(x):
-#    # Create a Python proxy for the callback function
-#    file_event = create_proxy(process_file)
-#
-#    # Set the listener to the callback
-#    e = document.getElementById("targetLanguageText")
-#    e.addEventListener("change", file_event, False)
-#    print(e)
-###
-# 
-#import asyncio
-#from js import document, window, Uint8Array
-#from pyodide.ffi.wrappers import add_event_listener
-#
-#async def upload_file_and_show(e):
-#    print("I'm here!")
-#    file_list = e.target.files
-#    first_item = file_list.item(0)
-#
-#    my_bytes: bytes = await get_bytes_from_file(first_item)
-#    print(my_bytes[:10]) # Do something with file contents
-#
-#async def get_bytes_from_file(file):
-#    array_buf = await file.arrayBuffer()
-#    return array_buf.to_bytes()
-#
-#print("the script has been run")
-#add_event_listener(document.getElementById("file-upload"), "change", upload_file_and_show)
-import asyncio
-from js import console
-#from pyodide.ffi import create_proxy #this was initially from pyodide import create_proxy, but the location has apparently changed, and there is a new wrapper that apparently makes it so you do not need to manually use create_proxy() and then have a separate line where you use an addEventListener() method
-from pyodide.ffi.wrappers import add_event_listener
-
 def _upload_file_and_show(e):
     console.log("Attempted file upload: " + e.target.value)
     file_list = e.target.files
     first_item = file_list.item(0)
 
-    new_image = pyscript.document.createElement('img')
-    new_image.src = pyscript.window.URL.createObjectURL(first_item)
-    pyscript.document.getElementById("output_upload").appendChild(new_image)
+    new_txt = pyscript.document.createElement('txt')
+    new_txt.src = pyscript.window.URL.createObjectURL(first_item)
+    pyscript.document.getElementById("output_upload").appendChild(new_txt)
 
 upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_show) #maybe "click" instead of "change"
-#under the version where we used create_proxy(), it read:
-#upload_file = create_proxy(_upload_file_and_show)
-#pyscript.document.getElementById("file-upload").addEventListener("change", upload_file)
