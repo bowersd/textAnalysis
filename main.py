@@ -96,7 +96,7 @@ def parse_text(event):
 #add_event_listener(document.getElementById("file-upload"), "change", upload_file_and_show)
 import asyncio
 from js import document, window, console
-#from pyodide.ffi import create_proxy
+#from pyodide.ffi import create_proxy #this was initially from pyodide import create_proxy, but the location has apparently changed, and there is a new wrapper that apparently makes it so you do not need to manually use create_proxy() and then have a separate line where you use an addEventListener() method
 from pyodide.ffi.wrappers import add_event_listener
 
 def _upload_file_and_show(e):
