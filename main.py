@@ -74,22 +74,39 @@ def parse_text(event):
 #    e = document.getElementById("targetLanguageText")
 #    e.addEventListener("change", file_event, False)
 #    print(e)
- 
+###
+# 
+#import asyncio
+#from js import document, window, Uint8Array
+#from pyodide.ffi.wrappers import add_event_listener
+#
+#async def upload_file_and_show(e):
+#    print("I'm here!")
+#    file_list = e.target.files
+#    first_item = file_list.item(0)
+#
+#    my_bytes: bytes = await get_bytes_from_file(first_item)
+#    print(my_bytes[:10]) # Do something with file contents
+#
+#async def get_bytes_from_file(file):
+#    array_buf = await file.arrayBuffer()
+#    return array_buf.to_bytes()
+#
+#print("the script has been run")
+#add_event_listener(document.getElementById("file-upload"), "change", upload_file_and_show)
 import asyncio
-from js import document, window, Uint8Array
+from js import document, window, console
+#from pyodide.ffi import create_proxy
 from pyodide.ffi.wrappers import add_event_listener
 
-async def upload_file_and_show(e):
-    print("I'm here!")
+def _upload_file_and_show(e):
+    console.log("Attempted file upload: " + e.target.value)
     file_list = e.target.files
     first_item = file_list.item(0)
 
-    my_bytes: bytes = await get_bytes_from_file(first_item)
-    print(my_bytes[:10]) # Do something with file contents
+    new_image = document.createElement('img')
+    new_image.src = window.URL.createObjectURL(first_item)
+    document.getElementByID("output_upload").appendChild(new_image)
 
-async def get_bytes_from_file(file):
-    array_buf = await file.arrayBuffer()
-    return array_buf.to_bytes()
-
-print("the script has been run")
-add_event_listener(document.getElementById("file-upload"), "change", upload_file_and_show)
+upload_file = document.getElementById("file-upload")
+add_event_listener(upload_file, "change", _upload_file_and_show) #maybe "click" instead of "change"
