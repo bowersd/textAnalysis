@@ -69,6 +69,7 @@ async def _upload_file_and_analyze(e):
     console.log(textIn[0])
     analyzed = parse_text(*textIn)
     console.log(analyzed[0])
+    console.log("I did it!")
 
     #new_txt = pyscript.document.createElement('txt')
     #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
