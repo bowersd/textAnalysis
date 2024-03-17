@@ -64,6 +64,7 @@ async def _upload_file_and_analyze(e):
     first_item = file_list.item(0)
 
     my_bytes: bytes = await get_bytes_from_file(first_item)
+    console.log(my_bytes[:10])
     textIn = my_bytes.split(b'\n')
     console.log(textIn[0])
     analyzed = parse_text(*textIn)
