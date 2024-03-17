@@ -31,16 +31,29 @@ def parse_words(event):
     output_div = pyscript.document.querySelector("#output")
     output_div.innerText = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *freeNish.split(" "))
 
-def parse_text(event):
+def sep_punct(string): #diy tokenization, use nltk?
+    return "'".join(regex.sub("(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
+
+def min_morphs(*msds):
+    """the length of the shortest morphosyntactic description"""
+    return min([m[0].count("+") for m in msds])
+
+def disambiguate(target, f, *msds): 
+    """the earliest of the morphosyntactic descriptions|f(m) = target"""
+    #prioritizing order allows weighting schemes to be exploited
+    for i in range(len(msds)):
+        if f(msds[i]) == target: return i
+    #first default
+    return 0
+
+def parse_text(*sentences):
     analysis = []
-    textIn = []
-    with open(pyscript.document.querySelector("#targetLanguageText").text) as fileIn:
-        for line in fileIn: textIn.append(line.strip()) #split on sentence final punctuation to make life easier on users?
-    analyses = parse_pyhfst("./morphphonologyclitics_analyze.hfstol", *[x for s in textIn for x in s.lower().split()]) #need tokenization
+    analyses = parse_pyhfst("./morphphonologyclitics_analyze.hfstol", *[x for s in sentences for x in sep_punct(s.lower()).split()])
     for s in textIn:
         a = []
-        for w in s.lower().split(): #need tokenization
-            a.append(analyses[w])
+        for w in sep_punct(s.lower()).split():
+            best = analyses[w][disambiguate(min_morphs(*analyses[w]), min_morphs, *analyses[w])][0]
+            a.append(best)
         analysis.append(a)
     return analysis
 
