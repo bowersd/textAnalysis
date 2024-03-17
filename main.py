@@ -48,7 +48,7 @@ def disambiguate(target, f, *msds):
 
 def parse_text(*sentences):
     analysis = []
-    analyses = parse_pyhfst("./morphphonologyclitics_analyze.hfstol", *[x for s in sentences for x in sep_punct(s.lower()).split()])
+    analyses = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *[x for s in sentences for x in sep_punct(s.lower()).split()])
     for s in textIn:
         a = []
         for w in sep_punct(s.lower()).split():
