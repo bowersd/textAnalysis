@@ -52,7 +52,6 @@ async def _upload_file_and_show(e):
 
     my_bytes: bytes = await get_bytes_from_file(first_item)
     print(my_bytes[:10])
-    console.log(my_bytes[:10])
     #new_txt = pyscript.document.createElement('txt')
     #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
     #pyscript.document.getElementById("output_upload").appendChild(new_txt)
