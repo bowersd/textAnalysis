@@ -53,6 +53,7 @@ def parse_text(*sentences):
         a = []
         for w in sep_punct(s.lower()).split():
             best = analyses[w][disambiguate(min_morphs(*analyses[w]), min_morphs, *analyses[w])][0]
+            console.log(best)
             a.append(best)
         analysis.append(a)
     return analysis
