@@ -32,11 +32,11 @@ def parse_words(event):
     output_div.innerText = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *freeNish.split(" "))
 
 def sep_punct(string): #diy tokenization, use nltk?
-    return b"'".join(regex.sub(b"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " \g<1> ", string).split(b"’")) #separate all punc, then replace single quote ’ with '
+    return "'".join(regex.sub("(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
 
 def min_morphs(*msds):
     """the length of the shortest morphosyntactic description"""
-    return min([m[0].count(b"+") for m in msds])
+    return min([m[0].count("+") for m in msds])
 
 def disambiguate(target, f, *msds): 
     """the earliest of the morphosyntactic descriptions|f(m) = target"""
@@ -65,7 +65,7 @@ async def _upload_file_and_analyze(e):
 
     my_bytes: bytes = await get_bytes_from_file(first_item)
     console.log(my_bytes[:10])
-    textIn = my_bytes.split(b'\n')
+    textIn = my_bytes.decode().split('\n')
     console.log(textIn[0])
     analyzed = parse_text(*textIn)
     console.log(analyzed[0])
