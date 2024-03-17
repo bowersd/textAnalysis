@@ -58,13 +58,16 @@ def parse_text(*sentences):
     return analysis
 
 
-async def _upload_file_and_show(e):
+async def _upload_file_and_analyze(e):
     console.log("Attempted file upload: " + e.target.value)
     file_list = e.target.files
     first_item = file_list.item(0)
 
     my_bytes: bytes = await get_bytes_from_file(first_item)
-    print(my_bytes[:10])
+    textIn = my_bytes.split('\n')
+    analyzed = parse_text(*textIn)
+    console.log(analyzed[0])
+
     #new_txt = pyscript.document.createElement('txt')
     #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
     #pyscript.document.getElementById("output_upload").appendChild(new_txt)
@@ -74,4 +77,4 @@ async def get_bytes_from_file(file):
     return array_buf.to_bytes()
 
 upload_file = pyscript.document.getElementById("file-upload")
-add_event_listener(upload_file, "change", _upload_file_and_show) #maybe "click" instead of "change"
+add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
