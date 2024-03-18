@@ -93,6 +93,9 @@ def pad(*lists_of_strings):
         nu_lists.append(nu)
     return nu_lists
 
+def remerge_punct(*lists_of_strings):
+    pass
+
 def unpad(*lists_of_strings):
     nu_lists = []
     for x in lists_of_strings: nu_lists.append([y.strip() for y in x])
@@ -180,9 +183,9 @@ if __name__ == "__main__":
     else:
         #for generating lemmata from rand files
         pos_regex = "".join(rw.readin(args.pos_regex))
-        if args.a: 
-            analysis = pst.parser_out_string_dict("\n".join(rw.readin(args.a)))
-            #for a in sorted(analysis): print(a, analysis[a])
+        #if args.a: 
+        #    analysis = pst.parser_out_string_dict("\n".join(rw.readin(args.a)))
+        #    #for a in sorted(analysis): print(a, analysis[a])
         full = {
                 "sentenceID":[],
                 "speakerID":[],
@@ -231,11 +234,11 @@ if __name__ == "__main__":
                 full["edited"].append(tokenized) #this gets rewritten below...
                 full["english"].append(data[4])
                 full["sentenceID"].append(data[5])
-                if args.a:
-                    full["m_parse_lo"].append([])
-                    for w in pre.sep_punct(data[3].lower()).split(): 
-                        full["m_parse_lo"][-1].append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
-                        performance[int(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0].endswith("+?"))] += 1 
+                #if args.a:
+                #    full["m_parse_lo"].append([])
+                #    for w in pre.sep_punct(data[3].lower()).split(): 
+                #        full["m_parse_lo"][-1].append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
+                #        performance[int(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0].endswith("+?"))] += 1 
             print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
         if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
