@@ -19,4 +19,4 @@ The keys are as follows:
     tiny_gloss: the first two words of the dictionary definition for the lemma. New words may not have a definition, and get the value 'NODEF'. Because there is whitespace inside the definition, these are enclosed in "'" single quotes.
         As of 3/19/2024 we are trying to present more definitions here, whether by having humans summarize definitions or by having an AI tool summarize them.
     english: the free English translation of the sentence.
-    sentence: the free original unmodified sentence.
+    sentence: the original unmodified sentence.
