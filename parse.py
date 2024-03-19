@@ -45,6 +45,7 @@ def parse_pyhfst(transducer, *strings):
         if s not in h: 
             h[s] = []
             p = parser.lookup(s)
+            print(p)
             if not p: h[s].append((s+"+?", 0.00))
             else: 
                 for q in p: h[s].append((re.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
