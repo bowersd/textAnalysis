@@ -125,7 +125,7 @@ def parseargs():
     parser.add_argument("text", help="file path to target text")
     parser.add_argument("trans", help="file path to text translation")
     parser.add_argument("-o", "--output", dest="o", nargs="?", help="file name/suffix without filetype extension", default="Lemmatization")
-    parser.add_argument("-a", "--analysis", dest="a", nargs="?", help="name of analysis file", default="") #I don't remember what this is for! (DAB 2/2024)
+    #parser.add_argument("-a", "--analysis", dest="a", nargs="?", help="name of analysis file", default="") #I don't remember what this is for! (DAB 2/2024)
     parser.add_argument("-c", "--corrections", dest="c", nargs="?", help="name of corrections file", default="") #feed in hand-curated notes 
     parser.add_argument("-r", "--human-readable", dest="r", action="store_true", help="whether to write output as a txt file with user-friendly line wrapping")
     return parser.parse_args()
@@ -240,7 +240,8 @@ if __name__ == "__main__":
                 #        full["m_parse_lo"][-1].append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
                 #        performance[int(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0].endswith("+?"))] += 1 
             print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
-        if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, *full["sentence"])
+        full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, *full["sentence"])
+        #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         for i in range(len(full["m_parse_lo"])): 
             lem = [x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
