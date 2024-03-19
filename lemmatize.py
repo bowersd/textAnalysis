@@ -24,15 +24,15 @@ import alg_morphological_summary as algsum
 #    for w in sent: analyses.append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
 #    return analyses
 
-def analyze_text(fst_file, fst_format, corrections, *text_in):
+def analyze_text(fst_file, fst_format, corrections, drop_punct, *text_in):
     analysis = []
-    analyses = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]) #get all analyses of every word
-    #analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
-    #for s in text_in: analysis.append([analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0] for w in pre.sep_punct(s.lower()).split()]) #look up each word's analyses and disambiguate ... better: disambiguate while the analyses are being computed ... though the parse() function should not be troubled with disambiguation questions. modular=siloed?
+    analyses = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower(), drop_punct).split()]) #get all analyses of every word
+    #analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()), drop_punct.split()]).decode()) #get all analyses of every word
+    #for s in text_in: analysis.append([analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0] for w in pre.sep_punct(s.lower(), drop_punct).split()]) #look up each word's analyses and disambiguate ... better: disambiguate while the analyses are being computed ... though the parse() function should not be troubled with disambiguation questions. modular=siloed?
     performance = [0, 0.01] #hits, misses
     for s in text_in: 
         a = []
-        for w in pre.sep_punct(s.lower()).split():
+        for w in pre.sep_punct(s.lower(), drop_punct).split():
             if w in corrections: a.append(corrections[w][1]) #corrections are original: [edited, analyzed]
             else:
                 best = analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0]
@@ -48,11 +48,11 @@ def lemmatize(pos_regex, *analysis):
 def drop_vals(vector, *values):
     return [x for x in vector if x not in values]
 
-def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
+def interlinearize(fst_file, fst_format, pos_regex, gdict, drop_punct, text_in, trans_in):
     holder = []
     for i in range(len(text_in)):
         sub = [[],[],[], [], [], [trans_in[i]]]
-        for w in pre.sep_punct(text_in[i]).split():
+        for w in pre.sep_punct(text_in[i], drop_punct).split():
             w=w.lower()
             #p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
             p = parse.parse_native(os.path.expanduser(fst_file), fst_format, w)
@@ -128,14 +128,15 @@ def parseargs():
     #parser.add_argument("-a", "--analysis", dest="a", nargs="?", help="name of analysis file", default="") #I don't remember what this is for! (DAB 2/2024)
     parser.add_argument("-c", "--corrections", dest="c", nargs="?", help="name of corrections file", default="") #feed in hand-curated notes 
     parser.add_argument("-r", "--human-readable", dest="r", action="store_true", help="whether to write output as a txt file with user-friendly line wrapping")
+    parser.add_argument("-d", "--drop-punct" , dest="d", action="store_true", help="whether to separate punctuation (false) or drop punctuation (true) when parsing")
     return parser.parse_args()
 
-def human_readable(fst_file, fst_format, regex_file, gloss_file, text, trans, output):
+def human_readable(fst_file, fst_format, regex_file, gloss_file, drop_punct, text, trans, output):
     gdict = eng.mk_glossing_dict(*rw.readin(gloss_file))
     pos_regex = "".join(rw.readin(regex_file))
     with open(output, 'w') as file_out:
         l = 0
-        for inter in  interlinearize(fst_file, fst_format, pos_regex, gdict, text, trans):
+        for inter in  interlinearize(fst_file, fst_format, pos_regex, gdict, drop_punct, text, trans):
             file_out.write(str(l)+'\n')
             l += 1
             wrap = 0
@@ -179,7 +180,7 @@ if __name__ == "__main__":
             cor = correction.split()
             if any(["XX" in x for x in correction.split()]): adjustments[" ".join("XX".split(cor[2]))] = " ".join("XX".split(cor[3])) #this drops analysis of the splitting/joining ... all split/joined words should probably already get good analyses, or have them specified elsewhere in the corrections file
             else: cdict[cor[2]] = cor[3:5]
-    if args.r: human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) 
+    if args.r: human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, args.d, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) 
     else:
         #for generating lemmata from rand files
         pos_regex = "".join(rw.readin(args.pos_regex))
@@ -229,19 +230,20 @@ if __name__ == "__main__":
                 revised = data[3]
                 for adj in adjustments: #words that need to be split in two or joined together
                     if adj in revised: revised = re.sub(adj, adjustments[adj], revised)
-                tokenized = pre.sep_punct(revised).split()
+                #tokenized = pre.sep_punct(revised, args.d).split()
+                tokenized = revised.split() #we are going to separate off the punctuation for the sake of analysis and then put it back on, so no use separating it here
                 full["chunked"].append(tokenized)
                 full["edited"].append(tokenized) #this gets rewritten below...
                 full["english"].append(data[4])
                 full["sentenceID"].append(data[5])
                 #if args.a:
                 #    full["m_parse_lo"].append([])
-                #    for w in pre.sep_punct(data[3].lower()).split(): 
+                #    for w in pre.sep_punct(data[3].lower(), args.d).split(): 
                 #        full["m_parse_lo"][-1].append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
                 #        performance[int(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0].endswith("+?"))] += 1 
             print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
-        full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, *full["sentence"])
-        #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, *full["sentence"])
+        full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
+        #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         for i in range(len(full["m_parse_lo"])): 
             lem = [x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms

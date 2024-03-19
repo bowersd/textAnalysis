@@ -6,11 +6,11 @@ import postprocess as pst
 import preprocess as pre
 import engdict as eng
 
-def interlinearize(fst_file, fst_format, pos_regex, gdict, text_in, trans_in):
+def interlinearize(fst_file, fst_format, pos_regex, gdict, drop_punct, text_in, trans_in):
     holder = []
     for i in range(len(text_in)):
         sub = [[],[],[], [trans_in[i]]]
-        for w in pre.sep_punct(text_in[i]).split():
+        for w in pre.sep_punct(text_in[i], drop_punct).split():
             w=w.lower()
             p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode(), "xerox")
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
@@ -36,15 +36,16 @@ def parseargs():
     parser.add_argument("gloss_file", help="file path to translation dictionary")
     parser.add_argument("text", help="file path to target text")
     parser.add_argument("trans", help="file path to text translation")
+    parser.add_argument("-d", "--drop-punct" , dest="d", action="store_true", help="whether to separate punctuation (false) or drop punctuation (true) when parsing")
     parser.add_argument("-o", "--output", dest="o", nargs="?", help="file name/suffix without filetype extension", default="Interlinear")
     return parser.parse_args()
 
-def main(fst_file, fst_format, regex_file, gloss_file, text, trans, output):
+def main(fst_file, fst_format, regex_file, gloss_file, drop_punct, text, trans, output):
     gdict = eng.mk_glossing_dict(*rw.readin(gloss_file))
     pos_regex = "".join(rw.readin(regex_file))
     with open(output, 'w') as file_out:
         l = 0
-        for inter in  interlinearize(fst_file, fst_format, pos_regex, gdict, text, trans):
+        for inter in  interlinearize(fst_file, fst_format, pos_regex, gdict, drop_punct, text, trans):
             file_out.write(str(l)+'\n')
             l += 1
             for i in range(len(inter[0])):
@@ -62,4 +63,4 @@ def main(fst_file, fst_format, regex_file, gloss_file, text, trans, output):
 
 if __name__ == "__main__":
     args = parseargs()
-    main(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)
+    main(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, args.d, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o)

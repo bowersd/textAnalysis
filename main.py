@@ -31,8 +31,9 @@ def parse_words(event):
     output_div = pyscript.document.querySelector("#output")
     output_div.innerText = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *freeNish.split(" "))
 
-def sep_punct(string): #diy tokenization, use nltk?
-    return "'".join(regex.sub("(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
+def sep_punct(string, drop_punct): #diy tokenization, use nltk?
+    if not drop_punct: return "'".join(regex.sub("(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
+    return "'".join(regex.sub("(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", "", string).split("’")) #remove all punc, then replace single quote ’ with '
 
 def min_morphs(*msds):
     """the length of the shortest morphosyntactic description"""
@@ -46,12 +47,12 @@ def disambiguate(target, f, *msds):
     #first default
     return 0
 
-def parse_text(*sentences):
+def parse_text(drop_punct, *sentences):
     analysis = []
-    analyses = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *[x for s in sentences for x in sep_punct(s.lower()).split()])
+    analyses = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *[x for s in sentences for x in sep_punct(s.lower(), drop_punct).split()])
     for s in sentences:
         a = []
-        for w in sep_punct(s.lower()).split():
+        for w in sep_punct(s.lower(), drop_punct).split():
             best = analyses[w][disambiguate(min_morphs(*analyses[w]), min_morphs, *analyses[w])][0]
             console.log(best)
             a.append(best)
@@ -68,7 +69,7 @@ async def _upload_file_and_analyze(e):
     console.log(my_bytes[:10])
     textIn = my_bytes.decode().split('\n')
     console.log(textIn[0])
-    analyzed = parse_text(*textIn)
+    analyzed = parse_text(False, *textIn)
     console.log(analyzed[0])
     console.log("I did it!")
 

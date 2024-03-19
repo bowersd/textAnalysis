@@ -20,18 +20,18 @@ def update(holder, key, *vals):
         holder[key][0] += vals[0]
         holder[key][-1] += [w for w in vals[-1] if w not in holder[key][-1]]
 
-def glossify(fst_file, spellrelax_file,  pos_regex, gdict, corrections, text_in): #fst_format used to be the third argument
+def glossify(fst_file, spellrelax_file,  pos_regex, gdict, drop_punct, corrections, text_in): #fst_format used to be the third argument
     holder = {"zzzz-UnparsedWords":[0, "", "", []]}
     #bad form below, data should already be correctly formatted see readwrite.burn_metadata()
     #tin = rw.readin(text_in)
     #tin.pop(0) #burning corpus info
     #tin.pop(0) #burning text info
-    p = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]) #get all analyses of every word
-    #p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()).split()]).decode()) #get all analyses of every word
+    p = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower(), drop_punct).split()]) #get all analyses of every word
+    #p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower(), drop_punct).split()]).decode()) #get all analyses of every word
     cnt = 0
     for s in text_in:
         cnt += 1
-        for w in pre.sep_punct(s.lower()).split():
+        for w in pre.sep_punct(s.lower(), drop_punct).split():
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
             if w in corrections:
@@ -122,7 +122,7 @@ def stringify_abbrev_key(*encountered, **mapping):
     return ["Abbreviation Key:"]+sorted(h)
 
 
-def main(fst_file, spellrelax_file, regex_file, gloss_file, corrections, output, unique, *texts_in):
+def main(fst_file, spellrelax_file, regex_file, gloss_file, drop_punct, corrections, output, unique, *texts_in):
     gdict = eng.mk_glossing_dict(*rw.readin(gloss_file)) 
     pos_regex = "".join(rw.readin(regex_file))
     cdict = {}#x[1]:re.split(" +", x) for x in rw.readin(corrections)}
@@ -133,12 +133,12 @@ def main(fst_file, spellrelax_file, regex_file, gloss_file, corrections, output,
     if unique:
         for t in texts_in: 
             addr = t.split("/")
-            g = glossify(fst_file, spellrelax_file,  pos_regex, gdict, cdict, rw.burn_metadata(2, *rw.readin(t)))
+            g = glossify(fst_file, spellrelax_file,  pos_regex, gdict, drop_punct, cdict, rw.burn_metadata(2, *rw.readin(t)))
             rw.writeout("/".join(addr[:-1])+'/'+(output+".").join(addr[-1].split(".")), *stringify(**g)+stringify_abbrev_key(*mk_abbrev_key(**g), **abbreviations))
     else: 
         gholder = {}
         for t in texts_in:
-            sub = glossify(fst_file, spellrelax_file,  pos_regex, gdict, cdict, rw.burn_metadata(2, *rw.readin(t)))
+            sub = glossify(fst_file, spellrelax_file,  pos_regex, gdict, drop_punct, cdict, rw.burn_metadata(2, *rw.readin(t)))
             for x in sub:
                 update(gholder, x, *sub[x])
         #path = "/".join(t.split("/")[:-1])+"/"
@@ -155,10 +155,11 @@ def parseargs():
     parser.add_argument("-c", "--corrections_file", dest = "c", nargs = "?", default = "", help="file with hand corrections")
     parser.add_argument("-s", "--spellrelax", dest = "spellrelax_file", nargs = "?", help="file path to  analyser with spelling conventions relaxed", default="")
     parser.add_argument("-u", "--unique", dest="u", action="store_true", help="whether to make unique glossaries for each input file")
+    parser.add_argument("-d", "--drop-punct", dest="d", action="store_true", help="whether to drop punctuation instead of separating it")
     parser.add_argument("-o", "--output", dest="o", nargs="?", help="file name/suffix without filetype extension", default="Glossary")
     parser.add_argument("input_files", help="raw text file paths", nargs="+")
     return parser.parse_args()
 
 if __name__ == "__main__":
     args = parseargs()
-    main(args.fst_file, args.spellrelax_file,  args.pos_regex, args.gloss_file, args.c, args.o, args.u, *args.input_files)
+    main(args.fst_file, args.spellrelax_file,  args.pos_regex, args.gloss_file, args.d, args.c, args.o, args.u, *args.input_files)
