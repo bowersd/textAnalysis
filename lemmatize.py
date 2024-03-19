@@ -86,6 +86,7 @@ def pad(*lists_of_strings):
     nu_lists = []
     padlen = []
     for i in range(len(lists_of_strings)):
+        print(i, len(lists_of_strings[i]), lists_of_strings[i])
         nu = []
         for j in range(len(lists_of_strings[i])): #pad items in list to max length at their indices
             if not i: padlen.append(max([len(lists_of_strings[k][j]) for k in range(len(lists_of_strings))]))
@@ -230,8 +231,7 @@ if __name__ == "__main__":
                 revised = data[3]
                 for adj in adjustments: #words that need to be split in two or joined together
                     if adj in revised: revised = re.sub(adj, adjustments[adj], revised)
-                #tokenized = pre.sep_punct(revised, args.d).split()
-                tokenized = revised.split() #we are going to separate off the punctuation for the sake of analysis and then put it back on, so no use separating it here
+                tokenized = pre.sep_punct(revised, args.d).split()
                 full["chunked"].append(tokenized)
                 full["edited"].append(tokenized) #this gets rewritten below...
                 full["english"].append(data[4])
