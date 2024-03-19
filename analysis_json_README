@@ -1,0 +1,22 @@
+As of 3/19/2024, the analysis json files each contain a list of key: value pairs.
+The keys are as follows:
+    sentenceID: a unique identifier for the sentence. 
+        For sentences in Rand's original collection, this is populated with a true identifier in the format x...x
+        For the sentences from the collections that I have been working on, this identifier has not been populated yet, and just contains "-"
+    speakerID: a unique identifier for the speaker.
+        For the sentences in Rand's original collection, this is typically populated with the initials of the speaker, though BCP (="book of common prayer" is a notable exception)
+        For the sentences from the collections that I have been working on, this is populated with the initials of the speaker, plus a numeral with up to two leading 0's (001, 002...014...)
+    speaker_text_num: a string containing the numeral index for which text the sentence belongs to. The count starts at 1 for the first text by a speaker.
+    speaker_text_sent_num: a string containing the numeral index for the sentence's location in the text. The count starts at 1 for the first sentence in a text.
+    chunked: a tokenization of the sentence, with punctuation except for single quotes dropped. Punctuation can be included if requested. Each word is padded with spaces to allow words on subsequent lines to be aligned.
+    edited: a revision of chunked reflecting a Rhodes dictionary spelling of the word and/or my best guess as to what the word "should be" of the sentence, with punctuation except for single quotes dropped. Punctuation can be included if requested
+    m_parse_lo: the analysis returned by the analyzer. In general, there is a tag for every morpheme, and there is at least one part of speech tag (potentially more for pronouns or for words that are analyzed to have been derived). These analyses may have been revised by hand as well (and they reflect any edits in "edited"). Tags are separated by "+". Words that have no analysis have the tag "+?".
+        In the new stories that I have worked on, there should be very few forms that have no analysis, though loan words or false starts may still have this tag.
+        In Rand's original stories, there are about 6,000 words with no analysis as of 3/19/2024
+        False positives (words that have an analysis, but it is wrong) have not been systematically investigated as of 3/19/2024
+    m_parse_hi: a "higher level" version of the analysis where m_parse_lo has been translated into a different format, principally by combining person-number information and interpreting the values of VTA theme signs.  These analyses are derived by script from m_parse_lo.  Because there is white space inside each m_parse_hi value for a word, these are enclosed in "'" single quotes. Words that have no analysis have the value '?'. 
+    lemmata: the lemma for the analysis, drawn from the portion immediately preceding the POS tag in m_parse_lo (and so subject to errors caveats about potential errors in m_parse_lo). Compounds only have one lemma listed.
+    tiny_gloss: the first two words of the dictionary definition for the lemma. New words may not have a definition, and get the value 'NODEF'. Because there is whitespace inside the definition, these are enclosed in "'" single quotes.
+        As of 3/19/2024 we are trying to present more definitions here, whether by having humans summarize definitions or by having an AI tool summarize them.
+    english: the free English translation of the sentence.
+    sentence: the free original unmodified sentence.
