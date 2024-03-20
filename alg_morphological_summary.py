@@ -100,7 +100,7 @@ def interpret(analysis_in):
             summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["4"]:
             analysis_in["suffixes"].pop(0)
-            summary["O"]["Num"] = "'"
+            summary["O"]["Num"] = "Obv"
         elif summary["O"]["Pers"] == "3" and s == "3" and analysis_in["suffixes"][0:1] == ["Pl"]:
             analysis_in["suffixes"].pop(0)
             summary["O"]["Num"] = "Pl"
@@ -154,12 +154,12 @@ def interpret(analysis_in):
                 summary["S"]["Num"] = "Pl"
                 analysis_in["suffixes"].pop(0)
             elif analysis_in["suffixes"][0:1] == ["4"]:
-                summary["S"]["Num"] = "'"
+                summary["S"]["Num"] = "Obv"
                 analysis_in["suffixes"].pop(0)
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == "0") and s == "0": 
             summary["S"]["Pers"] = "0"
             if analysis_in["suffixes"][0:1] == ["4"]:
-                summary["S"]["Num"] = "'"
+                summary["S"]["Num"] = "Obv"
                 analysis_in["suffixes"].pop(0)
             elif analysis_in["suffixes"][0:1] == ["Pl"]:
                 summary["S"]["Num"] += "Pl" #NB: += used since 0'Pl is possible
@@ -171,7 +171,7 @@ def interpret(analysis_in):
         else: summary["Else"].append(s)
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers"] = "1" #default person for Thm2a keep at end
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers"] = "2" #default person for Thm1  keep at end
-    if not inversion and summary["S"]["Pers"] == "3" and summary["O"]["Pers"] == "3": summary["O"]["Num"] = "'" #default obviation for direct themes. should only be necessary for VTA CNJ, which never overtly signals obviation, but kept general
+    if not inversion and summary["S"]["Pers"] == "3" and summary["O"]["Pers"] == "3": summary["O"]["Num"] = "Obv" #default obviation for direct themes. should only be necessary for VTA CNJ, which never overtly signals obviation, but kept general
     #summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
     if inversion == True: summary["S"], summary["O"] = summary["O"], summary["S"]
     return summary
