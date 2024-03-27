@@ -244,37 +244,34 @@ if __name__ == "__main__":
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
+        e_adjust = []
         for i in range(len(full["m_parse_lo"])): 
-            lem = [x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])] #filter on "if x" to leave out un analyzed forms
-            summ = ["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ] # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
-            tinies = []
+            full["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])]) #filter on "if x" to leave out un analyzed forms
+            full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
-            e_adjust = []
             for j in range(len(full["chunked"][i])):
                 if full["chunked"][i][j] in cdict: edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                 elif full["chunked"][i][j].startswith("e-"):
                     edited.append(full["chunked"][i][j])
-                    e_adjust.append((full["chunked"][i][j], i. j))
-                #elif e_ccnj_ambiguous(args.fst_file, full["chunked"][i][j]): 
-                #    ccnj = e_ccnj_conservation(full["chunked"][i][j])
-                #    edited.append(ccnj)
-                #    revised_analysis = parse.parse_native(os.path.expanduser(args.fst_file), ccnj)
-                #    full["m_parse_lo"][i][j] = revised_analysis[ccnj][pst.disambiguate(pst.min_morphs(*revised_analysis[ccnj]), pst.min_morphs, *revised_analysis[ccnj])][0]
+                    e_adjust.append((full["chunked"][i][j], i, j))
                 else: edited.append(full["chunked"][i][j])
-            #e_ccnj_adjust = parse.parse_native(os.path.expanduser(args.fst_file), *[e_ccnj_conservation(x[0]) for x in e_adjust])
-            #for x in e_adjust:
-            #    print(x)
-            #    if not e_ccnj_adjust[e_ccnj_conservation(x[0])][0][0].endswith('+?'):
-            #        full["m_parse_lo"][x[1]][x[2]] = e_ccnj_adjust[e_ccnj_conservation(x[0])][pst.disambiguate(pst.min_morphs(*e_ccnj_adjust[e_ccnj_conservation(x[0])]), pst.min_morphs, *e_ccnj_adjust[e_ccnj_conservation(x[0])])][0]
-            #        full["m_parse_hi"][x[1]][x[2]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[1]][x[2]])))+"'"
-            #        full["edited"][x[1]][x[2]] = e_ccnj_conservation(x[0])
-            for l in lem:
+            tinies = []
+            for l in full["lemmata"][i]:
                 try: gloss = gdict[l]
                 except KeyError: 
                     gloss = "NODEF" 
                 tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
-            padded = pad(full["chunked"][i], edited, lem, summ, tinies, full["m_parse_lo"][i])
+            full["tiny_gloss"].append(tinies)
+        e_ccnj_adjust = parse.parse_native(os.path.expanduser(args.fst_file), *[e_ccnj_conservation(x[0]) for x in e_adjust])
+        for x in e_adjust:
+            ccnj = e_ccnj_conservation(x[0])
+            if not e_ccnj_adjust[ccnj][0][0].endswith('+?'):
+                full["m_parse_lo"][x[1]][x[2]] = e_ccnj_adjust[ccnj][pst.disambiguate(pst.min_morphs(*e_ccnj_adjust[ccnj]), pst.min_morphs, *e_ccnj_adjust[ccnj])][0]
+                full["m_parse_hi"][x[1]][x[2]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[1]][x[2]])))+"'"
+                full["edited"][x[1]][x[2]] = ccnj
+        for i in range(len(full["m_parse_lo"])):
+            padded = pad(full["chunked"][i], full["edited"][i], full["lemmata"][i], full["m_parse_hi"][i], full["tiny_gloss"][i], full["m_parse_lo"][i])
             full["chunked"][i] = " ".join(padded[0])
             full["edited"][i] = " ".join(padded[1])
             full["lemmata"].append(" ".join(padded[2]))
