@@ -250,14 +250,25 @@ if __name__ == "__main__":
             tinies = []
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
+            e_adjust = []
             for j in range(len(full["chunked"][i])):
                 if full["chunked"][i][j] in cdict: edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
+                elif full["chunked"][i][j].startswith("e-"):
+                    edited.append(full["chunked"][i][j])
+                    e_adjust.append((full["chunked"][i][j], i. j))
                 #elif e_ccnj_ambiguous(args.fst_file, full["chunked"][i][j]): 
                 #    ccnj = e_ccnj_conservation(full["chunked"][i][j])
                 #    edited.append(ccnj)
                 #    revised_analysis = parse.parse_native(os.path.expanduser(args.fst_file), ccnj)
                 #    full["m_parse_lo"][i][j] = revised_analysis[ccnj][pst.disambiguate(pst.min_morphs(*revised_analysis[ccnj]), pst.min_morphs, *revised_analysis[ccnj])][0]
                 else: edited.append(full["chunked"][i][j])
+            e_ccnj_adjust = parse.parse_native(os.path.expanduser(args.fst_file), *[e_ccnj_conservation(x[0]) for x in e_adjust])
+            for x in e_adjust:
+                print(x)
+                if not e_ccnj_adjust[e_ccnj_conservation(x[0])][0][0].endswith('+?'):
+                    full["m_parse_lo"][x[1]][x[2]] = e_ccnj_adjust[e_ccnj_conservation(x[0])][pst.disambiguate(pst.min_morphs(*e_ccnj_adjust[e_ccnj_conservation(x[0])]), pst.min_morphs, *e_ccnj_adjust[e_ccnj_conservation(x[0])])][0]
+                    full["m_parse_hi"][x[1]][x[2]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[1]][x[2]])))+"'"
+                    full["edited"][x[1]][x[2]] = e_ccnj_conservation(x[0])
             for l in lem:
                 try: gloss = gdict[l]
                 except KeyError: 
