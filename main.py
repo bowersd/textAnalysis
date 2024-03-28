@@ -16,6 +16,7 @@ import pyhfst
 #print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
 #print("For now, a demonstration that a functioning analyzer is loaded")
 
+###functions copied directly/modified from elsewhere in the repo
 def parse_pyhfst(transducer, *strings):
     h = {}
     parser = pyhfst.HfstInputStream(transducer).read()
@@ -62,6 +63,19 @@ def parse_text(drop_punct, *sentences):
         analysis.append(a)
     return analysis
 
+def pad(*lists_of_strings):
+    #lists must be same length!
+    nu_lists = []
+    padlen = []
+    for i in range(len(lists_of_strings)):
+        nu = []
+        for j in range(len(lists_of_strings[i])): #pad items in list to max length at their indices
+            if not i: padlen.append(max([len(lists_of_strings[k][j]) for k in range(len(lists_of_strings))]))
+            nu.append(lists_of_strings[i][j]+" "*(padlen[j]-len(lists_of_strings[i][j])))
+        nu_lists.append(nu)
+    return nu_lists
+
+###functions for doing things within the web page
 
 async def _upload_file_and_analyze(e):
     console.log("Attempted file upload: " + e.target.value)
@@ -75,6 +89,14 @@ async def _upload_file_and_analyze(e):
     analyzed = parse_text(False, *textIn)
     console.log(analyzed[0])
     console.log("I did it!")
+    stitched = []
+    for i in range(len(textIn)):
+        stitched.append(str(i)+'\n')
+        padded = pad(sep_punct(textIn[i].lower(), False).split(), analyzed[i])
+        stitched.append(" ".join(padded[0])+'\n')
+        stitched.append(" ".join(padded[1])+'\n')
+        stitched.append("\n")
+    #stitched_stream = io.BytesIO("".join(stitched).encode('utf-8'))
 
     #new_txt = pyscript.document.createElement('txt')
     #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
@@ -87,7 +109,7 @@ async def get_bytes_from_file(file):
 upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
 
-data = "this is some text"
+data = "".join(stitched) #"this is some text"
 def downloadFile(*args):
     encoded_data = data.encode('utf-8')
     my_stream = io.BytesIO(encoded_data)
@@ -95,8 +117,8 @@ def downloadFile(*args):
     js_array = Uint8Array.new(len(encoded_data))
     js_array.assign(my_stream.getbuffer())
 
-    file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
-    url = URL.createObjectURL(file)
+    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    url = URL.createObjectURL(nu_js_file)
 
     hidden_link = document.createElement("a")
     hidden_link.setAttribute("download", "my_other_file_name.txt")
