@@ -97,15 +97,19 @@ async def _upload_file_and_analyze(e):
         stitched.append(" ".join(padded[1])+'\n')
         stitched.append("\n")
     stitched_bytes = "".join(stitched).encode('utf-8')
-    full_output_div = pyscript.document.querySelector("#output_upload")
-    full_output_div.innerText = stitched_bytes
-    #stitched_stream = io.BytesIO(stitched_bytes)
-    #js_array = Uint8Array.new(len(stitched_bytes))
-    #js_array.assign(stitched_stream.getbuffer())
+    #full_output_div = pyscript.document.querySelector("#output_upload")
+    #full_output_div.innerText = stitched_bytes
+    stitched_stream = io.BytesIO(stitched_bytes)
+    js_array = Uint8Array.new(len(stitched_bytes))
+    js_array.assign(stitched_stream.getbuffer())
 
-    #nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    url = URL.createObjectURL(nu_js_file)
 
-    #hidden_file = document.createElement("p")
+    hidden_link = document.createElement("a")
+    hidden_link.setAttribute("download", "analyzed_file.txt")
+    hidden_link.setAttribute("href", url)
+    hidden_link.click()
     #hidden_file.src = window.URL.createObjectURL(nu_js_file)
     #document.getElementById("output_upload").appendChild(hidden_file)
 
