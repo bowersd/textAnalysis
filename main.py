@@ -96,7 +96,17 @@ async def _upload_file_and_analyze(e):
         stitched.append(" ".join(padded[0])+'\n')
         stitched.append(" ".join(padded[1])+'\n')
         stitched.append("\n")
-    #stitched_stream = io.BytesIO("".join(stitched).encode('utf-8'))
+    stitched_bytes = "".join(stitched).encode('utf-8')
+    stitched_stream = io.BytesIO(stitched_bytes)
+    js_array = Uint8Array.new(len(stitched_bytes))
+    js_array.assign(stitched_stream.getbuffer())
+
+    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    url = URL.createObjectURL(nu_js_file)
+
+    hidden_link = document.createElement("a")
+    hidden_link.setAttribute("download", "my_other_file_name.txt")
+    hidden_link.setAttribute("href", url)
 
     #new_txt = pyscript.document.createElement('txt')
     #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
@@ -111,18 +121,18 @@ add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "clic
 
 data = "this is some text" #"".join(stitched) 
 def downloadFile(*args):
-    encoded_data = data.encode('utf-8')
-    my_stream = io.BytesIO(encoded_data)
+    #encoded_data = data.encode('utf-8')
+    #my_stream = io.BytesIO(encoded_data)
 
-    js_array = Uint8Array.new(len(encoded_data))
-    js_array.assign(my_stream.getbuffer())
+    #js_array = Uint8Array.new(len(encoded_data))
+    #js_array.assign(my_stream.getbuffer())
 
-    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
-    url = URL.createObjectURL(nu_js_file)
+    #nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    #url = URL.createObjectURL(nu_js_file)
 
-    hidden_link = document.createElement("a")
-    hidden_link.setAttribute("download", "my_other_file_name.txt")
-    hidden_link.setAttribute("href", url)
+    #hidden_link = document.createElement("a")
+    #hidden_link.setAttribute("download", "my_other_file_name.txt")
+    #hidden_link.setAttribute("href", url)
     hidden_link.click()
 
 add_event_listener(document.getElementById("download"), "click", downloadFile)
