@@ -97,15 +97,17 @@ async def _upload_file_and_analyze(e):
         stitched.append(" ".join(padded[1])+'\n')
         stitched.append("\n")
     stitched_bytes = "".join(stitched).encode('utf-8')
-    stitched_stream = io.BytesIO(stitched_bytes)
-    js_array = Uint8Array.new(len(stitched_bytes))
-    js_array.assign(stitched_stream.getbuffer())
+    full_output_div = pyscript.document.querySelector("#output_upload")
+    full_output_div.innerText = stitched_bytes
+    #stitched_stream = io.BytesIO(stitched_bytes)
+    #js_array = Uint8Array.new(len(stitched_bytes))
+    #js_array.assign(stitched_stream.getbuffer())
 
-    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    #nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
 
-    hidden_file = document.createElement("p")
-    hidden_file.src = window.URL.createObjectURL(nu_js_file)
-    document.getElementById("output_upload").appendChild(hidden_file)
+    #hidden_file = document.createElement("p")
+    #hidden_file.src = window.URL.createObjectURL(nu_js_file)
+    #document.getElementById("output_upload").appendChild(hidden_file)
 
     #new_txt = pyscript.document.createElement('txt')
     #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
