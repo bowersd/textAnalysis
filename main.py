@@ -92,7 +92,7 @@ async def _upload_file_and_analyze(e):
     stitched = []
     for i in range(len(textIn)):
         stitched.append(str(i)+'\n')
-        stitched.append(" ".join(textIn[i]))
+        stitched.append(textIn[i])
         padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i])
         stitched.append(" ".join(padded[0])+'\n')
         stitched.append(" ".join(padded[1])+'\n')
