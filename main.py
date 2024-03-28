@@ -86,13 +86,14 @@ async def _upload_file_and_analyze(e):
     console.log(my_bytes[:10])
     textIn = my_bytes.decode().split('\n')
     console.log(textIn[0])
-    analyzed = parse_text(False, *textIn)
+    analyzed = parse_text(True, *textIn)
     console.log(analyzed[0])
     console.log("I did it!")
     stitched = []
     for i in range(len(textIn)):
         stitched.append(str(i)+'\n')
-        padded = pad(sep_punct(textIn[i].lower(), False).split(), analyzed[i])
+        stitched.append(" ".join(textIn[i]))
+        padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i])
         stitched.append(" ".join(padded[0])+'\n')
         stitched.append(" ".join(padded[1])+'\n')
         stitched.append("\n")
@@ -124,20 +125,20 @@ async def get_bytes_from_file(file):
 upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
 
-data = "this is some text" #"".join(stitched) 
-def downloadFile(*args):
-    encoded_data = data.encode('utf-8')
-    my_stream = io.BytesIO(encoded_data)
-
-    js_array = Uint8Array.new(len(encoded_data))
-    js_array.assign(my_stream.getbuffer())
-
-    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
-    url = URL.createObjectURL(nu_js_file)
-
-    hidden_link = document.createElement("a")
-    hidden_link.setAttribute("download", "my_other_file_name.txt")
-    hidden_link.setAttribute("href", url)
-    hidden_link.click()
-
-add_event_listener(document.getElementById("download"), "click", downloadFile)
+#data = "this is some text" #"".join(stitched) 
+#def downloadFile(*args):
+#    encoded_data = data.encode('utf-8')
+#    my_stream = io.BytesIO(encoded_data)
+#
+#    js_array = Uint8Array.new(len(encoded_data))
+#    js_array.assign(my_stream.getbuffer())
+#
+#    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+#    url = URL.createObjectURL(nu_js_file)
+#
+#    hidden_link = document.createElement("a")
+#    hidden_link.setAttribute("download", "my_other_file_name.txt")
+#    hidden_link.setAttribute("href", url)
+#    hidden_link.click()
+#
+#add_event_listener(document.getElementById("download"), "click", downloadFile)
