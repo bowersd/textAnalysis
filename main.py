@@ -109,7 +109,7 @@ async def get_bytes_from_file(file):
 upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
 
-data = "".join(stitched) #"this is some text"
+data = "this is some text" #"".join(stitched) 
 def downloadFile(*args):
     encoded_data = data.encode('utf-8')
     my_stream = io.BytesIO(encoded_data)
