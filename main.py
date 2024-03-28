@@ -95,12 +95,12 @@ def downloadFile(*args):
     js_array = Uint8Array.new(len(encoded_data))
     js_array.assign(my_stream.getbuffer())
 
-    file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
-    url = URL.createObjectURL(file)
+    file = pyscript.File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    url = pyscript.URL.createObjectURL(file)
 
-    hidden_link = document.createElement("a")
+    hidden_link = pyscript.document.createElement("a")
     hidden_link.setAttribute("download", "my_other_file_name.txt")
     hidden_link.setAttribute("href", url)
     hidden_link.click()
 
-add_event_listener(document.getElementById("download"), "click", downloadFile)
+add_event_listener(pyscript.document.getElementById("download"), "click", downloadFile)
