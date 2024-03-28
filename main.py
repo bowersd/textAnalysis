@@ -8,7 +8,7 @@ await micropip.install(
 from pyweb import pydom
 import pyscript
 import asyncio
-from js import console, Uint8Array, File, URL, document #File et seq were added for download, maybe pyscript.File, URL, document will work?
+from js import console, Uint8Array, File, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
 import io #this was added for download
 from pyodide.ffi.wrappers import add_event_listener
 import regex
@@ -102,11 +102,10 @@ async def _upload_file_and_analyze(e):
     js_array.assign(stitched_stream.getbuffer())
 
     nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
-    url = URL.createObjectURL(nu_js_file)
 
-    hidden_link = document.createElement("a")
-    hidden_link.setAttribute("download", "my_other_file_name.txt")
-    hidden_link.setAttribute("href", url)
+    hidden_file = document.createElement("p")
+    hidden_file.src = window.URL.createObjectURL(nu_js_file)
+    document.getElementById("output_upload").appendChild(hidden_file)
 
     #new_txt = pyscript.document.createElement('txt')
     #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
@@ -121,18 +120,18 @@ add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "clic
 
 data = "this is some text" #"".join(stitched) 
 def downloadFile(*args):
-    #encoded_data = data.encode('utf-8')
-    #my_stream = io.BytesIO(encoded_data)
+    encoded_data = data.encode('utf-8')
+    my_stream = io.BytesIO(encoded_data)
 
-    #js_array = Uint8Array.new(len(encoded_data))
-    #js_array.assign(my_stream.getbuffer())
+    js_array = Uint8Array.new(len(encoded_data))
+    js_array.assign(my_stream.getbuffer())
 
-    #nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
-    #url = URL.createObjectURL(nu_js_file)
+    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    url = URL.createObjectURL(nu_js_file)
 
-    #hidden_link = document.createElement("a")
-    #hidden_link.setAttribute("download", "my_other_file_name.txt")
-    #hidden_link.setAttribute("href", url)
+    hidden_link = document.createElement("a")
+    hidden_link.setAttribute("download", "my_other_file_name.txt")
+    hidden_link.setAttribute("href", url)
     hidden_link.click()
 
 add_event_listener(document.getElementById("download"), "click", downloadFile)
