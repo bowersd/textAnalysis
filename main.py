@@ -8,8 +8,8 @@ await micropip.install(
 from pyweb import pydom
 import pyscript
 import asyncio
-from js import console, Uint8Array, File, URL, document
-import io
+from js import console, Uint8Array, File, URL, document #File et seq were added for download, maybe pyscript.File, URL, document will work?
+import io #this was added for download
 from pyodide.ffi.wrappers import add_event_listener
 import regex
 import pyhfst
@@ -86,3 +86,21 @@ async def get_bytes_from_file(file):
 
 upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
+
+data = "this is some text"
+def downloadFile(*args):
+    encoded_data = data.encode('utf-8')
+    my_stream = io.BytesIO(encoded_data)
+
+    js_array = Uint8Array.new(len(encoded_data))
+    js_array.assign(my_stream.getbuffer())
+
+    file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    url = URL.createObjectURL(file)
+
+    hidden_link = document.createElement("a")
+    hidden_link.setAttribute("download", "my_other_file_name.txt")
+    hidden_link.setAttribute("href", url)
+    hidden_link.click()
+
+add_event_listener(document.getElementById("download"), "click", downloadFile)
