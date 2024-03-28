@@ -8,7 +8,8 @@ await micropip.install(
 from pyweb import pydom
 import pyscript
 import asyncio
-from js import console, Uint8Array
+from js import console, Uint8Array, File, URL, document
+import io
 from pyodide.ffi.wrappers import add_event_listener
 import regex
 import pyhfst
