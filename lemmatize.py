@@ -261,7 +261,8 @@ if __name__ == "__main__":
                 try: gloss = gdict[l]
                 except KeyError: 
                     gloss = "NODEF" 
-                tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
+                tinies.append("'"+gloss+"'")
+                #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
             full["tiny_gloss"].append(tinies)
         e_ccnj_adjust = parse.parse_native(os.path.expanduser(args.fst_file), *[e_ccnj_conservation(x[0]) for x in e_adjust])
         for x in e_adjust:
