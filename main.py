@@ -95,7 +95,7 @@ def extract_lemma(string, pos_regex):
     """pull lemma out of string"""
     #lemma is always followed by Part Of Speech regex
     #lemma may be preceeded by prefixes, else word initial
-    #if re.search(pos_regex, string): return re.search("(^|\+)(.*?)"+pos_regex, string).group(2)
+    #if regex.search(pos_regex, string): return regex.search("(^|\+)(.*?)"+pos_regex, string).group(2)
     if regex.search(pos_regex, string): return regex.split(pos_regex, string)[0].split("+")[-1] #last item before pos tag, after all other morphemes, is lemma
     return None
 
@@ -275,12 +275,12 @@ def interpret(analysis_in):
 def analysis_dict(analysis_string):
     postags = "\+VAI(O)?|\+VII|\+VTI|\+VTA|\+NA(D)?|\+NI(D)?|\+Conj|\+Interj|\+Num|\+Pron(\+NA|\+NI)|\+Ipc|\+Qnt|\+Adv"
     adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitic":[]}
-    adict["clitic"] = [re.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]]
-    analysis_string = re.sub("\+dash\+Adv", "", analysis_string) #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
-    adict["prefix"] = [re.search("(^[123X])?", analysis_string)[0]]
-    if re.search("{0}(.*{0})?".format(postags), analysis_string): adict["derivation"] = [x for x in re.search("{0}(.*{0})?".format(postags), analysis_string)[0].split("+") if x] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-    adict["preforms"] = re.search("(((PV|PN|PA)[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
-    if re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+")))): adict["suffixes"] = [x for x in reversed(re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
+    adict["clitic"] = [regex.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]]
+    analysis_string = regex.sub("\+dash\+Adv", "", analysis_string) #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
+    adict["prefix"] = [regex.search("(^[123X])?", analysis_string)[0]]
+    if regex.search("{0}(.*{0})?".format(postags), analysis_string): adict["derivation"] = [x for x in regex.search("{0}(.*{0})?".format(postags), analysis_string)[0].split("+") if x] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    adict["preforms"] = regex.search("(((PV|PN|PA)[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
+    if regex.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+")))): adict["suffixes"] = [x for x in reversed(regex.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
     if not adict["derivation"]: return None
     return adict
 
