@@ -260,7 +260,7 @@ if __name__ == "__main__":
             for l in full["lemmata"][i]:
                 try: gloss = gdict[l]
                 except KeyError: 
-                    gloss = "NODEF" 
+                    gloss = "?" 
                 tinies.append("'"+gloss+"'")
                 #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
             full["tiny_gloss"].append(tinies)
