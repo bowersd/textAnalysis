@@ -91,8 +91,16 @@ def mk_glossing_dict(*strings):
         else: gd[chunked[0]] = gd[chunked[0]] + "/" + chunked[1]
     return gd
 
+def extract_lemma(string, pos_regex):
+    """pull lemma out of string"""
+    #lemma is always followed by Part Of Speech regex
+    #lemma may be preceeded by prefixes, else word initial
+    #if re.search(pos_regex, string): return re.search("(^|\+)(.*?)"+pos_regex, string).group(2)
+    if regex.search(pos_regex, string): return regex.split(pos_regex, string)[0].split("+")[-1] #last item before pos tag, after all other morphemes, is lemma
+    return None
+
 def lemmatize(pos_regex, *analysis):
-    return [pst.extract_lemma(a, pos_regex) for a in analysis]
+    return [extract_lemma(a, pos_regex) for a in analysis]
 ###functions for doing things within the web page
 
 async def _upload_file_and_analyze(e):
