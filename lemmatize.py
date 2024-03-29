@@ -275,9 +275,9 @@ if __name__ == "__main__":
             padded = pad(full["chunked"][i], full["edited"][i], full["lemmata"][i], full["m_parse_hi"][i], full["tiny_gloss"][i], full["m_parse_lo"][i])
             full["chunked"][i] = " ".join(padded[0])
             full["edited"][i] = " ".join(padded[1])
-            full["lemmata"].append(" ".join(padded[2]))
-            full["m_parse_hi"].append(" ".join(padded[3]))
-            full["tiny_gloss"].append(" ".join(padded[4]))
+            full["lemmata"][i] = " ".join(padded[2])
+            full["m_parse_hi"][i] = " ".join(padded[3])
+            full["tiny_gloss"][i] = " ".join(padded[4])
             full["m_parse_lo"][i] = " ".join(padded[5])
         #    full["chunked"][i] = padded[0]
         #    full["edited"][i] = padded[0]
