@@ -5,7 +5,7 @@ def mk_glossing_dict(*strings):
         chunked = s.split("\t")
         if chunked[0] not in gd: gd[chunked[0]] = chunked[1]
         #else: gd[chunked[0]] = gd[chunked[0]] + " HOMOPHONE DEFINITION>" + chunked[1]
-        else: gd[chunked[0]] = gd[chunked[0]] + "*"
+        else: gd[chunked[0]] = gd[chunked[0]] + "/" + chunked[1]
     return gd
 
 def gloss_fix(**gloss_dict):
