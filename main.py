@@ -75,6 +75,24 @@ def pad(*lists_of_strings):
         nu_lists.append(nu)
     return nu_lists
 
+def readin(filename):
+    holder = []
+    with open(filename, 'r') as f_in:
+        for line in f_in:
+            holder.append(line.strip())
+    return holder
+
+def mk_glossing_dict(*strings):
+    gd = {}
+    for s in strings:
+        chunked = s.split("\t")
+        if chunked[0] not in gd: gd[chunked[0]] = chunked[1]
+        #else: gd[chunked[0]] = gd[chunked[0]] + " HOMOPHONE DEFINITION>" + chunked[1]
+        else: gd[chunked[0]] = gd[chunked[0]] + "/" + chunked[1]
+    return gd
+
+def lemmatize(pos_regex, *analysis):
+    return [pst.extract_lemma(a, pos_regex) for a in analysis]
 ###functions for doing things within the web page
 
 async def _upload_file_and_analyze(e):
@@ -93,9 +111,18 @@ async def _upload_file_and_analyze(e):
     for i in range(len(textIn)):
         stitched.append(str(i)+'\n')
         stitched.append(textIn[i]+'\n')
-        padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i])
+        lemmata = [x if x else "?" for x in lemmatize(pos_regex, *analyzed[i])]
+        tinies = []
+        for l in lemmata:
+            try: gloss = gdict[l]
+            except KeyError:
+                gloss = "?"
+            tinies.append("'"+gloss+"'")
+        padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i], lemmata, tinies)
         stitched.append(" ".join(padded[0])+'\n')
         stitched.append(" ".join(padded[1])+'\n')
+        stitched.append(" ".join(padded[2])+'\n')
+        stitched.append(" ".join(padded[3])+'\n')
         stitched.append("\n")
     stitched_bytes = "".join(stitched).encode('utf-8')
     #full_output_div = pyscript.document.querySelector("#output_upload")
@@ -122,6 +149,8 @@ async def get_bytes_from_file(file):
     array_buf = await file.arrayBuffer()
     return array_buf.to_bytes()
 
+gdict = mk_glossing_dict(readin("./copilot_otw2eng.txt"))
+pos_regex = "".join(readin("./pos_regex.txt"))
 upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
 
