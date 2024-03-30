@@ -309,7 +309,7 @@ async def _upload_file_and_analyze(e):
             except KeyError:
                 gloss = "?"
             tinies.append("'"+gloss+"'")
-        m_parse_hi = ["'"+formated(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in analyzed[i]]
+        m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in analyzed[i]]
         padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i], m_parse_hi, lemmata, tinies)
         stitched.append(" ".join(padded[0])+'\n')
         stitched.append(" ".join(padded[1])+'\n')
