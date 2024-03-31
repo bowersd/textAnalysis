@@ -297,7 +297,7 @@ def parse_words(event):
     console.log("high"+" ".join(m_parse_hi))
     console.log("lemmata"+" ".join(lemmata))
     console.log("tinies"+" ".join(tinies))
-    padded = pad(["Word:"].extend(sep_punct(freeNish.lower(), True).split()), ["Narrow Analysis:"].extend(m_parse_lo), ["Broad Analysis:"].extend(m_parse_hi), ["Dictionary Header:"].extend(lemmata), ["Terse Translation:"].extend(tinies))
+    padded = pad(["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies)
     words_out = "\n".join([" ".join(p) for p in padded])
     output_div = pyscript.document.querySelector("#output")
     output_div.innerText = words_out 
