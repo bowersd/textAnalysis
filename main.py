@@ -286,7 +286,7 @@ def parse_words(event):
     analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
     m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in analyzed]
     m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in analyzed]
-    lemmata = [x if x else "?" for x in lemmatize(pos_regex, *analyzed[i])]
+    lemmata = [x if x else "?" for x in lemmatize(pos_regex, *analyzed)]
     tinies = []
     for l in lemmata:
         try: gloss = gdict[l]
