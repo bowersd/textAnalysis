@@ -5,6 +5,9 @@ await micropip.install(
     #'https://files.pythonhosted.org/packages/eb/f5/3ea71e974dd0117b95a54ab2c79d781b4376d257d91e4c2249605f4a54ae/pyhfst-1.2.0-py2.py3-none-any.whl'
     #'./pyhfst-1.2.0-py2.py3-none-any.whl'
 )
+await micropip.install(
+    'https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl'
+)
 from pyweb import pydom
 import pyscript
 import asyncio
@@ -13,6 +16,7 @@ import io #this was added for download
 from pyodide.ffi.wrappers import add_event_listener
 import regex
 import pyhfst
+import tabulate
 #print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
 #print("For now, a demonstration that a functioning analyzer is loaded")
 
@@ -293,12 +297,9 @@ def parse_words(event):
         except KeyError:
             gloss = "?"
         tinies.append("'"+gloss+"'")
-    console.log("low"+" ".join(m_parse_lo))
-    console.log("high"+" ".join(m_parse_hi))
-    console.log("lemmata"+" ".join(lemmata))
-    console.log("tinies"+" ".join(tinies))
-    padded = pad(["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies)
-    words_out = "\n".join([" ".join(p) for p in padded])
+    #padded = pad(["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies)
+    #words_out = "\n".join([" ".join(p) for p in padded])
+    words_out = tabulate.tabulate([["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
     output_div = pyscript.document.querySelector("#output")
     output_div.innerText = words_out 
 
