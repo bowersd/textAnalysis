@@ -29,12 +29,6 @@ def parse_pyhfst(transducer, *strings):
                 for q in p: h[s].append((regex.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
 
-def parse_words(event):
-    input_text = pyscript.document.querySelector("#freeNish")
-    freeNish = input_text.value
-    output_div = pyscript.document.querySelector("#output")
-    output_div.innerText = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *freeNish.split(" "))
-
 def sep_punct(string, drop_punct): #diy tokenization, use nltk?
     if not drop_punct: return "'".join(regex.sub("(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
     return "'".join(regex.sub("(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " ", string).split("’")) #remove all punc, then replace single quote ’ with '
@@ -285,6 +279,24 @@ def analysis_dict(analysis_string):
     return adict
 
 ###functions for doing things within the web page
+
+def parse_words(event):
+    input_text = pyscript.document.querySelector("#freeNish")
+    freeNish = input_text.value
+    analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
+    m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in analyzed]
+    m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in analyzed]
+    lemmata = [x if x else "?" for x in lemmatize(pos_regex, *analyzed[i])]
+    tinies = []
+    for l in lemmata:
+        try: gloss = gdict[l]
+        except KeyError:
+            gloss = "?"
+        tinies.append("'"+gloss+"'")
+    padded = pad(sep_punct(freeNish.lower(), True).split(), m_parse_lo, m_parse_hi, lemmata, tinies)
+    words_out = "\n".join([" ".join(p) for p in padded])
+    output_div = pyscript.document.querySelector("#output")
+    output_div.innerText = words_out 
 
 async def _upload_file_and_analyze(e):
     console.log("Attempted file upload: " + e.target.value)
