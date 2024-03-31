@@ -293,7 +293,7 @@ def parse_words(event):
         except KeyError:
             gloss = "?"
         tinies.append("'"+gloss+"'")
-    padded = pad(sep_punct(freeNish.lower(), True).split(), m_parse_lo, m_parse_hi, lemmata, tinies)
+    padded = pad(["Word:"].extend(sep_punct(freeNish.lower(), True).split()), ["Narrow Analysis:"].extend(m_parse_lo), ["Broad Analysis:"].extend(m_parse_hi), ["Dictionary Header:"].extend(lemmata), ["Terse Translation:"].extend(tinies))
     words_out = "\n".join([" ".join(p) for p in padded])
     output_div = pyscript.document.querySelector("#output")
     output_div.innerText = words_out 
