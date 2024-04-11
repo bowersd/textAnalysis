@@ -50,12 +50,13 @@ def drop_vals(vector, *values):
 
 def interlinearize(fst_file, fst_format, pos_regex, gdict, drop_punct, text_in, trans_in):
     holder = []
+    p = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower(), drop_punct).split()])
     for i in range(len(text_in)):
         sub = [[],[],[], [], [], [trans_in[i]]]
         for w in pre.sep_punct(text_in[i], drop_punct).split():
             w=w.lower()
             #p = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, w).decode())
-            p = parse.parse_native(os.path.expanduser(fst_file), fst_format, w)
+            #p = parse.parse_native(os.path.expanduser(fst_file), fst_format, w)
             best = pst.disambiguate(pst.min_morphs(*p[w]), pst.min_morphs, *p[w])
             lem = pst.extract_lemma(p[w][best][0], pos_regex)
             try: gloss = gdict[lem]
