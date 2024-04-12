@@ -252,11 +252,13 @@ if __name__ == "__main__":
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
             for j in range(len(full["chunked"][i])):
-                if full["chunked"][i][j] in cdict: edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
+                if full["chunked"][i][j] in cdict: 
+                    edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                 elif full["chunked"][i][j].startswith("e-"):
                     edited.append(full["chunked"][i][j])
                     e_adjust.append((full["chunked"][i][j], i, j))
                 else: edited.append(full["chunked"][i][j])
+            full["edited"][i] = edited
             tinies = []
             for l in full["lemmata"][i]:
                 try: gloss = gdict[l]
