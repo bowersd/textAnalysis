@@ -8,6 +8,7 @@ abbreviations = {
         "Itr": "Iterative (marks repeated actions)",
         "Imp": "Imperative order (used in commands)",
         "Pcp": "Participle (relative clauses: they who X)",
+        "Cmpd": "Compound (two words joined to make a bigger word)",
         "1": "First person  (I/me/my/we/us/our)",
         "2": "Second person  (you/your/youse/youse's)",
         "3": "Third person  (he/she/him/her/his/hers/they/them/theirs)",
