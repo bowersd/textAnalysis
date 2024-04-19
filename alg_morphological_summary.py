@@ -105,10 +105,10 @@ def interpret(analysis_in):
         #{getting number information for person values specified by prefix == NOT CONJUNCT!
         elif analysis_in["prefix"][0] == "1" and s == "1Pl": summary["S"]["Num"] = "Pl"
         elif analysis_in["prefix"][0] == "2" and s == "1Pl": summary["S"]["Num"] = "1Pl"#this does not mess up VTA local themes, since it is a lower elif (2...Thm1...1Pl = 2Pl/2 v 1pl != 21Pl)
-        elif analysis_in["prefix"][0] == "2" and s == "2Pl"]: summary["S"]["Num"] = "Pl" 
+        elif analysis_in["prefix"][0] == "2" and s == "2Pl": summary["S"]["Num"] = "Pl" 
             #if summary["O"]["Pers"] == "1" and summary["S"]["Pers"] == "2" and inversion: summary["S"]["Num"] == "Pl"  ## before inversion (thm1sg/thm1pl .*2pl) = (2pl v 1sg/2pl v 1pl), so no need to specify a special case here 
             #note: there is no further number information in another slot for first persons here ... like theme signs really are object agreement and inversion swoops them into subjecthood (and/or peripheral suffixes are just for 3rd persons)
-        elif analysis_in["prefix"][0] == "3" and s == "2Pl"]: summary["S"]["Num"] = "Pl"
+        elif analysis_in["prefix"][0] == "3" and s == "2Pl": summary["S"]["Num"] = "Pl"
         #end prefix number obtained}
         #{getting person/number information from suffixes
         elif (not summary["S"]["Pers"]) and (s == "1" or s == "1Pl"):
@@ -127,7 +127,7 @@ def interpret(analysis_in):
             if inversion == True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj":  summary["O"]["Pers"] = "3'/0" #VTA CNJ THMINV 3
             if s == "3Pl": summary["S"]["Num"] = "Pl"
             elif s ==  "3Obv": summary["S"]["Num"] = "Obv"
-        elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == "0") and (s == "0" or s == "0Obv") or s == "0Pl"): 
+        elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == "0") and (s == "0" or s == "0Obv" or s == "0Pl"): 
             summary["S"]["Pers"] = "0"
             if s == "0Obv": summary["S"]["Num"] = "Obv"
             elif s == "0Pl": summary["S"]["Num"] += "Pl" #NB: += used since 0'Pl is possible
