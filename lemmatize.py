@@ -228,7 +228,7 @@ if __name__ == "__main__":
                 full["speaker_text_num"].append(data[1])
                 full["speaker_text_sent_num"].append(data[2])
                 full["sentence"].append(data[3])
-                revised = data[3]
+                revised = data[3].lower()
                 for adj in adjustments: #words that need to be split in two or joined together
                     if adj in revised: revised = re.sub(adj, adjustments[adj], revised)
                 tokenized = pre.sep_punct(revised, args.d).split()
