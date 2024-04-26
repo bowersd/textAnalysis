@@ -257,15 +257,15 @@ if __name__ == "__main__":
                 elif full["chunked"][i][j].startswith("e-"):
                     edited.append(full["chunked"][i][j])
                     innovation_adjust.append(("e-", full["chunked"][i][j], i, j))
-                elif full["chunked"][i][j].startswith("nda-"):
+                elif re.match("[ng]?da-", full["chunked"][i][j]):
                     edited.append(full["chunked"][i][j])
-                    innovation_adjust.append(("nda-", full["chunked"][i][j], i, j))
-                elif full["chunked"][i][j].startswith("ndi-"):
+                    innovation_adjust.append((re.match("[ng]?da-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
+                elif re.match("[ng]?di-", full["chunked"][i][j]):
                     edited.append(full["chunked"][i][j])
-                    innovation_adjust.append(("ndi-", full["chunked"][i][j], i, j))
-                elif full["chunked"][i][j].startswith("ndoo-"):
+                    innovation_adjust.append((re.match("[ng]?di-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
+                elif re.match("[ng]?doo", full["chunked"][i][j]):
                     edited.append(full["chunked"][i][j])
-                    innovation_adjust.append(("ndoo-", full["chunked"][i][j], i, j))
+                    innovation_adjust.append((re.match("[ng]?doo-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
                 else: edited.append(full["chunked"][i][j])
             full["edited"][i] = edited
             tinies = []
@@ -281,7 +281,7 @@ if __name__ == "__main__":
             ccnj = conserve_innovation(x[0], x[1])
             if not innovation_adjustments[ccnj][0][0].endswith('+?'):
                 full["m_parse_lo"][x[2]][x[3]] = innovation_adjustments[ccnj][pst.disambiguate(pst.min_morphs(*innovation_adjustments[ccnj]), pst.min_morphs, *innovation_adjustments[ccnj])][0]
-                full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[1]][x[2]])))+"'"
+                full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[2]][x[3]])))+"'"
                 full["edited"][x[2]][x[3]] = ccnj
         for i in range(len(full["m_parse_lo"])):
             padded = pad(full["chunked"][i], full["edited"][i], full["lemmata"][i], full["m_parse_hi"][i], full["tiny_gloss"][i], full["m_parse_lo"][i])
