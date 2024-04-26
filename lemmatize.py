@@ -109,13 +109,13 @@ def atomic_json_dump(filename, names, lists):
 def e_ccnj_ambiguous(analyzer, string):
     if string.startswith("e-"): #attempt analysis without the hyphen, if successful, return true
         print(string)
-        ccnj = e_ccnj_conservation(string)
+        ccnj = conserve_innovation(string)
         if not parse.parse_native(os.path.expanduser(analyzer), ccnj)[ccnj][0][0].endswith('+?'): return True
     return False
 
 
-def e_ccnj_conservation(string):
-    return "e"+string[2:]
+def conserve_innovation(target, string):
+    return target+string[len(target):] #be sure to include hyphen in target
 
 def parseargs():
     parser = argparse.ArgumentParser()
@@ -245,7 +245,7 @@ if __name__ == "__main__":
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
-        e_adjust = []
+        innovation_adjust = []
         for i in range(len(full["m_parse_lo"])): 
             full["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])]) #filter on "if x" to leave out un analyzed forms
             full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
@@ -256,7 +256,16 @@ if __name__ == "__main__":
                     edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                 elif full["chunked"][i][j].startswith("e-"):
                     edited.append(full["chunked"][i][j])
-                    e_adjust.append((full["chunked"][i][j], i, j))
+                    innovation_adjust.append(("e-", full["chunked"][i][j], i, j))
+                elif full["chunked"][i][j].startswith("nda-"):
+                    edited.append(full["chunked"][i][j])
+                    innovation_adjust.append(("nda-", full["chunked"][i][j], i, j))
+                elif full["chunked"][i][j].startswith("ndi-"):
+                    edited.append(full["chunked"][i][j])
+                    innovation_adjust.append(("ndi-", full["chunked"][i][j], i, j))
+                elif full["chunked"][i][j].startswith("ndoo-"):
+                    edited.append(full["chunked"][i][j])
+                    innovation_adjust.append(("ndoo-", full["chunked"][i][j], i, j))
                 else: edited.append(full["chunked"][i][j])
             full["edited"][i] = edited
             tinies = []
@@ -267,13 +276,13 @@ if __name__ == "__main__":
                 tinies.append("'"+gloss+"'")
                 #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
             full["tiny_gloss"].append(tinies)
-        e_ccnj_adjust = parse.parse_native(os.path.expanduser(args.fst_file), *[e_ccnj_conservation(x[0]) for x in e_adjust])
-        for x in e_adjust:
-            ccnj = e_ccnj_conservation(x[0])
-            if not e_ccnj_adjust[ccnj][0][0].endswith('+?'):
-                full["m_parse_lo"][x[1]][x[2]] = e_ccnj_adjust[ccnj][pst.disambiguate(pst.min_morphs(*e_ccnj_adjust[ccnj]), pst.min_morphs, *e_ccnj_adjust[ccnj])][0]
-                full["m_parse_hi"][x[1]][x[2]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[1]][x[2]])))+"'"
-                full["edited"][x[1]][x[2]] = ccnj
+        innovation_adjustments = parse.parse_native(os.path.expanduser(args.fst_file), *[conserve_innovation(x[0], x[1]) for x in innovation_adjust])
+        for x in innovation_adjust:
+            ccnj = conserve_innovation(x[0], x[1])
+            if not innovation_adjustments[ccnj][0][0].endswith('+?'):
+                full["m_parse_lo"][x[2]][x[3]] = innovation_adjustments[ccnj][pst.disambiguate(pst.min_morphs(*innovation_adjustments[ccnj]), pst.min_morphs, *innovation_adjustments[ccnj])][0]
+                full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[1]][x[2]])))+"'"
+                full["edited"][x[2]][x[3]] = ccnj
         for i in range(len(full["m_parse_lo"])):
             padded = pad(full["chunked"][i], full["edited"][i], full["lemmata"][i], full["m_parse_hi"][i], full["tiny_gloss"][i], full["m_parse_lo"][i])
             full["chunked"][i] = " ".join(padded[0])
