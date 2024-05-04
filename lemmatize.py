@@ -252,7 +252,7 @@ if __name__ == "__main__":
         for i in range(len(full["m_parse_lo"])): 
             full["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])]) #filter on "if x" to leave out un analyzed forms
             full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
-            error_adjust.append([full["chunked"][i][j] for j in range(len(full["m_parse_lo"][i])) if full["m_parse_lo"][i][j].endswith('+?')]
+            error_adjust.append([(full["chunked"][i][j], i, j) for j in range(len(full["m_parse_lo"][i])) if full["m_parse_lo"][i][j].endswith('+?')]
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
             for j in range(len(full["chunked"][i])):
