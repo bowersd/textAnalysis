@@ -115,7 +115,7 @@ def e_ccnj_ambiguous(analyzer, string):
 
 
 def conserve_innovation(target, string):
-    return target+string[len(target):] #be sure to include hyphen in target
+    return target[:len(target)-1]+string[len(target):] #be sure to include hyphen in target
 
 def parseargs():
     parser = argparse.ArgumentParser()
@@ -130,6 +130,8 @@ def parseargs():
     parser.add_argument("-c", "--corrections", dest="c", nargs="?", help="name of corrections file", default="") #feed in hand-curated notes 
     parser.add_argument("-r", "--human-readable", dest="r", action="store_true", help="whether to write output as a txt file with user-friendly line wrapping")
     parser.add_argument("-d", "--drop-punct" , dest="d", action="store_true", help="whether to separate punctuation (false) or drop punctuation (true) when parsing")
+    parser.add_argument("-e", "--error-fst" , dest="e", action="?", help="name of analyzer composed with an error model", default="")
+    parser.add_argument("-g", "--generation-fst" , dest="g", action="?", help="name of generation transducer (tags -> forms)", default="")
     return parser.parse_args()
 
 def human_readable(fst_file, fst_format, regex_file, gloss_file, drop_punct, text, trans, output):
@@ -263,7 +265,7 @@ if __name__ == "__main__":
                 elif re.match("[ng]?di-", full["chunked"][i][j]):
                     edited.append(full["chunked"][i][j])
                     innovation_adjust.append((re.match("[ng]?di-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
-                elif re.match("[ng]?doo", full["chunked"][i][j]):
+                elif re.match("[ng]?doo-", full["chunked"][i][j]):
                     edited.append(full["chunked"][i][j])
                     innovation_adjust.append((re.match("[ng]?doo-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
                 else: edited.append(full["chunked"][i][j])
