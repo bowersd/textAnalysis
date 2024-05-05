@@ -130,8 +130,8 @@ def parseargs():
     parser.add_argument("-c", "--corrections", dest="c", nargs="?", help="name of corrections file", default="") #feed in hand-curated notes 
     parser.add_argument("-r", "--human-readable", dest="r", action="store_true", help="whether to write output as a txt file with user-friendly line wrapping")
     parser.add_argument("-d", "--drop-punct" , dest="d", action="store_true", help="whether to separate punctuation (false) or drop punctuation (true) when parsing")
-    parser.add_argument("-e", "--error-fst" , dest="e", action="?", help="name of analyzer composed with an error model", default="")
-    parser.add_argument("-g", "--generation-fst" , dest="g", action="?", help="name of generation transducer (tags -> forms)", default="")
+    parser.add_argument("-e", "--error-fst" , dest="e", nargs="?", help="name of analyzer composed with an error model", default="")
+    parser.add_argument("-g", "--generation-fst" , dest="g", nargs="?", help="name of generation transducer (tags -> forms)", default="")
     return parser.parse_args()
 
 def human_readable(fst_file, fst_format, regex_file, gloss_file, drop_punct, text, trans, output):
@@ -224,6 +224,9 @@ if __name__ == "__main__":
                 ]
         with open(args.text) as f:
             performance = [0, 0.01] #hits, misses
+            ###
+            #initialization with metadata (including translation), tokenized values 
+            ###
             for line in f:
                 data = line.strip().split('\t')
                 full["speakerID"].append(data[0])
@@ -244,6 +247,9 @@ if __name__ == "__main__":
                 #        full["m_parse_lo"][-1].append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
                 #        performance[int(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0].endswith("+?"))] += 1 
             print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
+        ###
+        #analysis and digestion of analysis
+        ###
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
@@ -252,10 +258,10 @@ if __name__ == "__main__":
         for i in range(len(full["m_parse_lo"])): 
             full["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])]) #filter on "if x" to leave out un analyzed forms
             full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
-            error_adjust.append([(full["chunked"][i][j], i, j) for j in range(len(full["m_parse_lo"][i])) if full["m_parse_lo"][i][j].endswith('+?')]
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
             for j in range(len(full["chunked"][i])):
+                if full["m_parse_lo"][i][j].endswith('+?'): error_adjust.append((full["chunked"][i][j], i, j))
                 if full["chunked"][i][j] in cdict: 
                     edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                 elif full["chunked"][i][j].startswith("e-"):
@@ -280,13 +286,38 @@ if __name__ == "__main__":
                 tinies.append("'"+gloss+"'")
                 #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
             full["tiny_gloss"].append(tinies)
+        ###
+        #re-analyzing failed items with error model
+        ###
+        if args.e and args.g:
+            e_dict = parse.parse_native(args.e, *[x[0] for x in error_adjust])
+            generation_dict = parse.parse_native(args.g, *[e_dict[x][pst.disambiguate(pst.min_morphs(*e_dict[x]), pst.min_morphs, *e_dict[x])][0] for x in e_dict if not x[0].endswith('+?')])
+            fixed_errors = 0
+            for x in error_adjust:
+                if not e_dict[x[0]][0][0].endswith('+?'):
+                    fixed_errors += 1
+                    full["m_parse_lo"][x[1]][x[2]] = e_dict[x[0]][pst.disambiguate(pst.min_morphs(*e_dict[x[0]]), pst.min_morphs, *e_dict[x[0]])][0]
+                    full["m_parse_hi"][x[1]][x[2]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[1]][x[2]])))+"'"
+                    full["edited"][x[1]][x[2]] = generation_dict[full["m_parse_lo"][x[1]][x[2]]][0][0]
+                    full["lemmata"][x[1]][x[2]] = lemmatize(pos_regex, full["m_parse_lo"][x[1]][x[2]])[0]
+                    try: gloss = gdict[full["lemmata"][x[1]][x[2]]]
+                    except KeyError:
+                        gloss = "?"
+                    full["tiny_gloss"][x[1]][x[2]] = "'"+gloss+"'"
+        print("fixed these many misses: ", fixed_errors)
         innovation_adjustments = parse.parse_native(os.path.expanduser(args.fst_file), *[conserve_innovation(x[0], x[1]) for x in innovation_adjust])
+        ###
+        #checking if forms written with innovative affixes can be analyzed as if they were conservative
+        ###
         for x in innovation_adjust:
             ccnj = conserve_innovation(x[0], x[1])
             if not innovation_adjustments[ccnj][0][0].endswith('+?'):
                 full["m_parse_lo"][x[2]][x[3]] = innovation_adjustments[ccnj][pst.disambiguate(pst.min_morphs(*innovation_adjustments[ccnj]), pst.min_morphs, *innovation_adjustments[ccnj])][0]
                 full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[2]][x[3]])))+"'"
                 full["edited"][x[2]][x[3]] = ccnj
+        ###
+        #converting lists to padded/aligned strings
+        ###
         for i in range(len(full["m_parse_lo"])):
             padded = pad(full["chunked"][i], full["edited"][i], full["lemmata"][i], full["m_parse_hi"][i], full["tiny_gloss"][i], full["m_parse_lo"][i])
             full["chunked"][i] = " ".join(padded[0])
@@ -303,6 +334,9 @@ if __name__ == "__main__":
         #    full["m_parse_lo"][i] = padded[4]
         #by_sent = [{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))]
         #code.interact(local=locals())
+        ###
+        #write-out
+        ###
         with open(args.o, 'w') as fo:
             json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
         ##atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
