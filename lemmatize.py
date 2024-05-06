@@ -24,7 +24,7 @@ import alg_morphological_summary as algsum
 #    for w in sent: analyses.append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
 #    return analyses
 
-def analyze_text(fst_file, fst_format, corrections, drop_punct, *text_in):
+def analyze_text(fst_file, fst_format, drop_punct, *text_in):
     analysis = []
     analyses = parse.parse_native(os.path.expanduser(fst_file), *[x for s in text_in for x in pre.sep_punct(s.lower(), drop_punct).split()]) #get all analyses of every word
     #analyses = pst.parser_out_string_dict(parse.parse(os.path.expanduser(fst_file), fst_format, *[x for s in text_in for x in pre.sep_punct(s.lower()), drop_punct.split()]).decode()) #get all analyses of every word
@@ -33,11 +33,9 @@ def analyze_text(fst_file, fst_format, corrections, drop_punct, *text_in):
     for s in text_in: 
         a = []
         for w in pre.sep_punct(s.lower(), drop_punct).split():
-            if w in corrections: a.append(corrections[w][1]) #corrections are original: [edited, analyzed]
-            else:
-                best = analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0]
-                a.append(best)
-                performance[int(best.endswith("+?"))] += 1 
+            best = analyses[w][pst.disambiguate(pst.min_morphs(*analyses[w]), pst.min_morphs, *analyses[w])][0]
+            a.append(best)
+            performance[int(best.endswith("+?"))] += 1 
         analysis.append(a)
     print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
     return analysis
@@ -250,7 +248,7 @@ if __name__ == "__main__":
         ###
         #analysis and digestion of analysis
         ###
-        full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
+        full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *full["sentence"])
         #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         innovation_adjust = []
@@ -292,23 +290,51 @@ if __name__ == "__main__":
         if args.e and args.g:
             e_dict = parse.parse_native(args.e, *[x[0] for x in error_adjust])
             generation_dict = parse.parse_native(args.g, *[e_dict[x][pst.disambiguate(pst.min_morphs(*e_dict[x]), pst.min_morphs, *e_dict[x])][0] for x in e_dict if not x[0].endswith('+?')])
-            fixed_errors = 0
-            for x in error_adjust:
+        fixed_errors = []
+        for x in error_adjust:
+            updates = {
+                    "m_parse_lo": "",
+                    "m_parse_hi":"",
+                    "edited": "",
+                    "lemmata": "",
+                    "source": "",
+                    "tiny_gloss":""
+                    }
+            if x in cdict: #corrections are {original: [edited, analyzed]}
+                best = cdict[x][1]
+                updates["m_parse_lo"]= best
+                updates["m_parse_hi"]="'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(best)))+"'"
+                updates["edited"]= generation_dict[best][0][0]
+                updates["lemmata"]= lemmatize(pos_regex, best)[0]
+                updates["source"]= "hand"
+            elif args.e and args.g:
                 if not e_dict[x[0]][0][0].endswith('+?'):
-                    fixed_errors += 1
-                    full["m_parse_lo"][x[1]][x[2]] = e_dict[x[0]][pst.disambiguate(pst.min_morphs(*e_dict[x[0]]), pst.min_morphs, *e_dict[x[0]])][0]
-                    full["m_parse_hi"][x[1]][x[2]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[1]][x[2]])))+"'"
-                    full["edited"][x[1]][x[2]] = generation_dict[full["m_parse_lo"][x[1]][x[2]]][0][0]
-                    full["lemmata"][x[1]][x[2]] = lemmatize(pos_regex, full["m_parse_lo"][x[1]][x[2]])[0]
-                    try: gloss = gdict[full["lemmata"][x[1]][x[2]]]
-                    except KeyError:
-                        gloss = "?"
-                    full["tiny_gloss"][x[1]][x[2]] = "'"+gloss+"'"
-        print("fixed these many misses: ", fixed_errors)
-        innovation_adjustments = parse.parse_native(os.path.expanduser(args.fst_file), *[conserve_innovation(x[0], x[1]) for x in innovation_adjust])
+                    best =  e_dict[x[0]][pst.disambiguate(pst.min_morphs(*e_dict[x[0]]), pst.min_morphs, *e_dict[x[0]])][0]
+                    updates["m_parse_lo"]= best
+                    updates["m_parse_hi"]="'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(best)))+"'"
+                    updates["edited"]= generation_dict[best][0][0]
+                    updates["lemmata"]= lemmatize(pos_regex, best)[0]
+                    updates["source"]= "error_model"
+            try: gloss = gdict[updates["lemmata"]]
+            except KeyError:
+                gloss = "?"
+            updates["tiny_gloss"] = "'"+gloss+"'"
+            if updates["m_parse_lo"]: fixed_errors.append((x, updates))
+        fix_cnt = {"hand":0, "error_model":0}
+        for x in fixed_errors:
+            #print(x[1])
+            for y in x[1]:
+                if y != "source":
+                    full[y][x[0][1]][x[0][2]] = x[1][y]
+                else: 
+                    #print(y, x[1][y])
+                    fix_cnt[x[1][y]] += 1
+        print("hand fixed these many misses: ", fix_cnt["hand"])
+        print("mach fixed these many misses: ", fix_cnt["error_model"])
         ###
         #checking if forms written with innovative affixes can be analyzed as if they were conservative
         ###
+        innovation_adjustments = parse.parse_native(os.path.expanduser(args.fst_file), *[conserve_innovation(x[0], x[1]) for x in innovation_adjust])
         for x in innovation_adjust:
             ccnj = conserve_innovation(x[0], x[1])
             if not innovation_adjustments[ccnj][0][0].endswith('+?'):
