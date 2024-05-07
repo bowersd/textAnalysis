@@ -43,19 +43,28 @@ def interpret(analysis_in):
         elif s == "Imp": 
             summary["Order"] = s
             if summary["Head"] == "VTA": #VTA imperative object information is not in a theme sign, but directly spelled out in tags that are not always immediately adjacent to order tag, so here's a hack that goes backwards through the tags and updates subject and object information while removing the argument information from the computation
-                h = []
-                subject = True
-                while "3" in analysis_in["suffixes"] or "2" in analysis_in["suffixes"] or "1" in analysis_in["suffixes"]:
-                    h.append(analysis_in["suffixes"].pop())
-                    if "3" in h or "2" in h or ("1" in h and analysis_in["suffixes"][-1:] != ["2"]):
-                        if subject: 
-                            summary["S"]["Pers"] = h[0]
-                            summary["S"]["Num"] = "".join(h[1:])
-                            h = []
-                            subject = False
-                        else:
-                            summary["O"]["Pers"] = h[0]
-                            summary["O"]["Num"] = "".join(h[1:])
+                while any([feature in analysis_in["suffixes"] for feature in ["3", "2", "1", "1Pl", "2Pl", "21Pl", "3Pl"]]): 
+                    feature = analysis_in["suffixes"].pop()
+                    if feature.startswith("2"):
+                        summary["S"]["Pers"] = feature[0]
+                        summary["S"]["Num"] = feature[1:]
+                    elif feature.startswith("1") or feature.startswith("3"):
+                        summary["O"]["Pers"] = feature[0]
+                        summary["O"]["Num"] = feature[1:]
+                        if summary["S"]["Pers"] == "2" and not summary["S"]["Num"] and feature == "3": summary["O"]["Num"] = "Pl/3"
+                #h = []
+                #subject = True
+                #while "3" in analysis_in["suffixes"] or "2" in analysis_in["suffixes"] or "1" in analysis_in["suffixes"]:
+                #    h.append(analysis_in["suffixes"].pop())
+                #    if "3" in h or "2" in h or ("1" in h and analysis_in["suffixes"][-1:] != ["2"]):
+                #        if subject: 
+                #            summary["S"]["Pers"] = h[0][0]
+                #            summary["S"]["Num"] = "".join(h[1:])
+                #            h = []
+                #            subject = False
+                #        else:
+                #            summary["O"]["Pers"] = h[0]
+                #            summary["O"]["Num"] = "".join(h[1:])
         #{extracting theme sign (primarily object person) information 
         #IND        CNJ
         #Thm1       Thm1
