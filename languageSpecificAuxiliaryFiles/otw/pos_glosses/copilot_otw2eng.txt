@@ -196,6 +196,7 @@ gnengim	long-lasting
 gnesh	perhaps
 gnimaa	maybe
 gnwesh	perhaps
+go	EMPH
 gojiing	outside
 gojyi'iing	outside
 gshkonwaach	unexpected
@@ -384,7 +385,7 @@ noondaa-naagshik	evening
 noondaash	sub
 noongo	today
 noongom	today
-noopming	rural
+noopming	in.the.bush
 nshike	solo
 nshkwaach	final
 nsidam	regretful
@@ -2885,7 +2886,7 @@ moowich	crap
 naanaa	careful
 naasanaa	give up
 nagsha	look
-ngoji	get away
+ngoji	shoo!   
 niinaa	well
 niisaadkamik	unfortunate
 nishke	look
@@ -2944,7 +2945,7 @@ kogaan	depart
 manj	uncertainty
 minj	uncertainty
 mninaak	moderation
-naa	emphasis
+naa	EMPH
 naash	impatience
 nangna	oh
 nji	cause
