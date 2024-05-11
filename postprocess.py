@@ -33,7 +33,13 @@ def extract_lemma(string, pos_regex):
     #lemma is always followed by Part Of Speech regex
     #lemma may be preceeded by prefixes, else word initial
     #if re.search(pos_regex, string): return re.search("(^|\+)(.*?)"+pos_regex, string).group(2)
-    if re.search("+Cmpd", string): return "+".join([re.split(pos_regex, x)[0].split("+")[-1] for x in re.split("+Cmpd", string)])
+    if "+Cmpd" in string:
+        cmpd = []
+        for x in re.split("\+Cmpd", string):
+            cmpd.append(re.split(pos_regex, x)[0].split("+")[-1])
+            #return "+".join([re.split(pos_regex, x)[0].split("+")[-1] for x in re.split("+Cmpd", string)])
+        #print(cmpd)
+        return "+".join(cmpd)
     if re.search(pos_regex, string): return re.split(pos_regex, string)[0].split("+")[-1] #last item before pos tag, after all other morphemes, is lemma
     return None
 

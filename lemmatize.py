@@ -172,15 +172,19 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, drop_punct, tex
             file_out.write('\n')
             file_out.write('\n')
 
-def retrieve_glosses(**gloss_dict, *lemmata):
+def retrieve_glosses(*lemmata, **gloss_dict):
     tinies = []
     for l in lemmata:
         try: gloss = gloss_dict[l]
         except KeyError:
-            if "+" in l: gloss = "-".join(retrieve_glosses(**gloss_dict, *l.split("+")))
+            if "+" in l: 
+                gloss = "-".join(retrieve_glosses(*l.split("+"), **gloss_dict, ))
             else: gloss = "?"
-        tinies.append("'"+gloss+"'")
+        tinies.append(gloss)
     return tinies
+
+def wrap_glosses(*glosses):
+    return ["'"+g+"'" for g in glosses]
 
 if __name__ == "__main__":
     args = parseargs()
@@ -286,14 +290,15 @@ if __name__ == "__main__":
                     innovation_adjust.append((re.match("[ng]?doo-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
                 else: edited.append(full["chunked"][i][j])
             full["edited"][i] = edited
-            tinies = []
-            for l in full["lemmata"][i]:
-                try: gloss = gdict[l]
-                except KeyError: 
-                    gloss = "?" 
-                tinies.append("'"+gloss+"'")
-                #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
-            full["tiny_gloss"].append(tinies)
+            full["tiny_gloss"].append(wrap_glosses(*retrieve_glosses(*full["lemmata"][i], **gdict)))
+            #tinies = []
+            #for l in full["lemmata"][i]:
+            #    try: gloss = gdict[l]
+            #    except KeyError: 
+            #        gloss = "?" 
+            #    tinies.append("'"+gloss+"'")
+            #    #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
+            #full["tiny_gloss"].append(tinies)
         ###
         #re-analyzing failed items with error model
         ###
@@ -325,10 +330,10 @@ if __name__ == "__main__":
                     updates["edited"]= generation_dict[best][0][0]
                     updates["lemmata"]= lemmatize(pos_regex, best)[0]
                     updates["source"]= "error_model"
-            try: gloss = gdict[updates["lemmata"]]
-            except KeyError:
-                gloss = "?"
-            updates["tiny_gloss"] = "'"+gloss+"'"
+            #try: gloss = gdict[updates["lemmata"]]
+            #except KeyError:
+            #    gloss = "?"
+            updates["tiny_gloss"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **gdict))[0]
             if updates["m_parse_lo"]: fixed_errors.append((x, updates))
         fix_cnt = {"hand":0, "error_model":0}
         with open("quick_check.txt", 'w') as error_check_file:
