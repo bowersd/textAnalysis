@@ -172,6 +172,16 @@ def human_readable(fst_file, fst_format, regex_file, gloss_file, drop_punct, tex
             file_out.write('\n')
             file_out.write('\n')
 
+def retrieve_glosses(**gloss_dict, *lemmata):
+    tinies = []
+    for l in lemmata:
+        try: gloss = gloss_dict[l]
+        except KeyError:
+            if "+" in l: gloss = "-".join(retrieve_glosses(**gloss_dict, *l.split("+")))
+            else: gloss = "?"
+        tinies.append("'"+gloss+"'")
+    return tinies
+
 if __name__ == "__main__":
     args = parseargs()
     cdict = {} #corrections are original: [edited, analyzed]
