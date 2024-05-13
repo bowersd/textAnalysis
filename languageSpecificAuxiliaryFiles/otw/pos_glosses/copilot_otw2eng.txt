@@ -1480,7 +1480,7 @@ nden'gom	snot
 ndindaawaa	in-law
 ndiniigan	blade
 ndinmaangan	shoulder
-ndip	scalp
+ndip	head
 ndoodem	clan
 ndoodoom	mother
 ndoozhim	nephew
@@ -2946,6 +2946,7 @@ manj	uncertainty
 minj	uncertainty
 mninaak	moderation
 naa	EMPH
+naa	say.to
 naash	impatience
 nangna	oh
 nji	cause
