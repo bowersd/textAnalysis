@@ -336,7 +336,7 @@ if __name__ == "__main__":
             updates["tiny_gloss"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **gdict))[0]
             if updates["m_parse_lo"]: fixed_errors.append((x, updates))
         fix_cnt = {"hand":0, "error_model":0}
-        with open("quick_check.txt", 'w') as error_check_file:
+        with open("error_model_quick_check.txt", 'w') as error_check_file:
             for x in fixed_errors:
                 #print(x[1])
                 for y in x[1]:
@@ -345,12 +345,12 @@ if __name__ == "__main__":
                     else: 
                         #print(y, x[1][y])
                         fix_cnt[x[1][y]] += 1
-                padded = pad([str(ind) for ind in range(len(full["chunked"][x[0][1]]))], full["chunked"][x[0][1]], full["edited"][x[0][1]], full["lemmata"][x[0][1]], full["m_parse_hi"][x[0][1]], full["tiny_gloss"][x[0][1]], full["m_parse_lo"][x[0][1]])
+                padded = pad([str(ind) for ind in range(len(full["chunked"][x[0][1]]))], full["chunked"][x[0][1]], full["edited"][x[0][1]], full["m_parse_lo"][x[0][1]], full["m_parse_hi"][x[0][1]], full["lemmata"][x[0][1]], full["tiny_gloss"][x[0][1]])
                 error_check_file.write("Sentence number:"+' '+str(x[0][1])+'\n')
-                error_check_file.write("Fix is correct? (0/1): "+'\n')
-                error_check_file.write("Correct Analysis: "+'\n')
-                error_check_file.write("Correct Spelling: "+'\n')
-                error_check_file.write(x[0][0]+'\t'+str(x[0][2])+'\n')
+                error_check_file.write("Terse translation of fixed word grossly mismatches English sentence translation? (y/n): "+'\n')
+                error_check_file.write("Terse translation of any other word grossly mismatches English sentence translation (give column number(s)): "+'\n')
+                error_check_file.write("Comments?: "+'\n')
+                error_check_file.write("Fixed word, and column:\t"+x[0][0]+'\t'+str(x[0][2])+'\n')
                 for p in padded: error_check_file.write(" ".join(p)+'\n')
                 error_check_file.write(full['english'][x[0][1]]+'\n')
                 error_check_file.write('\n')
