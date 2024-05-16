@@ -64,6 +64,7 @@ abbreviations = {
         "Ipc": "Independent particle (the 'other' category)",
         "Qnt": "Quantifiers (some/all/most...)",
         "Adv": "Adverbials",
+        "Else": "Something that resisted analysis as a full form",
         "PV/CCNJ": "Changed conjunct form",
         #"PV/...": "A preverb"
         }
@@ -126,6 +127,7 @@ abbreviations_high = {
         "Ipc": "Independent particle (the 'other' category)",
         "Qnt": "Quantifiers (some/all/most...)",
         "Adv": "Adverbials",
+        "Else": "Something that resisted analysis as a full form",
         "PV/CCNJ": "Changed conjunct form",
         #"PV/...": "A preverb"
         "PV": "A preverb"
