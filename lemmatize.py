@@ -315,11 +315,11 @@ if __name__ == "__main__":
                     "source": "",
                     "tiny_gloss":""
                     }
-            if x in cdict: #corrections are {original: [edited, analyzed]}
-                best = cdict[x][1]
+            if x[0] in cdict: #corrections are {original: [edited, analyzed]}
+                best = cdict[x[0]][1]
                 updates["m_parse_lo"]= best
                 updates["m_parse_hi"]="'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(best)))+"'"
-                updates["edited"]= generation_dict[best][0][0]
+                updates["edited"]= best
                 updates["lemmata"]= lemmatize(pos_regex, best)[0]
                 updates["source"]= "hand"
             elif args.e and args.g:
