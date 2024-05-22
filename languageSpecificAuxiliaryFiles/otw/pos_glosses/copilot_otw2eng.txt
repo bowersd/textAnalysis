@@ -861,6 +861,7 @@ oodenaw-bneshiinh	sparrow
 oojiigaawesiinh	cricket
 paknenh	grasshopper
 pichiinh	robin
+sa	so
 sabkeshiinh	spider
 siim'oonh	duck
 waa'oonenh	whippoorwill
