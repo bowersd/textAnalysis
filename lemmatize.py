@@ -304,7 +304,7 @@ if __name__ == "__main__":
         ###
         if args.e and args.g:
             e_dict = parse.parse_native(args.e, *[x[0] for x in error_adjust])
-            generation_dict = parse.parse_native(args.g, *[e_dict[x][pst.disambiguate(pst.min_morphs(*e_dict[x]), pst.min_morphs, *e_dict[x])][0] for x in e_dict if not x[0].endswith('+?')])
+            generation_dict = parse.parse_native(args.g, *[e_dict[x][pst.disambiguate(0, lambda z: 0, *e_dict[x])][0] for x in e_dict if not x[0].endswith('+?')])
         fixed_errors = []
         for x in error_adjust:
             updates = {
@@ -324,7 +324,7 @@ if __name__ == "__main__":
                 updates["source"]= "hand"
             elif args.e and args.g:
                 if not e_dict[x[0]][0][0].endswith('+?'):
-                    best =  e_dict[x[0]][pst.disambiguate(pst.min_morphs(*e_dict[x[0]]), pst.min_morphs, *e_dict[x[0]])][0]
+                    best =  e_dict[x[0]][pst.disambiguate(0, lambda z: 0, *e_dict[x[0]])][0]
                     updates["m_parse_lo"]= best
                     updates["m_parse_hi"]="'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(best)))+"'"
                     updates["edited"]= generation_dict[best][0][0]
