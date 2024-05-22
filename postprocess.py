@@ -10,6 +10,9 @@ def parser_out_string_dict(string):
         elif split[1:] not in proc[split[0]]: proc[split[0]].append(split[1:]) 
     return proc
 
+def filter(*msds):
+    return [m for m in msds if m[1] == msds[0][1]]
+
 def min_morphs(*msds):
     """the length of the shortest morphosyntactic description"""
     return min([m[0].count("+") for m in msds])
