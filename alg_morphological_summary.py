@@ -102,6 +102,7 @@ def interpret(analysis_in):
         elif summary["O"]["Pers"] == "2" and s == "21Pl": summary["O"]["Num"] = "1Pl"
         elif summary["O"]["Pers"] == "2" and s == "2Pl": summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "3" and s == "3Obv": summary["O"]["Num"] = "Obv"
+        elif summary["O"]["Pers"] == "3" and s == "3ObvPlus": summary["O"]["Num"] = "ObvPlus"
         elif summary["O"]["Pers"] == "3" and s == "3Pl": summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "3" and (s == "0" or s == "0Pl"): #VTA indep (inverses), have overt suffs for inanimates, need to over ride the default 3 here
             summary["O"]["Pers"] = "0"
