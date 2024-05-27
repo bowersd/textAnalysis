@@ -6033,7 +6033,7 @@ dngishkge	rebel
 dnikaa	journey
 dningwaam	slumber
 dningwaamo	slumber
-dniza	simmer
+dniza	cook
 dnizekwe	cook
 dnizi	lodge
 dnwewdam	exclaim
@@ -13647,7 +13647,7 @@ n'kwe'doon	arrive
 n'kwebdoon	catch
 n'kwewdoon	transport
 naa'sidoon	redirect
-naa'toon	redirect
+naa'toon	fix
 naabaaksidoon	attach
 naabiisdoon	align
 naabjitoon	utilize
