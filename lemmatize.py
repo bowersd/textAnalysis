@@ -258,11 +258,11 @@ if __name__ == "__main__":
                 #    for w in pre.sep_punct(data[3].lower(), args.d).split(): 
                 #        full["m_parse_lo"][-1].append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
                 #        performance[int(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0].endswith("+?"))] += 1 
-            print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
+            #print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
         ###
         #analysis and digestion of analysis
         ###
-        full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *full["sentence"])
+        full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *[" ".join(x) for x in full["chunked"]])
         #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         innovation_adjust = []
