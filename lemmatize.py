@@ -5,6 +5,7 @@ import re
 import json
 import json_encoder
 import parse
+import random #for spot checks
 import readwrite as rw
 import postprocess as pst
 import preprocess as pre
@@ -267,12 +268,14 @@ if __name__ == "__main__":
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         innovation_adjust = []
         error_adjust = []
+        spots = [] #for spot checks
         for i in range(len(full["m_parse_lo"])): 
             full["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])]) #filter on "if x" to leave out un analyzed forms
             full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
             for j in range(len(full["chunked"][i])):
+                if not full["m_parse_lo"][i][j].endswith('+?'): spots.append((i,j)) #collecting indices for spot checks
                 if full["m_parse_lo"][i][j].endswith('+?'): error_adjust.append((full["chunked"][i][j], i, j))
                 if full["chunked"][i][j] in cdict: 
                     edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
@@ -299,6 +302,22 @@ if __name__ == "__main__":
             #    tinies.append("'"+gloss+"'")
             #    #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
             #full["tiny_gloss"].append(tinies)
+        with open('spot_checks_narrow_analyzer_successes.txt', 'w') as fileOut:
+            cnt = 0
+            while cnt < 300:
+                cnt += 1
+                locus = spots.pop(random.randrange(0, len(spots)))
+                padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
+                fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
+                fileOut.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
+                fileOut.write("Grammatical analysis of target word is consistent with English sentence translation? (y/n): "+'\n')
+                fileOut.write("Comments?: "+'\n')
+                fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
+                for p in padded: fileOut.write(" ".join(p)+'\n')
+                fileOut.write(full['english'][locus[0]]+'\n')
+                fileOut.write('\n')
+
+
         ###
         #re-analyzing failed items with error model
         ###
@@ -347,10 +366,10 @@ if __name__ == "__main__":
                         fix_cnt[x[1][y]] += 1
                 padded = pad([str(ind) for ind in range(len(full["chunked"][x[0][1]]))], full["chunked"][x[0][1]], full["edited"][x[0][1]], full["m_parse_lo"][x[0][1]], full["m_parse_hi"][x[0][1]], full["lemmata"][x[0][1]], full["tiny_gloss"][x[0][1]])
                 error_check_file.write("Sentence number:"+' '+str(x[0][1])+'\n')
-                error_check_file.write("Terse translation of fixed word grossly mismatches English sentence translation? (y/n): "+'\n')
+                error_check_file.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
                 error_check_file.write("Terse translation of any other word grossly mismatches English sentence translation (give column number(s)): "+'\n')
                 error_check_file.write("Comments?: "+'\n')
-                error_check_file.write("Fixed word, and column:\t"+x[0][0]+'\t'+str(x[0][2])+'\n')
+                error_check_file.write("Target word, and column:\t"+x[0][0]+'\t'+str(x[0][2])+'\n')
                 for p in padded: error_check_file.write(" ".join(p)+'\n')
                 error_check_file.write(full['english'][x[0][1]]+'\n')
                 error_check_file.write('\n')
