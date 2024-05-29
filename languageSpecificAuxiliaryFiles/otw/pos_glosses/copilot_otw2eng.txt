@@ -13741,13 +13741,13 @@ wiikboodoon	suck
 wiikjitoon	attempt
 wiikpidoon	tie
 wiiksatoon	yank
-wiikwejiipdoon	redirect
+wiikwejiipdoon	wrap
 wiikwepdoon	wrap
 wiintoon	soil
-wmbaabiigbidoon	redirect
-wndagoojdoon	redirect
-wnitoon	redirect
-wnjibdoon	redirect
+wmbaabiigbidoon	pull
+wndagoojdoon	drop
+wnitoon	lose
+wnjibdoon	extract
 wshkibdoon	zigzag
 wzhiitaatoon	prepare
 wzhiitaawsidoon	prepare
@@ -13797,7 +13797,7 @@ dbinoosdoon	shelter
 piitaabkibdoon	set
 aagwisdoon	hide
 aagwiitoosdoon	insert
-baatiindoon	redirect
+baatiindoon	abundance
 bdakaaksidoon	erect
 bkojbidoon	extract
 gaapbidoon	crumble
@@ -13805,7 +13805,7 @@ maawndoon	collect
 maawndoopdoon	bundle
 aabtoogoodoon	hang
 aagwiitoowegsidoon	line
-aanjgoodoon	redirect
+aanjgoodoon	hang
 aan’kesdoon	extend
 aapdaabko’oodoon	knot
 shpaabkibdoon	heat
