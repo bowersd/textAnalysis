@@ -4607,7 +4607,7 @@ gnabaasin	capsized
 gnzaabiimgat	sunk
 gshkawan	foggy
 gsinaamgat	chilly
-gwekjiwan	redirect
+gwekjiwan	turn
 gwisemgat	toppled
 gzhaatemgat	sweltering
 gzhaawngide	scorching
