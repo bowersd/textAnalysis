@@ -8601,11 +8601,11 @@ wnichge	mislay
 wnise	misjuudge
 wnishi	apt
 wnishin	misdirect
-wnishkaa	redirect
-wnjibaa	redirect
-wnjibzo	redirect
-wnjigaa	redirect
-wnjigaabwi	redirect
+wnishkaa	rise
+wnjibaa	originate
+wnjibzo	arrive
+wnjigaa	spill
+wnjigaabwi	position
 wnzo	redirect
 woosi	paternal
 wwenbi	occupy
@@ -9282,7 +9282,7 @@ baashjizhaaza	overshoot
 baashkjiiyaashi	explode
 baashzaabi	peek
 baataab’iwe	cornered
-baataaboowe	redirect
+baataaboowe	cornered
 baatiinweyaan’gizi	diverse
 baazgogaadejin	scratch
 baazgogaadeshin	scratch
@@ -9592,7 +9592,7 @@ niindaa'wen	send
 nji'wen	fight
 njinzan	fight
 njinzhiwen	fight
-nokaazan	redirect
+nokaazan	use
 noondesen	short
 noopon	take
 ntamaagen	kill
@@ -9688,7 +9688,7 @@ aakjinnjiinaa	unclench
 aakmenmaa	mindful
 aakziiwkawaa	sicken
 aamwaa	drive
-aan'koobnaa	redirect
+aan'koobnaa	tie
 aan'koopnaa	tie
 aan'kooshmaa	join
 aandaabdeshmaa	shift
@@ -9696,7 +9696,7 @@ aandaajmaa	change
 aandgoonaa	hang
 aandkiiwaa	transplant
 aandkweshmaa	move
-aandpinaa	redirect
+aandpinaa	change
 aandshimaa	move
 aangwaamnaa	hold
 aangwaazmaa	reassure
