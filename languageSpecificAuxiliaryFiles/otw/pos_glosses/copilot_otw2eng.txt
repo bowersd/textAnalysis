@@ -2959,7 +2959,7 @@ was	dismiss
 na+Ipc	question
 sa+Ipc	conclusion
 go+Ipc	indeed
-gwa+Ipc	redirect
+gwa+Ipc	indeed
 dnawa	category
 gaawn-gegoon	nothing
 gchi-gegoo	significance
