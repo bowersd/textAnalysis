@@ -2714,7 +2714,7 @@ ngonaas	blanket
 ngondaagan	throat
 n'kon	liver
 nmiinjis	hair
-nmiinzis	redirect
+nmiinzis	hair
 nminiingwaagan	grit
 nminiingwaan	gills
 nnagwenh	sleeve
