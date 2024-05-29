@@ -13476,7 +13476,7 @@ daadsidoon	separate
 daangbidoon	stroke
 daangshkoodoon	brush
 daanzhebdoon	dim
-daanzhewebdoon	redirect
+daanzhewebdoon	dim
 daashkaasdoon	curve
 daashkbidoon	split
 daashkboodoon	saw
@@ -13567,8 +13567,8 @@ gshkwaakbidoon	shake
 gshkwaaksatoon	shake
 gshkweyaasdoon	curve
 gtigbidoon	tip
-gtigjiibdoon	redirect
-gtigmin'gibdoon	redirect
+gtigjiibdoon	tip
+gtigmin'gibdoon	roll
 gtwewbidoon	force
 gwaa'doon	transport
 gwaabdoon	extract
@@ -13612,10 +13612,10 @@ mbisdoon	rise
 mbiwdoon	lift
 mchaatoon	enlarge
 mdesdoon	ring
-mdwesdoon	redirect
+mdwesdoon	ring
 mdwewetoon	play
-migshkaastoon	redirect
-migwebdoon	redirect
+migshkaastoon	shake
+migwebdoon	shake
 mkobdoon	find
 mmigsatoon	shake
 mmigshkaastoon	shake
@@ -13625,7 +13625,7 @@ mmoon	remove
 mnaabjitoon	utilize
 mnaajtoon	honor
 mnjimshkoodoon	weigh
-moon	redirect
+moon	remove
 mooshk'oodoon	flood
 mooshknadoon	fill
 mooshknebdoon	fill
@@ -13646,7 +13646,7 @@ n'kawebdoon	pick
 n'kwe'doon	arrive
 n'kwebdoon	catch
 n'kwewdoon	transport
-naa'sidoon	redirect
+naa'sidoon	straighten
 naa'toon	fix
 naabaaksidoon	attach
 naabiisdoon	align
@@ -13665,8 +13665,8 @@ naatesdoon	illuminate
 naawdoon	haul
 nakdeksidoon	space
 naksidoon	align
-nangshkaastoon	redirect
-nangshkaastoon	redirect
+nangshkaastoon	shake
+nangshkaastoon	shake
 napdoon	bundle
 nashknadoon	load
 nbagbidoon	flatten
