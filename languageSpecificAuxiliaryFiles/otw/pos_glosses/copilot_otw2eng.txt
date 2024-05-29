@@ -6482,7 +6482,7 @@ giiwnaajndibe	mad
 giiwnaajngoshi	nightmare
 giiwne	agonize
 giiwnizi	frolic
-giiwsaadendam	redirect
+giiwsaadendam	contrite
 giiwse	chase
 giiwshkwe	vertigo
 giiwshkwebii	intoxicated
@@ -6536,7 +6536,7 @@ gkiza	concealed
 gmiwnaashi	drenched
 gmoodi	pilfer
 gmoojge	thief
-gmoojke	redirect
+gmoojke	thief
 gna'maage	prohibit
 gnaabiigzi	lengthy
 gnaajwi	attractive
@@ -6568,7 +6568,7 @@ gnwaabiigzi	extended
 gnwaakdengwe	long-faced
 gnwaakjaane	prominent
 gnwaakmiishdoon	hirsute
-gnwaakzi	redirect
+gnwaakzi	elongated
 gnwaan'kwe	long-haired
 gnwegpiza	long
 gnwegzi	long
@@ -8226,9 +8226,9 @@ pangnjibza	reach
 pangnjii	sojourn
 pangse	stumble
 pangshin	stumble
-pangwage	redirect
-pangwage	redirect
-pangwage	redirect
+pangwage	dust
+pangwage	dust
+pangwage	dust
 parkwi	park
 pasaanza	contused
 pasaanzaawe	blackened
@@ -8315,7 +8315,7 @@ shka'iiwi	novel
 shka'mii	fatigued
 shkaakdiyebi	weary
 shkendam	mourn
-shki'aawi	redirect
+shki'aawi	novel
 shki-zhwendaagzi	commune
 shkigaabwi	fatigued
 shkigi	budding
@@ -8526,7 +8526,7 @@ wiin'kamgizi	soil
 wiinaabiiggaade	muddy
 wiinaabiiggwewe	grimy
 wiinaabiigzi	filthy
-wiinaabiigzide	redirect
+wiinaabiigzide	sooty
 wiinaan'giingwe	sullied
 wiinaapne	infect
 wiindgoowi	transform
