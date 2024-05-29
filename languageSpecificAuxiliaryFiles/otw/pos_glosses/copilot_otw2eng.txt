@@ -4607,7 +4607,7 @@ gnabaasin	capsized
 gnzaabiimgat	sunk
 gshkawan	foggy
 gsinaamgat	chilly
-gwekjiwan	turn
+gwekjiwan	redirect
 gwisemgat	toppled
 gzhaatemgat	sweltering
 gzhaawngide	scorching
@@ -6174,10 +6174,10 @@ gbaakshin	impede
 gbaakshkaa	close
 gbaakw'igaaza	imprisoned
 gbaakw'ige	seal
-gbaakwigaaza	redirect
-gbaakwigaaza	redirect
-gbaakwige	redirect
-gbaakwige	redirect
+gbaakwigaaza	imprisoned
+gbaakwigaaza	imprisoned
+gbaakwige	seal
+gbaakwige	seal
 gban'ka'ge	plug
 gbe-yaa	endure
 gbebza	persist
@@ -6277,7 +6277,7 @@ gezkaage	apprehend
 ggaakwii	withdraw
 ggaan'gaade	tall
 ggaandsamookii	incite
-ggaanwaakgaade	redirect
+ggaanwaakgaade	tall
 ggaanwiziikaaza	pretend
 ggaanztam	defy
 ggiibaadaan'gidoon	babble
@@ -6381,7 +6381,7 @@ giikgiza	appreciate
 giikiibngoshi	drowsy
 giikiibngoshnaagzi	sleepy
 giikiibngoshwaadzi	lethargic
-giikiibngwashi	redirect
+giikiibngwashi	sleepy
 giikiidaabde	toothache
 giikiidzi	aching
 giikiijbikon	backache
