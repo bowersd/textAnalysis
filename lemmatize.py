@@ -302,20 +302,20 @@ if __name__ == "__main__":
             #    tinies.append("'"+gloss+"'")
             #    #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
             #full["tiny_gloss"].append(tinies)
-        with open('spot_checks_narrow_analyzer_successes.txt', 'w') as fileOut:
-            cnt = 0
-            while cnt < 300:
-                cnt += 1
-                locus = spots.pop(random.randrange(0, len(spots)))
-                padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
-                fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
-                fileOut.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
-                fileOut.write("Grammatical analysis of target word is consistent with English sentence translation? (y/n): "+'\n')
-                fileOut.write("Comments?: "+'\n')
-                fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
-                for p in padded: fileOut.write(" ".join(p)+'\n')
-                fileOut.write(full['english'][locus[0]]+'\n')
-                fileOut.write('\n')
+        #with open('spot_checks_narrow_analyzer_successes.txt', 'w') as fileOut:
+        #    cnt = 0
+        #    while cnt < 300:
+        #        cnt += 1
+        #        locus = spots.pop(random.randrange(0, len(spots)))
+        #        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
+        #        fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
+        #        fileOut.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
+        #        fileOut.write("Grammatical analysis of target word is consistent with English sentence translation? (y/n): "+'\n')
+        #        fileOut.write("Comments?: "+'\n')
+        #        fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
+        #        for p in padded: fileOut.write(" ".join(p)+'\n')
+        #        fileOut.write(full['english'][locus[0]]+'\n')
+        #        fileOut.write('\n')
 
 
         ###
@@ -364,15 +364,15 @@ if __name__ == "__main__":
                     else: 
                         #print(y, x[1][y])
                         fix_cnt[x[1][y]] += 1
-                padded = pad([str(ind) for ind in range(len(full["chunked"][x[0][1]]))], full["chunked"][x[0][1]], full["edited"][x[0][1]], full["m_parse_lo"][x[0][1]], full["m_parse_hi"][x[0][1]], full["lemmata"][x[0][1]], full["tiny_gloss"][x[0][1]])
-                error_check_file.write("Sentence number:"+' '+str(x[0][1])+'\n')
-                error_check_file.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
-                error_check_file.write("Terse translation of any other word grossly mismatches English sentence translation (give column number(s)): "+'\n')
-                error_check_file.write("Comments?: "+'\n')
-                error_check_file.write("Target word, and column:\t"+x[0][0]+'\t'+str(x[0][2])+'\n')
-                for p in padded: error_check_file.write(" ".join(p)+'\n')
-                error_check_file.write(full['english'][x[0][1]]+'\n')
-                error_check_file.write('\n')
+                #padded = pad([str(ind) for ind in range(len(full["chunked"][x[0][1]]))], full["chunked"][x[0][1]], full["edited"][x[0][1]], full["m_parse_lo"][x[0][1]], full["m_parse_hi"][x[0][1]], full["lemmata"][x[0][1]], full["tiny_gloss"][x[0][1]])
+                #error_check_file.write("Sentence number:"+' '+str(x[0][1])+'\n')
+                #error_check_file.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
+                #error_check_file.write("Terse translation of any other word grossly mismatches English sentence translation (give column number(s)): "+'\n')
+                #error_check_file.write("Comments?: "+'\n')
+                #error_check_file.write("Target word, and column:\t"+x[0][0]+'\t'+str(x[0][2])+'\n')
+                #for p in padded: error_check_file.write(" ".join(p)+'\n')
+                #error_check_file.write(full['english'][x[0][1]]+'\n')
+                #error_check_file.write('\n')
         print("hand fixed these many misses: ", fix_cnt["hand"])
         print("mach fixed these many misses: ", fix_cnt["error_model"])
         ###
