@@ -136,8 +136,8 @@ abbreviations_high = {
         "Else": "Something that resisted analysis as a full form",
         "PV/CCNJ": "Changed conjunct form",
         #"PV/...": "A preverb"
-        "PV": "A preverb"
-        "PN": "A prenoun"
+        "PV": "A preverb",
+        "PN": "A prenoun",
         "PA": "A pre-adverb"
         }
 
