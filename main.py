@@ -33,6 +33,28 @@ def parse_pyhfst(transducer, *strings):
                 for q in p: h[s].append((regex.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
 
+def parse_pyhfst_error(transducer, error_model, *strings):
+    h = {}
+    parser = pyhfst.HfstInputStream(transducer).read()
+    error = pyhfst.HfstInputStream(error_model).read()
+    for s in strings: 
+        if s not in h: 
+            h[s] = []
+            p = parser.lookup(s)
+            if not p: 
+                nu = []
+                e = error.lookup(s)
+                for x in e:
+                    y = parser.lookup(x[0])
+                    if y and not nu: nu.extend([(z, x[1]) for z in y])
+                    elif y and nu and x[1] <= min([z[1] for z in nu]): nu.extend([(z, x[1]) for z in y])
+                if not nu: h[s].append((s+"+?", 0.00))
+                else: 
+                    for n in nu: h[s].append((regex.sub("@.*?@", "" ,n[0]), n[1])) 
+            else: 
+                for q in p: h[s].append((regex.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
+    return h
+
 def sep_punct(string, drop_punct): #diy tokenization, use nltk?
     if not drop_punct: return "'".join(regex.sub("(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
     return "'".join(regex.sub("(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " ", string).split("’")) #remove all punc, then replace single quote ’ with '

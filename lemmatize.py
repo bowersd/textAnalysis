@@ -310,7 +310,7 @@ if __name__ == "__main__":
         #        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
         #        fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
         #        fileOut.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
-        #        fileOut.write("Grammatical analysis of target word is consistent with English sentence translation? (y/n): "+'\n')
+        #        fileOut.write("Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
         #        fileOut.write("Comments?: "+'\n')
         #        fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
         #        for p in padded: fileOut.write(" ".join(p)+'\n')
@@ -355,15 +355,37 @@ if __name__ == "__main__":
             updates["tiny_gloss"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **gdict))[0]
             if updates["m_parse_lo"]: fixed_errors.append((x, updates))
         fix_cnt = {"hand":0, "error_model":0}
-        with open("error_model_quick_check.txt", 'w') as error_check_file:
-            for x in fixed_errors:
-                #print(x[1])
-                for y in x[1]:
-                    if y != "source":
-                        full[y][x[0][1]][x[0][2]] = x[1][y]
-                    else: 
-                        #print(y, x[1][y])
-                        fix_cnt[x[1][y]] += 1
+        for x in fixed_errors:
+            #print(x[1])
+            for y in x[1]:
+                if y != "source":
+                    full[y][x[0][1]][x[0][2]] = x[1][y]
+                else: 
+                    #print(y, x[1][y])
+                    fix_cnt[x[1][y]] += 1
+        #with open('spot_checks_broad_analyzer_successes.txt', 'w') as fileOut:
+        #    cnt = 0
+        #    while cnt < 300:
+        #        cnt += 1
+        #        locus = fixed_errors.pop(random.randrange(0, len(fixed_errors)))
+        #        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0][1]]))], full["chunked"][locus[0][1]], full["edited"][locus[0][1]], full["m_parse_lo"][locus[0][1]], full["m_parse_hi"][locus[0][1]], full["lemmata"][locus[0][1]], full["tiny_gloss"][locus[0][1]])
+        #        fileOut.write("Sentence number:"+' '+str(locus[0][1])+'\n')
+        #        fileOut.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
+        #        fileOut.write("Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
+        #        fileOut.write("Comments?: "+'\n')
+        #        fileOut.write("Target word, and column:\t"+full["chunked"][locus[0][1]][locus[0][2]]+'\t'+str(locus[0][2])+'\n')
+        #        i = 0
+        #        j = 0
+        #        while j < len(padded[0]):
+        #            while j < len(padded[0]) and len(" ".join(padded[0][i:j])) < 100:
+        #                j += 1
+        #            for p in padded: 
+        #                fileOut.write(" ".join(p[i:j])+'\n')
+        #            i = j
+        #            if j < len(padded[0])-1: fileOut.write('\n')
+        #        fileOut.write(full['english'][locus[0][1]]+'\n')
+        #        fileOut.write('\n')
+        #with open("error_model_quick_check.txt", 'w') as error_check_file:
                 #padded = pad([str(ind) for ind in range(len(full["chunked"][x[0][1]]))], full["chunked"][x[0][1]], full["edited"][x[0][1]], full["m_parse_lo"][x[0][1]], full["m_parse_hi"][x[0][1]], full["lemmata"][x[0][1]], full["tiny_gloss"][x[0][1]])
                 #error_check_file.write("Sentence number:"+' '+str(x[0][1])+'\n')
                 #error_check_file.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
