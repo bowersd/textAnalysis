@@ -306,6 +306,7 @@ def parse_words_relaxed(event):
     input_text = pyscript.document.querySelector("#freeNishRelaxed")
     freeNish = input_text.value
     analyzed = parse_pyhfst_error("./morphophonologyclitics_analyze.hfstol", "./errormodel.hfst", *sep_punct(freeNish.lower(), True).split())
+    edited = [parse_pyhfst("./morphophonologyclitics_generate.hfstol", analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]) if analyzed[w][0][1] else analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]  for w in sep_punct(freeNish.lower(), True).split()]
     m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
     m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
     lemmata = [x if x else "?" for x in lemmatize(pos_regex, *m_parse_lo)]
@@ -315,7 +316,7 @@ def parse_words_relaxed(event):
         except KeyError:
             gloss = "?"
         tinies.append("'"+gloss+"'")
-    padded = pad(["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broader Analysis:"] + m_parse_hi, ["Dictionary Entry:"] + lemmata, ["Terse Translation:"] + tinies)
+    padded = pad(["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Edited Material:"] + edited, ["Narrow Analysis:"] + m_parse_lo, ["Broader Analysis:"] + m_parse_hi, ["Dictionary Entry:"] + lemmata, ["Terse Translation:"] + tinies)
     words_out = "\n".join(["\t".join(p) for p in padded])
     #words_out = tabulate.tabulate([["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
     output_div = pyscript.document.querySelector("#outputRelaxed")
