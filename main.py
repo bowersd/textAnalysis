@@ -46,8 +46,8 @@ def parse_pyhfst_error(transducer, error_model, *strings):
                 e = error.lookup(s)
                 for x in e:
                     y = parser.lookup(x[0])
-                    if y and not nu: nu.extend([(z, x[1]) for z in y])
-                    elif y and nu and x[1] <= min([z[1] for z in nu]): nu.extend([(z, x[1]) for z in y])
+                    if y: nu.extend([(z, x[1]) for z in y])
+                    elif y and nu and x[1] <= min([z[1] for z in nu]): nu.extend([(z, x[1]) for z in y]) #assuming that pyhfst orders by weight as hfst does
                 if not nu: h[s].append((s+"+?", 0.00))
                 else: 
                     for n in nu: h[s].append((regex.sub("@.*?@", "" ,n[0]), n[1])) 
@@ -323,6 +323,25 @@ def parse_words(event):
     words_out = "\n".join(["\t".join(p) for p in padded])
     #words_out = tabulate.tabulate([["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
     output_div = pyscript.document.querySelector("#output")
+    output_div.innerText = words_out 
+
+def parse_words_relaxed(event):
+    input_text = pyscript.document.querySelector("#freeNishRelaxed")
+    freeNish = input_text.value
+    analyzed = parse_pyhfst_error("./morphophonologyclitics_analyze.hfstol", "./errormodel.hfst", *sep_punct(freeNish.lower(), True).split())
+    m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
+    m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
+    lemmata = [x if x else "?" for x in lemmatize(pos_regex, *m_parse_lo)]
+    tinies = []
+    for l in lemmata:
+        try: gloss = gdict[l]
+        except KeyError:
+            gloss = "?"
+        tinies.append("'"+gloss+"'")
+    padded = pad(["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broader Analysis:"] + m_parse_hi, ["Dictionary Entry:"] + lemmata, ["Terse Translation:"] + tinies)
+    words_out = "\n".join(["\t".join(p) for p in padded])
+    #words_out = tabulate.tabulate([["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
+    output_div = pyscript.document.querySelector("#outputRelaxed")
     output_div.innerText = words_out 
 
 async def _upload_file_and_analyze(e):
