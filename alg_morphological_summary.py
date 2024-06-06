@@ -134,7 +134,7 @@ def interpret(analysis_in):
             elif summary["S"]["Pers"] == "2" and s == "21Pl": summary["S"]["Num"] = "1Pl"
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == '3') and (s == "3" or s == "3Pl" or s == "3Obv"):
             summary["S"]["Pers"] = "3"
-            if inversion == True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj":  summary["O"]["Pers"] = "3'/0" #VTA CNJ THMINV 3
+            if inversion == True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj":  summary["O"]["Pers"] = "3Obv/0" #VTA CNJ THMINV 3
             if s == "3Pl": summary["S"]["Num"] = "Pl"
             elif s ==  "3Obv": summary["S"]["Num"] = "Obv"
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == "0") and (s == "0" or s == "0Obv" or s == "0Pl"): 
