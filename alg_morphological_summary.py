@@ -90,7 +90,6 @@ def interpret(analysis_in):
             summary["O"]["Pers"] = "3"
             if s == "ThmInv": inversion = True
             if summary["Order"] == "Cnj" and s == "ThmInv": summary["O"]["Pers"] = "0" #will need to revise if 3 is encountered later
-            #elif summary["Order"] == "Cnj" and s == "ThmDir": summary["S"]["Pers"] = "3" #will need to revise if 3 is encountered later
         #} extracting theme sign information end
         #{getting number information for theme signs/objects, also finding inanimate subjects
         elif summary["O"]["Pers"] == "1" and s == "1Pl":  #this should only happen with thm1 (see below)
@@ -149,7 +148,11 @@ def interpret(analysis_in):
         else: summary["Else"].append(s)
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers"] = "1" #default person for Thm2a keep at end
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers"] = "2" #default person for Thm1  keep at end
-    if not inversion and summary["S"]["Pers"] == "3" and summary["O"]["Pers"] == "3": summary["O"]["Num"] = "Obv" #default obviation for direct themes. should only be necessary for VTA CNJ, which never overtly signals obviation, but kept general
+    if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "3": #lifting information that accrues to object in VTA cnjs/VAIO cnjs when other persons are not specified to subject #default person for cnj ThmDir  ThmInv keep at end
+        summary["S"]["Pers"] = "3"
+        summary["S"]["Num"] = summary["O"]["Num"] 
+    if not inversion and summary["S"]["Pers"] == "3" and summary["O"]["Pers"] == "3": 
+        summary["O"]["Num"] = "Obv" #default obviation for direct themes. should only be necessary for VTA CNJ, which never overtly signals obviation, but kept general
     #summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
     if inversion == True: summary["S"], summary["O"] = summary["O"], summary["S"]
     return summary
