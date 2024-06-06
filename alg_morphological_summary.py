@@ -90,6 +90,7 @@ def interpret(analysis_in):
             summary["O"]["Pers"] = "3"
             if s == "ThmInv": inversion = True
             if summary["Order"] == "Cnj" and s == "ThmInv": summary["O"]["Pers"] = "0" #will need to revise if 3 is encountered later
+            #elif summary["Order"] == "Cnj" and s == "ThmDir": summary["S"]["Pers"] = "3" #will need to revise if 3 is encountered later
         #} extracting theme sign information end
         #{getting number information for theme signs/objects, also finding inanimate subjects
         elif summary["O"]["Pers"] == "1" and s == "1Pl":  #this should only happen with thm1 (see below)
@@ -130,7 +131,7 @@ def interpret(analysis_in):
                 summary["S"]["Num"] = "Pl"
                 if summary["O"]["Pers"] == "0" and inversion == True and summary["Neg"] and summary["Order"] and analysis_in["suffixes"][0:1] == "3": #VTA CNJ THMINV NEG 2 PL 3(PL)
                     summary["O"]["Pers"] == "3"
-                    analysis_in["suffixes"].pop()
+                    analysis_in["suffixes"].pop(0) #I think we want to get rid of the next suffix, not the last one (given the 0:1 above)
             elif summary["S"]["Pers"] == "2" and s == "21Pl": summary["S"]["Num"] = "1Pl"
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == '3') and (s == "3" or s == "3Pl" or s == "3Obv"):
             summary["S"]["Pers"] = "3"
