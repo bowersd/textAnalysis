@@ -140,7 +140,7 @@ def interpret(analysis_in):
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == "0") and (s == "0" or s == "0Obv" or s == "0Pl"): 
             summary["S"]["Pers"] = "0"
             if s == "0Obv": summary["S"]["Num"] = "Obv"
-            elif s == "0Pl": summary["S"]["Num"] += "Pl" #NB: += used since 0'Pl is possible
+            elif s == "0Pl": summary["S"]["Num"] += "Pl" #NB: += used since 0ObvPl is possible
         elif (not summary["S"]["Pers"]) and s == "X": summary["S"]["Pers"] = "X"
         #}end person/number information from suffixes
         elif summary["Head"].startswith("N") and s == "Obv": summary["Periph"] = "Obv"
