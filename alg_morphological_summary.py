@@ -150,7 +150,7 @@ def interpret(analysis_in):
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers"] = "2" #default person for Thm1  keep at end
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "3": #lifting information that accrues to object in VTA cnjs/VAIO cnjs when other persons are not specified to subject #default person for cnj ThmDir  ThmInv keep at end
         summary["S"]["Pers"] = "3"
-        summary["S"]["Num"] = summary["O"]["Num"] 
+        summary["S"]["Num"] = summary["O"]["Num"] #had to split these up, because just assigning O to S was resulting in the obviation assignment below making the subject and object have obviation
     if not inversion and summary["S"]["Pers"] == "3" and summary["O"]["Pers"] == "3": 
         summary["O"]["Num"] = "Obv" #default obviation for direct themes. should only be necessary for VTA CNJ, which never overtly signals obviation, but kept general
     #summary["Else"] = [y[0] for x in analysis_in for y in analysis_in[x] if not y[1]]
