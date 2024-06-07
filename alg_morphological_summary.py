@@ -17,6 +17,7 @@ def formatted(interpreted):
     if interpreted["Order"]: out.append(interpreted["Order"])
     if interpreted["Neg"]: out.append(interpreted["Neg"])
     if interpreted["Mode"]: out.append(" ".join(interpreted["Mode"]))
+    if interpreted["Pcp"]["Pers"]: out.append(" ".join(["Pcp", "(Focus:{})".format(find_focus(**{x:interpreted[x] for x in ["S", "O", "Pcp"] if interpreted[x]["Pers"]}))]))
     if any(interpreted["Else"]): out.append(" ".join([x for x in interpreted["Else"] if x]))
     return " ".join(out)
 
