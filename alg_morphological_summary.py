@@ -22,7 +22,7 @@ def formatted(interpreted):
 
 
 def interpret(analysis_in):
-    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
+    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Num":"", "Foc":""}, "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
     inversion = False #if true, S/O will be inverted at end
     summary["S"]["Pers"] = analysis_in["prefix"][0]
     summary["DerivChain"] = ">".join([x for x in analysis_in["derivation"]])
@@ -101,9 +101,13 @@ def interpret(analysis_in):
             summary["S"]["Num"] = "Pl/2"
         elif summary["O"]["Pers"] == "2" and s == "21Pl": summary["O"]["Num"] = "1Pl"
         elif summary["O"]["Pers"] == "2" and s == "2Pl": summary["O"]["Num"] = "Pl"
-        elif summary["O"]["Pers"] == "3" and s == "3Obv": summary["O"]["Num"] = "Obv"
+        elif summary["O"]["Pers"] == "3" and s == "3Obv": 
+            print("setting obj number to obv")
+            summary["O"]["Num"] = "Obv"
         elif summary["O"]["Pers"] == "3" and s == "3ObvPlus": summary["O"]["Num"] = "ObvPlus"
-        elif summary["O"]["Pers"] == "3" and s == "3Pl": summary["O"]["Num"] = "Pl"
+        elif summary["O"]["Pers"] == "3" and s == "3Pl": 
+            print("setting obj number to pl")
+            summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "3" and (s == "0" or s == "0Pl"): #VTA indep (inverses), have overt suffs for inanimates, need to over ride the default 3 here
             summary["O"]["Pers"] = "0"
             if analysis_in["suffixes"][0:1] == ["0Pl"]: #there is a gratuitous +0 suffix in VAIO indeps with singular actors, so it is possible to encounter solitary 0 and 0Pl. if VTIs had a gratuitous +0 suffix, we would still need next elif, because there would be +0.*+0Pl strings
@@ -136,7 +140,9 @@ def interpret(analysis_in):
             summary["S"]["Pers"] = "3"
             if inversion == True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj":  summary["O"]["Pers"] = "3Obv/0" #VTA CNJ THMINV 3
             if s == "3Pl": summary["S"]["Num"] = "Pl"
-            elif s ==  "3Obv": summary["S"]["Num"] = "Obv"
+            elif s ==  "3Obv": 
+                print("setting subject number to obv")
+                summary["S"]["Num"] = "Obv"
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == "0") and (s == "0" or s == "0Obv" or s == "0Pl"): 
             summary["S"]["Pers"] = "0"
             if s == "0Obv": summary["S"]["Num"] = "Obv"
