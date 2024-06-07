@@ -22,7 +22,7 @@ def formatted(interpreted):
 
 
 def interpret(analysis_in):
-    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Num":"", "Foc":""}, "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
+    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":"", "Foc":""}, "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
     inversion = False #if true, S/O will be inverted at end
     summary["S"]["Pers"] = analysis_in["prefix"][0]
     summary["DerivChain"] = ">".join([x for x in analysis_in["derivation"]])
@@ -151,6 +151,11 @@ def interpret(analysis_in):
         #}end person/number information from suffixes
         elif summary["Head"].startswith("N") and s == "Obv": summary["Periph"] = "Obv"
         elif summary["Head"].startswith("N") and s in ["Loc", "Pl"]: summary["Periph"] = s
+        elif s == "Pcp":
+            assert analysis_in["suffixes"][0] in ["3Obv", "3Pl"]
+            summary["Pcp"]["Pers"] = analysis_in["suffixes"][0][0] 
+            summary["Pcp"]["Num"] = analysis_in["suffixes"][0][1:]
+            analysis_in["suffixes"].pop(0)
         else: summary["Else"].append(s)
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers"] = "1" #default person for Thm2a keep at end
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers"] = "2" #default person for Thm1  keep at end
