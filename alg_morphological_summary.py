@@ -108,11 +108,9 @@ def interpret(analysis_in):
         elif summary["O"]["Pers"] == "2" and s == "21Pl": summary["O"]["Num"] = "1Pl"
         elif summary["O"]["Pers"] == "2" and s == "2Pl": summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "3" and s == "3Obv": 
-            print("setting obj number to obv")
             summary["O"]["Num"] = "Obv"
         elif summary["O"]["Pers"] == "3" and s == "3ObvPlus": summary["O"]["Num"] = "ObvPlus"
         elif summary["O"]["Pers"] == "3" and s == "3Pl": 
-            print("setting obj number to pl")
             summary["O"]["Num"] = "Pl"
         elif summary["O"]["Pers"] == "3" and (s == "0" or s == "0Pl"): #VTA indep (inverses), have overt suffs for inanimates, need to over ride the default 3 here
             summary["O"]["Pers"] = "0"
@@ -146,9 +144,7 @@ def interpret(analysis_in):
             summary["S"]["Pers"] = "3"
             if inversion == True and summary["O"]["Pers"] == "0" and summary["Order"] == "Cnj":  summary["O"]["Pers"] = "3Obv/0" #VTA CNJ THMINV 3
             if s == "3Pl": summary["S"]["Num"] = "Pl"
-            elif s ==  "3Obv": 
-                print("setting subject number to obv")
-                summary["S"]["Num"] = "Obv"
+            elif s ==  "3Obv": summary["S"]["Num"] = "Obv"
         elif ((not summary["S"]["Pers"]) or summary["S"]["Pers"] == "0") and (s == "0" or s == "0Obv" or s == "0Pl"): 
             summary["S"]["Pers"] = "0"
             if s == "0Obv": summary["S"]["Num"] = "Obv"
@@ -161,7 +157,7 @@ def interpret(analysis_in):
             assert analysis_in["suffixes"][0] in ["3Obv", "3Pl"]
             summary["Pcp"]["Pers"] = analysis_in["suffixes"][0][0] 
             summary["Pcp"]["Num"] = analysis_in["suffixes"][0][1:]
-            analysis_in["suffixes"].pop(0)
+            analysis_in["suffixes"].pop(0) #need to vacuum up the focus information so it does not interfere with how subjects and objects are encoded
         else: summary["Else"].append(s)
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "2": summary["S"]["Pers"] = "1" #default person for Thm2a keep at end
     if (not summary["S"]["Pers"]) and summary["O"]["Pers"] == "1": summary["S"]["Pers"] = "2" #default person for Thm1  keep at end
