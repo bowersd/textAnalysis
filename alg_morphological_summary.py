@@ -20,9 +20,14 @@ def formatted(interpreted):
     if any(interpreted["Else"]): out.append(" ".join([x for x in interpreted["Else"] if x]))
     return " ".join(out)
 
+def find_focus(**kwargs):
+    x =  [k for k in {kw:kwargs[kw] for kw in kwargs if kw != "Pcp"} if kwargs[k] == kwargs['Pcp']]
+    assert len(x) < 2 #there better not be ambiguity!!
+    if x: return x[0]
+    return "".join([kwargs["Pcp"]["Pers"], kwargs["Pcp"]["Num"]])
 
 def interpret(analysis_in):
-    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":"", "Foc":""}, "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
+    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
     inversion = False #if true, S/O will be inverted at end
     summary["S"]["Pers"] = analysis_in["prefix"][0]
     summary["DerivChain"] = ">".join([x for x in analysis_in["derivation"]])
