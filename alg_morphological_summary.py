@@ -171,13 +171,13 @@ def interpret(analysis_in):
     return summary
 
 def analysis_dict(analysis_string):
-    postags = "\+VAI(O)?|\+VII|\+VTI|\+VTA|\+NA(D)?|\+NI(D)?|\+Conj|\+Interj|\+Num|\+Pron(\+NA|\+NI)|\+Ipc|\+Qnt|\+Adv|\+Else"
+    postags = r"\+VAI(O)?|\+VII|\+VTI|\+VTA|\+NA(D)?|\+NI(D)?|\+Conj|\+Interj|\+Num|\+Pron(\+NA|\+NI)|\+Ipc|\+Qnt|\+Adv|\+Else"
     adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitic":[]}
-    adict["clitic"] = [re.search("((?<=\+)dash\+Adv$)?", analysis_string)[0]]
-    analysis_string = re.sub("\+dash\+Adv", "", analysis_string) #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
+    adict["clitic"] = [re.search(r"((?<=\+)dash\+Adv$)?", analysis_string)[0]]
+    analysis_string = re.sub(r"\+dash\+Adv", "", analysis_string) #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
     adict["prefix"] = [re.search("(^[123X])?", analysis_string)[0]]
     if re.search("({0})(.*({0}))?".format(postags), analysis_string): adict["derivation"] = [x for x in re.search("({0})(.*({0}))?".format(postags), analysis_string)[0].split("+") if x] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-    adict["preforms"] = re.search("(((PV|PN|PA)[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
+    adict["preforms"] = re.search(r"(((PV|PN|PA)[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
     if re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+")))): adict["suffixes"] = [x for x in reversed(re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
     if not adict["derivation"]: return None
     return adict
@@ -198,9 +198,9 @@ def identify_targets(sep, *tag_strings):
     h = []
     for s in tag_strings:
         lr = s.split(sep) #sep can be <> for compiling list of relevant tags, or lemma for prepping an analysis for summary: NO! you need all tags for prepping a string, not just all unique tags
-        for pre in re.findall("[^\+]*\+", lr[0]):
+        for pre in re.findall(r"[^\+]*\+", lr[0]):
             if pre not in h: h.append(pre)
-        for suff in re.findall("\+[^\+]*", lr[1]):
+        for suff in re.findall(r"\+[^\+]*", lr[1]):
             if suff not in h: h.append(suff)
     return h
 
