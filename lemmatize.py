@@ -61,7 +61,7 @@ def interlinearize(fst_file, fst_format, pos_regex, gdict, drop_punct, text_in, 
             try: gloss = gdict[lem]
             except KeyError: 
                 gloss = "NODEF" 
-            abbr = re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")
+            abbr = re.search(r'(\w*\s*){0,4}',gloss)[0].lstrip(" 1")
             if lem: 
                 sub[0].append(w)
                 sub[1].append(p[w][best][0])
