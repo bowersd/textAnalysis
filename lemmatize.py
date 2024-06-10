@@ -333,6 +333,7 @@ if __name__ == "__main__":
             for x in residue: e_dict[x] = [(x+'+?', 0.00)]
             generation_dict = parse.parse_native(args.g, *[e_dict[x][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x])), pst.min_morphs, *pst.minimal_filter(*e_dict[x]))][0] for x in e_dict if not e_dict[x][0][0].endswith('+?')])
         fixed_errors = []
+        unfixed_errors = []
         for x in error_adjust:
             updates = {
                     "m_parse_lo": "",
@@ -362,6 +363,7 @@ if __name__ == "__main__":
             #    gloss = "?"
             updates["tiny_gloss"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **gdict))[0]
             if updates["m_parse_lo"]: fixed_errors.append((x, updates))
+            else: unfixed_errors.append(x)
         fix_cnt = {"hand":0, "error_model":0}
         for x in fixed_errors:
             #print(x[1])
@@ -393,6 +395,28 @@ if __name__ == "__main__":
         #            if j < len(padded[0])-1: fileOut.write('\n')
         #        fileOut.write(full['english'][locus[0][1]]+'\n')
         #        fileOut.write('\n')
+        with open('spot_checks_broad_analyzer_failures.txt', 'w') as fileOut:
+            cnt = 0
+            while cnt < 300:
+                cnt += 1
+                locus = unfixed_errors.pop(random.randrange(0, len(unfixed_errors)))
+                padded = pad([str(ind) for ind in range(len(full["chunked"][locus[1]]))], full["chunked"][locus[1]], full["edited"][locus[1]], full["m_parse_lo"][locus[1]], full["m_parse_hi"][locus[1]], full["lemmata"][locus[1]], full["tiny_gloss"][locus[1]])
+                fileOut.write("Sentence number:"+' '+str(locus[1])+'\n')
+                fileOut.write("Span of English sentence translation that most likely corresponds to unanalyzed word (if no good span found, mark with a hyphen (-)): "+'\n')
+                fileOut.write("Most likely dictionary lemmas for unanalyzed word (if none, mark with a hyphen (-); give no more than 3 lemmas; do no more than 10 searches!): "+'\n')
+                fileOut.write("Comments?: "+'\n')
+                fileOut.write("Target word, and column:\t"+full["chunked"][locus[1]][locus[2]]+'\t'+str(locus[2])+'\n')
+                i = 0
+                j = 0
+                while j < len(padded[0]):
+                    while j < len(padded[0]) and len(" ".join(padded[0][i:j])) < 100:
+                        j += 1
+                    for p in padded: 
+                        fileOut.write(" ".join(p[i:j])+'\n')
+                    i = j
+                    if j < len(padded[0])-1: fileOut.write('\n')
+                fileOut.write(full['english'][locus[1]]+'\n')
+                fileOut.write('\n')
         #with open("error_model_quick_check.txt", 'w') as error_check_file:
                 #padded = pad([str(ind) for ind in range(len(full["chunked"][x[0][1]]))], full["chunked"][x[0][1]], full["edited"][x[0][1]], full["m_parse_lo"][x[0][1]], full["m_parse_hi"][x[0][1]], full["lemmata"][x[0][1]], full["tiny_gloss"][x[0][1]])
                 #error_check_file.write("Sentence number:"+' '+str(x[0][1])+'\n')
