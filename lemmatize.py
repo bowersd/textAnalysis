@@ -129,7 +129,7 @@ def parseargs():
     parser.add_argument("-c", "--corrections", dest="c", nargs="?", help="name of corrections file", default="") #feed in hand-curated notes 
     parser.add_argument("-r", "--human-readable", dest="r", action="store_true", help="whether to write output as a txt file with user-friendly line wrapping")
     parser.add_argument("-d", "--drop-punct" , dest="d", action="store_true", help="whether to separate punctuation (false) or drop punctuation (true) when parsing")
-    parser.add_argument("-e", "--error-fst" , dest="e", nargs="?", help="name of analyzer composed with an error model", default="")
+    parser.add_argument("-e", "--error-fst" , dest="e", nargs="+", help="name of analyzer composed with an error model", default="")
     parser.add_argument("-g", "--generation-fst" , dest="g", nargs="?", help="name of generation transducer (tags -> forms)", default="")
     return parser.parse_args()
 
