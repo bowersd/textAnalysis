@@ -322,7 +322,15 @@ if __name__ == "__main__":
         #re-analyzing failed items with error model
         ###
         if args.e and args.g:
-            e_dict = parse.parse_native(args.e, *[x[0] for x in error_adjust])
+            e_dict = {}
+            residue = [x for x in error_adjust]
+            for e_model in args.e:
+                sub_e_dict = parse.parse_native(args.e, *[x[0] for x in residue])
+                residue = []
+                for x in sub_e_dict:
+                    print("key:", x)
+                    if not x[0].endswith('+?'): e_dict[x] = sub_e_dict[x]
+                    else: pass
             generation_dict = parse.parse_native(args.g, *[e_dict[x][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x])), pst.min_morphs, *pst.minimal_filter(*e_dict[x]))][0] for x in e_dict if not x[0].endswith('+?')])
         fixed_errors = []
         for x in error_adjust:
