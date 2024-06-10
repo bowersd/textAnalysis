@@ -4,7 +4,7 @@ for file in $1*; do #in * ... should that be this?-> $1/*
     if [ -f "$file" ];  then
         fname=`basename $file`
         echo $fname
-        python3 lemmatize.py $2 hfst ./languageSpecificAuxiliaryFiles/otw/pos_glosses/pos_regex.txt ./languageSpecificAuxiliaryFiles/otw/pos_glosses/copilot_otw2eng.txt $file foo -c ../../nishDocProcessing/debugging/textReviewFiles/notes/${fname/otweng/notes} -o ../../nishDocProcessing/debugging/textReviewFiles/interlinearizations/${fname/otweng.txt/analyzed.json} -d -e $3 -g $4
+        python3 lemmatize.py $2 hfst ./languageSpecificAuxiliaryFiles/otw/pos_glosses/pos_regex.txt ./languageSpecificAuxiliaryFiles/otw/pos_glosses/copilot_otw2eng.txt $file foo -c ../../nishDocProcessing/debugging/textReviewFiles/notes/${fname/otweng/notes} -o ../../nishDocProcessing/debugging/textReviewFiles/interlinearizations/${fname/otweng.txt/analyzed.json} -d -g $3 -e "${@:4}" 
     fi
 done
 
