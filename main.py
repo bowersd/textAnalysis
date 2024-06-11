@@ -352,11 +352,11 @@ async def _upload_file_and_analyze(e):
         n = 0
         while n < len(padded[0]):
             while n < len(padded[0]) and len(" ".join(padded[0][m:n])) < 100:
-                j += 1
+                n += 1
             for p in padded:
                 stitched.append(" ".join(p)+'\n')
-            i = j
-            if j < len(padded[0])-1: stitched.append('\n')
+            m = n
+            if n < len(padded[0])-1: stitched.append('\n')
         stitched.append("\n")
     stitched_bytes = "".join(stitched).encode('utf-8')
     #full_output_div = pyscript.document.querySelector("#output_upload")
