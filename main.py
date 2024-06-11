@@ -348,11 +348,15 @@ async def _upload_file_and_analyze(e):
             tinies.append("'"+gloss+"'")
         m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in analyzed[i]]
         padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i], m_parse_hi, lemmata, tinies)
-        stitched.append(" ".join(padded[0])+'\n')
-        stitched.append(" ".join(padded[1])+'\n')
-        stitched.append(" ".join(padded[2])+'\n')
-        stitched.append(" ".join(padded[3])+'\n')
-        stitched.append(" ".join(padded[4])+'\n')
+        m = 0
+        n = 0
+        while n < len(padded[0]):
+            while n < len(padded[0]) and len(" ".join(padded[0][m:n])) < 100:
+                j += 1
+            for p in padded:
+                stitched.append(" ".join(p)+'\n')
+            i = j
+            if j < len(padded[0])-1: stitched.append('\n')
         stitched.append("\n")
     stitched_bytes = "".join(stitched).encode('utf-8')
     #full_output_div = pyscript.document.querySelector("#output_upload")
