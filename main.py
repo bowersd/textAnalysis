@@ -41,11 +41,9 @@ def parse_pyhfst_error(transducer, error_model, *strings):
         if s not in h: 
             h[s] = []
             p = parser.lookup(s)
-            print(p)
             if not p: 
                 nu = []
                 e = error.lookup(s)
-                print(e)
                 for x in e:
                     y = parser.lookup(x[0])
                     if y: nu.extend([(z, x[1]) for z in y])
@@ -288,7 +286,6 @@ def analysis_dict(analysis_string):
 def parse_words(event):
     input_text = pyscript.document.querySelector("#freeNish")
     freeNish = input_text.value
-    print("using strict analyzer")
     analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
     m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
     m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
@@ -308,7 +305,6 @@ def parse_words(event):
 def parse_words_relaxed(event):
     input_text = pyscript.document.querySelector("#freeNishRelaxed")
     freeNish = input_text.value
-    print("using relaxed analyzer")
     analyzed = parse_pyhfst_error("./morphophonologyclitics_analyze.hfstol", "./errormodel.hfstol", *sep_punct(freeNish.lower(), True).split())
     #revised = [parse_pyhfst("./morphophonologyclitics_generate.hfstol", analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]) if analyzed[w][0][1] else analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]  for w in sep_punct(freeNish.lower(), True).split()]
     m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
