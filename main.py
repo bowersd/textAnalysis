@@ -45,6 +45,7 @@ def parse_pyhfst_error(transducer, error_model, *strings):
             if not p: 
                 nu = []
                 e = error.lookup(s)
+                print(e)
                 for x in e:
                     y = parser.lookup(x[0])
                     if y: nu.extend([(z, x[1]) for z in y])
