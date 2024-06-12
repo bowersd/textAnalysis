@@ -42,15 +42,19 @@ def parse_pyhfst_error(transducer, error_model, *strings):
             h[s] = []
             p = parser.lookup(s)
             if not p: 
-                nu = []
+                #nu = []
+                #e = error.lookup(s)
+                #for x in e:
+                #    y = parser.lookup(x[0])
+                #    if y: nu.extend([(z, x[1]) for z in y])
+                #    elif y and nu and x[1] <= min([z[1] for z in nu]): nu.extend([(z, x[1]) for z in y]) #assuming that pyhfst orders by weight as hfst does
+                #if not nu: h[s].append((s+"+?", 0.00))
+                #else: 
+                #    for n in nu: h[s].append((regex.sub("@.*?@", "" ,n[0]), n[1])) 
                 e = error.lookup(s)
-                for x in e:
-                    y = parser.lookup(x[0])
-                    if y: nu.extend([(z, x[1]) for z in y])
-                    elif y and nu and x[1] <= min([z[1] for z in nu]): nu.extend([(z, x[1]) for z in y]) #assuming that pyhfst orders by weight as hfst does
-                if not nu: h[s].append((s+"+?", 0.00))
+                if not e: h[s].append((s+"+?", 0.00))
                 else: 
-                    for n in nu: h[s].append((regex.sub("@.*?@", "" ,n[0]), n[1])) 
+                    for x in e: h[s].append((regex.sub("@.*?@", "" ,n[0]), n[1])) 
             else: 
                 for q in p: h[s].append((regex.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
@@ -305,7 +309,7 @@ def parse_words(event):
 def parse_words_relaxed(event):
     input_text = pyscript.document.querySelector("#freeNishRelaxed")
     freeNish = input_text.value
-    analyzed = parse_pyhfst_error("./morphophonologyclitics_analyze.hfstol", "./errormodel.hfstol", *sep_punct(freeNish.lower(), True).split())
+    analyzed = parse_pyhfst_error("./morphophonologyclitics_analyze.hfstol", "./morphophonologyclitics_analyze_relaxed_slim.hfstol", *sep_punct(freeNish.lower(), True).split())
     #revised = [parse_pyhfst("./morphophonologyclitics_generate.hfstol", analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]) if analyzed[w][0][1] else analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]  for w in sep_punct(freeNish.lower(), True).split()]
     m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
     m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
