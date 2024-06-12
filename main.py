@@ -354,7 +354,7 @@ async def _upload_file_and_analyze(e):
             while n < len(padded[0]) and len(" ".join(padded[0][m:n])) < 100:
                 n += 1
             for p in padded:
-                stitched.append(" ".join(p)+'\n')
+                stitched.append(" ".join(p[m:n])+'\n')
             m = n
             if n < len(padded[0])-1: stitched.append('\n')
         stitched.append("\n")
