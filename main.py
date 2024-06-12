@@ -54,7 +54,7 @@ def parse_pyhfst_error(transducer, error_model, *strings):
                 e = error.lookup(s)
                 if not e: h[s].append((s+"+?", 0.00))
                 else: 
-                    for x in e: h[s].append((regex.sub("@.*?@", "" ,n[0]), n[1])) 
+                    for x in e: h[s].append((regex.sub("@.*?@", "" ,x[0]), x[1])) 
             else: 
                 for q in p: h[s].append((regex.sub("@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
