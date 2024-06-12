@@ -7,6 +7,6 @@ packages = [
 [files] 
 "/textAnalysis/morphophonologyclitics_analyze.hfstol" = "./morphophonologyclitics_analyze.hfstol"
 #"/textAnalysis/morphophonologyclitics_generate.hfstol" = "./morphophonologyclitics_generate.hfstol"
-"/textAnalysis/errormodel.hfstol" = "./errormodel.hfstol"
+"/textAnalysis/morphophonologyclitics_analyze_relaxed_slim.hfstol" = "./morphophonologyclitics_analyze_relaxed_slim.hfstol"
 "/textAnalysis/languageSpecificAuxiliaryFiles/otw/pos_glosses/copilot_otw2eng.txt" = "./copilot_otw2eng.txt"
 "/textAnalysis/languageSpecificAuxiliaryFiles/otw/pos_glosses/pos_regex.txt" = "./pos_regex.txt"
