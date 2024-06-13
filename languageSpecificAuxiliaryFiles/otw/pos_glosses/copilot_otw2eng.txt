@@ -13852,3 +13852,8 @@ bgonezaan	heat
 bgonezhaan	cut
 myaawnaan	erect
 baagaakse+VTI	slam
+bzagwaaboo	thickener
+ndagkenmaa	check
+biindaabkinaan	put
+baasdaawngaak	flour
+baasaawngaak	flour
