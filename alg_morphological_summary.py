@@ -23,7 +23,7 @@ def formatted(interpreted):
 
 def find_focus(**kwargs):
     x =  [k for k in {kw:kwargs[kw] for kw in kwargs if kw != "Pcp"} if kwargs[k] == kwargs['Pcp']]
-    #assert len(x) < 2 #there better not be ambiguity!!
+    #if len(x) > 1: print(x) #there better not be ambiguity!!
     if x: return x[0]
     return "".join([kwargs["Pcp"]["Pers"], kwargs["Pcp"]["Num"]])
 
@@ -154,7 +154,6 @@ def interpret(analysis_in):
         elif summary["Head"].startswith("N") and s == "Obv": summary["Periph"] = "Obv"
         elif summary["Head"].startswith("N") and s in ["Loc", "Pl"]: summary["Periph"] = s
         elif s == "Pcp":
-            #assert analysis_in["suffixes"][0] in ["3Obv", "3Pl"]
             summary["Pcp"]["Pers"] = analysis_in["suffixes"][0][0] 
             summary["Pcp"]["Num"] = analysis_in["suffixes"][0][1:]
             analysis_in["suffixes"].pop(0) #need to vacuum up the focus information so it does not interfere with how subjects and objects are encoded
