@@ -13857,3 +13857,4 @@ ndagkenmaa	check
 biindaabkinaan	put
 baasdaawngaak	flour
 baasaawngaak	flour
+naakmat	wall
