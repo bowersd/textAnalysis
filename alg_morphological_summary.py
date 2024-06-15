@@ -1,5 +1,5 @@
-import yaml
-import re
+#import yaml
+import regex
 import sys
 
 import lemmatize as lem
@@ -172,12 +172,12 @@ def interpret(analysis_in):
 def analysis_dict(analysis_string):
     postags = r"\+VAI(O)?|\+VII|\+VTI|\+VTA|\+NA(D)?|\+NI(D)?|\+Conj|\+Interj|\+Num|\+Pron(\+NA|\+NI)|\+Ipc|\+Qnt|\+Adv|\+Else"
     adict = {"prefix":[], "derivation": [], "preforms":[], "suffixes":[], "clitic":[]}
-    adict["clitic"] = [re.search(r"((?<=\+)dash\+Adv$)?", analysis_string)[0]]
-    analysis_string = re.sub(r"\+dash\+Adv", "", analysis_string) #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
-    adict["prefix"] = [re.search("(^[123X])?", analysis_string)[0]]
-    if re.search("({0})(.*({0}))?".format(postags), analysis_string): adict["derivation"] = [x for x in re.search("({0})(.*({0}))?".format(postags), analysis_string)[0].split("+") if x] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-    adict["preforms"] = re.search(r"(((PV|PN|PA)[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
-    if re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+")))): adict["suffixes"] = [x for x in reversed(re.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
+    adict["clitic"] = [regex.search(r"((?<=\+)dash\+Adv$)?", analysis_string)[0]]
+    analysis_string = regex.sub(r"\+dash\+Adv", "", analysis_string) #this only needs to happen after clitics are checked and before derivation/suffixes are inspected, stuck with post-clitics
+    adict["prefix"] = [regex.search("(^[123X])?", analysis_string)[0]]
+    if regex.search("({0})(.*({0}))?".format(postags), analysis_string): adict["derivation"] = [x for x in regex.search("({0})(.*({0}))?".format(postags), analysis_string)[0].split("+") if x] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    adict["preforms"] = regex.search(r"(((PV|PN|PA)[^\+]*\+)|Redup\+)*", analysis_string)[0].split("+")
+    if regex.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+")))): adict["suffixes"] = [x for x in reversed(regex.search(".*?(?={})".format("|".join([x[2:]+x[:2] for x in postags.split("|")])), "+".join(reversed(analysis_string.split("+"))))[0].split("+"))]
     if not adict["derivation"]: return None
     return adict
 
@@ -197,9 +197,9 @@ def identify_targets(sep, *tag_strings):
     h = []
     for s in tag_strings:
         lr = s.split(sep) #sep can be <> for compiling list of relevant tags, or lemma for prepping an analysis for summary: NO! you need all tags for prepping a string, not just all unique tags
-        for pre in re.findall(r"[^\+]*\+", lr[0]):
+        for pre in regex.findall(r"[^\+]*\+", lr[0]):
             if pre not in h: h.append(pre)
-        for suff in re.findall(r"\+[^\+]*", lr[1]):
+        for suff in regex.findall(r"\+[^\+]*", lr[1]):
             if suff not in h: h.append(suff)
     return h
 
@@ -221,26 +221,26 @@ def format_summary(wheat, chaff, lemma, **mapping):
         print(lemma, "".join(insert_lexmarkers("+", "<>", *wheat)), "("+", ".join(chaff)+") BROKE SUMMARY TOOL")
 
 
-if __name__ == "__main__":
-    major_cnt = 0
-    major_cnt_fail = 0
-    minor_results = []
-    for x in sys.argv[1:]:
-        with open(x) as file_in:
-            minor_tags = yaml.load(file_in, Loader = yaml.FullLoader)
-            minor_cnt = 0
-            minor_cnt_fail = 0
-            for x in minor_tags:
-                for y in minor_tags[x]:
-                    for z in minor_tags[x][y]:
-                        minor_cnt += 1
-                        if formatted(interpret(analysis_dict(z))) != minor_tags[x][y][z]:
-                            minor_cnt_fail += 1
-                            print("in ", z)
-                            print("intended ", minor_tags[x][y][z])
-                            print("produced ", formatted(interpret(analysis_dict(z))))
-            minor_results.append("{0} results ... successes: {1}, failures: {2}, failure pct: {3}".format(str(y), str(minor_cnt-minor_cnt_fail), str(minor_cnt_fail), str(round(100*minor_cnt_fail/minor_cnt, 3))))
-        major_cnt += minor_cnt
-        major_cnt_fail += minor_cnt_fail
-    for x in minor_results: print(x)
-    print("Overall results ... successes: {0}, failures: {1}, failure pct: {2}".format(str(major_cnt-major_cnt_fail), str(major_cnt_fail), str(round(100*major_cnt_fail/major_cnt, 3))))
+#if __name__ == "__main__":
+#    major_cnt = 0
+#    major_cnt_fail = 0
+#    minor_results = []
+#    for x in sys.argv[1:]:
+#        with open(x) as file_in:
+#            minor_tags = yaml.load(file_in, Loader = yaml.FullLoader)
+#            minor_cnt = 0
+#            minor_cnt_fail = 0
+#            for x in minor_tags:
+#                for y in minor_tags[x]:
+#                    for z in minor_tags[x][y]:
+#                        minor_cnt += 1
+#                        if formatted(interpret(analysis_dict(z))) != minor_tags[x][y][z]:
+#                            minor_cnt_fail += 1
+#                            print("in ", z)
+#                            print("intended ", minor_tags[x][y][z])
+#                            print("produced ", formatted(interpret(analysis_dict(z))))
+#            minor_results.append("{0} results ... successes: {1}, failures: {2}, failure pct: {3}".format(str(y), str(minor_cnt-minor_cnt_fail), str(minor_cnt_fail), str(round(100*minor_cnt_fail/minor_cnt, 3))))
+#        major_cnt += minor_cnt
+#        major_cnt_fail += minor_cnt_fail
+#    for x in minor_results: print(x)
+#    print("Overall results ... successes: {0}, failures: {1}, failure pct: {2}".format(str(major_cnt-major_cnt_fail), str(major_cnt_fail), str(round(100*major_cnt_fail/major_cnt, 3))))
