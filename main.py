@@ -308,7 +308,7 @@ def parse_words(event):
     freeNish = input_text.value
     analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
     m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
-    m_parse_hi = ["'"+alg_morphological_summary.formatted(alg_morphological_summary.interpret(alg_morphological_summary.analysis_dict(x)))+"'" if alg_morphological_summary.analysis_dict(x) else "'?'" for x in m_parse_lo]
+    m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
     lemmata = [x if x else "?" for x in lemmatize(pos_regex, *m_parse_lo)]
     tinies = []
     for l in lemmata:
@@ -328,7 +328,7 @@ def parse_words_relaxed(event):
     analyzed = parse_pyhfst_error("./morphophonologyclitics_analyze.hfstol", "./morphophonologyclitics_analyze_relaxed_slim.hfstol", *sep_punct(freeNish.lower(), True).split())
     #revised = [parse_pyhfst("./morphophonologyclitics_generate.hfstol", analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]) if analyzed[w][0][1] else analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]  for w in sep_punct(freeNish.lower(), True).split()]
     m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
-    m_parse_hi = ["'"+alg_morphological_summary.formatted(alg_morphological_summary.interpret(alg_morphological_summary.analysis_dict(x)))+"'" if alg_morphological_summary.analysis_dict(x) else "'?'" for x in m_parse_lo]
+    m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
     lemmata = [x if x else "?" for x in lemmatize(pos_regex, *m_parse_lo)]
     tinies = []
     for l in lemmata:
@@ -366,7 +366,7 @@ async def _upload_file_and_analyze(e):
             except KeyError:
                 gloss = "?"
             tinies.append("'"+gloss+"'")
-        m_parse_hi = ["'"+alg_morphological_summary.formatted(alg_morphological_summary.interpret(alg_morphological_summary.analysis_dict(x)))+"'" if alg_morphological_summary.analysis_dict(x) else "'?'" for x in analyzed[i]]
+        m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in analyzed[i]]
         padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i], m_parse_hi, lemmata, tinies)
         m = 0
         n = 0
