@@ -87,6 +87,18 @@ def parse_text(drop_punct, *sentences):
         analysis.append(a)
     return analysis
 
+def parse_text_relaxed(drop_punct, *sentences):
+    analysis = []
+    analyses = parse_pyhfst_error("./morphophonologyclitics_analyze.hfstol", "./morphophonologyclitics_analyze_relaxed_slim.hfstol", *[x for s in sentences for x in sep_punct(s.lower(), drop_punct).split()])
+    for s in sentences:
+        a = []
+        for w in sep_punct(s.lower(), drop_punct).split():
+            best = analyses[w][disambiguate(min_morphs(*analyses[w]), min_morphs, *analyses[w])][0]
+            console.log(best)
+            a.append(best)
+        analysis.append(a)
+    return analysis
+
 def pad(*lists_of_strings):
     #lists must be same length!
     nu_lists = []
@@ -389,7 +401,7 @@ async def _upload_file_and_analyze(e):
     url = URL.createObjectURL(nu_js_file)
 
     hidden_link = document.createElement("a")
-    hidden_link.setAttribute("download", "analyzed_file.txt")
+    hidden_link.setAttribute("download", "analyzed_file_strict_analyzer.txt")
     hidden_link.setAttribute("href", url)
     hidden_link.click()
     #hidden_file.src = window.URL.createObjectURL(nu_js_file)
@@ -398,6 +410,63 @@ async def _upload_file_and_analyze(e):
     #new_txt = pyscript.document.createElement('txt')
     #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
     #pyscript.document.getElementById("output_upload").appendChild(new_txt)
+
+async def _upload_file_and_analyze_relaxed(e):
+    console.log("Attempted file upload: " + e.target.value)
+    file_list = e.target.files
+    first_item = file_list.item(0)
+
+    my_bytes: bytes = await get_bytes_from_file(first_item)
+    console.log(my_bytes[:10])
+    textIn = my_bytes.decode().split('\n')
+    console.log(textIn[0])
+    analyzed = parse_text_relaxed(True, *textIn)
+    console.log(analyzed[0])
+    console.log("I did it! (relaxed)")
+    stitched = []
+    for i in range(len(textIn)):
+        stitched.append(str(i)+'\n')
+        stitched.append(textIn[i]+'\n')
+        lemmata = [x if x else "?" for x in lemmatize(pos_regex, *analyzed[i])]
+        tinies = []
+        for l in lemmata:
+            try: gloss = gdict[l]
+            except KeyError:
+                gloss = "?"
+            tinies.append("'"+gloss+"'")
+        m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in analyzed[i]]
+        padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i], m_parse_hi, lemmata, tinies)
+        m = 0
+        n = 0
+        while n < len(padded[0]):
+            while n < len(padded[0]) and len(" ".join(padded[0][m:n])) < 100:
+                n += 1
+            for p in padded:
+                stitched.append(" ".join(p[m:n])+'\n')
+            m = n
+            if n < len(padded[0])-1: stitched.append('\n')
+        stitched.append("\n")
+    stitched_bytes = "".join(stitched).encode('utf-8')
+    #full_output_div = pyscript.document.querySelector("#output_upload")
+    #full_output_div.innerText = stitched_bytes
+    stitched_stream = io.BytesIO(stitched_bytes)
+    js_array = Uint8Array.new(len(stitched_bytes))
+    js_array.assign(stitched_stream.getbuffer())
+
+    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
+    url = URL.createObjectURL(nu_js_file)
+
+    hidden_link = document.createElement("a")
+    hidden_link.setAttribute("download", "analyzed_file_relaxed_analyzer.txt")
+    hidden_link.setAttribute("href", url)
+    hidden_link.click()
+    #hidden_file.src = window.URL.createObjectURL(nu_js_file)
+    #document.getElementById("output_upload").appendChild(hidden_file)
+
+    #new_txt = pyscript.document.createElement('txt')
+    #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
+    #pyscript.document.getElementById("output_upload").appendChild(new_txt)
+
 
 async def get_bytes_from_file(file):
     array_buf = await file.arrayBuffer()
@@ -408,6 +477,8 @@ pos_regex = "".join(readin("./pos_regex.txt"))
 upload_file = pyscript.document.getElementById("file-upload")
 add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
 
+upload_file = pyscript.document.getElementById("file-upload_relaxed")
+add_event_listener(upload_file, "change", _upload_file_and_analyze_relaxed) #maybe "click" instead of "change"
 #data = "this is some text" #"".join(stitched) 
 #def downloadFile(*args):
 #    encoded_data = data.encode('utf-8')
