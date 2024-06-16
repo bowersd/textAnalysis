@@ -39,11 +39,15 @@ layout: default
     <button py-click="main">Analyze Text</button>
     <script type="py" src="./main.py" config="./pyscript.toml" async></script>
     -->
-    <label for="Upload a File"></label>
+    <label for="Upload a File (strict)"></label>
     <input type="file" id="file-upload" accept=".txt">
     <div id="output_upload"></div>
     <script type="py" src="./main.py" config="./pyscript.toml" async></script>
 
+    <label for="Upload a File (relaxed)"></label>
+    <input type="file" id="file-upload_relaxed" accept=".txt">
+    <div id="output_upload"></div>
+    <script type="py" src="./main.py" config="./pyscript.toml" async></script>
     <!--
     <button id="download">Click to Download</button>
     <p>Download the analyzed text below:</p>
