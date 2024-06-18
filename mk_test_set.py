@@ -24,6 +24,11 @@ while i < len(initial_file):
         print( initial_file[i+1].split()[field])
         print( initial_file[i+2].split()[field])
         print( initial_file[i+3].split()[field])
+        #print the original sentence id (so you need to store that), prompt the user for the values to written, generated, analysis
+
+#write to json
+
+#write code to assess match between analyzer and json
 
     if all(data[x] for x in data): 
         h.append(data)
