@@ -1,3 +1,5 @@
+import json
+import json_encoder
 import sys
 import re
 
@@ -25,13 +27,15 @@ while i < len(initial_file):
         print( initial_file[i+2].split()[field])
         print( initial_file[i+3].split()[field])
         #print the original sentence id (so you need to store that), prompt the user for the values to written, generated, analysis
-
-#write to json
-
-#write code to assess match between analyzer and json
-
     if all(data[x] for x in data): 
         h.append(data)
         data = { "written" : "", "analysis" : "", "generated" : "", }
     i += 1
+
+
+#write to json
+with open(sys.argv[2], 'w') as fo:
+    json.dump(h, fo, cls = json_encoder.MyEncoder, separators = (", ", "\t"), indent = 1)
+
+#write code to assess match between analyzer and json
 
