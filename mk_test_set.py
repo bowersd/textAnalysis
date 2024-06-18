@@ -15,20 +15,21 @@ while i < len(initial_file):
         need_user = False
         target = ""
         sentence_id = re.search("[0-9]+", initial_file[i])[0]
-    if (initial_file[i].startswith("Terse translation") and re.search("y/n):.*[yYf]", initial_file[i])) or (initial_file[i+1].startswith("Grammatical analysis") and re.search("y/n):.*[yYf]", initial_file[i+1])): need_user = True
+    if (initial_file[i].startswith("Terse translation") and re.search(r"y/n\):.*[yYf]", initial_file[i])): need_user = True
+    if (initial_file[i].startswith("Grammatical analysis") and re.search(r"y/n\):.*[yYf]", initial_file[i])): need_user = True
     if initial_file[i].startswith("Target word"): 
         target = initial_file[i].split()[-1]
-    if target and target in initial_file[i] and all([re.match('[0-9]+', x) for x in initial_file[i].split()]) and not need_user:
+    if target and target in initial_file[i] and all([re.match('^[0-9]+$', x) for x in initial_file[i].split()]) and not need_user:
         field = [j for j in range(len(initial_file[i].split())) if initial_file[i].split()[j] == target][0]
         data["written"] = initial_file[i+1].split()[field]
         data["generated"] = initial_file[i+2].split()[field]
         data["analysis"] = initial_file[i+3].split()[field]
-    if target and target in initial_file[i] and all([re.match('[0-9]+', x) for x in initial_file[i].split()]) and need_user:
+    if target and target in initial_file[i] and all([re.match('^[0-9]+$', x) for x in initial_file[i].split()]) and need_user:
+        field = [j for j in range(len(initial_file[i].split())) if initial_file[i].split()[j] == target][0]
         print("written: ", initial_file[i+1].split()[field])
         print("generated: ", initial_file[i+2].split()[field])
         print("analysis: ", initial_file[i+3].split()[field])
         print("sentence id: ", sentence_id)
-        #print the original sentence id (so you need to store that), prompt the user for the values to written, generated, analysis
         data["written"] = initial_file[i+1].split()[field]
         data["generated"] = input("what should the generated string be? ")
         data["analysis"] = input("what should the analysis be? ")
@@ -40,7 +41,7 @@ while i < len(initial_file):
 
 #write to json
 with open(sys.argv[2], 'w') as fo:
-    json.dump(h, fo, cls = json_encoder.MyEncoder, separators = (", ", "\t"), indent = 1)
+    json.dump(h, fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent = 1)
 
 #write code to assess match between analyzer and json
 
