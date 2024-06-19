@@ -19,12 +19,12 @@ while i < len(initial_file):
     if (initial_file[i].startswith("Grammatical analysis") and re.search(r"y/n\):.*[yYf]", initial_file[i])): need_user = True
     if initial_file[i].startswith("Target word"): 
         target = initial_file[i].split()[-1]
-    if target and target in initial_file[i] and all([re.match('^[0-9]+$', x) for x in initial_file[i].split()]) and not need_user:
+    if target and target in initial_file[i].split() and all([re.match('^[0-9]+$', x) for x in initial_file[i].split()]) and not need_user:
         field = [j for j in range(len(initial_file[i].split())) if initial_file[i].split()[j] == target][0]
         data["written"] = initial_file[i+1].split()[field]
         data["generated"] = initial_file[i+2].split()[field]
         data["analysis"] = initial_file[i+3].split()[field]
-    if target and target in initial_file[i] and all([re.match('^[0-9]+$', x) for x in initial_file[i].split()]) and need_user:
+    if target and target in initial_file[i].split() and all([re.match('^[0-9]+$', x) for x in initial_file[i].split()]) and need_user:
         field = [j for j in range(len(initial_file[i].split())) if initial_file[i].split()[j] == target][0]
         print("written: ", initial_file[i+1].split()[field])
         print("generated: ", initial_file[i+2].split()[field])
