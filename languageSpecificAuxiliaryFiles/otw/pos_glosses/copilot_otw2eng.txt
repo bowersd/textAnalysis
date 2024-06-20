@@ -13858,3 +13858,4 @@ biindaabkinaan	put
 baasdaawngaak	flour
 baasaawngaak	flour
 naakmat	wall
+naanmizi	nervous
