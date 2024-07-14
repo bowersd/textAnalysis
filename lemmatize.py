@@ -187,7 +187,7 @@ def retrieve_glosses(*lemmata, **gloss_dict):
 def wrap_glosses(*glosses):
     return ["'"+g+"'" for g in glosses]
 
-def mk_correction_dict(filename):
+def mk_hand_mod_dict(filename):
     corrections = {} #corrections are original: [edited, analyzed]
     adjustments = {} #changes for white space (specified in notes files aka corrections)
     for correction in rw.readin(filename):
@@ -200,7 +200,7 @@ if __name__ == "__main__":
     args = parseargs()
     cdict = {} #corrections are original: [edited, analyzed]
     adjdict = {} #changes for white space (specified in notes files aka corrections)
-    if args.c: cdict, adjdict = mk_correction_dict(args.c)
+    if args.c: cdict, adjdict = mk_hand_mod_dict(args.c)
     if args.r: human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, args.d, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) 
     else:
         #for generating lemmata from rand files
