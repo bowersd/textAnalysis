@@ -187,15 +187,20 @@ def retrieve_glosses(*lemmata, **gloss_dict):
 def wrap_glosses(*glosses):
     return ["'"+g+"'" for g in glosses]
 
+def mk_correction_dict(filename):
+    corrections = {} #corrections are original: [edited, analyzed]
+    adjustments = {} #changes for white space (specified in notes files aka corrections)
+    for correction in rw.readin(filename):
+        cor = correction.split()
+        if any(["XX" in x for x in correction.split()]): adjustments[" ".join("XX".split(cor[2]))] = " ".join("XX".split(cor[3])) #this drops analysis of the splitting/joining ... all split/joined words should probably already get good analyses, or have them specified elsewhere in the corrections file
+        else: corrections[cor[2]] = cor[3:5]
+    return (corrections, adjustments)
+
 if __name__ == "__main__":
     args = parseargs()
     cdict = {} #corrections are original: [edited, analyzed]
-    adjustments = {} #changes for white space (specified in notes files aka corrections)
-    if args.c: 
-        for correction in rw.readin(args.c):
-            cor = correction.split()
-            if any(["XX" in x for x in correction.split()]): adjustments[" ".join("XX".split(cor[2]))] = " ".join("XX".split(cor[3])) #this drops analysis of the splitting/joining ... all split/joined words should probably already get good analyses, or have them specified elsewhere in the corrections file
-            else: cdict[cor[2]] = cor[3:5]
+    adjdict = {} #changes for white space (specified in notes files aka corrections)
+    if args.c: cdict, adjdict = mk_correction_dict(args.c)
     if args.r: human_readable(args.fst_file, args.fst_format, args.pos_regex, args.gloss_file, args.d, rw.burn_metadata(2, *rw.readin(args.text)), rw.readin(args.trans), args.o) 
     else:
         #for generating lemmata from rand files
@@ -247,8 +252,8 @@ if __name__ == "__main__":
                 full["speaker_text_sent_num"].append(data[2])
                 full["sentence"].append(data[3])
                 revised = data[3].lower()
-                for adj in adjustments: #words that need to be split in two or joined together
-                    if adj in revised: revised = re.sub(adj, adjustments[adj], revised)
+                for adj in adjdict: #words that need to be split in two or joined together
+                    if adj in revised: revised = re.sub(adj, adjdict[adj], revised)
                 tokenized = pre.sep_punct(revised, args.d).split()
                 full["chunked"].append(tokenized)
                 full["edited"].append(tokenized) #this gets rewritten below...
@@ -309,8 +314,9 @@ if __name__ == "__main__":
         #        locus = spots.pop(random.randrange(0, len(spots)))
         #        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
         #        fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
-        #        fileOut.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
-        #        fileOut.write("Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
+        #        fileOut.write("Is target word a loan/not in Nishnaabemwin? (y/n): "+'\n')
+        #        fileOut.write("IF TARGET IS LOAN = N: Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
+        #        fileOut.write("IF TERSE TRANSLATION MISMATCH = N: Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
         #        fileOut.write("Comments?: "+'\n')
         #        fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
         #        for p in padded: fileOut.write(" ".join(p)+'\n')
@@ -395,28 +401,28 @@ if __name__ == "__main__":
         #            if j < len(padded[0])-1: fileOut.write('\n')
         #        fileOut.write(full['english'][locus[0][1]]+'\n')
         #        fileOut.write('\n')
-        with open('spot_checks_broad_analyzer_failures.txt', 'w') as fileOut:
-            cnt = 0
-            while cnt < 300:
-                cnt += 1
-                locus = unfixed_errors.pop(random.randrange(0, len(unfixed_errors)))
-                padded = pad([str(ind) for ind in range(len(full["chunked"][locus[1]]))], full["chunked"][locus[1]], full["edited"][locus[1]], full["m_parse_lo"][locus[1]], full["m_parse_hi"][locus[1]], full["lemmata"][locus[1]], full["tiny_gloss"][locus[1]])
-                fileOut.write("Sentence number:"+' '+str(locus[1])+'\n')
-                fileOut.write("Span of English sentence translation that most likely corresponds to unanalyzed word (if no good span found, mark with a hyphen (-)): "+'\n')
-                fileOut.write("Most likely dictionary lemmas for unanalyzed word (if none, mark with a hyphen (-); give no more than 3 lemmas; do no more than 10 searches!): "+'\n')
-                fileOut.write("Comments?: "+'\n')
-                fileOut.write("Target word, and column:\t"+full["chunked"][locus[1]][locus[2]]+'\t'+str(locus[2])+'\n')
-                i = 0
-                j = 0
-                while j < len(padded[0]):
-                    while j < len(padded[0]) and len(" ".join(padded[0][i:j])) < 100:
-                        j += 1
-                    for p in padded: 
-                        fileOut.write(" ".join(p[i:j])+'\n')
-                    i = j
-                    if j < len(padded[0])-1: fileOut.write('\n')
-                fileOut.write(full['english'][locus[1]]+'\n')
-                fileOut.write('\n')
+        #with open('spot_checks_broad_analyzer_failures.txt', 'w') as fileOut:
+        #    cnt = 0
+        #    while cnt < 300:
+        #        cnt += 1
+        #        locus = unfixed_errors.pop(random.randrange(0, len(unfixed_errors)))
+        #        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[1]]))], full["chunked"][locus[1]], full["edited"][locus[1]], full["m_parse_lo"][locus[1]], full["m_parse_hi"][locus[1]], full["lemmata"][locus[1]], full["tiny_gloss"][locus[1]])
+        #        fileOut.write("Sentence number:"+' '+str(locus[1])+'\n')
+        #        fileOut.write("Span of English sentence translation that most likely corresponds to unanalyzed word (if no good span found, mark with a hyphen (-)): "+'\n')
+        #        fileOut.write("Most likely dictionary lemmas for unanalyzed word (if none, mark with a hyphen (-); give no more than 3 lemmas; do no more than 10 searches!): "+'\n')
+        #        fileOut.write("Comments?: "+'\n')
+        #        fileOut.write("Target word, and column:\t"+full["chunked"][locus[1]][locus[2]]+'\t'+str(locus[2])+'\n')
+        #        i = 0
+        #        j = 0
+        #        while j < len(padded[0]):
+        #            while j < len(padded[0]) and len(" ".join(padded[0][i:j])) < 100:
+        #                j += 1
+        #            for p in padded: 
+        #                fileOut.write(" ".join(p[i:j])+'\n')
+        #            i = j
+        #            if j < len(padded[0])-1: fileOut.write('\n')
+        #        fileOut.write(full['english'][locus[1]]+'\n')
+        #        fileOut.write('\n')
         #with open("error_model_quick_check.txt", 'w') as error_check_file:
                 #padded = pad([str(ind) for ind in range(len(full["chunked"][x[0][1]]))], full["chunked"][x[0][1]], full["edited"][x[0][1]], full["m_parse_lo"][x[0][1]], full["m_parse_hi"][x[0][1]], full["lemmata"][x[0][1]], full["tiny_gloss"][x[0][1]])
                 #error_check_file.write("Sentence number:"+' '+str(x[0][1])+'\n')
