@@ -196,6 +196,28 @@ def mk_hand_mod_dicts(filename):
         else: corrections[cor[2]] = cor[3:5]
     return (corrections, adjustments)
 
+def initialize(filename, field_names):
+    ###
+    #initialization with metadata (including translation), tokenized values 
+    ###
+    h = {name:[] for name in field_names}
+    with open(filename) as f:
+        for line in f:
+            data = line.strip().split('\t')
+            container["speakerID"].append(data[0])
+            container["speaker_text_num"].append(data[1])
+            container["speaker_text_sent_num"].append(data[2])
+            container["sentence"].append(data[3])
+            lowered = data[3].lower()
+            for adj in adjdict: #words that need to be split in two or joined together
+                if adj in lowered: lowered = re.sub(adj, adjdict[adj], lowered)
+            tokenized = pre.sep_punct(lowered, args.d).split()
+            container["chunked"].append(tokenized)
+            container["edited"].append(tokenized) #this gets rewritten below...
+            container["english"].append(data[4])
+            container["sentenceID"].append(data[5])
+    return h
+
 if __name__ == "__main__":
     args = parseargs()
     cdict = {} #corrections are original: [edited, analyzed]
@@ -225,32 +247,7 @@ if __name__ == "__main__":
                 #"fiero_orth", #new machine with UR as top, then run UR back down to SRs minus corb spelling
                 #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
                 ]
-        full = {name:[] for name in names}
-        with open(args.text) as f:
-            performance = [0, 0.01] #hits, misses
-            ###
-            #initialization with metadata (including translation), tokenized values 
-            ###
-            for line in f:
-                data = line.strip().split('\t')
-                full["speakerID"].append(data[0])
-                full["speaker_text_num"].append(data[1])
-                full["speaker_text_sent_num"].append(data[2])
-                full["sentence"].append(data[3])
-                revised = data[3].lower()
-                for adj in adjdict: #words that need to be split in two or joined together
-                    if adj in revised: revised = re.sub(adj, adjdict[adj], revised)
-                tokenized = pre.sep_punct(revised, args.d).split()
-                full["chunked"].append(tokenized)
-                full["edited"].append(tokenized) #this gets rewritten below...
-                full["english"].append(data[4])
-                full["sentenceID"].append(data[5])
-                #if args.a:
-                #    full["m_parse_lo"].append([])
-                #    for w in pre.sep_punct(data[3].lower(), args.d).split(): 
-                #        full["m_parse_lo"][-1].append(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0])
-                #        performance[int(analysis[w][pst.disambiguate(pst.min_morphs(*analysis[w]), pst.min_morphs, *analysis[w])][0].endswith("+?"))] += 1 
-            #print("hit rate:", str(round(performance[0]/(performance[1]+performance[0]), 3)*100)+"%", "hits:", performance[0], "misses:", performance[1])
+        full = initialize(args.text, names)
         ###
         #analysis and digestion of analysis
         ###
