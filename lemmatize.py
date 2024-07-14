@@ -196,7 +196,7 @@ def mk_hand_mod_dicts(filename):
         else: corrections[cor[2]] = cor[3:5]
     return (corrections, adjustments)
 
-def initialize(filename, field_names):
+def initialize(filename, *field_names):
     ###
     #initialization with metadata (including translation), tokenized values 
     ###
@@ -247,7 +247,7 @@ if __name__ == "__main__":
                 #"fiero_orth", #new machine with UR as top, then run UR back down to SRs minus corb spelling
                 #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
                 ]
-        full = initialize(args.text, names)
+        full = initialize(args.text, *names)
         ###
         #analysis and digestion of analysis
         ###
