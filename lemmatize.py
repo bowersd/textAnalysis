@@ -208,22 +208,6 @@ if __name__ == "__main__":
         #if args.a: 
         #    analysis = pst.parser_out_string_dict("\n".join(rw.readin(args.a)))
         #    #for a in sorted(analysis): print(a, analysis[a])
-        full = {
-                "sentenceID":[],
-                "speakerID":[],
-                "speaker_text_num":[],
-                "speaker_text_sent_num":[],
-                "sentence":[],
-                "chunked":[],
-                "edited":[],
-                "lemmata":[],
-                "m_parse_hi":[],
-                "m_parse_lo":[],
-                #"fiero_orth":[], #new machine with UR as top, then run UR back down to SRs minus corb spelling
-                #"unsyncopated":[], #new machine with UR as top, then run UR back down to SRs minus syncope
-                "tiny_gloss":[],
-                "english":[],
-                }
         names = [ #ordering for easy reading
                 "sentenceID",
                 "speakerID",
@@ -231,6 +215,7 @@ if __name__ == "__main__":
                 "speaker_text_sent_num",
                 "chunked",
                 "edited",
+                "analysis_src",
                 "m_parse_lo",
                 "m_parse_hi",
                 "lemmata",
@@ -240,6 +225,7 @@ if __name__ == "__main__":
                 #"fiero_orth", #new machine with UR as top, then run UR back down to SRs minus corb spelling
                 #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
                 ]
+        full = {name:[] for name in names}
         with open(args.text) as f:
             performance = [0, 0.01] #hits, misses
             ###
