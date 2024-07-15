@@ -252,6 +252,7 @@ if __name__ == "__main__":
         #analysis and digestion of analysis
         ###
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *[" ".join(x) for x in full["chunked"]])
+        full["analysis_src"] = [[args.fst_file if not y.endswith('+?') else '?' for y in x] for x in full["m_parse_lo"]]
         #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         innovation_adjust = []
