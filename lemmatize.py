@@ -293,23 +293,6 @@ if __name__ == "__main__":
             #    tinies.append("'"+gloss+"'")
             #    #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
             #full["tiny_gloss"].append(tinies)
-        #with open('spot_checks_narrow_analyzer_successes.txt', 'w') as fileOut:
-        #    cnt = 0
-        #    while cnt < 300:
-        #        cnt += 1
-        #        locus = spots.pop(random.randrange(0, len(spots)))
-        #        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
-        #        fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
-        #        fileOut.write("Is target word a loan/not in Nishnaabemwin? (y/n): "+'\n')
-        #        fileOut.write("IF TARGET IS LOAN = N: Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
-        #        fileOut.write("IF TERSE TRANSLATION MISMATCH = N: Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
-        #        fileOut.write("Comments?: "+'\n')
-        #        fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
-        #        for p in padded: fileOut.write(" ".join(p)+'\n')
-        #        fileOut.write(full['english'][locus[0]]+'\n')
-        #        fileOut.write('\n')
-
-
         ###
         #re-analyzing failed items with error model
         ###
@@ -365,28 +348,6 @@ if __name__ == "__main__":
                 else: 
                     #print(y, x[1][y])
                     fix_cnt[x[1][y]] += 1
-        #with open('spot_checks_broad_analyzer_successes.txt', 'w') as fileOut:
-        #    cnt = 0
-        #    while cnt < 300:
-        #        cnt += 1
-        #        locus = fixed_errors.pop(random.randrange(0, len(fixed_errors)))
-        #        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0][1]]))], full["chunked"][locus[0][1]], full["edited"][locus[0][1]], full["m_parse_lo"][locus[0][1]], full["m_parse_hi"][locus[0][1]], full["lemmata"][locus[0][1]], full["tiny_gloss"][locus[0][1]])
-        #        fileOut.write("Sentence number:"+' '+str(locus[0][1])+'\n')
-        #        fileOut.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
-        #        fileOut.write("Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
-        #        fileOut.write("Comments?: "+'\n')
-        #        fileOut.write("Target word, and column:\t"+full["chunked"][locus[0][1]][locus[0][2]]+'\t'+str(locus[0][2])+'\n')
-        #        i = 0
-        #        j = 0
-        #        while j < len(padded[0]):
-        #            while j < len(padded[0]) and len(" ".join(padded[0][i:j])) < 100:
-        #                j += 1
-        #            for p in padded: 
-        #                fileOut.write(" ".join(p[i:j])+'\n')
-        #            i = j
-        #            if j < len(padded[0])-1: fileOut.write('\n')
-        #        fileOut.write(full['english'][locus[0][1]]+'\n')
-        #        fileOut.write('\n')
         #with open('spot_checks_broad_analyzer_failures.txt', 'w') as fileOut:
         #    cnt = 0
         #    while cnt < 300:
@@ -462,7 +423,29 @@ if __name__ == "__main__":
                     locus = loci.pop(random.randrange(0, len(loci)))
                     while args.spot_check[1] not in full["analysis_src"][locus[0]][locus[1]]: locus = loci.pop(random.randrange(0, len(loci)))
                     with open('spot_checks_{0}_{1}_{2}'.format(s[0], s[1], date.today()), 'w') as fileOut:
-                        pass
+                        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
+                        fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
+                        fileOut.write("Is target word a loan/not in Nishnaabemwin? (y/n): "+'\n')
+                        if args.spot_check[1] == "unanalyzed":
+                            fileOut.write("IF TARGET IS LOAN = N: Span of English sentence translation that most likely corresponds to unanalyzed word (if no good span found, mark with a hyphen (-)): "+'\n')
+                            fileOut.write("IF TARGET IS LOAN = N: Most likely dictionary lemmas for unanalyzed word (if none, mark with a hyphen (-); give no more than 3 lemmas; do no more than 10 searches!): "+'\n')
+                        if args.spot_check[1] != "unanalyzed":
+                            fileOut.write("IF TARGET IS LOAN = N: Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
+                            fileOut.write("IF TERSE TRANSLATION MISMATCH = N: Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
+                        fileOut.write("Comments?: "+'\n')
+                        fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
+                        for p in padded: fileOut.write(" ".join(p)+'\n')
+                        start = 0
+                        stop = 0
+                        while stop < len(padded[0]):
+                            while stop < len(padded[0]) and len(" ".join(padded[0][start:stop])) < 100:
+                                stop += 1
+                            for p in padded: 
+                                fileOut.write(" ".join(p[start:stop])+'\n')
+                            start = stop
+                            if stop < len(padded[0])-1: fileOut.write('\n')
+                        fileOut.write(full['english'][locus[0]]+'\n')
+                        fileOut.write('\n')
         with open(args.o, 'w') as fo:
             json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
         ##atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
