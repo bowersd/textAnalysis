@@ -359,26 +359,7 @@ if __name__ == "__main__":
                 full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[2]][x[3]])))+"'"
                 full["edited"][x[2]][x[3]] = ccnj
         ###
-        #converting lists to padded/aligned strings
-        ###
-        for i in range(len(full["m_parse_lo"])):
-            padded = pad(full["chunked"][i], full["edited"][i], full["lemmata"][i], full["m_parse_hi"][i], full["tiny_gloss"][i], full["m_parse_lo"][i])
-            full["chunked"][i] = " ".join(padded[0])
-            full["edited"][i] = " ".join(padded[1])
-            full["lemmata"][i] = " ".join(padded[2])
-            full["m_parse_hi"][i] = " ".join(padded[3])
-            full["tiny_gloss"][i] = " ".join(padded[4])
-            full["m_parse_lo"][i] = " ".join(padded[5])
-        #    full["chunked"][i] = padded[0]
-        #    full["edited"][i] = padded[0]
-        #    full["lemmata"].append(padded[1])
-        #    full["m_parse_hi"].append(padded[2])
-        #    full["tiny_gloss"].append(padded[3])
-        #    full["m_parse_lo"][i] = padded[4]
-        #by_sent = [{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))]
-        #code.interact(local=locals())
-        ###
-        #write-out
+        #spot checks
         ###
         if args.spot_check:
             for s in args.spot_check:
@@ -412,6 +393,18 @@ if __name__ == "__main__":
                             if stop < len(padded[0])-1: fileOut.write('\n')
                         fileOut.write(full['english'][locus[0]]+'\n')
                         fileOut.write('\n')
+        ###
+        #write-out
+        ###
+        #converting lists to padded/aligned strings
+        for i in range(len(full["m_parse_lo"])):
+            padded = pad(full["chunked"][i], full["edited"][i], full["lemmata"][i], full["m_parse_hi"][i], full["tiny_gloss"][i], full["m_parse_lo"][i])
+            full["chunked"][i] = " ".join(padded[0])
+            full["edited"][i] = " ".join(padded[1])
+            full["lemmata"][i] = " ".join(padded[2])
+            full["m_parse_hi"][i] = " ".join(padded[3])
+            full["tiny_gloss"][i] = " ".join(padded[4])
+            full["m_parse_lo"][i] = " ".join(padded[5])
         with open(args.o, 'w') as fo:
             json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
         ##atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
