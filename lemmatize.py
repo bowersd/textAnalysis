@@ -346,8 +346,7 @@ if __name__ == "__main__":
                 if y == "analysis_src": fix_cnt[x[1][y][1]] += 1
                     #print(y, x[1][y])
         print("hand fixed these many misses: ", fix_cnt["hand"])
-        for model in args.e:
-            print("{} fixed these many misses: ".format(model), fix_cnt[model])
+        for model in args.e: print("{} fixed these many misses: ".format(model), fix_cnt[model])
         ###
         #checking if forms written with innovative affixes can be analyzed as if they were conservative
         ###
