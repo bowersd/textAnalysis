@@ -204,18 +204,18 @@ def initialize(filename, *field_names):
     with open(filename) as f:
         for line in f:
             data = line.strip().split('\t')
-            container["speakerID"].append(data[0])
-            container["speaker_text_num"].append(data[1])
-            container["speaker_text_sent_num"].append(data[2])
-            container["sentence"].append(data[3])
+            h["speakerID"].append(data[0])
+            h["speaker_text_num"].append(data[1])
+            h["speaker_text_sent_num"].append(data[2])
+            h["sentence"].append(data[3])
             lowered = data[3].lower()
             for adj in adjdict: #words that need to be split in two or joined together
                 if adj in lowered: lowered = re.sub(adj, adjdict[adj], lowered)
             tokenized = pre.sep_punct(lowered, args.d).split()
-            container["chunked"].append(tokenized)
-            container["edited"].append(tokenized) #this gets rewritten below...
-            container["english"].append(data[4])
-            container["sentenceID"].append(data[5])
+            h["chunked"].append(tokenized)
+            h["edited"].append(tokenized) #this gets rewritten below...
+            h["english"].append(data[4])
+            h["sentenceID"].append(data[5])
     return h
 
 if __name__ == "__main__":
