@@ -239,13 +239,13 @@ if __name__ == "__main__":
                 "speaker_text_sent_num",
                 "chunked",
                 "edited",
-                "analysis_src",
                 "m_parse_lo",
                 "m_parse_hi",
                 "lemmata",
                 "tiny_gloss",
                 "english",
                 "sentence",
+                "analysis_src",
                 #"fiero_orth", #new machine with UR as top, then run UR back down to SRs minus corb spelling
                 #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
                 ]
