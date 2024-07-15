@@ -366,7 +366,11 @@ if __name__ == "__main__":
                 cnt = 0
                 loci = [(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
                 if s[0] == "all" and s[1] == "unanalyzed": 
-                    with open('spot_checks_{0}_{1}_{2}_reversed.csv'.format(s[0], s[1], date.today()), 'w') as fileOut: pass
+                    h = []
+                    for locus in loci:
+                        if full["analysis_src"][locus[0]][locus[1]] == "unanalyzed": h.append((full["chunked"][locus[0]][locus[1]], reversed(full["chunked"][locus[0]][locus[1]]), locus))
+                    with open('spot_checks_{0}_{1}_{2}_reversed.csv'.format(s[0], s[1], date.today()), 'w') as fileOut: 
+                        pass
                     with open('spot_checks_{0}_{1}_{2}.csv'.format(s[0], s[1], date.today()), 'w') as fileOut:
                         pass
                 elif s[0] == "all" and s[1] != "unanalyzed": print("full listing of analyzed forms is probably not informative, and is not currently supported")
