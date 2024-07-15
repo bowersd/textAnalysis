@@ -248,13 +248,13 @@ if __name__ == "__main__":
                 #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
                 ]
         full = initialize(args.text, *names)
-        ###
-        #analysis and digestion of analysis
-        ###
+        gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *[" ".join(x) for x in full["chunked"]])
         full["analysis_src"] = [[args.fst_file if not y.endswith('+?') else '?' for y in x] for x in full["m_parse_lo"]]
+        ###
+        #revisions to initial analysis
+        ###
         #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
-        gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         innovation_adjust = []
         error_adjust = []
         spots = [] #for spot checks
