@@ -365,34 +365,40 @@ if __name__ == "__main__":
             for s in args.spot_check:
                 cnt = 0
                 loci = [(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
-                with open('spot_checks_{0}_{1}_{2}'.format(s[0], s[1], date.today()), 'a') as fileOut:
-                    while cnt < int(s[0]) and loci:
-                        cnt += 1
-                        locus = loci.pop(random.randrange(0, len(loci)))
-                        while args.spot_check[1] (not in full["analysis_src"][locus[0]][locus[1]]) and loci: locus = loci.pop(random.randrange(0, len(loci)))
-                        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
-                        fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
-                        fileOut.write("Is target word a loan/not in Nishnaabemwin? (y/n): "+'\n')
-                        if args.spot_check[1] == "unanalyzed":
-                            fileOut.write("IF TARGET IS LOAN = N: Span of English sentence translation that most likely corresponds to unanalyzed word (if no good span found, mark with a hyphen (-)): "+'\n')
-                            fileOut.write("IF TARGET IS LOAN = N: Most likely dictionary lemmas for unanalyzed word (if none, mark with a hyphen (-); give no more than 3 lemmas; do no more than 10 searches!): "+'\n')
-                        if args.spot_check[1] != "unanalyzed":
-                            fileOut.write("IF TARGET IS LOAN = N: Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
-                            fileOut.write("IF TERSE TRANSLATION MISMATCH = N: Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
-                        fileOut.write("Comments?: "+'\n')
-                        fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
-                        for p in padded: fileOut.write(" ".join(p)+'\n')
-                        start = 0
-                        stop = 0
-                        while stop < len(padded[0]):
-                            while stop < len(padded[0]) and len(" ".join(padded[0][start:stop])) < 100:
-                                stop += 1
-                            for p in padded: 
-                                fileOut.write(" ".join(p[start:stop])+'\n')
-                            start = stop
-                            if stop < len(padded[0])-1: fileOut.write('\n')
-                        fileOut.write(full['english'][locus[0]]+'\n')
-                        fileOut.write('\n')
+                if s[0] == "all" and s[1] == "unanalyzed": 
+                    with open('spot_checks_{0}_{1}_{2}_reversed.txt'.format(s[0], s[1], date.today()), 'w') as fileOut:
+                    with open('spot_checks_{0}_{1}_{2}'.format(s[0], s[1], date.today()), 'w') as fileOut:
+                        pass
+                elif s[0] == "all" and s[1] != "unanalyzed": print("full listing of analyzed forms is probably not informative, and is not currently supported")
+                else:
+                    with open('spot_checks_{0}_{1}_{2}'.format(s[0], s[1], date.today()), 'a') as fileOut:
+                        while cnt < int(s[0]) and loci:
+                            cnt += 1
+                            locus = loci.pop(random.randrange(0, len(loci)))
+                            while args.spot_check[1] (not in full["analysis_src"][locus[0]][locus[1]]) and loci: locus = loci.pop(random.randrange(0, len(loci)))
+                            padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
+                            fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
+                            fileOut.write("Is target word a loan/not in Nishnaabemwin? (y/n): "+'\n')
+                            if args.spot_check[1] == "unanalyzed":
+                                fileOut.write("IF TARGET IS LOAN = N: Span of English sentence translation that most likely corresponds to unanalyzed word (if no good span found, mark with a hyphen (-)): "+'\n')
+                                fileOut.write("IF TARGET IS LOAN = N: Most likely dictionary lemmas for unanalyzed word (if none, mark with a hyphen (-); give no more than 3 lemmas; do no more than 10 searches!): "+'\n')
+                            if args.spot_check[1] != "unanalyzed":
+                                fileOut.write("IF TARGET IS LOAN = N: Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
+                                fileOut.write("IF TERSE TRANSLATION MISMATCH = N: Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
+                            fileOut.write("Comments?: "+'\n')
+                            fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
+                            for p in padded: fileOut.write(" ".join(p)+'\n')
+                            start = 0
+                            stop = 0
+                            while stop < len(padded[0]):
+                                while stop < len(padded[0]) and len(" ".join(padded[0][start:stop])) < 100:
+                                    stop += 1
+                                for p in padded: 
+                                    fileOut.write(" ".join(p[start:stop])+'\n')
+                                start = stop
+                                if stop < len(padded[0])-1: fileOut.write('\n')
+                            fileOut.write(full['english'][locus[0]]+'\n')
+                            fileOut.write('\n')
         ###
         #write-out
         ###
