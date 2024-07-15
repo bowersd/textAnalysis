@@ -452,6 +452,14 @@ if __name__ == "__main__":
         ###
         #write-out
         ###
+        if args.spot_check:
+            for s in args.spot_check:
+                cnt = 0
+                loci = [(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
+                while cnt < int(s[0]):
+                    cnt += 1
+                    locus = loci.pop(random.randrange(0, len(loci)))
+                    while args.spot_check[1] not in full["analysis_src"]: locus = loci.pop(random.randrange(0, len(loci)))
         with open(args.o, 'w') as fo:
             json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
         ##atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
