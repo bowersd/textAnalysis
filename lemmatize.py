@@ -366,13 +366,27 @@ if __name__ == "__main__":
                 cnt = 0
                 loci = [(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
                 if s[0] == "all" and s[1] == "unanalyzed": 
-                    h = []
+                    errors = []
                     for locus in loci:
-                        if full["analysis_src"][locus[0]][locus[1]] == "unanalyzed": h.append((full["chunked"][locus[0]][locus[1]], reversed(full["chunked"][locus[0]][locus[1]]), locus))
+                        if full["analysis_src"][locus[0]][locus[1]] == "unanalyzed": errors.append((full["chunked"][locus[0]][locus[1]], reversed(full["chunked"][locus[0]][locus[1]]), locus))
                     with open('spot_checks_{0}_{1}_{2}_reversed.csv'.format(s[0], s[1], date.today()), 'w') as fileOut: 
-                        pass
+                        for e in sorted(errors, key=lambda x: x[1]):
+                            fileOut.write("\t".join( 
+                                                    [e[0], 
+                                                    " ".join([full["tiny_gloss"][e[2][0]][i] if i != e[2][1] else ">>"+full["tiny_gloss"][e[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][e[2][0]]]))), 
+                                                    " ".join([full["chunked"][e[2][0]][i] if i != e[2][1] else ">>"+full["chunked"][e[2][0]][i]+"<<" for i in range(len(full["chunked"][e[2][0]]]))), 
+                                                    full["english"][e[2][0]],
+                                                    e[2][0],
+                                                    e[2][1]]))
                     with open('spot_checks_{0}_{1}_{2}.csv'.format(s[0], s[1], date.today()), 'w') as fileOut:
-                        pass
+                        for e in sorted(errors):
+                            fileOut.write("\t".join( 
+                                                    [e[0], 
+                                                    " ".join([full["tiny_gloss"][e[2][0]][i] if i != e[2][1] else ">>"+full["tiny_gloss"][e[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][e[2][0]]]))), 
+                                                    " ".join([full["chunked"][e[2][0]][i] if i != e[2][1] else ">>"+full["chunked"][e[2][0]][i]+"<<" for i in range(len(full["chunked"][e[2][0]]]))), 
+                                                    full["english"][e[2][0]],
+                                                    e[2][0],
+                                                    e[2][1]]))
                 elif s[0] == "all" and s[1] != "unanalyzed": print("full listing of analyzed forms is probably not informative, and is not currently supported")
                 else:
                     with open('spot_checks_{0}_{1}_{2}.txt'.format(s[0], s[1], date.today()), 'a') as fileOut:
