@@ -131,6 +131,7 @@ def parseargs():
     parser.add_argument("-d", "--drop-punct" , dest="d", action="store_true", help="whether to separate punctuation (false) or drop punctuation (true) when parsing")
     parser.add_argument("-e", "--error-fst" , dest="e", nargs="+", help="name of analyzer composed with an error model", default="")
     parser.add_argument("-g", "--generation-fst" , dest="g", nargs="?", help="name of generation transducer (tags -> forms)", default="")
+    parser.add_argument("--spot-check", dest="spot_check", nargs=2, help="number of spot checks to perform and which data to perform it on (analyzed, unanalyzed, specific analysis source)", default="")
     return parser.parse_args()
 
 def human_readable(fst_file, fst_format, regex_file, gloss_file, drop_punct, text, trans, output):
