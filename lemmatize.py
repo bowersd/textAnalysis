@@ -259,14 +259,12 @@ if __name__ == "__main__":
         #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         innovation_adjust = []
         error_adjust = []
-        spots = [] #for spot checks
         for i in range(len(full["m_parse_lo"])): 
             full["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])]) #filter on "if x" to leave out un analyzed forms
             full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             edited = []
             for j in range(len(full["chunked"][i])):
-                if not full["m_parse_lo"][i][j].endswith('+?'): spots.append((i,j)) #collecting indices for spot checks
                 if full["m_parse_lo"][i][j].endswith('+?'): error_adjust.append((full["chunked"][i][j], i, j))
                 if full["chunked"][i][j] in cdict: 
                     edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
@@ -348,38 +346,6 @@ if __name__ == "__main__":
                 else: 
                     #print(y, x[1][y])
                     fix_cnt[x[1][y]] += 1
-        #with open('spot_checks_broad_analyzer_failures.txt', 'w') as fileOut:
-        #    cnt = 0
-        #    while cnt < 300:
-        #        cnt += 1
-        #        locus = unfixed_errors.pop(random.randrange(0, len(unfixed_errors)))
-        #        padded = pad([str(ind) for ind in range(len(full["chunked"][locus[1]]))], full["chunked"][locus[1]], full["edited"][locus[1]], full["m_parse_lo"][locus[1]], full["m_parse_hi"][locus[1]], full["lemmata"][locus[1]], full["tiny_gloss"][locus[1]])
-        #        fileOut.write("Sentence number:"+' '+str(locus[1])+'\n')
-        #        fileOut.write("Span of English sentence translation that most likely corresponds to unanalyzed word (if no good span found, mark with a hyphen (-)): "+'\n')
-        #        fileOut.write("Most likely dictionary lemmas for unanalyzed word (if none, mark with a hyphen (-); give no more than 3 lemmas; do no more than 10 searches!): "+'\n')
-        #        fileOut.write("Comments?: "+'\n')
-        #        fileOut.write("Target word, and column:\t"+full["chunked"][locus[1]][locus[2]]+'\t'+str(locus[2])+'\n')
-        #        i = 0
-        #        j = 0
-        #        while j < len(padded[0]):
-        #            while j < len(padded[0]) and len(" ".join(padded[0][i:j])) < 100:
-        #                j += 1
-        #            for p in padded: 
-        #                fileOut.write(" ".join(p[i:j])+'\n')
-        #            i = j
-        #            if j < len(padded[0])-1: fileOut.write('\n')
-        #        fileOut.write(full['english'][locus[1]]+'\n')
-        #        fileOut.write('\n')
-        #with open("error_model_quick_check.txt", 'w') as error_check_file:
-                #padded = pad([str(ind) for ind in range(len(full["chunked"][x[0][1]]))], full["chunked"][x[0][1]], full["edited"][x[0][1]], full["m_parse_lo"][x[0][1]], full["m_parse_hi"][x[0][1]], full["lemmata"][x[0][1]], full["tiny_gloss"][x[0][1]])
-                #error_check_file.write("Sentence number:"+' '+str(x[0][1])+'\n')
-                #error_check_file.write("Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
-                #error_check_file.write("Terse translation of any other word grossly mismatches English sentence translation (give column number(s)): "+'\n')
-                #error_check_file.write("Comments?: "+'\n')
-                #error_check_file.write("Target word, and column:\t"+x[0][0]+'\t'+str(x[0][2])+'\n')
-                #for p in padded: error_check_file.write(" ".join(p)+'\n')
-                #error_check_file.write(full['english'][x[0][1]]+'\n')
-                #error_check_file.write('\n')
         print("hand fixed these many misses: ", fix_cnt["hand"])
         print("mach fixed these many misses: ", fix_cnt["error_model"])
         ###
@@ -418,11 +384,11 @@ if __name__ == "__main__":
             for s in args.spot_check:
                 cnt = 0
                 loci = [(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
-                while cnt < int(s[0]):
-                    cnt += 1
-                    locus = loci.pop(random.randrange(0, len(loci)))
-                    while args.spot_check[1] not in full["analysis_src"][locus[0]][locus[1]]: locus = loci.pop(random.randrange(0, len(loci)))
-                    with open('spot_checks_{0}_{1}_{2}'.format(s[0], s[1], date.today()), 'w') as fileOut:
+                with open('spot_checks_{0}_{1}_{2}'.format(s[0], s[1], date.today()), 'a') as fileOut:
+                    while cnt < int(s[0]) and loci:
+                        cnt += 1
+                        locus = loci.pop(random.randrange(0, len(loci)))
+                        while args.spot_check[1] (not in full["analysis_src"][locus[0]][locus[1]]) and loci: locus = loci.pop(random.randrange(0, len(loci)))
                         padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
                         fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
                         fileOut.write("Is target word a loan/not in Nishnaabemwin? (y/n): "+'\n')
