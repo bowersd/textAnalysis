@@ -2,6 +2,7 @@ import code
 import os
 import argparse
 import re
+from datetime import date
 import json
 import json_encoder
 import parse
@@ -251,7 +252,7 @@ if __name__ == "__main__":
         full = initialize(args.text, *names)
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *[" ".join(x) for x in full["chunked"]])
-        full["analysis_src"] = [[["analyzed", args.fst_file] if not y.endswith('+?') else ["unanalyzed"] for y in x] for x in full["m_parse_lo"]]
+        full["analysis_src"] = [[["analyzed", args.fst_file] if not y.endswith("+?") else ["unanalyzed"] for y in x] for x in full["m_parse_lo"]]
         ###
         #revisions to initial analysis
         ###
@@ -459,7 +460,9 @@ if __name__ == "__main__":
                 while cnt < int(s[0]):
                     cnt += 1
                     locus = loci.pop(random.randrange(0, len(loci)))
-                    while args.spot_check[1] not in full["analysis_src"]: locus = loci.pop(random.randrange(0, len(loci)))
+                    while args.spot_check[1] not in full["analysis_src"][locus[0]][locus[1]]: locus = loci.pop(random.randrange(0, len(loci)))
+                    with open('spot_checks_{0}_{1}_{2}'.format(s[0], s[1], date.today()), 'w') as fileOut:
+                        pass
         with open(args.o, 'w') as fo:
             json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
         ##atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
