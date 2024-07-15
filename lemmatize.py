@@ -251,7 +251,7 @@ if __name__ == "__main__":
         full = initialize(args.text, *names)
         gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *[" ".join(x) for x in full["chunked"]])
-        full["analysis_src"] = [[args.fst_file if not y.endswith('+?') else '?' for y in x] for x in full["m_parse_lo"]]
+        full["analysis_src"] = [[["analyzed", args.fst_file] if not y.endswith('+?') else ["unanalyzed"] for y in x] for x in full["m_parse_lo"]]
         ###
         #revisions to initial analysis
         ###
