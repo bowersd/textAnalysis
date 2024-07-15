@@ -266,7 +266,7 @@ if __name__ == "__main__":
             edited = []
             for j in range(len(full["chunked"][i])):
                 if full["m_parse_lo"][i][j].endswith('+?'): error_adjust.append((full["chunked"][i][j], i, j))
-                if full["chunked"][i][j] in cdict: 
+                if full["chunked"][i][j] in cdict: #manual over ride 1
                     edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                 elif full["chunked"][i][j].startswith("e-"):
                     edited.append(full["chunked"][i][j])
@@ -301,19 +301,18 @@ if __name__ == "__main__":
                 sub_e_dict = parse.parse_native(e_model, *residue)
                 residue = []
                 for x in sub_e_dict:
-                    if not sub_e_dict[x][0][0].endswith('+?'): e_dict[x] = sub_e_dict[x]
+                    if not sub_e_dict[x][0][0].endswith('+?'): e_dict[x] = [e_model, sub_e_dict[x]]
                     else: residue.append(x)
-            for x in residue: e_dict[x] = [(x+'+?', 0.00)]
-            generation_dict = parse.parse_native(args.g, *[e_dict[x][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x])), pst.min_morphs, *pst.minimal_filter(*e_dict[x]))][0] for x in e_dict if not e_dict[x][0][0].endswith('+?')])
+            #for x in residue: e_dict[x] = ["unanalyzed", [(x+'+?', 0.00)]] #formatted like a successful analysis, but none of this information is actually retrieved below, so it makes sense to just use a default specification during the initial parse, and overwrite with the successes
+            generation_dict = parse.parse_native(args.g, *[e_dict[x][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x][1])), pst.min_morphs, *pst.minimal_filter(*e_dict[x][1]))][0] for x in e_dict])
         fixed_errors = []
-        unfixed_errors = []
         for x in error_adjust:
             updates = {
                     "m_parse_lo": "",
                     "m_parse_hi":"",
                     "edited": "",
                     "lemmata": "",
-                    "source": "",
+                    "analysis_src": "",
                     "tiny_gloss":""
                     }
             if x[0] in cdict: #corrections are {original: [edited, analyzed]}
@@ -322,32 +321,33 @@ if __name__ == "__main__":
                 updates["m_parse_hi"]="'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(best)))+"'"
                 updates["edited"]= cdict[x[0]][0]
                 updates["lemmata"]= lemmatize(pos_regex, best)[0]
-                updates["source"]= "hand"
+                updates["analysis_src"]= ["analyzed", "hand"]
+                if x[0] in e_dict and cdict[x[0]][1] != e_dict[x[0]][1][0][0]: print("{0} error analysis {1} manually overwritten by {2}".format(x[0], e_dict[x[0]][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x[0]])), pst.min_morphs, *pst.minimal_filter(*e_dict[x[0]][1]))][0], best)) #AS OF 7/15/2024 MANUAL OVERRIDE OF ANALYSIS ONLY HAPPENS FOR ERROR MODEL, NOT BASE MODEL (EDITED FORM SHOULD ALSO JUST GET RE-WRITTEN BY DEFAULT TOO)
             elif args.e and args.g:
-                if not e_dict[x[0]][0][0].endswith('+?'): 
-                    best =  e_dict[x[0]][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x[0]])), pst.min_morphs, *pst.minimal_filter(*e_dict[x[0]]))][0]
+                #if not e_dict[x[0]][1][0][0].endswith('+?'): 
+                if x[0] in e_dict: 
+                    best =  e_dict[x[0]][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x[0]][1])), pst.min_morphs, *pst.minimal_filter(*e_dict[x[0]][1]))][0]
                     updates["m_parse_lo"]= best
                     updates["m_parse_hi"]="'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(best)))+"'"
                     updates["edited"]= generation_dict[best][0][0]
                     updates["lemmata"]= lemmatize(pos_regex, best)[0]
-                    updates["source"]= "error_model"
+                    updates["analysis_src"]= ["analyzed", e_dict[x[0]][0]]
             #try: gloss = gdict[updates["lemmata"]]
             #except KeyError:
             #    gloss = "?"
             updates["tiny_gloss"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **gdict))[0]
             if updates["m_parse_lo"]: fixed_errors.append((x, updates))
-            else: unfixed_errors.append(x)
-        fix_cnt = {"hand":0, "error_model":0}
+        fix_cnt = {model:0 for model in args.e}
+        fix_cnt["hand"] = 0
         for x in fixed_errors:
             #print(x[1])
             for y in x[1]:
-                if y != "source":
-                    full[y][x[0][1]][x[0][2]] = x[1][y]
-                else: 
+                full[y][x[0][1]][x[0][2]] = x[1][y]
+                if y == "analysis_src": fix_cnt[x[1][y][1]] += 1
                     #print(y, x[1][y])
-                    fix_cnt[x[1][y]] += 1
         print("hand fixed these many misses: ", fix_cnt["hand"])
-        print("mach fixed these many misses: ", fix_cnt["error_model"])
+        for model in args.e:
+            print("{} fixed these many misses: ".format(model), fix_cnt[model])
         ###
         #checking if forms written with innovative affixes can be analyzed as if they were conservative
         ###
