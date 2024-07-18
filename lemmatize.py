@@ -322,8 +322,7 @@ if __name__ == "__main__":
                 updates["edited"]= cdict[x[0]][0]
                 updates["lemmata"]= lemmatize(pos_regex, best)[0]
                 updates["analysis_src"]= ["analyzed", "hand"]
-                if x[0] in e_dict and cdict[x[0]][1] != e_dict[x[0]][1][0][0]: 
-                    print("{0} error analysis {1} manually overwritten by {2}".format(x[0], e_dict[x[0]][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x[0]][1])), pst.min_morphs, *pst.minimal_filter(*e_dict[x[0]][1]))][0], best)) #AS OF 7/15/2024 MANUAL OVERRIDE OF ANALYSIS ONLY HAPPENS FOR ERROR MODEL, NOT BASE MODEL (EDITED FORM SHOULD ALSO JUST GET RE-WRITTEN BY DEFAULT TOO)
+                if x[0] in e_dict and cdict[x[0]][1] != e_dict[x[0]][1][0][0]: print("{0} error analysis {1} manually overwritten by {2}".format(x[0], e_dict[x[0]][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x[0]][1])), pst.min_morphs, *pst.minimal_filter(*e_dict[x[0]][1]))][0], best)) #AS OF 7/15/2024 MANUAL OVERRIDE OF ANALYSIS ONLY HAPPENS FOR ERROR MODEL, NOT BASE MODEL (EDITED FORM SHOULD ALSO JUST GET RE-WRITTEN BY DEFAULT TOO)
             elif args.e and args.g:
                 #if not e_dict[x[0]][1][0][0].endswith('+?'): 
                 if x[0] in e_dict: 
@@ -364,7 +363,9 @@ if __name__ == "__main__":
         if args.spot_check:
             for s in args.spot_check:
                 cnt = 0
-                loci = [(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
+                loci = [] #[(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
+                for i in range(len(full["m_parse_lo"])):
+                    for j in range(len(full["m_parse_lo"][i])): loci.append((i, j))
                 if s[0] == "all" and s[1] == "unanalyzed": 
                     errors = []
                     for locus in loci:
