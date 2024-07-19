@@ -321,7 +321,6 @@ if __name__ == "__main__":
                 #if not e_dict[x[0]][1][0][0].endswith('+?'): 
                 if x[0] in e_dict: 
                     best =  e_dict[x[0]][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x[0]][1])), pst.min_morphs, *pst.minimal_filter(*e_dict[x[0]][1]))][0]
-                    if x[0] == "e-ni-yaayaan": print(best)
                     updates["m_parse_lo"]= best
                     updates["m_parse_hi"]="'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(best)))+"'"
                     updates["edited"]= generation_dict[best][0][0]
