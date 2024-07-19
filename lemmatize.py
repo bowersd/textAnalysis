@@ -254,7 +254,7 @@ if __name__ == "__main__":
         sentlist = [" ".join(x) for x in full["chunked"]]
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *sentlist)
         full["analysis_src"] = [[["analyzed", args.fst_file] if not y.endswith("+?") else ["unanalyzed"] for y in x] for x in full["m_parse_lo"]]
-        alt_analyses = [analyze_text(x, args.fst_format, args.d, *sentlist) for x in args.e]
+        #alt_analyses = [analyze_text(x, args.fst_format, args.d, *sentlist) for x in args.e]
         ###
         #revisions to initial analysis
         ###
@@ -265,25 +265,25 @@ if __name__ == "__main__":
             full["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])]) #filter on "if x" to leave out un analyzed forms
             full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
-            #edited = []
+            edited = []
             for j in range(len(full["chunked"][i])):
                 if full["m_parse_lo"][i][j].endswith('+?'): error_adjust.append((full["chunked"][i][j], i, j))
-                #if full["chunked"][i][j] in cdict: #manual over ride 1
-                #    edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
-                if full["chunked"][i][j].startswith("e-"):
-                    #edited.append(full["chunked"][i][j])
+                if full["chunked"][i][j] in cdict: #manual over ride 1
+                    edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
+                elif full["chunked"][i][j].startswith("e-"):
+                    edited.append(full["chunked"][i][j])
                     innovation_adjust.append(("e-", full["chunked"][i][j], i, j))
                 elif re.match("[ng]?da-", full["chunked"][i][j]):
-                    #edited.append(full["chunked"][i][j])
+                    edited.append(full["chunked"][i][j])
                     innovation_adjust.append((re.match("[ng]?da-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
                 elif re.match("[ng]?di-", full["chunked"][i][j]):
-                    #edited.append(full["chunked"][i][j])
+                    edited.append(full["chunked"][i][j])
                     innovation_adjust.append((re.match("[ng]?di-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
                 elif re.match("[ng]?doo-", full["chunked"][i][j]):
-                    #edited.append(full["chunked"][i][j])
+                    edited.append(full["chunked"][i][j])
                     innovation_adjust.append((re.match("[ng]?doo-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
-                #else: edited.append(full["chunked"][i][j])
-            #full["edited"][i] = edited
+                else: edited.append(full["chunked"][i][j])
+            full["edited"][i] = edited
             full["tiny_gloss"].append(wrap_glosses(*retrieve_glosses(*full["lemmata"][i], **glossdict)))
         ###
         #re-analyzing failed items with error model
@@ -352,7 +352,12 @@ if __name__ == "__main__":
                 full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[2]][x[3]])))+"'"
                 full["edited"][x[2]][x[3]] = ccnj
         if args.g:
-            pass
+            generation_dict = parse.parse_native(args.g, *[x for x in y for y in full["m_parse_lo"]])
+            for i in range(len(full["m_parse_lo"])):
+                for j in range(len(full["m_parse_lo"][i])):
+                    if full["chunked"][i][j] in cdict: full["edited"][i][j] = cdict[full["chunked"][i][j]][0]
+                    elif not generation_dict[full["m_parse_lo"][i][j]].endswith("+?"): full["edited"][i][j] = generation_dict[full["m_parse_lo"][i][j]]
+                    else: full["edited"][i][j] = full["chunked"][i][j]
         ###
         #spot checks
         ###
