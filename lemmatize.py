@@ -250,9 +250,11 @@ if __name__ == "__main__":
                 #"unsyncopated", #new machine with UR as top, then run UR back down to SRs minus syncope
                 ]
         full = initialize(args.text, *names)
-        gdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
-        full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *[" ".join(x) for x in full["chunked"]])
+        glossdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
+        sentlist = [" ".join(x) for x in full["chunked"]]
+        full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *sentlist)
         full["analysis_src"] = [[["analyzed", args.fst_file] if not y.endswith("+?") else ["unanalyzed"] for y in x] for x in full["m_parse_lo"]]
+        alt_analyses = [analyze_text(x, args.fst_format, args.d, *sentlist) for x in args.e]
         ###
         #revisions to initial analysis
         ###
@@ -282,19 +284,11 @@ if __name__ == "__main__":
                     innovation_adjust.append((re.match("[ng]?doo-", full["chunked"][i][j])[0], full["chunked"][i][j], i, j))
                 #else: edited.append(full["chunked"][i][j])
             #full["edited"][i] = edited
-            full["tiny_gloss"].append(wrap_glosses(*retrieve_glosses(*full["lemmata"][i], **gdict)))
-            #tinies = []
-            #for l in full["lemmata"][i]:
-            #    try: gloss = gdict[l]
-            #    except KeyError: 
-            #        gloss = "?" 
-            #    tinies.append("'"+gloss+"'")
-            #    #tinies.append("'"+re.search('(\w*\s*){0,4}',gloss)[0].lstrip(" 1")+"'")
-            #full["tiny_gloss"].append(tinies)
+            full["tiny_gloss"].append(wrap_glosses(*retrieve_glosses(*full["lemmata"][i], **glossdict)))
         ###
         #re-analyzing failed items with error model
         ###
-        if args.e and args.g:
+        if args.e:
             e_dict = {}
             residue = [x[0] for x in error_adjust]
             for e_model in args.e:
@@ -304,7 +298,7 @@ if __name__ == "__main__":
                     if not sub_e_dict[x][0][0].endswith('+?'): e_dict[x] = [e_model, sub_e_dict[x]]
                     else: residue.append(x)
             #for x in residue: e_dict[x] = ["unanalyzed", [(x+'+?', 0.00)]] #formatted like a successful analysis, but none of this information is actually retrieved below, so it makes sense to just use a default specification during the initial parse, and overwrite with the successes
-            generation_dict = parse.parse_native(args.g, *[e_dict[x][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x][1])), pst.min_morphs, *pst.minimal_filter(*e_dict[x][1]))][0] for x in e_dict])
+            if args.g: generation_dict = parse.parse_native(args.g, *[e_dict[x][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x][1])), pst.min_morphs, *pst.minimal_filter(*e_dict[x][1]))][0] for x in e_dict])
         fixed_errors = []
         for x in error_adjust:
             updates = {
@@ -332,10 +326,10 @@ if __name__ == "__main__":
                     updates["edited"]= generation_dict[best][0][0]
                     updates["lemmata"]= lemmatize(pos_regex, best)[0]
                     updates["analysis_src"]= ["analyzed", e_dict[x[0]][0]]
-            #try: gloss = gdict[updates["lemmata"]]
+            #try: gloss = glossdict[updates["lemmata"]]
             #except KeyError:
             #    gloss = "?"
-            updates["tiny_gloss"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **gdict))[0]
+            updates["tiny_gloss"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **glossdict))[0]
             if updates["m_parse_lo"]: fixed_errors.append((x, updates))
         fix_cnt = {model:0 for model in args.e}
         fix_cnt["hand"] = 0
