@@ -214,8 +214,8 @@ def initialize(filename, *field_names):
             for adj in adjdict: #words that need to be split in two or joined together
                 if adj in lowered: lowered = re.sub(adj, adjdict[adj], lowered)
             tokenized = pre.sep_punct(lowered, args.d).split()
-            h["chunked"].append(tokenized)
-            h["edited"].append(tokenized) #this gets rewritten below...
+            h["chunked"].append([t for t in tokenized])
+            h["edited"].append([t for t in tokenized]) #this gets rewritten below...
             h["english"].append(data[4])
             h["sentenceID"].append(data[5])
     return h
@@ -321,6 +321,7 @@ if __name__ == "__main__":
                 #if not e_dict[x[0]][1][0][0].endswith('+?'): 
                 if x[0] in e_dict: 
                     best =  e_dict[x[0]][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x[0]][1])), pst.min_morphs, *pst.minimal_filter(*e_dict[x[0]][1]))][0]
+                    if x[0] == "e-ni-yaayaan": print(best)
                     updates["m_parse_lo"]= best
                     updates["m_parse_hi"]="'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(best)))+"'"
                     updates["edited"]= generation_dict[best][0][0]
@@ -345,10 +346,17 @@ if __name__ == "__main__":
         #checking if forms written with innovative affixes can be analyzed as if they were conservative
         ###
         innovation_adjustments = parse.parse_native(os.path.expanduser(args.fst_file), *[conserve_innovation(x[0], x[1]) for x in innovation_adjust])
+        for model in args.e:
+            try_again = []
+            for in_adj in innovation_adjustments:
+                if innovation_adjustments[in_adj][0][0].endswith('+?'): try_again.append(in_adj)
+            nu_adj = parse.parse_native(os.path.expanduser(model), *try_again)
+            for t in try_again:
+                if not nu_adj[t][0][0].endswith('+?'): innovation_adjustments[t] = nu_adj[t]
         for x in innovation_adjust:
             ccnj = conserve_innovation(x[0], x[1])
             if not innovation_adjustments[ccnj][0][0].endswith('+?'):
-                full["m_parse_lo"][x[2]][x[3]] = innovation_adjustments[ccnj][pst.disambiguate(pst.min_morphs(*innovation_adjustments[ccnj]), pst.min_morphs, *innovation_adjustments[ccnj])][0]
+                full["m_parse_lo"][x[2]][x[3]] = innovation_adjustments[ccnj][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*innovation_adjustments[ccnj])), pst.min_morphs, *pst.minimal_filter(*innovation_adjustments[ccnj]))][0]
                 full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[2]][x[3]])))+"'"
                 #full["edited"][x[2]][x[3]] = ccnj
         if args.g:
