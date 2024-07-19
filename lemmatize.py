@@ -346,7 +346,9 @@ if __name__ == "__main__":
         #checking if forms written with innovative affixes can be analyzed as if they were conservative
         ###
         innovation_adjustments = parse.parse_native(os.path.expanduser(args.fst_file), *[conserve_innovation(x[0], x[1]) for x in innovation_adjust])
-        for model in args.e:
+        for model in args.e: #THIS DOES NOT TRACK WHICH VERSION OF THE ANALYZER DID THE SPECIFIC FIX. I DON'T THINK THERE SHOULD NEVER BE A DIFFERENCE BETWEEN WHICH MODEL SUCCESSFULLY ANALYZED A FORM FIRST AND WHICH ONE CAN HANDLE THE INNOVATION, BUT THIS IS A POTENTIAL SOURCE OF BUGS.
+            #TO FIX, YOU MAY NEED TO USE innovation_adjust, WHICH TRACKS INDICES
+            #YOU WILL CERTAINLY NEED TO STORE THE MODEL IN THE VALUE IN innovation_adjustments, AND THEN DANCE AROUND THE MORE COMPLEX VALUES WHEN YOU UNPACK innovation_adjustments
             try_again = []
             for in_adj in innovation_adjustments:
                 if innovation_adjustments[in_adj][0][0].endswith('+?'): try_again.append(in_adj)
