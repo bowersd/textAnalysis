@@ -327,7 +327,6 @@ if __name__ == "__main__":
                 if x[0] in e_dict: 
                     best =  e_dict[x[0]][1][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*e_dict[x[0]][1])), pst.min_morphs, *pst.minimal_filter(*e_dict[x[0]][1]))][0]
                     updates["m_parse_lo"]= best
-                    print(best)
                     updates["m_parse_hi"]="'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(best)))+"'"
                     updates["edited"]= generation_dict[best][0][0]
                     updates["lemmata"]= lemmatize(pos_regex, best)[0]
