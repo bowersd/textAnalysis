@@ -17,7 +17,7 @@ def minimal_filter(*msds):
 def min_edits(typed, *generated):
     h = []
     for g in generated:
-        alnd = needleman.align(typed, g, -1, needleman.make_id_matrix(typed, g))
+        alnd = needleman.align(typed, g[0], -1, needleman.make_id_matrix(typed, g[0]))
         h.append(sum([alnd[0][i] != alnd[1][i] for i in range(len(alnd[0]))]))
     return min(h)
 
