@@ -46,7 +46,7 @@ def extract_lemma(string, pos_regex):
     #if re.search(pos_regex, string): return re.search("(^|\+)(.*?)"+pos_regex, string).group(2)
     if "+Cmpd" in string:
         cmpd = []
-        for x in re.split("\+Cmpd", string):
+        for x in re.split(r"\+Cmpd", string):
             cmpd.append(re.split(pos_regex, x)[0].split("+")[-1])
             #return "+".join([re.split(pos_regex, x)[0].split("+")[-1] for x in re.split("+Cmpd", string)])
         #print(cmpd)
