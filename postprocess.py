@@ -1,4 +1,5 @@
 import re
+import needleman
 
 def parser_out_string_dict(string):
     """reformats STRING in output FORM to dict keyed by first word"""
@@ -12,6 +13,13 @@ def parser_out_string_dict(string):
 
 def minimal_filter(*msds):
     return [m for m in msds if m[1] == msds[0][1]]
+
+def min_edits(typed, *generated):
+    h = []
+    for g in generated:
+        alnd = needleman.align(typed, g, -1, needleman.make_id_matrix(typed, g))
+        h.append(sum([alnd[0][i] != alnd[1][i] for i in range(len(alnd[0]))]))
+    return min(h)
 
 def min_morphs(*msds):
     """the length of the shortest morphosyntactic description"""
