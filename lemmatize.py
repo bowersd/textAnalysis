@@ -373,7 +373,7 @@ if __name__ == "__main__":
             for i in range(len(full["m_parse_lo"])):
                 for j in range(len(full["m_parse_lo"][i])):
                     if full["chunked"][i][j] in cdict: full["edited"][i][j] = cdict[full["chunked"][i][j]][0]
-                    elif not generation_dict[full["m_parse_lo"][i][j]][0][0].endswith("+?"): full["edited"][i][j] = generation_dict[full["m_parse_lo"][i][j]][pst.disambiguate(pst.min_edits(full["chunked"][i][j], *pst.minimal_filter(*generation_dict[full["m_parse_lo"][i][j]]), pst.min_edits, *generation_dict[full["m_parse_lo"][i][j]])][0]
+                    elif not generation_dict[full["m_parse_lo"][i][j]][0][0].endswith("+?"): full["edited"][i][j] = generation_dict[full["m_parse_lo"][i][j]][pst.disambiguate(pst.min_edits(full["chunked"][i][j], *pst.minimal_filter(*generation_dict[full["m_parse_lo"][i][j]]), pst.min_edits, *generation_dict[full["m_parse_lo"][i][j]]))][0]
                     else: full["edited"][i][j] = full["chunked"][i][j]
         ###
         #spot checks
