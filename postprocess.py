@@ -59,7 +59,7 @@ def extract_msd(string, pos_regex):
     #need everything but the lemma and pos tag
     #two lines for readability
     if re.search(pos_regex, string):
-        pos = "\+".join(re.search(pos_regex, string).group(0).split("+")) #need to escape + or interpreted as Kleene +
+        pos = r"\+".join(re.search(pos_regex, string).group(0).split("+")) #need to escape + or interpreted as Kleene +
         #pos = re.search(pos_regex, string).group(0).encode('string-escape') #need to escape + or interpreted as Kleene +
         l = brackets(re.split(pos_regex, string)[0].split("+")[-1]) #lemma
         #l = re.split(pos_regex, string)[0].split("+")[-1].encode('string-escape') #lemma
