@@ -14,16 +14,21 @@ def parser_out_string_dict(string):
 def minimal_filter(*msds):
     return [m for m in msds if m[1] == msds[0][1]]
 
-def min_edits(typed, *generated):
-    h = []
+def score_edits(typed, *generated):
+    h = {}
     for g in generated:
         alnd = needleman.align(typed, g[0], -1, needleman.make_id_matrix(typed, g[0]))
-        h.append(sum([alnd[0][i] != alnd[1][i] for i in range(len(alnd[0]))]))
-    return min(h)
+        h[g[0]] = sum([alnd[0][i] != alnd[1][i] for i in range(len(alnd[0]))])
+    return h
 
 def min_morphs(*msds):
     """the length of the shortest morphosyntactic description"""
     return min([m[0].count("+") for m in msds])
+
+def disambiguate2(scored, *msds):
+    """get the first of the lowest scored"""
+    lowest = min([scored[x] for x in scored])
+    return min([i for i in range(len(msds)) if scored[msds[i][0]] == lowest])
 
 def disambiguate(target, f, *msds): 
     """the earliest of the morphosyntactic descriptions|f(m) = target"""
