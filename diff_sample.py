@@ -30,5 +30,8 @@ if __name__ == "__main__":
                     padded = lemmatize.pad(versions[v][locus[0]]["chunked"], versions[v][locus[0]]["m_parse_lo"], versions[v][locus[0]]["m_parse_hi"], versions[v][locus[0]]["tiny_gloss"], versions[v][locus[0]]["english"])
                     for p in padded: file_out.write(p+"\n")
                     file_out.write("\n")
+        with open("diff_check_{0}_{1}_{2}_report.txt".format(dt, v, date.today()), 'w') as report:
+            for locus in h:
+                if dt == "change": pass
 
 
