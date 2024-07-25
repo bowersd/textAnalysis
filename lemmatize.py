@@ -425,7 +425,7 @@ if __name__ == "__main__":
                                 fileOut.write("IF TERSE TRANSLATION MISMATCH = N: Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
                             fileOut.write("Comments?: "+'\n')
                             fileOut.write("Target word, and column:\t"+full["chunked"][locus[0]][locus[1]]+'\t'+str(locus[1])+'\n')
-                            for p in padded: fileOut.write(" ".join(p)+'\n')
+                            #for p in padded: fileOut.write(" ".join(p)+'\n')
                             start = 0
                             stop = 0
                             while stop < len(padded[0]):
