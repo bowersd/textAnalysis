@@ -44,7 +44,7 @@ if __name__ == "__main__":
             report.write("For the purposes of this report 'correct' means hi/lo level grammatical analysis and terse gloss fit English translation")
             for locus in h:
                 report.write("Sentence ID: {0}".format(versions["old"][locus[0]]["sentenceID"])+'\n')
-                report.write("Credit/blame: {0}".format(versions["new"][locus[0]]["analysis_src"][locus[1]][1])+'\n')
+                report.write("Credit/blame: {0}".format(versions["new"][locus[0]]["analysis_src"][locus[1]][-1])+'\n')
                 report.write("Target word: {0} (index: {1})".format(versions["old"][locus[0]]["chunked"][locus[1]], str(locus[1]))+'\n')
                 if dt == "gain" or dt == "change": report.write("Is {0} (new analysis) correct? (y/n)".format(versions["new"][locus[0]]["m_parse_lo"][locus[1]])+'\n')
                 if dt == "change" or dt == "lose": 
