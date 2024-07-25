@@ -1,11 +1,12 @@
 import sys
 import json
 import random
+import date
 
 if __name__ == "__main__":
     with open(sys.argv[1]) as oldjson:
         old = json.load(oldjson)
-    with open(sys.arg[2]) as newjson:
+    with open(sys.argv[2]) as newjson:
         new = json.load(newjson)
     difftypes = {"change":[], "gain":[], "lose":[]}
     diffloci = [(i, j) for i in range(len(old)) for j in range(len(old[i]["m_parse_lo"])) if old[i]["m_parse_lo"][j] != new[i]["m_parse_lo"][j]]
@@ -22,4 +23,7 @@ if __name__ == "__main__":
             cnt += 1
             locus = difftypes[dt].pop(random.randrange(0, len(difftypes[dt])))
             h.append(locus)
+        for v in ['new', 'old']:
+            with open("diff_check_{0}_{1}_{2}.txt".format(dt, v, date.today()), 'w') as file_out: pass
+        for locus in h: pass
 
