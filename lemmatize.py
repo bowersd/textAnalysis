@@ -132,6 +132,7 @@ def parseargs():
     parser.add_argument("-d", "--drop-punct" , dest="d", action="store_true", help="whether to separate punctuation (false) or drop punctuation (true) when parsing")
     parser.add_argument("-e", "--error-fst" , dest="e", nargs="+", help="name of analyzer composed with an error model", default="")
     parser.add_argument("-g", "--generation-fst" , dest="g", nargs="?", help="name of generation transducer (tags -> forms)", default="")
+    parser.add_argument("-p", "--pad" , dest="pad", action="store_true", help="make sentences padded lists")
     parser.add_argument("--spot-check", dest="spot_check", nargs=2, action = 'append', help="number of spot checks to perform and which data to perform it on (analyzed, unanalyzed, specific analysis source)", default=[])
     return parser.parse_args()
 
@@ -440,14 +441,15 @@ if __name__ == "__main__":
         #write-out
         ###
         #converting lists to padded/aligned strings
-        for i in range(len(full["m_parse_lo"])):
-            padded = pad(full["chunked"][i], full["edited"][i], full["lemmata"][i], full["m_parse_hi"][i], full["tiny_gloss"][i], full["m_parse_lo"][i])
-            full["chunked"][i] = " ".join(padded[0])
-            full["edited"][i] = " ".join(padded[1])
-            full["lemmata"][i] = " ".join(padded[2])
-            full["m_parse_hi"][i] = " ".join(padded[3])
-            full["tiny_gloss"][i] = " ".join(padded[4])
-            full["m_parse_lo"][i] = " ".join(padded[5])
+        if args.pad:
+            for i in range(len(full["m_parse_lo"])):
+                padded = pad(full["chunked"][i], full["edited"][i], full["lemmata"][i], full["m_parse_hi"][i], full["tiny_gloss"][i], full["m_parse_lo"][i])
+                full["chunked"][i] = " ".join(padded[0])
+                full["edited"][i] = " ".join(padded[1])
+                full["lemmata"][i] = " ".join(padded[2])
+                full["m_parse_hi"][i] = " ".join(padded[3])
+                full["tiny_gloss"][i] = " ".join(padded[4])
+                full["m_parse_lo"][i] = " ".join(padded[5])
         with open(args.o, 'w') as fo:
             json.dump([{x:full[x][i] for x in names} for i in range(len(full["sentenceID"]))], fo, cls = json_encoder.MyEncoder, separators = (", ", ":\t"), indent=1)
         ##atomic_json_dump(args.o, names, [[d[5] for d in data_in], [d[3] for d in data_in], lemmata, summaries])
