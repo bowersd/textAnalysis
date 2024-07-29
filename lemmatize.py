@@ -273,9 +273,10 @@ if __name__ == "__main__":
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             #edited = []
             for j in range(len(full["chunked"][i])):
+                if full["chunked"][i][j] in cdict: #manual over ride 1
+                    full["edited"][i][j] = cdict[full["chunked"][i][j]][0] #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
+                    full["m_parse_lo"][i][j] = cdict[full["chunked"][i][j]][1] #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                 if full["m_parse_lo"][i][j].endswith('+?'): error_adjust.append((full["chunked"][i][j], i, j))
-                #if full["chunked"][i][j] in cdict: #manual over ride 1
-                    #edited.append(cdict[full["chunked"][i][j]][0]) #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                 if full["chunked"][i][j].startswith("e-"):
                     #edited.append(full["chunked"][i][j])
                     innovation_adjust.append(("e-", full["chunked"][i][j], i, j))
