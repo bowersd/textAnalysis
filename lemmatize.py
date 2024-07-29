@@ -272,8 +272,12 @@ if __name__ == "__main__":
             full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             #edited = []
+            manual_cnt = 0
+            manual_fix = 0
             for j in range(len(full["chunked"][i])):
                 if full["chunked"][i][j] in cdict: #manual over ride 1
+                    manual_cnt += 1
+                    if full["m_parse_lo"][i][j].endswith("+?"): manual_fix += 1
                     full["edited"][i][j] = cdict[full["chunked"][i][j]][0] #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                     full["m_parse_lo"][i][j] = cdict[full["chunked"][i][j]][1] #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                     full["analysis_src"][i][j] = ["analyzed", "hand"] #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
@@ -295,6 +299,8 @@ if __name__ == "__main__":
                 #else: edited.append(full["chunked"][i][j])
             #full["edited"][i] = edited
             full["tiny_gloss"].append(wrap_glosses(*retrieve_glosses(*full["lemmata"][i], **glossdict)))
+            print("hand fixed these many misses: ", manual_fix)
+            print("hand corrected these many incorrect analyses: ", manual_cnt-manual_fix)
         ###
         #re-analyzing failed items with error model
         ###
@@ -342,14 +348,12 @@ if __name__ == "__main__":
             updates["tiny_gloss"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **glossdict))[0]
             if updates["m_parse_lo"]: fixed_errors.append((x, updates))
         fix_cnt = {model:0 for model in args.e}
-        fix_cnt["hand"] = 0
         for x in fixed_errors:
             #print(x[1])
             for y in x[1]:
                 full[y][x[0][1]][x[0][2]] = x[1][y]
                 if y == "analysis_src": fix_cnt[x[1][y][1]] += 1
                     #print(y, x[1][y])
-        print("hand fixed these many misses: ", fix_cnt["hand"])
         for model in args.e: print("{} fixed these many misses: ".format(model), fix_cnt[model])
         ###
         #checking if forms written with innovative affixes can be analyzed as if they were conservative
