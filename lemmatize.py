@@ -267,13 +267,13 @@ if __name__ == "__main__":
         #if not args.a: full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, cdict, args.d, *full["sentence"])
         innovation_adjust = []
         error_adjust = []
+        manual_cnt = 0
+        manual_fix = 0
         for i in range(len(full["m_parse_lo"])): 
             full["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])]) #filter on "if x" to leave out un analyzed forms
             full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
             #edited = [x if x not in cdict else cdict[x][0] for x in full["chunked"][i]]
             #edited = []
-            manual_cnt = 0
-            manual_fix = 0
             for j in range(len(full["chunked"][i])):
                 if full["chunked"][i][j] in cdict: #manual over ride 1
                     manual_cnt += 1
@@ -299,8 +299,8 @@ if __name__ == "__main__":
                 #else: edited.append(full["chunked"][i][j])
             #full["edited"][i] = edited
             full["tiny_gloss"].append(wrap_glosses(*retrieve_glosses(*full["lemmata"][i], **glossdict)))
-            print("hand fixed these many misses: ", manual_fix)
-            print("hand corrected these many incorrect analyses: ", manual_cnt-manual_fix)
+        print("hand corrected these many incorrect analyses: ", manual_cnt-manual_fix)
+        print("hand fixed these many misses: ", manual_fix)
         ###
         #re-analyzing failed items with error model
         ###
