@@ -269,6 +269,7 @@ if __name__ == "__main__":
         error_adjust = []
         manual_cnt = 0
         manual_fix = 0
+        manual_red = 0
         for i in range(len(full["m_parse_lo"])): 
             full["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *full["m_parse_lo"][i])]) #filter on "if x" to leave out un analyzed forms
             full["m_parse_hi"].append(["'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(x)))+"'" if algsum.analysis_dict(x) else "'?'" for x in full["m_parse_lo"][i] ]) # filter on "if algsum.analysis_dict(x)" to leave out unanalyzed forms
@@ -278,6 +279,7 @@ if __name__ == "__main__":
                 if full["chunked"][i][j] in cdict: #manual over ride 1
                     manual_cnt += 1
                     if full["m_parse_lo"][i][j].endswith("+?"): manual_fix += 1
+                    if full["m_parse_lo"][i][j] == cdict[full["chunked"][i][j][0]: manual_red += 1
                     full["edited"][i][j] = cdict[full["chunked"][i][j]][0] #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                     full["m_parse_lo"][i][j] = cdict[full["chunked"][i][j]][1] #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
                     full["analysis_src"][i][j] = ["analyzed", "hand"] #this may need to be relative to specific locations, especially because there is at least one case where a bare word (which could in principle be correctly spelled) should be replaced by an obviative. The hand notes do this, but as written, all cases of the bare word anywhere in the text would be replaced with the obviative (the case is biipiigwenh->biipiigwenyan in underground people) !!
@@ -299,7 +301,8 @@ if __name__ == "__main__":
                 #else: edited.append(full["chunked"][i][j])
             #full["edited"][i] = edited
             full["tiny_gloss"].append(wrap_glosses(*retrieve_glosses(*full["lemmata"][i], **glossdict)))
-        print("hand corrected these many incorrect analyses: ", manual_cnt-manual_fix)
+        print("hand corrected these many incorrect analyses: ", manual_cnt-manual_fix-manual_red)
+        print("redundantly corrected these many correct analyses: ", manual_red)
         print("hand fixed these many misses: ", manual_fix)
         ###
         #re-analyzing failed items with error model
