@@ -196,7 +196,7 @@ gnengim	long-lasting
 gnesh	perhaps
 gnimaa	maybe
 gnwesh	perhaps
-go	eMPH
+go	EMPH
 gojiing	outside
 gojyi'iing	outside
 gshkonwaach	unexpected
