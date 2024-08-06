@@ -2946,7 +2946,7 @@ kogaan	depart
 manj	uncertainty
 minj	uncertainty
 mninaak	moderation
-naa	eMPH
+naa	EMPH
 naa	say.to
 naash	impatience
 nangna	oh
