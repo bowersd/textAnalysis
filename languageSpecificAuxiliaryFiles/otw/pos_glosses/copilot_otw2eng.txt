@@ -6125,8 +6125,8 @@ gaagiijninjii	chiroalgia
 gaagiijzide	podalgia
 gaagiimoodzi	cunning
 gaagiinaadngoshi	nightmares
-gaakaandkwese	bobble
-gaakaanjbagza	jolt
+gaandkwese	bobble
+gaanjbagza	jolt
 gaakshkaa	tear
 gaandnaama	exhale
 gaandzakmii	sprint
@@ -18050,9 +18050,9 @@ gaakiik'amii	edge
 gaakaawaakza	crisp
 gaakaashkgazhiibtoo	scratch
 gaakaapza	crisp
-gaakaanjgwewese	jerkhead
-gaakaanjdiyese	thrust
-gaakaanjbiza	jerky
+gaanjgwewese	jerkhead
+gaanjdiyese	thrust
+gaanjbiza	jerky
 gaagiizhootawgechge	coverears
 gaagiizhooshew'o	sundogs
 gaagiijse	pain
