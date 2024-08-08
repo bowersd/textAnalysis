@@ -393,7 +393,6 @@ if __name__ == "__main__":
         ###
         if args.spot_check:
             for s in args.spot_check:
-                cnt = 0
                 loci = [] #[(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
                 for i in range(len(full["m_parse_lo"])):
                     for j in range(len(full["m_parse_lo"][i])): loci.append((i, j))
@@ -421,11 +420,12 @@ if __name__ == "__main__":
                                                     str(e[2][1])])+"\n")
                 elif s[0] == "all" and s[1] != "unanalyzed": print("full listing of analyzed forms is probably not informative, and is not currently supported")
                 else:
-                    with open('spot_checks_{0}_{1}_{2}.txt'.format(s[0], s[1], date.today()), 'a') as fileOut:
+                    cnt = 0
+                    with open('spot_checks_{0}_{1}_{2}.txt'.format(s[0], re.search(r"[^/]*(?=\.hfstol)", s[1])[0], date.today()), 'w') as fileOut:
                         while cnt < int(s[0]) and loci:
                             cnt += 1
                             locus = loci.pop(random.randrange(0, len(loci)))
-                            while (not args.spot_check[1] in full["analysis_src"][locus[0]][locus[1]]) and loci: locus = loci.pop(random.randrange(0, len(loci)))
+                            while (not s[1] in full["analysis_src"][locus[0]][locus[1]]) and loci: locus = loci.pop(random.randrange(0, len(loci)))
                             padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
                             fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
                             fileOut.write("Is target word a loan/not in Nishnaabemwin? (y/n): "+'\n')
