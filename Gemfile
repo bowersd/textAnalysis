@@ -11,10 +11,10 @@ gem "github-pages", "~> 231", group: :jekyll_plugins
 gem "webrick", "~> 1.8"
 #
 # If you have any plugins, put them here!
-group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.6"
-  gem "jekyll-remote-theme", "~> 0.4.3"
-end
+#group :jekyll_plugins do
+#  gem "jekyll-feed", "~> 0.6"
+#  #gem "jekyll-remote-theme", "~> 0.4.3"
+#end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
