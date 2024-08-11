@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 # gem "rails"
 #gem "jekyll"
-gem "minima", "~> 3.0"
+gem "minima", "~> 2.5.1"
 
 gem "github-pages", "~> 231", group: :jekyll_plugins
 
