@@ -383,6 +383,8 @@ if __name__ == "__main__":
                 full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[2]][x[3]])))+"'"
                 full["edited"][x[2]][x[3]] = ccnj
                 full["analysis_src"][x[2]][x[3]] = ["analyzed", args.fst_file]
+                full["lemmata"][x[2]][x[3]]= lemmatize(pos_regex, full["m_parse_lo"][x[2]][x[3]])[0]
+                full["tiny_gloss"][x[2]][x[3]] = wrap_glosses(*retrieve_glosses(full["lemmata"][x[2]][x[3]], **glossdict))[0]
         print("conservatized these many potentially innovative forms: ", str(innov_cnt))
         print("fixed these many potentially innovative misses by conservativization: ", str(innov_fix_cnt))
         if args.g:
