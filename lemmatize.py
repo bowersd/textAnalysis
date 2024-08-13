@@ -372,13 +372,19 @@ if __name__ == "__main__":
         #    nu_adj = parse.parse_native(os.path.expanduser(model), *try_again)
         #    for t in try_again:
         #        if not nu_adj[t][0][0].endswith('+?'): innovation_adjustments[t] = nu_adj[t]
+        innov_cnt = 0
+        innov_fix_cnt = 0
         for x in innovation_adjust:
             ccnj = conserve_innovation(x[0], x[1])
             if not innovation_adjustments[ccnj][0][0].endswith('+?'):
+                innov_cnt += 1
+                if full["m_parse_lo"][x[2]][x[3]].endswith('+?'): innov_fix_cnt += 1
                 full["m_parse_lo"][x[2]][x[3]] = innovation_adjustments[ccnj][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*innovation_adjustments[ccnj])), pst.min_morphs, *pst.minimal_filter(*innovation_adjustments[ccnj]))][0]
                 full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[2]][x[3]])))+"'"
                 full["edited"][x[2]][x[3]] = ccnj
                 full["analysis_src"][x[2]][x[3]] = ["analyzed", args.fst_file]
+        print("conservatized these many potentially innovative forms: ", str(innov_cnt))
+        print("fixed these many potentially innovative forms by conservativization: ", str(innov_fix_cnt))
         if args.g:
             all_low = []
             for x in full["m_parse_lo"]:
