@@ -384,7 +384,7 @@ if __name__ == "__main__":
                 full["edited"][x[2]][x[3]] = ccnj
                 full["analysis_src"][x[2]][x[3]] = ["analyzed", args.fst_file]
         print("conservatized these many potentially innovative forms: ", str(innov_cnt))
-        print("fixed these many potentially innovative forms by conservativization: ", str(innov_fix_cnt))
+        print("fixed these many potentially innovative misses by conservativization: ", str(innov_fix_cnt))
         if args.g:
             all_low = []
             for x in full["m_parse_lo"]:
