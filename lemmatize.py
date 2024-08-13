@@ -377,7 +377,8 @@ if __name__ == "__main__":
             if not innovation_adjustments[ccnj][0][0].endswith('+?'):
                 full["m_parse_lo"][x[2]][x[3]] = innovation_adjustments[ccnj][pst.disambiguate(pst.min_morphs(*pst.minimal_filter(*innovation_adjustments[ccnj])), pst.min_morphs, *pst.minimal_filter(*innovation_adjustments[ccnj]))][0]
                 full["m_parse_hi"][x[2]][x[3]] = "'"+algsum.formatted(algsum.interpret(algsum.analysis_dict(full["m_parse_lo"][x[2]][x[3]])))+"'"
-                #full["edited"][x[2]][x[3]] = ccnj
+                full["edited"][x[2]][x[3]] = ccnj
+                full["analysis_src"][x[2]][x[3]] = ["analyzed", args.fst_file]
         if args.g:
             all_low = []
             for x in full["m_parse_lo"]:
