@@ -612,7 +612,7 @@ zhngwaak	pine
 zhooshkjiwaanaatik	ski
 waabminaatik	apple
 mdaamnashk	husk
-Nenbosh	nenabosh
+Nenbosh	Nenabosh
 pakyashk	cattail
 wiigwaaso-mtik	birch
 mkinaak	turtle
@@ -1234,7 +1234,7 @@ nawendaagan	kin
 nbaagni-mnidoons	bug
 nbagga'gan	tie
 nbagnaa	bread
-Nenbozhoo	nenabosh
+Nenbozhoo	Nenabosh
 nenookaashiins	hummingbird
 nenooshkaashiins	hummingbird
 nepaajnikesens	mole
@@ -17695,16 +17695,16 @@ gaagaagwish	hemlock
 Miigwaans	feather
 Miishgondaagan	throat
 Mshi-Gekek	hawk
-Tamaa	thomas
-Tanens	theresa
-Etyen	steven
-Miishen	michael
-MaanyAan	mary Ann
-Maanii	mary
-Maata	martha
-Maagniit	margaret
-Zoosep	joseph
-Zaben	isabelle
+Tamaa	Thomas
+Tanens	Theresa
+Etyen	Steven
+Miishen	Michael
+MaanyAan	Mary Ann
+Maanii	Mary
+Maata	Martha
+Maagniit	Margaret
+Zoosep	Joseph
+Zaben	Isabelle
 gweji-zhoonyaakewgamig	casino
 getziinh	departed
 Debenh	david
@@ -17715,9 +17715,9 @@ zhoomaan'kensag	change
 waakoonsak	roe
 jiisak	organizers
 nam'emnak	rosary
-Niibaakhom	niibaakhom
-Zhaabdiis	john
-Zoozep	joseph
+Niibaakhom	Niibaakhom
+Zhaabdiis	John
+Zoozep	Joseph
 nniishkok	tonsils
 nda'iimak	belongings
 nbiiweziinmak	brood
@@ -19928,3 +19928,5 @@ pagdoon	throw
 dbik	night
 naagoosh	evening
 mnezin  	need
+na  	QUESTION
+na  	listen
