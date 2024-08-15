@@ -19926,7 +19926,7 @@ piitendaan	regard
 pagnjiwdoon	deliver
 pagdoon	throw
 dbik	night
-naagoosh	evening
+naagosh	evening
 mnezin  	need
 na  	QUESTION
 na  	listen
