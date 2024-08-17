@@ -19927,9 +19927,9 @@ pagnjiwdoon	deliver
 pagdoon	throw
 dbik	night
 naagosh	evening
-mnezin  	need
-na  	QUESTION
-na  	listen
+mnezin	need
+na	QUESTION
+na	listen
 aan'sookaan	legend
 baasaabik	coin
 bewaateshiins	firefly
