@@ -419,7 +419,7 @@ if __name__ == "__main__":
                                                     full["english"][e[2][0]],
                                                     str(e[2][0]),
                                                     str(e[2][1])])+"\n")
-                    with open('spot_checks_{0}_{1}__{2}_{3}.csv'.format(s[0], s[1], s[2], date.today()), 'w') as fileOut:
+                    with open('spot_checks_{0}_{1}_{2}_{3}.csv'.format(s[0], s[1], s[2], date.today()), 'w') as fileOut:
                         for e in sorted(errors):
                             fileOut.write("\t".join( 
                                                     [e[0], 
