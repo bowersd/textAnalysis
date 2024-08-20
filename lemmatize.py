@@ -133,7 +133,7 @@ def parseargs():
     parser.add_argument("-e", "--error-fst" , dest="e", nargs="+", help="name of analyzer composed with an error model", default="")
     parser.add_argument("-g", "--generation-fst" , dest="g", nargs="?", help="name of generation transducer (tags -> forms)", default="")
     parser.add_argument("-p", "--pad" , dest="pad", action="store_true", help="make sentences padded lists")
-    parser.add_argument("--spot-check", dest="spot_check", nargs=2, action = 'append', help="number of spot checks to perform and which data to perform it on (analyzed, unanalyzed, specific analysis source)", default=[])
+    parser.add_argument("--spot-check", dest="spot_check", nargs=3, action = 'append', help="number of spot checks to perform, which data to perform it on, and at what level of abstraction (N/all, analyzed/unanalyzed/specific analysis source, type/token)", default=[])
     return parser.parse_args()
 
 def human_readable(fst_file, fst_format, regex_file, gloss_file, drop_punct, text, trans, output):
