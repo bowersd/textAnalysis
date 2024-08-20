@@ -441,10 +441,10 @@ if __name__ == "__main__":
                             padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
                             fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
                             fileOut.write("Is target word a loan/not in Nishnaabemwin? (y/n): "+'\n')
-                            if args.spot_check[1] == "unanalyzed":
+                            if s[1] == "unanalyzed":
                                 fileOut.write("IF TARGET IS LOAN = N: Span of English sentence translation that most likely corresponds to unanalyzed word (if no good span found, mark with a hyphen (-)): "+'\n')
                                 fileOut.write("IF TARGET IS LOAN = N: Most likely dictionary lemmas for unanalyzed word (if none, mark with a hyphen (-); give no more than 3 lemmas; do no more than 10 searches!): "+'\n')
-                            if args.spot_check[1] != "unanalyzed":
+                            if s[1] != "unanalyzed":
                                 fileOut.write("IF TARGET IS LOAN = N: Terse translation of target word grossly mismatches English sentence translation? (y/n): "+'\n')
                                 fileOut.write("IF TERSE TRANSLATION MISMATCH = N: Grammatical analysis of target word is inconsistent with English sentence translation? (y/n): "+'\n')
                             fileOut.write("Comments?: "+'\n')
