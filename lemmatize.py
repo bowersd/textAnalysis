@@ -405,8 +405,8 @@ if __name__ == "__main__":
                 loci = [] #[(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
                 for i in range(len(full["m_parse_lo"])):
                     for j in range(len(full["m_parse_lo"][i])): loci.append((i, j))
+                if s[1] == "unanalyzed": assert s[2] == "token"
                 if s[0] == "all" and s[1] == "unanalyzed": 
-                    assert s[2] == "token"
                     errors = []
                     for locus in loci:
                         if "unanalyzed" in full["analysis_src"][locus[0]][locus[1]]: errors.append((full["chunked"][locus[0]][locus[1]], "".join(reversed(full["chunked"][locus[0]][locus[1]])), locus))
@@ -419,7 +419,7 @@ if __name__ == "__main__":
                                                     full["english"][e[2][0]],
                                                     str(e[2][0]),
                                                     str(e[2][1])])+"\n")
-                    with open('spot_checks_{0}_{1}_{2}.csv'.format(s[0], s[1], date.today()), 'w') as fileOut:
+                    with open('spot_checks_{0}_{1}__{2}_{3}.csv'.format(s[0], s[1], s[2], date.today()), 'w') as fileOut:
                         for e in sorted(errors):
                             fileOut.write("\t".join( 
                                                     [e[0], 
@@ -431,7 +431,7 @@ if __name__ == "__main__":
                 elif s[0] == "all" and s[1] != "unanalyzed": print("full listing of analyzed forms is probably not informative, and is not currently supported")
                 else:
                     cnt = 0
-                    with open('spot_checks_{0}_{1}_{2}.txt'.format(s[0], re.search(r"[^/]*(?=\.hfstol)", s[1])[0], date.today()), 'w') as fileOut:
+                    with open('spot_checks_{0}_{1}_{2}_{3}.txt'.format(s[0], re.search(r"[^/]*(?=\.hfstol)", s[1])[0], s[2], date.today()), 'w') as fileOut:
                         while cnt < int(s[0]) and loci:
                             cnt += 1
                             locus = loci.pop(random.randrange(0, len(loci)))
