@@ -406,10 +406,11 @@ if __name__ == "__main__":
                 for i in range(len(full["m_parse_lo"])):
                     for j in range(len(full["m_parse_lo"][i])): loci.append((i, j))
                 if s[0] == "all" and s[1] == "unanalyzed": 
+                    assert s[2] == "token"
                     errors = []
                     for locus in loci:
                         if "unanalyzed" in full["analysis_src"][locus[0]][locus[1]]: errors.append((full["chunked"][locus[0]][locus[1]], "".join(reversed(full["chunked"][locus[0]][locus[1]])), locus))
-                    with open('spot_checks_{0}_{1}_{2}_reversed.csv'.format(s[0], s[1], date.today()), 'w') as fileOut: 
+                    with open('spot_checks_{0}_{1}_{2}_{3}_reversed.csv'.format(s[0], s[1], s[2], date.today()), 'w') as fileOut: 
                         for e in sorted(errors, key=lambda x: x[1]):
                             fileOut.write("\t".join( 
                                                     [e[0], 
