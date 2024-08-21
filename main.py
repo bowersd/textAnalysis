@@ -315,6 +315,33 @@ def analysis_dict(analysis_string):
 
 ###functions for doing things within the web page
 
+def parse_words_expanded(event):
+    input_text = pyscript.document.querySelector("#larger_text_input")
+    freeNish = input_text.value
+    analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
+    #m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
+    re_analysis = []
+    for w in sep_punct(freeNish.lower(), True).split():
+        if analyzed[w][0][1].endswith('+?'): re_analysis.append(w)
+    re_analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *re_analysis)
+    m_parse_lo = []
+    for w in sep_punct(freeNish.lower(), True).split():
+        if analyzed[w][0][1].endswith('+?'): m_parse_lo.append(re_analyzed[w][disambiguate(min_morphs(*re_analyzed[w]), min_morphs, *re_analyzed[w])][0])
+        else: m_parse_lo.append(analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0])
+    m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
+    lemmata = [x if x else "?" for x in lemmatize(pos_regex, *m_parse_lo)]
+    tinies = []
+    for l in lemmata:
+        try: gloss = gdict[l]
+        except KeyError:
+            gloss = "?"
+        tinies.append("'"+gloss+"'")
+    padded = pad(["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broader Analysis:"] + m_parse_hi, ["Dictionary Entry:"] + lemmata, ["Terse Translation:"] + tinies)
+    words_out = "\n".join(["\t".join(p) for p in padded])
+    #words_out = tabulate.tabulate([["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
+    output_div = pyscript.document.querySelector("#output")
+    output_div.innerText = words_out 
+
 def parse_words(event):
     input_text = pyscript.document.querySelector("#freeNish")
     freeNish = input_text.value
