@@ -38,7 +38,7 @@ layout: default
     <textarea id="larger_text_input" name="larger_text_input" rows="20" cols="100"></textarea>
     <p>...Then click this button :</p>
     <button py-click="parse_words_expanded">Do it!</button>
-    <p>This will first use the strict analyzer, then the relaxed analyzer will be applied to what the strict analyzer fails on</p>
+    <p>This will first use a strict analyzer, then a relaxed analyzer will be applied to what the strict analyzer fails on.</p>
     <p>Caveat lector: the most current version of the relaxed analyzer here is too large to host on this site (as of 8/21/2024). The version posted here is a slimmed down older version and may behave differently</p>
     <div id="output"></div>
     <!--
@@ -93,10 +93,12 @@ layout: default
     -->
     <div></div>
     <hr/>
+    <!--
     <p>*You can make a plain text file by copy-pasting a Word file into a program like NotePad (Windows) or TextEdit (Mac)**, and then saving with the .txt extension.</p>
     <p>**Mac users: TextEdit has made it slightly more difficult to save true plain text files. Here's a how-to guide (link works as of 3/28/2024): <a href="https://beebom.com/how-save-files-txt-format-textedit-mac/">TextEdit txt saving guide</a></p> 
     <p>You will get the most user-friendly results if you put each sentence on a new line.</p>
     <p>Translation files need to have exactly as many lines as the original text.</p>
+    -->
     <!--Coming soon: translation files, txt, json format, short translations, high level analysis, alternate spelling systems (have a light version of page and heavy version?), progress bar, link to fst developmet repo ... load your own analyzer!!, tokenization, capitalization, error fixing (query the analyzer, generate forms, commonly encountered problems), ads-->
     <div id="architecture_explainer"></div>
     <hr/>
