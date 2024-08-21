@@ -30,6 +30,27 @@ layout: default
     <!--
     <script type="py" src="./main.py" config="./pyscript.toml" async></script>
     -->
+    <p>If you want to do more than analyze individual words, select an option below...</p>
+    <label for="analysis_mode">I want to get a:</label>
+
+    <select id="analysis_mode">
+        <option value="interlinearize">full analysis (interlinear)</option>
+        <option value="glossary">glossary</option>
+        <option value="frequency">frequency count</option>
+        <option value="summary">category count</option>
+        <option value="triage">list of unanalyzed words</option>
+        <option value="token_sample">sample of 100 analyzed words (repetitions allowed)</option>
+        <option value="type_sample">sample of 100 analyzed words (no repetitions)</option>
+    </select>
+
+    <p><label for="larger_text_input">...Then type/paste your text here:</label><p>
+
+    <textarea id="larger_text_input" name="larger_text_input" rows="20" cols="150"></textarea>
+    <p>...Then click this button :</p>
+    <button>Do it!</button>
+    <p>This will first apply the strict analyzer, and the relaxed analyzer will be applied to what the strict analyzer fails on</p>
+    <p>What to do with unanalyzed forms (it is something of a dark art)</p>
+
     <p>Click on the "Browse..." button, and select a plain text* file. This will be analyzed using the strict analyzer and the analysis will be downloaded to your computer.</p>
     <!--
     <form action='/action_page.php'>
