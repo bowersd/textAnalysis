@@ -18,7 +18,7 @@ layout: default
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
-    <p>Select an analysis option below...</p>
+    <p>1. Select an analysis option below...</p>
     <label for="analysis_mode">I want to get a:</label>
 
     <select id="analysis_mode">
@@ -33,10 +33,10 @@ layout: default
     -->
     </select>
 
-    <p><label for="larger_text_input">Type or paste Nishnaabemwin here:</label><p>
+    <p><label for="larger_text_input">2. Type or paste Nishnaabemwin here:</label><p>
 
     <textarea id="larger_text_input" name="larger_text_input" rows="20" cols="100"></textarea>
-    <p>...Then click this button :</p>
+    <p>3. Click this button:</p>
     <button py-click="parse_words_expanded">Do it!</button>
     <p>This will first use a strict analyzer, then a relaxed analyzer will be applied to what the strict analyzer fails on.</p>
     <p>Caveat lector: the most current version of the relaxed analyzer here is too large to host on this site (as of 8/21/2024). The version posted here is a slimmed down older version and may behave differently</p>
