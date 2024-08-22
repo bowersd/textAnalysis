@@ -347,7 +347,7 @@ def parse_words_expanded(event):
         cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
         for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
         cnts_lem = {lem:0 for lem in lemmata}
-        for lem in lemmata: cnts[lem] += 1
+        for lem in lemmata: cnts_lem[lem] += 1
         freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(val, key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(val, key) for key in cnts_lem])
         output_div.innerText = freqs_out
 
