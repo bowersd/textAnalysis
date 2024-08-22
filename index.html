@@ -38,8 +38,6 @@ layout: default
     <textarea id="larger_text_input" name="larger_text_input" rows="20" cols="100"></textarea>
     <p>3. Click this button:</p>
     <button py-click="parse_words_expanded">Do it!</button>
-    <p>This will first use a strict analyzer, then a relaxed analyzer will be applied to what the strict analyzer fails on.</p>
-    <p>Caveat lector: the most current version of the relaxed analyzer here is too large to host on this site (as of 8/21/2024). The version posted here is a slimmed down older version and may behave differently</p>
     <div id="output"></div>
     <!--
     <p>What to do with unanalyzed forms (it is something of a dark art)</p>
@@ -54,7 +52,7 @@ layout: default
     <p>Warning: the most current version of the relaxed analyzer here is too large to host on this site (as of 8/21/2024). The version posted here is a slimmed down older version and may behave differently</p>
     <div id="outputRelaxed"></div>
     -->
-    <script type="py" src="/textAnalysis/main.py" config="/textAnalysis/pyscript.toml" async></script>
+    <script type="py" src="./main.py" config="./pyscript.toml" async></script>
 
     <!--
     <p>Click on the "Browse..." button, and select a plain text* file. This will be analyzed using the strict analyzer and the analysis will be downloaded to your computer.</p>
@@ -98,6 +96,10 @@ layout: default
     <p>Translation files need to have exactly as many lines as the original text.</p>
     -->
     <!--Coming soon: translation files, txt, json format, short translations, high level analysis, alternate spelling systems (have a light version of page and heavy version?), progress bar, link to fst developmet repo ... load your own analyzer!!, tokenization, capitalization, error fixing (query the analyzer, generate forms, commonly encountered problems), ads-->
+    <div id="process_explainer"></div>
+    <hr/>
+    <p>The analysis process first uses a strict analyzer, then a relaxed analyzer is applied to what the strict analyzer fails on.</p>
+    <p>Caveat lector: the most current version of the relaxed analyzer here is too large to host on this site (as of 8/21/2024). The version posted here is a slimmed down older version and may behave differently</p>
     <div id="architecture_explainer"></div>
     <hr/>
     <p>When you analyze words/texts on this site, none of that is shared with (or even seen by) the host. Here's why:</p>
