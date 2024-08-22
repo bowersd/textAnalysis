@@ -322,11 +322,11 @@ def parse_words_expanded(event):
     #m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
     re_analysis = []
     for w in sep_punct(freeNish.lower(), True).split():
-        if analyzed[w][0][1].endswith('+?'): re_analysis.append(w)
+        if analyzed[w][0][0].endswith('+?'): re_analysis.append(w)
     re_analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *re_analysis)
     m_parse_lo = []
     for w in sep_punct(freeNish.lower(), True).split():
-        if analyzed[w][0][1].endswith('+?'): m_parse_lo.append(re_analyzed[w][disambiguate(min_morphs(*re_analyzed[w]), min_morphs, *re_analyzed[w])][0])
+        if analyzed[w][0][0].endswith('+?'): m_parse_lo.append(re_analyzed[w][disambiguate(min_morphs(*re_analyzed[w]), min_morphs, *re_analyzed[w])][0])
         else: m_parse_lo.append(analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0])
     m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
     lemmata = [x if x else "?" for x in lemmatize(pos_regex, *m_parse_lo)]
@@ -509,8 +509,8 @@ async def get_bytes_from_file(file):
     array_buf = await file.arrayBuffer()
     return array_buf.to_bytes()
 
-#gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
-#pos_regex = "".join(readin("./pos_regex.txt"))
+gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
+pos_regex = "".join(readin("./pos_regex.txt"))
 #upload_file = pyscript.document.getElementById("file-upload")
 #add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
 #
