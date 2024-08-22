@@ -509,13 +509,13 @@ async def get_bytes_from_file(file):
     array_buf = await file.arrayBuffer()
     return array_buf.to_bytes()
 
-gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
-pos_regex = "".join(readin("./pos_regex.txt"))
-upload_file = pyscript.document.getElementById("file-upload")
-add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
-
-upload_file = pyscript.document.getElementById("file-upload_relaxed")
-add_event_listener(upload_file, "change", _upload_file_and_analyze_relaxed) #maybe "click" instead of "change"
+#gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
+#pos_regex = "".join(readin("./pos_regex.txt"))
+#upload_file = pyscript.document.getElementById("file-upload")
+#add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
+#
+#upload_file = pyscript.document.getElementById("file-upload_relaxed")
+#add_event_listener(upload_file, "change", _upload_file_and_analyze_relaxed) #maybe "click" instead of "change"
 #data = "this is some text" #"".join(stitched) 
 #def downloadFile(*args):
 #    encoded_data = data.encode('utf-8')
