@@ -350,6 +350,8 @@ def parse_words_expanded(event):
         for lem in lemmata: cnts_lem[lem] += 1
         freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
         output_div.innerText = freqs_out
+    if analysis_mode.value == "glossary":
+        pass
 
 
 def parse_words(event):
