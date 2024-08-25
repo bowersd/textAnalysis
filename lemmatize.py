@@ -405,6 +405,7 @@ if __name__ == "__main__":
                 loci = [] #[(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
                 for i in range(len(full["m_parse_lo"])):
                     for j in range(len(full["m_parse_lo"][i])): loci.append((i, j))
+                used_lemmata = []
                 if s[1] == "unanalyzed": assert s[2] == "token"
                 if s[0] == "all": 
                     target_forms = []
@@ -432,7 +433,6 @@ if __name__ == "__main__":
                                                     str(tf[2][1])])+"\n")
                 else:
                     cnt = 0
-                    used_lemmata = []
                     with open('spot_checks_{0}_{1}_{2}_{3}.txt'.format(s[0], re.search(r"(([^/]*(?=\.hfstol))|((un)?analyzed))", s[1])[0], s[2], date.today()), 'w') as fileOut:
                         while cnt < int(s[0]) and loci:
                             cnt += 1
