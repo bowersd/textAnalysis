@@ -405,28 +405,29 @@ if __name__ == "__main__":
                 loci = [] #[(i, j) for j in range(len(full["m_parse_lo"][i])) for i in range(len(full["m_parse_lo"]))]
                 for i in range(len(full["m_parse_lo"])):
                     for j in range(len(full["m_parse_lo"][i])): loci.append((i, j))
-                used_lemmata = []
+                used_lemmata = {}
                 if s[1] == "unanalyzed": assert s[2] == "token"
                 if s[0] == "all": 
                     target_forms = []
                     for locus in loci:
                         if s[1] in full["analysis_src"][locus[0]][locus[1]]: 
-                            target_forms.append((full["chunked"][locus[0]][locus[1]], "".join(reversed(full["chunked"][locus[0]][locus[1]])), locus))
-                            if s[2] == "type": used_lemmata.append(full["lemmata"][locus[0]][locus[1]])
+                            target_form = (full["chunked"][locus[0]][locus[1]], "".join(reversed(full["chunked"][locus[0]][locus[1]])), locus)
+                            target_forms.append(target_form)
+                            if s[2] == "type" and full["lemmata"][locus[0]][locus[1]] not in used_lemmata: used_lemmata[full["lemmata"][locus[0]][locus[1]]] = [target_form]
+                            elif s[2] == "type" and full["lemmata"][locus[0]][locus[1]] in used_lemmata: used_lemmata[full["lemmata"][locus[0]][locus[1]]].append(target_form)
                     with open('spot_checks_{0}_{1}_{2}_{3}_reversed.csv'.format(s[0], s[1], s[2], date.today()), 'w') as fileOut: 
                         if s[2] == "type":
                             for ul in sorted(used_lemmata):
-                                for tf in sorted(target_forms, key=lambda x: x[1]):
-                                    if full["lemmata"][tf[2][0]][tf[2][1]] == ul:
-                                        fileOut.write("\t".join( 
-                                                                [ul, 
-                                                                tf[0], 
-                                                                " ".join([full["chunked"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["chunked"][tf[2][0]][i]+"<<" for i in range(len(full["chunked"][tf[2][0]]))]), 
-                                                                " ".join([full["m_parse_lo"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["m_parse_lo"][tf[2][0]][i]+"<<" for i in range(len(full["m_parse_lo"][tf[2][0]]))]), 
-                                                                " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
-                                                                full["english"][tf[2][0]],
-                                                                str(tf[2][0]),
-                                                                str(tf[2][1])])+"\n")
+                                for tf in sorted(used_lemmata[ul], key=lambda x: x[1]):
+                                    fileOut.write("\t".join( 
+                                                            [ul, 
+                                                            tf[0], 
+                                                            " ".join([full["chunked"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["chunked"][tf[2][0]][i]+"<<" for i in range(len(full["chunked"][tf[2][0]]))]), 
+                                                            " ".join([full["m_parse_lo"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["m_parse_lo"][tf[2][0]][i]+"<<" for i in range(len(full["m_parse_lo"][tf[2][0]]))]), 
+                                                            " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
+                                                            full["english"][tf[2][0]],
+                                                            str(tf[2][0]),
+                                                            str(tf[2][1])])+"\n")
 
                         else:
                             for tf in sorted(target_forms, key=lambda x: x[1]):
@@ -441,17 +442,16 @@ if __name__ == "__main__":
                     with open('spot_checks_{0}_{1}_{2}_{3}.csv'.format(s[0], s[1], s[2], date.today()), 'w') as fileOut:
                         if s[2] == "type":
                             for ul in sorted(used_lemmata):
-                                for tf in sorted(target_forms):
-                                    if full["lemmata"][tf[2][0]][tf[2][1]] == ul:
-                                        fileOut.write("\t".join( 
-                                                                [ul, 
-                                                                tf[0], 
-                                                                " ".join([full["chunked"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["chunked"][tf[2][0]][i]+"<<" for i in range(len(full["chunked"][tf[2][0]]))]), 
-                                                                " ".join([full["m_parse_lo"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["m_parse_lo"][tf[2][0]][i]+"<<" for i in range(len(full["m_parse_lo"][tf[2][0]]))]), 
-                                                                " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
-                                                                full["english"][tf[2][0]],
-                                                                str(tf[2][0]),
-                                                                str(tf[2][1])])+"\n")
+                                for tf in sorted(used_lemmata[ul]):
+                                    fileOut.write("\t".join( 
+                                                            [ul, 
+                                                            tf[0], 
+                                                            " ".join([full["chunked"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["chunked"][tf[2][0]][i]+"<<" for i in range(len(full["chunked"][tf[2][0]]))]), 
+                                                            " ".join([full["m_parse_lo"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["m_parse_lo"][tf[2][0]][i]+"<<" for i in range(len(full["m_parse_lo"][tf[2][0]]))]), 
+                                                            " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
+                                                            full["english"][tf[2][0]],
+                                                            str(tf[2][0]),
+                                                            str(tf[2][1])])+"\n")
                         else:
                             for tf in sorted(target_forms):
                                 fileOut.write("\t".join( 
@@ -469,7 +469,7 @@ if __name__ == "__main__":
                             cnt += 1
                             locus = loci.pop(random.randrange(0, len(loci)))
                             while ((not s[1] in full["analysis_src"][locus[0]][locus[1]]) or full["lemmata"][locus[0]][locus[1]] in used_lemmata) and loci: locus = loci.pop(random.randrange(0, len(loci)))
-                            if s[2] == "type": used_lemmata.append(full["lemmata"][locus[0]][locus[1]])
+                            if s[2] == "type": used_lemmata[full["lemmata"][locus[0]][locus[1]]] = 0
                             padded = pad([str(ind) for ind in range(len(full["chunked"][locus[0]]))], full["chunked"][locus[0]], full["edited"][locus[0]], full["m_parse_lo"][locus[0]], full["m_parse_hi"][locus[0]], full["lemmata"][locus[0]], full["tiny_gloss"][locus[0]])
                             fileOut.write("Sentence number:"+' '+str(locus[0])+'\n')
                             fileOut.write("Is target word a loan/not in Nishnaabemwin? (y/n): "+'\n')
