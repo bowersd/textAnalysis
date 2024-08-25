@@ -430,7 +430,6 @@ if __name__ == "__main__":
                                                     full["english"][tf[2][0]],
                                                     str(tf[2][0]),
                                                     str(tf[2][1])])+"\n")
-                elif s[0] == "all" and s[1] != "unanalyzed": print("full listing of analyzed forms is probably not informative, and is not currently supported")
                 else:
                     cnt = 0
                     used_lemmata = []
