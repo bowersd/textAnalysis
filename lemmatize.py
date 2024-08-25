@@ -414,8 +414,9 @@ if __name__ == "__main__":
                         for tf in sorted(target_forms, key=lambda x: x[1]):
                             fileOut.write("\t".join( 
                                                     [tf[0], 
-                                                    " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
                                                     " ".join([full["chunked"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["chunked"][tf[2][0]][i]+"<<" for i in range(len(full["chunked"][tf[2][0]]))]), 
+                                                    " ".join([full["m_parse_lo"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["m_parse_lo"][tf[2][0]][i]+"<<" for i in range(len(full["m_parse_lo"][tf[2][0]]))]), 
+                                                    " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
                                                     full["english"][tf[2][0]],
                                                     str(tf[2][0]),
                                                     str(tf[2][1])])+"\n")
@@ -423,8 +424,9 @@ if __name__ == "__main__":
                         for tf in sorted(target_forms):
                             fileOut.write("\t".join( 
                                                     [tf[0], 
-                                                    " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
                                                     " ".join([full["chunked"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["chunked"][tf[2][0]][i]+"<<" for i in range(len(full["chunked"][tf[2][0]]))]), 
+                                                    " ".join([full["m_parse_lo"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["m_parse_lo"][tf[2][0]][i]+"<<" for i in range(len(full["m_parse_lo"][tf[2][0]]))]), 
+                                                    " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
                                                     full["english"][tf[2][0]],
                                                     str(tf[2][0]),
                                                     str(tf[2][1])])+"\n")
