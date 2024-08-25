@@ -406,28 +406,28 @@ if __name__ == "__main__":
                 for i in range(len(full["m_parse_lo"])):
                     for j in range(len(full["m_parse_lo"][i])): loci.append((i, j))
                 if s[1] == "unanalyzed": assert s[2] == "token"
-                if s[0] == "all" and s[1] == "unanalyzed": 
-                    errors = []
+                if s[0] == "all": 
+                    target_forms = []
                     for locus in loci:
-                        if "unanalyzed" in full["analysis_src"][locus[0]][locus[1]]: errors.append((full["chunked"][locus[0]][locus[1]], "".join(reversed(full["chunked"][locus[0]][locus[1]])), locus))
+                        if s[1] in full["analysis_src"][locus[0]][locus[1]]: target_forms.append((full["chunked"][locus[0]][locus[1]], "".join(reversed(full["chunked"][locus[0]][locus[1]])), locus))
                     with open('spot_checks_{0}_{1}_{2}_{3}_reversed.csv'.format(s[0], s[1], s[2], date.today()), 'w') as fileOut: 
-                        for e in sorted(errors, key=lambda x: x[1]):
+                        for tf in sorted(target_forms, key=lambda x: x[1]):
                             fileOut.write("\t".join( 
-                                                    [e[0], 
-                                                    " ".join([full["tiny_gloss"][e[2][0]][i] if i != e[2][1] else ">>"+full["tiny_gloss"][e[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][e[2][0]]))]), 
-                                                    " ".join([full["chunked"][e[2][0]][i] if i != e[2][1] else ">>"+full["chunked"][e[2][0]][i]+"<<" for i in range(len(full["chunked"][e[2][0]]))]), 
-                                                    full["english"][e[2][0]],
-                                                    str(e[2][0]),
-                                                    str(e[2][1])])+"\n")
+                                                    [tf[0], 
+                                                    " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
+                                                    " ".join([full["chunked"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["chunked"][tf[2][0]][i]+"<<" for i in range(len(full["chunked"][tf[2][0]]))]), 
+                                                    full["english"][tf[2][0]],
+                                                    str(tf[2][0]),
+                                                    str(tf[2][1])])+"\n")
                     with open('spot_checks_{0}_{1}_{2}_{3}.csv'.format(s[0], s[1], s[2], date.today()), 'w') as fileOut:
-                        for e in sorted(errors):
+                        for tf in sorted(target_forms):
                             fileOut.write("\t".join( 
-                                                    [e[0], 
-                                                    " ".join([full["tiny_gloss"][e[2][0]][i] if i != e[2][1] else ">>"+full["tiny_gloss"][e[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][e[2][0]]))]), 
-                                                    " ".join([full["chunked"][e[2][0]][i] if i != e[2][1] else ">>"+full["chunked"][e[2][0]][i]+"<<" for i in range(len(full["chunked"][e[2][0]]))]), 
-                                                    full["english"][e[2][0]],
-                                                    str(e[2][0]),
-                                                    str(e[2][1])])+"\n")
+                                                    [tf[0], 
+                                                    " ".join([full["tiny_gloss"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["tiny_gloss"][tf[2][0]][i]+"<<" for i in range(len(full["tiny_gloss"][tf[2][0]]))]), 
+                                                    " ".join([full["chunked"][tf[2][0]][i] if i != tf[2][1] else ">>"+full["chunked"][tf[2][0]][i]+"<<" for i in range(len(full["chunked"][tf[2][0]]))]), 
+                                                    full["english"][tf[2][0]],
+                                                    str(tf[2][0]),
+                                                    str(tf[2][1])])+"\n")
                 elif s[0] == "all" and s[1] != "unanalyzed": print("full listing of analyzed forms is probably not informative, and is not currently supported")
                 else:
                     cnt = 0
