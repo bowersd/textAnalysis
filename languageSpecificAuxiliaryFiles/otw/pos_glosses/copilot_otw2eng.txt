@@ -197,6 +197,7 @@ gnesh	perhaps
 gnimaa	maybe
 gnwesh	perhaps
 go	EMPH
+gwa	EMPH
 gojiing	outside
 gojyi'iing	outside
 gshkonwaach	unexpected
