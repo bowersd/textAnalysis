@@ -2798,35 +2798,35 @@ naanan	five
 naanin	five
 naaning	five
 naanmidna	fifty
-naanwaak	five hundred
+naanwaak	five.hundred
 ngo-bkwaakninch	fistful
 ngo-dba'gaans	inch
 ngodwaak	hundred
 ngodwaasmidna	sixty
-ngodwaaswaak	six hundred
+ngodwaaswaak	six.hundred
 ngodwaaswi	six
 niimdana	forty
 niish	two
 niishtana	twenty
-niiwaak	four hundred
+niiwaak	four.hundred
 niiwin	four
 niiwing	four
 niizhing	two
-niizhwaak	two hundred
+niizhwaak	two.hundred
 niizhwaasmidna	seventy
-niizhwaaswaak	seven hundred
+niizhwaaswaak	seven.hundred
 niizhwaaswi	seven
 nshwaasmidna	eighty
-nshwaaswaak	eight hundred
+nshwaaswaak	eight.hundred
 nshwaaswi	eight
 nsimdana	thirty
 nsing	three
 nsoozit	three
-nswaak	three hundred
+nswaak	three.hundred
 nswi	three
 zhaangching	nine
 zhaangsimdana	ninety
-zhaangswaak	nine hundred
+zhaangswaak	nine.hundred
 zhaangswi	nine
 ngo-dba'aabaan	mile
 eko-niizhing	second
