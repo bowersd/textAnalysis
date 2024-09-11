@@ -324,7 +324,7 @@ def parse_words_expanded(event):
     for w in sep_punct(freeNish.lower(), True).split():
         if analyzed[w][0][0].endswith('+?'): re_analysis.append(w)
     re_analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *re_analysis)
-    h = {"original":[]
+    h = {"original":[],
          "m_parse_lo":[],
          "m_parse_hi":[],
          "lemmata":[],
@@ -376,11 +376,13 @@ def parse_words_expanded(event):
         for i in range(len(h["original"])):
             for j in range(len(h["original"][i])):
                 if h["m_parse_lo"][i][j].endswith("+?"):
-                    recall_errors.append([h["original"][i][j], h["original"][i][:j], h["original"][i][j], h["original"][i][j+1:]])
-                    recall_errors.append(["", h["m_parse_lo"][i][:j], "", h["m_parse_lo"][i][j+1:]])
-                    recall_errors.append(["", h["m_parse_hi"][i][:j], "", h["m_parse_hi"][i][j+1:]])
-                    recall_errors.append(["", h["lemmata"][i][:j], "", h["lemmata"][i][j+1:]])
-                    recall_errors.append(["", h["tinies"][i][:j], "", h["tinies"][i][j+1:]])
+                    error = [(h["original"][i][j], reversed(h["original"][i][j]), i)]
+                    error.append(h["original"][i][:j], h["original"][i][j], h["original"][i][j+1:]])
+                    error.append([h["m_parse_lo"][i][:j], "", h["m_parse_lo"][i][j+1:]])
+                    error.append([h["m_parse_hi"][i][:j], "", h["m_parse_hi"][i][j+1:]])
+                    error.append([h["lemmata"][i][:j], "", h["lemmata"][i][j+1:]])
+                    error.append([h["tinies"][i][:j], "", h["tinies"][i][j+1:]])
+
 
 
 
