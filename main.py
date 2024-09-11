@@ -386,6 +386,7 @@ def parse_words_expanded(event):
         forwards = ""
         for r in sorted(recall_errors):
             forwards += tabulate.tabulate(header = ["error", "sentence_number", "left_context", "location", "right_context"], [r[0][0], r[0][1], ["", ""]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]], tablefmt = "html")
+        output_div.innerHTML = forwards
             
 
 
