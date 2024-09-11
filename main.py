@@ -366,12 +366,21 @@ def parse_words_expanded(event):
         for lem in cnts_lem:
             for tok in cnts_lem[lem]:
                 cnts.append((cnts_lem[lem][tok], tok, lem))
-        freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(x[0], x) for x in sorted(cnts)])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]], key) for key in cnts_lem])))
+        freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(x[0], x) for x in sorted(cnts)])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
         #freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
         output_div.innerText = freqs_out
     if analysis_mode.value == "glossary":
         pass
-    if analysis_mode.value == "triage":for i in range(len(h["original"])):
+    if analysis_mode.value == "triage":
+        recall_errors = []
+        for i in range(len(h["original"])):
+            for j in range(len(h["original"][i])):
+                if h["m_parse_lo"][i][j].endswith("+?"):
+                    recall_errors.append([h["original"][i][j], h["original"][i][:j], h["original"][i][j], h["original"][i][j+1:]])
+                    recall_errors.append(["", h["m_parse_lo"][i][:j], "", h["m_parse_lo"][i][j+1:]])
+                    recall_errors.append(["", h["m_parse_hi"][i][:j], "", h["m_parse_hi"][i][j+1:]])
+                    recall_errors.append(["", h["lemmata"][i][:j], "", h["lemmata"][i][j+1:]])
+                    recall_errors.append(["", h["tinies"][i][:j], "", h["tinies"][i][j+1:]])
 
 
 
