@@ -324,23 +324,34 @@ def parse_words_expanded(event):
     for w in sep_punct(freeNish.lower(), True).split():
         if analyzed[w][0][0].endswith('+?'): re_analysis.append(w)
     re_analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *re_analysis)
-    m_parse_lo = []
-    for w in sep_punct(freeNish.lower(), True).split():
-        if analyzed[w][0][0].endswith('+?'): m_parse_lo.append(re_analyzed[w][disambiguate(min_morphs(*re_analyzed[w]), min_morphs, *re_analyzed[w])][0])
-        else: m_parse_lo.append(analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0])
-    m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
-    lemmata = [x if x else "?" for x in lemmatize(pos_regex, *m_parse_lo)]
-    tinies = []
-    for l in lemmata:
-        try: gloss = gdict[l]
-        except KeyError:
-            gloss = "?"
-        tinies.append("'"+gloss+"'")
+    h = {"original":[]
+         "m_parse_lo":[],
+         "m_parse_hi":[],
+         "lemmata":[],
+         "tinies":[]}
+    for line in freeNish.lower().split('\n'):
+        local = []
+        for w in sep_punct(line, True).split():
+            if analyzed[w][0][0].endswith('+?'): local.append(re_analyzed[w][disambiguate(min_morphs(*re_analyzed[w]), min_morphs, *re_analyzed[w])][0])
+            else: local.append(analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0])
+        h["original"].append(line)
+        h["m_parse_lo"].append(local)
+        h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
+        h["lemmata"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in [x if x else "?" for x in lemmatize(pos_regex, *local)]])
+        tinies = []
+        for l in h["lemmata"][-1]:
+            try: gloss = gdict[l]
+            except KeyError:
+                gloss = "?"
+            tinies.append("'"+gloss+"'")
+        h["tinies"].append(tinies)
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
-        words_out = tabulate.tabulate([["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
-        output_div.innerHTML = words_out
+        lines_out = ""
+        for i in range(len(h["m_parse_lo"])):
+            lines_out += tabulate.tabulate([["Original Material:"] + sep_punct(h["original"][i], True).split(), ["Narrow Analysis:"] + h["m_parse_lo"][i], ["Broad Analysis:"] + h["m_parse_hi"][i], ["Dictionary Header:"] + h["lemmata"][i], ["Terse Translation:"] + h["tinies"][i], tablefmt='html')
+        output_div.innerHTML = lines
     if analysis_mode.value == "frequency":
         cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
         for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
