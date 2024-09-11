@@ -353,11 +353,21 @@ def parse_words_expanded(event):
             lines_out += tabulate.tabulate([["Original Material:"] + sep_punct(h["original"][i], True).split(), ["Narrow Analysis:"] + h["m_parse_lo"][i], ["Broad Analysis:"] + h["m_parse_hi"][i], ["Dictionary Header:"] + h["lemmata"][i], ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
         output_div.innerHTML = lines
     if analysis_mode.value == "frequency":
-        cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
-        for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
         cnts_lem = {}
-        for lem in lemmata: cnts_lem[lem] += 1
-        freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
+        for i in range(len(h["original"])):
+            for j in range(len(h["lemmata"][i])):
+                if h["lemmata"][i][j] not in cnts_lem: cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1}
+                elif h["original"][i][j] not in cnts_lem[h["lemmata"][i][j]]: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] = 1
+                else: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] += 1
+        #cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
+        #for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
+        #for lem in lemmata: cnts_lem[lem] += 1
+        cnts = []
+        for lem in cnts_lem:
+            for tok in cnts_lem[lem]:
+                cnts.append((cnts_lem[lem][tok], tok, lem))
+        freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(x[0], x) for x in sorted(cnts)])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]], key) for key in cnts_lem]))
+        #freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
         output_div.innerText = freqs_out
     if analysis_mode.value == "glossary":
         pass
