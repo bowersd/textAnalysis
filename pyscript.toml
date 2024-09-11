@@ -5,7 +5,6 @@ packages = [
             "regex",
             ]
 [files] 
-#"/textAnalysis/jhanley_html.py" = "./jhanley_html.py"
 "/textAnalysis/morphophonologyclitics_analyze.hfstol" = "./morphophonologyclitics_analyze.hfstol"
 #"/morphophonologyclitics_generate.hfstol" = "./morphophonologyclitics_generate.hfstol"
 "/textAnalysis/morphophonologyclitics_analyze_relaxed_slim.hfstol" = "./morphophonologyclitics_analyze_relaxed_slim.hfstol"
