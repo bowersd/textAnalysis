@@ -5,9 +5,9 @@ await micropip.install(
     #'https://files.pythonhosted.org/packages/eb/f5/3ea71e974dd0117b95a54ab2c79d781b4376d257d91e4c2249605f4a54ae/pyhfst-1.2.0-py2.py3-none-any.whl'
     #'./pyhfst-1.2.0-py2.py3-none-any.whl'
 )
-await micropip.install(
-    'https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl'
-)
+#await micropip.install(
+#    'https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl'
+#)
 from pyweb import pydom
 import pyscript
 import asyncio
