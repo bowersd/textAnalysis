@@ -5,9 +5,9 @@ await micropip.install(
     #'https://files.pythonhosted.org/packages/eb/f5/3ea71e974dd0117b95a54ab2c79d781b4376d257d91e4c2249605f4a54ae/pyhfst-1.2.0-py2.py3-none-any.whl'
     #'./pyhfst-1.2.0-py2.py3-none-any.whl'
 )
-#await micropip.install(
-#    'https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl'
-#)
+await micropip.install(
+    'https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl'
+)
 from pyweb import pydom
 import pyscript
 import asyncio
@@ -339,9 +339,9 @@ def parse_words_expanded(event):
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
-        padded = pad(["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broader Analysis:"] + m_parse_hi, ["Dictionary Entry:"] + lemmata, ["Terse Translation:"] + tinies)
-        words_out = "\n".join(["\t".join(p) for p in padded])
-        #words_out = tabulate.tabulate([["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
+        #padded = pad(["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broader Analysis:"] + m_parse_hi, ["Dictionary Entry:"] + lemmata, ["Terse Translation:"] + tinies)
+        #words_out = "\n".join(["\t".join(p) for p in padded])
+        words_out = tabulate.tabulate([["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
         output_div.innerText = words_out 
     if analysis_mode.value == "frequency":
         cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
