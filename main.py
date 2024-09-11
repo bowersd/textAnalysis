@@ -350,12 +350,12 @@ def parse_words_expanded(event):
     if analysis_mode.value == "interlinearize":
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
-            lines_out += tabulate.tabulate([["Original Material:"] + sep_punct(h["original"][i], True).split(), ["Narrow Analysis:"] + h["m_parse_lo"][i], ["Broad Analysis:"] + h["m_parse_hi"][i], ["Dictionary Header:"] + h["lemmata"][i], ["Terse Translation:"] + h["tinies"][i], tablefmt='html')
+            lines_out += tabulate.tabulate([["Original Material:"] + sep_punct(h["original"][i], True).split(), ["Narrow Analysis:"] + h["m_parse_lo"][i], ["Broad Analysis:"] + h["m_parse_hi"][i], ["Dictionary Header:"] + h["lemmata"][i], ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
         output_div.innerHTML = lines
     if analysis_mode.value == "frequency":
         cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
         for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
-        cnts_lem = {lem:0 for lem in lemmata}
+        cnts_lem = {}
         for lem in lemmata: cnts_lem[lem] += 1
         freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
         output_div.innerText = freqs_out
