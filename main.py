@@ -339,6 +339,7 @@ def parse_words_expanded(event):
         h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
         print(lemmatize(pos_regex, *local))
         h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)])
+        print(h["lemmata"])
         tinies = []
         for l in h["lemmata"][-1]:
             try: gloss = gdict[l]
@@ -351,7 +352,12 @@ def parse_words_expanded(event):
     if analysis_mode.value == "interlinearize":
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
-            lines_out += tabulate.tabulate([["Original Material:"] + sep_punct(h["original"][i], True).split(), ["Narrow Analysis:"] + h["m_parse_lo"][i], ["Broad Analysis:"] + h["m_parse_hi"][i], ["Dictionary Header:"] + h["lemmata"][i], ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
+            lines_out += tabulate.tabulate([
+                ["Original Material:"] + sep_punct(h["original"][i], True).split(), 
+                ["Narrow Analysis:"] + h["m_parse_lo"][i], 
+                ["Broad Analysis:"] + h["m_parse_hi"][i], 
+                ["Dictionary Header:"] + h["lemmata"][i], 
+                ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
         output_div.innerHTML = lines_out
     if analysis_mode.value == "frequency":
         cnts_lem = {}
