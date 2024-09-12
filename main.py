@@ -360,6 +360,7 @@ def parse_words_expanded(event):
     if analysis_mode.value == "frequency":
         cnts_lem = {}
         for i in range(len(h["original"])):
+            print(h["lemmata"][i])
             for j in range(len(h["lemmata"][i])):
                 if h["lemmata"][i][j] not in cnts_lem: cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1}
                 elif h["original"][i][j] not in cnts_lem[h["lemmata"][i][j]]: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] = 1
