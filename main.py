@@ -338,7 +338,7 @@ def parse_words_expanded(event):
         h["m_parse_lo"].append(local)
         h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
         print(lemmatize(pos_regex, *local))
-        h["lemmata"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in [x if x else "?" for x in lemmatize(pos_regex, *local)]])
+        h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)])
         tinies = []
         for l in h["lemmata"][-1]:
             try: gloss = gdict[l]
