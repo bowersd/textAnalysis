@@ -383,11 +383,11 @@ def parse_words_expanded(event):
                 print(h["original"][i])
                 if h["m_parse_lo"][i][j].endswith("+?"):
                     error = [(h["original"][i][j], reversed(h["original"][i][j]), i)]
-                    error.append([" ".join(h["original"][i][:j]), h["original"][i][j], " ".join(h["original"][i][j+1:]]))
-                    error.append([" ".join(h["m_parse_lo"][i][:j]), "",                " ".join(h["m_parse_lo"][i][j+1:]]))
-                    error.append([" ".join(h["m_parse_hi"][i][:j]), "",                " ".join(h["m_parse_hi"][i][j+1:]]))
-                    error.append([" ".join(h["lemmata"][i][:j]), "",                   " ".join(h["lemmata"][i][j+1:]]))
-                    error.append([" ".join(h["tinies"][i][:j]), "",                    " ".join(h["tinies"][i][j+1:]]))
+                    error.append([" ".join(h["original"][i][:j]), h["original"][i][j], " ".join(h["original"][i][j+1:])])
+                    error.append([" ".join(h["m_parse_lo"][i][:j]), "",                " ".join(h["m_parse_lo"][i][j+1:])])
+                    error.append([" ".join(h["m_parse_hi"][i][:j]), "",                " ".join(h["m_parse_hi"][i][j+1:])])
+                    error.append([" ".join(h["lemmata"][i][:j]), "",                   " ".join(h["lemmata"][i][j+1:])])
+                    error.append([" ".join(h["tinies"][i][:j]), "",                    " ".join(h["tinies"][i][j+1:])])
                     recall_errors.append(error)
         #forwards = ""
         #for r in sorted(recall_errors):
