@@ -359,8 +359,7 @@ def parse_words_expanded(event):
         output_div.innerHTML = lines_out
     if analysis_mode.value == "frequency":
         cnts_lem = {}
-        for i in range(len(h["original"])):
-            print(h["lemmata"][i])
+        for i in range(len(h["lemmata"])):
             for j in range(len(h["lemmata"][i])):
                 if h["lemmata"][i][j] not in cnts_lem: cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1}
                 elif h["original"][i][j] not in cnts_lem[h["lemmata"][i][j]]: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] = 1
@@ -372,7 +371,7 @@ def parse_words_expanded(event):
         for lem in cnts_lem:
             for tok in cnts_lem[lem]:
                 cnts.append((cnts_lem[lem][tok], tok, lem))
-        freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(x[0], x) for x in sorted(cnts)])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
+        freqs_out = "Raw (token) frequencies\n"+"\n".join(["\t".join(x) for x in sorted(cnts)])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
         #freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
         output_div.innerText = freqs_out
     if analysis_mode.value == "glossary":
