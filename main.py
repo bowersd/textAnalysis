@@ -380,6 +380,7 @@ def parse_words_expanded(event):
         recall_errors = []
         for i in range(len(h["original"])):
             for j in range(len(h["original"][i])):
+                print(h["original"][i])
                 if h["m_parse_lo"][i][j].endswith("+?"):
                     error = [(h["original"][i][j], reversed(h["original"][i][j]), i)]
                     error.append([h["original"][i][:j], h["original"][i][j], h["original"][i][j+1:]])
