@@ -383,15 +383,16 @@ def parse_words_expanded(event):
                 print(h["original"][i])
                 if h["m_parse_lo"][i][j].endswith("+?"):
                     error = [(h["original"][i][j], reversed(h["original"][i][j]), i)]
-                    error.append([h["original"][i][:j], h["original"][i][j], h["original"][i][j+1:]])
-                    error.append([h["m_parse_lo"][i][:j], "", h["m_parse_lo"][i][j+1:]])
-                    error.append([h["m_parse_hi"][i][:j], "", h["m_parse_hi"][i][j+1:]])
-                    error.append([h["lemmata"][i][:j], "", h["lemmata"][i][j+1:]])
-                    error.append([h["tinies"][i][:j], "", h["tinies"][i][j+1:]])
+                    error.append([" ".join(h["original"][i][:j]), h["original"][i][j], " ".join(h["original"][i][j+1:]]))
+                    error.append([" ".join(h["m_parse_lo"][i][:j]), "",                " ".join(h["m_parse_lo"][i][j+1:]]))
+                    error.append([" ".join(h["m_parse_hi"][i][:j]), "",                " ".join(h["m_parse_hi"][i][j+1:]]))
+                    error.append([" ".join(h["lemmata"][i][:j]), "",                   " ".join(h["lemmata"][i][j+1:]]))
+                    error.append([" ".join(h["tinies"][i][:j]), "",                    " ".join(h["tinies"][i][j+1:]]))
                     recall_errors.append(error)
-        forwards = ""
-        for r in sorted(recall_errors):
-            forwards += tabulate.tabulate([[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
+        #forwards = ""
+        #for r in sorted(recall_errors):
+            #forwards += tabulate.tabulate([[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
+        forwards = tabulate.tabulate([[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5] for r in sorted(recall_errors)], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         output_div.innerHTML = forwards
             
 
