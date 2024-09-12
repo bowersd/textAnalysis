@@ -382,17 +382,19 @@ def parse_words_expanded(event):
             for j in range(len(h["original"][i])):
                 print(h["original"][i])
                 if h["m_parse_lo"][i][j].endswith("+?"):
-                    error = [(h["original"][i][j], reversed(h["original"][i][j]), i)]
-                    error.append([" ".join(h["original"][i][:j]), h["original"][i][j], " ".join(h["original"][i][j+1:])])
-                    error.append([" ".join(h["m_parse_lo"][i][:j]), "",                " ".join(h["m_parse_lo"][i][j+1:])])
-                    error.append([" ".join(h["m_parse_hi"][i][:j]), "",                " ".join(h["m_parse_hi"][i][j+1:])])
-                    error.append([" ".join(h["lemmata"][i][:j]), "",                   " ".join(h["lemmata"][i][j+1:])])
-                    error.append([" ".join(h["tinies"][i][:j]), "",                    " ".join(h["tinies"][i][j+1:])])
+                    error = [(h["original"][i][j], i, " ".join(h["original"][i][:j]), h["original"][i][j], " ".join(h["original"][i][j+1:]))]
+                    error.append(["", "", " ".join(h["m_parse_lo"][i][:j]), "",                " ".join(h["m_parse_lo"][i][j+1:])])
+                    error.append(["", "", " ".join(h["m_parse_hi"][i][:j]), "",                " ".join(h["m_parse_hi"][i][j+1:])])
+                    error.append(["", "", " ".join(h["lemmata"][i][:j]), "",                   " ".join(h["lemmata"][i][j+1:])])
+                    error.append(["", "", " ".join(h["tinies"][i][:j]), "",                    " ".join(h["tinies"][i][j+1:])])
                     recall_errors.append(error)
+        ordered_recall_errors = []
+        for x in sorted(recall_errors): ordered_recall_errors.extend(x) #[x[0], x[1], x[2], x[3], x[4] for x in sorted(recall_errors)]
         #forwards = ""
         #for r in sorted(recall_errors):
         #    forwards += tabulate.tabulate([[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
-        forwards = tabulate.tabulate([[[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]] for r in sorted(recall_errors)], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
+        #forwards = tabulate.tabulate([[[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]] for r in sorted(recall_errors)], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
+        forwards = tabulate.tabulate(ordered_recall_errors, headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         output_div.innerHTML = forwards
             
 
