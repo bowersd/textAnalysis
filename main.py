@@ -392,7 +392,7 @@ def parse_words_expanded(event):
         if analysis_mode.value == "triage":
             for x in sorted(recall_errors): ordered_recall_errors.extend(x) #[x[0], x[1], x[2], x[3], x[4] for x in sorted(recall_errors)]
         if analysis_mode.value == "reversed_triage":
-            for x in sorted(recall_errors, key=lambda z: [y for y in reversed(z)]): ordered_recall_errors.extend(x) #[x[0], x[1], x[2], x[3], x[4] for x in sorted(recall_errors)]
+            for x in sorted(recall_errors, key=lambda z: [y for y in reversed(z[0][0])]): ordered_recall_errors.extend(x) #[x[0], x[1], x[2], x[3], x[4] for x in sorted(recall_errors)]
         #forwards = ""
         #for r in sorted(recall_errors):
         #    forwards += tabulate.tabulate([[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
