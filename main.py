@@ -376,7 +376,7 @@ def parse_words_expanded(event):
         output_div.innerText = freqs_out
     if analysis_mode.value == "glossary":
         pass
-    if analysis_mode.value == "triage":
+    if analysis_mode.value in ["triage", "reversed_triage"]:
         recall_errors = []
         for i in range(len(h["original"])):
             for j in range(len(h["original"][i])):
@@ -389,7 +389,10 @@ def parse_words_expanded(event):
                     error.append(["", "", " ".join(h["tinies"][i][:j]), "",                    " ".join(h["tinies"][i][j+1:])])
                     recall_errors.append(error)
         ordered_recall_errors = []
-        for x in sorted(recall_errors): ordered_recall_errors.extend(x) #[x[0], x[1], x[2], x[3], x[4] for x in sorted(recall_errors)]
+        if analysis_mode.value == "triage":
+            for x in sorted(recall_errors): ordered_recall_errors.extend(x) #[x[0], x[1], x[2], x[3], x[4] for x in sorted(recall_errors)]
+        if analysis_mode.value == "reversed_triage":
+            for x in sorted(recall_errors, key=lambda z: "".join([y for y in reversed(z)])): ordered_recall_errors.extend(x) #[x[0], x[1], x[2], x[3], x[4] for x in sorted(recall_errors)]
         #forwards = ""
         #for r in sorted(recall_errors):
         #    forwards += tabulate.tabulate([[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
