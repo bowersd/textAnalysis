@@ -67,6 +67,17 @@ def min_morphs(*msds):
     """the length of the shortest morphosyntactic description"""
     return min([m[0].count("+") for m in msds])
 
+def score_edits(typed, *generated):
+    h = {}
+    for g in generated:
+        alnd = needleman.align(typed, g[0], -1, needleman.make_id_matrix(typed, g[0]))
+        h[g[0]] = sum([alnd[0][i] != alnd[1][i] for i in range(len(alnd[0]))])
+    return h
+
+def disambiguate2(scored, *msds):
+    """get the first of the lowest scored"""
+    lowest = min([scored[x] for x in scored])
+    return min([i for i in range(len(msds)) if scored[msds[i][0]] == lowest])
 def disambiguate(target, f, *msds): 
     """the earliest of the morphosyntactic descriptions|f(m) = target"""
     #prioritizing order allows weighting schemes to be exploited
