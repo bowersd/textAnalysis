@@ -351,7 +351,7 @@ def parse_words_expanded(event):
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
             lines_out += tabulate.tabulate([
-                ["Original Material:"] + h["original"],
+                ["Original Material:"] + h["original"][i],
                 ["Narrow Analysis:"] + h["m_parse_lo"][i], 
                 ["Broad Analysis:"] + h["m_parse_hi"][i], 
                 ["Dictionary Header:"] + h["lemmata"][i], 
