@@ -2998,8 +2998,8 @@ gegiin	you
 gegiinwaa	you
 gegiinwi	we
 gegiinwin	we
-genii	i
-geniin	i
+genii	I
+geniin	I
 geniinwi	us
 geniinwin	us
 gewii	he
@@ -3019,9 +3019,9 @@ gow	these
 maaba	this
 nanda	he
 ni-wediin	those
-nii	i
-niin	i
-niinii	i
+nii	I
+niin	I
+niinii	I
 niinwi	we
 niw	he
 niwedi	those
