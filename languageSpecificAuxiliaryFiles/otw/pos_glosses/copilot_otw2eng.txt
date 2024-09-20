@@ -8169,7 +8169,7 @@ nsitaagzi	audible
 nsitam	comprehend
 nsitamoo'we	clarify
 nsitamookaazo	feign
-nso-bboon'gizi	toddler
+nso-bboon'gizi	three.years
 nsognagzi	date
 nsooza	trapped
 nswewaan'gizi	trio
@@ -9165,7 +9165,7 @@ maazhmaagzi	stink
 man'so	scared
 mboomgo	mount
 late-wi	late
-mdaaso-shi-niizh-dsobboon'gizi	twelve
+mdaaso-shi-niizh-dsobboon'gizi	twelve.years
 niizho-dbagne	two
 nso-dbagne	three
 niiwo-dbagne	four
@@ -19939,3 +19939,4 @@ mnjimnigan	holder
 mzhinaa	harm
 mooshwaan	shawl
 waannamo	twisty
+bboon'gizi	years.old
