@@ -8254,7 +8254,7 @@ piitendi	absent
 piitnige	hoist
 piitnigzi	hefty
 piitoode	crawl
-piitzi	aged
+piitzi	measure
 piitzo	baked
 pimeshin	sideways
 piszi	contused
@@ -19947,3 +19947,13 @@ zaagbii	protrude
 ggwetaa	really
 naagmishkaa	swirl
 niisaakiiwe	downhill
+mdaa'aagmishkaa	swirl
+zegwiindmaa	deep
+bmaabkisin	cliff
+bmaabkaa	cliff
+booniise	land
+aabtoowyiing	halfway
+naabkaa	rock
+biissiniiskaa	gravel
+gnawendaagzi	care
+bekaadendaagot	peaceful
