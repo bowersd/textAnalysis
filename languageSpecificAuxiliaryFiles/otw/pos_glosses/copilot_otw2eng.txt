@@ -1222,7 +1222,7 @@ mzhiwens	rabbit
 mzhwe	rabbit
 mzinchigan	picture
 mzise	turkey
-na'aa	lose
+na'aa	whatchamacallit
 naabese	rooster
 naabesmosh	dog
 naabkawaagan	jewelry
@@ -19940,3 +19940,6 @@ mzhinaa	harm
 mooshwaan	shawl
 waannamo	twisty
 bboon'gizi	years.old
+naagse	flip
+aagwaate	shade
+zhebwaanaagan	paddle
