@@ -5,14 +5,29 @@
 
 import re
 
-def nish_sort(*sentences):
+def nish_morph_categorization(*sentences):
     pos_score  = 0
     morph_score = 0
     phon_score = 0
     sent_length_score = 0
     word_length_score = 0
     scores = []
-    for s in sentences: pass
+    for s in sentences: 
+        s_score = [
+                [0,0,0,0,0],[0,0,0],#pos (VTA,VAI,VAIO,VTI,VII),order (cnj,ind,imp)
+                [0] #number of words with stress shift alternations
+                #preverbs? mood? discontinuous person/number realization?
+                ]
+        for w in s:
+            if w["pos"] == "VTA": s_score[0][0] += 1
+            if w["pos"] == "VAI": s_score[0][1] += 1
+            if w["pos"] == "VAIO": s_score[0][2] += 1
+            if w["pos"] == "VTI": s_score[0][3] += 1
+            if w["pos"] == "VII": s_score[0][4] += 1
+            if w["order"] == "cnj": s_score[1][0] += 1
+            if w["order"] == "imp": s_score[1][1] += 1
+            if w["order"] == "ind": s_score[1][2] += 1
+            if w["alts"]: s_score[2][0] += 1
     return scores
     
 def flesch_reading_ease_score(*sentences):
