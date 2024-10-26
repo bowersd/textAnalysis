@@ -5,7 +5,7 @@
 
 import re
 
-def nish_morph_categorization(*sentences):
+def alg_morph_score(*sentences):
     pos_score  = 0
     morph_score = 0
     phon_score = 0
