@@ -15,7 +15,7 @@ def nish_morph_categorization(*sentences):
     for s in sentences: 
         s_score = [
                 [0,0,0,0,0],[0,0,0],#pos (VTA,VAI,VAIO,VTI,VII),order (cnj,ind,imp)
-                [0] #number of words with stress shift alternations
+                #[0] #number of words with stress shift alternations
                 #preverbs? mood? discontinuous person/number realization?
                 ]
         for w in s:
@@ -27,8 +27,10 @@ def nish_morph_categorization(*sentences):
             if w["order"] == "cnj": s_score[1][0] += 1
             if w["order"] == "imp": s_score[1][1] += 1
             if w["order"] == "ind": s_score[1][2] += 1
-            if w["alts"]: s_score[2][0] += 1
+            #if w["alts"]: s_score[2][0] += 1
+        scores.append(s_score)
     return scores
+
     
 def flesch_reading_ease_score(*sentences):
     word_count = 0
