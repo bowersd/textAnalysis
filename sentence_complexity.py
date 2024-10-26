@@ -5,7 +5,7 @@
 
 import re
 
-def alg_morph_score(*sentences):
+def alg_morph_counts(*sentences):
     pos_score  = 0
     morph_score = 0
     phon_score = 0
@@ -20,16 +20,32 @@ def alg_morph_score(*sentences):
                 ]
         for w in s:
             if w["pos"] == "VTA": s_score[0][0] += 1
-            if w["pos"] == "VAI": s_score[0][1] += 1
-            if w["pos"] == "VAIO": s_score[0][2] += 1
-            if w["pos"] == "VTI": s_score[0][3] += 1
+            if w["pos"] == "VAIO": s_score[0][1] += 1
+            if w["pos"] == "VTI": s_score[0][2] += 1
+            if w["pos"] == "VAI": s_score[0][3] += 1
             if w["pos"] == "VII": s_score[0][4] += 1
             if w["order"] == "cnj": s_score[1][0] += 1
-            if w["order"] == "imp": s_score[1][1] += 1
             if w["order"] == "ind": s_score[1][2] += 1
+            if w["order"] == "imp": s_score[1][1] += 1
             #if w["alts"]: s_score[2][0] += 1
         scores.append(s_score)
     return scores
+
+def alg_morph_score_rate(*counts):
+    at_bats = 0
+    total_bases_pos = 0
+    order_bases = [0, 0]
+    for c in counts:
+        at_bats += sum(cnts[0])
+        total_bases_pos += c[0][0]*4 #vtas are 'home run', way more complex than the others
+        total_bases_pos += c[0][1]*3 #vaios are 'triple', kind of a weird corner case addition to VAIs
+        total_bases_pos += c[0][2]*2 #vtis are 'double', a fairly straightforward variant of VAIs
+        total_bases_pos += c[0][3]   #vais are 'single', your run of the mill verb
+        #total_bases_pos += c[0][4]   #viis are 'out', a super simple type of verb
+        order_bases[0] += c[1][0] #cnj has irregular phonology, difficult to explain context of use
+        order_bases[1] += c[1][1] #ind has long distance dependencies, stronger ripple effect phonology, simpler context of use
+        #imp is basic, not counted
+    return [total_bases_pos/at_bats, (order_bases[0]-order_bases[1]/abs(order_bases[0]-order_bases[1]))(*(max(order_bases)/at_bats))] #slugging pct pos complexity, pct independent/cnj (negative for mostly independent, positive for mostly cnj)
 
     
 def flesch_reading_ease_score(*sentences):
