@@ -51,12 +51,13 @@ def alg_morph_score_rate(*counts):
     main_order_counts = [0, 0]
     total_morphemes = 0
     for c in counts:
+        if sum(c[0]) == 0: print("degenerate verb-less sentence detected")
         at_bats += sum(c[0])
-        total_bases_pos += c[0][0]*3 #vtas are 'home run', way more complex than the others
-        total_bases_pos += c[0][1]*2 #vaios are 'double' kind of a weird corner case addition to VAIs, more complex only in the sense that you have to add another wrinkle (so maybe a triple)?
-        total_bases_pos += c[0][2]*2 #vtis are 'double', a fairly straightforward variant of VAIs
-        total_bases_pos += c[0][3]   #vais are 'single', your run of the mill verb
-        #total_bases_pos += c[0][4]   #viis are 'out', a super simple type of verb
+        total_bases_pos += c[0][0]*4 #vtas are 'home run', way more complex than the others
+        total_bases_pos += c[0][1]*3 #vaios are 'double' kind of a weird corner case addition to VAIs, more complex only in the sense that you have to add another wrinkle (so maybe a triple)?
+        total_bases_pos += c[0][2]*3 #vtis are 'double', a fairly straightforward variant of VAIs
+        total_bases_pos += c[0][3]*2   #vais are 'single', your run of the mill verb
+        total_bases_pos += c[0][4]   #viis are 'out', a super simple type of verb
         main_order_counts[0] += c[1][0] #cnj has irregular phonology, difficult to explain context of use
         main_order_counts[1] += c[1][1] #ind has long distance dependencies, stronger ripple effect phonology, simpler context of use
         #imperatives are not worth tracking
