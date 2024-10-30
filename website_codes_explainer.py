@@ -1,3 +1,7 @@
+import micropip
+await micropip.install(
+    'https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl'
+)
 import regex
 import pyscript
 import tabulate
