@@ -1,6 +1,7 @@
 
 packages = [
             "regex",
+            "tabulate",
             ]
 [files] 
 "/textAnalysis/grammar_codes.py" = "./grammar_codes.py"
