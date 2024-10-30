@@ -1,0 +1,6 @@
+
+packages = [
+            "regex",
+            ]
+[files] 
+"/textAnalysis/grammar_codes.py" = "./grammar_codes.py"
