@@ -122,7 +122,7 @@ abbreviations_high = {
         "Benef": "Benefactive (A X's for B)",
         "Poss": "Verb of possession (A owns B)",
         "Pass": "Passive verb (A is X'ed)",
-        "AntPass": "Antipassive verb (A X's (B), aka actor-focus",
+        "AntPass": "Antipassive verb (A X's (B), aka actor-focus)",
         "NA": "Animate Noun (a being or remarkable thing)",
         "NI": "Inanimate Noun (a thing)",
         "NAD": "Dependent Animate Noun (obligatorily posessed being or remarkable thing)",
