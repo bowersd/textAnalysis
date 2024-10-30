@@ -37,4 +37,4 @@ for x in sorted(grammar_codes.abbreviations_high):
         row.append(x)
         table.append(reversed(row))
 
-codes_div.innerHTML = tabulate.tabulate(table)
+codes_div.innerHTML = tabulate.tabulate(table, tablefmt='html')
