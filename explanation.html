@@ -1,0 +1,29 @@
+
+---
+title: Grammatical Code Explanation
+layout: default
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ page.title }}</title>
+
+    <!-- Recommended meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- PyScript CSS
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+     -->
+    <!-- This script tag bootstraps PyScript -->
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+</head>
+<body>
+    <p>See below for a list of grammatical codes produced by the analyzer.</p>
+
+    <div id="codes"></div>
+    <script type="py" src="./website_codes_explainer.py" config="./explainer.toml" async></script>
+    <div></div>
+    <p>Last updated: 10/30/2024 7:38</p>
+</body>
+</html>
