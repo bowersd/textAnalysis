@@ -366,7 +366,7 @@ def parse_words_expanded(event):
                 ["Original Material:"] + h["original"][i],
                 ["Narrow Analysis:"] + h["m_parse_lo"][i], 
                 ["Broad Analysis:"] + h["m_parse_hi"][i], 
-                ["Dictionary Header:"] + h["lemmata"][i], 
+                ["NOD Header:"] + h["lemmata"][i], 
                 ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
         output_div.innerHTML = lines_out
     if analysis_mode.value == "frequency":
@@ -380,7 +380,7 @@ def parse_words_expanded(event):
         #for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
         #for lem in lemmata: cnts_lem[lem] += 1
         #cnts = []
-        header = [["Count", "Header", "Count", "Actual"]]
+        header = [["Count", "NOD Header", "Count", "Actual"]]
         nu_cnts = []
         for lem in cnts_lem:
             for tok in cnts_lem[lem]:
