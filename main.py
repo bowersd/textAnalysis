@@ -392,7 +392,7 @@ def parse_words_expanded(event):
         nu_cnts = sorted(sorted(nu_cnts, key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #might need to sort 4 times!!
         prev = ""
         for i in range(len(nu_cnts)):
-            new = nu_cnts[i][0]
+            new = nu_cnts[i][1]
             if new != prev: prev = new
             elif new == prev: 
                 nu_cnts[i][0] = ""
