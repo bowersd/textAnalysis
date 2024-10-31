@@ -383,15 +383,21 @@ def parse_words_expanded(event):
         header = [["Header", "Count", "Actual", "Count"]]
         nu_cnts = []
         for lem in cnts_lem:
-            new = True
             for tok in cnts_lem[lem]:
-                if new: nu_cnts.append((lem, str(sum([cnts_lem[lem][x] for x in cnts_lem[lem]])), tok, str(cnts_lem[lem][tok])))
-                else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
-                new = False
+                nu_cnts.append((lem, str(sum([cnts_lem[lem][x] for x in cnts_lem[lem]])), tok, str(cnts_lem[lem][tok])))
+                #else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
                 #cnts.append((str(cnts_lem[lem][tok]), tok, "("+lem+")"))
         #freqs_out = "Raw frequencies, aka token frequencies (with dictionary header)\n"+"\n".join(["\t".join(x) for x in sorted(cnts)])+"\n"+"Combined frequencies, aka type or lemmatized frequencies, organized by dictionary header\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
         #freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
-        freqs_out = tabulate.tabulate(header + sorted(nu_cnts, key=lambda x: x[1]), tablefmt='html')
+        nu_cnts = sorted(nu_cnts, key=lambda x: x[1])
+        prev = ""
+        for i in range(len(nu_cnts)):
+            new = nu_cnts[i][0]
+            if new != prev: prev = new
+            elif new == prev: 
+                nu_cnts[i][0] = ""
+                nu_cnts[i][1] = ""
+        freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
         output_div.innerHTML = freqs_out
     if analysis_mode.value == "glossary":
         pass
