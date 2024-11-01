@@ -17,7 +17,7 @@ from pyodide.ffi.wrappers import add_event_listener
 import regex
 import pyhfst
 import tabulate
-import sentence_complexity
+import sentence_complexity as sc
 #print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
 #print("For now, a demonstration that a functioning analyzer is loaded")
 
@@ -370,7 +370,7 @@ def parse_words_expanded(event):
                 ["NOD Header:"] + h["lemmata"][i], 
                 ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
         output_div.innerHTML = lines_out
-    if analysis_mode.value == "frequency":
+    elif analysis_mode.value == "frequency":
         cnts_lem = {}
         for i in range(len(h["lemmata"])):
             for j in range(len(h["lemmata"][i])):
@@ -400,9 +400,29 @@ def parse_words_expanded(event):
                 nu_cnts[i][1] = ""
         freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
         output_div.innerHTML = freqs_out
-    if analysis_mode.value == "glossary":
+    elif analysis_mode.value == "complexity":
+        comp_counts = sc.alg_morph_counts(*sc.interface(postags, h["m_parse_lo"]))
+        overall_score = sc.alg_morph_score_rate(*comp_counts)
+        itemized_scores = []
+        for x in comp_counts: itemized_scores.append(sc.alg_morph_score_rate(x))
+        s_score_pairs = sorted([x for x in zip(itemized_scores, h["original"])], key = lambda x: x[0])
+        sectioned = []
+        prev_vcat = []
+        prev_vord = []
+        for ssp in s_score_pairs:
+            new_vcat = ssp[0][0]
+            new_vord = ssp[0][1]
+            if new_vcat != prev_vcat or new_vord != prev_vord:
+                sectioned.append([">>Verb Category/Order Score: {0}/{1}".format(new_vcat, new_vord)])
+                sectioned.append(ssp[1])
+                prev_vcat = new_vcat
+                prev_vord = new_vord
+            else:
+                sectioned.append(ssp[1])
+        output_div.innerHTML = tabulate.tabulate([["Overall Verb Category/Order/Morpheme per Sentence Scores: {0}/{1}/{2}".format(overall_score[0], overall_score[1], overall_score[2]]] + sectioned, tablefmt="html")
+    elif analysis_mode.value == "glossary":
         pass
-    if analysis_mode.value in ["triage", "reversed_triage"]:
+    elif analysis_mode.value in ["triage", "reversed_triage"]:
         recall_errors = []
         for i in range(len(h["original"])):
             for j in range(len(h["original"][i])):
@@ -417,7 +437,7 @@ def parse_words_expanded(event):
         ordered_recall_errors = []
         if analysis_mode.value == "triage":
             for x in sorted(recall_errors): ordered_recall_errors.extend(x) #[x[0], x[1], x[2], x[3], x[4] for x in sorted(recall_errors)]
-        if analysis_mode.value == "reversed_triage":
+        elif analysis_mode.value == "reversed_triage":
             for x in sorted(recall_errors, key=lambda z: [y for y in reversed(z[0][0])]): ordered_recall_errors.extend(x) #[x[0], x[1], x[2], x[3], x[4] for x in sorted(recall_errors)]
         #forwards = ""
         #for r in sorted(recall_errors):
