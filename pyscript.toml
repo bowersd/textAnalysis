@@ -10,3 +10,4 @@ packages = [
 "/textAnalysis/morphophonologyclitics_analyze_relaxed_slim.hfstol" = "./morphophonologyclitics_analyze_relaxed_slim.hfstol"
 "/textAnalysis/languageSpecificAuxiliaryFiles/otw/pos_glosses/copilot_otw2eng.txt" = "./copilot_otw2eng.txt"
 "/textAnalysis/languageSpecificAuxiliaryFiles/otw/pos_glosses/pos_regex.txt" = "./pos_regex.txt"
+"/textAnalysis/sentence_complexity.py" = "./sentence_complexity.py"
