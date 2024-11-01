@@ -3,7 +3,7 @@
 #this suggests favoring phonological simplicity too (with short words? simple clusters? few syncope alternations?)
 #ordering, numerical score, enumerate components
 
-import regex
+import re
 
 def interface(postags, *m_parse_los):
     h = []
@@ -12,11 +12,12 @@ def interface(postags, *m_parse_los):
         distilled = []
         for m in s:
             formatted = {"analysis":m}
-            if regex.search("({0})(.*({0}))?".format(postags), m): 
-                formatted["pos"] = [x for x in regex.search("({0})(.*({0}))?".format(postags), m)[0].split("+") if x][-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-                if formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and regex.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = regex.search("(\+(Imp|Cnj)".format(postags), m)[0].split("+")[-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-                elif formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and not regex.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = "ind"
-            if not regex.search("({0})(.*({0}))?".format(postags), m): 
+            if re.search(r"({0})(.*({0}))?".format(postags), m): 
+                formatted["pos"] = [x for x in re.search(r"({0})(.*({0}))?".format(postags), m)[0].split("+") if x][-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+                if formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and re.search(r"(Imp|Cnj)", m): 
+                    formatted["order"] = re.search(r"(Imp|Cnj)", m)[0] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+                elif formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and not re.search(r"(Imp|Cnj)", m): formatted["order"] = "Ind"
+            if not re.search(r"({0})(.*({0}))?".format(postags), m): 
                 formatted["pos"] = ""
                 formatted["order"] = ""
             distilled.append(formatted)
@@ -37,16 +38,16 @@ def alg_morph_counts(*sentences):
             if w["pos"] == "VTI": s_score[0][2] += 1
             if w["pos"] == "VAI": s_score[0][3] += 1
             if w["pos"] == "VII": s_score[0][4] += 1
-            if w["order"] == "cnj": s_score[1][0] += 1
-            if w["order"] == "ind": s_score[1][2] += 1
-            if w["order"] == "imp": s_score[1][1] += 1
+            if w["order"] == "Cnj": s_score[1][0] += 1
+            if w["order"] == "Ind": s_score[1][1] += 1
+            if w["order"] == "Imp": s_score[1][2] += 1
             #if w["alts"]: s_score[2][0] += 1
             s_score[2][0] += morpheme_count(w["analysis"])
         scores.append(s_score)
     return scores
 
 def morpheme_count(analysis):
-    return len("+".split(analysis))
+    return len(analysis.split("+"))
 
 def alg_morph_score_rate(*counts):
     at_bats = 0
@@ -65,7 +66,9 @@ def alg_morph_score_rate(*counts):
         main_order_counts[1] += c[1][1] #ind has long distance dependencies, stronger ripple effect phonology, simpler context of use
         #imperatives are not worth tracking
         total_morphemes += c[2][0] #maybe take out the core morphemes present in the verb? (or at least don't count the pos tags?) all just makes things more complicated...
-    return [total_bases_pos/at_bats, (main_order_counts[0]-main_order_counts[1]/abs(main_order_counts[0]-main_order_counts[1]))(*(max(main_order_counts)/at_bats)), total_morphemes/len(counts)] #slugging pct pos complexity, pct independent/cnj (negative for mostly independent, positive for mostly cnj), average sentence length in morphemes
+    if main_order_counts[0] >= main_order_counts[1]: order_sign = 1
+    elif main_order_counts[0] < main_order_counts[1]: order_sign = -1
+    return [total_bases_pos/at_bats, (order_sign*(max(main_order_counts)/at_bats)), total_morphemes/len(counts)] #slugging pct pos complexity, pct independent/cnj (negative for mostly independent, positive for mostly cnj), average sentence length in morphemes
 
 def flesch_reading_ease_score(*sentences):
     word_count = 0
@@ -75,7 +78,7 @@ def flesch_reading_ease_score(*sentences):
         sentence_count += 1
         for word in s:
             word_count += 1
-            syllable_count += len(regex.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word))
+            syllable_count += len(re.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word))
     return (206.835 - (1.015*(word_count/sentence_count))-(84.6*(syllable_count/word_count)))
 
 def flesch_reading_grade_level(*sentences):
@@ -86,5 +89,5 @@ def flesch_reading_grade_level(*sentences):
         sentence_count += 1
         for word in s:
             word_count += 1
-            syllable_count += len(regex.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word))
+            syllable_count += len(re.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word))
     return ((0.39*(word_count/sentence_count))+(11.8*(syllable_count/word_count)))-15.59
