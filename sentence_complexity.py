@@ -7,7 +7,7 @@ import regex
 
 def interface(postags, *m_parse_los):
     h = []
-    assert type(m_parse_los[0]) == list
+    assert all([type(m) == list for m in m_parse_los])
     for m in m_parse_los:
         formatted = {"analysis":m}
         if regex.search("({0})(.*({0}))?".format(postags), m): 
