@@ -419,7 +419,7 @@ def parse_words_expanded(event):
                 prev_vord = new_vord
             else:
                 sectioned.append(ssp[1])
-        output_div.innerHTML = tabulate.tabulate([["Overall Verb Category/Order/Morpheme per Sentence Scores: {0}/{1}/{2}".format(overall_score[0], overall_score[1], overall_score[2]]] + sectioned, tablefmt="html")
+        output_div.innerHTML = tabulate.tabulate([["Overall Verb Category/Order/Morpheme per Sentence Scores: {0}/{1}/{2}".format(overall_score[0], overall_score[1], overall_score[2])]] + sectioned, tablefmt="html")
     elif analysis_mode.value == "glossary":
         pass
     elif analysis_mode.value in ["triage", "reversed_triage"]:
