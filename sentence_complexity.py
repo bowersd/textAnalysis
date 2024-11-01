@@ -3,18 +3,18 @@
 #this suggests favoring phonological simplicity too (with short words? simple clusters? few syncope alternations?)
 #ordering, numerical score, enumerate components
 
-import re
+import regex
 
 def interface(postags, *m_parse_los):
     h = []
     assert type(m_parse_los[0]) == list
     for m in m_parse_los:
         formatted = {"analysis":m}
-        if re.search("({0})(.*({0}))?".format(postags), m): 
-            formatted["pos"] = [x for x in re.search("({0})(.*({0}))?".format(postags), m)[0].split("+") if x][-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-            if formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and re.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = re.search("(\+(Imp|Cnj)".format(postags), m)[0].split("+")[-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-            elif formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and not re.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = "ind"
-        if not re.search("({0})(.*({0}))?".format(postags), m): 
+        if regex.search("({0})(.*({0}))?".format(postags), m): 
+            formatted["pos"] = [x for x in regex.search("({0})(.*({0}))?".format(postags), m)[0].split("+") if x][-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+            if formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and regex.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = regex.search("(\+(Imp|Cnj)".format(postags), m)[0].split("+")[-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+            elif formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and not regex.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = "ind"
+        if not regex.search("({0})(.*({0}))?".format(postags), m): 
             formatted["pos"] = ""
             formatted["order"] = ""
         h.append(formatted)
@@ -72,7 +72,7 @@ def flesch_reading_ease_score(*sentences):
         sentence_count += 1
         for word in s:
             word_count += 1
-            syllable_count += len(re.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word)
+            syllable_count += len(regex.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word)
     return (206.835 - (1.015*(word_count/sentence_count))-(84.6*(syllable_count/word_count)))
 
 def flesch_reading_grade_level(*sentences):
@@ -83,5 +83,5 @@ def flesch_reading_grade_level(*sentences):
         sentence_count += 1
         for word in s:
             word_count += 1
-            syllable_count += len(re.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word)
+            syllable_count += len(regex.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word)
     return ((0.39*(word_count/sentence_count))+(11.8*(syllable_count/word_count)))-15.59
