@@ -17,6 +17,7 @@ from pyodide.ffi.wrappers import add_event_listener
 import regex
 import pyhfst
 import tabulate
+import sentence_complexity
 #print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
 #print("For now, a demonstration that a functioning analyzer is loaded")
 
