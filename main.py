@@ -61,7 +61,7 @@ def parse_pyhfst_error(transducer, error_model, *strings):
     return h
 
 def sep_punct(string, drop_punct): #diy tokenization, use nltk?
-    if not drop_punct: return "'".join(regex.sub(r"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
+    if not drop_punct: return "'".join(regex.sub(r"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", r" \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
     return "'".join(regex.sub(r"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " ", string).split("’")) #remove all punc, then replace single quote ’ with '
 
 def min_morphs(*msds):
@@ -406,7 +406,7 @@ def parse_words_expanded(event):
         itemized_scores = []
         for x in comp_counts: itemized_scores.append(sc.alg_morph_score_rate(x))
         s_score_pairs = sorted([x for x in zip(itemized_scores, h["original"])], key = lambda x: x[0])
-        sectioned = []
+        sectioned = ["Overall Verb Category/Order/Morpheme per Sentence Scores: {0}/{1}/{2}".format(overall_score[0], overall_score[1], overall_score[2])]
         prev_vcat = []
         prev_vord = []
         for ssp in s_score_pairs:
@@ -419,7 +419,7 @@ def parse_words_expanded(event):
                 prev_vord = new_vord
             else:
                 sectioned.append(ssp[1])
-        output_div.innerHTML = tabulate.tabulate([["Overall Verb Category/Order/Morpheme per Sentence Scores: {0}/{1}/{2}".format(overall_score[0], overall_score[1], overall_score[2])]] + sectioned, tablefmt="html")
+        output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "glossary":
         pass
     elif analysis_mode.value in ["triage", "reversed_triage"]:
