@@ -406,7 +406,7 @@ def parse_words_expanded(event):
         itemized_scores = []
         for x in comp_counts: itemized_scores.append(sc.alg_morph_score_rate(x))
         s_score_pairs = sorted([x for x in zip(itemized_scores, h["original"])], key = lambda x: x[0])
-        sectioned = ["Overall Verb Category/Order/Morpheme per Sentence Scores: {0}/{1}/{2}".format(overall_score[0], overall_score[1], overall_score[2])]
+        sectioned = [["Overall Verb Category/Order/Morpheme per Sentence Scores: {0}/{1}/{2}".format(overall_score[0], overall_score[1], overall_score[2])]]
         prev_vcat = []
         prev_vord = []
         for ssp in s_score_pairs:
