@@ -8,16 +8,19 @@ import regex
 def interface(postags, *m_parse_los):
     h = []
     assert all([type(m) == list for m in m_parse_los])
-    for m in m_parse_los:
-        formatted = {"analysis":m}
-        if regex.search("({0})(.*({0}))?".format(postags), m): 
-            formatted["pos"] = [x for x in regex.search("({0})(.*({0}))?".format(postags), m)[0].split("+") if x][-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-            if formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and regex.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = regex.search("(\+(Imp|Cnj)".format(postags), m)[0].split("+")[-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-            elif formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and not regex.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = "ind"
-        if not regex.search("({0})(.*({0}))?".format(postags), m): 
-            formatted["pos"] = ""
-            formatted["order"] = ""
-        h.append(formatted)
+    for s in m_parse_los:
+        distilled = []
+        for m in s:
+            formatted = {"analysis":m}
+            if regex.search("({0})(.*({0}))?".format(postags), m): 
+                formatted["pos"] = [x for x in regex.search("({0})(.*({0}))?".format(postags), m)[0].split("+") if x][-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+                if formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and regex.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = regex.search("(\+(Imp|Cnj)".format(postags), m)[0].split("+")[-1] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+                elif formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and not regex.search("(\+(Imp|Cnj)".format(postags), m): formatted["order"] = "ind"
+            if not regex.search("({0})(.*({0}))?".format(postags), m): 
+                formatted["pos"] = ""
+                formatted["order"] = ""
+            distilled.append(formatted)
+        h.append(distilled)
     return h
     
 def alg_morph_counts(*sentences):
