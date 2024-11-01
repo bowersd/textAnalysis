@@ -75,7 +75,7 @@ def flesch_reading_ease_score(*sentences):
         sentence_count += 1
         for word in s:
             word_count += 1
-            syllable_count += len(regex.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word)
+            syllable_count += len(regex.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word))
     return (206.835 - (1.015*(word_count/sentence_count))-(84.6*(syllable_count/word_count)))
 
 def flesch_reading_grade_level(*sentences):
@@ -86,5 +86,5 @@ def flesch_reading_grade_level(*sentences):
         sentence_count += 1
         for word in s:
             word_count += 1
-            syllable_count += len(regex.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word)
+            syllable_count += len(regex.findall(r"(^|[^aeioAEIO])[aeioAEIO]", word))
     return ((0.39*(word_count/sentence_count))+(11.8*(syllable_count/word_count)))-15.59
