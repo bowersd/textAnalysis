@@ -66,8 +66,8 @@ def alg_morph_score_rate(*counts):
         main_order_counts[1] += c[1][1] #ind has long distance dependencies, stronger ripple effect phonology, simpler context of use
         #imperatives are not worth tracking
         total_morphemes += c[2][0] #maybe take out the core morphemes present in the verb? (or at least don't count the pos tags?) all just makes things more complicated...
-    if main_order_counts[0] < main_order_counts[1]: order_sign = 1
-    elif main_order_counts[0] >= main_order_counts[1]: order_sign = -1
+    if main_order_counts[0] > main_order_counts[1]: order_sign = 1
+    elif main_order_counts[0] <= main_order_counts[1]: order_sign = -1
     return [total_bases_pos/at_bats, (order_sign*(max(main_order_counts)/at_bats)), total_morphemes/len(counts)] #slugging pct pos complexity, pct independent/cnj (negative for mostly independent, positive for mostly cnj), average sentence length in morphemes
 
 def flesch_reading_ease_score(*sentences):
