@@ -24,6 +24,10 @@ layout: default
     <p>When you ask the analyzer to perform an analysis, the site first uses a strict analyzer, then a relaxed analyzer is applied to what the strict analyzer fails on.</p>
     <p>Caveat lector: the most current version of the relaxed analyzer here is too large to host on this site (as of 8/21/2024). The version posted here is a slimmed down older version and in some cases will misanalyze forms that are correctly analyzed by the current version.</p>
     <hr/>
+    <div id="complexity_explainer"></div>
+    <p>There are three complexity scores used in the complexity ranking function. The first score represents the average complexity of verbs. There are five major types of verbs in Nishnaabemwin, and I score them as follows (where higher numbers are more complex): VTA=4, VAIO=3, VTI=3, VAI=2, VII=1 (see the grammatical code tables below for an explanation of these abbreviations). The second score represents the proportion of verbs in conjunct vs independent order. If there are more conjunct order verbs, the score is negative. The score is positive if 50% or more of the verbs are in independent order. In my view, this score does not say much about how hard a text is, because both independent order and conjunct order are tricky in their own ways. Finally, the last score gives the average number of morphosyntactic features in a sentence. The idea here is that longer sentences/sentences with more morphological information are more complex.</p>
+    <hr/>
+    <div id="codes_explainer"></div>
     <p>See below for lists of grammatical codes produced by the analyzer. The codes are alphabetized, and broken into sections by whether they appear in both narrow and broad analyses, just in narrow analyses, or just in broad analyses. Please be patient, it will take a moment for the tables to load.</p>
     <p>Here are codes that appear in both narrow and broad analyses:</p>
 
