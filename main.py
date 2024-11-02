@@ -401,7 +401,7 @@ def parse_words_expanded(event):
         freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
         output_div.innerHTML = freqs_out
     elif analysis_mode.value == "complexity":
-        comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, h["m_parse_lo"]))
+        comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         overall_score = sc.alg_morph_score_rate(*comp_counts)
         itemized_scores = []
         for x in comp_counts: itemized_scores.append(sc.alg_morph_score_rate(x))
