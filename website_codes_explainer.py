@@ -16,7 +16,7 @@ table_broad = [["Code", "Technical Definition", "Informal Explanation"]]
 
 def row_prep(header, explanation):
     row =  [header]
-    if regex.search(r"\(.*\)", grammar_codes.abbreviations[x]):
+    if regex.search(r"\(.*\)", explanation):
         row.append(regex.match(r"[^(]*", explanation)[0])
         row.append(regex.search(r"\(.*\)", explanation)[0][1:-1])
     elif not regex.search(r"\(.*\)", explanation):
