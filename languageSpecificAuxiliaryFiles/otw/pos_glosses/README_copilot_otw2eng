@@ -1,4 +1,4 @@
-this is a file produced by Microsoft's copilot AI service , summarizing the entries in RV_otw2eng.txt into rough one word English equivalents.
+This is a file produced by the free version of Microsoft's copilot AI service , summarizing the entries in RV_otw2eng.txt into rough one word English equivalents.
 For the first 9,000 or so words, copilot was on a "creative" setting, and I noticed that it produced a lot of far fetched equivalents, despite being isntructed to keep it simple.
 Many words given were ones that I did not know.
 I especially noticed a lot of medical terms like "gastralgia" for "stomache ache" or "sore stomache".
@@ -7,10 +7,13 @@ For the last 4000+ words I used the "precise" setting, and I think the equivalen
 This is the prompt that I used:
 Please give rough one word equivalents of the following definitions. Use simple words if you cannot use words found in the definition. If [see <some other word>] is in the definition, give "REDIRECT" as the result. "an" and "smb" may abbreviate "animate entity", while "inan" and "sth" may abbreviate "inanimate entity". Give an answer even if it duplicates an earlier answer.
 
-Entries in the original definitions file that said [see X] were supposed to be given as "REDIRECT", and I gave this value for the few words that have ?? for their definition as well.
-Sometimes copilot gave "Redirect" for these cases, sometimes (Missing), sometimes it gave nothing at all.
-I probably caught all of the null cases, but it is possible that the output is variable here.
-
-There are some cases where copilot gave more than one word for an equivalent. These have not been edited.
-In general, I have not edited the values given (as of 3/24/2024).
-In some cases I had to provide my own (usually for sexualized terminology), and in others I changed it, but this has been very minimal.
+At the time that I did this (perhaps due to me being grouchy) I could not get the service to take in the whole file, and I had to manually copy-paste blocks of about 100 definitions at a time.
+This may have been the reason that I could not completely turn my brain off when handling the output, as I encountered some errors:
+	Entries in the original definitions file that said [see X] were supposed to be given as "REDIRECT", and I gave this value for the few words that have ?? for their definition as well.
+		Sometimes copilot gave "Redirect" for these cases, sometimes (Missing), sometimes it gave nothing at all.
+		I probably caught all of the null cases, but it is possible that the output is variable here.
+	With surprising frequency, copilot would opt to skip a word when there were several words in a row with similar meanings
+	There are some cases where copilot gave more than one word for an equivalent. 
+		(These have not been edited. In general, I have not edited the values given as of 3/24/2024).
+	In some cases copilot would refuse to say anything, and I had to locate a problematic word and provide my own gloss (usually for sexual terminology), and in others I changed it, but this has been very minimal.
+	Also, every so often, copilot seemed to forget what I wanted, and I had to re-issue the prompt
