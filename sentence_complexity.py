@@ -26,6 +26,27 @@ def interface(postags, *m_parse_los):
         h.append(distilled)
     return h
     
+def paradigm_richness(*m_parse_his):
+    h = {
+            "VTA": {"Cnj": {}, "Ind": {}}, 
+            "VTI": {"Cnj": {}, "Ind": {}},
+            "VAIO": {"Cnj": {}, "Ind": {}},
+            "VAI": {"Cnj": {}, "Ind": {}},
+            "VII": {"Cnj": {}, "Ind": {}},
+         }
+    for x in h:
+        for y in h[x]:
+            h[x][y]["Neg"] = 0
+            h[x][y]["Prt"] = 0
+            h[x][y]["Dub"] = 0
+    for x in ["1", "1Pl", "2", "2Pl", "21Pl", "3", "3Pl", "3Obv", "0"]:
+        for y in ["1", "1Pl", "2", "2Pl", "21Pl", "3", "3Pl", "3Obv"]:
+            #if ... need to zap combinations that do not exist
+            h["VTA"]["Ind"][x+"v"+y] = 0
+            h["VTA"]["Cnj"][x+"v"+y] = 0
+    for m in m_parse_his:
+        pass #increment the counts for each thing you see
+
 def alg_morph_counts(*sentences):
     scores = []
     for s in sentences: 
