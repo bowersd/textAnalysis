@@ -17,6 +17,8 @@ def interface(postags, *m_parse_los):
                 if formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and regex.search(r"(Imp|Cnj)", m): 
                     formatted["order"] = regex.search(r"(Imp|Cnj)", m)[0] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
                 elif formatted["pos"] in ["VAI", "VAIO", "VTA", "VTI", "VII"] and not regex.search(r"(Imp|Cnj)", m): formatted["order"] = "Ind"
+                else: 
+                    formatted["order"] = ""
             if not regex.search(r"({0})(.*({0}))?".format(postags), m): 
                 formatted["pos"] = ""
                 formatted["order"] = ""
@@ -50,7 +52,7 @@ def morpheme_count(analysis):
     return len(analysis.split("+"))
 
 def alg_morph_score_rate(*counts):
-    at_bats = 0
+    at_bats = 0.001
     total_bases_pos = 0
     main_order_counts = [0, 0]
     total_morphemes = 0
@@ -68,7 +70,7 @@ def alg_morph_score_rate(*counts):
         total_morphemes += c[2][0] #maybe take out the core morphemes present in the verb? (or at least don't count the pos tags?) all just makes things more complicated...
     if main_order_counts[0] > main_order_counts[1]: order_sign = 1
     elif main_order_counts[0] <= main_order_counts[1]: order_sign = -1
-    return [total_bases_pos/at_bats, (order_sign*(max(main_order_counts)/at_bats)), total_morphemes/len(counts)] #slugging pct pos complexity, pct independent/cnj (negative for mostly independent, positive for mostly cnj), average sentence length in morphemes
+    return [round(total_bases_pos/at_bats, 1), round((order_sign*(max(main_order_counts)/at_bats)), 1), round(total_morphemes/len(counts), 1)] #slugging pct pos complexity, pct independent/cnj (negative for mostly independent, positive for mostly cnj), average sentence length in morphemes
 
 def flesch_reading_ease_score(*sentences):
     word_count = 0
