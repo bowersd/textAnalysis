@@ -34,32 +34,6 @@ def parse_pyhfst(transducer, *strings):
                 for q in p: h[s].append((regex.sub(r"@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
     return h
 
-def parse_pyhfst_error(transducer, error_model, *strings):
-    h = {}
-    parser = pyhfst.HfstInputStream(transducer).read()
-    error = pyhfst.HfstInputStream(error_model).read()
-    for s in strings: 
-        if s not in h: 
-            h[s] = []
-            p = parser.lookup(s)
-            if not p: 
-                #nu = []
-                #e = error.lookup(s)
-                #for x in e:
-                #    y = parser.lookup(x[0])
-                #    if y: nu.extend([(z, x[1]) for z in y])
-                #    elif y and nu and x[1] <= min([z[1] for z in nu]): nu.extend([(z, x[1]) for z in y]) #assuming that pyhfst orders by weight as hfst does
-                #if not nu: h[s].append((s+"+?", 0.00))
-                #else: 
-                #    for n in nu: h[s].append((regex.sub("@.*?@", "" ,n[0]), n[1])) 
-                e = error.lookup(s)
-                if not e: h[s].append((s+"+?", 0.00))
-                else: 
-                    for x in e: h[s].append((regex.sub(r"@.*?@", "" ,x[0]), x[1])) 
-            else: 
-                for q in p: h[s].append((regex.sub(r"@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
-    return h
-
 def sep_punct(string, drop_punct): #diy tokenization, use nltk?
     if not drop_punct: return "'".join(regex.sub(r"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", r" \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
     return "'".join(regex.sub(r"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " ", string).split("’")) #remove all punc, then replace single quote ’ with '
@@ -79,6 +53,7 @@ def disambiguate2(scored, *msds):
     """get the first of the lowest scored"""
     lowest = min([scored[x] for x in scored])
     return min([i for i in range(len(msds)) if scored[msds[i][0]] == lowest])
+
 def disambiguate(target, f, *msds): 
     """the earliest of the morphosyntactic descriptions|f(m) = target"""
     #prioritizing order allows weighting schemes to be exploited
@@ -86,30 +61,6 @@ def disambiguate(target, f, *msds):
         if f(msds[i]) == target: return i
     #first default
     return 0
-
-def parse_text(drop_punct, *sentences):
-    analysis = []
-    analyses = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *[x for s in sentences for x in sep_punct(s.lower(), drop_punct).split()])
-    for s in sentences:
-        a = []
-        for w in sep_punct(s.lower(), drop_punct).split():
-            best = analyses[w][disambiguate(min_morphs(*analyses[w]), min_morphs, *analyses[w])][0]
-            console.log(best)
-            a.append(best)
-        analysis.append(a)
-    return analysis
-
-def parse_text_relaxed(drop_punct, *sentences):
-    analysis = []
-    analyses = parse_pyhfst_error("./morphophonologyclitics_analyze.hfstol", "./morphophonologyclitics_analyze_relaxed_slim.hfstol", *[x for s in sentences for x in sep_punct(s.lower(), drop_punct).split()])
-    for s in sentences:
-        a = []
-        for w in sep_punct(s.lower(), drop_punct).split():
-            best = analyses[w][disambiguate(min_morphs(*analyses[w]), min_morphs, *analyses[w])][0]
-            console.log(best)
-            a.append(best)
-        analysis.append(a)
-    return analysis
 
 def pad(*lists_of_strings):
     #lists must be same length!
@@ -450,184 +401,5 @@ def parse_words_expanded(event):
 
 
 
-def parse_words(event):
-    input_text = pyscript.document.querySelector("#freeNish")
-    freeNish = input_text.value
-    analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
-    m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
-    m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
-    lemmata = [x if x else "?" for x in lemmatize(pos_regex, *m_parse_lo)]
-    tinies = []
-    for l in lemmata:
-        try: gloss = gdict[l]
-        except KeyError:
-            gloss = "?"
-        tinies.append("'"+gloss+"'")
-    padded = pad(["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broader Analysis:"] + m_parse_hi, ["Dictionary Entry:"] + lemmata, ["Terse Translation:"] + tinies)
-    words_out = "\n".join(["\t".join(p) for p in padded])
-    #words_out = tabulate.tabulate([["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
-    output_div = pyscript.document.querySelector("#output")
-    output_div.innerText = words_out 
-
-def parse_words_relaxed(event):
-    input_text = pyscript.document.querySelector("#freeNishRelaxed")
-    freeNish = input_text.value
-    analyzed = parse_pyhfst_error("./morphophonologyclitics_analyze.hfstol", "./morphophonologyclitics_analyze_relaxed_slim.hfstol", *sep_punct(freeNish.lower(), True).split())
-    #revised = [parse_pyhfst("./morphophonologyclitics_generate.hfstol", analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]) if analyzed[w][0][1] else analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0]  for w in sep_punct(freeNish.lower(), True).split()]
-    m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
-    m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in m_parse_lo]
-    lemmata = [x if x else "?" for x in lemmatize(pos_regex, *m_parse_lo)]
-    tinies = []
-    for l in lemmata:
-        try: gloss = gdict[l]
-        except KeyError:
-            gloss = "?"
-        tinies.append("'"+gloss+"'")
-    #padded = pad(["Original Material:"] + sep_punct(freeNish.lower(), True).split(), ["Edited Material:"] + edited, ["Narrow Analysis:"] + m_parse_lo, ["Broader Analysis:"] + m_parse_hi, ["Dictionary Entry:"] + lemmata, ["Terse Translation:"] + tinies)
-    padded = pad(["Original Material:"] + sep_punct(freeNish.lower(), True).split(),  ["Narrow Analysis:"] + m_parse_lo, ["Broader Analysis:"] + m_parse_hi, ["Dictionary Entry:"] + lemmata, ["Terse Translation:"] + tinies)
-    words_out = "\n".join(["\t".join(p) for p in padded])
-    #words_out = tabulate.tabulate([["Word:"] + sep_punct(freeNish.lower(), True).split(), ["Narrow Analysis:"] + m_parse_lo, ["Broad Analysis:"] + m_parse_hi, ["Dictionary Header:"] + lemmata, ["Terse Translation:"] + tinies], tablefmt='html')
-    output_div = pyscript.document.querySelector("#outputRelaxed")
-    output_div.innerText = words_out 
-
-async def _upload_file_and_analyze(e):
-    console.log("Attempted file upload: " + e.target.value)
-    file_list = e.target.files
-    first_item = file_list.item(0)
-
-    my_bytes: bytes = await get_bytes_from_file(first_item)
-    console.log(my_bytes[:10])
-    textIn = my_bytes.decode().split('\n')
-    console.log(textIn[0])
-    analyzed = parse_text(True, *textIn)
-    console.log(analyzed[0])
-    console.log("I did it!")
-    stitched = []
-    for i in range(len(textIn)):
-        stitched.append(str(i)+'\n')
-        stitched.append(textIn[i]+'\n')
-        lemmata = [x if x else "?" for x in lemmatize(pos_regex, *analyzed[i])]
-        tinies = []
-        for l in lemmata:
-            try: gloss = gdict[l]
-            except KeyError:
-                gloss = "?"
-            tinies.append("'"+gloss+"'")
-        m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in analyzed[i]]
-        padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i], m_parse_hi, lemmata, tinies)
-        m = 0
-        n = 0
-        while n < len(padded[0]):
-            while n < len(padded[0]) and len(" ".join(padded[0][m:n])) < 100:
-                n += 1
-            for p in padded:
-                stitched.append(" ".join(p[m:n])+'\n')
-            m = n
-            if n < len(padded[0])-1: stitched.append('\n')
-        stitched.append("\n")
-    stitched_bytes = "".join(stitched).encode('utf-8')
-    #full_output_div = pyscript.document.querySelector("#output_upload")
-    #full_output_div.innerText = stitched_bytes
-    stitched_stream = io.BytesIO(stitched_bytes)
-    js_array = Uint8Array.new(len(stitched_bytes))
-    js_array.assign(stitched_stream.getbuffer())
-
-    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
-    url = URL.createObjectURL(nu_js_file)
-
-    hidden_link = document.createElement("a")
-    hidden_link.setAttribute("download", "analyzed_file_strict_analyzer.txt")
-    hidden_link.setAttribute("href", url)
-    hidden_link.click()
-    #hidden_file.src = window.URL.createObjectURL(nu_js_file)
-    #document.getElementById("output_upload").appendChild(hidden_file)
-
-    #new_txt = pyscript.document.createElement('txt')
-    #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
-    #pyscript.document.getElementById("output_upload").appendChild(new_txt)
-
-async def _upload_file_and_analyze_relaxed(e):
-    console.log("Attempted file upload: " + e.target.value)
-    file_list = e.target.files
-    first_item = file_list.item(0)
-
-    my_bytes: bytes = await get_bytes_from_file(first_item)
-    console.log(my_bytes[:10])
-    textIn = my_bytes.decode().split('\n')
-    console.log(textIn[0])
-    analyzed = parse_text_relaxed(True, *textIn)
-    console.log(analyzed[0])
-    console.log("I did it! (relaxed)")
-    stitched = []
-    for i in range(len(textIn)):
-        stitched.append(str(i)+'\n')
-        stitched.append(textIn[i]+'\n')
-        lemmata = [x if x else "?" for x in lemmatize(pos_regex, *analyzed[i])]
-        tinies = []
-        for l in lemmata:
-            try: gloss = gdict[l]
-            except KeyError:
-                gloss = "?"
-            tinies.append("'"+gloss+"'")
-        m_parse_hi = ["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in analyzed[i]]
-        padded = pad(sep_punct(textIn[i].lower(), True).split(), analyzed[i], m_parse_hi, lemmata, tinies)
-        m = 0
-        n = 0
-        while n < len(padded[0]):
-            while n < len(padded[0]) and len(" ".join(padded[0][m:n])) < 100:
-                n += 1
-            for p in padded:
-                stitched.append(" ".join(p[m:n])+'\n')
-            m = n
-            if n < len(padded[0])-1: stitched.append('\n')
-        stitched.append("\n")
-    stitched_bytes = "".join(stitched).encode('utf-8')
-    #full_output_div = pyscript.document.querySelector("#output_upload")
-    #full_output_div.innerText = stitched_bytes
-    stitched_stream = io.BytesIO(stitched_bytes)
-    js_array = Uint8Array.new(len(stitched_bytes))
-    js_array.assign(stitched_stream.getbuffer())
-
-    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
-    url = URL.createObjectURL(nu_js_file)
-
-    hidden_link = document.createElement("a")
-    hidden_link.setAttribute("download", "analyzed_file_relaxed_analyzer.txt")
-    hidden_link.setAttribute("href", url)
-    hidden_link.click()
-    #hidden_file.src = window.URL.createObjectURL(nu_js_file)
-    #document.getElementById("output_upload").appendChild(hidden_file)
-
-    #new_txt = pyscript.document.createElement('txt')
-    #new_txt.src = pyscript.window.URL.createObjectURL(first_item)
-    #pyscript.document.getElementById("output_upload").appendChild(new_txt)
-
-
-async def get_bytes_from_file(file):
-    array_buf = await file.arrayBuffer()
-    return array_buf.to_bytes()
-
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
-#upload_file = pyscript.document.getElementById("file-upload")
-#add_event_listener(upload_file, "change", _upload_file_and_analyze) #maybe "click" instead of "change"
-#
-#upload_file = pyscript.document.getElementById("file-upload_relaxed")
-#add_event_listener(upload_file, "change", _upload_file_and_analyze_relaxed) #maybe "click" instead of "change"
-#data = "this is some text" #"".join(stitched) 
-#def downloadFile(*args):
-#    encoded_data = data.encode('utf-8')
-#    my_stream = io.BytesIO(encoded_data)
-#
-#    js_array = Uint8Array.new(len(encoded_data))
-#    js_array.assign(my_stream.getbuffer())
-#
-#    nu_js_file = File.new([js_array], "unused_file_name.txt", {type: "text/plain"})
-#    url = URL.createObjectURL(nu_js_file)
-#
-#    hidden_link = document.createElement("a")
-#    hidden_link.setAttribute("download", "my_other_file_name.txt")
-#    hidden_link.setAttribute("href", url)
-#    hidden_link.click()
-#
-#add_event_listener(document.getElementById("download"), "click", downloadFile)
