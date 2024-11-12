@@ -282,12 +282,30 @@ def analysis_dict(analysis_string):
 def parse_words_expanded(event):
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
-    analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
-    #m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
-    re_analysis = []
-    for w in sep_punct(freeNish.lower(), True).split():
-        if analyzed[w][0][0].endswith('+?'): re_analysis.append(w)
-    re_analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *re_analysis)
+    to_analyze = sep_punct(freeNish.lower(), True).split()
+    parses = {}
+    model_credit = {} #not using this data yet, but it could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
+    for i in range(len(analyzers)):
+        print(analyzers[i])
+        analyzed = parse_pyhfst(analyzers[i], *to_analyze)
+        to_analyze = []
+        for w in analyzed:
+            if analyzed[w][0][0].endswith('+?') and i+1 < len(analyzers): to_analyze.append(w)
+            elif analyzed[w][0][0].endswith('+?') and i+1 = len(analyzers): 
+                parses[w] = analyzed[w]
+                model_credit[w] = "unanalyzed" 
+            elif (not analyzed[w][0][0].endswith('+?')) and i+1 = len(analyzers): 
+                parses[w] = analyzed[w]
+                model_credit[w] = analyzers[i]
+            else: 
+                parses[w] = analyzed[w]
+                model_credit[w] = analyzers[i]
+    #analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
+    ##m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
+    #re_analysis = []
+    #for w in sep_punct(freeNish.lower(), True).split():
+    #    if analyzed[w][0][0].endswith('+?'): re_analysis.append(w)
+    #re_analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *re_analysis)
     h = {"original":[],
          "m_parse_lo":[],
          "m_parse_hi":[],
@@ -295,9 +313,9 @@ def parse_words_expanded(event):
          "tinies":[]}
     for line in freeNish.lower().split('\n'):
         local = []
-        for w in sep_punct(line, True).split():
-            if analyzed[w][0][0].endswith('+?'): local.append(re_analyzed[w][disambiguate(min_morphs(*re_analyzed[w]), min_morphs, *re_analyzed[w])][0])
-            else: local.append(analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0])
+        for w in sep_punct(line, True).split(): local.append(parses[w][disambiguate(min_morphs(*parses[w]), min_morphs, *parses[w])][0])
+            #if analyzed[w][0][0].endswith('+?'): local.append(re_analyzed[w][disambiguate(min_morphs(*re_analyzed[w]), min_morphs, *re_analyzed[w])][0])
+            #else: local.append(analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0])
         h["original"].append(sep_punct(line, True).split())
         h["m_parse_lo"].append(local)
         h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
@@ -397,9 +415,8 @@ def parse_words_expanded(event):
         forwards = tabulate.tabulate(ordered_recall_errors, headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         output_div.innerHTML = forwards
             
+#constants
 
-
-
-
+analyzers = ["./morphophonologyclitics_analyze.hfstol"]
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
