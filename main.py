@@ -277,7 +277,12 @@ def analysis_dict(analysis_string):
     if not adict["derivation"]: return None
     return adict
 
-###functions for doing things within the web page
+###functions and constants for doing things within the web page
+#constants
+
+analyzers = ["./morphophonologyclitics_analyze.hfstol"]
+gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
+pos_regex = "".join(readin("./pos_regex.txt"))
 
 def parse_words_expanded(event):
     input_text = pyscript.document.querySelector("#larger_text_input")
@@ -415,8 +420,3 @@ def parse_words_expanded(event):
         forwards = tabulate.tabulate(ordered_recall_errors, headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         output_div.innerHTML = forwards
             
-#constants
-
-analyzers = ["./morphophonologyclitics_analyze.hfstol"]
-gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
-pos_regex = "".join(readin("./pos_regex.txt"))
