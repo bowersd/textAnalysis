@@ -296,10 +296,10 @@ def parse_words_expanded(event):
         to_analyze = []
         for w in analyzed:
             if analyzed[w][0][0].endswith('+?') and i+1 < len(analyzers): to_analyze.append(w)
-            elif analyzed[w][0][0].endswith('+?') and i+1 = len(analyzers): 
+            elif analyzed[w][0][0].endswith('+?') and i+1 == len(analyzers): 
                 parses[w] = analyzed[w]
                 model_credit[w] = "unanalyzed" 
-            elif (not analyzed[w][0][0].endswith('+?')) and i+1 = len(analyzers): 
+            elif (not analyzed[w][0][0].endswith('+?')) and i+1 == len(analyzers): 
                 parses[w] = analyzed[w]
                 model_credit[w] = analyzers[i]
             else: 
