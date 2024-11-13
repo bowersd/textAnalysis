@@ -23,20 +23,20 @@ layout: default
     <p>The main options are "Rhodes", "Corbiere", and "No Deletion".
        "Rhodes" follows the 1985 dictionary by Richard Rhodes, "Corbiere" follows the Nishnaabemwin Online Dictionary by Mary Ann Corbiere and Rand Valentine, and "No Deletion" does not use vowel deletion. Analyzers marked "relaxed" allow less precise spelling.</p>
     <p>Note: Relaxed analyzers are large, slow, and give less accurate results, so give them bigger numbers.</p>
-    <form id="analyzer_cascade_customization" py-submit="submit-handler()">
-        <input type="text" size="4" id="rhodes" value="1" py-input="rhodes_handler()">
+    <form id="analyzer_cascade_customization">
+        <input type="text" size="4" id="rhodes" value="1" >
         <label for="rhodes">Rhodes</label><br>
-        <input type="text" size="4" id="rhodes_relaxed" py-input="rhodes_relaxed_handler()">
+        <input type="text" size="4" id="rhodes_relaxed" >
         <label for="rhodes">Rhodes relaxed</label><br>
-        <input type="text" size="4" id="corbiere" py-input="corbiere_handler()">
+        <input type="text" size="4" id="corbiere" >
         <label for="rhodes">Corbiere</label><br>
-        <input type="text" size="4" id="corbiere_relaxed" py-input="corbiere_relaxed_handler()">
+        <input type="text" size="4" id="corbiere_relaxed" >
         <label for="rhodes">Corbiere relaxed</label><br>
-        <input type="text" size="4" id="no_deletion" py-input="no_deletion_handler()">
+        <input type="text" size="4" id="no_deletion" >
         <label for="rhodes">No Deletion</label><br>
-        <input type="text" size="4" id="no_deletion_relaxed" py-input="no_deletion_relaxed_handler()">
+        <input type="text" size="4" id="no_deletion_relaxed" >
         <label for="rhodes">No Deletion relaxed</label><br>
-        <button type="submit">Submit</button>
+        <button py-click="cascade_customization">Customize!</button>
     </form>
     <p>1. Select an analysis option below...</p>
     <label for="analysis_mode">I want to get:</label>
@@ -126,6 +126,6 @@ layout: default
     <button name="load_trans">Add Sentence-by-Sentence Translation (optional, inactive)</button>
     <button name="do_it">Make Interlinearization (inactive)</button-->
     <hr/>
-    <p>Last updated: 11/13/2024 10:41</p>
+    <p>Last updated: 11/13/2024 10:56</p>
 </body>
 </html>
