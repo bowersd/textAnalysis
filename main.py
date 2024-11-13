@@ -294,12 +294,12 @@ form_values = {
         "no_deletion_relaxed":""}
 
 def cascade_customization(event):
-    form_values["rhodes"] = pyscript.document.querySelector("#rhodes")
-    form_values["rhodes_relaxed"] = pyscript.document.querySelector("#rhodes_relaxed")
-    form_values["corbiere"] = pyscript.document.querySelector("#corbiere")
-    form_values["corbiere_relaxed"] = pyscript.document.querySelector("#corbiere_relaxed")
-    form_values["no_deletion"] = pyscript.document.querySelector("#no_deletion")
-    form_values["no_deletion_relaxed"] = pyscript.document.querySelector("#no_deletion_relaxed")
+    form_values["rhodes"] = pyscript.document.querySelector("#rhodes").value
+    form_values["rhodes_relaxed"] = pyscript.document.querySelector("#rhodes_relaxed").value
+    form_values["corbiere"] = pyscript.document.querySelector("#corbiere").value
+    form_values["corbiere_relaxed"] = pyscript.document.querySelector("#corbiere_relaxed").value
+    form_values["no_deletion"] = pyscript.document.querySelector("#no_deletion").value
+    form_values["no_deletion_relaxed"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     print(f"Form values are: {form_values}")
 
 #form_values["rhodes"]=Element("rhodes").element.value
