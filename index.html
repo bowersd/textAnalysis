@@ -18,6 +18,17 @@ layout: default
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
+    <p>0. Customize the analyzer cascade...</p>
+    <p>Mark analyzers in order of priority, where 1 is highest priority. Leave unwanted analyzers blank.</p>
+    <p>The main options are "Rhodes", "Corbiere", and "No Deletion".
+       "Rhodes" follows the 1985 dictionary by Richard Rhodes, "Corbiere" follows the Nishnaabemwin Online Dictionary by Mary Ann Corbiere and Rand Valentine, and "No Deletion" does not use vowel deletion. Analyzers marked "relaxed" allow less precise spelling.</p>
+    <p>Note: Relaxed analyzers are large, slow, and give less accurate results, so give them bigger numbers.</p>
+    <p><input type="text" value="1"> Rhodes</p>
+    <p><input type="text"> Rhodes relaxed</p>
+    <p><input type="text"> Corbiere</p>
+    <p><input type="text"> Corbiere relaxed</p>
+    <p><input type="text"> No Deletion</p>
+    <p><input type="text"> No Deletion relaxed</p>
     <p>1. Select an analysis option below...</p>
     <label for="analysis_mode">I want to get:</label>
 
@@ -106,6 +117,6 @@ layout: default
     <button name="load_trans">Add Sentence-by-Sentence Translation (optional, inactive)</button>
     <button name="do_it">Make Interlinearization (inactive)</button-->
     <hr/>
-    <p>Last updated: 11/12/2024 2:34</p>
+    <p>Last updated: 11/13/2024 6:40</p>
 </body>
 </html>
