@@ -285,6 +285,52 @@ gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
 
 print(pyscript.document.querySelector("#analyzer_cascade_customization"))
+form_values = {
+        "rhodes":"",
+        "rhodes_relaxed":"",
+        "corbiere":"",
+        "corbiere_relaxed":"",
+        "no_deletion":"",
+        "no_deletion_relaxed":""}
+
+form_values["rhodes"]=Element("rhodes").element.value
+
+Element("rhodes").element.oninput = rhodes_handler
+Element("rhodes_relaxed").element.oninput = rhodes_relaxed_handler
+Element("corbiere").element.oninput = corbiere_handler
+Element("corbiere_relaxed").element.oninput = corbiere_relaxed_handler
+Element("no_deletion").element.oninput = no_deletion_handler
+Element("no_deletion_relaxed").element.oninput = no_deletion_relaxed_handler
+Element("analyzer_cascade_customization").element.onsubmit = submit_handler
+
+def submit_handler(event=None):
+    if event:
+        event.preventDefault()
+        print(f"Form values are: {form_values}")
+        
+def rhodes_handler(event=None):
+    if event:
+        form_values["rhodes"] = event.target.value
+
+def rhodes_relaxed_handler(event=None):
+    if event:
+        form_values["rhodes_relaxed"] = event.target.value
+
+def corbiere_handler(event=None):
+    if event:
+        form_values["corbiere"] = event.target.value
+
+def corbiere_relaxed_handler(event=None):
+    if event:
+        form_values["corbiere_relaxed"] = event.target.value
+
+def no_deletion_handler(event=None):
+    if event:
+        form_values["no_deletion"] = event.target.value
+
+def no_deletion_relaxed_handler(event=None):
+    if event:
+        form_values["no_deletion_relaxed"] = event.target.value
 
 def parse_words_expanded(event):
     input_text = pyscript.document.querySelector("#larger_text_input")
