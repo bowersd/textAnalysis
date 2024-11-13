@@ -284,7 +284,7 @@ analyzers = ["./morphophonologyclitics_analyze.hfstol"]
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
 
-print(pyscript.document.querySelector("#analyzer_cascade_customization")
+print(pyscript.document.querySelector("#analyzer_cascade_customization"))
 
 def parse_words_expanded(event):
     input_text = pyscript.document.querySelector("#larger_text_input")
