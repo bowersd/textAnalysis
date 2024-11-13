@@ -23,12 +23,21 @@ layout: default
     <p>The main options are "Rhodes", "Corbiere", and "No Deletion".
        "Rhodes" follows the 1985 dictionary by Richard Rhodes, "Corbiere" follows the Nishnaabemwin Online Dictionary by Mary Ann Corbiere and Rand Valentine, and "No Deletion" does not use vowel deletion. Analyzers marked "relaxed" allow less precise spelling.</p>
     <p>Note: Relaxed analyzers are large, slow, and give less accurate results, so give them bigger numbers.</p>
-    <p><input type="text" value="1"> Rhodes</p>
-    <p><input type="text"> Rhodes relaxed</p>
-    <p><input type="text"> Corbiere</p>
-    <p><input type="text"> Corbiere relaxed</p>
-    <p><input type="text"> No Deletion</p>
-    <p><input type="text"> No Deletion relaxed</p>
+    <form id="analyzer_cascade_customization">
+        <input type="text" size="4" id="rhodes" value="1">
+        <label for="rhodes">Rhodes</label>
+        <input type="text" size="4" id="rhodes_relaxed">
+        <label for="rhodes">Rhodes relaxed</label>
+        <input type="text" size="4" id="corbiere">
+        <label for="rhodes">Corbiere</label>
+        <input type="text" size="4" id="corbiere_relaxed">
+        <label for="rhodes">Corbiere relaxed</label>
+        <input type="text" size="4" id="no_deletion">
+        <label for="rhodes">No Deletion</label>
+        <input type="text" size="4" id="no_deletion_relaxed">
+        <label for="rhodes">No Deletion relaxed</label>
+        <input type="submit" value="Submit"</input>
+    </form>
     <p>1. Select an analysis option below...</p>
     <label for="analysis_mode">I want to get:</label>
 
