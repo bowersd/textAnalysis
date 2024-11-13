@@ -302,7 +302,7 @@ def cascade_customization(event):
     form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     print(f"Form values are: {form_values}")
     for x in sorted(form_values, key = lambda y: form_values[y]):
-        if form_values[x]["order"]:
+        if form_values[x]["order"] and x != "rhodes":
             form_values[x]["file"] = open_url(form_values[x]["url"])
 
 #form_values["rhodes"]=Element("rhodes").element.value
