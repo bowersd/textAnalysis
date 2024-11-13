@@ -293,15 +293,15 @@ form_values = {
         "no_deletion":"",
         "no_deletion_relaxed":""}
 
-form_values["rhodes"]=Element("rhodes").element.value
+#form_values["rhodes"]=Element("rhodes").element.value
 
-Element("rhodes").element.oninput = rhodes_handler
-Element("rhodes_relaxed").element.oninput = rhodes_relaxed_handler
-Element("corbiere").element.oninput = corbiere_handler
-Element("corbiere_relaxed").element.oninput = corbiere_relaxed_handler
-Element("no_deletion").element.oninput = no_deletion_handler
-Element("no_deletion_relaxed").element.oninput = no_deletion_relaxed_handler
-Element("analyzer_cascade_customization").element.onsubmit = submit_handler
+#Element("rhodes").element.oninput = rhodes_handler
+#Element("rhodes_relaxed").element.oninput = rhodes_relaxed_handler
+#Element("corbiere").element.oninput = corbiere_handler
+#Element("corbiere_relaxed").element.oninput = corbiere_relaxed_handler
+#Element("no_deletion").element.oninput = no_deletion_handler
+#Element("no_deletion_relaxed").element.oninput = no_deletion_relaxed_handler
+#Element("analyzer_cascade_customization").element.onsubmit = submit_handler
 
 def submit_handler(event=None):
     if event:
