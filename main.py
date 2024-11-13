@@ -286,7 +286,7 @@ pos_regex = "".join(readin("./pos_regex.txt"))
 
 print(pyscript.document.querySelector("#analyzer_cascade_customization"))
 form_values = {
-        "rhodes":"",
+        "rhodes":"1",
         "rhodes_relaxed":"",
         "corbiere":"",
         "corbiere_relaxed":"",
@@ -301,6 +301,7 @@ def cascade_customization(event):
     form_values["no_deletion"] = pyscript.document.querySelector("#no_deletion").value
     form_values["no_deletion_relaxed"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     print(f"Form values are: {form_values}")
+    sorted([(key, form_values[key]) for key in form_values if form_values[key]], key=lambda x: x[1])
 
 #form_values["rhodes"]=Element("rhodes").element.value
 
