@@ -14,6 +14,7 @@ import asyncio
 from js import console, Uint8Array, File, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
 import io #this was added for download
 from pyodide.ffi.wrappers import add_event_listener
+from pyodide.http import open_url
 import regex
 import pyhfst
 import tabulate
@@ -284,24 +285,25 @@ analyzers = ["./morphophonologyclitics_analyze.hfstol"]
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
 
-print(pyscript.document.querySelector("#analyzer_cascade_customization"))
 form_values = {
-        "rhodes":"1",
-        "rhodes_relaxed":"",
-        "corbiere":"",
-        "corbiere_relaxed":"",
-        "no_deletion":"",
-        "no_deletion_relaxed":""}
+        "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
+        "rhodes_relaxed":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_relaxed.hfstol", "file":None},
+        "corbiere":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor.hfstol", "file":None},
+        "corbiere_relaxed":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor_relaxed.hfstol", "file":None},
+        "no_deletion":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer.hfstol", "file":None},
+        "no_deletion_relaxed":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol", "file":None}}
 
 def cascade_customization(event):
-    form_values["rhodes"] = pyscript.document.querySelector("#rhodes").value
-    form_values["rhodes_relaxed"] = pyscript.document.querySelector("#rhodes_relaxed").value
-    form_values["corbiere"] = pyscript.document.querySelector("#corbiere").value
-    form_values["corbiere_relaxed"] = pyscript.document.querySelector("#corbiere_relaxed").value
-    form_values["no_deletion"] = pyscript.document.querySelector("#no_deletion").value
-    form_values["no_deletion_relaxed"] = pyscript.document.querySelector("#no_deletion_relaxed").value
+    form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
+    form_values["rhodes_relaxed"]["order"] = pyscript.document.querySelector("#rhodes_relaxed").value
+    form_values["corbiere"]["order"] = pyscript.document.querySelector("#corbiere").value
+    form_values["corbiere_relaxed"]["order"] = pyscript.document.querySelector("#corbiere_relaxed").value
+    form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
+    form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     print(f"Form values are: {form_values}")
-    sorted([(key, form_values[key]) for key in form_values if form_values[key]], key=lambda x: x[1])
+    for x in sorted(form_values, key = lambda y: form_values[y]):
+        if form_values[x]["order"]:
+            form_values[x]["file"] = open_url(form_values[x]["url"])
 
 #form_values["rhodes"]=Element("rhodes").element.value
 
