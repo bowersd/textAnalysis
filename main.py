@@ -301,7 +301,7 @@ def cascade_customization(event):
     form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
     form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     print(f"Form values are: {form_values}")
-    x = open_url("https://raw.githubusercontent.com/bowersd/otw/releases/download/v0.1.0-alpha/unsyncopated_analyzer.hfstol")
+    x = open_url("https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer.hfstol")
     print("got it!")
     analyzers = []
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
