@@ -286,12 +286,12 @@ gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
 
 form_values = {
-        "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
-        "rhodes_relaxed":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_relaxed.hfstol", "file":None},
-        "corbiere":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor.hfstol", "file":None},
-        "corbiere_relaxed":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor_relaxed.hfstol", "file":None},
-        "no_deletion":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer.hfstol", "file":None},
-        "no_deletion_relaxed":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol", "file":None}}
+        "rhodes":{"order":"1",  "file":"./morphophonologyclitics_analyze.hfstol"},
+        "rhodes_relaxed":{"order":"",  "file":None},
+        "corbiere":{"order":"",  "file": "./morphophonologyclitics_analyze_mcor_spelling.hfstol"},
+        "corbiere_relaxed":{"order":"",  "file":None},
+        "no_deletion":{"order":"",  "file": "./morphophonologyclitics_analyze_unsyncopated.hfstol"},
+        "no_deletion_relaxed":{"order":"",  "file":None}}
 
 def cascade_customization(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
@@ -301,9 +301,10 @@ def cascade_customization(event):
     form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
     form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     print(f"Form values are: {form_values}")
+    analyzers = []
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
-        if form_values[x]["order"] and x != "rhodes":
-            form_values[x]["file"] = open_url(form_values[x]["url"])
+        if form_values[x]["order"] and form_values[x]["file"]:
+            analyzers.append(form_values[x]["file"])
 
 #form_values["rhodes"]=Element("rhodes").element.value
 
