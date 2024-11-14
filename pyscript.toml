@@ -6,6 +6,8 @@ packages = [
             ]
 [files] 
 "/textAnalysis/morphophonologyclitics_analyze.hfstol" = "./morphophonologyclitics_analyze.hfstol"
+"/textAnalysis/morphophonologyclitics_analyze_mcor_spelling.hfstol" = "./morphophonologyclitics_analyze_mcor_spelling.hfstol"
+"/textAnalysis/morphophonologyclitics_analyze_unsyncopated.hfstol" = "./morphophonologyclitics_analyze_unsyncopated.hfstol"
 #"/morphophonologyclitics_generate.hfstol" = "./morphophonologyclitics_generate.hfstol"
 #"/textAnalysis/morphophonologyclitics_analyze_relaxed_slim.hfstol" = "./morphophonologyclitics_analyze_relaxed_slim.hfstol"
 "/textAnalysis/languageSpecificAuxiliaryFiles/otw/pos_glosses/copilot_otw2eng.txt" = "./copilot_otw2eng.txt"
