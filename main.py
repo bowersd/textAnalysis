@@ -14,6 +14,7 @@ import asyncio
 from js import console, Uint8Array, File, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
 import io #this was added for download
 from pyodide.ffi.wrappers import add_event_listener
+from pyodid.http import open_url
 import regex
 import pyhfst
 import tabulate
@@ -300,6 +301,8 @@ def cascade_customization(event):
     form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
     form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     print(f"Form values are: {form_values}")
+    x = open_url("https://raw.githubusercontent.com/bowersd/otw/releases/download/v0.1.0-alpha/unsyncopated_analyzer.hfstol")
+    print("got it!")
     analyzers = []
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
         if form_values[x]["order"] and form_values[x]["file"]:
