@@ -22,19 +22,19 @@ layout: default
     <p>Mark analyzers in order of priority, where 1 is highest priority. Leave unwanted analyzers blank.</p>
     <p>The main options are "Rhodes", "Corbiere", and "No Deletion".
        "Rhodes" follows the 1985 dictionary by Richard Rhodes, "Corbiere" follows the Nishnaabemwin Online Dictionary by Mary Ann Corbiere and Rand Valentine, and "No Deletion" does not use vowel deletion. Analyzers marked "relaxed" allow less precise spelling.</p>
-    <p>Note: Relaxed analyzers are large, slow, and give less accurate results, so give them bigger numbers.</p>
+    <p>Note: Relaxed analyzers are large, so allow some time for them to load. They are also slow, and give less accurate results, so give them bigger numbers.</p>
         <input type="text" size="4" id="rhodes" value="1" >
         <label for="rhodes">Rhodes</label><br>
         <input type="text" size="4" id="rhodes_relaxed" >
-        <label for="rhodes_relaxed">Rhodes relaxed (upload file) </label><input type="file" id="rhodes_relaxed_upload"><br>
+        <label for="rhodes_relaxed">Rhodes relaxed </label><br>
         <input type="text" size="4" id="corbiere" >
         <label for="corbiere">Corbiere</label><br>
         <input type="text" size="4" id="corbiere_relaxed" >
-        <label for="corbiere_relaxed">Corbiere relaxed (upload file) </label><input type="file" id="corbiere_relaxed_upload"><br>
+        <label for="corbiere_relaxed">Corbiere relaxed </label><br>
         <input type="text" size="4" id="no_deletion" >
         <label for="no_deletion">No Deletion</label><br>
         <input type="text" size="4" id="no_deletion_relaxed" >
-        <label for="no_deletion_relaxed">No Deletion relaxed (upload file) </label><input type="file" id="no_deletion_relaxed_upload"><br>
+        <label for="no_deletion_relaxed">No Deletion relaxed  </label><br>
         <button py-click="cascade_customization">Customize!</button>
     <p>1. Select an analysis option below...</p>
     <label for="analysis_mode">I want to get:</label>
@@ -124,6 +124,6 @@ layout: default
     <button name="load_trans">Add Sentence-by-Sentence Translation (optional, inactive)</button>
     <button name="do_it">Make Interlinearization (inactive)</button-->
     <hr/>
-    <p>Last updated: 11/14/2024 7:29</p>
+    <p>Last updated: 11/14/2024 7:59</p>
 </body>
 </html>
