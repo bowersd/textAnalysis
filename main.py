@@ -14,7 +14,7 @@ import asyncio
 from js import console, Uint8Array, File, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
 import io #this was added for download
 from pyodide.ffi.wrappers import add_event_listener
-from pyodid.http import open_url
+from pyodide.http import open_url
 import regex
 import pyhfst
 import tabulate
