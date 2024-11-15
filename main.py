@@ -459,7 +459,7 @@ def parse_words_expanded(event):
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         overall_score = sc.alg_morph_score_rate(*comp_counts)
         sectioned = [["Overall Score (Features per Sentence):",  str(overall_score[2])]]
-        for ssp in sorted([x for x in zip(comp_counts, h["original"])], key = lambda y: y[0][-1][0]): sectioned.append([ssp[1], ssp[0][-1][0])
+        for ssp in sorted([x for x in zip(comp_counts, h["original"])], key = lambda y: y[0][-1][0]): sectioned.append([ssp[1], ssp[0][-1][0]])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "glossary":
         pass
