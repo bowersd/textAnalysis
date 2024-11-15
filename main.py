@@ -14,7 +14,8 @@ import asyncio
 from js import console, Uint8Array, File, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
 import io #this was added for download
 from pyodide.ffi.wrappers import add_event_listener
-from pyodide.http import open_url
+#from pyodide.http import open_url
+from pyscript import fetch
 import regex
 import pyhfst
 import tabulate
@@ -305,7 +306,7 @@ def cascade_customization(event):
     analyzers = []
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
         if form_values[x]["order"] and form_values[x]["url"]:
-            form_values[x]["file"] = open_url(form_values[x]["url"])
+            form_values[x]["file"] = await fetch(form_values[x]["url"])
             print(open_url(form_values[x]["file"]))
         analyzers.append(form_values[x]["file"])
 
