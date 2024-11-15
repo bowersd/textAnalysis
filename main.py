@@ -467,8 +467,8 @@ def parse_words_expanded(event):
             for i in range(len(s)):
                 analysis_recd = regex.search(pos_regex, s[i])
                 if analysis_recd:
-                    
-        pass
+                    if analysis_recd[0] in ["VAI", "VTA", "VII", "VAIO", "VTI"]:
+                        pass
     elif analysis_mode.value == "glossary":
         pass
     elif analysis_mode.value in ["triage", "reversed_triage"]:
