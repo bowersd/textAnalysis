@@ -305,7 +305,6 @@ async def cascade_customization(event):
     form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
     form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     print(f"Form values are: {form_values}")
-    print("got it!")
     analyzers = []
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
         if form_values[x]["order"] and form_values[x]["url"]:
@@ -462,7 +461,7 @@ def parse_words_expanded(event):
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         overall_score = sc.alg_morph_score_rate(*comp_counts)
         sectioned = [["Overall Score (Features per Sentence):",  str(overall_score[2])]]
-        for ssp in sorted([x for x in zip(comp_counts, h["original"])], key = lambda y: y[0][-1][0]): sectioned.append([ssp[1], ssp[0][-1][0]])
+        for ssp in sorted([x for x in zip(comp_counts, h["original"])], key = lambda y: y[0][-1][0]): sectioned.append([" ".join(ssp[1]), ssp[0][-1][0]])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "verb_collate":
         verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
