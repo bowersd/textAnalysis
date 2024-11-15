@@ -1,3 +1,4 @@
+import pyodide
 await pyodide.loadPackage("micropip")
 #import micropip
 await micropip.install(
@@ -465,9 +466,9 @@ def parse_words_expanded(event):
     elif analysis_mode.value == "verb_collate":
         for s in h["m_parse_lo"]:
             for i in range(len(s)):
-                analysis_recd = regex.search(pos_regex, s[i])
+                verb = regex.search(["VAI", "VTA", "VII", "VAIO", "VTI"], s[i])
                 if analysis_recd:
-                    if analysis_recd[0] in ["VAI", "VTA", "VII", "VAIO", "VTI"]:
+                    if analysis_recd[0] in :
                         pass
     elif analysis_mode.value == "glossary":
         pass
