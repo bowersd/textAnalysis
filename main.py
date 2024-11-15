@@ -441,23 +441,19 @@ def parse_words_expanded(event):
         output_div.innerHTML = freqs_out
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
-        overall_score = sc.alg_morph_score_rate(*comp_counts)
-        itemized_scores = []
-        for x in comp_counts: itemized_scores.append(sc.alg_morph_score_rate(x))
-        s_score_pairs = sorted([x for x in zip(itemized_scores, h["original"])], key = lambda x: x[0])
-        sectioned = [["Overall Scores (Verb Category/Order/Features per Sentence): {0}/{1}/{2}".format(overall_score[0], overall_score[1], overall_score[2])]]
-        prev_vcat = []
-        prev_vord = []
-        for ssp in s_score_pairs:
-            new_vcat = ssp[0][0]
-            new_vord = ssp[0][1]
-            if new_vcat != prev_vcat or new_vord != prev_vord:
-                sectioned.append([">>Verb Category/Order Score: {0}/{1}".format(new_vcat, new_vord)])
-                sectioned.append(ssp[1])
-                prev_vcat = new_vcat
-                prev_vord = new_vord
-            else:
-                sectioned.append(ssp[1])
+        c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
+        categorized = {x:[] for x in c_order}
+        for i in range(len(comp_counts)):
+            if comp_counts[i][0][0]: categorized["VTA"].append((comp_counts[i], h["original"][i]))
+            if comp_counts[i][0][1]: categorized["VAIO"].append((comp_counts[i], h["original"][i]))
+            if comp_counts[i][0][2]: categorized["VTI"].append((comp_counts[i], h["original"][i]))
+            if comp_counts[i][0][3]: categorized["VAI"].append((comp_counts[i], h["original"][i]))
+            if comp_counts[i][0][4]: categorized["VII"].append((comp_counts[i], h["original"][i]))
+            if not any(comp_counts[i][0]): categorized["(No verbs found)"].append((comp_counts[i], h["original"][i]))
+        sectioned = []
+        for i in range(len(c_order)):
+            sectioned.append(">>These sentences have verbs of the following category: {}".format(c_order[i]))
+            for x in sorted(sorted(categorized[c_order[i]], key = lambda y: y[0][-1][0]), key = lambda z: z[0][0][i]): sectioned.append(x[1]) #sorting by morphological complexity, then count of relevant verb category
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "complexity":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
