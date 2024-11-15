@@ -455,7 +455,7 @@ def parse_words_expanded(event):
         sectioned = []
         for i in range(len(c_order)):
             sectioned.append(">>These sentences have verbs of the following category: {}".format(c_order[i]))
-            for x in sorted(sorted(categorized[c_order[i]], key = lambda y: y[0][-1][0]), key = lambda z: z[0][0][i]): sectioned.append(x[1]) #sorting by morphological complexity, then count of relevant verb category
+            for x in sorted(sorted(categorized[c_order[i]], key = lambda y: y[0][-1][0]), key = lambda z: z[0][0][i]): sectioned.append(" ".join(x[1])) #sorting by morphological complexity, then count of relevant verb category
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "complexity":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
