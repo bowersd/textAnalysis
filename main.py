@@ -310,7 +310,7 @@ async def cascade_customization(event):
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
         if form_values[x]["order"] and form_values[x]["url"]:
             form_values[x]["file"] = await pyfetch(form_values[x]["url"])
-            print(open_url(form_values[x]["file"]))
+            print(form_values[x]["file"])
         analyzers.append(form_values[x]["file"])
 
 #form_values["rhodes"]=Element("rhodes").element.value
