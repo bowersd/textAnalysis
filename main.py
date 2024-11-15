@@ -305,7 +305,7 @@ def cascade_customization(event):
     analyzers = []
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
         if form_values[x]["order"] and form_values[x]["url"]:
-            form_values[x]["file"] = open_url(form_values[x]["url"])
+            form_values[x]["file"] = await open_url(form_values[x]["url"])
             print(open_url(form_values[x]["file"]))
         analyzers.append(form_values[x]["file"])
 
