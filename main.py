@@ -1,4 +1,5 @@
-import micropip
+await pyodide.loadPackage("micropip")
+#import micropip
 await micropip.install(
     'https://files.pythonhosted.org/packages/e0/02/c10a69ff21d6679a6b6e28c42cd265bec2cdd9be3dcbbee830a10fa4b0e5/pyhfst-1.3.0-py2.py3-none-any.whl'
     #'https://files.pythonhosted.org/packages/eb/f5/3ea71e974dd0117b95a54ab2c79d781b4376d257d91e4c2249605f4a54ae/pyhfst-1.3.0-py2.py3-none-any.whl'
@@ -461,6 +462,13 @@ def parse_words_expanded(event):
         sectioned = [["Overall Score (Features per Sentence):",  str(overall_score[2])]]
         for ssp in sorted([x for x in zip(comp_counts, h["original"])], key = lambda y: y[0][-1][0]): sectioned.append([ssp[1], ssp[0][-1][0]])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
+    elif analysis_mode.value == "verb_collate":
+        for s in h["m_parse_lo"]:
+            for i in range(len(s)):
+                analysis_recd = regex.search(pos_regex, s[i])
+                if analysis_recd:
+                    
+        pass
     elif analysis_mode.value == "glossary":
         pass
     elif analysis_mode.value in ["triage", "reversed_triage"]:
