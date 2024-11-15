@@ -438,7 +438,7 @@ def parse_words_expanded(event):
                 nu_cnts[i][1] = ""
         freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
         output_div.innerHTML = freqs_out
-    elif analysis_mode.value == "complexity":
+    elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         overall_score = sc.alg_morph_score_rate(*comp_counts)
         itemized_scores = []
@@ -458,6 +458,8 @@ def parse_words_expanded(event):
             else:
                 sectioned.append(ssp[1])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
+    elif analysis_mode.value == "complexity":
+        pass
     elif analysis_mode.value == "glossary":
         pass
     elif analysis_mode.value in ["triage", "reversed_triage"]:
