@@ -464,12 +464,19 @@ def parse_words_expanded(event):
         for ssp in sorted([x for x in zip(comp_counts, h["original"])], key = lambda y: y[0][-1][0]): sectioned.append([ssp[1], ssp[0][-1][0]])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "verb_collate":
-        for s in h["m_parse_lo"]:
-            for i in range(len(s)):
-                verb = regex.search(["VAI", "VTA", "VII", "VAIO", "VTI"], s[i])
-                if analysis_recd:
-                    if analysis_recd[0] in :
-                        pass
+        verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
+        verbdict = {x:[] for x in verbcats}
+        for i in range(len(h["m_parse_lo"])):
+            for j in range(len(s)):
+                verbmatch = regex.search("|".join(verbcats), h["m_parse_lo"][i][j])
+                if verbmatch:
+                    if h["original"][i][j] not in verbdict[verbmatch[0]]:
+                        verbdict[verbmatch[0]].append([h["original"][i][j], h["m_parse_hi"][i][j]])
+        sectioned = []
+        for c in verbcats:
+            sectioned.append(["Found these verbs of category {}:".format(c)])
+            for v in sorted(verbdict[c], key = lambda x: x[1]): sectioned.append([v[0])
+        output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "glossary":
         pass
     elif analysis_mode.value in ["triage", "reversed_triage"]:
