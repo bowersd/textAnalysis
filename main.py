@@ -468,7 +468,7 @@ def parse_words_expanded(event):
         verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
         verbdict = {x:[] for x in verbcats}
         for i in range(len(h["m_parse_lo"])):
-            for j in range(len(s)):
+            for j in range(len(h["m_parse_lo"][i])):
                 verbmatch = regex.search("|".join(verbcats), h["m_parse_lo"][i][j])
                 if verbmatch:
                     if h["original"][i][j] not in verbdict[verbmatch[0]]:
