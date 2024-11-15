@@ -453,9 +453,12 @@ def parse_words_expanded(event):
             if comp_counts[i][0][4]: categorized["VII"].append((comp_counts[i], h["original"][i]))
             if not any(comp_counts[i][0]): categorized["(No verbs found)"].append((comp_counts[i], h["original"][i]))
         sectioned = []
-        for i in range(len(c_order)):
+        for i in range(len(c_order)-1): #need to skip the last category, because there is no corresponding bin in the verb counts for when there is nothing
             sectioned.append(">>These sentences have verbs of the following category: {}".format(c_order[i]))
             for x in sorted(sorted(categorized[c_order[i]], key = lambda y: y[0][-1][0]), key = lambda z: z[0][0][i]): sectioned.append(" ".join(x[1])) #sorting by morphological complexity, then count of relevant verb category
+        sectioned.append([">>These sentences had no verbs found in them"])
+        for x in sorted(categorized["(No verbs found)"], key = lambda y: y[0][-1][0]):
+            sectioned.append(" ".join(x[1]))
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "complexity":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
