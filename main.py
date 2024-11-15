@@ -8,14 +8,14 @@ await micropip.install(
 await micropip.install(
     'https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl'
 )
-from pyweb import pydom
+#from pyweb import pydom
 import pyscript
 import asyncio
 from js import console, Uint8Array, File, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
 import io #this was added for download
 from pyodide.ffi.wrappers import add_event_listener
 #from pyodide.http import open_url
-from pyscript import fetch
+#from pyscript import fetch
 import regex
 import pyhfst
 import tabulate
@@ -306,7 +306,7 @@ async def cascade_customization(event):
     analyzers = []
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
         if form_values[x]["order"] and form_values[x]["url"]:
-            form_values[x]["file"] = await fetch(form_values[x]["url"])
+            form_values[x]["file"] = await pyscript.fetch(form_values[x]["url"])
             print(open_url(form_values[x]["file"]))
         analyzers.append(form_values[x]["file"])
 
