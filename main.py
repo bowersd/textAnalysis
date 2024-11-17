@@ -358,7 +358,7 @@ async def parse_words_expanded(event):
     to_analyze = sep_punct(freeNish.lower(), True).split()
     parses = {}
     model_credit = {} #not using this data yet, but it could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
-    analyzers = await cascade_customization()
+    #analyzers = await cascade_customization()
     for i in range(len(analyzers)):
         print(analyzers[i])
         analyzed = parse_pyhfst(analyzers[i], *to_analyze)
