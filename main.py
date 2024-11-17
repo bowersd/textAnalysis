@@ -297,7 +297,7 @@ form_values = {
         "no_deletion":{"order":"", "url":"",  "file": "./morphophonologyclitics_analyze_unsyncopated.hfstol"},
         "no_deletion_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol",  "file":None}}
 
-async def cascade_customization(event=None):
+async def cascade_customization(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
     form_values["rhodes_relaxed"]["order"] = pyscript.document.querySelector("#rhodes_relaxed").value
     form_values["corbiere"]["order"] = pyscript.document.querySelector("#corbiere").value
@@ -352,7 +352,7 @@ def no_deletion_relaxed_handler(event=None):
     if event:
         form_values["no_deletion_relaxed"] = event.target.value
 
-async def parse_words_expanded(event):
+def parse_words_expanded(event):
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
     to_analyze = sep_punct(freeNish.lower(), True).split()
