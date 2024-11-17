@@ -311,6 +311,7 @@ async def cascade_customization(event):
             form_values[x]["file"] = await pyfetch(form_values[x]["url"])
             print(form_values[x]["file"])
         analyzers.append(form_values[x]["file"])
+    return analyzers
 
 #form_values["rhodes"]=Element("rhodes").element.value
 
@@ -351,12 +352,13 @@ def no_deletion_relaxed_handler(event=None):
     if event:
         form_values["no_deletion_relaxed"] = event.target.value
 
-def parse_words_expanded(event):
+async def parse_words_expanded(event):
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
     to_analyze = sep_punct(freeNish.lower(), True).split()
     parses = {}
     model_credit = {} #not using this data yet, but it could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
+    analyzers = await cascade_customization()
     for i in range(len(analyzers)):
         print(analyzers[i])
         analyzed = parse_pyhfst(analyzers[i], *to_analyze)
