@@ -346,6 +346,9 @@ def rhodes_relaxed_handler(event=None):
     if event:
         form_values["rhodes_relaxed"] = event.target.value
 
+add_event_listener(document.getElementById("rhodes_relaxed_upload"), "change", rhodes_relaxed_handler)
+print(form_values)
+
 def corbiere_handler(event=None):
     if event:
         form_values["corbiere"] = event.target.value
