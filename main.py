@@ -291,11 +291,11 @@ pos_regex = "".join(readin("./pos_regex.txt"))
 
 form_values = {
         "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
-        "rhodes_relaxed":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_relaxed.hfstol?raw=true", "file":None},
+        "rhodes_relaxed":{"order":"", "url":"https://drive.google.com/uc?export=download&id=https://drive.google.com/file/d/1DBbHU3DgyNvlqws7nVhvQcqccSjWiCQM/view?usp=drive_link", "file":None}, #https://drive.google.com/file/d/1DBbHU3DgyNvlqws7nVhvQcqccSjWiCQM/view?usp=drive_link
         "corbiere":{"order":"", "url":"", "file": "./morphophonologyclitics_analyze_mcor_spelling.hfstol"},
-        "corbiere_relaxed":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor_relaxed.hfstol?raw=true", "file":None},
+        "corbiere_relaxed":{"order":"", "url":"https://drive.google.com/uc?export=download&id=YourFileID", "file":None},
         "no_deletion":{"order":"", "url":"",  "file": "./morphophonologyclitics_analyze_unsyncopated.hfstol"},
-        "no_deletion_relaxed":{"order":"", "url":"https://github.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol?raw=true",  "file":None}
+        "no_deletion_relaxed":{"order":"", "url":"https://drive.google.com/uc?export=download&id=YourFileID",  "file":None}
         }
 
 #form_values = {
