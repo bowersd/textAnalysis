@@ -285,30 +285,11 @@ def analysis_dict(analysis_string):
 ###functions and constants for doing things within the web page
 #constants
 
-analyzers = ["./morphophonologyclitics_analyze.hfstol"]
+#analyzers = ["./morphophonologyclitics_analyze.hfstol"]
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
 
-#form_values = {
-#        "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
-#        "rhodes_relaxed":{"order":"", "url":"https://drive.google.com/uc?export=download&id=https://drive.google.com/file/d/1DBbHU3DgyNvlqws7nVhvQcqccSjWiCQM/view?usp=drive_link", "file":None}, #https://drive.google.com/file/d/1DBbHU3DgyNvlqws7nVhvQcqccSjWiCQM/view?usp=drive_link
-#        "corbiere":{"order":"", "url":"", "file": "./morphophonologyclitics_analyze_mcor_spelling.hfstol"},
-#        "corbiere_relaxed":{"order":"", "url":"https://drive.google.com/uc?export=download&id=YourFileID", "file":None},
-#        "no_deletion":{"order":"", "url":"",  "file": "./morphophonologyclitics_analyze_unsyncopated.hfstol"},
-#        "no_deletion_relaxed":{"order":"", "url":"https://drive.google.com/uc?export=download&id=YourFileID",  "file":None}
-#        }
 
-form_values = {
-        "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
-        "rhodes_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_relaxed.hfstol", "file":None},
-        "corbiere":{"order":"", "url":"", "file": "./morphophonologyclitics_analyze_mcor_spelling.hfstol"},
-        "corbiere_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor_relaxed.hfstol", "file":None},
-        "no_deletion":{"order":"", "url":"",  "file": "./morphophonologyclitics_analyze_unsyncopated.hfstol"},
-        "no_deletion_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol",  "file":None}
-        }
-
-print("initial state of analyzers")
-print(analyzers)
 
 def cascade_customization(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
@@ -327,6 +308,8 @@ def cascade_customization(event):
         #    print(form_values[x]["file"])
         print(form_values[x]["file"])
         analyzers.append(form_values[x]["file"])
+    print("updated state of analyzers")
+    print(analyzers)
     return analyzers
 
 #form_values["rhodes"]=Element("rhodes").element.value
@@ -352,8 +335,8 @@ def rhodes_relaxed_handler(event=None):
     if event:
         form_values["rhodes_relaxed"] = event.target.value
 
-add_event_listener(document.getElementById("rhodes_relaxed_upload"), "change", rhodes_relaxed_handler)
-print(form_values)
+#add_event_listener(document.getElementById("rhodes_relaxed_upload"), "change", rhodes_relaxed_handler)
+#print(form_values)
 
 def corbiere_handler(event=None):
     if event:
@@ -372,6 +355,26 @@ def no_deletion_relaxed_handler(event=None):
         form_values["no_deletion_relaxed"] = event.target.value
 
 def parse_words_expanded(event):
+    form_values = {
+            "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
+            "rhodes_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_relaxed.hfstol", "file":None},
+            "corbiere":{"order":"", "url":"", "file": "./morphophonologyclitics_analyze_mcor_spelling.hfstol"},
+            "corbiere_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor_relaxed.hfstol", "file":None},
+            "no_deletion":{"order":"", "url":"",  "file": "./morphophonologyclitics_analyze_unsyncopated.hfstol"},
+            "no_deletion_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol",  "file":None}
+            }
+    form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
+    form_values["rhodes_relaxed"]["order"] = pyscript.document.querySelector("#rhodes_relaxed").value
+    form_values["corbiere"]["order"] = pyscript.document.querySelector("#corbiere").value
+    form_values["corbiere_relaxed"]["order"] = pyscript.document.querySelector("#corbiere_relaxed").value
+    form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
+    form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
+    analyzers = []
+    for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
+        #if form_values[x]["order"] and form_values[x]["url"]:
+        #    form_values[x]["file"] = await pyfetch(form_values[x]["url"])
+        #    print(form_values[x]["file"])
+        analyzers.append(form_values[x]["file"])
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
     to_analyze = sep_punct(freeNish.lower(), True).split()
