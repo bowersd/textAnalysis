@@ -354,15 +354,15 @@ def no_deletion_relaxed_handler(event=None):
     if event:
         form_values["no_deletion_relaxed"] = event.target.value
 
+form_values = {
+        "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
+        "rhodes_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_relaxed.hfstol", "file":None},
+        "corbiere":{"order":"", "url":"", "file": "./morphophonologyclitics_analyze_mcor_spelling.hfstol"},
+        "corbiere_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor_relaxed.hfstol", "file":None},
+        "no_deletion":{"order":"", "url":"",  "file": "./morphophonologyclitics_analyze_unsyncopated.hfstol"},
+        "no_deletion_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol",  "file":None}
+        }
 def parse_words_expanded(event):
-    form_values = {
-            "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
-            "rhodes_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_relaxed.hfstol", "file":None},
-            "corbiere":{"order":"", "url":"", "file": "./morphophonologyclitics_analyze_mcor_spelling.hfstol"},
-            "corbiere_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor_relaxed.hfstol", "file":None},
-            "no_deletion":{"order":"", "url":"",  "file": "./morphophonologyclitics_analyze_unsyncopated.hfstol"},
-            "no_deletion_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol",  "file":None}
-            }
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
     form_values["rhodes_relaxed"]["order"] = pyscript.document.querySelector("#rhodes_relaxed").value
     form_values["corbiere"]["order"] = pyscript.document.querySelector("#corbiere").value
@@ -381,8 +381,6 @@ def parse_words_expanded(event):
     parses = {}
     model_credit = {} #not using this data yet, but it could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
     #analyzers = await cascade_customization()
-    print("do it function sees this version of analyzers")
-    print(analyzers)
     for i in range(len(analyzers)):
         print(analyzers[i])
         analyzed = parse_pyhfst(analyzers[i], *to_analyze)
