@@ -315,11 +315,16 @@ async def cascade_customization(event):
     form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
     form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     print(f"Form values are: {form_values}")
+    print("initial state of analyzers")
+    print(analyzers)
     analyzers = []
+    print("reset state of analyzers")
+    print(analyzers)
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
-        if form_values[x]["order"] and form_values[x]["url"]:
-            form_values[x]["file"] = await pyfetch(form_values[x]["url"])
-            print(form_values[x]["file"])
+        #if form_values[x]["order"] and form_values[x]["url"]:
+        #    form_values[x]["file"] = await pyfetch(form_values[x]["url"])
+        #    print(form_values[x]["file"])
+        print(form_values[x]["file"])
         analyzers.append(form_values[x]["file"])
     return analyzers
 
@@ -372,6 +377,8 @@ def parse_words_expanded(event):
     parses = {}
     model_credit = {} #not using this data yet, but it could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
     #analyzers = await cascade_customization()
+    print("do it function sees this version of analyzers")
+    print(analyzers)
     for i in range(len(analyzers)):
         print(analyzers[i])
         analyzed = parse_pyhfst(analyzers[i], *to_analyze)
