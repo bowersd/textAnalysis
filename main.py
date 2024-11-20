@@ -499,17 +499,13 @@ def parse_words_expanded(event):
         for ssp in sorted([x for x in zip(comp_counts, h["original"])], key = lambda y: y[0][-1][0]): sectioned.append([" ".join(ssp[1]), ssp[0][-1][0]])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "verb_collate":
+        faced = sc.interface(pos_regex, *h["m_parse_lo"])
         verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
         verbdict = {x:[] for x in verbcats}
-        for i in range(len(h["m_parse_lo"])):
-            for j in range(len(h["m_parse_lo"][i])):
-                pos_blob = regex.search(r"({0}).*({0})".format(pos_regex), h["m_parse_lo"][i][j])
-                verbmatch = ""
-                if pos_blob and pos_blob[0].split("+")[-1] in verbcats:
-                    verbmatch = pos_blob[0].split("+")[-1]
-                if verbmatch:
-                    if h["original"][i][j] not in verbdict[verbmatch]:
-                        verbdict[verbmatch].append([h["original"][i][j], h["m_parse_hi"][i][j]])
+        for i in range(len(faced)):
+            for j in range(len(faced[i])):
+                if faced[i][j]["pos"] in verbdict: 
+                    if h["original"][i][j] not in verbdict[faced[i][j]["pos"]]: verbdict[faced[i][j]["pos"].append(h["original"][i][j])
         sectioned = []
         for c in verbcats:
             sectioned.append(["Found these verbs of category {}:".format(c)])
