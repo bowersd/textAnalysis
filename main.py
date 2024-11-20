@@ -15,7 +15,7 @@ import pyscript
 import asyncio
 from js import console, Uint8Array, File, FileReader, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
 import io #this was added for download
-from pyodide import create_proxy
+#from pyodide import create_proxy
 from pyodide.ffi.wrappers import add_event_listener
 from pyodide.http import pyfetch
 #from pyodide.http import open_url
