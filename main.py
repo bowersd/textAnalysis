@@ -10,11 +10,12 @@ await micropip.install(
 await micropip.install(
     'https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl'
 )
-#from pyweb import pydom
+from pyweb import pydom
 import pyscript
 import asyncio
-from js import console, Uint8Array, File, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
+from js import console, Uint8Array, File, FileReader, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
 import io #this was added for download
+from pyodide import create_proxy
 from pyodide.ffi.wrappers import add_event_listener
 from pyodide.http import pyfetch
 #from pyodide.http import open_url
@@ -329,30 +330,30 @@ def submit_handler(event=None):
         
 def rhodes_handler(event=None):
     if event:
-        form_values["rhodes"] = event.target.value
+        form_values["rhodes"]["file"] = event.target.value
 
 def rhodes_relaxed_handler(event=None):
     if event:
-        form_values["rhodes_relaxed"] = event.target.value
+        form_values["rhodes_relaxed"]["file"] = event.target.value
 
 #add_event_listener(document.getElementById("rhodes_relaxed_upload"), "change", rhodes_relaxed_handler)
 #print(form_values)
 
 def corbiere_handler(event=None):
     if event:
-        form_values["corbiere"] = event.target.value
+        form_values["corbiere"]["file"] = event.target.value
 
 def corbiere_relaxed_handler(event=None):
     if event:
-        form_values["corbiere_relaxed"] = event.target.value
+        form_values["corbiere_relaxed"]["file"] = event.target.value
 
 def no_deletion_handler(event=None):
     if event:
-        form_values["no_deletion"] = event.target.value
+        form_values["no_deletion"]["file"] = event.target.value
 
 def no_deletion_relaxed_handler(event=None):
     if event:
-        form_values["no_deletion_relaxed"] = event.target.value
+        form_values["no_deletion_relaxed"]["file"] = event.target.value
 
 form_values = {
         "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
@@ -450,7 +451,7 @@ def parse_words_expanded(event):
         nu_cnts = []
         for lem in cnts_lem:
             for tok in cnts_lem[lem]:
-                nu_cnts.append([str(sum([cnts_lem[lem][x] for x in cnts_lem[lem]])), lem, str(cnts_lem[lem][tok]), tok])
+                nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
                 #else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
                 #cnts.append((str(cnts_lem[lem][tok]), tok, "("+lem+")"))
         #freqs_out = "Raw frequencies, aka token frequencies (with dictionary header)\n"+"\n".join(["\t".join(x) for x in sorted(cnts)])+"\n"+"Combined frequencies, aka type or lemmatized frequencies, organized by dictionary header\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
@@ -458,6 +459,7 @@ def parse_words_expanded(event):
         nu_cnts = sorted(sorted(nu_cnts, key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #might need to sort 4 times!!
         prev = ""
         for i in range(len(nu_cnts)):
+            nu_cnts[i][0] = str(nu_cnts[i][0])
             new = nu_cnts[i][1]
             if new != prev: prev = new
             elif new == prev: 
@@ -495,10 +497,13 @@ def parse_words_expanded(event):
         verbdict = {x:[] for x in verbcats}
         for i in range(len(h["m_parse_lo"])):
             for j in range(len(h["m_parse_lo"][i])):
-                verbmatch = regex.search("|".join(verbcats), h["m_parse_lo"][i][j])
+                pos_blob = regex.search(r"({0}).*({0})".format(pos_regex), h["m_parse_lo"][i][j])
+                verbmatch = ""
+                if pos_blob and pos_blob[0].split("+")[-1] in verbcats:
+                    verbmatch = pos_blob[0].split("+")[-1]
                 if verbmatch:
-                    if h["original"][i][j] not in verbdict[verbmatch[0]]:
-                        verbdict[verbmatch[0]].append([h["original"][i][j], h["m_parse_hi"][i][j]])
+                    if h["original"][i][j] not in verbdict[verbmatch]:
+                        verbdict[verbmatch].append([h["original"][i][j], h["m_parse_hi"][i][j]])
         sectioned = []
         for c in verbcats:
             sectioned.append(["Found these verbs of category {}:".format(c)])
