@@ -458,10 +458,16 @@ def parse_words_expanded(event):
         #freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
         nu_cnts = sorted(sorted(nu_cnts, key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #might need to sort 4 times!!
         prev = ""
+        unanalyzed_block = []
+        for i in range(len(nu_cnts)):
+            x = nu_cnts.pop(0)
+            if x[1] == "?": unanalyzed_block.append(x)
+            else: nu_cnts.append(x)
+        nu_cnts.extend(unanalyzed_block)
         for i in range(len(nu_cnts)):
             nu_cnts[i][0] = str(nu_cnts[i][0])
             new = nu_cnts[i][1]
-            if new != prev: prev = new
+            elif new != prev: prev = new
             elif new == prev: 
                 nu_cnts[i][0] = ""
                 nu_cnts[i][1] = ""
