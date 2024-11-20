@@ -365,11 +365,11 @@ form_values = {
         }
 def parse_words_expanded(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
-    form_values["rhodes_relaxed"]["order"] = pyscript.document.querySelector("#rhodes_relaxed").value
+    #form_values["rhodes_relaxed"]["order"] = pyscript.document.querySelector("#rhodes_relaxed").value
     form_values["corbiere"]["order"] = pyscript.document.querySelector("#corbiere").value
-    form_values["corbiere_relaxed"]["order"] = pyscript.document.querySelector("#corbiere_relaxed").value
+    #form_values["corbiere_relaxed"]["order"] = pyscript.document.querySelector("#corbiere_relaxed").value
     form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
-    form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
+    #form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
     analyzers = []
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
         #if form_values[x]["order"] and form_values[x]["url"]:
