@@ -467,7 +467,7 @@ def parse_words_expanded(event):
         for i in range(len(nu_cnts)):
             nu_cnts[i][0] = str(nu_cnts[i][0])
             new = nu_cnts[i][1]
-            elif new != prev: prev = new
+            if new != prev: prev = new
             elif new == prev: 
                 nu_cnts[i][0] = ""
                 nu_cnts[i][1] = ""
