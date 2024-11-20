@@ -509,7 +509,9 @@ def parse_words_expanded(event):
         sectioned = []
         for c in verbcats:
             sectioned.append(["Found these verbs of category {}:".format(c)])
-            for v in sorted(verbdict[c], key = lambda x: x[1]): sectioned.append([v[0]])
+            for v in sorted(verbdict[c], key = lambda x: x[1]): 
+                print(v, v[0])
+                sectioned.append([v[0]])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
     elif analysis_mode.value == "glossary":
         pass
