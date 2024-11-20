@@ -505,7 +505,7 @@ def parse_words_expanded(event):
         for i in range(len(faced)):
             for j in range(len(faced[i])):
                 if faced[i][j]["pos"] in verbdict: 
-                    if h["original"][i][j] not in verbdict[faced[i][j]["pos"]]: verbdict[faced[i][j]["pos"]].append(h["original"][i][j])
+                    if h["original"][i][j] not in verbdict[faced[i][j]["pos"]]: verbdict[faced[i][j]["pos"]].append((h["original"][i][j], h["m_parse_hi"][i][j]))
         sectioned = []
         for c in verbcats:
             sectioned.append(["Found these verbs of category {}:".format(c)])
