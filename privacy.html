@@ -14,16 +14,16 @@ layout: default
 </head>
 <body>
     <div id="architecture_explainer"></div>
-    <p>Your data is private here!
-       When you analyze words/texts on this site, none of that is shared with (or even seen by) the linguist who runs this site. Here's why:</p>
+    <p>What you analyze is private here!
+       When you analyze words/texts on this site, none of that is shared with (or even seen by) the linguist who runs this site.* Here's why:</p>
     <p>Your browser makes a self-contained file system in your computer's memory when it visits a page.
-        This site is a static site, so when you visit the site, the following things happen:
+        This site is a static site, so when you visit the site, the following things are loaded into this file system:
         <ol>
-            <li>Analyzers are loaded into this file system.</li>
+            <li>Analyzers</li>
             <ul>
                 <li>Go <a href="https://github.com/bowersd/otw">here</a> to see the source code behind the analyzers and compiled analyzers.</li>
             </ul>
-            <li>Instructions that tell your computer how to use an analyzer are loaded into the file system.</li>
+            <li>Instructions that tell your computer how to use an analyzer.</li>
             <ul>
                 <li>Go <a href="https://github.com/bowersd/textAnalysis">here</a> to see the instructions.</li>
             </ul>
@@ -31,15 +31,20 @@ layout: default
        When you enter some text, it is passed into the file system to be processed according to the instructions.
     </p>
     <p>
-       That's it.  I don't keep copies of what you analyze, I don't track you, I don't even keep a record that someone came . In short, all the analysis work is done on your computer, and none of what you analyze is sent to a server that I run somewhere for processing/storage.
-       This is why this service is free (yay!) and your data is as secure as your browser (which is probably pretty secure).
+       That's it.  All the analysis work is done on your computer, and none of what you analyze is sent to a server that I run somewhere for processing/storage. I don't keep copies of what you analyze, I don't track where else you go on the internet, I don't even keep a record that someone visited the site. 
     </p>
     <p>
-        All that said, I do not know if GitHub (the host organization), or some other party, records who visits this site, or if someone has the ability to track visitors' other web activity. 
-        I think I can safely say that no one can track what you do on this specific site, though maybe there is some deep and tricky method that I don't know about.
+       This minimal overhead design is why this service is free (yay!). 
+       It also means that what you analyze is as secure as your browser (which is probably pretty secure).
+       After all, the most secure records are the ones that do not exist.
+    </p>
+    <p>
+        *At least it is private from me, though I cannot state that other actors do not have ways beyond my knowledge to track you/get your data.
+        Specifically, I do not know if another party (possibly this site's host organization, GitHub) records who visits this site, or if someone has the ability to track visitors' other web activity. 
+        I think I can safely say that no one can track what you do on this specific site, though by now we should be used to there being deep and tricky methods to harvest people's data unawares.
         If that worries you, find some way to contact me that is agreeable to you, and perhaps we can find a way to get an offline analysis for you.</p>
 
-    <p>Last updated: 11/02/2024 5:32</p>
+    <p>Last updated: 11/22/2024</p>
 </body>
 </html>
 
