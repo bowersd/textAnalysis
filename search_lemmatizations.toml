@@ -1,0 +1,6 @@
+packages = [
+            "regex",
+            "json",
+            ]
+[files] 
+"/textAnalysis/languageSpecificAuxiliaryFiles/otw/lemmatizations/Sentences-09-2021_corbiere_spelling_analyzed.json" = "./Sentences-09-2021_corbiere_spelling_analyzed.json"
