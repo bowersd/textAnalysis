@@ -19973,3 +19973,4 @@ M'Chigeeng	M'Chigeeng
 Gchi-gwednong	Gchi-gwednong
 Mchi-godnong	Mchi-godnong
 giishkjaanegnaamaa	split
+njignaamaa	strike
