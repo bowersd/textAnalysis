@@ -1,6 +1,5 @@
 packages = [
             "regex",
-            "json",
             ]
 [files] 
-"/textAnalysis/languageSpecificAuxiliaryFiles/otw/lemmatizations/Sentences-09-2021_corbiere_spelling_analyzed.json" = "./Sentences-09-2021_corbiere_spelling_analyzed.json"
+"/textAnalysis/languageSpecificAuxiliaryFiles/otw/lemmatizations/corbiere_lemmatized_corpus_20241210.py" = "./corbiere_lemmatized_corpus_20241210.py"

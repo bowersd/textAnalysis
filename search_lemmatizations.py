@@ -5,16 +5,15 @@ await micropip.install(
 import regex
 import pyscript
 import tabulate
-import json
-
-with open("./Sentences-09-2021_corbiere_spelling_analyzed.json") as fileIn: data = json.load(fileIn)
+import corbiere_lemmatized_corpus_20241210
 
 def search(event):
     h = []
     #field = pyscript.document.querySelector("#foo")
+    field = "lemmata"
     query = pyscript.document.querySelector("#query").value
     output_div = pyscript.document.querySelector("#search_output")
-    for s in data:
+    for s in corbiere_lemmatized_corpus_20241210.data:
         if all([q in s[field] for q in query.split()]): h.append(s)
     rendered = ""
     for i in range(len(h)):
@@ -23,7 +22,7 @@ def search(event):
             ["Translation:"]+h[i]["english"],], tablefmt='html')
         rendered += tabulate.tabulate([
             ["\tAligned Sentence:"]+h[i]["chunked"],
-            #["\tEdited Sentence:"]+h[i]["edited"]
+            ["\tFiero/Rhodes Spelling:"]+h[i]["edited"]
             ["\tNarrow Analysis:"]+h[i]["m_parse_lo"],
             ["\tBroad Analysis:"]+h[i]["m_parse_hi"],
             ["\tNOD Header:"]+h[i]["lemmata"],
