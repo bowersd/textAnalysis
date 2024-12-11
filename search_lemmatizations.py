@@ -22,6 +22,12 @@ def search(event):
             ["Original Sentence:"]+[h[i]["sentence"]],
             ["Translation:"]+[h[i]["english"]],], tablefmt='html')
         print("stage 2")
+        print(h[i]["chunked"])
+        print(h[i]["edited"])
+        print(h[i]["m_parse_lo"])
+        print(h[i]["m_parse_hi"])
+        print(h[i]["lemmata"])
+        print(h[i]["tiny_gloss"])
         rendered += tabulate.tabulate([
             ["\tAligned Sentence:"]+h[i]["chunked"],
             ["\tFiero/Rhodes Spelling:"]+h[i]["edited"],
