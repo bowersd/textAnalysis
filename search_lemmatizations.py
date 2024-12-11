@@ -18,8 +18,8 @@ def search(event):
     rendered = ""
     for i in range(len(h)):
         rendered += tabulate.tabulate([[str(i), ""],
-            ["Original Sentence:"]+h[i]["sentence"],
-            ["Translation:"]+h[i]["english"],], tablefmt='html')
+            ["Original Sentence:"]+[h[i]["sentence"]],
+            ["Translation:"]+[h[i]["english"]],], tablefmt='html')
         rendered += tabulate.tabulate([
             ["\tAligned Sentence:"]+h[i]["chunked"],
             ["\tFiero/Rhodes Spelling:"]+h[i]["edited"]
