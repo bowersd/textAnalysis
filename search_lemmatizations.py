@@ -24,7 +24,7 @@ def search(event):
         print("stage 2")
         rendered += tabulate.tabulate([
             ["\tAligned Sentence:"]+h[i]["chunked"],
-            ["\tFiero/Rhodes Spelling:"]+h[i]["edited"]
+            ["\tFiero/Rhodes Spelling:"]+h[i]["edited"],
             ["\tNarrow Analysis:"]+h[i]["m_parse_lo"],
             ["\tBroad Analysis:"]+h[i]["m_parse_hi"],
             ["\tNOD Header:"]+h[i]["lemmata"],
