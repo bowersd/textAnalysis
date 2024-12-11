@@ -17,25 +17,16 @@ def search(event):
         if all([q in s[field] for q in query.split()]): h.append(s)
     rendered = ""
     for i in range(len(h)):
-        print("stage 1")
         rendered += tabulate.tabulate([[str(i), ""],
             ["Original Sentence:"]+[h[i]["sentence"]],
             ["Translation:"]+[h[i]["english"]],], tablefmt='html')
-        print("stage 2")
-        print(h[i]["chunked"])
-        print(h[i]["edited"])
-        print(h[i]["m_parse_lo"])
-        print(h[i]["m_parse_hi"])
-        print(h[i]["lemmata"])
-        print(h[i]["tiny_gloss"])
         rendered += tabulate.tabulate([
-            ["\tAligned Sentence:"]+h[i]["chunked"],
-            ["\tFiero/Rhodes Spelling:"]+h[i]["edited"],
-            ["\tNarrow Analysis:"]+h[i]["m_parse_lo"],
-            ["\tBroad Analysis:"]+h[i]["m_parse_hi"],
-            ["\tNOD Header:"]+h[i]["lemmata"],
-            ["\tTerse Translation"]+h[i]["tiny_gloss"],
+            ["Aligned Sentence:"]+h[i]["chunked"],
+            ["Fiero/Rhodes Spelling:"]+h[i]["edited"],
+            ["Narrow Analysis:"]+h[i]["m_parse_lo"],
+            ["Broad Analysis:"]+h[i]["m_parse_hi"],
+            ["NOD Header:"]+h[i]["lemmata"],
+            ["Terse Translation"]+h[i]["tiny_gloss"],
             ], tablefmt = 'html')
-        print("stage 3")
     output_div.innerHTML = rendered
 
