@@ -17,7 +17,7 @@ def search(event):
         if all([q in s[field] for q in query.split()]): h.append(s)
     rendered = ""
     for i in range(len(h)):
-        rendered += tabulate.tabulate([[str(i), ""],
+        rendered += tabulate.tabulate([[str(i+1), ""],
             ["Original Sentence:"]+[h[i]["sentence"]],
             ["Translation:"]+[h[i]["english"]],], tablefmt='html')
         rendered += tabulate.tabulate([
