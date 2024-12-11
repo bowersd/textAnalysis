@@ -17,9 +17,11 @@ def search(event):
         if all([q in s[field] for q in query.split()]): h.append(s)
     rendered = ""
     for i in range(len(h)):
+        print("stage 1")
         rendered += tabulate.tabulate([[str(i), ""],
             ["Original Sentence:"]+[h[i]["sentence"]],
             ["Translation:"]+[h[i]["english"]],], tablefmt='html')
+        print("stage 2")
         rendered += tabulate.tabulate([
             ["\tAligned Sentence:"]+h[i]["chunked"],
             ["\tFiero/Rhodes Spelling:"]+h[i]["edited"]
@@ -28,5 +30,6 @@ def search(event):
             ["\tNOD Header:"]+h[i]["lemmata"],
             ["\tTerse Translation"]+h[i]["tiny_gloss"],
             ], tablefmt = 'html')
+        print("stage 3")
     output_div.innerHTML = rendered
 
