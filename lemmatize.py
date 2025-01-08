@@ -133,6 +133,7 @@ def parseargs():
     parser.add_argument("-e", "--error-fst" , dest="e", nargs="+", help="name of analyzer composed with an error model", default="")
     parser.add_argument("-g", "--generation-fst" , dest="g", nargs="?", help="name of generation transducer (tags -> forms)", default="")
     parser.add_argument("-p", "--pad" , dest="pad", action="store_true", help="make lists contain a single padded string instead of a collection of strings")
+    parser.add_argument("-k", "--key" , dest="key", action="?", help="file path to unique keys for lemmata")
     parser.add_argument("--spot-check", dest="spot_check", nargs=3, action = 'append', help="number of spot checks to perform, which data to perform it on, and at what level of abstraction (N/all, analyzed/unanalyzed/specific analysis source, type/token)", default=[])
     return parser.parse_args()
 
