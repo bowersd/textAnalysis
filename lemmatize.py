@@ -255,7 +255,7 @@ if __name__ == "__main__":
         full = initialize(args.text, *names)
         glossdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
         iddict = {}
-        if args.key: iddict = eng.mk_glossing_dict*rw.readin(args.key))
+        if args.key: iddict = eng.mk_glossing_dict(*rw.readin(args.key))
         sentlist = [" ".join(x) for x in full["chunked"]]
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *sentlist)
         #for i in range(len(full["m_parse_lo"])):
@@ -305,6 +305,7 @@ if __name__ == "__main__":
                 #else: edited.append(full["chunked"][i][j])
             #full["edited"][i] = edited
             full["tiny_gloss"].append(wrap_glosses(*retrieve_glosses(*full["lemmata"][i], **glossdict)))
+            full["nishID"].append(wrap_glosses(*retrieve_glosses(*full["lemmata"][i], **iddict)))
         print("hand corrected these many incorrect analyses: ", manual_cnt-manual_fix-manual_red)
         print("redundantly corrected these many correct analyses: ", manual_red)
         print("hand fixed these many misses: ", manual_fix)
@@ -330,7 +331,8 @@ if __name__ == "__main__":
                     "edited": "",
                     "lemmata": "",
                     "analysis_src": "",
-                    "tiny_gloss":""
+                    "tiny_gloss":"",
+                    "nishID":""
                     }
             #if x[0] in cdict: #corrections are {original: [edited, analyzed]}
             #    best = cdict[x[0]][1]
@@ -353,6 +355,7 @@ if __name__ == "__main__":
             #except KeyError:
             #    gloss = "?"
             updates["tiny_gloss"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **glossdict))[0]
+            updates["nishID"] = wrap_glosses(*retrieve_glosses(updates["lemmata"], **iddict))[0]
             if updates["m_parse_lo"]: fixed_errors.append((x, updates))
         fix_cnt = {model:0 for model in args.e}
         for x in fixed_errors:
@@ -389,6 +392,7 @@ if __name__ == "__main__":
                 full["analysis_src"][x[2]][x[3]] = ["analyzed", args.fst_file]
                 full["lemmata"][x[2]][x[3]]= lemmatize(pos_regex, full["m_parse_lo"][x[2]][x[3]])[0]
                 full["tiny_gloss"][x[2]][x[3]] = wrap_glosses(*retrieve_glosses(full["lemmata"][x[2]][x[3]], **glossdict))[0]
+                full["nishID"][x[2]][x[3]] = wrap_glosses(*retrieve_glosses(full["lemmata"][x[2]][x[3]], **iddict))[0]
         print("conservatized these many potentially innovative forms: ", str(innov_cnt))
         print("fixed these many potentially innovative misses by conservativization: ", str(innov_fix_cnt))
         if args.g:
