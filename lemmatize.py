@@ -254,6 +254,8 @@ if __name__ == "__main__":
                 ]
         full = initialize(args.text, *names)
         glossdict = eng.mk_glossing_dict(*rw.readin(args.gloss_file))
+        iddict = {}
+        if args.key: iddict = eng.mk_glossing_dict*rw.readin(args.key))
         sentlist = [" ".join(x) for x in full["chunked"]]
         full["m_parse_lo"] = analyze_text(args.fst_file, args.fst_format, args.d, *sentlist)
         #for i in range(len(full["m_parse_lo"])):
