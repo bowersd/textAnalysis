@@ -19992,3 +19992,4 @@ giiwebtwaadaan	flee
 giiwebtwaanaa	flee
 naanzon	dye
 pagdoon	throw
+piitaande	color
