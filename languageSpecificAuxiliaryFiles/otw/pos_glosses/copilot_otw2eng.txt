@@ -19988,3 +19988,5 @@ ggwejmaamaa	sniff
 bgojgin	grow
 maajiibtwaadaan	flee
 maajiibtwaanaa	flee
+giiwebtwaadaan	flee
+giiwebtwaanaa	flee
