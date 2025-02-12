@@ -19993,3 +19993,4 @@ naanzon	dye
 pagdoon	throw
 piitaande	color
 moodyaabik	bottle
+gobnaa	bandage
