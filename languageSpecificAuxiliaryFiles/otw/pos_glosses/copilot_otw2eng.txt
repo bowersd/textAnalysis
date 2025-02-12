@@ -1503,7 +1503,7 @@ niitaawis	cousin
 njiichiigom	wart
 nkeweziinyim	husband
 nmamaam	mother
-nmamaanh	mom
+nmamaanh	mother
 nmidmooyem	wife
 nmisenh	sister
 nmishoomenh	uncle
@@ -17722,7 +17722,6 @@ Zoozep	Joseph
 nniishkok	tonsils
 nda'iimak	belongings
 nbiiweziinmak	brood
-nmamaanh	mom
 npapaa	dad
 nda'iiman	belongings
 ziizbaakdaaboo	sap
