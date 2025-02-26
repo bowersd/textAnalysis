@@ -432,13 +432,14 @@ def parse_words_expanded(event):
         h["m_parse_lo"].append(local)
         h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
         h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)])
-        tinies = []
-        for l in h["lemmata"][-1]:
-            try: gloss = gdict[l]
-            except KeyError:
-                gloss = "?"
-            tinies.append("'"+gloss+"'")
-        h["tinies"].append(tinies)
+        h["tinies"].append(wrap_glosses(*retrieve_glosses(*h["lemmata"][-1], **gdict)))
+        #tinies = []
+        #for l in h["lemmata"][-1]:
+        #    try: gloss = gdict[l]
+        #    except KeyError:
+        #        gloss = "?"
+        #    tinies.append("'"+gloss+"'")
+        #h["tinies"].append(tinies)
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
