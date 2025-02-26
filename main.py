@@ -96,6 +96,20 @@ def mk_glossing_dict(*strings):
         else: gd[chunked[0]] = gd[chunked[0]] + "/" + chunked[1]
     return gd
 
+
+def retrieve_glosses(*lemmata, **gloss_dict):
+    tinies = []
+    for l in lemmata:
+        try: gloss = gloss_dict[l]
+        except KeyError:
+            if "+" in l: 
+                gloss = "-".join(retrieve_glosses(*l.split("+"), **gloss_dict, ))
+            else: gloss = "?"
+        tinies.append(gloss)
+    return tinies
+
+def wrap_glosses(*glosses):
+    return ["'"+g+"'" for g in glosses]
 def extract_lemma(string, pos_regex):
     """pull lemma out of string"""
     #lemma is always followed by Part Of Speech regex
@@ -288,6 +302,7 @@ def analysis_dict(analysis_string):
 
 #analyzers = ["./morphophonologyclitics_analyze.hfstol"]
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
+iddict = mk_glossing_dict(*readin("./otw2nishID.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
 
 
