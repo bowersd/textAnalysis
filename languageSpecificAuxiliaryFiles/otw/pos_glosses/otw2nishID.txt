@@ -3862,7 +3862,7 @@ ggwetaanwewejiisin	n73021440829n
 ggwetaazhiinat	n73036030114n
 giibbide	n73021439466n
 giibse	n73021439923n
-giig'on    VII_TAG    " 1 {check}" ; !Rand2key:n73022944110n
+giig'on	n73022944110n
 giigoonmaagot	n73099859162n
 giikaandiikmigat	n73021451595n
 giikginde	n73022945675n
