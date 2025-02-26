@@ -25,7 +25,7 @@ def search(event):
             ["Fiero/Rhodes Spelling:"]+h[i]["edited"],
             ["Narrow Analysis:"]+h[i]["m_parse_lo"],
             ["Broad Analysis:"]+h[i]["m_parse_hi"],
-            ["NOD Header:"]+h[i]["lemmata"],
+            ["NOD Entry:"]+h[i]["lemmata"],
             ["Terse Translation"]+h[i]["tiny_gloss"],
             ], tablefmt = 'html')
     output_div.innerHTML = rendered
