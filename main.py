@@ -110,6 +110,23 @@ def retrieve_glosses(*lemmata, **gloss_dict):
 
 def wrap_glosses(*glosses):
     return ["'"+g+"'" for g in glosses]
+
+def wrap_nod_entry_url(*lemmata, **nishIDdict):
+    h = []
+    #gotta split up the complex lemmata somehow
+    for l in lemmata:
+        tot = []
+        cmpd = regex.split("(?=n)-(?<=n)", nishIDdict[l])
+        for c in cmpd:
+            alts = regex.split("(?=n)/(?<=n)", c)
+            for i in range(len(alts)):
+                if i == 0: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+a+'">'+l+'</a>')
+                else:
+                    tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+a+'">'+"(alt"+str(i-1)+")"+'</a>')
+        h.append(" ".join(tot))
+    return h
+    #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
+
 def extract_lemma(string, pos_regex):
     """pull lemma out of string"""
     #lemma is always followed by Part Of Speech regex
