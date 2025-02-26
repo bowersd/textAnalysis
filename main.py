@@ -302,7 +302,7 @@ def analysis_dict(analysis_string):
 
 #analyzers = ["./morphophonologyclitics_analyze.hfstol"]
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
-iddict = mk_glossing_dict(*readin("./otw2nishID.txt"))
+#iddict = mk_glossing_dict(*readin("./otw2nishID.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
 
 
