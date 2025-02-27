@@ -448,7 +448,7 @@ def parse_words_expanded(event):
         h["original"].append(sep_punct(line, True).split())
         h["m_parse_lo"].append(local)
         h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
-        h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)])
+        h["lemmata"].append(wrap_nod_entry_url(*[x if x else "?" for x in lemmatize(pos_regex, *local)], **iddict))
         h["tinies"].append(wrap_glosses(*retrieve_glosses(*h["lemmata"][-1], **gdict)))
         #tinies = []
         #for l in h["lemmata"][-1]:
