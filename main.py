@@ -469,12 +469,17 @@ def parse_words_expanded(event):
     if analysis_mode.value == "interlinearize":
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
-            lines_out += tabulate.tabulate([
+            new_batch = tabulate.tabulate([
                 ["Original Material:"] + h["original"][i],
                 ["Narrow Analysis:"] + h["m_parse_lo"][i], 
                 ["Broad Analysis:"] + h["m_parse_hi"][i], 
-                ["NOD Entry:"] + h["lemmata"][i], 
+                ["NOD Entry:"] + wrap_nod_entry_url(*h["lemmata"][i], **iddict), 
                 ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
+            revised = ""
+            for nb in new_batch.split('\n'):
+                if "NOD Entry" in nb: revised += angle_brackets(nb)+'\n'
+                else: revised += nb+'\n'
+            lines_out += revised
         output_div.innerHTML = lines_out
     elif analysis_mode.value == "frequency":
         cnts_lem = {}
