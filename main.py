@@ -136,7 +136,7 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
     #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
 
 def angle_brackets(string):
-    return regex.sub('&lt;', '<', regex.sub('&gt;', '>', string))
+    return regex.sub('&quot;', '', regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
 
 def extract_lemma(string, pos_regex):
     """pull lemma out of string"""
