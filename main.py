@@ -116,7 +116,7 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
     #gotta split up the complex lemmata somehow
     for l in lemmata:
         tot = []
-        cmpd = regex.split("(?=n)-(?<=n)", nishIDdict[l])
+        cmpd = regex.split("(?=n)-(?<=n)", nishIDdict[l]) #this can't do what is intended (split the IDs of conjuncts), and it is crashes when the word is not found in the dictionary
         for c in cmpd:
             alts = regex.split("(?=n)/(?<=n)", c)
             for i in range(len(alts)):
@@ -473,17 +473,23 @@ def parse_words_expanded(event):
     if analysis_mode.value == "interlinearize":
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
-            new_batch = tabulate.tabulate([
+            lines_out += tabulate.tabulate([
                 ["Original Material:"] + h["original"][i],
                 ["Narrow Analysis:"] + h["m_parse_lo"][i], 
                 ["Broad Analysis:"] + h["m_parse_hi"][i], 
-                ["NOD Entry:"] + wrap_nod_entry_url(*h["lemmata"][i], **iddict), 
+                ["NOD Entry:"] + h["lemmata"][i],
                 ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
-            revised = ""
-            for nb in new_batch.split('\n'):
-                if "NOD Entry" in nb: revised += angle_brackets(nb)+'\n'
-                else: revised += nb+'\n'
-            lines_out += revised
+            #new_batch = tabulate.tabulate([
+            #    ["Original Material:"] + h["original"][i],
+            #    ["Narrow Analysis:"] + h["m_parse_lo"][i], 
+            #    ["Broad Analysis:"] + h["m_parse_hi"][i], 
+            #    ["NOD Entry:"] + wrap_nod_entry_url(*h["lemmata"][i], **iddict), 
+            #    ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
+            #revised = ""
+            #for nb in new_batch.split('\n'):
+            #    if "NOD Entry" in nb: revised += angle_brackets(nb)+'\n'
+            #    else: revised += nb+'\n'
+            #lines_out += revised
         output_div.innerHTML = lines_out
     elif analysis_mode.value == "frequency":
         cnts_lem = {}
