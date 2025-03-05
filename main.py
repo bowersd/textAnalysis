@@ -124,7 +124,7 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
                     try: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}">{1}</a>'.format(alts[i], l))
                     except KeyError: tot.append(l)
                 else:
-                    try: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+alts[i]+'">'+"(alt"+str(i-1)+")"+'</a>')
+                    try: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+alts[i]+'">'+"(alt"+str(i)+")"+'</a>')
                     except KeyError: tot.append(l)
         h.append(" ".join(tot))
     return h
