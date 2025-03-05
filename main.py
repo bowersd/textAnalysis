@@ -120,13 +120,12 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
         for c in cmpd:
             alts = regex.split("(?=n)/(?<=n)", c)
             for i in range(len(alts)):
-                print(alts)
                 if i == 0: 
-                    print('good')
-                    tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}">{1}</a>'.format(alts[i], l))
-                    print('no good')
+                    try: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}">{1}</a>'.format(alts[i], l))
+                    except KeyError: tot.append(l)
                 else:
-                    tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+alts[i]+'">'+"(alt"+str(i-1)+")"+'</a>')
+                    try: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+alts[i]+'">'+"(alt"+str(i-1)+")"+'</a>')
+                    except KeyError: tot.append(l)
         h.append(" ".join(tot))
     return h
     #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
