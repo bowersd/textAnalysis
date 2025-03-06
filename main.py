@@ -116,27 +116,23 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
     #gotta split up the complex lemmata somehow
     for l in lemmata:
         tot = []
-        cmpd = regex.split("(?<=n)-(?=n)", nishIDdict[l]) #this can't do what is intended (split the IDs of conjuncts), and it is crashes when the word is not found in the dictionary
-        for c in cmpd:
-            alts = regex.split("(?<=n)/(?=n)", c)
-            for i in range(len(alts)):
-                print(l)
-                if i == 0: 
-                    print('ok 1')
-                    try: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}">{1}</a>'.format(alts[i], l))
-                    except KeyError: tot.append(l)
-                    print('ok 2')
-                else:
-                    print('ok 3')
-                    try: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+alts[i]+'">'+"(alt"+str(i)+")"+'</a>')
-                    except KeyError: tot.append(l)
-                    print('ok 4')
+        if '-' in l: tot.append(l)
+        else:
+            #cmpd = regex.split("(?<=n)-(?=n)", nishIDdict[l]) #this can't do what is intended (split the IDs of conjuncts), and it is crashes when the word is not found in the dictionary
+            #for c in cmpd:
+            try: 
+                alts = regex.split("(?<=n)/(?=n)", nishIDdict[l])
+                for i in range(len(alts)):
+                    if i == 0: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}">{1}</a>'.format(alts[i], l))
+                    else: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+alts[i]+'">'+"(alt"+str(i)+")"+'</a>')
+            except KeyError: tot.append(l)
         h.append(" ".join(tot))
     return h
     #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
 
 def angle_brackets(string):
-    return regex.sub('&quot;', '', regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
+    return regex.sub('&lt;', '<', regex.sub('&gt;', '>', string))
+    #return regex.sub('&quot;', '', regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
 
 def extract_lemma(string, pos_regex):
     """pull lemma out of string"""
@@ -473,23 +469,23 @@ def parse_words_expanded(event):
     if analysis_mode.value == "interlinearize":
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
-            lines_out += tabulate.tabulate([
-                ["Original Material:"] + h["original"][i],
-                ["Narrow Analysis:"] + h["m_parse_lo"][i], 
-                ["Broad Analysis:"] + h["m_parse_hi"][i], 
-                ["NOD Entry:"] + h["lemmata"][i],
-                ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
-            #new_batch = tabulate.tabulate([
+            #lines_out += tabulate.tabulate([
             #    ["Original Material:"] + h["original"][i],
             #    ["Narrow Analysis:"] + h["m_parse_lo"][i], 
             #    ["Broad Analysis:"] + h["m_parse_hi"][i], 
-            #    ["NOD Entry:"] + wrap_nod_entry_url(*h["lemmata"][i], **iddict), 
+            #    ["NOD Entry:"] + h["lemmata"][i],
             #    ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
-            #revised = ""
-            #for nb in new_batch.split('\n'):
-            #    if "NOD Entry" in nb: revised += angle_brackets(nb)+'\n'
-            #    else: revised += nb+'\n'
-            #lines_out += revised
+            new_batch = tabulate.tabulate([
+                ["Original Material:"] + h["original"][i],
+                ["Narrow Analysis:"] + h["m_parse_lo"][i], 
+                ["Broad Analysis:"] + h["m_parse_hi"][i], 
+                ["NOD Entry:"] + wrap_nod_entry_url(*h["lemmata"][i], **iddict), 
+                ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
+            revised = ""
+            for nb in new_batch.split('\n'):
+                if "NOD Entry" in nb: revised += angle_brackets(nb)+'\n'
+                else: revised += nb+'\n'
+            lines_out += revised
         output_div.innerHTML = lines_out
     elif analysis_mode.value == "frequency":
         cnts_lem = {}
