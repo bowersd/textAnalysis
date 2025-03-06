@@ -146,10 +146,8 @@ def extract_lemma(string, pos_regex):
     #if regex.search(pos_regex, string): return regex.search("(^|\+)(.*?)"+pos_regex, string).group(2)
     if "+Cmpd" in string:
         cmpd = []
-        for x in re.split(r"\+Cmpd", string):
-            cmpd.append(re.split(pos_regex, x)[0].split("+")[-1])
-            #return "+".join([re.split(pos_regex, x)[0].split("+")[-1] for x in re.split("+Cmpd", string)])
-        #print(cmpd)
+        for x in regex.split(r"\+Cmpd", string):
+            cmpd.append(regex.split(pos_regex, x)[0].split("+")[-1])
         return "+".join(cmpd)
     if regex.search(pos_regex, string): return regex.split(pos_regex, string)[0].split("+")[-1] #last item before pos tag, after all other morphemes, is lemma
     return None
