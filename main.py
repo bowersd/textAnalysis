@@ -125,6 +125,7 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
                 for i in range(len(alts)):
                     if i == 0: 
                         tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], l))
+                        print('initially formatted link')
                         print('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], l))
                     else: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+alts[i]+'">'+"(alt"+str(i)+")"+'</a>')
             except KeyError: tot.append(l)
@@ -133,6 +134,10 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
     #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
 
 def angle_brackets(string):
+    print('pre-angle bracket substitution')
+    print(string)
+    print('post-angle bracket substitution')
+    print(regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
     return regex.sub('&lt;', '<', regex.sub('&gt;', '>', string))
     #return regex.sub('&quot;', '', regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
 
