@@ -133,7 +133,7 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
     return h
     #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
 
-def angle_brackets(string):
+def undo_html(string):
     print('pre-angle bracket substitution')
     print(string)
     print('post-angle bracket substitution')
@@ -490,7 +490,7 @@ def parse_words_expanded(event):
                 ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
             revised = ""
             for nb in new_batch.split('\n'):
-                if "NOD Entry" in nb: revised += angle_brackets(nb)+'\n'
+                if "NOD Entry" in nb: revised += undo_html(nb)+'\n'
                 else: revised += nb+'\n'
             lines_out += revised
         output_div.innerHTML = lines_out
