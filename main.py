@@ -127,18 +127,20 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
                         tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], l))
                         print('initially formatted link')
                         print('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], l))
-                    else: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+alts[i]+'">'+"(alt"+str(i)+")"+'</a>')
+                    else: tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>(alt {1})</a>".format(alts[i], str(i)))
             except KeyError: tot.append(l)
         h.append(" ".join(tot))
     return h
     #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
 
-def undo_html(string):
+def angle_brackets(string):
     print('pre-angle bracket substitution')
     print(string)
     print('post-angle bracket substitution')
     print(regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
-    return regex.sub('&lt;', '<', regex.sub('&gt;', '>', string))
+    print('post-angle bracket and single quote substitution')
+    print(regex.sub('&\#x27;', "'", regex.sub('&lt;', '<', regex.sub('&gt;', '>', string))))
+    return regex.sub('&\#x27;', "'", regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
     #return regex.sub('&quot;', '', regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
 
 def extract_lemma(string, pos_regex):
