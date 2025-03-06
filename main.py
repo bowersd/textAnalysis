@@ -118,7 +118,7 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
         tot = []
         cmpd = regex.split("(?=n)-(?<=n)", nishIDdict[l]) #this can't do what is intended (split the IDs of conjuncts), and it is crashes when the word is not found in the dictionary
         for c in cmpd:
-            alts = regex.split("(?=n)/(?<=n)", c)
+            alts = regex.split("(?<=n)/(?=n)", c)
             for i in range(len(alts)):
                 print(l)
                 if i == 0: 
