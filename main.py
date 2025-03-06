@@ -116,19 +116,21 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
     #gotta split up the complex lemmata somehow
     for l in lemmata:
         tot = []
-        if '-' in l: tot.append(l)
-        else:
+        #if '+' in l: tot.append(l)
+        cmpd = l.split("+") #this can't do what is intended (split the IDs of conjuncts), and it is crashes when the word is not found in the dictionary
+        for c in cmpd:
+        #else:
             #cmpd = regex.split("(?<=n)-(?=n)", nishIDdict[l]) #this can't do what is intended (split the IDs of conjuncts), and it is crashes when the word is not found in the dictionary
             #for c in cmpd:
             try: 
-                alts = regex.split("(?<=n)/(?=n)", nishIDdict[l])
+                alts = regex.split("(?<=n)/(?=n)", nishIDdict[c])
                 for i in range(len(alts)):
                     if i == 0: 
-                        tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], l))
+                        tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], c))
                         print('initially formatted link')
-                        print('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], l))
+                        print('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], c))
                     else: tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>(alt {1})</a>".format(alts[i], str(i)))
-            except KeyError: tot.append(l)
+            except KeyError: tot.append(c)
         h.append(" ".join(tot))
     return h
     #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
