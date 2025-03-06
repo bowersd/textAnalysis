@@ -123,7 +123,7 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
             try: 
                 alts = regex.split("(?<=n)/(?=n)", nishIDdict[l])
                 for i in range(len(alts)):
-                    if i == 0: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}">{1}</a>'.format(alts[i], l))
+                    if i == 0: tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], l))
                     else: tot.append('<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+alts[i]+'">'+"(alt"+str(i)+")"+'</a>')
             except KeyError: tot.append(l)
         h.append(" ".join(tot))
