@@ -23,10 +23,10 @@ layout: default
     <p>The current options are:
     <ul>
         <li>"Fiero/Rhodes" (follows the Fiero double vowel system used in the <i>Eastern Ojibwa-Chippewa-Ottawa Dictionary</i> by Richard Rhodes),</li>
-        <li>"Corbiere" (follows the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help"><i>Nishnaabemwin Online Dictionary</i></a> by Mary Ann Corbiere and Rand Valentine),</li> 
-        <li>"No Deletion" (does not enforce vowel deletion, as in the western dialects represented by the <a href="https://ojibwe.lib.umn.edu"><i>Ojibwe People's Dictionary</i></a> by Nora Livesay and John Nichols).</li>
+        <li>"Corbiere" (follows the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a> by Mary Ann Corbiere and Rand Valentine),</li> 
+        <li>"No Deletion" (does not enforce vowel deletion, as in the western dialects represented by the <a href="https://ojibwe.lib.umn.edu" target="_blank" rel="noopener noreferrer"><i>Ojibwe People's Dictionary</i></a> by Nora Livesay and John Nichols).</li>
     </ul></p>
-    <p>These are strict analyzers! This means that they will fail to analyze almost any word that diverges even slightly from "correct" spelling rules. We may find a way to put relaxed analyzers on this site, but they are large and difficult to incorporate into the site's static design (<a href="./privacy.html">which is otherwise a good thing</a>).</p>
+    <p>These are strict analyzers! This means that they will fail to analyze almost any word that diverges even slightly from "correct" spelling rules. We may find a way to put relaxed analyzers on this site, but they are large and difficult to incorporate into the site's static design (<a href="./privacy.html"target="_blank" rel="noopener noreferrer">which is otherwise a good thing</a>).</p>
     <!--p>Analyzers marked "relaxed" allow less precise spelling. They are large, so allow some time for them to load. They are also slow, and give less accurate results, so give them bigger numbers.</p--!>
         <input type="text" size="4" id="rhodes" value="1" >
         <label for="rhodes">Fiero/Rhodes</label><br>
@@ -60,14 +60,14 @@ layout: default
     -->
     </select>
 
-    <p><label for="larger_text_input">2. Type or paste Nishnaabemwin here (samples available <a href="./sentences.html">here</a>):</label><p>
+    <p><label for="larger_text_input">2. Type or paste Nishnaabemwin here (samples available <a href="./sentences.html" target="_blank" rel="noopener noreferrer">here</a>):</label><p>
 
     <textarea id="larger_text_input" name="larger_text_input" rows="20" cols="100"></textarea>
     <p>3. Click this button:
     <button py-click="parse_words_expanded">Do it!</button>
     </p>
-    <p>(Look up full definitions by entering the value for 'NOD entry' in the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help"><i>Nishnaabemwin Online Dictionary</i></a>.)</p>
-    <p>(Explanations for grammatical codes are <a href="./explanation.html">here</a>.)</p>
+    <p>(Click on the 'NOD entry' values to see an entry in the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a>.)</p>
+    <p>(Explanations for grammatical codes are <a href="./explanation.html" target="_blank" rel="noopener noreferrer">here</a>.)</p>
     <div id="output"></div>
     <!--
     <p>What to do with unanalyzed forms (it is something of a dark art)</p>
@@ -131,6 +131,6 @@ layout: default
     <button name="load_trans">Add Sentence-by-Sentence Translation (optional, inactive)</button>
     <button name="do_it">Make Interlinearization (inactive)</button-->
     <hr/>
-    <p>Last updated: 03/06/2025 14:05</p>
+    <p>Last updated: 03/06/2025 14:29</p>
 </body>
 </html>

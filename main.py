@@ -126,10 +126,10 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
                 alts = regex.split("(?<=n)/(?=n)", nishIDdict[c])
                 for i in range(len(alts)):
                     if i == 0: 
-                        tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], c))
-                        print('initially formatted link')
-                        print('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>{1}</a>".format(alts[i], c))
-                    else: tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}'>(alt {1})</a>".format(alts[i], str(i)))
+                        tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}' target='_blank' rel='noopener noreferrer'>{1}</a>".format(alts[i], c))
+                        #print('initially formatted link')
+                        #print('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}' target='_blank' rel='noopener noreferrer'>{1}</a>".format(alts[i], c))
+                    else: tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}' target='_blank' rel='noopener noreferrer'>(alt {1})</a>".format(alts[i], str(i)))
             except KeyError: tot.append(c)
         h.append(" ".join(tot))
     return h
