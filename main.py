@@ -133,7 +133,7 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
     return h
     #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
 
-def angle_brackets(string):
+def undo_html(string):
     print('pre-angle bracket substitution')
     print(string)
     print('post-angle bracket substitution')
