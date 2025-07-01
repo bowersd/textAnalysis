@@ -404,7 +404,6 @@ def no_deletion_relaxed_handler(event=None):
     if event:
         form_values["no_deletion_relaxed"]["file"] = event.target.value
 
-print("defining form values")
 form_values = {
         "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
         "rhodes_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_relaxed.hfstol", "file":None},
@@ -427,11 +426,8 @@ def parse_words_expanded(event):
         #if form_values[x]["order"] and form_values[x]["url"]:
         #    form_values[x]["file"] = await pyfetch(form_values[x]["url"])
         #    print(form_values[x]["file"])
-        if form_values[x]["order"] and form_values[x]["file"]: 
-            print(x)
-            analyzers.append(form_values[x]["file"])
+        if form_values[x]["order"] and form_values[x]["file"]: analyzers.append(form_values[x]["file"])
     input_text = pyscript.document.querySelector("#larger_text_input")
-    print(input_text)
     freeNish = input_text.value
     to_analyze = sep_punct(freeNish.lower(), True).split()
     parses = {}
