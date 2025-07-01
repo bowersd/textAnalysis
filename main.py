@@ -411,6 +411,7 @@ form_values = {
         "corbiere_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_mcor_relaxed.hfstol", "file":None},
         "no_deletion":{"order":"", "url":"",  "file": "./morphophonologyclitics_analyze_unsyncopated.hfstol"},
         "no_deletion_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol",  "file":None}
+        "western":{"order":"", "url":"",  "file": "./morphophonology_analyze_border_lakes.hfstol"},
         }
 def parse_words_expanded(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
@@ -419,6 +420,7 @@ def parse_words_expanded(event):
     #form_values["corbiere_relaxed"]["order"] = pyscript.document.querySelector("#corbiere_relaxed").value
     form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
     #form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
+    form_values["western"]["order"] = pyscript.document.querySelector("#western").value
     analyzers = []
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
         #if form_values[x]["order"] and form_values[x]["url"]:
