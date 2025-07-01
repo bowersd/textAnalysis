@@ -404,6 +404,7 @@ def no_deletion_relaxed_handler(event=None):
     if event:
         form_values["no_deletion_relaxed"]["file"] = event.target.value
 
+print("defining form values")
 form_values = {
         "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
         "rhodes_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/syncopated_analyzer_relaxed.hfstol", "file":None},
