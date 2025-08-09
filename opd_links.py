@@ -1,5 +1,8 @@
+import sys
+import regex
+
 def hyphens(string):
-    return "-".join(string.split("'")).lower()
+    return "-".join(regex.split( "'| ",string)).lower()
 
 def stitch(lemma, pos):
     if pos == "VTI" and lemma.endswith("oon"): return hyphens(lemma)+"-"+"vti2"
@@ -15,5 +18,12 @@ def stitch(lemma, pos):
     else: return hyphens(lemma)+"-"+pos.lower()
 
 if __name__ == "__main__":
-    pass
-    
+    with open("opd_manual_links.csv", 'w') as f_out:
+        for f in sys.argv[1:]:
+            with open(f) as df:
+                for line in df:
+                    x = line.strip().split(',')
+                    y = "https://ojibwe.lib.umn.edu/main-entry/"+stitch(x[0], x[2]) 
+                    if y != x[-1]: 
+                        print(y)
+                        print(x[-1], x[0], x[2])
