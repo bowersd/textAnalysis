@@ -18,6 +18,9 @@ def stitch(lemma, pos):
     elif pos.startswith("Name"): return hyphens(lemma)+"-"+pos[:4].lower()+"-"+pos[4:].lower()
     else: return hyphens(lemma)+"-"+pos.lower()
 
+def mk_opd_url(lemma, pos):
+    return "https://ojibwe.lib.umn.edu/main-entry/"+stiched(lemma, pos)
+
 if __name__ == "__main__":
     with open("opd_url_typo_check.txt", 'w') as ff_out:
         with open("opd_manual_links.csv", 'w') as f_out:
