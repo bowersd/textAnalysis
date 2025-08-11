@@ -492,11 +492,11 @@ def parse_words_expanded(event):
         for i in range(len(h["lemmata"])):
             link_line = []
             for j in range(len(h["lemmata"][i])):
-                if model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0]) in opd_manual_links: 
-                    link_line.append(opd.wrap_opd_url(opd_manual_links[(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0])], h["lemmata"][i][j])) 
-                elif model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0]) not in opd_manual_links: 
+                if model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]) in opd_manual_links: 
+                    link_line.append(opd.wrap_opd_url(opd_manual_links[(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:])], h["lemmata"][i][j])) 
+                elif model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]) not in opd_manual_links: 
                     interpretation = interpret(analysis_dict(h["m_parse_lo"][i][j])) #hack, just run a regex
-                    link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0]), h["lemmata"][i][j]))
+                    link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]), h["lemmata"][i][j]))
                 else: link_line.append(wrap_nod_entry_url(h["lemmata"][i][j], **iddict))
             h["lemma_links"].append(link_line)
         lines_out = ""
