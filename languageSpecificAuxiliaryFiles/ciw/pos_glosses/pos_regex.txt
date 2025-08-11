@@ -8,7 +8,7 @@
 \+NUM|
 \+PRON(Dem|Inter|Dub|Indf|Per|Pret|Psl|Sim)|
 \+PC(Disc|Interj|Asp|Emph)|
-\+ADV(Loc|Conj|Pred|Gram|Dub|Inter|Qnt|Deg|Man|Disc|Tmp)|
+\+ADV(Loc|Conj|Pred|Gram|Dub|Inter|Qnt|Neg|Deg|Man|Disc|Tmp)|
 \+CLB|
 \+PUNCT|
 \+LEFT|
