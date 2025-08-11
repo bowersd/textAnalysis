@@ -15,3 +15,4 @@ packages = [
 "/textAnalysis/languageSpecificAuxiliaryFiles/otw/pos_glosses/otw2nishID.txt" = "./otw2nishID.txt"
 "/textAnalysis/languageSpecificAuxiliaryFiles/otw/pos_glosses/pos_regex.txt" = "./pos_regex.txt"
 "/textAnalysis/sentence_complexity.py" = "./sentence_complexity.py"
+"/textAnalysis/opd_links.py" = "./opd_links.py"

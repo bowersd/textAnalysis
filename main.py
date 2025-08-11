@@ -24,6 +24,7 @@ import regex
 import pyhfst
 import tabulate
 import sentence_complexity as sc
+import opd_links as opd
 #print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
 #print("For now, a demonstration that a functioning analyzer is loaded")
 
@@ -431,7 +432,7 @@ def parse_words_expanded(event):
     freeNish = input_text.value
     to_analyze = sep_punct(freeNish.lower(), True).split()
     parses = {}
-    model_credit = {} #not using this data yet, but it could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
+    model_credit = {} #as of aug 2025, only using this data to allow correct formatting of western (OPD-based) lemmata urls vs eastern (NOD-based) lemmata. It could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
     #analyzers = await cascade_customization()
     for i in range(len(analyzers)):
         print(analyzers[i])
@@ -479,6 +480,16 @@ def parse_words_expanded(event):
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
+        h["lemma_links"] = []
+        for i in range(len(h["lemmata"])):
+            link_line = []
+            for j in range(len(h["lemmata"][i])):
+                if model_credit[h["original"][i][j]] != "./morphophonology_analyze_border_lakes.hfstol" and model_credit[h["original"][i][j]] != "unanalyzed": link_line.append(wrap_nod_entry_url(h["lemmata"][i][j], **iddict))
+                elif model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol": 
+                    #elif model_credit == western and h["lemmata"][i][j] and pos tag in exceptions dict:
+                    #elif and h["lemmata"][i][j] and pos tag not in exceptions dict:
+                    link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], h["m_parse_hi"][i][j][0]), h["lemmata"][i][j]))
+            h["lemma_links"].append(link_line)
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
             #lines_out += tabulate.tabulate([
@@ -491,11 +502,11 @@ def parse_words_expanded(event):
                 ["Original Material:"] + h["original"][i],
                 ["Narrow Analysis:"] + h["m_parse_lo"][i], 
                 ["Broad Analysis:"] + h["m_parse_hi"][i], 
-                ["NOD Entry:"] + wrap_nod_entry_url(*h["lemmata"][i], **iddict), 
+                ["NOD/OPD Entry:"] + h["lemma_links"][i], 
                 ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
             revised = ""
             for nb in new_batch.split('\n'):
-                if "NOD Entry" in nb: revised += undo_html(nb)+'\n'
+                if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
                 else: revised += nb+'\n'
             lines_out += revised
         output_div.innerHTML = lines_out
