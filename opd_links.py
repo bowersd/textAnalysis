@@ -22,7 +22,7 @@ def mk_opd_url(lemma, pos):
     return "https://ojibwe.lib.umn.edu/main-entry/"+stiched(lemma, pos)
 
 def wrap_opd_url(url, lemma):
-    return '<a href='+"'{0}' target='_blank' rel='noopener noreferrer'>{1}</a>".format(url, lemma))
+    return '<a href='+"'{0}' target='_blank' rel='noopener noreferrer'>{1}</a>".format(url, lemma)
 
 if __name__ == "__main__":
     with open("opd_url_typo_check.txt", 'w') as ff_out:
