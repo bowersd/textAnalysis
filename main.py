@@ -473,8 +473,8 @@ def parse_words_expanded(event):
         h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
         lemms = []
         for i in range(len(local)):
-            if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": lemms.append(lemmatize(ciw_pos_regex, local[i]))
-            else: lemms.append(lemmatize(pos_regex, local[i]))
+            if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": lemms.append(lemmatize(ciw_pos_regex, local[i])[0])
+            else: lemms.append(lemmatize(pos_regex, local[i])[0])
         h["lemmata"].append(lemms) #converted to links in interlinearize, kept plain in freq count ... should always have links available, methinks
         #h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)]) 
         h["tinies"].append(wrap_glosses(*retrieve_glosses(*h["lemmata"][-1], **gdict)))
