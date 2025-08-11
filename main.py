@@ -488,7 +488,8 @@ def parse_words_expanded(event):
                 elif model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol": 
                     #elif model_credit == western and h["lemmata"][i][j] and pos tag in exceptions dict:
                     #elif and h["lemmata"][i][j] and pos tag not in exceptions dict:
-                    link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], interpret(h["m_parse_lo"][i][j])['Head']), h["lemmata"][i][j]))
+                    interpretation = interpret(analysis_dict(h["m_parse_lo"][i][j])) #hack, just run a regex
+                    link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], interpretation["Head"]), h["lemmata"][i][j]))
             h["lemma_links"].append(link_line)
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
