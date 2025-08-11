@@ -19,7 +19,7 @@ def stitch(lemma, pos):
     else: return hyphens(lemma)+"-"+pos.lower()
 
 def mk_opd_url(lemma, pos):
-    return "https://ojibwe.lib.umn.edu/main-entry/"+stiched(lemma, pos)
+    return "https://ojibwe.lib.umn.edu/main-entry/"+stitch(lemma, pos)
 
 def wrap_opd_url(url, lemma):
     return '<a href='+"'{0}' target='_blank' rel='noopener noreferrer'>{1}</a>".format(url, lemma)
