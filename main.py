@@ -339,8 +339,11 @@ def analysis_dict(analysis_string):
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 iddict = mk_glossing_dict(*readin("./otw2nishID.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
-
-
+ciw_pos_regex = "".join(readin("./ciw_pos_regex.txt"))
+opd_manual_links = {}
+for row in readin("opd_manual_links.csv"):
+    tabbed = row.split(',')
+    opd_manual_links[(tabbed[0], tabbed[1])] = tabbed[2]
 
 def cascade_customization(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
@@ -468,7 +471,12 @@ def parse_words_expanded(event):
         h["original"].append(sep_punct(line, True).split())
         h["m_parse_lo"].append(local)
         h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
-        h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)]) #converted to links in interlinearize, kept plain in freq count ... should always have links available, methinks
+        lemms = []
+        for i in range(len(local)):
+            if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": lemms.append(lemmatize(ciw_pos_regex, local[i]))
+            else: lemms.append(lemmatize(pos_regex, local[i]))
+        h["lemmata"].append(lemms) #converted to links in interlinearize, kept plain in freq count ... should always have links available, methinks
+        #h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)]) 
         h["tinies"].append(wrap_glosses(*retrieve_glosses(*h["lemmata"][-1], **gdict)))
         #tinies = []
         #for l in h["lemmata"][-1]:
@@ -484,11 +492,11 @@ def parse_words_expanded(event):
         for i in range(len(h["lemmata"])):
             link_line = []
             for j in range(len(h["lemmata"][i])):
-                if model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol": 
-                    #if model_credit == western and h["lemmata"][i][j] and pos tag in exceptions dict:
-                    #elif model_credit == western and h["lemmata"][i][j] and pos tag not in exceptions dict:
+                if model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0]) in opd_manual_links: 
+                    link_line.append(opd.wrap_opd_url(opd_manual_links[(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0])], h["lemmata"][i][j])) 
+                elif model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0]) not in opd_manual_links: 
                     interpretation = interpret(analysis_dict(h["m_parse_lo"][i][j])) #hack, just run a regex
-                    link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], interpretation["Head"]), h["lemmata"][i][j]))
+                    link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0]), h["lemmata"][i][j]))
                 else: link_line.append(wrap_nod_entry_url(h["lemmata"][i][j], **iddict))
             h["lemma_links"].append(link_line)
         lines_out = ""
