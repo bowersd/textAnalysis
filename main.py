@@ -156,6 +156,17 @@ def extract_lemma(string, pos_regex):
 def lemmatize(pos_regex, *analysis):
     return [extract_lemma(a, pos_regex) for a in analysis]
 
+
+def extract_pos(string, pos_regex):
+    if "+Cmpd" in string:
+        cmpd = []
+        for x in regex.split(r"\+Cmpd", string):
+            cmpd.append(regex.search(pos_regex, x)[0][1:])
+        return "+".join(cmpd)
+    srch = regex.search(pos_regex, string) #first pos tag ... maybe want all (and especially then extract last!)
+    if srch: return srch[0][1:] #want to drop the leading + sign
+    return None
+
 def formatted(interpreted):
     out = []
     out.append(interpreted["Head"])
@@ -462,6 +473,7 @@ def parse_words_expanded(event):
          "m_parse_lo":[],
          "m_parse_hi":[],
          "lemmata":[],
+         "lemma_links":[],
          "tinies":[]}
     for line in freeNish.lower().split('\n'):
         local = []
@@ -472,10 +484,20 @@ def parse_words_expanded(event):
         h["m_parse_lo"].append(local)
         h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
         lemms = []
+        lem_links = []
         for i in range(len(local)):
-            if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": lemms.append(lemmatize(ciw_pos_regex, local[i])[0])
-            else: lemms.append(lemmatize(pos_regex, local[i])[0])
+            if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
+                lem = extract_lemma(ciw_pos_regex, local[i])
+                pos = extract_pos(ciw_pos_regex, local[i])
+                lemms.append(lem)
+                if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
+                else: lem_links.append(opd.wrap_opd_url(opd.mk_opd_url(lem, pos), lem)) 
+            else: 
+                lem = extract_lemma(pos_regex, local[i])
+                lemms.append(lem)
+                lem_links.append(wrap_nod_entry_url(lem, **iddict))
         h["lemmata"].append(lemms) #converted to links in interlinearize, kept plain in freq count ... should always have links available, methinks
+        h["lemma_links"].append(lem_links) #converted to links in interlinearize, kept plain in freq count ... should always have links available, methinks
         #h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)]) 
         h["tinies"].append(wrap_glosses(*retrieve_glosses(*h["lemmata"][-1], **gdict)))
         #tinies = []
@@ -488,17 +510,17 @@ def parse_words_expanded(event):
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
-        h["lemma_links"] = []
-        for i in range(len(h["lemmata"])):
-            link_line = []
-            for j in range(len(h["lemmata"][i])):
-                if model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]) in opd_manual_links: 
-                    link_line.append(opd.wrap_opd_url(opd_manual_links[(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:])], h["lemmata"][i][j])) 
-                elif model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]) not in opd_manual_links: 
-                    interpretation = interpret(analysis_dict(h["m_parse_lo"][i][j])) #hack, just run a regex
-                    link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]), h["lemmata"][i][j]))
-                else: link_line.append(wrap_nod_entry_url(h["lemmata"][i][j], **iddict))
-            h["lemma_links"].append(link_line)
+        #h["lemma_links"] = []
+        #for i in range(len(h["lemmata"])):
+        #    link_line = []
+        #    for j in range(len(h["lemmata"][i])):
+        #        if model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]) in opd_manual_links: 
+        #            link_line.append(opd.wrap_opd_url(opd_manual_links[(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:])], h["lemmata"][i][j])) 
+        #        elif model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]) not in opd_manual_links: 
+        #            interpretation = interpret(analysis_dict(h["m_parse_lo"][i][j])) #hack, just run a regex
+        #            link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]), h["lemmata"][i][j]))
+        #        else: link_line.append(wrap_nod_entry_url(h["lemmata"][i][j], **iddict))
+        #    h["lemma_links"].append(link_line)
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
             #lines_out += tabulate.tabulate([
