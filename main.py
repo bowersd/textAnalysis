@@ -489,7 +489,6 @@ def parse_words_expanded(event):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
                 lem = extract_lemma(local[i], ciw_pos_regex)
                 pos = extract_pos(local[i], ciw_pos_regex)
-                print(local[i], lem, pos)
                 lemms.append(lem)
                 if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
                 else: lem_links.append(opd.wrap_opd_url(opd.mk_opd_url(lem, pos), lem)) 
@@ -511,17 +510,6 @@ def parse_words_expanded(event):
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
-        #h["lemma_links"] = []
-        #for i in range(len(h["lemmata"])):
-        #    link_line = []
-        #    for j in range(len(h["lemmata"][i])):
-        #        if model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]) in opd_manual_links: 
-        #            link_line.append(opd.wrap_opd_url(opd_manual_links[(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:])], h["lemmata"][i][j])) 
-        #        elif model_credit[h["original"][i][j]] == "./morphophonology_analyze_border_lakes.hfstol" and (h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]) not in opd_manual_links: 
-        #            interpretation = interpret(analysis_dict(h["m_parse_lo"][i][j])) #hack, just run a regex
-        #            link_line.append(opd.wrap_opd_url(opd.mk_opd_url(h["lemmata"][i][j], regex.search(ciw_pos_regex, h["m_parse_lo"][i][j])[0][1:]), h["lemmata"][i][j]))
-        #        else: link_line.append(wrap_nod_entry_url(h["lemmata"][i][j], **iddict))
-        #    h["lemma_links"].append(link_line)
         lines_out = ""
         for i in range(len(h["m_parse_lo"])):
             #lines_out += tabulate.tabulate([
