@@ -489,6 +489,7 @@ def parse_words_expanded(event):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
                 lem = extract_lemma(ciw_pos_regex, local[i])
                 pos = extract_pos(ciw_pos_regex, local[i])
+                print(local[i], lem, pos)
                 lemms.append(lem)
                 if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
                 else: lem_links.append(opd.wrap_opd_url(opd.mk_opd_url(lem, pos), lem)) 
