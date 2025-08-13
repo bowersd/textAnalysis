@@ -147,3 +147,17 @@ abbreviations_high = {
         "PA": "A pre-adverb"
         }
 
+ciw_abbreviations = {
+        "ADVConj": "A conjunction (and, or, but)",
+        "ADVDisc": "A discourse marker (so)",
+        "ADVLoc": "An adverb of location (here, there)",
+        "ADVGram": "A grammatical adverb",
+        "ADVQnt": "A quantifier (some, all, most)",
+        "ADVPred": "A predicative adverb",
+        "ADVNeg": "A negative adverb (ever, at all)",
+        "ADVTmp": "A temporal adverb (then, soon)",
+        "ADVMan": "A manner adverb (quickly, thoroughly)",
+        "ADVDeg": "A degree adverb (extremely, partially)",
+        "ADVDub": "A dubitative adverb",
+        "ADVInter": "An interrogative adverb",
+        }
