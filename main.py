@@ -564,6 +564,7 @@ def parse_words_expanded(event):
                 nu_cnts[i][0] = ""
                 nu_cnts[i][1] = ""
         freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
+        print(freqs_out)
         output_div.innerHTML = freqs_out
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
