@@ -510,7 +510,6 @@ def parse_words_expanded(event):
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
-        lines_out = ""
         for i in range(len(h["m_parse_lo"])):
             #lines_out += tabulate.tabulate([
             #    ["Original Material:"] + h["original"][i],
@@ -528,13 +527,12 @@ def parse_words_expanded(event):
             for nb in new_batch.split('\n'):
                 if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
                 else: revised += nb+'\n'
-            lines_out += revised
-        output_div.innerHTML = lines_out
+        output_div.innerHTML = revised
     elif analysis_mode.value == "frequency":
         cnts_lem = {}
         for i in range(len(h["lemmata"])):
             for j in range(len(h["lemmata"][i])):
-                if h["lemmata"][i][j] not in cnts_lem: cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1}
+                if h["lemmata"][i][j] not in cnts_lem: cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1, "__dict_link__":h["lemma_links"][i][j]}
                 elif h["original"][i][j] not in cnts_lem[h["lemmata"][i][j]]: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] = 1
                 else: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] += 1
         #cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
