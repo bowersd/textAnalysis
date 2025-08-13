@@ -495,7 +495,7 @@ def parse_words_expanded(event):
             else: 
                 lem = extract_lemma(local[i], pos_regex)
                 lemms.append(lem)
-                lem_links.append(wrap_nod_entry_url(lem, **iddict))
+                lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
         h["lemmata"].append(lemms) #converted to links in interlinearize, kept plain in freq count ... should always have links available, methinks
         h["lemma_links"].append(lem_links) #converted to links in interlinearize, kept plain in freq count ... should always have links available, methinks
         #h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)]) 
