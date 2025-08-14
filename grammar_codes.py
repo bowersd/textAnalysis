@@ -164,7 +164,7 @@ ciw_abbreviations = {
         "NA": "Animate Noun (a being or remarkable thing)",
         "NI": "Inanimate Noun (a thing)",
         "NID": "Dependent Inanimate Noun (an obligatorily posessed thing)",
-        "0": "?", #what is this? it occurs in the lists labeled Dim, Poss, Pej, Pret, PersPoss
+        "0": "?", #what is this? it occurs in the lists labeled Dim, Poss, Pej, Pret, PersPoss. Perhaps not a tag, just the empty symbol, marking optional info
         #"Con": "Contemptive (dislike/disdain/teasing for X)", #I don't see anything for contemptives!
         "Dim": "Diminutive (cuteness/smallness/affection for X)",
         "Pej": "Pejorative (stronger dislike for X)",
@@ -190,4 +190,5 @@ ciw_abbreviations = {
         "3PlProxPoss": "Third person plural proximal possessive (theirs)",
         "1SgPoss": "First person singular possessive (mine)",
         "3SgObvPoss": "Third person singular obviative possessor (the other guy's)", #is this formally different from 3PlObvPoss?
+        "Num": "Numeral (1,2,3...)", #opd links have adv-num, but not POS tags from the model
         }
