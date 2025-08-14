@@ -18,8 +18,8 @@ abbreviations = {
         "0": "Inanimate (it, a thing)",
         "Ext": "Extended (the person prefix ni/gi/o- has been extended with da/di/doo)",
         "Nul": "Null (the syncope expected with person prefix o- did not occur, as if no prefix had been added)",
-        "1Pl": "First person plural  (we/us/our)",
-        "21Pl": "First person plural  inclusive (we/us/our ... including you)",
+        "1Pl": "First person plural (we/us/our)",
+        "21Pl": "First person plural inclusive (we/us/our ... including you)",
         "2Pl": "Second person plural (youse/youse's)",
         "3Pl": "Third person plural (they/them/theirs)",
         "3Obv": "Third person obviative (the other one, disambiguation of third persons)",
@@ -96,7 +96,7 @@ abbreviations_high = {
         "2": "Second person  (you/your...)",
         "2Pl": "Second person plural (youse/youse's)",
         "3": "Third person  (he/she/him/her/his/hers...)",
-        "3Obv": "Obviative (a way of distinguishing third persons from each other)",
+        "3Obv": "Obviative (the other one, used to mark a third person as more in the background than another)",
         "3ObvPlus": "Third person further obviative (the other _other_ one, disambiguation of third persons)",
         "3Pl": "Third person plural (they/them/theirs)",
         "Obv": "Obviative  (a way of distinguishing third persons from each other. The obviated third person is backgrounded/less central)",
@@ -160,4 +160,34 @@ ciw_abbreviations = {
         "ADVDeg": "A degree adverb (extremely, partially)",
         "ADVDub": "A dubitative adverb",
         "ADVInter": "An interrogative adverb",
+        "NAD": "Dependent Animate Noun (an obligatorily posessed being or remarkable thing)",
+        "NA": "Animate Noun (a being or remarkable thing)",
+        "NI": "Inanimate Noun (a thing)",
+        "NID": "Dependent Inanimate Noun (an obligatorily posessed thing)",
+        "0": "?", #what is this? it occurs in the lists labeled Dim, Poss, Pej, Pret, PersPoss
+        #"Con": "Contemptive (dislike/disdain/teasing for X)", #I don't see anything for contemptives!
+        "Dim": "Diminutive (cuteness/smallness/affection for X)",
+        "Pej": "Pejorative (stronger dislike for X)",
+        "Poss": "Posessive theme (marks some possessed nouns)", #I assume this is right
+        "Pret": "Preterit (on verbs: X has been completed, on nouns: X is broken/deceased/no longer)",
+        "Loc": "Locative (on/in/at X)",
+        "LocDist": "Distributed locative (around/among X)",
+        "ProxSg" : "Proximal singular (one entity, a third person that has not been backgrounded by being obviated)",
+        "ObvPl" : "Obviative plural (the other ones, third persons that are more in the background)", #I thought number was collapsed w/obviatives
+        "ProxPl": "Proximal plural (more than one entity that has not been backgrounded by being obviated)",
+        "ObvSg": "Obviative singular (the other one, a third person that has been backgrounded)",
+        "Pl": "Plural (more than one)", #how is this working? we already have obv/prox pl/sg
+        "Sg": "Singular (one entity)",
+        "Voc": "Vocative (calling to X)",
+        "ExclPoss": "First person plural exclusive possessive (ours ... not yours)",
+        "InclPoss": "First person plural inclusive possessive (ours and yours)",
+        "3Obv": "Third person obviative (the other one, disambiguation of third persons)",
+        "3ObvPlus": "Third person further obviative (the other _other_ one, disambiguation of third persons)",
+        "2SgPoss": "Second person singular possessive (your)",
+        "3PlObvPoss": "Third person plural obviative possessive (the other guys's)", #is this formally different from 3SgObvPoss?
+        "3SgProxPoss": "Third person singular proximal possessive (his/hers)",
+        "2PlPoss": "Second person plural possessive (youse's)",
+        "3PlProxPoss": "Third person plural proximal possessive (theirs)",
+        "1SgPoss": "First person singular possessive (mine)",
+        "3SgObvPoss": "Third person singular obviative possessor (the other guy's)", #is this formally different from 3PlObvPoss?
         }
