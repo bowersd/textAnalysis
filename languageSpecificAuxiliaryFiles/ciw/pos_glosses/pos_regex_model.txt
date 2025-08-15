@@ -1,0 +1,15 @@
+\+VAI(O|PL)?|
+\+VII(PL)?|
+\+VTI|
+\+VTA|
+\+NA(D)?|
+\+NI(D)?|
+\+NamePlace|
+\+NUM|
+\+PRON(((Dem|Dub|Indf|Inter|Sim)\+(NA|NI))|((Per|Pret)\+(NA)))|
+\+PC(Disc|Interj|Asp|Emph)|
+\+ADV(Loc|Conj|Pred|Gram|Dub|Inter|Qnt|Neg|Deg|Man|Disc|Tmp)|
+\+CLB|
+\+PUNCT|
+\+LEFT|
+\+RIGHT
