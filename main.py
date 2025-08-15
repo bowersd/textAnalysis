@@ -350,7 +350,7 @@ def analysis_dict(analysis_string):
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 iddict = mk_glossing_dict(*readin("./otw2nishID.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
-ciw_pos_regex = "".join(readin("./ciw_pos_regex.txt"))
+ciw_pos_regex = "".join(readin("./ciw_pos_regex_opd.txt"))
 opd_manual_links = {}
 for row in readin("opd_manual_links.csv"):
     tabbed = row.split(',')
@@ -487,8 +487,8 @@ def parse_words_expanded(event):
         lem_links = []
         for i in range(len(local)):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
-                lem = extract_lemma(local[i], ciw_pos_regex)
-                pos = extract_pos(local[i], ciw_pos_regex)
+                lem = extract_lemma(local[i], ciw_pos_regex_opd)
+                pos = extract_pos(local[i], ciw_pos_regex_opd)
                 lemms.append(lem)
                 if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
                 else: lem_links.append(opd.wrap_opd_url(opd.mk_opd_url(lem, pos), lem)) 
