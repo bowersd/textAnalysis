@@ -179,16 +179,36 @@ ciw_abbreviations = {
         "Pl": "Plural (more than one)", #how is this working? we already have obv/prox pl/sg
         "Sg": "Singular (one entity)",
         "Voc": "Vocative (calling to X)",
+        "1Sg": "First person singular (I)", #not on nouns, just pronouns
+        "1SgPoss": "First person singular possessive (mine)",
+        "Excl": "First person plural exclusive (us ... not you)", #not on nouns, just pronouns
+        "Incl": "First person plural inclusive (us and you)", #not on nouns, just pronouns
         "ExclPoss": "First person plural exclusive possessive (ours ... not yours)",
         "InclPoss": "First person plural inclusive possessive (ours and yours)",
+        "2Pl": "Second person plural (youse)", #not on nouns, just pronouns
+        "2PlPoss": "Second person plural possessive (youse's)",
+        "2Sg": "Second person singular (you)", #not on nouns, just pronouns
+        "2SgPoss": "Second person singular possessive (your)",
         "3Obv": "Third person obviative (the other one, disambiguation of third persons)",
         "3ObvPlus": "Third person further obviative (the other _other_ one, disambiguation of third persons)",
-        "2SgPoss": "Second person singular possessive (your)",
+        "3Pl": "Third person plural (the other guys)",  #not on nouns, just pronouns #Obviation not specified!
         "3PlObvPoss": "Third person plural obviative possessive (the other guys's)", #is this formally different from 3SgObvPoss?
-        "3SgProxPoss": "Third person singular proximal possessive (his/hers)",
-        "2PlPoss": "Second person plural possessive (youse's)",
         "3PlProxPoss": "Third person plural proximal possessive (theirs)",
-        "1SgPoss": "First person singular possessive (mine)",
+        "3Sg": "Third person singular (the other guy)",  #not on nouns, just pronouns #Obviation not specified!
         "3SgObvPoss": "Third person singular obviative possessor (the other guy's)", #is this formally different from 3PlObvPoss?
+        "3SgProxPoss": "Third person singular proximal possessive (his/hers)",
         "Num": "Numeral (1,2,3...)", #opd links have adv-num, but not POS tags from the model
+        "PCDisc": "Discourse particle",
+        "PCAsp": "Aspectual particle",
+        "PCEmph": "Emphatic particle",
+        "PCInterj": "Interjective particle",
+        "PRONDem": "Demonstrative pronoun (that/those)",
+        "PRONDub": "Dubitative pronoun",
+        "PRONIndf": "Indefinite pronoun (a/some)",
+        "PRONInter": "Interrogative pronoun (who)",
+        "PRONPer": "Personal pronoun (I/you/he/him)",
+        "PRONPret": "Preterite pronoun",
+        "PRONSim": "",
+        "NamePlace": "Name of a place",
+        "NamePerson": "Name of a person",
         }
