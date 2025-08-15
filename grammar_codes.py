@@ -211,4 +211,13 @@ ciw_abbreviations = {
         "PRONSim": "",
         "NamePlace": "Name of a place",
         "NamePerson": "Name of a person",
+        "PVTense/gii": "Past tense (I walked)",
+        "VII+Augment/magad": "A common way of making an Intransitive Verb with an Inanimate subject (description/action of a thing)",
+        "VAI": "Intransitive Verb with an Animate subject (description/action of a being or remarkable thing)",
+        "VAIPL": "Intransitive Verb with only PLural Animate subjects (description/action of beings or remarkable things)",
+        "VAIO": "'Intransitive' Verb with an Animate subject and an Object (action performed by a being or remarkable thing to something else)",
+        "VII": "Intransitive Verb with an Inanimate subject (description/action of a thing)",
+        "VIIPL": "Intransitive Verb with only PLural Inanimate subjects (description/action of things)",
+        "VTA": "Transitive Verb with an Animate object (action performed on a being or remarkable thing)",
+        "VTI": "Transitive Verb with an Inanimate object (action performed on a thing)",
         }
