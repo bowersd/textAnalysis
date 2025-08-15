@@ -4,7 +4,7 @@
 \+VTA|
 \+NA(D)?|
 \+NI(D)?|
-\+NamePlace|
+\+Name(Place|Person)|
 \+NUM|
 \+PRON(((Dem|Dub|Indf|Inter|Sim)\+(NA|NI))|((Per|Pret)\+(NA)))|
 \+PC(Disc|Interj|Asp|Emph)|
