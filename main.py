@@ -350,7 +350,7 @@ def analysis_dict(analysis_string):
 gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 iddict = mk_glossing_dict(*readin("./otw2nishID.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
-ciw_pos_regex = "".join(readin("./ciw_pos_regex_opd.txt"))
+ciw_pos_regex_opd = "".join(readin("./ciw_pos_regex_opd.txt"))
 opd_manual_links = {}
 for row in readin("opd_manual_links.csv"):
     tabbed = row.split(',')
