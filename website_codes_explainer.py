@@ -37,7 +37,7 @@ for x in sorted(grammar_codes.abbreviations_high):
     if x not in grammar_codes.abbreviations: table_broad.append(row_prep(x, grammar_codes.abbreviations_high[x]))
 
 for x in sorted(grammar_codes.ciw_abbreviations):
-    if x not in grammar_codes.abbreviations or grammar_codes_ciw_abbreviations[x] != grammar_codes.abbreviations[x]: table_narrow_anishinaabemowin.append(row_prep(x, grammar_codes.ciw_abbreviations[x]))
+    if x not in grammar_codes.abbreviations or grammar_codes.ciw_abbreviations[x] != grammar_codes.abbreviations[x]: table_narrow_anishinaabemowin.append(row_prep(x, grammar_codes.ciw_abbreviations[x]))
 
 codes_narrow_broad_div.innerHTML = tabulate.tabulate(table_narrow_broad, tablefmt='html')
 codes_narrow_div.innerHTML = tabulate.tabulate(table_narrow, tablefmt='html')
