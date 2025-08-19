@@ -33,6 +33,14 @@ def interpret_ciw(analysis_in, postags):
     if summary["DerivChain"]: 
         summary["Head"] = summary["DerivChain"][-1]
         summary["DerivChain"] = ">".join(summary["DerivChain"])
+    for x in analysis_in.split("+"):
+        if x == "Dim": summary["Else"].append(x)
+        elif x == "Pej": summary["Else"].append(x)
+        elif x == "Poss": summary["Else"].append(x)
+        elif x == "Pret": summary["Mode"].append(x)
+        elif x == "Loc": summary["Periph"] = x
+        elif x == "LocDist": summary["Else"].append(x)
+        #elif x == "ProxSg": pass #this information is not retained
     return summary
 
 def interpret(analysis_in):
