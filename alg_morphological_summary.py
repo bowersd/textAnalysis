@@ -41,6 +41,32 @@ def interpret_ciw(analysis_in, postags):
         elif x == "Loc": summary["Periph"] = x
         elif x == "LocDist": summary["Else"].append(x)
         #elif x == "ProxSg": pass #this information is not retained
+        elif x.startswith("Obv"): summary["Periph"] = "Obv" #violence done to Hammerly's rep. Collapsing across the number differentiations ...iirc it isn't fully collapsed in VIIs...
+        elif x == "ProxPl": summary["Periph"] = "Pl" #proximal is not retained
+        elif x == "Pl": summary["Periph"] = "Pl" #proximal is not retained
+        #elif x == "Sg": pass #this information is not retained
+        elif x == "Voc": summary["Mode"].append(x)
+        #elif x == "1Sg": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "2Pl": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "2Sg": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3Obv": pass #DOUBLE CHECK: this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3ObvPlus": pass #DOUBLE CHECK: this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3Pl": pass #DOUBLE CHECK: this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3PlObvPlus": pass #DOUBLE CHECK: this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3Sg": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        elif x.endswith("Poss") and x[0] in ["1", "2", "3"]: 
+            summary["S"]["Pers"] = x[0]
+            if x[1:3] == "Pl": summary["S"]["Num"] = "Pl" #sg is not retained, also obv/prox is not retained when preceded by Pl
+            elif x[1:6] == "SgObv": summary["S"]["Num"] = "Obv" #sg is not retained, also obv/prox is not retained when preceded by Pl
+        elif x == "ExclPoss": 
+            summary["S"]["Pers"] = "1"
+            summary["S"]["Num"] = "Pl"
+        elif x == "InclPoss": 
+            summary["S"]["Pers"] = "2"
+            summary["S"]["Num"] = "1Pl"
+        elif x.endswith("Poss") and x[0:- == "1SgPoss": summary["S"]["Pers"] = "1"
+        #elif x == "Excl": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "Incl": pass #this is person information for pronouns, which we do not have a good place for at the moment
     return summary
 
 def interpret(analysis_in):
