@@ -29,8 +29,10 @@ def find_focus(**kwargs):
 
 def interpret_ciw(analysis_in, postags):
     summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
-    if re.search("({0})(.*({0}))?".format(postags), analysis_in): summary["DerivChain"] = [x for x in re.search("({0})(.*({0}))?".format(postags), analysis_string)[0].split("+") if x] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
-    if summary["DerivChain"]: summary["Head"] = summary["DerivChain"][-1]
+    if re.search("({0})(.*({0}))?".format(postags), analysis_in): summary["DerivChain"] = [x for x in re.search("({0})(.*({0}))?".format(postags), analysis_in)[0].split("+") if x] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    if summary["DerivChain"]: 
+        summary["Head"] = summary["DerivChain"][-1]
+        summary["DerivChain"] = ">".join(summary["DerivChain"])
     return summary
 
 def interpret(analysis_in):
