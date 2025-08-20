@@ -99,7 +99,7 @@ def interpret_ciw(analysis_in, postags):
         elif x == "Del": summary["Else"].append(x)
         elif x == "Dub": summary["Mode"].append(x)
         elif x == "Prt": summary["Mode"].append(x)
-        elif x == "DubPrt": summary["Mode"].append(x)
+        elif x == "DubPrt": summary["Mode"].extend(['Prt', 'Dub'])
         elif x == "PVTense/gii": summary["Else"].append(x)
         #VII+Augment/magad is dropped
         #Simple imperative "Sim" is dropped
