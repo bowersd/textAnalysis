@@ -164,7 +164,7 @@ ciw_abbreviations = {
         "NA": "Animate Noun (a being or remarkable thing)",
         "NI": "Inanimate Noun (a thing)",
         "NID": "Dependent Inanimate Noun (an obligatorily posessed thing)",
-        "0": "?", #what is this? it occurs in the lists labeled Dim, Poss, Pej, Pret, PersPoss. Perhaps not a tag, just the empty symbol, marking optional info
+        #"0": "?", #what is this? it occurs in the lists labeled Dim, Poss, Pej, Pret, PersPoss. Perhaps not a tag, just the empty symbol, marking optional info
         #"Con": "Contemptive (dislike/disdain/teasing for X)", #I don't see anything for contemptives!
         "Dim": "Diminutive (cuteness/smallness/affection for X)",
         "Pej": "Pejorative (stronger dislike for X)",
