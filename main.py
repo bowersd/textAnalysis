@@ -566,8 +566,8 @@ def parse_words_expanded(event):
         lem_links = []
         for i in range(len(local)):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
-                if analysis_dict(local[i]): his.append("'"+formatted(interpret_ciw(local[i]+"'", ciw_pos_regex_opd)))
-                if not analysis_dict(local[i]): his.append("'?'")
+                if re.search("({0})(.*({0}))?".format(ciw_pos_regex_opd), local[i]): his.append("'"+formatted(interpret_ciw(local[i]+"'", ciw_pos_regex_opd)))
+                if not re.search("({0})(.*({0}))?".format(ciw_pos_regex_opd), local[i]): his.append("'?'")
                 lem = extract_lemma(local[i], ciw_pos_regex_opd)
                 pos = extract_pos(local[i], ciw_pos_regex_opd)
                 lemms.append(lem)
