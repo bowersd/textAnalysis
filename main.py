@@ -429,6 +429,7 @@ gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
 iddict = mk_glossing_dict(*readin("./otw2nishID.txt"))
 pos_regex = "".join(readin("./pos_regex.txt"))
 ciw_pos_regex_opd = "".join(readin("./ciw_pos_regex_opd.txt"))
+ciw_pos_regex_model = "".join(readin("./ciw_pos_regex_model.txt"))
 opd_manual_links = {}
 for row in readin("opd_manual_links.csv"):
     tabbed = row.split(',')
@@ -566,19 +567,23 @@ def parse_words_expanded(event):
         lem_links = []
         for i in range(len(local)):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
-                if re.search("({0})(.*({0}))?".format(ciw_pos_regex_opd), local[i]): his.append("'"+formatted(interpret_ciw(local[i]+"'", ciw_pos_regex_opd)))
-                if not re.search("({0})(.*({0}))?".format(ciw_pos_regex_opd), local[i]): his.append("'?'")
                 lem = extract_lemma(local[i], ciw_pos_regex_opd)
                 pos = extract_pos(local[i], ciw_pos_regex_opd)
                 lemms.append(lem)
+                #populate hi
+                if re.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+formatted(interpret_ciw(local[i]+"'", ciw_pos_regex_model)))
+                if not re.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'?'")
+                #populate lem
                 if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
                 else: lem_links.append(opd.wrap_opd_url(opd.mk_opd_url(lem, pos), lem)) 
             else: 
-                if analysis_dict(local[i]): his.append("'"+formatted(interpret(analysis_dict(local[i)))+"'")
-                if not analysis_dict(local[i]): his.append("'?'")
+                #populate lem
                 lem = extract_lemma(local[i], pos_regex)
                 lemms.append(lem)
                 lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
+                #populate hi
+                if analysis_dict(local[i]): his.append("'"+formatted(interpret(analysis_dict(local[i)))+"'")
+                if not analysis_dict(local[i]): his.append("'?'")
         h["m_parse_hi"].append(his) 
         h["lemmata"].append(lemms) 
         h["lemma_links"].append(lem_links) #use these in freq counts? elsewhere? currently only accessed in interlinearize
