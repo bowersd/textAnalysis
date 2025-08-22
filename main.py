@@ -560,20 +560,26 @@ def parse_words_expanded(event):
             #else: local.append(analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0])
         h["original"].append(sep_punct(line, True).split())
         h["m_parse_lo"].append(local)
-        h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
+        #h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
+        his = []
         lemms = []
         lem_links = []
         for i in range(len(local)):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
+                if analysis_dict(local[i]): his.append("'"+formatted(interpret_ciw(local[i]+"'", ciw_pos_regex_opd)))
+                if not analysis_dict(local[i]): his.append("'?'")
                 lem = extract_lemma(local[i], ciw_pos_regex_opd)
                 pos = extract_pos(local[i], ciw_pos_regex_opd)
                 lemms.append(lem)
                 if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
                 else: lem_links.append(opd.wrap_opd_url(opd.mk_opd_url(lem, pos), lem)) 
             else: 
+                if analysis_dict(local[i]): his.append("'"+formatted(interpret(analysis_dict(local[i)))+"'")
+                if not analysis_dict(local[i]): his.append("'?'")
                 lem = extract_lemma(local[i], pos_regex)
                 lemms.append(lem)
                 lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
+        h["m_parse_hi"].append(his) 
         h["lemmata"].append(lemms) 
         h["lemma_links"].append(lem_links) #use these in freq counts? elsewhere? currently only accessed in interlinearize
         #h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)]) 
