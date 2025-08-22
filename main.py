@@ -497,7 +497,7 @@ def parse_words_expanded(event):
                 lemms.append(lem)
                 lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
         h["lemmata"].append(lemms) 
-        h["lemma_links"].append(lem_links) #use these in freq counts? elsewhere?
+        h["lemma_links"].append(lem_links) #use these in freq counts? elsewhere? currently only accessed in interlinearize
         #h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)]) 
         h["tinies"].append(wrap_glosses(*retrieve_glosses(*h["lemmata"][-1], **gdict)))
         #tinies = []
