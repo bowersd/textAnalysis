@@ -582,7 +582,7 @@ def parse_words_expanded(event):
                 lemms.append(lem)
                 lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
                 #populate hi
-                if analysis_dict(local[i]): his.append("'"+formatted(interpret(analysis_dict(local[i)))+"'")
+                if analysis_dict(local[i]): his.append("'"+formatted(interpret(analysis_dict(local[i])))+"'")
                 if not analysis_dict(local[i]): his.append("'?'")
         h["m_parse_hi"].append(his) 
         h["lemmata"].append(lemms) 
