@@ -188,6 +188,84 @@ def find_focus(**kwargs):
     if x: return x[0]
     return "".join([kwargs["Pcp"]["Pers"], kwargs["Pcp"]["Num"]])
 
+def interpret_ciw(analysis_in, postags):
+    summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []}
+    if regex.search("({0})(.*({0}))?".format(postags), analysis_in): summary["DerivChain"] = [x for x in regex.search("({0})(.*({0}))?".format(postags), analysis_in)[0].split("+") if x] #Denominal words may contain Dim, etc, but plain nouns will omit this if only POS tags are used as boundaries
+    if summary["DerivChain"]: 
+        summary["Head"] = summary["DerivChain"][-1]
+        summary["DerivChain"] = ">".join(summary["DerivChain"])
+    for x in analysis_in.split("+"):
+        if x == "Dim": summary["Else"].append(x)
+        elif x == "Pej": summary["Else"].append(x)
+        elif x == "Poss": summary["Else"].append(x)
+        elif x == "Pret": summary["Mode"].append(x)
+        elif x == "Loc": summary["Periph"] = x
+        elif x == "LocDist": summary["Else"].append(x)
+        #elif x == "ProxSg": pass #this information is not retained
+        elif x.startswith("Obv"): summary["Periph"] = "Obv" #violence done to Hammerly's rep. Collapsing across the number differentiations ...iirc it isn't fully collapsed in VIIs...
+        elif x == "ProxPl": summary["Periph"] = "Pl" #proximal is not retained
+        elif x == "Pl": summary["Periph"] = "Pl" #proximal is not retained
+        #elif x == "Sg": pass #this information is not retained
+        elif x == "Voc": summary["Mode"].append(x)
+        #elif x == "1Sg": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "2Pl": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "2Sg": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3Obv": pass #DOUBLE CHECK: this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3ObvPlus": pass #DOUBLE CHECK: this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3Pl": pass #DOUBLE CHECK: this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3PlObvPlus": pass #DOUBLE CHECK: this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "3Sg": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "Excl": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        #elif x == "Incl": pass #this is person information for pronouns, which we do not have a good place for at the moment
+        elif x.endswith("Poss") and x[0] in ["1", "2", "3"]: 
+            summary["S"]["Pers"] = x[0]
+            if x[1:6] == "PlObv": summary["S"]["Num"] = "Obv" #sg/prox is not retained. this specific combination is targeted to retrieve Obv because that will come first in lexicographic sort of ambiguous analyses, and will be selected by disambiguation
+            elif x[1:3] == "Pl": summary["S"]["Num"] = "Pl" 
+        elif x == "ExclPoss": 
+            summary["S"]["Pers"] = "1"
+            summary["S"]["Num"] = "Pl"
+        elif x == "InclPoss": 
+            summary["S"]["Pers"] = "2"
+            summary["S"]["Num"] = "1Pl"
+        elif x.endswith("Head"): #Participle information
+            summary["Pcp"]["Pers"] = x[0]
+            if x[1:6] == "PlObv": summary["Pcp"]["Num"] = "Obv"#sg/prox is not retained. this specific combination is targeted to retrieve Obv because that will come first in lexicographic sort of ambiguous analyses, and will be selected by disambiguation
+            elif x[1:3] == "Pl": summary["Pcp"]["Num"] = "Pl" 
+        elif x.endswith("Obj") and x[0] in ["0", "1", "2", "3", "X"]:
+            summary["O"]["Pers"] = x[0]
+            if x[1:6] == "PlObv": summary["O"]["Num"] = "Obv" #sg/prox is not retained. this specific combination is targeted to retrieve Obv because that will come first in lexicographic sort of ambiguous analyses, and will be selected by disambiguation
+            elif x[1:3] == "Pl": summary["O"]["Num"] = "Pl" 
+        elif x == "ExclObj": 
+            summary["O"]["Pers"] = "1"
+            summary["O"]["Num"] = "Pl"
+        elif x == "InclObj": 
+            summary["O"]["Pers"] = "2"
+            summary["O"]["Num"] = "1Pl"
+        elif x.endswith("Subj") and x[0] in ["0", "1", "2", "3", "X"]:
+            summary["S"]["Pers"] = x[0]
+            if x[1:6] == "PlObv": summary["S"]["Num"] = "Obv" #sg/prox is not retained. this specific combination is targeted to retrieve Obv because that will come first in lexicographic sort of ambiguous analyses, and will be selected by disambiguation
+            elif x[1:3] == "Pl": summary["S"]["Num"] = "Pl" 
+        elif x == "ExclSubj": 
+            summary["S"]["Pers"] = "1"
+            summary["S"]["Num"] = "Pl"
+        elif x == "InclSubj": 
+            summary["S"]["Pers"] = "2"
+            summary["S"]["Num"] = "1Pl"
+        elif x == "Imp": summary["Order"] = x
+        elif x == "Cnj": summary["Order"] = x
+        elif x == "Ind": summary["Order"] = x
+        elif x == "Neg": summary["Neg"] = x
+        elif x == "Prb": summary["Neg"] = "Neg"
+        elif x == "Pcp": summary["Else"].append(x)
+        elif x == "Del": summary["Else"].append(x)
+        elif x == "Dub": summary["Mode"].append(x)
+        elif x == "Prt": summary["Mode"].append(x)
+        elif x == "DubPrt": summary["Mode"].extend(['Prt', 'Dub'])
+        elif x == "PVTense/gii": summary["Else"].append(x)
+        #VII+Augment/magad is dropped
+        #Simple imperative "Sim" is dropped
+    return summary
+
 def interpret(analysis_in):
     summary = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": [x for x in analysis_in["preforms"]+analysis_in["clitic"]]}
     inversion = False #if true, S/O will be inverted at end
