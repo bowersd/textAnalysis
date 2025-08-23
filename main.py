@@ -571,8 +571,8 @@ def parse_words_expanded(event):
                 pos = extract_pos(local[i], ciw_pos_regex_opd)
                 lemms.append(lem)
                 #populate hi
-                if re.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+formatted(interpret_ciw(local[i]+"'", ciw_pos_regex_model)))
-                if not re.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'?'")
+                if regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+formatted(interpret_ciw(local[i]+"'", ciw_pos_regex_model)))
+                if not regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'?'")
                 #populate lem
                 if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
                 else: lem_links.append(opd.wrap_opd_url(opd.mk_opd_url(lem, pos), lem)) 
