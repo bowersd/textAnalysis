@@ -579,7 +579,8 @@ def parse_words_expanded(event):
             else: 
                 #populate lem
                 lem = extract_lemma(local[i], pos_regex)
-                lemms.append(lem)
+                if not lem: lemms.append("'?'")
+                if lem: lemms.append(lem)
                 lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
                 #populate hi
                 if analysis_dict(local[i]): his.append("'"+formatted(interpret(analysis_dict(local[i])))+"'")
