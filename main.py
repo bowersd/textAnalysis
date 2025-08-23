@@ -253,7 +253,7 @@ def interpret_ciw(analysis_in, postags):
             summary["S"]["Num"] = "1Pl"
         elif x == "Imp": summary["Order"] = x
         elif x == "Cnj": summary["Order"] = x
-        elif x == "Ind": summary["Order"] = x
+        #elif x == "Ind": summary["Order"] = x
         elif x == "Neg": summary["Neg"] = x
         elif x == "Prb": summary["Neg"] = "Neg"
         elif x == "Pcp": summary["Else"].append(x)
