@@ -253,7 +253,7 @@ def interpret_ciw(analysis_in, postags):
             summary["S"]["Num"] = "1Pl"
         elif x == "Imp": summary["Order"] = x
         elif x == "Cnj": summary["Order"] = x
-        elif x == "Ind": summary["Order"] = x
+        #elif x == "Ind": summary["Order"] = x
         elif x == "Neg": summary["Neg"] = x
         elif x == "Prb": summary["Neg"] = "Neg"
         elif x == "Pcp": summary["Else"].append(x)
@@ -571,8 +571,8 @@ def parse_words_expanded(event):
                 pos = extract_pos(local[i], ciw_pos_regex_opd)
                 lemms.append(lem)
                 #populate hi
-                if re.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+formatted(interpret_ciw(local[i]+"'", ciw_pos_regex_model)))
-                if not re.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'?'")
+                if regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+formatted(interpret_ciw(local[i], ciw_pos_regex_model))+"'")
+                if not regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'?'")
                 #populate lem
                 if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
                 else: lem_links.append(opd.wrap_opd_url(opd.mk_opd_url(lem, pos), lem)) 
@@ -582,7 +582,7 @@ def parse_words_expanded(event):
                 lemms.append(lem)
                 lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
                 #populate hi
-                if analysis_dict(local[i]): his.append("'"+formatted(interpret(analysis_dict(local[i)))+"'")
+                if analysis_dict(local[i]): his.append("'"+formatted(interpret(analysis_dict(local[i])))+"'")
                 if not analysis_dict(local[i]): his.append("'?'")
         h["m_parse_hi"].append(his) 
         h["lemmata"].append(lemms) 
