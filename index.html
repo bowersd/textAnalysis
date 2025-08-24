@@ -19,31 +19,24 @@ layout: default
 </head>
 <body>
     <p>0. Customize the analyzer cascade ...</p>
-    <p>Mark analyzers in order of priority, where 1 is highest priority. Leave unwanted analyzers blank.</p>
-    <p>The current options are:
-    <ul>
-        <li>"Fiero/Rhodes" (follows the Fiero double vowel system used in the <i>Eastern Ojibwa-Chippewa-Ottawa Dictionary</i> by Richard Rhodes),</li>
-        <li>"Corbiere" (follows the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a> by Mary Ann Corbiere and Rand Valentine),</li> 
-        <li>"No Deletion" (does not enforce vowel deletion, best suited to pre-syncope eastern texts like those in Angeline Williams' "The Dog's Children").</li>
-        <li>"Southwestern" (NEW ANALYZER! This analyzer reflects the Border Lakes and Minnesota/Wisconsin varieties of Ojibwe. It was written by Professor Christopher Hammerly (<a href="https://github.com/ELF-Lab/OjibweMorph" target="_blank" rel="noopener noreferrer"><i>project site</i></a>, currently using <a href="https://github.com/giellalt/lang-ciw" target="_blank" rel="noopener noreferrer"><i>this version</i></a>), and the lexicon is drawn from the <a href="https://ojibwe.lib.umn.edu" target="_blank" rel="noopener noreferrer"><i>Ojibwe People's Dictionary</i></a> by Nora Livesay and John Nichols. Update 8/11/2025: The site now creates links to OPD entries. I will shortly add some improvements to the link creation system, and better integration of Professor Hammerly's grammatical annotations).</li>
-    </ul></p>
-    <p>These are strict analyzers! This means that they will fail to analyze almost any word that diverges even slightly from "correct" spelling rules. We may find a way to put relaxed analyzers on this site, but they are large and difficult to incorporate into the site's static design (<a href="./privacy.html"target="_blank" rel="noopener noreferrer">which is otherwise a good thing</a>).</p>
+    <p>Mark analyzers in order of priority, where 1 is highest priority, 2 is second, etc. Leave unwanted analyzers blank.</p>
     <!--p>Analyzers marked "relaxed" allow less precise spelling. They are large, so allow some time for them to load. They are also slow, and give less accurate results, so give them bigger numbers.</p--!>
         <input type="text" size="4" id="rhodes" value="1" >
-        <label for="rhodes">Fiero/Rhodes</label><br>
+        <label for="rhodes">Nishnaabemwin-Fiero (see the <i>Eastern Ojibwa-Chippewa-Ottawa Dictionary</i> by Richard Rhodes)</label><br>
         <!--input type="text" size="4" id="rhodes_relaxed">
         <label for="rhodes_relaxed">Rhodes relaxed </label><input type="file" id="analyzer_rhodes_relaxed" py-input="rhodes_relaxed_handler()"><br--!>
         <input type="text" size="4" id="corbiere" >
-        <label for="corbiere">Corbiere</label><br>
+        <label for="corbiere">Nishnaabemwin-Corbiere (see the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a>)</label><br>
         <!--input type="text" size="4" id="corbiere_relaxed">
         <label for="corbiere_relaxed">Corbiere relaxed </label><input type="file" id="analyzer_corbiere_relaxed" py-input="corbiere_relaxed_handler()"><br--!>
         <input type="text" size="4" id="no_deletion" >
-        <label for="no_deletion">No Deletion</label><br>
+        <label for="no_deletion">Anishinaabemowin-Williams (see Angeline Williams' "The Dog's Children", this is Eastern vocabulary and grammar, but without vowel dropping)</label><br>
         <!--input type="text" size="4" id="no_deletion_relaxed">
         <label for="no_deletion_relaxed">No Deletion relaxed  </label><input type="file" id="analyzer_no_deletion_relaxed" py-input="no_deletion_relaxed_handler()"><br--!>
         <input type="text" size="4" id="western" >
-        <label for="western">Southwestern (Border Lakes/Minnesota/Wisconsin)</label><br>
+        <label for="western">Anishinaabemowin-Southwestern (New! Border Lakes/Minnesota/Wisconsin, see the <a href="https://ojibwe.lib.umn.edu" target="_blank" rel="noopener noreferrer"><i>Ojibwe People's Dictionary</i></a>)</label><br>
         <!--button py-click="cascade_customization">Customize!</button--!>
+    <p>Note: These are strict analyzers! This means that they will fail to analyze almost any word that diverges even slightly from "correct" spelling rules. We may find a way to put relaxed analyzers on this site, but they are large and difficult to incorporate into the site's static design (<a href="./privacy.html"target="_blank" rel="noopener noreferrer">which is otherwise a good thing</a>). You can find more information about the analyzers on the <a href="./background.html"target="_blank" rel="noopener noreferrer">background page</a>.</p>
     <p>1. Select an analysis option below...</p>
     <label for="analysis_mode">I want to get:</label>
 
@@ -134,6 +127,6 @@ layout: default
     <button name="load_trans">Add Sentence-by-Sentence Translation (optional, inactive)</button>
     <button name="do_it">Make Interlinearization (inactive)</button-->
     <hr/>
-    <p>Last updated: 08/18/2025 10:55</p>
+    <p>Last updated: 08/24/2025 7:35</p>
 </body>
 </html>
