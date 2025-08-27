@@ -18,14 +18,15 @@ layout: default
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
-    <p>
-    Use the search bar below to see words from the NOD in idiomatic sentences from Mary Ann Corbiere. 
-    </p>
+    <h1>Example Sentences</h1>
+    <h2>Search <i>Nishnaabemwin Online Dictionary</i> Examples</h2>
+    <p> Use the search bar below to see words from the NOD in idiomatic sentences from Mary Ann Corbiere.  </p>
     <input type="text" size="30" id="query" placeholder="Enter NOD entries" >
     <button py-click="search">Find example sentences!</button>
     <div id="search_output"></div>
     <script type="py" src="./search_lemmatizations.py" config="./search_lemmatizations.toml" async></script>
     <hr/>
+    <h2>Browse Examples</h2>
     <p>Need examples to see what the analyzer page can do? See below for 100 random sentences from Andrew Medler's material in <i>Weshki-Bmaadzijig Ji-Noondmowaad</i> (edited by Rand Valentine, ultimately sourced from Leonard Bloomfield's <i>Eastern Ojibwa: Grammatical Sketch, Texts and Word List</i>). I recommend using the "Nishnaabemwin-kidod" analyzer on these sentences.</p>
     <p>At the moment the table is in fact three tables (so you can select the Nishnaabemwin sentences without grabbing the English translation/row number too). Unfortunately, due to my poor html skills, this means that the rows are not aligned. I am working on a solution.</p>
     <hr/>
