@@ -645,7 +645,7 @@ def parse_words_expanded(event):
             print("lemma= ", lem)
             for tok in cnts_lem[lem]:
                 print(tok)
-                nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
+                nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem] if x != "__dict_link__"]), lem, str(cnts_lem[lem][tok]), tok])
                 #else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
                 #cnts.append((str(cnts_lem[lem][tok]), tok, "("+lem+")"))
         #freqs_out = "Raw frequencies, aka token frequencies (with dictionary header)\n"+"\n".join(["\t".join(x) for x in sorted(cnts)])+"\n"+"Combined frequencies, aka type or lemmatized frequencies, organized by dictionary header\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
