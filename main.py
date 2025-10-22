@@ -641,11 +641,13 @@ def parse_words_expanded(event):
         nu_cnts = sorted(sorted(nu_cnts, key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #might need to sort 4 times!!
         prev = ""
         unanalyzed_block = []
+        print("1")
         for i in range(len(nu_cnts)):
             x = nu_cnts.pop(0)
             if x[1] == "?": unanalyzed_block.append(x)
             else: nu_cnts.append(x)
         nu_cnts.extend(unanalyzed_block)
+        print("2")
         for i in range(len(nu_cnts)):
             nu_cnts[i][0] = str(nu_cnts[i][0])
             new = nu_cnts[i][1]
@@ -653,6 +655,7 @@ def parse_words_expanded(event):
             elif new == prev: 
                 nu_cnts[i][0] = ""
                 nu_cnts[i][1] = ""
+        print("3")
         freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
         print(freqs_out)
         output_div.innerHTML = freqs_out
