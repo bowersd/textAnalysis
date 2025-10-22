@@ -617,9 +617,12 @@ def parse_words_expanded(event):
             revised = ""
             print("new_batch")
             for nb in new_batch.split('\n'):
-                print(nb)
+                print(len(revised))
+                #print(nb)
                 if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
                 else: revised += nb+'\n'
+        print("final len of revised")
+        print(len(revised))
         print("revision")
         print(revised)
         output_div.innerHTML = revised
