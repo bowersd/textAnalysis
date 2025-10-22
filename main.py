@@ -620,6 +620,8 @@ def parse_words_expanded(event):
                 print(nb)
                 if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
                 else: revised += nb+'\n'
+        print("revision")
+        print(revised)
         output_div.innerHTML = revised
     elif analysis_mode.value == "frequency":
         cnts_lem = {}
