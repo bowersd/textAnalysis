@@ -623,6 +623,7 @@ def parse_words_expanded(event):
         output_div.innerHTML = revised
     elif analysis_mode.value == "frequency":
         cnts_lem = {}
+        print("-1")
         for i in range(len(h["lemmata"])):
             for j in range(len(h["lemmata"][i])):
                 if h["lemmata"][i][j] not in cnts_lem: cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1, "__dict_link__":h["lemma_links"][i][j]}
@@ -634,6 +635,7 @@ def parse_words_expanded(event):
         #cnts = []
         header = [["Count", "NOD Entry", "Count", "Actual"]]
         nu_cnts = []
+        print("0")
         for lem in cnts_lem:
             for tok in cnts_lem[lem]:
                 nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
