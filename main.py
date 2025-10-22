@@ -601,6 +601,7 @@ def parse_words_expanded(event):
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
         for i in range(len(h["m_parse_lo"])):
+            print(h["m_parse_lo"][i])
             #lines_out += tabulate.tabulate([
             #    ["Original Material:"] + h["original"][i],
             #    ["Narrow Analysis:"] + h["m_parse_lo"][i], 
@@ -614,7 +615,9 @@ def parse_words_expanded(event):
                 ["NOD/OPD Entry:"] + h["lemma_links"][i], 
                 ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
             revised = ""
+            print("new_batch")
             for nb in new_batch.split('\n'):
+                print(nb)
                 if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
                 else: revised += nb+'\n'
         output_div.innerHTML = revised
