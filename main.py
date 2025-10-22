@@ -639,7 +639,9 @@ def parse_words_expanded(event):
         nu_cnts = []
         print("0")
         for lem in cnts_lem:
+            print("lemma= ", lem)
             for tok in cnts_lem[lem]:
+                print(tok)
                 nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
                 #else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
                 #cnts.append((str(cnts_lem[lem][tok]), tok, "("+lem+")"))
