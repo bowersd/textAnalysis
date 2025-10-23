@@ -638,7 +638,7 @@ def parse_words_expanded(event):
         #for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
         #for lem in lemmata: cnts_lem[lem] += 1
         #cnts = []
-        header = [["Count", "NOD Entry", "Count", "Actual"]]
+        header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
         nu_cnts = []
         print("0")
         for lem in cnts_lem:
