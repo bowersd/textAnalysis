@@ -25,8 +25,6 @@ import pyhfst
 import tabulate
 import sentence_complexity as sc
 import opd_links as opd
-#print("Coming soon: put in a Nishnaabemwin text, get back a (rough) interlinear analysis of the text")
-#print("For now, a demonstration that a functioning analyzer is loaded")
 
 ###functions copied directly/modified from elsewhere in the repo
 def parse_pyhfst(transducer, *strings):
@@ -128,8 +126,6 @@ def wrap_nod_entry_url(*lemmata, **nishIDdict):
                 for i in range(len(alts)):
                     if i == 0: 
                         tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}' target='_blank' rel='noopener noreferrer'>{1}</a>".format(alts[i], c))
-                        #print('initially formatted link')
-                        #print('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}' target='_blank' rel='noopener noreferrer'>{1}</a>".format(alts[i], c))
                     else: tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}' target='_blank' rel='noopener noreferrer'>(alt {1})</a>".format(alts[i], str(i)))
             except KeyError: tot.append(c)
         h.append(" ".join(tot))
@@ -480,7 +476,6 @@ def rhodes_relaxed_handler(event=None):
         form_values["rhodes_relaxed"]["file"] = event.target.value
 
 #add_event_listener(document.getElementById("rhodes_relaxed_upload"), "change", rhodes_relaxed_handler)
-#print(form_values)
 
 def corbiere_handler(event=None):
     if event:
@@ -519,7 +514,6 @@ def parse_words_expanded(event):
     for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
         #if form_values[x]["order"] and form_values[x]["url"]:
         #    form_values[x]["file"] = await pyfetch(form_values[x]["url"])
-        #    print(form_values[x]["file"])
         if form_values[x]["order"] and form_values[x]["file"]: analyzers.append(form_values[x]["file"])
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
@@ -528,7 +522,6 @@ def parse_words_expanded(event):
     model_credit = {} #as of aug 2025, only using this data to allow correct formatting of western (OPD-based) lemmata urls vs eastern (NOD-based) lemmata. It could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
     #analyzers = await cascade_customization()
     for i in range(len(analyzers)):
-        print(analyzers[i])
         analyzed = parse_pyhfst(analyzers[i], *to_analyze)
         to_analyze = []
         for w in analyzed:
@@ -602,7 +595,6 @@ def parse_words_expanded(event):
     if analysis_mode.value == "interlinearize":
         revised = ""
         for i in range(len(h["m_parse_lo"])):
-            print(h["m_parse_lo"][i])
             #lines_out += tabulate.tabulate([
             #    ["Original Material:"] + h["original"][i],
             #    ["Narrow Analysis:"] + h["m_parse_lo"][i], 
@@ -615,21 +607,13 @@ def parse_words_expanded(event):
                 ["Broad Analysis:"] + h["m_parse_hi"][i], 
                 ["NOD/OPD Entry:"] + h["lemma_links"][i], 
                 ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
-            print("new_batch")
             for nb in new_batch.split('\n'):
-                print(len(revised))
-                #print(nb)
                 if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
                 else: revised += nb+'\n'
-        print("final len of revised")
-        print(len(revised))
-        print("revision")
-        print(revised)
         output_div.innerHTML = revised
     elif analysis_mode.value == "frequency":
         cnts_lem = {}
         lemmata_links = {} #there's also lem_links defined above
-        print("-1")
         for i in range(len(h["lemmata"])):
             for j in range(len(h["lemmata"][i])):
                 if h["lemmata"][i][j] not in cnts_lem: 
@@ -643,11 +627,8 @@ def parse_words_expanded(event):
         #cnts = []
         header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
         nu_cnts = []
-        print("0")
         for lem in cnts_lem:
-            print("lemma= ", lem)
             for tok in cnts_lem[lem]:
-                print(tok)
                 nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
                 #else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
                 #cnts.append((str(cnts_lem[lem][tok]), tok, "("+lem+")"))
@@ -656,13 +637,11 @@ def parse_words_expanded(event):
         nu_cnts = sorted(sorted(nu_cnts, key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #might need to sort 4 times!!
         prev = ""
         unanalyzed_block = []
-        print("1")
         for i in range(len(nu_cnts)):
             x = nu_cnts.pop(0)
             if x[1] == "?": unanalyzed_block.append(x)
             else: nu_cnts.append(x)
         nu_cnts.extend(unanalyzed_block)
-        print("2")
         for i in range(len(nu_cnts)):
             nu_cnts[i][0] = str(nu_cnts[i][0])
             new = nu_cnts[i][1]
@@ -670,9 +649,7 @@ def parse_words_expanded(event):
             elif new == prev: 
                 nu_cnts[i][0] = ""
                 nu_cnts[i][1] = ""
-        print("3")
         freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
-        print(freqs_out)
         output_div.innerHTML = freqs_out
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
@@ -719,7 +696,6 @@ def parse_words_expanded(event):
         recall_errors = []
         for i in range(len(h["original"])):
             for j in range(len(h["original"][i])):
-                print(h["original"][i])
                 if h["m_parse_lo"][i][j].endswith("+?"):
                     error = [(h["original"][i][j], i, " ".join(h["original"][i][:j]), h["original"][i][j], " ".join(h["original"][i][j+1:]))]
                     error.append(["", "", " ".join(h["m_parse_lo"][i][:j]), "",                " ".join(h["m_parse_lo"][i][j+1:])])
