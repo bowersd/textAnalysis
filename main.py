@@ -639,7 +639,7 @@ def parse_words_expanded(event):
         unanalyzed_block = []
         for i in range(len(nu_cnts)):
             x = nu_cnts.pop(0)
-            if x[1] == "?": unanalyzed_block.append(x)
+            if x[1] == "'?'": unanalyzed_block.append(x)
             else: nu_cnts.append(x)
         nu_cnts.extend(unanalyzed_block)
         for i in range(len(nu_cnts)):
