@@ -628,10 +628,13 @@ def parse_words_expanded(event):
         output_div.innerHTML = revised
     elif analysis_mode.value == "frequency":
         cnts_lem = {}
+        lemmata_links = {} #there's also lem_links defined above
         print("-1")
         for i in range(len(h["lemmata"])):
             for j in range(len(h["lemmata"][i])):
-                if h["lemmata"][i][j] not in cnts_lem: cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1, "__dict_link__":h["lemma_links"][i][j]}
+                if h["lemmata"][i][j] not in cnts_lem: 
+                    cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1}
+                    lemmata_links[h["lemmata"][i][j]] = h["lemma_links"][i][j]
                 elif h["original"][i][j] not in cnts_lem[h["lemmata"][i][j]]: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] = 1
                 else: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] += 1
         #cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
@@ -645,7 +648,7 @@ def parse_words_expanded(event):
             print("lemma= ", lem)
             for tok in cnts_lem[lem]:
                 print(tok)
-                nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem] if x != "__dict_link__"]), lem, str(cnts_lem[lem][tok]), tok])
+                nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
                 #else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
                 #cnts.append((str(cnts_lem[lem][tok]), tok, "("+lem+")"))
         #freqs_out = "Raw frequencies, aka token frequencies (with dictionary header)\n"+"\n".join(["\t".join(x) for x in sorted(cnts)])+"\n"+"Combined frequencies, aka type or lemmatized frequencies, organized by dictionary header\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
