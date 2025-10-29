@@ -503,6 +503,59 @@ form_values = {
         "western":{"order":"", "url":"",  "file": "./morphophonology_analyze_border_lakes.hfstol"},
         }
 
+def interlinearize(parsed_data):
+    revised = ""
+    for i in range(len(parsed_data["m_parse_lo"])):
+        lines_out = tabulate.tabulate([
+            ["Original Material:"] + parsed_data["original"][i],
+            ["Narrow Analysis:"] + parsed_data["m_parse_lo"][i], 
+            ["Broad Analysis:"] + parsed_data["m_parse_hi"][i], 
+            ["NOD/OPD Entry:"] + parsed_data["lemma_links"][i], 
+            ["Terse Translation:"] + parsed_data["tinies"][i]], tablefmt='html')
+        for lo in lines_out.split('\n'): #a loop isn't really necessary here
+            if "NOD/OPD Entry" in lo: revised += undo_html(lo)+'\n'
+            else: revised += lo+'\n'
+    return revised
+
+def frequency_count(parsed_data):
+    cnts_lem = {}
+    lemmata_links = {} #there's also lem_links defined elsewhere, and "lemma_links" as a dict key
+    for i in range(len(parsed_data["lemmata"])): #do the counting
+        for j in range(len(parsed_data["lemmata"][i])):
+            if parsed_data["lemmata"][i][j] not in cnts_lem: 
+                cnts_lem[parsed_data["lemmata"][i][j]] = {parsed_data["original"][i][j]:1}
+                lemmata_links[parsed_data["lemmata"][i][j]] = parsed_data["lemma_links"][i][j]
+            elif parsed_data["original"][i][j] not in cnts_lem[parsed_data["lemmata"][i][j]]: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] = 1
+            else: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] += 1
+    header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
+    nu_cnts = []
+    for lem in cnts_lem: #make a neatly sorted list
+        for tok in cnts_lem[lem]:
+            nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
+    nu_cnts = sorted(sorted(sorted(sorted(nu_cnts, key = lambda x: x[3]), key = lambda x: x[2], reverse = True), key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #alphabetize tokens, then sort tokens by reverse frequency, then alphabetize lemmata, then sort lemmata by reverse frequency
+    prev = ""
+    unanalyzed_block = []
+    for i in range(len(nu_cnts)): #move unanalyzed words to end
+        x = nu_cnts.pop(0)
+        if x[1] == "'?'": unanalyzed_block.append(x)
+        else: nu_cnts.append(x)
+    nu_cnts.extend(unanalyzed_block)
+    for i in range(len(nu_cnts)): #zap out redundant header information on lines beneath the header, make strings where appropriate, add in lemma links
+        nu_cnts[i][0] = str(nu_cnts[i][0])
+        nu_cnts[i][2] = str(nu_cnts[i][2])
+        new = nu_cnts[i][1]
+        if new != prev: 
+            prev = new
+            nu_cnts[i][1] = lemmata_links[nu_cnts[i][1]]
+        elif new == prev: 
+            nu_cnts[i][0] = ""
+            nu_cnts[i][1] = ""
+    table = tabulate.tabulate(header + nu_cnts, tablefmt='html')
+    revised_table = ""
+    for line in table.split('\n'): revised += undo_html(lo)+'\n'
+    return revised_table
+
+
 ##this is the main function that puts everything together
 def parse_words_expanded(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
@@ -595,64 +648,66 @@ def parse_words_expanded(event):
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
-        revised = ""
-        for i in range(len(h["m_parse_lo"])):
-            #lines_out += tabulate.tabulate([
-            #    ["Original Material:"] + h["original"][i],
-            #    ["Narrow Analysis:"] + h["m_parse_lo"][i], 
-            #    ["Broad Analysis:"] + h["m_parse_hi"][i], 
-            #    ["NOD Entry:"] + h["lemmata"][i],
-            #    ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
-            new_batch = tabulate.tabulate([
-                ["Original Material:"] + h["original"][i],
-                ["Narrow Analysis:"] + h["m_parse_lo"][i], 
-                ["Broad Analysis:"] + h["m_parse_hi"][i], 
-                ["NOD/OPD Entry:"] + h["lemma_links"][i], 
-                ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
-            for nb in new_batch.split('\n'):
-                if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
-                else: revised += nb+'\n'
-        output_div.innerHTML = revised
+        #revised = ""
+        #for i in range(len(h["m_parse_lo"])):
+        #    #lines_out += tabulate.tabulate([
+        #    #    ["Original Material:"] + h["original"][i],
+        #    #    ["Narrow Analysis:"] + h["m_parse_lo"][i], 
+        #    #    ["Broad Analysis:"] + h["m_parse_hi"][i], 
+        #    #    ["NOD Entry:"] + h["lemmata"][i],
+        #    #    ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
+        #    new_batch = tabulate.tabulate([
+        #        ["Original Material:"] + h["original"][i],
+        #        ["Narrow Analysis:"] + h["m_parse_lo"][i], 
+        #        ["Broad Analysis:"] + h["m_parse_hi"][i], 
+        #        ["NOD/OPD Entry:"] + h["lemma_links"][i], 
+        #        ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
+        #    for nb in new_batch.split('\n'):
+        #        if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
+        #        else: revised += nb+'\n'
+        #output_div.innerHTML = revised
+        output_div.innerHTML = interlinearize(h)
     elif analysis_mode.value == "frequency":
-        cnts_lem = {}
-        lemmata_links = {} #there's also lem_links defined above
-        for i in range(len(h["lemmata"])):
-            for j in range(len(h["lemmata"][i])):
-                if h["lemmata"][i][j] not in cnts_lem: 
-                    cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1}
-                    lemmata_links[h["lemmata"][i][j]] = h["lemma_links"][i][j]
-                elif h["original"][i][j] not in cnts_lem[h["lemmata"][i][j]]: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] = 1
-                else: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] += 1
-        #cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
-        #for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
-        #for lem in lemmata: cnts_lem[lem] += 1
-        #cnts = []
-        header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
-        nu_cnts = []
-        for lem in cnts_lem:
-            for tok in cnts_lem[lem]:
-                nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
-                #else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
-                #cnts.append((str(cnts_lem[lem][tok]), tok, "("+lem+")"))
-        #freqs_out = "Raw frequencies, aka token frequencies (with dictionary header)\n"+"\n".join(["\t".join(x) for x in sorted(cnts)])+"\n"+"Combined frequencies, aka type or lemmatized frequencies, organized by dictionary header\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
-        #freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
-        nu_cnts = sorted(sorted(nu_cnts, key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #might need to sort 4 times!!
-        prev = ""
-        unanalyzed_block = []
-        for i in range(len(nu_cnts)):
-            x = nu_cnts.pop(0)
-            if x[1] == "'?'": unanalyzed_block.append(x)
-            else: nu_cnts.append(x)
-        nu_cnts.extend(unanalyzed_block)
-        for i in range(len(nu_cnts)):
-            nu_cnts[i][0] = str(nu_cnts[i][0])
-            new = nu_cnts[i][1]
-            if new != prev: prev = new
-            elif new == prev: 
-                nu_cnts[i][0] = ""
-                nu_cnts[i][1] = ""
-        freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
-        output_div.innerHTML = freqs_out
+        #cnts_lem = {}
+        #lemmata_links = {} #there's also lem_links defined above
+        #for i in range(len(h["lemmata"])):
+        #    for j in range(len(h["lemmata"][i])):
+        #        if h["lemmata"][i][j] not in cnts_lem: 
+        #            cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1}
+        #            lemmata_links[h["lemmata"][i][j]] = h["lemma_links"][i][j]
+        #        elif h["original"][i][j] not in cnts_lem[h["lemmata"][i][j]]: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] = 1
+        #        else: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] += 1
+        ##cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
+        ##for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
+        ##for lem in lemmata: cnts_lem[lem] += 1
+        ##cnts = []
+        #header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
+        #nu_cnts = []
+        #for lem in cnts_lem:
+        #    for tok in cnts_lem[lem]:
+        #        nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
+        #        #else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
+        #        #cnts.append((str(cnts_lem[lem][tok]), tok, "("+lem+")"))
+        ##freqs_out = "Raw frequencies, aka token frequencies (with dictionary header)\n"+"\n".join(["\t".join(x) for x in sorted(cnts)])+"\n"+"Combined frequencies, aka type or lemmatized frequencies, organized by dictionary header\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
+        ##freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
+        #nu_cnts = sorted(sorted(nu_cnts, key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #might need to sort 4 times!!
+        #prev = ""
+        #unanalyzed_block = []
+        #for i in range(len(nu_cnts)):
+        #    x = nu_cnts.pop(0)
+        #    if x[1] == "'?'": unanalyzed_block.append(x)
+        #    else: nu_cnts.append(x)
+        #nu_cnts.extend(unanalyzed_block)
+        #for i in range(len(nu_cnts)):
+        #    nu_cnts[i][0] = str(nu_cnts[i][0])
+        #    new = nu_cnts[i][1]
+        #    if new != prev: prev = new
+        #    elif new == prev: 
+        #        nu_cnts[i][0] = ""
+        #        nu_cnts[i][1] = ""
+        #freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
+        #output_div.innerHTML = freqs_out
+        output_div.innerHTML = frequency_count(h)
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
