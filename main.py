@@ -552,7 +552,7 @@ def frequency_count(parsed_data):
             nu_cnts[i][1] = ""
     table = tabulate.tabulate(header + nu_cnts, tablefmt='html')
     revised_table = ""
-    for line in table.split('\n'): revised_table += undo_html(lo)+'\n'
+    for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
 
 
