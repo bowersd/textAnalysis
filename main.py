@@ -502,6 +502,8 @@ form_values = {
         "no_deletion_relaxed":{"order":"", "url":"https://raw.githubusercontent.com/bowersd/otw/releases/download/v.0.1.0-alpha/unsyncopated_analyzer_relaxed.hfstol",  "file":None},
         "western":{"order":"", "url":"",  "file": "./morphophonology_analyze_border_lakes.hfstol"},
         }
+
+##this is the main function that puts everything together
 def parse_words_expanded(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
     #form_values["rhodes_relaxed"]["order"] = pyscript.document.querySelector("#rhodes_relaxed").value
