@@ -635,7 +635,7 @@ def parse_words_expanded(event):
                 if not analysis_dict(local[i]): his.append("'?'")
         h["m_parse_hi"].append(his) 
         h["lemmata"].append(lemms) 
-        h["lemma_links"].append(lem_links) #use these in freq counts? elsewhere? currently only accessed in interlinearize
+        h["lemma_links"].append(lem_links) 
         #h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)]) 
         h["tinies"].append(wrap_glosses(*retrieve_glosses(*h["lemmata"][-1], **gdict)))
         #tinies = []
