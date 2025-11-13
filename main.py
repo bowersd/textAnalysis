@@ -547,34 +547,24 @@ def lexical_perspective(parsed_data):
     return lemmata
 
 def glossary_format(lemmata_data):
-    header = [["NOD/OPD Entry", "POS", "Count", "Terse Translation"]]
-    nu_cnts = []
+    header = [["NOD/OPD Entry", "POS", "Count", "Terse Translation", "Address"]]
+    nu_gloss = []
     for lem in lemmata_data: #make a neatly sorted list
-        for tok in lemmata_data[lem]["tokens"]:
-            nu_cnts.append([sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]), lem, str(lemmata_data[lem]["tokens"][tok]["cnt"]), tok])
-    nu_cnts = sorted(sorted(sorted(sorted(nu_cnts, key = lambda x: x[3]), key = lambda x: x[2], reverse = True), key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #alphabetize tokens, then sort tokens by reverse frequency, then alphabetize lemmata, then sort lemmata by reverse frequency
+        nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], "; ".join([str(x+1)+","+str(y+1) for x, y in lemmata_data[lem]["addr"]])])
+    nu_gloss = sorted(nu_gloss)
     prev = ""
     unanalyzed_block = []
-    for i in range(len(nu_cnts)): #move unanalyzed words to end
-        x = nu_cnts.pop(0)
+    for i in range(len(nu_gloss)): #move unanalyzed words to end
+        x = nu_gloss.pop(0)
         if x[1] == "'?'": unanalyzed_block.append(x)
-        else: nu_cnts.append(x)
-    nu_cnts.extend(unanalyzed_block)
-    for i in range(len(nu_cnts)): #zap out redundant header information on lines beneath the header, make strings where appropriate, add in lemma links
-        nu_cnts[i][0] = str(nu_cnts[i][0])
-        nu_cnts[i][2] = str(nu_cnts[i][2])
-        new = nu_cnts[i][1]
-        if new != prev: 
-            prev = new
-            nu_cnts[i][1] = lemmata_data[nu_cnts[i][1]]["link"]
-        elif new == prev: 
-            nu_cnts[i][0] = ""
-            nu_cnts[i][1] = ""
-    table = tabulate.tabulate(header + nu_cnts, tablefmt='html')
+        else: nu_gloss.append(x)
+    nu_gloss.extend(unanalyzed_block)
+    for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?)
+        nu_gloss[i][0] = lemmata_data[nu_gloss[i][0]]["link"]
+    table = tabulate.tabulate(header + nu_gloss, tablefmt='html')
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
-
 
 def frequency_format_nu(lemmata_data):
     header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
@@ -759,47 +749,7 @@ def parse_words_expanded(event):
         #output_div.innerHTML = revised
         output_div.innerHTML = interlinearize(h)
     elif analysis_mode.value == "frequency":
-        #cnts_lem = {}
-        #lemmata_links = {} #there's also lem_links defined above
-        #for i in range(len(h["lemmata"])):
-        #    for j in range(len(h["lemmata"][i])):
-        #        if h["lemmata"][i][j] not in cnts_lem: 
-        #            cnts_lem[h["lemmata"][i][j]] = {h["original"][i][j]:1}
-        #            lemmata_links[h["lemmata"][i][j]] = h["lemma_links"][i][j]
-        #        elif h["original"][i][j] not in cnts_lem[h["lemmata"][i][j]]: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] = 1
-        #        else: cnts_lem[h["lemmata"][i][j]][h["original"][i][j]] += 1
-        ##cnts = {w:0 for w in sep_punct(freeNish.lower(), True).split()}
-        ##for w in sep_punct(freeNish.lower(), True).split(): cnts[w] += 1
-        ##for lem in lemmata: cnts_lem[lem] += 1
-        ##cnts = []
-        #header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
-        #nu_cnts = []
-        #for lem in cnts_lem:
-        #    for tok in cnts_lem[lem]:
-        #        nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
-        #        #else: nu_cnts.append(("", "", tok, str(cnts_lem[lem][tok])))
-        #        #cnts.append((str(cnts_lem[lem][tok]), tok, "("+lem+")"))
-        ##freqs_out = "Raw frequencies, aka token frequencies (with dictionary header)\n"+"\n".join(["\t".join(x) for x in sorted(cnts)])+"\n"+"Combined frequencies, aka type or lemmatized frequencies, organized by dictionary header\n"+"\n".join(sorted(["{0}\t{1}".format(sum([cnts_lem[key][x] for x in cnts_lem[key]]), key) for key in cnts_lem]))
-        ##freqs_out = "Raw (token) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts[key], key) for key in cnts])+"\n"+"Combined (type/lemmatized) frequencies\n"+"\n".join(["{0}\t{1}".format(cnts_lem[key], key) for key in cnts_lem])
-        #nu_cnts = sorted(sorted(nu_cnts, key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #might need to sort 4 times!!
-        #prev = ""
-        #unanalyzed_block = []
-        #for i in range(len(nu_cnts)):
-        #    x = nu_cnts.pop(0)
-        #    if x[1] == "'?'": unanalyzed_block.append(x)
-        #    else: nu_cnts.append(x)
-        #nu_cnts.extend(unanalyzed_block)
-        #for i in range(len(nu_cnts)):
-        #    nu_cnts[i][0] = str(nu_cnts[i][0])
-        #    new = nu_cnts[i][1]
-        #    if new != prev: prev = new
-        #    elif new == prev: 
-        #        nu_cnts[i][0] = ""
-        #        nu_cnts[i][1] = ""
-        #freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
-        #output_div.innerHTML = freqs_out
-        #freqd = frequency_count(h)
-        output_div.innerHTML = frequency_format_nu(lexical_perspective(h)) #can't just apply to frequency_count() value, bc f_c() returns [{lemmas:{toks:cnt}}, lemmas:links}]. {lemmas:links} is formed during the iteration through the sentences. To make it cleanly (further upstream), you need (analyzer, lemma, pos) to make {lemmas:links}
+        output_div.innerHTML = frequency_format_nu(lexical_perspective(h)) 
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
