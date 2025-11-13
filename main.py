@@ -556,7 +556,7 @@ def frequency_count(parsed_data):
     return revised_table
 
 
-##this is the main function that puts everything together
+##this is the main function. it puts everything together
 def parse_words_expanded(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
     #form_values["rhodes_relaxed"]["order"] = pyscript.document.querySelector("#rhodes_relaxed").value
