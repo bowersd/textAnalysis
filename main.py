@@ -552,9 +552,8 @@ def glossary_format(lemmata_data):
     for lem in lemmata_data: #make a neatly sorted list
         nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], "; ".join([str(x+1)+","+str(y+1) for x, y in lemmata_data[lem]["tokens"][z]["addr"] for z in lemmata_data[lem]["tokens"]])])
     nu_gloss = sorted(nu_gloss)
-    prev = ""
     unanalyzed_block = []
-    for i in range(len(nu_gloss)): #move unanalyzed words to end
+    for i in range(len(nu_gloss)): #move unanalyzed words to end, perhaps we should zap the '?' row header?
         x = nu_gloss.pop(0)
         if x[0] == "'?'": unanalyzed_block.append(x)
         else: nu_gloss.append(x)
