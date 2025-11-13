@@ -556,7 +556,7 @@ def glossary_format(lemmata_data):
     unanalyzed_block = []
     for i in range(len(nu_gloss)): #move unanalyzed words to end
         x = nu_gloss.pop(0)
-        if x[1] == "'?'": unanalyzed_block.append(x)
+        if x[0] == "'?'": unanalyzed_block.append(x)
         else: nu_gloss.append(x)
     nu_gloss.extend(unanalyzed_block)
     for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?)
@@ -706,6 +706,7 @@ def parse_words_expanded(event):
         #        else: revised += nb+'\n'
         #output_div.innerHTML = revised
         output_div.innerHTML = interlinearize(h)
+    elif analysis_mode.value == "glossary": output_div.innerHTML = glossary_format(lexical_perspective(h)) 
     elif analysis_mode.value == "frequency": output_div.innerHTML = frequency_format(lexical_perspective(h)) 
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
@@ -745,8 +746,6 @@ def parse_words_expanded(event):
             sectioned.append(["Found these verbs of category {}:".format(c), ""])
             for v in sorted(verbdict[c], key = lambda x: x[1]): sectioned.append([v[0], v[1]])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")
-    elif analysis_mode.value == "glossary":
-        pass
     elif analysis_mode.value in ["triage", "reversed_triage"]:
         recall_errors = []
         for i in range(len(h["original"])):
