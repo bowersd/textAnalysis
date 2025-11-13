@@ -566,7 +566,7 @@ def frequency_format_nu(lemmata_data):
         new = nu_cnts[i][1]
         if new != prev: 
             prev = new
-            nu_cnts[i][1] = lemmata_links[nu_cnts[i][1]]
+            nu_cnts[i][1] = lemmata_data[nu_cnts[i][1]]["link"]
         elif new == prev: 
             nu_cnts[i][0] = ""
             nu_cnts[i][1] = ""
@@ -768,8 +768,8 @@ def parse_words_expanded(event):
         #        nu_cnts[i][1] = ""
         #freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
         #output_div.innerHTML = freqs_out
-        freqd = frequency_count(h)
-        output_div.innerHTML = frequency_format(freqd[0], freqd[1]) #can't just apply to frequency_count() value, bc f_c() returns [{lemmas:{toks:cnt}}, lemmas:links}]. {lemmas:links} is formed during the iteration through the sentences. To make it cleanly (further upstream), you need (analyzer, lemma, pos) to make {lemmas:links}
+        #freqd = frequency_count(h)
+        output_div.innerHTML = frequency_format_nu(lexical_perspective(h)) #can't just apply to frequency_count() value, bc f_c() returns [{lemmas:{toks:cnt}}, lemmas:links}]. {lemmas:links} is formed during the iteration through the sentences. To make it cleanly (further upstream), you need (analyzer, lemma, pos) to make {lemmas:links}
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
