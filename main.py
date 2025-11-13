@@ -577,12 +577,12 @@ def crib_format(lemmata_data):
     unanalyzed_block = []
     for i in range(len(nu_crib)): #move unanalyzed words to end
         x = nu_crib.pop(0)
-        if x[0] == "'?'": unanalyzed_block.append(x)
+        if x[1] == "'?'": unanalyzed_block.append(x)
         else: nu_crib.append(x)
-    nu_gloss.extend(unanalyzed_block)
+    nu_crib.extend(unanalyzed_block)
     for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?)
-        nu_gloss[i][0] = lemmata_data[nu_gloss[i][0]]["link"]
-    table = tabulate.tabulate(header + nu_gloss, tablefmt='html')
+        nu_crib[i][1] = lemmata_data[nu_crib[i][0]]["link"]
+    table = tabulate.tabulate(header + nu_crib, tablefmt='html')
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
