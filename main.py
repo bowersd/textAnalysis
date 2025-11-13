@@ -517,6 +517,35 @@ def interlinearize(parsed_data):
             else: revised += lo+'\n'
     return revised
 
+def lexical_perspective(parsed_data):
+    lemmata = {}
+    for i in range(len(parsed_data["lemmata"])): 
+        for j in range(len(parsed_data["lemmata"][i])):
+            if parsed_data["lemmata"][i][j] not in lemmata: 
+                lemmata[parsed_data["lemmata"][i][j]] = {
+                    "tokens":{
+                        parsed_data["original"][i][j]: {
+                            "cnt":1, 
+                            "m_parse_hi":parsed_data["m_parse_hi"][i][j], 
+                            "m_parse_lo":parsed_data["m_parse_lo"][i][j],
+                            "addr":[(i,j)]
+                            }},
+                    "link":parsed_data["lemma_links"][i][j],
+                    "pos":parsed_data["m_parse_hi"][i][j].split()[0],
+                    "tiny":parsed_data["tinies"][i][j]
+                    }
+            elif parsed_data["original"][i][j] not in lemmata[parsed_data["lemmata"][i][j]]["tokens"]: 
+                lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]] = {
+                            "cnt":1, 
+                            "m_parse_hi":parsed_data["m_parse_hi"][i][j], 
+                            "m_parse_lo":parsed_data["m_parse_lo"][i][j]
+                            "addr":[(i, j)]
+                            }
+            else: 
+                lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["cnt"] += 1
+                lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["addr"].append((i, j))
+    return lemmata
+
 def frequency_count(parsed_data):
     cnts_lem = {}
     lemmata_links = {} #there's also lem_links defined elsewhere, and "lemma_links" as a dict key
@@ -527,7 +556,7 @@ def frequency_count(parsed_data):
                 lemmata_links[parsed_data["lemmata"][i][j]] = parsed_data["lemma_links"][i][j]
             elif parsed_data["original"][i][j] not in cnts_lem[parsed_data["lemmata"][i][j]]: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] = 1
             else: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] += 1
-    return [cnts_lem, lemmata_links]
+    return [cnts_lem, lemmata_links] #this dual return is unhappy. lemmata_links is formed during the iteration through the sentences. To make it cleanly (further upstream), you need (analyzer, lemma, pos)
 
 def frequency_format(cnts, links):
     header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
