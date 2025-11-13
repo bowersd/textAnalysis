@@ -538,13 +538,43 @@ def lexical_perspective(parsed_data):
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]] = {
                             "cnt":1, 
                             "m_parse_hi":parsed_data["m_parse_hi"][i][j], 
-                            "m_parse_lo":parsed_data["m_parse_lo"][i][j]
+                            "m_parse_lo":parsed_data["m_parse_lo"][i][j],
                             "addr":[(i, j)]
                             }
             else: 
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["cnt"] += 1
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["addr"].append((i, j))
     return lemmata
+
+def glossary_format(lemmata_data):
+    header = [["NOD/OPD Entry", "POS", "Count", "Terse Translation"]]
+    nu_cnts = []
+    for lem in lemmata_data: #make a neatly sorted list
+        for tok in lemmata_data[lem]["tokens"]:
+            nu_cnts.append([sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]), lem, str(lemmata_data[lem]["tokens"][tok]["cnt"]), tok])
+    nu_cnts = sorted(sorted(sorted(sorted(nu_cnts, key = lambda x: x[3]), key = lambda x: x[2], reverse = True), key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #alphabetize tokens, then sort tokens by reverse frequency, then alphabetize lemmata, then sort lemmata by reverse frequency
+    prev = ""
+    unanalyzed_block = []
+    for i in range(len(nu_cnts)): #move unanalyzed words to end
+        x = nu_cnts.pop(0)
+        if x[1] == "'?'": unanalyzed_block.append(x)
+        else: nu_cnts.append(x)
+    nu_cnts.extend(unanalyzed_block)
+    for i in range(len(nu_cnts)): #zap out redundant header information on lines beneath the header, make strings where appropriate, add in lemma links
+        nu_cnts[i][0] = str(nu_cnts[i][0])
+        nu_cnts[i][2] = str(nu_cnts[i][2])
+        new = nu_cnts[i][1]
+        if new != prev: 
+            prev = new
+            nu_cnts[i][1] = lemmata_data[nu_cnts[i][1]]["link"]
+        elif new == prev: 
+            nu_cnts[i][0] = ""
+            nu_cnts[i][1] = ""
+    table = tabulate.tabulate(header + nu_cnts, tablefmt='html')
+    revised_table = ""
+    for line in table.split('\n'): revised_table += undo_html(line)+'\n'
+    return revised_table
+
 
 def frequency_format_nu(lemmata_data):
     header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
