@@ -527,6 +527,9 @@ def frequency_count(parsed_data):
                 lemmata_links[parsed_data["lemmata"][i][j]] = parsed_data["lemma_links"][i][j]
             elif parsed_data["original"][i][j] not in cnts_lem[parsed_data["lemmata"][i][j]]: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] = 1
             else: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] += 1
+    return [cnts_lem, lemmata_links]
+
+def frequency_format(cnts, links):
     header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
     nu_cnts = []
     for lem in cnts_lem: #make a neatly sorted list
@@ -707,7 +710,8 @@ def parse_words_expanded(event):
         #        nu_cnts[i][1] = ""
         #freqs_out = tabulate.tabulate(header + nu_cnts, tablefmt='html')
         #output_div.innerHTML = freqs_out
-        output_div.innerHTML = frequency_count(h)
+        freqd = frequency_count(h)
+        output_div.innerHTML = frequency_format(freqd[0], freqd[1]) 
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
