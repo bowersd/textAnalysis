@@ -547,7 +547,7 @@ def lexical_perspective(parsed_data):
     return lemmata
 
 def glossary_format(lemmata_data):
-    header = [["NOD/OPD Entry", "POS", "Count", "Terse Translation", "Address"]]
+    header = [["NOD/OPD Entry", "POS",  "Terse Translation", "Address"]] #should add in counts after POS
     nu_gloss = []
     for lem in lemmata_data: #make a neatly sorted list
         addresses = ""
@@ -574,7 +574,7 @@ def crib_format(lemmata_data):
     header = [["Word", "NOD/OPD Entry", "Terse Translation", "Broad Analysis", "Count", "Address"]]
     nu_crib = []
     for lem in lemmata_data: #make a neatly sorted list
-        for tok in lemmata_data[lem]["tokens"]: nu_crib.append([tok, lem, lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["count"], "; ".join([str(x+1)+","+str(y+1) for x, y in lemmata_data[lem]["tokens"][tok]["addr"]])])
+        for tok in lemmata_data[lem]["tokens"]: nu_crib.append([tok, lem, lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["cnt"], "; ".join([str(x+1)+","+str(y+1) for x, y in lemmata_data[lem]["tokens"][tok]["addr"]])])
     nu_crib = sorted(nu_crib)
     for i in range(len(nu_crib)): # add in lemma links (perhaps just build the rows directly with them?)
         nu_crib[i][1] = lemmata_data[nu_crib[i][0]]["link"]
