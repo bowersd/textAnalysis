@@ -748,8 +748,7 @@ def parse_words_expanded(event):
         #        else: revised += nb+'\n'
         #output_div.innerHTML = revised
         output_div.innerHTML = interlinearize(h)
-    elif analysis_mode.value == "frequency":
-        output_div.innerHTML = frequency_format_nu(lexical_perspective(h)) 
+    elif analysis_mode.value == "frequency": output_div.innerHTML = frequency_format_nu(lexical_perspective(h)) 
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
