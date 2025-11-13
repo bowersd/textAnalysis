@@ -573,14 +573,7 @@ def crib_format(lemmata_data):
         for tok in lemmata_data[lem]["tokens"]:
         nu_crib.append([tok, lem, lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["count"], "; ".join([str(x+1)+","+str(y+1) for x, y in lemmata_data[lem]["tokens"][tok]["addr"]])])
     nu_crib = sorted(nu_crib)
-    prev = ""
-    unanalyzed_block = []
-    for i in range(len(nu_crib)): #move unanalyzed words to end
-        x = nu_crib.pop(0)
-        if x[1] == "'?'": unanalyzed_block.append(x)
-        else: nu_crib.append(x)
-    nu_crib.extend(unanalyzed_block)
-    for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?)
+    for i in range(len(nu_crib)): # add in lemma links (perhaps just build the rows directly with them?)
         nu_crib[i][1] = lemmata_data[nu_crib[i][0]]["link"]
     table = tabulate.tabulate(header + nu_crib, tablefmt='html')
     revised_table = ""
