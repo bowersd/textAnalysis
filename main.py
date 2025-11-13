@@ -550,7 +550,7 @@ def glossary_format(lemmata_data):
     header = [["NOD/OPD Entry", "POS", "Count", "Terse Translation", "Address"]]
     nu_gloss = []
     for lem in lemmata_data: #make a neatly sorted list
-        nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], "; ".join([str(x+1)+","+str(y+1) for x, y in lemmata_data[lem]["addr"]])])
+        nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], "; ".join([str(x+1)+","+str(y+1) for x, y in lemmata_data[lem]["tokens"][z]["addr"] for z in lemmata_data[lem]["tokens"]])])
     nu_gloss = sorted(nu_gloss)
     prev = ""
     unanalyzed_block = []
@@ -558,6 +558,27 @@ def glossary_format(lemmata_data):
         x = nu_gloss.pop(0)
         if x[0] == "'?'": unanalyzed_block.append(x)
         else: nu_gloss.append(x)
+    nu_gloss.extend(unanalyzed_block)
+    for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?)
+        nu_gloss[i][0] = lemmata_data[nu_gloss[i][0]]["link"]
+    table = tabulate.tabulate(header + nu_gloss, tablefmt='html')
+    revised_table = ""
+    for line in table.split('\n'): revised_table += undo_html(line)+'\n'
+    return revised_table
+
+def crib_format(lemmata_data):
+    header = [["Word", "NOD/OPD Entry", "Terse Translation", "Broad Analysis", "Count", "Address"]]
+    nu_crib = []
+    for lem in lemmata_data: #make a neatly sorted list
+        for tok in lemmata_data[lem]["tokens"]:
+        nu_crib.append([tok, lem, lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["count"], "; ".join([str(x+1)+","+str(y+1) for x, y in lemmata_data[lem]["tokens"][tok]["addr"]])])
+    nu_crib = sorted(nu_crib)
+    prev = ""
+    unanalyzed_block = []
+    for i in range(len(nu_crib)): #move unanalyzed words to end
+        x = nu_crib.pop(0)
+        if x[0] == "'?'": unanalyzed_block.append(x)
+        else: nu_crib.append(x)
     nu_gloss.extend(unanalyzed_block)
     for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?)
         nu_gloss[i][0] = lemmata_data[nu_gloss[i][0]]["link"]
@@ -707,6 +728,7 @@ def parse_words_expanded(event):
         #output_div.innerHTML = revised
         output_div.innerHTML = interlinearize(h)
     elif analysis_mode.value == "glossary": output_div.innerHTML = glossary_format(lexical_perspective(h)) 
+    elif analysis_mode.value == "crib": output_div.innerHTML = crib_format(lexical_perspective(h)) 
     elif analysis_mode.value == "frequency": output_div.innerHTML = frequency_format(lexical_perspective(h)) 
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
