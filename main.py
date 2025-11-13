@@ -546,24 +546,12 @@ def lexical_perspective(parsed_data):
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["addr"].append((i, j))
     return lemmata
 
-def frequency_count(parsed_data):
-    cnts_lem = {}
-    lemmata_links = {} #there's also lem_links defined elsewhere, and "lemma_links" as a dict key
-    for i in range(len(parsed_data["lemmata"])): #do the counting
-        for j in range(len(parsed_data["lemmata"][i])):
-            if parsed_data["lemmata"][i][j] not in cnts_lem: 
-                cnts_lem[parsed_data["lemmata"][i][j]] = {parsed_data["original"][i][j]:1}
-                lemmata_links[parsed_data["lemmata"][i][j]] = parsed_data["lemma_links"][i][j]
-            elif parsed_data["original"][i][j] not in cnts_lem[parsed_data["lemmata"][i][j]]: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] = 1
-            else: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] += 1
-    return [cnts_lem, lemmata_links] #this dual return is unhappy. lemmata_links is formed during the iteration through the sentences. To make it cleanly (further upstream), you need (analyzer, lemma, pos)
-
-def frequency_format(cnts, links):
+def frequency_format_nu(lemmata_data):
     header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
     nu_cnts = []
-    for lem in cnts_lem: #make a neatly sorted list
-        for tok in cnts_lem[lem]:
-            nu_cnts.append([sum([cnts_lem[lem][x] for x in cnts_lem[lem]]), lem, str(cnts_lem[lem][tok]), tok])
+    for lem in lemmata_data: #make a neatly sorted list
+        for tok in lemmata_data[lem]["tokens"]:
+            nu_cnts.append([sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]), lem, str(lemmata_data[lem]["tokens"][tok]["cnt"]), tok])
     nu_cnts = sorted(sorted(sorted(sorted(nu_cnts, key = lambda x: x[3]), key = lambda x: x[2], reverse = True), key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #alphabetize tokens, then sort tokens by reverse frequency, then alphabetize lemmata, then sort lemmata by reverse frequency
     prev = ""
     unanalyzed_block = []
@@ -579,6 +567,47 @@ def frequency_format(cnts, links):
         if new != prev: 
             prev = new
             nu_cnts[i][1] = lemmata_links[nu_cnts[i][1]]
+        elif new == prev: 
+            nu_cnts[i][0] = ""
+            nu_cnts[i][1] = ""
+    table = tabulate.tabulate(header + nu_cnts, tablefmt='html')
+    revised_table = ""
+    for line in table.split('\n'): revised_table += undo_html(line)+'\n'
+    return revised_table
+
+def frequency_count(parsed_data):
+    cnts_lem = {}
+    lemmata_links = {} #there's also lem_links defined elsewhere, and "lemma_links" as a dict key
+    for i in range(len(parsed_data["lemmata"])): #do the counting
+        for j in range(len(parsed_data["lemmata"][i])):
+            if parsed_data["lemmata"][i][j] not in cnts_lem: 
+                cnts_lem[parsed_data["lemmata"][i][j]] = {parsed_data["original"][i][j]:1}
+                lemmata_links[parsed_data["lemmata"][i][j]] = parsed_data["lemma_links"][i][j]
+            elif parsed_data["original"][i][j] not in cnts_lem[parsed_data["lemmata"][i][j]]: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] = 1
+            else: cnts_lem[parsed_data["lemmata"][i][j]][parsed_data["original"][i][j]] += 1
+    return [cnts_lem, lemmata_links] #this dual return is unhappy. lemmata_links is formed during the iteration through the sentences. To make it cleanly (further upstream), you need (analyzer, lemma, pos)
+
+def frequency_format(cnts, links):
+    header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
+    nu_cnts = []
+    for lem in cnts: #make a neatly sorted list
+        for tok in cnts[lem]:
+            nu_cnts.append([sum([cnts[lem][x] for x in cnts[lem]]), lem, str(cnts[lem][tok]), tok])
+    nu_cnts = sorted(sorted(sorted(sorted(nu_cnts, key = lambda x: x[3]), key = lambda x: x[2], reverse = True), key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #alphabetize tokens, then sort tokens by reverse frequency, then alphabetize lemmata, then sort lemmata by reverse frequency
+    prev = ""
+    unanalyzed_block = []
+    for i in range(len(nu_cnts)): #move unanalyzed words to end
+        x = nu_cnts.pop(0)
+        if x[1] == "'?'": unanalyzed_block.append(x)
+        else: nu_cnts.append(x)
+    nu_cnts.extend(unanalyzed_block)
+    for i in range(len(nu_cnts)): #zap out redundant header information on lines beneath the header, make strings where appropriate, add in lemma links
+        nu_cnts[i][0] = str(nu_cnts[i][0])
+        nu_cnts[i][2] = str(nu_cnts[i][2])
+        new = nu_cnts[i][1]
+        if new != prev: 
+            prev = new
+            nu_cnts[i][1] = links[nu_cnts[i][1]]
         elif new == prev: 
             nu_cnts[i][0] = ""
             nu_cnts[i][1] = ""
