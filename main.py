@@ -660,6 +660,7 @@ def unanalyzed_blocks(lexical_perspective, sentential_perspective, context_size)
 def unanalyzed_format(size, addresses, *windows):
     header = [[""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
     rows = []
+    print(addresses)
     for i in range(len(addresses)):
         #gosh it would be nice to print the whole sentence out, with the free translation under it
         rows.append(["Sentence: {0}, Word: {1}".format(str(addresses[i][0]+1), str(addresses[i][1]+1))]+["" for i in range((size*2)+1)])
@@ -672,6 +673,7 @@ def unanalyzed_format(size, addresses, *windows):
             block[j] = block[j].extend(["" for k in range((size*2+1)-span_len)])
         rows.extend(block)
     print("until this far I have come")
+    print(rows)
     for r in header + rows: print(len(r))
     table = tabulate.tabulate(header + rows, tablefmt='html')
     revised_table = ""
