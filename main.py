@@ -547,15 +547,16 @@ def lexical_perspective(parsed_data):
     return lemmata
 
 def glossary_format(lemmata_data):
-    header = [["NOD/OPD Entry", "POS",  "Terse Translation", "Address"]] #should add in counts after POS
+    header = [["NOD/OPD Entry", "POS",  "Terse Translation", "Count", "Address"]] #should add in counts after POS
     nu_gloss = []
     for lem in lemmata_data: #make a neatly sorted list
         addresses = ""
+        lem_cnt = 0 
         for tok in lemmata_data[lem]["tokens"]:
+            lem_cnt += lemmata_data[lem]["tokens"][tok]["cnt"]
             for a in lemmata_data[lem]["tokens"][tok]["addr"]:
-                addresses += str(a[0]+1) + "." + str(a[1]+1)
-            addresses += "; "
-        nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], addresses])
+                addresses += str(a[0]+1) + "." + str(a[1]+1) + " "
+        nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], str(lem_cnt), addresses])
     nu_gloss = sorted(nu_gloss)
     unanalyzed_block = []
     for i in range(len(nu_gloss)): #move unanalyzed words to end, perhaps we should zap the '?' row header?
