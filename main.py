@@ -571,9 +571,8 @@ def crib_format(lemmata_data):
     for lem in lemmata_data: #make a neatly sorted list
         for tok in lemmata_data[lem]["tokens"]: 
             addresses = " ".join([".".join([c[0]+1, c[1]+1]) for c in lemmata_data[lem]["tokens"][tok]["addr"]])
-            nu_crib.append([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["cnt"], addreses])
-    nu_crib = sorted(nu_crib)
-    table = tabulate.tabulate(header + nu_crib, tablefmt='html')
+            nu_crib.append([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["cnt"], addresses])
+    table = tabulate.tabulate(header + sorted(nu_crib), tablefmt='html')
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
