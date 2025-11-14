@@ -578,7 +578,7 @@ def crib_format(lemmata_data):
     return revised_table
 
 def frequency_format(lemmata_data):
-    header = [["Count", "NOD/OPD Entry", "Count", "Actual"]]
+    header = [["Entry Count", "NOD/OPD Entry", "Word Count", "Actual Word"]]
     nu_cnts = []
     for lem in lemmata_data: #make a neatly sorted list
         for tok in lemmata_data[lem]["tokens"]:
