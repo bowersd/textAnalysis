@@ -517,6 +517,27 @@ def interlinearize(parsed_data):
             else: revised += lo+'\n'
     return revised
 
+def interlinearize_blocks(parsed_data): #use kwargs
+    ordered = []
+    for i in range(len(parsed_data["m_parse_lo"])):
+        ordered.append([
+            ["Original Material:"] + parsed_data["original"][i],
+            ["Narrow Analysis:"] + parsed_data["m_parse_lo"][i], 
+            ["Broad Analysis:"] + parsed_data["m_parse_hi"][i], 
+            ["NOD/OPD Entry:"] + parsed_data["lemma_links"][i], 
+            ["Terse Translation:"] + parsed_data["tinies"][i]])
+    return ordered
+
+def interlinearize_format(*blocks):
+    revised = ""
+    for b in blocks:
+        lines_out = tabulate.tabulate(b, tablefmt='html')
+        for lo in lines_out.split('\n'): #a loop isn't really necessary here
+            if "NOD/OPD Entry" in lo: revised += undo_html(lo)+'\n'
+            else: revised += lo+'\n'
+    return revised
+
+
 def lexical_perspective(parsed_data):
     lemmata = {}
     for i in range(len(parsed_data["lemmata"])): 
@@ -615,10 +636,11 @@ def take_windows(sentence_data, size, *addresses):
     return windows
 
 def format_unanalyzed(size, addresses, *windows):
-    #gosh it would be nice to print the whole sentence out, with the free translation under it
     header = [[""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
+    rows = []
     for i in range(len(addresses)):
-        pass
+        #gosh it would be nice to print the whole sentence out, with the free translation under it
+        rows.append(["Sentence: {0}, Word: {1}".format(str(addresses[i][0]+1), str(addresses[i][1]+1)])+["" for i in range((size*2)+1)])
 
 
 ##this is the main function. it puts everything together
