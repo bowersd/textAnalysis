@@ -672,6 +672,7 @@ def unanalyzed_format(size, addresses, *windows):
             block[j] = block[j].extend(["" for k in range((size*2+1)-span_len)])
         rows.extend(block)
     print("until this far I have come")
+    for r in header + rows: print(len(r))
     table = tabulate.tabulate(header + rows, tablefmt='html')
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
