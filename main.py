@@ -519,8 +519,9 @@ def interlinearize(parsed_data):
 
 def interlinearize_blocks(parsed_data): #use kwargs
     ordered = []
+    print(parsed_data)
     for i in range(len(parsed_data["m_parse_lo"])):
-        ordered.append([
+        ordered.extend([
             ["Original Material:"] + parsed_data["original"][i],
             ["Narrow Analysis:"] + parsed_data["m_parse_lo"][i], 
             ["Broad Analysis:"] + parsed_data["m_parse_hi"][i], 
