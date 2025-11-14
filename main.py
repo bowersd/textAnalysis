@@ -632,7 +632,7 @@ def take_windows(sentence_data, size, *addresses):
     windows = []
     for a in addresses:
         w = {}
-        for sd in sentence_data: w[sd] = sentence_data[sd][a[0]][a[1]-size:a[1]+size+1]
+        for sd in sentence_data: w[sd] = [sentence_data[sd][a[0]][a[1]-size:a[1]+size+1]]
         windows.append(w)
     return windows
 
