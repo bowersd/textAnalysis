@@ -571,7 +571,7 @@ def crib_format(lemmata_data):
     for lem in lemmata_data: 
         for tok in lemmata_data[lem]["tokens"]: 
             addresses = " ".join([".".join([c[0]+1, c[1]+1]) for c in lemmata_data[lem]["tokens"][tok]["addr"]])
-            nu_crib.append([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["cnt"], addresses])
+            #nu_crib.append([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["cnt"], addresses])
     table = tabulate.tabulate(header + sorted(nu_crib), tablefmt='html') #with lemma links instead of lemmas, URLs could be a tie-breaker in sorting instead of lemmas. Such a tie should not happen
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
