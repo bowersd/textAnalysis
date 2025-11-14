@@ -594,6 +594,9 @@ def crib_format(lemmata_data):
         for tok in lemmata_data[lem]["tokens"]: 
             addresses = " ".join([".".join([str(c[0]+1), str(c[1]+1)]) for c in lemmata_data[lem]["tokens"][tok]["addr"]])
             #nu_crib.append([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["cnt"], addresses])
+            print(tok)
+            print(lem)
+            print(addresses)
             filler = []
             filler.append(tok)
             filler.append(lemmata_data[lem]["link"])
@@ -668,6 +671,7 @@ def unanalyzed_format(size, addresses, *windows):
         for j in range(len(block)):
             block[j] = block[j].extend(["" for k in range((size*2+1)-span_len)])
         rows.extend(block)
+    print("until this far I have come")
     table = tabulate.tabulate(header + rows, tablefmt='html')
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
