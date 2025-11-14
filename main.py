@@ -621,7 +621,7 @@ def frequency_format(lemmata_data):
             nu_cnts[i][1] = lemmata_data[nu_cnts[i][1]]["link"]
         elif new == prev: 
             nu_cnts[i][0] = ""
-            nu_cnts[i][1] = ""
+nu_cnts[i][1] = ""
     table = tabulate.tabulate(header + nu_cnts, tablefmt='html')
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
@@ -767,7 +767,17 @@ def parse_words_expanded(event):
         #output_div.innerHTML = revised
         output_div.innerHTML = interlinearize(h)
     elif analysis_mode.value == "glossary": output_div.innerHTML = glossary_format(lexical_perspective(h)) 
-    elif analysis_mode.value == "crib": output_div.innerHTML = crib_format(lexical_perspective(h)) 
+    elif analysis_mode.value == "crib": 
+        lp = lexical_perspective(h)
+        unanalyzed_context_table = ""
+        if "'?'" in lp:
+            context_size = 2
+            unanalyzed_token_addresses = []
+            for t in sorted(lp["'?'"]["tokens"]):
+                unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
+            context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
+            unanalyzed_context_table = format_unanalyzed(context_size, unanalyzed_token_addresses, *context_windows)
+        output_div.innerHTML = crib_format(lp)+unanalyzed_context_table
     elif analysis_mode.value == "frequency": output_div.innerHTML = frequency_format(lexical_perspective(h)) 
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
