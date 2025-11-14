@@ -611,8 +611,15 @@ def take_windows(sentence_data, size, *addresses):
     for a in addresses:
         w = {}
         for sd in sentence_data: w[sd] = sentence_data[sd][a[0]][a[1]-size:a[1]+size+1]
-        windows.append(w)
+        windows.append(w))
     return windows
+
+def format_unanalyzed(size, addresses, *windows):
+    #gosh it would be nice to print the whole sentence out, with the free translation under it
+    header = [[""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
+    for i in range(len(addresses)):
+        pass
+
 
 ##this is the main function. it puts everything together
 def parse_words_expanded(event):
