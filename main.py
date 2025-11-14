@@ -621,7 +621,7 @@ def frequency_format(lemmata_data):
             nu_cnts[i][1] = lemmata_data[nu_cnts[i][1]]["link"]
         elif new == prev: 
             nu_cnts[i][0] = ""
-nu_cnts[i][1] = ""
+            nu_cnts[i][1] = ""
     table = tabulate.tabulate(header + nu_cnts, tablefmt='html')
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
