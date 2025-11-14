@@ -640,7 +640,7 @@ def format_unanalyzed(size, addresses, *windows):
     rows = []
     for i in range(len(addresses)):
         #gosh it would be nice to print the whole sentence out, with the free translation under it
-        rows.append(["Sentence: {0}, Word: {1}".format(str(addresses[i][0]+1), str(addresses[i][1]+1)])+["" for i in range((size*2)+1)])
+        rows.append(["Sentence: {0}, Word: {1}".format(str(addresses[i][0]+1), str(addresses[i][1]+1))]+["" for i in range((size*2)+1)])
         block = interlinearize_blocks(windows[i])
         if addresses[i][1] < size: #need to pad left
             for j in range(len(tmp)):
