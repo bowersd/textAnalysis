@@ -547,23 +547,17 @@ def lexical_perspective(parsed_data):
     return lemmata
 
 def glossary_format(lemmata_data):
-    header = [["NOD/OPD Entry", "POS",  "Terse Translation", "Count", "Address"]] #should add in counts after POS
+    header = [["NOD/OPD Entry", "POS",  "Terse Translation", "Count", "Addresses"]]
     nu_gloss = []
     for lem in lemmata_data: #make a neatly sorted list
-        addresses = ""
-        lem_cnt = 0 
-        for tok in lemmata_data[lem]["tokens"]:
-            lem_cnt += lemmata_data[lem]["tokens"][tok]["cnt"]
-            for a in lemmata_data[lem]["tokens"][tok]["addr"]:
-                addresses += str(a[0]+1) + "." + str(a[1]+1) + " "
-        nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], str(lem_cnt), addresses])
+        if lem != '?':
+            lem_cnt = 0 #sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]) #was going to use an accumulator and += in the for loop, but then I wouldn't have this value available for the unanalyzed forms #-> changed my mind, the unanalyzed forms should be handled differently anyway
+            addresses = []
+            for tok in lemmata_data[lem]["tokens"]:
+                lem_cnt += lemmata_data[lem]["tokens"][tok]["cnt"]
+                for a in lemmata_data[lem]["tokens"][tok]["addr"]: addresses.append(".".join([a[0]+1, a[1]+1]))
+            nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], str(lem_cnt), " ".join(addresses)])
     nu_gloss = sorted(nu_gloss)
-    unanalyzed_block = []
-    for i in range(len(nu_gloss)): #move unanalyzed words to end, perhaps we should zap the '?' row header?
-        x = nu_gloss.pop(0)
-        if x[0] == "'?'": unanalyzed_block.append(x)
-        else: nu_gloss.append(x)
-    nu_gloss.extend(unanalyzed_block)
     for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?)
         nu_gloss[i][0] = lemmata_data[nu_gloss[i][0]]["link"]
     table = tabulate.tabulate(header + nu_gloss, tablefmt='html')
