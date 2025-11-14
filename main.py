@@ -558,7 +558,7 @@ def glossary_format(lemmata_data):
                 for a in lemmata_data[lem]["tokens"][tok]["addr"]: addresses.append(".".join([a[0]+1, a[1]+1]))
             nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], str(lem_cnt), " ".join(addresses)])
     nu_gloss = sorted(nu_gloss)
-    for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?)
+    for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?) #no, we don't want spurious URL differences to muck up the alphabetization (we have 2 different sources of URLs!!)
         nu_gloss[i][0] = lemmata_data[nu_gloss[i][0]]["link"]
     table = tabulate.tabulate(header + nu_gloss, tablefmt='html')
     revised_table = ""
@@ -568,11 +568,11 @@ def glossary_format(lemmata_data):
 def crib_format(lemmata_data):
     header = [["Word", "NOD/OPD Entry", "Terse Translation", "Broad Analysis", "Count", "Addresses"]]
     nu_crib = []
-    for lem in lemmata_data: #make a neatly sorted list
+    for lem in lemmata_data: 
         for tok in lemmata_data[lem]["tokens"]: 
             addresses = " ".join([".".join([c[0]+1, c[1]+1]) for c in lemmata_data[lem]["tokens"][tok]["addr"]])
             nu_crib.append([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["cnt"], addresses])
-    table = tabulate.tabulate(header + sorted(nu_crib), tablefmt='html')
+    table = tabulate.tabulate(header + sorted(nu_crib), tablefmt='html') #with lemma links instead of lemmas, URLs could be a tie-breaker in sorting instead of lemmas. Such a tie should not happen
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
