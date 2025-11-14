@@ -654,11 +654,11 @@ def unanalyzed_format(size, addresses, *windows):
         rows.append(["Sentence: {0}, Word: {1}".format(str(addresses[i][0]+1), str(addresses[i][1]+1))]+["" for i in range((size*2)+1)])
         block = interlinearize_blocks(windows[i])
         if addresses[i][1] < size: #need to pad left
-            for j in range(len(tmp)):
-                tmp[j] = [tmp[j][0]]+["" for k in range(size-addresses[i][1])]+tmp[j][1:]
-        span_len = len(tmp[0][1:])
-        for j in range(len(tmp)):
-            tmp[j] = tmp[j].extend(["" for k in range((size*2+1)-span_len)])
+            for j in range(len(block)):
+                block[j] = [block[j][0]]+["" for k in range(size-addresses[i][1])]+block[j][1:]
+        span_len = len(block[0][1:])
+        for j in range(len(block)):
+            block[j] = block[j].extend(["" for k in range((size*2+1)-span_len)])
         rows.extend(block)
     table = tabulate.tabulate(header + rows, tablefmt='html')
     revised_table = ""
