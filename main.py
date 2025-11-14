@@ -649,6 +649,10 @@ def format_unanalyzed(size, addresses, *windows):
         for j in range(len(tmp)):
             tmp[j] = tmp[j].extend(["" for k in range((size*2+1)-span_len)])
         rows.extend(block)
+    table = tabulate.tabulate(header + rows, tablefmt='html')
+    revised_table = ""
+    for line in table.split('\n'): revised_table += undo_html(line)+'\n'
+    return revised_table
 
 
 ##this is the main function. it puts everything together
