@@ -606,6 +606,14 @@ def frequency_format(lemmata_data):
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
 
+def take_windows(sentence_data, size, *addresses):
+    windows = []
+    for a in addresses:
+        w = {}
+        for sd in sentence_data: w[sd] = sentence_data[sd][a[0]][a[1]-size:a[1]+size+1]
+        windows.append(w)
+    return windows
+
 ##this is the main function. it puts everything together
 def parse_words_expanded(event):
     form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
