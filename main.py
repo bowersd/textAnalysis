@@ -635,6 +635,16 @@ def take_windows(sentence_data, size, *addresses):
         windows.append(w)
     return windows
 
+def unanalyzed_blocks(lexical_perspective, sentential_perspective, context_size):
+    unanalyzed_context_table = ""
+    if "'?'" in lp:
+        unanalyzed_token_addresses = []
+        for t in sorted(lp["'?'"]["tokens"]):
+            unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
+        context_windows = take_windows(sentential_perspective, context_size, *unanalyzed_token_addresses)
+        unanalyzed_context_table = format_unanalyzed(context_size, unanalyzed_token_addresses, *context_windows)
+    return unanalyzed_context_table
+
 def format_unanalyzed(size, addresses, *windows):
     header = [[""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
     rows = []
