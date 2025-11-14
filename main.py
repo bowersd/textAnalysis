@@ -566,7 +566,7 @@ def glossary_format(lemmata_data):
     return revised_table
 
 def crib_format(lemmata_data):
-    header = [["Word", "NOD/OPD Entry", "Terse Translation", "Broad Analysis", "Count", "Address"]]
+    header = [["Word", "NOD/OPD Entry", "Terse Translation", "Broad Analysis", "Count", "Addresses"]]
     nu_crib = []
     for lem in lemmata_data: #make a neatly sorted list
         for tok in lemmata_data[lem]["tokens"]: nu_crib.append([tok, lem, lemmata_data[lem]["tiny"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tokens"][tok]["cnt"], "; ".join([str(x+1)+","+str(y+1) for x, y in lemmata_data[lem]["tokens"][tok]["addr"]])])
