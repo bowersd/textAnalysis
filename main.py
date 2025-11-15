@@ -573,7 +573,7 @@ def glossary_format(lemmata_data):
     header = [["NOD/OPD Entry", "POS",  "Terse Translation", "Count", "Addresses"]]
     nu_gloss = []
     for lem in lemmata_data: #make a neatly sorted list
-        if lem != '?':
+        if lem != "'?'":
             lem_cnt = 0 #sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]) #was going to use an accumulator and += in the for loop, but then I wouldn't have this value available for the unanalyzed forms #-> changed my mind, the unanalyzed forms should be handled differently anyway
             addresses = []
             for tok in lemmata_data[lem]["tokens"]:
@@ -665,7 +665,7 @@ def retrieve_addrs(lexical_perspective, *keys):
     return unanalyzed_token_addresses
 
 def unanalyzed_format(size, addresses, *windows):
-    header = [[">>Below are {} unanalyzed words in local context."],
+    header = [[">>Below are {} unanalyzed words in local context.".format(str(len(addresses)))],
             [""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
     rows = []
     print("addresses")
