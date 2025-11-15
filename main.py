@@ -664,14 +664,6 @@ def retrieve_addrs(lexical_perspective, *keys):
             unanalyzed_token_addresses.extend(lexical_perspective["'?'"]["tokens"][t]["addr"])
     return unanalyzed_token_addresses
 
-
-def unanalyzed_blocks(sentential_perspective, context_size, *unanalyzed_token_addresses):
-    unanalyzed_context_table = ""
-    #unanalyzed_token_addresses = retrieve_addrs(lexical_perspective, "'?'")
-    context_windows = take_windows(sentential_perspective, context_size, *unanalyzed_token_addresses)
-    unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
-    return unanalyzed_context_table
-
 def unanalyzed_format(size, addresses, *windows):
     header = [[">>Below are {} unanalyzed words in local context."],
             [""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
@@ -815,7 +807,14 @@ def parse_words_expanded(event):
         #        else: revised += nb+'\n'
         #output_div.innerHTML = revised
         output_div.innerHTML = interlinearize(h)
-    elif analysis_mode.value == "glossary": output_div.innerHTML = glossary_format(lexical_perspective(h)) 
+    elif analysis_mode.value == "glossary": 
+        lp = lexical_perspective(h)
+        unanalyzed_context_table = ""
+        if "'?'" in lp:
+            context_size = 2
+            unanalyzed_addresses = retrieve_addrs(lp, "'?'")
+            unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_addresses, take_windows(h, context_size, *unanalyzed_addresses))
+        output_div.innerHTML = glossary_format(lp)+unanalyzed_context_table
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
