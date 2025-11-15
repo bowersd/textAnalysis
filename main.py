@@ -668,7 +668,7 @@ def unanalyzed_blocks(lexical_perspective, sentential_perspective, context_size)
     return unanalyzed_context_table
 
 def unanalyzed_format(size, addresses, *windows):
-    header = [["{} words had no analysis. To figure them out, context may be useful."],
+    header = [[">>Below are {} unanalyzed words in local context."],
             [""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
     rows = []
     print("addresses")
