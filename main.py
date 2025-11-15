@@ -676,8 +676,10 @@ def unanalyzed_format(size, addresses, *windows):
         print(block)
         span_len = len(block[0][1:])
         for j in range(len(block)):
-            block[j] = block[j].extend(["" for k in range((size*2+1)-span_len)])
-        rows.extend(block)
+            rows.append(block[j].extend(["" for k in range((size*2+1)-span_len)]))
+            print(rows[-1])
+            #block[j] = block[j].extend(["" for k in range((size*2+1)-span_len)])
+        #rows.extend(block)
     print("until this far I have come")
     print(rows)
     for r in header + rows: print(len(r))
