@@ -657,14 +657,19 @@ def take_windows(sentence_data, size, *addresses):
         windows.append(w)
     return windows
 
-def unanalyzed_blocks(lexical_perspective, sentential_perspective, context_size):
+def retrieve_addrs(lexical_perspective, *keys):
+    unanalyzed_token_addresses = []
+    for key in keys:
+        for t in sorted(lexical_perspective[key]["tokens"]):
+            unanalyzed_token_addresses.extend(lexical_perspective["'?'"]["tokens"][t]["addr"])
+    return unanalyzed_token_addresses
+
+
+def unanalyzed_blocks(sentential_perspective, context_size, *unanalyzed_token_addresses):
     unanalyzed_context_table = ""
-    if "'?'" in lp:
-        unanalyzed_token_addresses = []
-        for t in sorted(lp["'?'"]["tokens"]):
-            unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
-        context_windows = take_windows(sentential_perspective, context_size, *unanalyzed_token_addresses)
-        unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
+    #unanalyzed_token_addresses = retrieve_addrs(lexical_perspective, "'?'")
+    context_windows = take_windows(sentential_perspective, context_size, *unanalyzed_token_addresses)
+    unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
     return unanalyzed_context_table
 
 def unanalyzed_format(size, addresses, *windows):
@@ -816,11 +821,14 @@ def parse_words_expanded(event):
         unanalyzed_context_table = ""
         if "'?'" in lp:
             context_size = 2
-            unanalyzed_token_addresses = []
-            for t in sorted(lp["'?'"]["tokens"]):
-                unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
-            context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
-            unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
+            unanalyzed_addresses = retrieve_addrs(lp, "'?'")
+            unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_addresses, take_windows(h, context_size, *unanalyzed_addresses))
+            #context_size = 2
+            #unanalyzed_token_addresses = []
+            #for t in sorted(lp["'?'"]["tokens"]):
+            #    unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
+            #context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
+            #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
         output_div.innerHTML = crib_format(lp)+unanalyzed_context_table
     elif analysis_mode.value == "frequency": output_div.innerHTML = frequency_format(lexical_perspective(h)) 
     elif analysis_mode.value == "verb_sort":
