@@ -519,6 +519,7 @@ def interlinearize(parsed_data):
 
 def interlinearize_blocks(parsed_data): #use kwargs
     ordered = []
+    print("passed in data")
     print(parsed_data)
     for i in range(len(parsed_data["m_parse_lo"])):
         ordered.extend([
@@ -660,6 +661,7 @@ def unanalyzed_blocks(lexical_perspective, sentential_perspective, context_size)
 def unanalyzed_format(size, addresses, *windows):
     header = [[""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
     rows = []
+    print("addresses")
     print(addresses)
     for i in range(len(addresses)):
         #gosh it would be nice to print the whole sentence out, with the free translation under it
@@ -668,6 +670,8 @@ def unanalyzed_format(size, addresses, *windows):
         if addresses[i][1] < size: #need to pad left
             for j in range(len(block)):
                 block[j] = [block[j][0]]+["" for k in range(size-addresses[i][1])]+block[j][1:]
+        print("block")
+        print(block)
         span_len = len(block[0][1:])
         for j in range(len(block)):
             block[j] = block[j].extend(["" for k in range((size*2+1)-span_len)])
