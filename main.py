@@ -579,7 +579,7 @@ def glossary_format(lemmata_data):
             for tok in lemmata_data[lem]["tokens"]:
                 lem_cnt += lemmata_data[lem]["tokens"][tok]["cnt"]
                 for a in lemmata_data[lem]["tokens"][tok]["addr"]: addresses.append(".".join([str(a[0]+1), str(a[1]+1)]))
-            nu_gloss.append([lem, lemmata_data[lem]["pos"], lemmata_data[lem]["tiny"], str(lem_cnt), " ".join(addresses)])
+            nu_gloss.append([lem, lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), " ".join(addresses)])
     nu_gloss = sorted(nu_gloss)
     for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?) #no, we don't want spurious URL differences to muck up the alphabetization (we have 2 different sources of URLs!!)
         nu_gloss[i][0] = lemmata_data[nu_gloss[i][0]]["link"]
