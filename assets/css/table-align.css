@@ -1,0 +1,56 @@
+body { font-family: system-ui, sans-serif; }
+
+.triplet-wrap {
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+}
+
+.col {
+  border-collapse: collapse;
+  border: 1px solid #aaa;
+  flex: 1;
+}
+
+.col th,
+.col td {
+  border: 1px solid #aaa;
+  padding: 6px;
+  width: 100%;
+  vertical-align: top;
+}
+
+.col thead th {
+  position: sticky;
+  top: 0;
+  background: #fafafa;
+  z-index: 1; /* keep header above cells when scrolling */
+}
+
+.col tbody tr:nth-child(even) {
+  background: rgba(0,0,0,.04);
+}
+
+/* cancel inline row height caps from the page */
+.triplet-wrap .col tr {
+  min-height: auto !important;
+  max-height: none !important;
+}
+
+/* allow text selection in cells (row-based copy), not table chrome */
+.triplet-wrap table { user-select: none; }
+.triplet-wrap td,
+.triplet-wrap th { user-select: text; }
+
+/* Toggle + unified view */
+.triplet-toolbar { margin: .75rem 0; }
+.unified-wrap { overflow-x: auto; }
+.unified { width: 100%; border-collapse: collapse; }
+.unified th, .unified td { border: 1px solid #aaa; padding: 6px; vertical-align: top; }
+.unified thead th { position: sticky; top: 0; background: #fafafa; z-index: 1; }
+.unified tbody tr:nth-child(even){ background: rgba(0,0,0,.04); }
+
+@media (max-width: 640px){
+  .triplet-wrap { flex-direction: column; }
+  .col { width: 100%; }
+}
