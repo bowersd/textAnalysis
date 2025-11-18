@@ -665,11 +665,8 @@ def retrieve_addrs(lexical_perspective, *keys):
     return unanalyzed_token_addresses
 
 def unanalyzed_format(size, addresses, *windows):
-    header = [[">>Below are {} unanalyzed words in local context.".format(str(len(addresses)))],
-            [""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
+    header = [ [""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
     rows = []
-    print("addresses")
-    print(addresses)
     for i in range(len(addresses)):
         #gosh it would be nice to print the whole sentence out, with the free translation under it
         rows.append(["Sentence: {0}, Word: {1}".format(str(addresses[i][0]+1), str(addresses[i][1]+1))]+["" for i in range((size*2)+1)])
@@ -677,21 +674,13 @@ def unanalyzed_format(size, addresses, *windows):
         if addresses[i][1] < size: #need to pad left
             for j in range(len(block)):
                 block[j] = [block[j][0]]+["" for k in range(size-addresses[i][1])]+block[j][1:]
-        print("block")
-        print(block)
         span_len = len(block[0][1:])
         for j in range(len(block)):
             row = block[j] + ["" for k in range((size*2+1)-span_len)]
             rows.append(row)
-            #rows.append(block[j].extend(["" for k in range((size*2+1)-span_len)]))
-            print(rows[-1])
-            #block[j] = block[j].extend(["" for k in range((size*2+1)-span_len)])
-        #rows.extend(block)
-    print("until this far I have come")
-    print(rows)
     for r in header + rows: print(len(r))
     table = tabulate.tabulate(header + rows, tablefmt='html')
-    revised_table = ""
+    revised_table = "\nBelow are {} unanalyzed words in local context.\n".format(str(len(addresses)))
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
 
