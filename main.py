@@ -570,7 +570,7 @@ def lexical_perspective(parsed_data):
     return lemmata
 
 def glossary_format(lemmata_data):
-    header = [["NOD/OPD Entry", "POS",  "Terse Translation", "Count", "Addresses"]]
+    header = [["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Addresses"]]
     nu_gloss = []
     for lem in lemmata_data: #make a neatly sorted list
         if lem != "'?'":
@@ -680,7 +680,7 @@ def unanalyzed_format(size, addresses, *windows):
             rows.append(row)
     for r in header + rows: print(len(r))
     table = tabulate.tabulate(header + rows, tablefmt='html')
-    revised_table = "\nBelow are {} unanalyzed words in local context.\n".format(str(len(addresses)))
+    revised_table = "\nBelow are {} unanalyzed words in context.\n".format(str(len(addresses)))
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
 
