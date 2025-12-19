@@ -55,6 +55,30 @@ def tag_assemble(**broad_analysis):
     return algonquianized
 
 def vta_assembly(**broad_analysis):
+    algonquianized = {"person_prefix": "",
+                      "person_suffix": "", #unclear in my mind whether this can cover cnj (VTA!) and indep VAI 3s
+                      "preverbs": "", 
+                      "reduplication": "", 
+                      "stem": "",
+                      "POS": "",
+                      "order": "",
+                      "theme_sign": "",
+                      "negation": "",
+                      "prefix_number": "", #this is the number component of the argument represented by person_prefix. The number component is, however, a suffix (it is realized in a different place than the person_prefix).
+                      "mode": "",
+                      "peripheral": "",
+                      "diminutive": "",
+                      "pejorative": "",
+                      "contemptive": "",
+                     }
+    algonquianized["person_prefix"] = broad_analysis["S"]["Pers"]
+    algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True) #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
+    hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} #VAIOs?
+    #does the broad analysis system handle inanimate subjects of VTAs right?
+    if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]:
+        inversion = True
+        algonquianized["person_prefix"] = broad_analysis["O"]["Pers"]
+        algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
     pass
 
 def vti_assembly(**broad_analysis):
