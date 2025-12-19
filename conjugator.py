@@ -32,7 +32,7 @@ def tag_assemble(**broad_analysis):
     algonquanized["mode"] = broad_analysis["Mode"]
     if algonquianized["order"]:
         pass #special behavior for imperatives and conjuncts
-    elif broad_analysis["S"]["Pers"] != '0': #inanimate subjects (VTA, VII) are special
+    elif broad_analysis["S"]["Pers"] != '0': #inanimate subjects (VTA, VII) are special (not indexed by prefix)
         inversion = False
         if algonquianized["POS"].startswith("VAI") and broad_analysis["S"]["Pers"] == "3": #including VAIOs
             pass #need to make suffixes, also 3+2Pl if independent pret dub
