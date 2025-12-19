@@ -9,9 +9,12 @@ def recreate_number_tags(person, number, prefix):
     elif person == "2" and number == "1Pl": return "1Pl"
     elif person == "3" and number == "Pl" and prefix: return "2Pl"
     elif person == "3" and number == "Pl" and not prefix: return "3Pl"
+    elif person == "3" and number == "Obv" and not prefix: return "3Obv"
+    else: return ""
 
 def tag_assemble(**broad_analysis):
     algonquianized = {"person_prefix": [],
+                      "person_suffix": [], #unclear in my mind whether this can cover cnj (VTA!) and indep VAI 3s
                       "preverbs": [], 
                       "reduplication": [], 
                       "stem": [],
@@ -35,6 +38,8 @@ def tag_assemble(**broad_analysis):
     elif broad_analysis["S"]["Pers"] != '0': #inanimate subjects (VTA, VII) are special (not indexed by prefix)
         inversion = False
         if algonquianized["POS"].startswith("VAI") and broad_analysis["S"]["Pers"] == "3": #including VAIOs
+            algonquianized["peripheral"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
+            algonquianized["person_suffix"] = broad_analysis["S"]["Pers"]
             pass #need to make suffixes, also 3+2Pl if independent pret dub
         algonquianized["person_prefix"] = broad_analysis["S"]["Pers"]
         algonquianized["prefix_number"] = broad_analysis["S"]["Num"] #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
