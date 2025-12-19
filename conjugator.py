@@ -44,10 +44,10 @@ def tag_assemble(**broad_analysis):
                 algonquianized["peripheral"] = "2Pl" #BUT THE 2Pl NEEDS TO BE BEFORE THE MODE SUFFIXES ... WE CAN'T JUST ALWAYS PUT PERIPHERAL AFTER MODE
         else:
             algonquianized["person_prefix"] = broad_analysis["S"]["Pers"]
-            algonquianized["prefix_number"] = broad_analysis["S"]["Num"] #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
+            algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True) #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
             hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} #VAIOs?
             if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]:
                 inversion = True
                 algonquianized["person_prefix"] = broad_analysis["O"]["Pers"]
-                algonquianized["prefix_number"] = broad_analysis["O"]["Num"]
+                algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
     return algonquianized
