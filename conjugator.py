@@ -47,14 +47,30 @@ def tag_assemble(**broad_analysis):
             algonquianized["person_prefix"] = broad_analysis["S"]["Pers"]
             algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True) #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
             hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} #VAIOs?
+            #does the broad analysis system handle inanimate subjects of VTAs right?
             if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]:
                 inversion = True
                 algonquianized["person_prefix"] = broad_analysis["O"]["Pers"]
                 algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
     return algonquianized
 
+def vta_assembly(**broad_analysis):
+    pass
+
+def vti_assembly(**broad_analysis):
+    pass
+
+def n_assembly(**broad_analysis):
+    pass
+
+def vai_assembly(**broad_analysis):
+    pass
+
+def vii_assembly(**broad_analysis):
+    pass
+
 def tag_linearize(lemma, **algonquianized):
-    return "+".join([algonquianized["person_prefix"], lemma, algonquianized["POS"], algonquianized["order"], algonquianized["theme_sign"], algonquianized["negation"], algonquianized["prefix_number"], algonquianized["peripheral"]])
+    return "+".join([algonquianized["person_prefix"], lemma, algonquianized["POS"], algonquianized["order"], algonquianized["theme_sign"], algonquianized["negation"], algonquianized["prefix_number"], algonquianized["mode"], algonquianized["peripheral"]])
 
 if __name__ == "__main__":
     specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []}
