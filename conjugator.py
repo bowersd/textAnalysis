@@ -25,7 +25,7 @@ def tag_assemble(**broad_analysis):
                       "negation": [],
                       "prefix_number": [], #this is the number component of the argument represented by person_prefix. The number component is, however, a suffix (it is realized in a different place than the person_prefix).
                       "mode": [],
-                      "peripheral:" [],
+                      "peripheral": [],
                       "diminutive": [],
                       "pejorative": [],
                       "contemptive": [],
