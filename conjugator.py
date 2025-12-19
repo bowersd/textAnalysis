@@ -14,26 +14,26 @@ def recreate_number_tags(person, number, prefix):
     else: return ""
 
 def tag_assemble(**broad_analysis):
-    algonquianized = {"person_prefix": [],
-                      "person_suffix": [], #unclear in my mind whether this can cover cnj (VTA!) and indep VAI 3s
-                      "preverbs": [], 
-                      "reduplication": [], 
-                      "stem": [],
-                      "POS": [],
-                      "order": [],
-                      "theme_sign": [],
-                      "negation": [],
-                      "prefix_number": [], #this is the number component of the argument represented by person_prefix. The number component is, however, a suffix (it is realized in a different place than the person_prefix).
-                      "mode": [],
-                      "peripheral": [],
-                      "diminutive": [],
-                      "pejorative": [],
-                      "contemptive": [],
+    algonquianized = {"person_prefix": "",
+                      "person_suffix": "", #unclear in my mind whether this can cover cnj (VTA!) and indep VAI 3s
+                      "preverbs": "", 
+                      "reduplication": "", 
+                      "stem": "",
+                      "POS": "",
+                      "order": "",
+                      "theme_sign": "",
+                      "negation": "",
+                      "prefix_number": "", #this is the number component of the argument represented by person_prefix. The number component is, however, a suffix (it is realized in a different place than the person_prefix).
+                      "mode": "",
+                      "peripheral": "",
+                      "diminutive": "",
+                      "pejorative": "",
+                      "contemptive": "",
                      }
-    algonquanized["POS"] = broad_analysis["Head"]
-    algonquanized["order"] = broad_analysis["Order"]
-    algonquanized["negation"] = broad_analysis["Neg"]
-    algonquanized["mode"] = broad_analysis["Mode"]
+    algonquianized["POS"] = broad_analysis["Head"]
+    algonquianized["order"] = broad_analysis["Order"]
+    algonquianized["negation"] = broad_analysis["Neg"]
+    algonquianized["mode"] = broad_analysis["Mode"]
     if algonquianized["order"]:
         pass #special behavior for imperatives and conjuncts
     elif broad_analysis["S"]["Pers"] != '0': #inanimate subjects (VTA, VII) are special (not indexed by prefix)
@@ -57,5 +57,11 @@ def tag_linearize(lemma, **algonquianized):
     return "+".join([algonquianized["person_prefix"], lemma, algonquianized["POS"], algonquianized["order"], algonquianized["theme_sign"], algonquianized["negation"], algonquianized["prefix_number"], algonquianized["peripheral"]])
 
 if __name__ == "__main__":
-    specs = {x.split(":")[0]:x.split(":")[1] for x in sys.argv[2:]}
+    specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []}
+    for x in sys.argv[2:]:
+        key, val = x.split(":")
+        if val[0] in ["1", "2", "3", "0"]:
+            specs[key]["Pers"] = val[0]
+            specs[key]["Num"] = val[1:]
+        else: specs[key] = val
     print(tag_linearize(sys.argv[1], **tag_assemble(**specs)))
