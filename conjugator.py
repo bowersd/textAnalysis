@@ -46,7 +46,7 @@ def tag_assemble(**broad_analysis):
             algonquianized["person_prefix"] = broad_analysis["S"]["Pers"]
             algonquianized["prefix_number"] = broad_analysis["S"]["Num"] #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
             hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} #VAIOs?
-            if hierarchy[broad_analysis["S"]["Pers"]] < hierarchy[broad_analysis["O"]["Pers"]]:
+            if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]:
                 inversion = True
                 algonquianized["person_prefix"] = broad_analysis["O"]["Pers"]
                 algonquianized["prefix_number"] = broad_analysis["O"]["Num"]
