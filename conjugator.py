@@ -1,3 +1,4 @@
+import sys
 import regex
 
 def lemma_insert(lemma, tag_skeleton):
@@ -54,3 +55,7 @@ def tag_assemble(**broad_analysis):
 
 def tag_linearize(lemma, **algonquianized):
     return "+".join([algonquianized["person_prefix"], lemma, algonquianized["POS"], algonquianized["order"], algonquianized["theme_sign"], algonquianized["negation"], algonquianized["prefix_number"], algonquianized["peripheral"]])
+
+if __name__ == "__main__":
+    specs = {x.split(":")[0]:x.split(":")[1] for x in sys.argv[2:]}
+    print(tag_linearize(sys.argv[1], **tag_assemble(**specs)))
