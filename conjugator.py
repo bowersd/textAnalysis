@@ -51,3 +51,6 @@ def tag_assemble(**broad_analysis):
                 algonquianized["person_prefix"] = broad_analysis["O"]["Pers"]
                 algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
     return algonquianized
+
+def tag_linearize(lemma, **algonquianized):
+    return "+".join([algonquianized["person_prefix"], lemma, algonquianized["POS"], algonquianized["order"], algonquianized["theme_sign"], algonquianized["negation"], algonquianized["prefix_number"], algonquianized["peripheral"]])
