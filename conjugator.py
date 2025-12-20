@@ -89,6 +89,9 @@ def vta_peripheral_setting(in_progress, inversion, **broad_analysis):
 
 def vta_adjustments(in_progress, **broad_analysis)
     #I remember inanimate subjects requiring extra special care, special morphotactics
+    assert (not broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv") and (not broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv") #preventing obviation outside of 3v3
+    #what about inanimate obviatives (they are only legal in VIIs, should we ban them here?)?
+    #what about VTAs getting inanimate objects?
     check_for_person_ties(**broad_analysis)
     inversion = determine_inversion(**broad_analysis) #boolean
     if inversion: vta_prefix_revision(in_progress, **broad_analysis)
