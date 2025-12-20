@@ -58,7 +58,7 @@ def check_for_person_ties(**broad_analysis):
     if broad_analysis["S"]["Pers"] in ["1", "2"] or broad_analysis["O"]["Pers"] in ["1", "2"]:
         assert (not any([x == broad_analysis["O"]["Pers"] for x in [broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"][0]]])) and (not any([x == broad_analysis["S"]["Pers"] for x in [broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"][0]]]))
     if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3":
-        assert broad_analysis["S"]["Num"] == "Obv" or broad_analysis["O"]["Num"] == "Obv"
+        assert (broad_analysis["S"]["Num"] == "Obv" or broad_analysis["O"]["Num"] == "Obv") and not (broad_analysis["S"]["Num"] == "Obv" and broad_analysis["O"]["Num"] == "Obv")
 
 def determine_inversion(**broad_analysis):
     hierarchy = {"1":2, "2":1, "3":3, "0": 4,} 
@@ -67,7 +67,7 @@ def determine_inversion(**broad_analysis):
     return False
 
 def vta_prefix_revision(in_progress, **broad_analysis):
-    #don't do this unless there is inversion!
+    #don't call this unless there is inversion!
     in_progress["person_prefix"] = broad_analysis["O"]["Pers"]
     in_progress["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
     #a bit of superfluous work here, with a 3 prefix getting updated to 3 when 3Obv vs 3
