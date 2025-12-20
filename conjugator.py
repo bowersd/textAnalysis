@@ -60,11 +60,13 @@ def vta_update(in_progress, **broad_analysis):
     #does the broad analysis system handle inanimate subjects of VTAs right?
     hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} 
     invert = 0
-    alignment = {0:"O", 1:"S"}
+    align = {0:"O", 1:"S"}
     if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]: #reset prefix value from S in inversion contexts
         invert = 1
         in_progress["person_prefix"] = broad_analysis["O"]["Pers"]
         in_progress["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
+    if invert and broad_analysis["S"]["Pers"] not in ["1", "2"]: in_progress["theme_sign"] = "ThmInv" #can't check for 3, because of inanimate subjects
+    elif not invert and broad_analysis["O"]["Pers"] == "3" : in_progress["theme_sign"] = "ThmDir"
 
 
 def vti_assembly(**broad_analysis):
