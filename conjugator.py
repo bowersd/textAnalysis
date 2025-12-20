@@ -83,11 +83,17 @@ def vta_theme_selection(in_progress, inversion, **broad_analysis):
     elif inversion and broad_analysis["S"]["Pers"] == "1" and broad_analysis["S"]["Num"] == "Pl": in_progress["theme_sign"] = "Thm1Pl2" #1pl vs 2
     else: in_progress["theme_sign"] = "Thm2" #1sg vs 2 #if inversion and broad_analysis["S"]["Pers"] == "1"
 
+def vta_peripheral_setting(in_progress, inversion, **broad_analysis):
+    align = {0:"O", 1:"S"}
+    in_progress["peripheral"] = recreate_number_tags(broad_analysis[align[int(inversion)]]["Pers"], broad_analysis[align[int(inversion)]]["Num"], False) #this is going to put inanimate plural subject information in the periphery, make sure that's the correct move
+
 def vta_adjustments(in_progress, **broad_analysis)
+    #I remember inanimate subjects requiring extra special care, special morphotactics
     check_for_person_ties(**broad_analysis)
     inversion = determine_inversion(**broad_analysis) #boolean
     if inversion: vta_prefix_revision(in_progress, **broad_analysis)
     vta_theme_selection(in_progress, inversion, **broad_analysis)
+    if in_progress["theme_sign"] in ["ThmDir", "ThmInv"]: vta_peripheral_setting(in_progress, inversion, **broad_analysis)
 
 def vti_assembly(**broad_analysis):
     pass
