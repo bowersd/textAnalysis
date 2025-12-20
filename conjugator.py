@@ -59,7 +59,7 @@ def vta_update(in_progress, **broad_analysis):
     #you need to make revisions according to the theme sign
     #does the broad analysis system handle inanimate subjects of VTAs right?
     if broad_analysis["S"]["Pers"] in ["1", "2"] or broad_analysis["O"]["Pers"] in ["1", "2"]:
-        assert (not any([x == broad_analysis["O"]["Pers"] for x in [broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"][0]])) and (not any([x == broad_analysis["S"]["Pers"] for x in [broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"][0]]))
+        assert (not any([x == broad_analysis["O"]["Pers"] for x in [broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"][0]]])) and (not any([x == broad_analysis["S"]["Pers"] for x in [broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"][0]]]))
     if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3":
         assert broad_analysis["S"]["Num"] == "Obv" or broad_analysis["O"]["Num"] == "Obv"
     hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} 
@@ -69,11 +69,12 @@ def vta_update(in_progress, **broad_analysis):
         invert = 1
         in_progress["person_prefix"] = broad_analysis["O"]["Pers"]
         in_progress["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
-    if invert and broad_analysis["S"]["Pers"] not in ["1", "2"]: in_progress["theme_sign"] = "ThmInv" #can't check for 3, because of inanimate subjects
-    elif not invert and broad_analysis["O"]["Pers"] == "3" : in_progress["theme_sign"] = "ThmDir"
-    elif not invert and broad_analysis["O"]["Pers"] == "1": in_progress["theme_sign"] = "Thm1"
-    elif invert and broad_analysis["S"]["Pers"] == "1" and broad_analysis["S"]["Num"] == "Pl": in_progress["theme_sign"] = "Thm1Pl2"
-    else: in_progress["theme_sign"] = "Thm2" #if invert and broad_analysis["S"]["Pers"] == "1"
+    if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3" and broad_analysis["S"]["Num"] == "Obv": invert = 1
+    if invert and broad_analysis["S"]["Pers"] not in ["1", "2"]: in_progress["theme_sign"] = "ThmInv" #3, 0 vs 1, 2, 3 #can't check for 3, because of inanimate subjects
+    elif not invert and broad_analysis["O"]["Pers"] == "3" : in_progress["theme_sign"] = "ThmDir" #1, 2, 3 vs 3
+    elif not invert and broad_analysis["O"]["Pers"] == "1": in_progress["theme_sign"] = "Thm1" #2 vs 1
+    elif invert and broad_analysis["S"]["Pers"] == "1" and broad_analysis["S"]["Num"] == "Pl": in_progress["theme_sign"] = "Thm1Pl2" #1pl vs 2
+    else: in_progress["theme_sign"] = "Thm2" #1sg vs 2 #if invert and broad_analysis["S"]["Pers"] == "1"
 
 
 def vti_assembly(**broad_analysis):
