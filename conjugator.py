@@ -54,28 +54,40 @@ def tag_assemble(**broad_analysis):
                 algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
     return algonquianized
 
-def vta_update(in_progress, **broad_analysis):
-    #you already have person prefix and prefix number set to subject information in broad_analysis
-    #you need to make revisions according to the theme sign
-    #does the broad analysis system handle inanimate subjects of VTAs right?
+def check_for_person_ties(**broad_analysis):
     if broad_analysis["S"]["Pers"] in ["1", "2"] or broad_analysis["O"]["Pers"] in ["1", "2"]:
         assert (not any([x == broad_analysis["O"]["Pers"] for x in [broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"][0]]])) and (not any([x == broad_analysis["S"]["Pers"] for x in [broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"][0]]]))
     if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3":
         assert broad_analysis["S"]["Num"] == "Obv" or broad_analysis["O"]["Num"] == "Obv"
-    hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} 
-    invert = 0
-    align = {0:"O", 1:"S"}
-    if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]: #reset prefix value from S in inversion contexts
-        invert = 1
-        in_progress["person_prefix"] = broad_analysis["O"]["Pers"]
-        in_progress["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
-    if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3" and broad_analysis["S"]["Num"] == "Obv": invert = 1
-    if invert and broad_analysis["S"]["Pers"] not in ["1", "2"]: in_progress["theme_sign"] = "ThmInv" #3, 0 vs 1, 2, 3 #can't check for 3, because of inanimate subjects
-    elif not invert and broad_analysis["O"]["Pers"] == "3" : in_progress["theme_sign"] = "ThmDir" #1, 2, 3 vs 3
-    elif not invert and broad_analysis["O"]["Pers"] == "1": in_progress["theme_sign"] = "Thm1" #2 vs 1
-    elif invert and broad_analysis["S"]["Pers"] == "1" and broad_analysis["S"]["Num"] == "Pl": in_progress["theme_sign"] = "Thm1Pl2" #1pl vs 2
-    else: in_progress["theme_sign"] = "Thm2" #1sg vs 2 #if invert and broad_analysis["S"]["Pers"] == "1"
 
+def determine_inversion(**broad_analysis):
+    hierarchy = {"1":2, "2":1, "3":3, "0": 4,} 
+    if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]: return True
+    if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3" and broad_analysis["S"]["Num"] == "Obv": return True
+    return False
+
+def vta_prefix_revision(in_progress, **broad_analysis):
+    #don't do this unless there is inversion!
+    in_progress["person_prefix"] = broad_analysis["O"]["Pers"]
+    in_progress["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
+    #a bit of superfluous work here, with a 3 prefix getting updated to 3 when 3Obv vs 3
+    #up to this point, this script permits a 0 "inanimate" prefix, which I doubt actually exists in the mind of the ideal speaker-hearer :D
+
+def vta_theme_selection(in_progress, inversion, **broad_analysis):
+    #you already have person prefix and prefix number set to subject information in broad_analysis
+    #you need to make revisions according to the theme sign
+    #does the broad analysis system handle inanimate subjects of VTAs correctly?
+    if inversion and broad_analysis["S"]["Pers"] not in ["1", "2"]: in_progress["theme_sign"] = "ThmInv" #3, 0 vs 1, 2, 3 #can't check for 3, because of inanimate subjects
+    elif not inversion and broad_analysis["O"]["Pers"] == "3" : in_progress["theme_sign"] = "ThmDir" #1, 2, 3 vs 3
+    elif not inversion and broad_analysis["O"]["Pers"] == "1": in_progress["theme_sign"] = "Thm1" #2 vs 1
+    elif inversion and broad_analysis["S"]["Pers"] == "1" and broad_analysis["S"]["Num"] == "Pl": in_progress["theme_sign"] = "Thm1Pl2" #1pl vs 2
+    else: in_progress["theme_sign"] = "Thm2" #1sg vs 2 #if inversion and broad_analysis["S"]["Pers"] == "1"
+
+def vta_adjustments(in_progress, **broad_analysis)
+    check_for_person_ties(**broad_analysis)
+    inversion = determine_inversion(**broad_analysis) #boolean
+    if inversion: vta_prefix_revision(in_progress, **broad_analysis)
+    vta_theme_selection(in_progress, inversion, **broad_analysis)
 
 def vti_assembly(**broad_analysis):
     pass
