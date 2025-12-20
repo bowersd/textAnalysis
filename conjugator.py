@@ -57,13 +57,15 @@ def tag_assemble(**broad_analysis):
 def vta_update(in_progress, **broad_analysis):
     #you already have person prefix and prefix number set to subject information in broad_analysis
     #you need to make revisions according to the theme sign
-    hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} 
     #does the broad analysis system handle inanimate subjects of VTAs right?
-    if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]:
-        inversion = True
+    hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} 
+    invert = 0
+    alignment = {0:"O", 1:"S"}
+    if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]: #reset prefix value from S in inversion contexts
+        invert = 1
         in_progress["person_prefix"] = broad_analysis["O"]["Pers"]
         in_progress["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
-    pass
+
 
 def vti_assembly(**broad_analysis):
     pass
