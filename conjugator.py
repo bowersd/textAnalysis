@@ -67,6 +67,9 @@ def vta_update(in_progress, **broad_analysis):
         in_progress["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
     if invert and broad_analysis["S"]["Pers"] not in ["1", "2"]: in_progress["theme_sign"] = "ThmInv" #can't check for 3, because of inanimate subjects
     elif not invert and broad_analysis["O"]["Pers"] == "3" : in_progress["theme_sign"] = "ThmDir"
+    elif not invert and broad_analysis["O"]["Pers"] == "1": in_progress["theme_sign"] = "Thm1"
+    elif invert and broad_analysis["S"]["Pers"] == "1" and broad_analysis["S"]["Num"] == "Pl": in_progress["theme_sign"] = "Thm1Pl2"
+    else: in_progress["theme_sign"] = "Thm2" #if invert and broad_analysis["S"]["Pers"] == "1"
 
 
 def vti_assembly(**broad_analysis):
