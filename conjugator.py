@@ -104,7 +104,7 @@ def vta_adjustments(**broad_analysis)
     h["prefix_number"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
     h["theme_sign"] = vta_theme_update(inversion, **broad_analysis)
     if h["theme_sign"] in ["ThmDir", "ThmInv"]: h["peripheral"] = vta_peripheral_update(theme_align[int(inversion)], **broad_analysis)
-    if h["theme_sign"] == "ThmInv" and broad_analysis["S"]["Pers"] == "0": h["theme_sign"] += "+0"
+    if broad_analysis["S"]["Pers"] == "0": h["theme_sign"] += "+0"
     return h
 
 def vti_assembly(**broad_analysis):
