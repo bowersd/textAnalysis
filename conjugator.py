@@ -66,37 +66,44 @@ def determine_inversion(**broad_analysis):
     if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3" and broad_analysis["S"]["Num"] == "Obv": return True
     return False
 
-def vta_prefix_revision(in_progress, **broad_analysis):
-    #don't call this unless there is inversion!
-    in_progress["person_prefix"] = broad_analysis["O"]["Pers"]
-    in_progress["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
+def vta_prefix_update(alignment, **broad_analysis):
+    return broad_analysis[alignment]["Pers"]
     #a bit of superfluous work here, with a 3 prefix getting updated to 3 when 3Obv vs 3
     #up to this point, this script permits a 0 "inanimate" prefix, which I doubt actually exists in the mind of the ideal speaker-hearer :D
 
-def vta_theme_selection(in_progress, inversion, **broad_analysis):
+def vta_central_update(alignment, **broad_analysis):
+    return recreate_number_tags(broad_analysis[alignment]["Pers"], broad_analysis[alignment]["Num"], True) 
+    #a bit of superfluous work here, with a 3 prefix getting updated to 3 when 3Obv vs 3
+    #up to this point, this script permits a 0 "inanimate" prefix, which I doubt actually exists in the mind of the ideal speaker-hearer :D
+
+def vta_theme_update(inversion, **broad_analysis):
     #you already have person prefix and prefix number set to subject information in broad_analysis
     #you need to make revisions according to the theme sign
     #does the broad analysis system handle inanimate subjects of VTAs correctly?
-    if inversion and broad_analysis["S"]["Pers"] not in ["1", "2"]: in_progress["theme_sign"] = "ThmInv" #3, 0 vs 1, 2, 3 #can't check for 3, because of inanimate subjects
-    elif not inversion and broad_analysis["O"]["Pers"] == "3" : in_progress["theme_sign"] = "ThmDir" #1, 2, 3 vs 3
-    elif not inversion and broad_analysis["O"]["Pers"] == "1": in_progress["theme_sign"] = "Thm1" #2 vs 1
-    elif inversion and broad_analysis["S"]["Pers"] == "1" and broad_analysis["S"]["Num"] == "Pl": in_progress["theme_sign"] = "Thm1Pl2" #1pl vs 2
-    else: in_progress["theme_sign"] = "Thm2" #1sg vs 2 #if inversion and broad_analysis["S"]["Pers"] == "1"
+    if inversion and broad_analysis["S"]["Pers"] not in ["1", "2"]: return  "ThmInv" #3, 0 vs 1, 2, 3 #can't check for 3, because of inanimate subjects
+    elif not inversion and broad_analysis["O"]["Pers"] == "3" : return  "ThmDir" #1, 2, 3 vs 3
+    elif not inversion and broad_analysis["O"]["Pers"] == "1": return  "Thm1" #2 vs 1
+    elif inversion and broad_analysis["S"]["Pers"] == "1" and broad_analysis["S"]["Num"] == "Pl": return  "Thm1Pl2" #1pl vs 2
+    else: return  "Thm2" #1sg vs 2 #if inversion and broad_analysis["S"]["Pers"] == "1"
 
-def vta_peripheral_setting(in_progress, inversion, **broad_analysis):
-    align = {0:"O", 1:"S"}
-    in_progress["peripheral"] = recreate_number_tags(broad_analysis[align[int(inversion)]]["Pers"], broad_analysis[align[int(inversion)]]["Num"], False) #this is going to put inanimate plural subject information in the periphery, make sure that's the correct move
+def vta_peripheral_update(alignment, **broad_analysis):
+    return recreate_number_tags(broad_analysis[alignment]["Pers"], broad_analysis[alignment]["Num"], False) #this is going to put inanimate plural subject information in the periphery, make sure that's the correct move
 
-def vta_adjustments(in_progress, **broad_analysis)
+def vta_adjustments(**broad_analysis)
     #I remember inanimate subjects requiring extra special care, special morphotactics
     assert (not broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv") and (not broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv") #preventing obviation outside of 3v3
     #what about inanimate obviatives (they are only legal in VIIs, should we ban them here?)?
     #what about VTAs getting inanimate objects?
+    h = {"person_prefix":"", "prefix_number":"", "theme_sign":"", "peripheral":""}
     check_for_person_ties(**broad_analysis)
     inversion = determine_inversion(**broad_analysis) #boolean
-    if inversion: vta_prefix_revision(in_progress, **broad_analysis)
-    vta_theme_selection(in_progress, inversion, **broad_analysis)
-    if in_progress["theme_sign"] in ["ThmDir", "ThmInv"]: vta_peripheral_setting(in_progress, inversion, **broad_analysis)
+    theme_align = {0:"O", 1:"S"}
+    #a bit inefficient to re-assign S to person prefix and prefix number when not inverted. but the functions are more modular
+    h["person_prefix"] = vta_prefix_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
+    h["prefix_number"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
+    h["theme_sign"] = vta_theme_update(inversion, **broad_analysis)
+    if h["theme_sign"] in ["ThmDir", "ThmInv"]: h["peripheral"] = vta_peripheral_update(theme_align[int(inversion)], **broad_analysis)
+    return h
 
 def vti_assembly(**broad_analysis):
     pass
