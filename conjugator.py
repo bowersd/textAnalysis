@@ -11,6 +11,8 @@ def recreate_number_tags(person, number, prefix):
     elif person == "3" and number == "Pl" and prefix: return "2Pl"
     elif person == "3" and number == "Pl" and not prefix: return "3Pl"
     elif person == "3" and number == "Obv" and not prefix: return "3Obv"
+    elif person == "0" and number == "Pl" and not prefix: return "0Pl"
+    elif person == "0" and number == "Obv" and not prefix: return "0Obv"
     else: return ""
 
 def tag_assemble(**broad_analysis):
