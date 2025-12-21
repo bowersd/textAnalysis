@@ -74,6 +74,8 @@ def vta_prefix_update(alignment, **broad_analysis):
     #up to this point, this script permits a 0 "inanimate" prefix, which I doubt actually exists in the mind of the ideal speaker-hearer :D
 
 def vta_central_update(alignment, **broad_analysis):
+    if alignment == "O" and broad_analysis["S"]["Pers"] == "2" and broad_analysis["O"] == {"Pers":"1", "Num":"Pl"}:
+        return recreate_number_tags("1", "Pl", False) #value of boolean is irrelevant here, but strictly speaking, we are not indexing the prefix's number
     return recreate_number_tags(broad_analysis[alignment]["Pers"], broad_analysis[alignment]["Num"], True) 
     #a bit of superfluous work here, with a 3 prefix getting updated to 3 when 3Obv vs 3
     #up to this point, this script permits a 0 "inanimate" prefix, which I doubt actually exists in the mind of the ideal speaker-hearer :D
@@ -99,7 +101,7 @@ def vta_adjustments(**broad_analysis)
     check_for_person_ties(**broad_analysis)
     inversion = determine_inversion(**broad_analysis) #boolean
     theme_align = {0:"O", 1:"S"}
-    #a bit inefficient to re-assign S to person prefix and prefix number when not inverted. but the functions are more modular
+    #a bit inefficient to re-assign S to person prefix and prefix number when not inverted. But 2 v 1pl/2pl v 1pl -> central 1pl, so there is a mismatch that must be managed. Also, the functions are more modular this way
     h["person_prefix"] = vta_prefix_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
     h["prefix_number"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
     h["theme_sign"] = vta_theme_update(inversion, **broad_analysis)
