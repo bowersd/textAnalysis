@@ -114,12 +114,13 @@ def vta_cnj_theme_update(**broad_analysis):
 def vta_cnj_continuation(theme_sign, **broad_analysis):
     #Thm2b,                   Subj,                         (Mode)
     #Thm1,   (Neg), (ObjNum)  Subj (but no 2|2Pl if 1Pl),   (Mode)
-    #ThmInv, (Neg), (ObjNum)  Subj (but no 2 if 1Pl),       (Mode)
+    #ThmInv, (Neg), (Obj)     Subj (but no 2 if 1Pl),       (Mode)
     h = []
     if theme_sign == "Thm2b": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])) #this makes 2, 2Pl, recreate_number tags only makes 2Pl
     if theme_sign == "Thm1" and broad_analysis["O"]["Num"] == "Pl": h.append(recreate_number_tags("1", "Pl", False))
     if theme_sign == "Thm1" and not broad_analysis["O"]["Num"] and broad_analysis["S"]["Pers"] == "2": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
     if theme_sign == "Thm1" and broad_analysis["S"]["Pers"] == "3": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
+    #if theme_sign == "ThmInv" and broad_analysis["O"]["Pers"] in ["2", "1"] and broad_analysis["S"]["Pers"] != "3": h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]]))
     return "+".join(h)
     
 
