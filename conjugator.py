@@ -7,7 +7,8 @@ def lemma_insert(lemma, tag_skeleton):
 def recreate_number_tags(person, number, prefix):
     if person == "1" and number == "Pl": return "1Pl"
     elif person == "2" and number == "Pl": return "2Pl"
-    elif person == "2" and number == "1Pl": return "1Pl"
+    elif person == "2" and number == "1Pl" and prefix: return "1Pl"
+    elif person == "2" and number == "1Pl" and not prefix: return "21Pl"
     elif person == "3" and number == "Pl" and prefix: return "2Pl"
     elif person == "3" and number == "Pl" and not prefix: return "3Pl"
     elif person == "3" and number == "Obv" and not prefix: return "3Obv"
@@ -94,9 +95,11 @@ def vta_peripheral_update(alignment, **broad_analysis):
     return recreate_number_tags(broad_analysis[alignment]["Pers"], broad_analysis[alignment]["Num"], False) #this is going to put inanimate plural subject information in the periphery, make sure that's the correct move
 
 def vta_cnj_theme_update(**broad_analysis):
-    if broad_analysis["O"]["Pers"] == "1": return "Thm1"
+    if broad_analysis["S"]["Pers"] == "0": return "ThmInv" #ironclad first
+
+    elif broad_analysis["O"]["Pers"] == "1": return "Thm1"
     elif broad_analysis["S"] == {"Pers":"1", "Num":"Pl"} and broad_analysis["O"]["Pers"] == "2": return "Thm1Pl2"
-    elif broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"] == {"Pers":"2", "Num": "Sg"}: return "Thm2b"
+    elif not broad_analysis["Neg"] and broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"] == {"Pers":"2", "Num": ""}: return "Thm2b"
     elif broad_analysis["Neg"] and broad_analysis["S"] == {"Pers":"3", "Num":""} and broad_analysis["O"] == {"Pers":2, "Num":"Pl"}: return "ThmInv" #must preced next conditional, otherwise you would expect Thm2a to appear
     elif broad_analysis["O"]["Pers"] == "2" : return "Thm2a"
     #{start crucial ordering/specific before general
@@ -104,11 +107,22 @@ def vta_cnj_theme_update(**broad_analysis):
     elif broad_analysis["Neg"] and broad_analysis["O"]["Pers"] == "3": return "ThmDir"
     elif not broad_analysis["Neg"] and broad_analysis["O"]["Pers"] == "3": return "ThmNul"
     #}end crucial ordering/specific before general
-    #this line must precede the ones that precede it
+    #this line must follow the ones that precede it
     elif broad_analysis["O"] == {"Pers":"3", "Num":"Obv"} and broad_analysis["S"]["Pers"] == "3": return "ThmDir"
-    elif broad_analysis["S"]["Pers"] == "0": return "ThmInv"
-    elif broad_analysis["S"] == {"Pers": "3", "Num":"Obv"}: return "ThmInv"
+    else: return "ThmInv" #if broad_analysis["S"] == {"Pers": "3", "Num":"Obv"}: return "ThmInv"
+
+def vta_cnj_continuation(theme_sign, **broad_analysis):
+    #Thm2b,                   Subj,                         (Mode)
+    #Thm1,   (Neg), (ObjNum)  Subj (but no 2|2Pl if 1Pl),   (Mode)
+    #ThmInv, (Neg), (ObjNum)  Subj (but no 2 if 1Pl),       (Mode)
+    h = []
+    if theme_sign == "Thm2b": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])) #this makes 2, 2Pl, recreate_number tags only makes 2Pl
+    if theme_sign == "Thm1" and broad_analysis["O"]["Num"] == "Pl": h.append(recreate_number_tags("1", "Pl", False))
+    if theme_sign == "Thm1" and not broad_analysis["O"]["Num"] and broad_analysis["S"]["Pers"] == "2": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
+    if theme_sign == "Thm1" and broad_analysis["S"]["Pers"] == "3": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
+    return "+".join(h)
     
+
 
 def vta_adjustments(**broad_analysis)
     assert (not broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv") and (not broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv") #preventing obviation outside of 3v3
