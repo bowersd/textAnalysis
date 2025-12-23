@@ -106,7 +106,7 @@ def vta_adjustments(**broad_analysis):
     check_for_person_ties(**broad_analysis)
     if broad_analysis["Order"] == "Cnj":
         h["theme_sign"] = vta_cnj_theme_update(**broad_analysis)
-        h["central"] = vta_cnj_theme_continuation(h["theme_sign"], **broad_analysis) #independent central is in an analogous spot to the cnj argument elaborations
+        h["central"] = vta_cnj_continuation(h["theme_sign"], **broad_analysis) #independent central is in an analogous spot to the cnj argument elaborations
     elif broad_analysis["Order"] == "Imp":
         pass
     else:
