@@ -102,7 +102,7 @@ def vta_cnj_continuation(theme_sign, **broad_analysis):
     return "+".join(h)
     
 
-def vta_adjustments(**broad_analysis)
+def vta_adjustments(**broad_analysis):
     assert (not broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv") and (not broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv") #preventing obviation outside of 3v3
     #what about inanimate obviatives (they are only legal in VIIs, should we ban them here?)?
     #what about VTAs getting inanimate objects?
@@ -157,24 +157,28 @@ def tag_assemble(**broad_analysis):
     algonquianized["order"] = broad_analysis["Order"]
     algonquianized["negation"] = broad_analysis["Neg"]
     algonquianized["mode"] = broad_analysis["Mode"]
-    if algonquianized["order"]:
-        pass #special behavior for imperatives and conjuncts
-    elif broad_analysis["S"]["Pers"] != '0': #inanimate subjects (VTA, VII) are special (not indexed by prefix)
-        inversion = False
-        if algonquianized["POS"].startswith("VAI") and broad_analysis["S"]["Pers"] == "3": #including VAIOs
-            algonquianized["peripheral"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
-            algonquianized["person_suffix"] = broad_analysis["S"]["Pers"]
-            if algonquianized["mode"] == ["prt", "dub"] and broad_analysis["S"]["Num"] == "Pl": #And we need to catch other pret dubs going to changed conjunct
-                algonquianized["peripheral"] = "2Pl" #BUT THE 2Pl NEEDS TO BE BEFORE THE MODE SUFFIXES ... WE CAN'T JUST ALWAYS PUT PERIPHERAL AFTER MODE
-        else:
-            algonquianized["person_prefix"] = broad_analysis["S"]["Pers"]
-            algonquianized["central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True) #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
-            hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} #VAIOs?
-            #does the broad analysis system handle inanimate subjects of VTAs right?
-            if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]:
-                inversion = True
-                algonquianized["person_prefix"] = broad_analysis["O"]["Pers"]
-                algonquianized["central"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
+    if algonquianized["POS"] == "VTA":
+        adjustments = vta_adjustments(**algonquianized)
+        for a in adjustments:
+            if adjustments[a]: algonquianized[a] = adjustments[a]
+    #if algonquianized["order"]:
+    #    pass #special behavior for imperatives and conjuncts
+    #elif broad_analysis["S"]["Pers"] != '0': #inanimate subjects (VTA, VII) are special (not indexed by prefix)
+    #    inversion = False
+    #    if algonquianized["POS"].startswith("VAI") and broad_analysis["S"]["Pers"] == "3": #including VAIOs
+    #        algonquianized["peripheral"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
+    #        algonquianized["person_suffix"] = broad_analysis["S"]["Pers"]
+    #        if algonquianized["mode"] == ["prt", "dub"] and broad_analysis["S"]["Num"] == "Pl": #And we need to catch other pret dubs going to changed conjunct
+    #            algonquianized["peripheral"] = "2Pl" #BUT THE 2Pl NEEDS TO BE BEFORE THE MODE SUFFIXES ... WE CAN'T JUST ALWAYS PUT PERIPHERAL AFTER MODE
+    #    else:
+    #        algonquianized["person_prefix"] = broad_analysis["S"]["Pers"]
+    #        algonquianized["central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True) #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
+    #        hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} #VAIOs?
+    #        #does the broad analysis system handle inanimate subjects of VTAs right?
+    #        if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]:
+    #            inversion = True
+    #            algonquianized["person_prefix"] = broad_analysis["O"]["Pers"]
+    #            algonquianized["central"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
     return algonquianized
 
 def tag_linearize(lemma, **algonquianized):
