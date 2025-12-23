@@ -133,8 +133,11 @@ def vta_cnj_continuation(theme_sign, **broad_analysis):
     if theme_sign == "Thm2a" and broad_analysis["S"]["Pers"] == "1": h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]]))
     if theme_sign == "ThmDir" and broad_analysis["S"]["Pers"] in ["1", "2"]: 
         h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
-        h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]]))
+        h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])) #always 3
     if theme_sign == "ThmDir" and broad_analysis["S"]["Pers"] == "3": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
+    if theme_sign == "ThmNul": #I cheated in the dubitatives, which have an "aa" aka ThmDir
+        h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])) #always 2|1 
+        h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])) #always 3
     return "+".join(h)
     
 
