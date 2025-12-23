@@ -141,7 +141,7 @@ def tag_assemble(**broad_analysis):
                       "POS": "",
                       "Order": "",
                       "Theme_sign": "",
-                      "Negation": "",
+                      "Neg": "",
                       "Central": "", #this is the suffix region where number of the person_prefix argument in independent order verbs is realized. Person/number information in addition to the theme sign in cnjs is realized here
                       "Mode": "",
                       "Periph": "",
@@ -151,8 +151,8 @@ def tag_assemble(**broad_analysis):
                      }
     algonquianized["POS"] = broad_analysis["Head"]
     algonquianized["Order"] = broad_analysis["Order"]
-    algonquianized["Negation"] = broad_analysis["Neg"]
-    algonquianized["Mode"] = broad_analysis["Mode"]
+    algonquianized["Neg"] = broad_analysis["Neg"]
+    algonquianized["Mode"] = "+".join(broad_analysis["Mode"]) #Mode starts out as a list because you can have Dub, Prt, Prt Dub
     if algonquianized["POS"] == "VTA":
         adjustments = vta_adjustments(**broad_analysis)
         for a in adjustments:
