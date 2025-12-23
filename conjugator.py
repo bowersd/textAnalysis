@@ -1,8 +1,4 @@
 import sys
-import regex
-
-def lemma_insert(lemma, tag_skeleton):
-    return regex.sub(r'<>', lemma, tag_skeleton)
 
 def recreate_number_tags(person, number, prefix):
     if person == "1" and number == "Pl": return "1Pl"
@@ -158,7 +154,7 @@ def tag_assemble(**broad_analysis):
     algonquianized["negation"] = broad_analysis["Neg"]
     algonquianized["mode"] = broad_analysis["Mode"]
     if algonquianized["POS"] == "VTA":
-        adjustments = vta_adjustments(**algonquianized)
+        adjustments = vta_adjustments(**broad_analysis)
         for a in adjustments:
             if adjustments[a]: algonquianized[a] = adjustments[a]
     #if algonquianized["order"]:
