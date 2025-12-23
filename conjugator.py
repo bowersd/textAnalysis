@@ -178,7 +178,12 @@ def tag_assemble(**broad_analysis):
     return algonquianized
 
 def tag_linearize(lemma, **algonquianized):
-    return "+".join([algonquianized["person_prefix"], lemma, algonquianized["POS"], algonquianized["order"], algonquianized["theme_sign"], algonquianized["negation"], algonquianized["central"], algonquianized["mode"], algonquianized["peripheral"]])
+    suffix_slots = ["POS", "order", "theme_sign", "negation", "central", "person_suffix", "mode", "peripheral"]
+    h = [lemma]
+    if algonquianized["person_prefix"]: h = [algonquianized["person_prefix"], lemma]
+    for ss in suffix_slots: 
+        if algonquianized["ss"]: h.append(algonquianized[ss])
+    return "+".join(h)
 
 if __name__ == "__main__":
     specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []}
