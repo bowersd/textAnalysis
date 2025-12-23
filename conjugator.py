@@ -18,7 +18,7 @@ def recreate_number_tags(person, number, prefix):
 
 def tag_assemble(**broad_analysis):
     algonquianized = {"person_prefix": "",
-                      "person_suffix": "", #unclear in my mind whether this can cover cnj (VTA!) and indep VAI 3s
+                      "person_suffix": "", #for vai 3
                       "preverbs": "", 
                       "reduplication": "", 
                       "stem": "",
@@ -26,7 +26,7 @@ def tag_assemble(**broad_analysis):
                       "order": "",
                       "theme_sign": "",
                       "negation": "",
-                      "prefix_number": "", #this is the number component of the argument represented by person_prefix. The number component is, however, a suffix (it is realized in a different place than the person_prefix).
+                      "central": "", #this is the suffix region where number of the person_prefix argument in independent order verbs is realized. Person/number information in addition to the theme sign in cnjs is realized here
                       "mode": "",
                       "peripheral": "",
                       "diminutive": "",
@@ -48,13 +48,13 @@ def tag_assemble(**broad_analysis):
                 algonquianized["peripheral"] = "2Pl" #BUT THE 2Pl NEEDS TO BE BEFORE THE MODE SUFFIXES ... WE CAN'T JUST ALWAYS PUT PERIPHERAL AFTER MODE
         else:
             algonquianized["person_prefix"] = broad_analysis["S"]["Pers"]
-            algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True) #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
+            algonquianized["central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True) #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
             hierarchy = {"1":2, "2":1, "3":3, "0": 4, "":5} #VAIOs?
             #does the broad analysis system handle inanimate subjects of VTAs right?
             if hierarchy[broad_analysis["S"]["Pers"]] > hierarchy[broad_analysis["O"]["Pers"]]:
                 inversion = True
                 algonquianized["person_prefix"] = broad_analysis["O"]["Pers"]
-                algonquianized["prefix_number"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
+                algonquianized["central"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], True)
     return algonquianized
 
 def check_for_person_ties(**broad_analysis):
@@ -147,11 +147,11 @@ def vta_adjustments(**broad_analysis)
     assert (not broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv") and (not broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv") #preventing obviation outside of 3v3
     #what about inanimate obviatives (they are only legal in VIIs, should we ban them here?)?
     #what about VTAs getting inanimate objects?
-    h = {"person_prefix":"", "prefix_number":"", "theme_sign":"", "peripheral":""}
+    h = {"person_prefix":"", "central":"", "theme_sign":"", "peripheral":""}
     check_for_person_ties(**broad_analysis)
     if broad_analysis["order"] == "Cnj":
         h["theme_sign"] = vta_cnj_theme_update(**broad_analysis)
-        h["prefix_number"] = vta_cnj_theme_continuation(h["theme_sign"], **broad_analysis) #independent prefix_number is in an analogous spot to the cnj argument elaborations
+        h["central"] = vta_cnj_theme_continuation(h["theme_sign"], **broad_analysis) #independent central is in an analogous spot to the cnj argument elaborations
     elif broad_analysis["order"] == "Imp":
         pass
     else:
@@ -159,7 +159,7 @@ def vta_adjustments(**broad_analysis)
         theme_align = {0:"O", 1:"S"}
         #a bit inefficient to re-assign S to person prefix and prefix number when not inverted. But 2 v 1pl/2pl v 1pl -> central 1pl, so there is a mismatch that must be managed. Also, the functions are more modular this way
         h["person_prefix"] = vta_prefix_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
-        h["prefix_number"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
+        h["central"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
         h["theme_sign"] = vta_theme_update(inversion, **broad_analysis)
         if h["theme_sign"] in ["ThmDir", "ThmInv"]: h["peripheral"] = vta_peripheral_update(theme_align[int(inversion)], **broad_analysis)
         if broad_analysis["S"]["Pers"] == "0": h["theme_sign"] += "+0"
@@ -178,7 +178,7 @@ def vii_assembly(**broad_analysis):
     pass
 
 def tag_linearize(lemma, **algonquianized):
-    return "+".join([algonquianized["person_prefix"], lemma, algonquianized["POS"], algonquianized["order"], algonquianized["theme_sign"], algonquianized["negation"], algonquianized["prefix_number"], algonquianized["mode"], algonquianized["peripheral"]])
+    return "+".join([algonquianized["person_prefix"], lemma, algonquianized["POS"], algonquianized["order"], algonquianized["theme_sign"], algonquianized["negation"], algonquianized["central"], algonquianized["mode"], algonquianized["peripheral"]])
 
 if __name__ == "__main__":
     specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []}
