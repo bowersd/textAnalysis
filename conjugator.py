@@ -182,7 +182,7 @@ def tag_linearize(lemma, **algonquianized):
     h = [lemma]
     if algonquianized["person_prefix"]: h = [algonquianized["person_prefix"], lemma]
     for ss in suffix_slots: 
-        if algonquianized["ss"]: h.append(algonquianized[ss])
+        if algonquianized[ss]: h.append(algonquianized[ss])
     return "+".join(h)
 
 if __name__ == "__main__":
