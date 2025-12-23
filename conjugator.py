@@ -114,7 +114,10 @@ def vta_cnj_theme_update(**broad_analysis):
 def vta_cnj_continuation(theme_sign, **broad_analysis):
     #Thm2b,                   Subj,                         (Mode)
     #Thm1,   (Neg), (ObjNum)  Subj (but no 2|2Pl if 1Pl),   (Mode)
-    #ThmInv, (Neg), (Obj)     Subj (but no 2 if 1Pl),       (Mode)
+    #ThmInv, (Neg), (Obj)     (Subj) (but no 2 if 1Pl),     (Mode)
+    #Thm2a,  (Neg), (Obj)     (Subj)                        (Mode)
+    #ThmDir, (Neg), Subj      (Obj)                         (Mode)
+    #ThmNul, (Neg), Subj       Obj                          (Mode)
     h = []
     if theme_sign == "Thm2b": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])) #this makes 2, 2Pl, recreate_number_tags() only makes 2Pl
     if theme_sign == "Thm1" and broad_analysis["O"]["Num"] == "Pl": h.append(recreate_number_tags("1", "Pl", False))
@@ -141,21 +144,25 @@ def vta_cnj_continuation(theme_sign, **broad_analysis):
     return "+".join(h)
     
 
-
 def vta_adjustments(**broad_analysis)
     assert (not broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv") and (not broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv") #preventing obviation outside of 3v3
     #what about inanimate obviatives (they are only legal in VIIs, should we ban them here?)?
     #what about VTAs getting inanimate objects?
     h = {"person_prefix":"", "prefix_number":"", "theme_sign":"", "peripheral":""}
     check_for_person_ties(**broad_analysis)
-    inversion = determine_inversion(**broad_analysis) #boolean
-    theme_align = {0:"O", 1:"S"}
-    #a bit inefficient to re-assign S to person prefix and prefix number when not inverted. But 2 v 1pl/2pl v 1pl -> central 1pl, so there is a mismatch that must be managed. Also, the functions are more modular this way
-    h["person_prefix"] = vta_prefix_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
-    h["prefix_number"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
-    h["theme_sign"] = vta_theme_update(inversion, **broad_analysis)
-    if h["theme_sign"] in ["ThmDir", "ThmInv"]: h["peripheral"] = vta_peripheral_update(theme_align[int(inversion)], **broad_analysis)
-    if broad_analysis["S"]["Pers"] == "0": h["theme_sign"] += "+0"
+    if broad_analysis["order"] == "Cnj":
+        h["theme_sign"] = vta_cnj_theme_update(**broad_analysis)
+    if broad_analysis["order"] == "Imp":
+        pass
+    else:
+        inversion = determine_inversion(**broad_analysis) #boolean
+        theme_align = {0:"O", 1:"S"}
+        #a bit inefficient to re-assign S to person prefix and prefix number when not inverted. But 2 v 1pl/2pl v 1pl -> central 1pl, so there is a mismatch that must be managed. Also, the functions are more modular this way
+        h["person_prefix"] = vta_prefix_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
+        h["prefix_number"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
+        h["theme_sign"] = vta_theme_update(inversion, **broad_analysis)
+        if h["theme_sign"] in ["ThmDir", "ThmInv"]: h["peripheral"] = vta_peripheral_update(theme_align[int(inversion)], **broad_analysis)
+        if broad_analysis["S"]["Pers"] == "0": h["theme_sign"] += "+0"
     return h
 
 def vti_assembly(**broad_analysis):
