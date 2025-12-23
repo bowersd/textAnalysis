@@ -14,7 +14,7 @@ def recreate_number_tags(person, number, prefix):
 
 def check_for_person_ties(**broad_analysis):
     if broad_analysis["S"]["Pers"] in ["1", "2"] or broad_analysis["O"]["Pers"] in ["1", "2"]:
-        assert (not any([x == broad_analysis["O"]["Pers"] for x in [broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"][0]]])) and (not any([x == broad_analysis["S"]["Pers"] for x in [broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"][0]]]))
+        assert (not any([x == broad_analysis["O"]["Pers"] for x in [broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]])) and (not any([x == broad_analysis["S"]["Pers"] for x in [broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]]]))
     if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3":
         assert (broad_analysis["S"]["Num"] == "Obv" or broad_analysis["O"]["Num"] == "Obv") and not (broad_analysis["S"]["Num"] == "Obv" and broad_analysis["O"]["Num"] == "Obv")
 
@@ -104,10 +104,10 @@ def vta_adjustments(**broad_analysis):
     #what about VTAs getting inanimate objects?
     h = {"person_prefix":"", "central":"", "theme_sign":"", "peripheral":""}
     check_for_person_ties(**broad_analysis)
-    if broad_analysis["order"] == "Cnj":
+    if broad_analysis["Order"] == "Cnj":
         h["theme_sign"] = vta_cnj_theme_update(**broad_analysis)
         h["central"] = vta_cnj_theme_continuation(h["theme_sign"], **broad_analysis) #independent central is in an analogous spot to the cnj argument elaborations
-    elif broad_analysis["order"] == "Imp":
+    elif broad_analysis["Order"] == "Imp":
         pass
     else:
         inversion = determine_inversion(**broad_analysis) #boolean
