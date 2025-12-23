@@ -178,7 +178,7 @@ def tag_assemble(**broad_analysis):
     return algonquianized
 
 def tag_linearize(lemma, **algonquianized):
-    suffix_slots = ["POS", "Order", "Theme_sign", "Negation", "Central", "Person_suffix", "Mode", "Periph"]
+    suffix_slots = ["POS", "Order", "Theme_sign", "Neg", "Central", "Person_suffix", "Mode", "Periph"]
     h = [lemma]
     if algonquianized["Person_prefix"]: h = [algonquianized["Person_prefix"], lemma]
     for ss in suffix_slots: 
