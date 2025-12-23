@@ -96,7 +96,6 @@ def vta_peripheral_update(alignment, **broad_analysis):
 
 def vta_cnj_theme_update(**broad_analysis):
     if broad_analysis["S"]["Pers"] == "0": return "ThmInv" #ironclad first
-
     elif broad_analysis["O"]["Pers"] == "1": return "Thm1"
     elif broad_analysis["S"] == {"Pers":"1", "Num":"Pl"} and broad_analysis["O"]["Pers"] == "2": return "Thm1Pl2"
     elif not broad_analysis["Neg"] and broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"] == {"Pers":"2", "Num": ""}: return "Thm2b"
