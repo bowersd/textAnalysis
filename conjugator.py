@@ -152,7 +152,7 @@ def vta_adjustments(**broad_analysis)
     if broad_analysis["order"] == "Cnj":
         h["theme_sign"] = vta_cnj_theme_update(**broad_analysis)
         h["prefix_number"] = vta_cnj_theme_continuation(h["theme_sign"], **broad_analysis) #independent prefix_number is in an analogous spot to the cnj argument elaborations
-    if broad_analysis["order"] == "Imp":
+    elif broad_analysis["order"] == "Imp":
         pass
     else:
         inversion = determine_inversion(**broad_analysis) #boolean
