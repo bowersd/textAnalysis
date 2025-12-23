@@ -134,8 +134,7 @@ def vta_cnj_continuation(theme_sign, **broad_analysis):
     if theme_sign == "ThmDir" and broad_analysis["S"]["Pers"] in ["1", "2"]: 
         h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
         h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]]))
-    if theme_sign == "ThmDir" and broad_analysis["S"]["Pers"] == "3": 
-        h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
+    if theme_sign == "ThmDir" and broad_analysis["S"]["Pers"] == "3": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
     return "+".join(h)
     
 
