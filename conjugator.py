@@ -99,7 +99,7 @@ def vta_cnj_continuation(theme_sign, **broad_analysis):
     
 
 def vta_adjustments(**broad_analysis):
-    assert (not broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv") and (not broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv") #preventing obviation outside of 3v3
+    assert (not (broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv")) and (not (broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv")) #preventing obviation outside of 3v3
     #what about inanimate obviatives (they are only legal in VIIs, should we ban them here?)?
     #what about VTAs getting inanimate objects?
     h = {"person_prefix":"", "central":"", "theme_sign":"", "peripheral":""}
