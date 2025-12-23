@@ -102,22 +102,22 @@ def vta_adjustments(**broad_analysis):
     assert (not (broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv")) and (not (broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv")) #preventing obviation outside of 3v3
     #what about inanimate obviatives (they are only legal in VIIs, should we ban them here?)?
     #what about VTAs getting inanimate objects?
-    h = {"person_prefix":"", "central":"", "theme_sign":"", "peripheral":""}
+    h = {"Person_prefix":"", "Central":"", "Theme_sign":"", "Periph":""}
     check_for_person_ties(**broad_analysis)
     if broad_analysis["Order"] == "Cnj":
-        h["theme_sign"] = vta_cnj_theme_update(**broad_analysis)
-        h["central"] = vta_cnj_continuation(h["theme_sign"], **broad_analysis) #independent central is in an analogous spot to the cnj argument elaborations
+        h["Theme_sign"] = vta_cnj_theme_update(**broad_analysis)
+        h["Central"] = vta_cnj_continuation(h["Theme_sign"], **broad_analysis) #independent central is in an analogous spot to the cnj argument elaborations
     elif broad_analysis["Order"] == "Imp":
         pass
     else:
         inversion = determine_inversion(**broad_analysis) #boolean
         theme_align = {0:"O", 1:"S"}
         #a bit inefficient to re-assign S to person prefix and prefix number when not inverted. But 2 v 1pl/2pl v 1pl -> central 1pl, so there is a mismatch that must be managed. Also, the functions are more modular this way
-        h["person_prefix"] = vta_prefix_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
-        h["central"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
-        h["theme_sign"] = vta_theme_update(inversion, **broad_analysis)
-        if h["theme_sign"] in ["ThmDir", "ThmInv"]: h["peripheral"] = vta_peripheral_update(theme_align[int(inversion)], **broad_analysis)
-        if broad_analysis["S"]["Pers"] == "0": h["theme_sign"] += "+0"
+        h["Person_prefix"] = vta_prefix_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
+        h["Central"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
+        h["Theme_sign"] = vta_theme_update(inversion, **broad_analysis)
+        if h["Theme_sign"] in ["ThmDir", "ThmInv"]: h["Periph"] = vta_peripheral_update(theme_align[int(inversion)], **broad_analysis)
+        if broad_analysis["S"]["Pers"] == "0": h["Theme_sign"] += "+0"
     return h
 
 def vti_assembly(**broad_analysis):
@@ -133,26 +133,26 @@ def vii_assembly(**broad_analysis):
     pass
 
 def tag_assemble(**broad_analysis):
-    algonquianized = {"person_prefix": "",
-                      "person_suffix": "", #for vai 3
-                      "preverbs": "", 
-                      "reduplication": "", 
-                      "stem": "",
+    algonquianized = {"Person_prefix": "",
+                      "Person_suffix": "", #for vai 3
+                      "Preverbs": "", 
+                      "Reduplication": "", 
+                      "Stem": "", #this isn't being used thus far (dec 2025)
                       "POS": "",
-                      "order": "",
-                      "theme_sign": "",
-                      "negation": "",
-                      "central": "", #this is the suffix region where number of the person_prefix argument in independent order verbs is realized. Person/number information in addition to the theme sign in cnjs is realized here
-                      "mode": "",
-                      "peripheral": "",
-                      "diminutive": "",
-                      "pejorative": "",
-                      "contemptive": "",
+                      "Order": "",
+                      "Theme_sign": "",
+                      "Negation": "",
+                      "Central": "", #this is the suffix region where number of the person_prefix argument in independent order verbs is realized. Person/number information in addition to the theme sign in cnjs is realized here
+                      "Mode": "",
+                      "Periph": "",
+                      "Diminutive": "",
+                      "Pejorative": "",
+                      "Contemptive": "",
                      }
     algonquianized["POS"] = broad_analysis["Head"]
-    algonquianized["order"] = broad_analysis["Order"]
-    algonquianized["negation"] = broad_analysis["Neg"]
-    algonquianized["mode"] = broad_analysis["Mode"]
+    algonquianized["Order"] = broad_analysis["Order"]
+    algonquianized["Negation"] = broad_analysis["Neg"]
+    algonquianized["Mode"] = broad_analysis["Mode"]
     if algonquianized["POS"] == "VTA":
         adjustments = vta_adjustments(**broad_analysis)
         for a in adjustments:
@@ -162,10 +162,10 @@ def tag_assemble(**broad_analysis):
     #elif broad_analysis["S"]["Pers"] != '0': #inanimate subjects (VTA, VII) are special (not indexed by prefix)
     #    inversion = False
     #    if algonquianized["POS"].startswith("VAI") and broad_analysis["S"]["Pers"] == "3": #including VAIOs
-    #        algonquianized["peripheral"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
+    #        algonquianized["periph"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
     #        algonquianized["person_suffix"] = broad_analysis["S"]["Pers"]
     #        if algonquianized["mode"] == ["prt", "dub"] and broad_analysis["S"]["Num"] == "Pl": #And we need to catch other pret dubs going to changed conjunct
-    #            algonquianized["peripheral"] = "2Pl" #BUT THE 2Pl NEEDS TO BE BEFORE THE MODE SUFFIXES ... WE CAN'T JUST ALWAYS PUT PERIPHERAL AFTER MODE
+    #            algonquianized["periph"] = "2Pl" #BUT THE 2Pl NEEDS TO BE BEFORE THE MODE SUFFIXES ... WE CAN'T JUST ALWAYS PUT PERIPHERAL AFTER MODE
     #    else:
     #        algonquianized["person_prefix"] = broad_analysis["S"]["Pers"]
     #        algonquianized["central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True) #standard outputs from interpret() are just Pl instead of 3Pl, need to restore full tag
@@ -178,15 +178,15 @@ def tag_assemble(**broad_analysis):
     return algonquianized
 
 def tag_linearize(lemma, **algonquianized):
-    suffix_slots = ["POS", "order", "theme_sign", "negation", "central", "person_suffix", "mode", "peripheral"]
+    suffix_slots = ["POS", "Order", "Theme_sign", "Negation", "Central", "Person_suffix", "Mode", "Periph"]
     h = [lemma]
-    if algonquianized["person_prefix"]: h = [algonquianized["person_prefix"], lemma]
+    if algonquianized["Person_prefix"]: h = [algonquianized["Person_prefix"], lemma]
     for ss in suffix_slots: 
         if algonquianized[ss]: h.append(algonquianized[ss])
     return "+".join(h)
 
 if __name__ == "__main__":
-    specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []}
+    specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []} #going to have to be careful with Mode, Else...
     for x in sys.argv[2:]:
         key, val = x.split(":")
         if val[0] in ["1", "2", "3", "0"]:
