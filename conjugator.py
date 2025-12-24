@@ -1,15 +1,9 @@
 import sys
 
 def recreate_number_tags(person, number, prefix):
-    if person == "1" and number == "Pl": return "1Pl"
-    elif person == "2" and number == "Pl": return "2Pl"
-    elif person == "2" and number == "1Pl" and prefix: return "1Pl"
-    elif person == "2" and number == "1Pl" and not prefix: return "21Pl"
+    if person == "2" and number == "1Pl" and prefix: return "1Pl"
     elif person == "3" and number == "Pl" and prefix: return "2Pl"
-    elif person == "3" and number == "Pl" and not prefix: return "3Pl"
-    elif person == "3" and number == "Obv" and not prefix: return "3Obv"
-    elif person == "0" and number == "Pl" and not prefix: return "0Pl"
-    elif person == "0" and number == "Obv" and not prefix: return "0Obv"
+    elif number: return "".join([person, number])
     else: return ""
 
 def check_for_person_ties(**broad_analysis):
@@ -128,6 +122,8 @@ def n_assembly(**broad_analysis):
 
 def vai_adjustments(**broad_analysis):
     h = {"Person_prefix":"", "Central":"", "Periph":""}
+    if broad_analysis["Mode"] == "Cnj": h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
+    if broad_analysis["Mode"] == "Imp": pass
     if broad_analysis["S"]["Pers"] in ["1", "2"]: 
         h["Person_prefix"] = broad_analysis["S"]["Pers"]
         h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
