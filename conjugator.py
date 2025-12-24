@@ -1,4 +1,5 @@
 import sys
+#todo: passives, iteratives, participles, preverbs, imperatives, warnings/hints, vaios, shift to conjunct, required initial change
 
 def recreate_number_tags(person, number, prefix):
     if person == "2" and number == "1Pl" and prefix: return "1Pl"
@@ -24,7 +25,7 @@ def prefix_update(alignment, **broad_analysis):
     #up to this point, this script permits a 0 "inanimate" prefix, which I doubt actually exists in the mind of the ideal speaker-hearer :D
 
 def vta_central_update(alignment, **broad_analysis):
-    if alignment == "O" and broad_analysis["S"]["Pers"] == "2" and broad_analysis["O"] == {"Pers":"1", "Num":"Pl"}:
+    if alignment == "O" and broad_analysis["S"]["Pers"] == "2" and broad_analysis["O"] == {"Pers":"1", "Num":"Pl"}: #worthwhile to flag to user that 2 v 1Pl is always ambiguous for subject number (also for cnj)
         return recreate_number_tags("1", "Pl", False) #value of boolean is irrelevant here, but strictly speaking, we are not indexing the prefix's number
     return recreate_number_tags(broad_analysis[alignment]["Pers"], broad_analysis[alignment]["Num"], True) 
     #a bit of superfluous work here, with a 3 prefix getting updated to 3 when 3Obv vs 3
@@ -69,13 +70,13 @@ def vta_cnj_continuation(theme_sign, **broad_analysis):
     h = []
     if theme_sign == "Thm2b": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])) #this makes 2, 2Pl, recreate_number_tags() only makes 2Pl
     if theme_sign == "Thm1" and broad_analysis["O"]["Num"] == "Pl": h.append(recreate_number_tags("1", "Pl", False))
-    if theme_sign == "Thm1" and not broad_analysis["O"]["Num"] and broad_analysis["S"]["Pers"] == "2": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
+    if theme_sign == "Thm1" and not broad_analysis["O"]["Num"] and broad_analysis["S"]["Pers"] == "2": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])) #worthwhile to flag to user the systematic ambiguity for subject number in 2 v 1Pl
     if theme_sign == "Thm1" and broad_analysis["S"]["Pers"] == "3": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
     if theme_sign == "ThmInv" and broad_analysis["O"]["Pers"] in ["2", "1"] and broad_analysis["S"]["Pers"] != "3": h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])) #inverse theme without 3rd marking -> 0 subj and 2/1 O
     if theme_sign == "ThmInv" and broad_analysis["O"]["Pers"] == ["2"] and broad_analysis["S"]["Pers"] == "3": #this is just a few negated forms where you get both 2 marking and 3 
         h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]]))
         h.append(broad_analysis["S"]["Pers"])
-    if theme_sign == "ThmInv" and broad_analysis["O"]["Pers"] == ["3"]: h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])) #a case of ambiguity, where you can have either S=0 or S=3Obv
+    if theme_sign == "ThmInv" and broad_analysis["O"]["Pers"] == ["3"]: h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])) #a case of ambiguity, where you can have either S=0 or S=3Obv, worthwhile to flag to user, also worth it to flag that 0Plis dropped in cnj (as in VII, VTI)
     if theme_sign == "Thm1Pl2": h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]]))
     if theme_sign == "Thm2a" and broad_analysis["O"]["Num"] and broad_analysis["S"]["Pers"] == "3": 
         h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]]))
@@ -86,7 +87,7 @@ def vta_cnj_continuation(theme_sign, **broad_analysis):
         h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
         h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])) #always 3
     if theme_sign == "ThmDir" and broad_analysis["S"]["Pers"] == "3": h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]))
-    if theme_sign == "ThmNul": #I cheated in the dubitatives, which have an "aa" aka ThmDir
+    if theme_sign == "ThmNul": #I cheated in the dubitatives, which have an "aa" aka ThmDir, worthwhile to flag to user
         h.append("".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])) #always 2|1 
         h.append("".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])) #always 3
     return "+".join(h)
@@ -114,26 +115,37 @@ def vta_adjustments(**broad_analysis):
         if broad_analysis["S"]["Pers"] == "0": h["Theme_sign"] += "+0"
     return h
 
-def vti_assembly(**broad_analysis):
-    pass
+def vti_adjustments(**broad_analysis):
+    h = {"Person_prefix":"", "Central":"", "Periph":""}
+    if broad_analysis["Order"] == "Cnj": h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]) #it is the exact same VAIs, worthwhile to flag to user
+    elif broad_analysis["Order"] == "Imp": pass
+    else:
+        h["Person_prefix"] = broad_analysis["S"]["Pers"]
+        h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
+        h["Periph"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], False)
+    return h
 
 def n_assembly(**broad_analysis):
     pass
 
 def vai_adjustments(**broad_analysis):
     h = {"Person_prefix":"", "Central":"", "Periph":""}
-    if broad_analysis["Mode"] == "Cnj": h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
-    if broad_analysis["Mode"] == "Imp": pass
-    if broad_analysis["S"]["Pers"] in ["1", "2"]: 
-        h["Person_prefix"] = broad_analysis["S"]["Pers"]
-        h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
+    if broad_analysis["Order"] == "Cnj": h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])
+    elif broad_analysis["Order"] == "Imp": pass
     else:
-        h["Central"] = broad_analysis["S"]["Pers"]
-        h["Periph"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
+        if broad_analysis["S"]["Pers"] in ["1", "2"]: 
+            h["Person_prefix"] = broad_analysis["S"]["Pers"]
+            h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
+        else:
+            h["Central"] = broad_analysis["S"]["Pers"]
+            h["Periph"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
     return h
 
-def vii_assembly(**broad_analysis):
-    pass
+def vii_adjustments(**broad_analysis):
+    h = {"Central":"0", "Periph":""}
+    if broad_analysis["S"]["Num"].startswith("Obv"): h["Central"] += "Obv"
+    if broad_analysis["Order"] != "Cnj" and broad_analysis["S"]["Num"].endswith("Pl"): h["Periph"] = "0Pl" #silently dropping 0Pl in cnj, worthwhile to flag to user
+    return h
 
 def tag_assemble(**broad_analysis):
     algonquianized = {"Person_prefix": "",
@@ -158,10 +170,10 @@ def tag_assemble(**broad_analysis):
     algonquianized["Mode"] = "+".join(broad_analysis["Mode"]) #Mode starts out as a list because you can have Dub, Prt, Prt Dub
     adjustments = {}
     if algonquianized["POS"] == "VTA": adjustments = vta_adjustments(**broad_analysis)
-    if algonquianized["POS"] == "VAI": adjustments = vai_adjustments(**broad_analysis)
-    if algonquianized["POS"] == "VAIO": pass
-    if algonquianized["POS"] == "VTI": pass
-    if algonquianized["POS"] == "VII": pass
+    elif algonquianized["POS"] == "VAI": adjustments = vai_adjustments(**broad_analysis)
+    elif algonquianized["POS"] == "VAIO": pass
+    elif algonquianized["POS"] == "VTI": adjustments = vti_adjustments(**broad_analysis)
+    elif algonquianized["POS"] == "VII": adjustments = vii_adjustments(**broad_analysis)
     for a in adjustments:
         if adjustments[a]: algonquianized[a] = adjustments[a]
     #if algonquianized["order"]:
