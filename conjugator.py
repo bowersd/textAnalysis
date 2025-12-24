@@ -1,5 +1,5 @@
 import sys
-#todo: passives, iteratives, participles, preverbs, imperatives, warnings/hints, vaios, shift to conjunct, required initial change
+#todo: passives, iteratives, participles, preverbs, imperatives, warnings/hints, vaios, shift to conjunct, required initial change, vocative singulars
 
 def recreate_number_tags(person, number, prefix):
     if person == "2" and number == "1Pl" and prefix: return "1Pl"
@@ -147,6 +147,11 @@ def vii_adjustments(**broad_analysis):
     if broad_analysis["Order"] != "Cnj" and broad_analysis["S"]["Num"].endswith("Pl"): h["Periph"] = "0Pl" #silently dropping 0Pl in cnj, worthwhile to flag to user
     return h
 
+def n_adjustments(**broad_analysis):
+    h = {"Person_prefix":broad_analysis["S"]["Pers"], "ConDim":"", "Theme_sign":"", "Pejorative":"", "Central":"", "Mode":"", "Periph":""}
+    #worthwhile to flag requirement of prefixes on dependent stems
+    h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
+
 def tag_assemble(**broad_analysis):
     algonquianized = {"Person_prefix": "",
                       #"Person_suffix": "", #for vai 3 -> or we could use Central, the number suffixes are in comp dist with 3, X
@@ -160,9 +165,8 @@ def tag_assemble(**broad_analysis):
                       "Central": "", #this is the suffix region where number of the person_prefix argument in independent order verbs is realized. Person/number information in addition to the theme sign in cnjs is realized here
                       "Mode": "",
                       "Periph": "",
-                      "Diminutive": "",
+                      "ConDim": "",
                       "Pejorative": "",
-                      "Contemptive": "",
                      }
     algonquianized["POS"] = broad_analysis["Head"]
     algonquianized["Order"] = broad_analysis["Order"]
@@ -174,6 +178,7 @@ def tag_assemble(**broad_analysis):
     elif algonquianized["POS"] == "VAIO": pass
     elif algonquianized["POS"] == "VTI": adjustments = vti_adjustments(**broad_analysis)
     elif algonquianized["POS"] == "VII": adjustments = vii_adjustments(**broad_analysis)
+    elif algonquianized["POS"].startswith("N"): adjustments = vii_adjustments(**broad_analysis)
     for a in adjustments:
         if adjustments[a]: algonquianized[a] = adjustments[a]
     #if algonquianized["order"]:
