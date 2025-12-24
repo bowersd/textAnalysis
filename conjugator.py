@@ -144,7 +144,7 @@ def tag_assemble(**broad_analysis):
                       #"Person_suffix": "", #for vai 3 -> or we could use Central, the number suffixes are in comp dist with 3, X
                       "Preverbs": "", 
                       "Reduplication": "", 
-                      "Stem": "", #this isn't being used thus far (dec 2025)
+                      #"Stem": "", #this isn't being used thus far (dec 2025)
                       "POS": "",
                       "Order": "",
                       "Theme_sign": "",
