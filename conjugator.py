@@ -160,10 +160,14 @@ def tag_assemble(**broad_analysis):
     algonquianized["Order"] = broad_analysis["Order"]
     algonquianized["Neg"] = broad_analysis["Neg"]
     algonquianized["Mode"] = "+".join(broad_analysis["Mode"]) #Mode starts out as a list because you can have Dub, Prt, Prt Dub
-    if algonquianized["POS"] == "VTA":
-        adjustments = vta_adjustments(**broad_analysis)
-        for a in adjustments:
-            if adjustments[a]: algonquianized[a] = adjustments[a]
+    adjustments = {}
+    if algonquianized["POS"] == "VTA": adjustments = vta_adjustments(**broad_analysis)
+    if algonquianized["POS"] == "VAI": adjustments = vai_adjustments(**broad_analysis)
+    if algonquianized["POS"] == "VAIO": pass
+    if algonquianized["POS"] == "VTI": pass
+    if algonquianized["POS"] == "VII": pass
+    for a in adjustments:
+        if adjustments[a]: algonquianized[a] = adjustments[a]
     #if algonquianized["order"]:
     #    pass #special behavior for imperatives and conjuncts
     #elif broad_analysis["S"]["Pers"] != '0': #inanimate subjects (VTA, VII) are special (not indexed by prefix)
