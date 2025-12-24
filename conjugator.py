@@ -1,5 +1,5 @@
 import sys
-#todo: passives, iteratives, participles, preverbs, imperatives, warnings/hints, vaios, shift to conjunct, required initial change, vocative singulars
+#todo: passives, iteratives, participles, preverbs, imperatives, warnings/hints, vaios, shift to conjunct, required initial change, vocative singulars, [123]+Ext|Nul+
 
 def recreate_number_tags(person, number, prefix):
     if person == "2" and number == "1Pl" and prefix: return "1Pl"
@@ -125,9 +125,6 @@ def vti_adjustments(**broad_analysis):
         h["Periph"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], False)
     return h
 
-def n_assembly(**broad_analysis):
-    pass
-
 def vai_adjustments(**broad_analysis):
     h = {"Person_prefix":"", "Central":"", "Periph":""}
     if broad_analysis["Order"] == "Cnj": h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])
@@ -148,9 +145,19 @@ def vii_adjustments(**broad_analysis):
     return h
 
 def n_adjustments(**broad_analysis):
-    h = {"Person_prefix":broad_analysis["S"]["Pers"], "ConDim":"", "Theme_sign":"", "Pejorative":"", "Central":"", "Mode":"", "Periph":""}
+    h = {
+            "Person_prefix":broad_analysis["S"]["Pers"], 
+            "ConDim":broad_analysis["ConDim"], 
+            "Theme_sign":broad_analysis["PossessiveTheme"], 
+            "Pejorative":broad_analysis["Pejorative"], 
+            "Central":recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True), 
+            "Mode":broad_analysis["Mode"] 
+            "Periph":broad_analysis["Periph"]
+            }
     #worthwhile to flag requirement of prefixes on dependent stems
-    h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
+    if h["Person_prefix"] == "3" and broad_analysis["Periph"] == "Pl": h["Periph"] = "" #worthwhile to flag to user
+    if not h["Person_prefix"] and h["Theme_sign"]: h["Theme_sign"] = "" #worthwhile to flag to user
+    return h
 
 def tag_assemble(**broad_analysis):
     algonquianized = {"Person_prefix": "",
@@ -178,7 +185,7 @@ def tag_assemble(**broad_analysis):
     elif algonquianized["POS"] == "VAIO": pass
     elif algonquianized["POS"] == "VTI": adjustments = vti_adjustments(**broad_analysis)
     elif algonquianized["POS"] == "VII": adjustments = vii_adjustments(**broad_analysis)
-    elif algonquianized["POS"].startswith("N"): adjustments = vii_adjustments(**broad_analysis)
+    elif algonquianized["POS"].startswith("N"): adjustments = n_adjustments(**broad_analysis)
     for a in adjustments:
         if adjustments[a]: algonquianized[a] = adjustments[a]
     #if algonquianized["order"]:
@@ -202,7 +209,9 @@ def tag_assemble(**broad_analysis):
     return algonquianized
 
 def tag_linearize(lemma, **algonquianized):
-    suffix_slots = ["POS", "Order", "Theme_sign", "Neg", "Central", "Person_suffix", "Mode", "Periph"]
+    suffix_slots = ["POS", "Order", "Theme_sign", "Neg", "Central", "Mode", "Periph"]
+    if algonquianized["POS"].startswith("N"):
+        suffix_slots = ["POS", "ConDim", "Theme_sign", "Pejorative", "Central", "Mode", "Periph"]
     h = [lemma]
     if algonquianized["Person_prefix"]: h = [algonquianized["Person_prefix"], lemma]
     for ss in suffix_slots: 
@@ -210,6 +219,7 @@ def tag_linearize(lemma, **algonquianized):
     return "+".join(h)
 
 if __name__ == "__main__":
+    #specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []} #going to have to be careful with Mode, Else... #original layout from alg_morphological ummary
     specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []} #going to have to be careful with Mode, Else...
     for x in sys.argv[2:]:
         key, val = x.split(":")
