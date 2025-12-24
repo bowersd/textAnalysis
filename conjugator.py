@@ -155,7 +155,7 @@ def n_adjustments(**broad_analysis):
             "Periph":broad_analysis["Periph"]
             }
     #worthwhile to flag requirement of prefixes on dependent stems
-    if broad_analysis["POS"].endswith("D") and not h["Person_prefix"]: raise ValueError("Dependent nouns require a possessor")
+    if broad_analysis["POS"].endswith("D") and not h["Person_prefix"]: raise ValueError("dependent nouns require a possessor")
     if h["Person_prefix"] == "3" and broad_analysis["Periph"] == "Pl": h["Periph"] = "" #worthwhile to flag to user
     if not h["Person_prefix"] and h["PosTheme"]: h["PosTheme"] = "" #worthwhile to flag to user
     return h
