@@ -148,7 +148,7 @@ def n_adjustments(**broad_analysis):
     h = {
             "Person_prefix":broad_analysis["S"]["Pers"], 
             "ConDim":broad_analysis["ConDim"], 
-            "Theme_sign":broad_analysis["PossessiveTheme"], 
+            "PosTheme":broad_analysis["PosTheme"], 
             "Pejorative":broad_analysis["Pejorative"], 
             "Central":recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True), 
             "Mode":broad_analysis["Mode"] 
@@ -156,7 +156,7 @@ def n_adjustments(**broad_analysis):
             }
     #worthwhile to flag requirement of prefixes on dependent stems
     if h["Person_prefix"] == "3" and broad_analysis["Periph"] == "Pl": h["Periph"] = "" #worthwhile to flag to user
-    if not h["Person_prefix"] and h["Theme_sign"]: h["Theme_sign"] = "" #worthwhile to flag to user
+    if not h["Person_prefix"] and h["PosTheme"]: h["PosTheme"] = "" #worthwhile to flag to user
     return h
 
 def tag_assemble(**broad_analysis):
@@ -211,7 +211,7 @@ def tag_assemble(**broad_analysis):
 def tag_linearize(lemma, **algonquianized):
     suffix_slots = ["POS", "Order", "Theme_sign", "Neg", "Central", "Mode", "Periph"]
     if algonquianized["POS"].startswith("N"):
-        suffix_slots = ["POS", "ConDim", "Theme_sign", "Pejorative", "Central", "Mode", "Periph"]
+        suffix_slots = ["POS", "ConDim", "PosTheme", "Pejorative", "Central", "Mode", "Periph"]
     h = [lemma]
     if algonquianized["Person_prefix"]: h = [algonquianized["Person_prefix"], lemma]
     for ss in suffix_slots: 
@@ -220,7 +220,7 @@ def tag_linearize(lemma, **algonquianized):
 
 if __name__ == "__main__":
     #specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []} #going to have to be careful with Mode, Else... #original layout from alg_morphological ummary
-    specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []} #going to have to be careful with Mode, Else...
+    specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "ConDim":"", "PosTheme":"", "Pejorative":"" } 
     for x in sys.argv[2:]:
         key, val = x.split(":")
         if val[0] in ["1", "2", "3", "0"]:
