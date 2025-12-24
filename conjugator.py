@@ -24,7 +24,7 @@ def determine_inversion(**broad_analysis):
     if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3" and broad_analysis["S"]["Num"] == "Obv": return True
     return False
 
-def vta_prefix_update(alignment, **broad_analysis):
+def prefix_update(alignment, **broad_analysis):
     return broad_analysis[alignment]["Pers"]
     #a bit of superfluous work here, with a 3 prefix getting updated to 3 when 3Obv vs 3
     #up to this point, this script permits a 0 "inanimate" prefix, which I doubt actually exists in the mind of the ideal speaker-hearer :D
@@ -113,7 +113,7 @@ def vta_adjustments(**broad_analysis):
         inversion = determine_inversion(**broad_analysis) #boolean
         theme_align = {0:"O", 1:"S"}
         #a bit inefficient to re-assign S to person prefix and prefix number when not inverted. But 2 v 1pl/2pl v 1pl -> central 1pl, so there is a mismatch that must be managed. Also, the functions are more modular this way
-        h["Person_prefix"] = vta_prefix_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
+        h["Person_prefix"] = prefix_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
         h["Central"] = vta_central_update(theme_align[int(not inversion)], **broad_analysis) #uninverted: prefix/central number slot = subj, inverted, prefix/central number slot = obj
         h["Theme_sign"] = vta_theme_update(inversion, **broad_analysis)
         if h["Theme_sign"] in ["ThmDir", "ThmInv"]: h["Periph"] = vta_peripheral_update(theme_align[int(inversion)], **broad_analysis)
@@ -126,15 +126,22 @@ def vti_assembly(**broad_analysis):
 def n_assembly(**broad_analysis):
     pass
 
-def vai_assembly(**broad_analysis):
-    pass
+def vai_adjustments(**broad_analysis):
+    h = {"Person_prefix":"", "Central":"", "Periph":""}
+    if broad_analysis["S"]["Pers"] in ["1", "2"]: 
+        h["Person_prefix"] = broad_analysis["S"]["Pers"]
+        h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
+    else:
+        h["Central"] = broad_analysis["S"]["Pers"]
+        h["Periph"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], False)
+    return h
 
 def vii_assembly(**broad_analysis):
     pass
 
 def tag_assemble(**broad_analysis):
     algonquianized = {"Person_prefix": "",
-                      "Person_suffix": "", #for vai 3
+                      #"Person_suffix": "", #for vai 3 -> or we could use Central, the number suffixes are in comp dist with 3, X
                       "Preverbs": "", 
                       "Reduplication": "", 
                       "Stem": "", #this isn't being used thus far (dec 2025)
