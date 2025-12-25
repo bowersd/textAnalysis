@@ -1,4 +1,5 @@
 import sys
+import parse
 #todo: passives, iteratives, participles, preverbs, imperatives, warnings/hints, vaios, shift to conjunct, required initial change, vocative singulars, [123]+Ext|Nul+
 
 def recreate_number_tags(person, number, prefix):
@@ -151,7 +152,7 @@ def n_adjustments(**broad_analysis):
             "PosTheme":broad_analysis["PosTheme"], 
             "Pejorative":broad_analysis["Pejorative"], 
             "Central":recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True), 
-            "Mode":broad_analysis["Mode"] 
+            "Mode":broad_analysis["Mode"] ,
             "Periph":broad_analysis["Periph"]
             }
     #worthwhile to flag requirement of prefixes on dependent stems
@@ -228,4 +229,7 @@ if __name__ == "__main__":
             specs[key]["Pers"] = val[0]
             specs[key]["Num"] = val[1:]
         else: specs[key] = val
-    print(tag_linearize(sys.argv[1], **tag_assemble(**specs)))
+    linearized = tag_linearize(sys.argv[1], **tag_assemble(**specs))
+    print(linearized)
+    output = parse.parse_native('../otw/src/morphophonologyclitics_generate.hfstol', linearized)_
+    for o in output: print(output[o])
