@@ -156,7 +156,7 @@ def n_adjustments(**broad_analysis):
             "Periph":broad_analysis["Periph"]
             }
     #worthwhile to flag requirement of prefixes on dependent stems
-    if broad_analysis["POS"].endswith("D") and not h["Person_prefix"]: raise ValueError("dependent nouns require a possessor")
+    if broad_analysis["Head"].endswith("D") and not h["Person_prefix"]: raise ValueError("dependent nouns require a possessor")
     if h["Person_prefix"] == "3" and broad_analysis["Periph"] == "Pl": h["Periph"] = "" #worthwhile to flag to user
     if not h["Person_prefix"] and h["PosTheme"]: h["PosTheme"] = "" #worthwhile to flag to user
     return h
@@ -169,7 +169,7 @@ def tag_assemble(**broad_analysis):
                       #"Stem": "", #this isn't being used thus far (dec 2025)
                       "POS": "",
                       "Order": "",
-                      "Theme_sign": "",
+                      "PosTheme": "",
                       "Neg": "",
                       "Central": "", #this is the suffix region where number of the person_prefix argument in independent order verbs is realized. Person/number information in addition to the theme sign in cnjs is realized here
                       "Mode": "",
@@ -228,8 +228,10 @@ if __name__ == "__main__":
         if val[0] in ["1", "2", "3", "0"]:
             specs[key]["Pers"] = val[0]
             specs[key]["Num"] = val[1:]
+        elif key == "Mode": specs[key].append(val)
         else: specs[key] = val
+    print(" ".join(sys.argv[1:]))
     linearized = tag_linearize(sys.argv[1], **tag_assemble(**specs))
     print(linearized)
-    output = parse.parse_native('../otw/src/morphophonologyclitics_generate.hfstol', linearized)_
+    output = parse.parse_native('../otw/src/morphophonologyclitics_generate.hfstol', linearized)
     for o in output: print(output[o])
