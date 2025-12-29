@@ -23,10 +23,80 @@ layout: default
 <body>
     <p>1. Enter the dictionary entry you want to conjugate and its part of speech.</p>
         <input type="text" size="30" id="lemma" placeholder="waabmaa">
-        <input type="text" size="4" id="pos" placeholder = "VTA">
+    <label for="POS">Part of Speech:</label>
+    <select id="POS">
+        <option value="NA">NA (noun for animates, as in living or otherwise remarkable things)</option>
+        <option value="NI">NI (noun for inanimates, as in everything that is not animate)</option>
+        <option value="NAD">NAD (noun for animates that must be possessed, as in family members, body parts)</option>
+        <option value="NID">NID (noun for inanimates that must be possessed, as in body parts)</option>
+        <option disabled>______</option>
+        <option value="VAI">VAI (Verb for action/state of an animate entity/group - "animate x VERBs")</option>
+        <option value="VII">VII (Verb for action/state of an inanimate entity/group - "inanimate x VERBs")</option>
+        <option value="VTI">VTI (Verb that affects an inanimate entity/group - "x VERBs inanimate y")</option>
+        <option value="VTA">VTA (Verb that affects an animate entity/group - "x VERBs animate y")</option>
+    </select>
+    <!--<input type="text" size="4" id="pos" placeholder = "VTA">-->
+    <hr/>
     <p>2. Select how you want to conjugate the word.</p>
-    <p>VTA</p>
+    <p>These options are for verbs (VAI, VAIO, VII, VTI, VTA):</p>
     <label for="Order">Sentence type:</label>
+    <select id="Order">
+        <option value="Ind">(default)</option>
+        <option value="Cnj">That... ("that x VERBs")</option>
+        <!-- <option value="Imp">Do it! (an order)</option>-->
+    </select>
+
+    <label for="S">Subject (filling in "x" in "x VERBs"):</label>
+    <select id="S">
+        <option value="1">I</option>
+        <option value="1Pl">We (excluding you)</option>
+        <option disabled>______</option>
+        <option value="2">You</option>
+        <option value="2Pl">You guys</option>
+        <option value="21Pl">We (including you)</option>
+        <option disabled>______</option>
+        <option value="3">He/She (animate third person)</option>
+        <option value="3Obv">Someone else (obviated animate third person)</option>
+        <option value="3Pl">They (animate third person plural)</option>
+        <option disabled>______</option>
+        <option value="0">It (inanimate)</option>
+        <option value="0Obv">Something else (obviated inanimate)</option>
+        <option value="0Pl">Those (inanimate plural)</option>
+        <option value="0ObvPl">Those other things (obviated inanimate plural)</option>
+        <option disabled>______</option>
+        <option value="X">Unspecified/Passive</option>
+    </select>
+
+    <label for="O">Object (filling in "y" in "x VERBs y"):</label>
+    <select id="O">
+        <option value="">(none, verb is VII or VAI)</option>
+        <option value="1">Me</option>
+        <option value="1Pl">Us (excluding you)</option>
+        <option disabled>______</option>
+        <option value="2">You</option>
+        <option value="2Pl">You guys</option>
+        <option value="21Pl">Us (including you)</option>
+        <option disabled>______</option>
+        <option value="3">Him/Her (animate third person)</option>
+        <option value="3Obv">Someone else (obviated animate third person)</option>
+        <option value="3Pl">Them (animate third person plural)</option>
+        <option disabled>______</option>
+        <option value="0">It (inanimate)</option>
+        <option value="0Pl">Those (inanimate plural)</option>
+    </select>
+
+    <p></p>
+    <input type="checkbox" id="Mode:Prt">
+    <label for="Mode:Prt">Action is finished</label><br>
+    <input type="checkbox" id="Mode:Dub">
+    <label for="Mode:Dub">Statement is inferred/doubted</label><br>
+    <input type="checkbox" id="Neg">
+    <label for="Neg">"Not"</label>
+
+    <p>These options are for nouns (NA, NAD, NI, NID):</p>
+    <!--
+    <p>VTA</p>
+    <label for="Order">Sentence type:</label>)
     <select id="Order">
         <option value="Ind">(default)</option>
         <option value="Cnj">That... (that he Xes)</option>
@@ -197,18 +267,23 @@ layout: default
     <label for="Neg">"Not"</label>
 
     <p>NA/NI</p>
-    <label for="S">Possessor:</label>
+    -->
+    <label for="S">Possessor (x owns NOUN):</label>
     <select id="S">
         <option value="">(none)</option>
-        <option value="1">I</option>
-        <option value="2">You</option>
-        <option value="3">He/She</option>
-        <option value="3Obv">Someone else</option>
+        <option disabled>______</option>
+        <option value="1">My</option>
+        <option value="1Pl">Our (but not yours) </option>
+        <option disabled>______</option>
+        <option value="2">Your</option>
+        <option value="2Pl">You guys'</option>
+        <option value="21Pl">Our (and yours)</option>
+        <option disabled>______</option>
+        <option value="3">His/Her</option>
+        <option value="3Obv">Someone else's (obviated third person)</option>
+        <option value="3Pl">Their</option>
+        <option disabled>______</option>
         <option value="X">Unspecified</option>
-        <option value="1Pl">We</option>
-        <option value="21Pl">We (including you)</option>
-        <option value="2Pl">You guys</option>
-        <option value="3Pl">They</option>
     </select>
 
     <p></p>
@@ -231,15 +306,16 @@ layout: default
 
     <p></p>
     <input type="checkbox" id="Mode:Prt">
-    <label for="Mode:Prt">Noun is dead/broken</label><br>
+    <label for="Mode:Prt">NOUN is dead/broken</label><br>
     <input type="checkbox" id="Mode:VocPl">
-    <label for="Mode:VocPl">O [noun]s! (addressing a group)</label><br>
+    <label for="Mode:VocPl">O Nouns! (addressing a group)</label><br>
     <input type="checkbox" id="PosThm">
     <label for="PosThm">Possessive suffix</label><br>
     <input type="checkbox" id="Pej">
-    <label for="Pej">Noun is irksome</label><br>
+    <label for="Pej">NOUN is irksome</label><br>
     
 
+    <!--
     <p>NAD/NID</p>
     <label for="S">Possessor:</label>
     <select id="S">
@@ -281,6 +357,7 @@ layout: default
     <label for="PosThm">Possessive suffix</label><br>
     <input type="checkbox" id="Pej">
     <label for="Pej">Noun is irksome</label><br>
+    -->
     
     <p>3. Click this button:
     <button py-click="parse_words_expanded">Do it!</button>
