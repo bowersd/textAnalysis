@@ -38,14 +38,14 @@ layout: default
     <!--<input type="text" size="4" id="pos" placeholder = "VTA">-->
     <hr/>
     <p>2. Select how you want to conjugate the word.</p>
-    <p>These options are for verbs (VAI, VAIO, VII, VTI, VTA):</p>
+    <p>Verb options:</p>
     <label for="Order">Sentence type:</label>
     <select id="Order">
         <option value="Ind">(default)</option>
         <option value="Cnj">That... ("that x VERBs")</option>
         <!-- <option value="Imp">Do it! (an order)</option>-->
     </select>
-
+    <p>
     <label for="S">Subject (filling in "x" in "x VERBs"):</label>
     <select id="S">
         <option value="1">I</option>
@@ -66,7 +66,7 @@ layout: default
         <option disabled>______</option>
         <option value="X">Unspecified/Passive</option>
     </select>
-
+    </p>
     <label for="O">Object (filling in "y" in "x VERBs y"):</label>
     <select id="O">
         <option value="">(none, verb is VII or VAI)</option>
@@ -93,7 +93,63 @@ layout: default
     <input type="checkbox" id="Neg">
     <label for="Neg">"Not"</label>
 
-    <p>These options are for nouns (NA, NAD, NI, NID):</p>
+    <p>Noun options:</p>
+    <label for="S">Possessor (filling in "x" in "x's NOUN"):</label>
+    <select id="S">
+        <option value="">(none)</option>
+        <option disabled>______</option>
+        <option value="1">My</option>
+        <option value="1Pl">Our (but not yours) </option>
+        <option disabled>______</option>
+        <option value="2">Your</option>
+        <option value="2Pl">You guys'</option>
+        <option value="21Pl">Our (and yours)</option>
+        <option disabled>______</option>
+        <option value="3">His/Her</option>
+        <option value="3Obv">Someone else's (obviated third person)</option>
+        <option value="3Pl">Their</option>
+        <option disabled>______</option>
+        <option value="X">Unspecified</option>
+    </select>
+
+    <p></p>
+    <label for="Periph">Plural (etc):</label>
+    <select id="Periph">
+        <option value="">(none)</option>
+        <option value="Pl">Plural</option>
+        <option value="Obv">Obviative</option>
+        <option value="Loc">At/on a place</option>
+        <option value="DistLoc">Spread over a place</option>
+    </select>
+
+    <p></p>
+    <label for="ConDim">Affection/contempt:</label>
+    <select id="ConDim">
+        <option value="">(none)</option>
+        <option value="Dim">Diminutive</option>
+        <option value="Con">Contemptive</option>
+    </select>
+
+    <p></p>
+    <input type="checkbox" id="Mode:Prt">
+    <label for="Mode:Prt">Noun is dead/broken</label><br>
+    <input type="checkbox" id="Mode:VocPl">
+    <label for="Mode:VocPl">O Nouns! (addressing a group)</label><br>
+    <input type="checkbox" id="PosThm">
+    <label for="PosThm">Possessive suffix</label><br>
+    <input type="checkbox" id="Pej">
+    <label for="Pej">Noun is irksome</label><br>
+    <p>3. Click this button:
+    <button py-click="parse_words_expanded">Do it!</button>
+    </p>
+    <script type="py" src="./main.py" config="./pyscript.toml" async></script>
+    <div></div>
+    <hr/>
+    <p>Last updated: 11/15/2025 00:25</p>
+</body>
+</html>
+
+    
     <!--
     <p>VTA</p>
     <label for="Order">Sentence type:</label>)
@@ -268,52 +324,6 @@ layout: default
 
     <p>NA/NI</p>
     -->
-    <label for="S">Possessor (x owns NOUN):</label>
-    <select id="S">
-        <option value="">(none)</option>
-        <option disabled>______</option>
-        <option value="1">My</option>
-        <option value="1Pl">Our (but not yours) </option>
-        <option disabled>______</option>
-        <option value="2">Your</option>
-        <option value="2Pl">You guys'</option>
-        <option value="21Pl">Our (and yours)</option>
-        <option disabled>______</option>
-        <option value="3">His/Her</option>
-        <option value="3Obv">Someone else's (obviated third person)</option>
-        <option value="3Pl">Their</option>
-        <option disabled>______</option>
-        <option value="X">Unspecified</option>
-    </select>
-
-    <p></p>
-    <label for="Periph">Plural (etc):</label>
-    <select id="Periph">
-        <option value="">(none)</option>
-        <option value="Pl">Plural</option>
-        <option value="Obv">Obviative</option>
-        <option value="Loc">At/on a place</option>
-        <option value="DistLoc">Spread over a place</option>
-    </select>
-
-    <p></p>
-    <label for="ConDim">Affection (etc):</label>
-    <select id="ConDim">
-        <option value="">(none)</option>
-        <option value="Dim">Diminutive</option>
-        <option value="Con">Contemptive</option>
-    </select>
-
-    <p></p>
-    <input type="checkbox" id="Mode:Prt">
-    <label for="Mode:Prt">NOUN is dead/broken</label><br>
-    <input type="checkbox" id="Mode:VocPl">
-    <label for="Mode:VocPl">O Nouns! (addressing a group)</label><br>
-    <input type="checkbox" id="PosThm">
-    <label for="PosThm">Possessive suffix</label><br>
-    <input type="checkbox" id="Pej">
-    <label for="Pej">NOUN is irksome</label><br>
-    
 
     <!--
     <p>NAD/NID</p>
@@ -359,13 +369,3 @@ layout: default
     <label for="Pej">Noun is irksome</label><br>
     -->
     
-    <p>3. Click this button:
-    <button py-click="parse_words_expanded">Do it!</button>
-    </p>
-    <script type="py" src="./main.py" config="./pyscript.toml" async></script>
-    <div></div>
-    <hr/>
-    <p>Last updated: 11/15/2025 00:25</p>
-</body>
-</html>
-
