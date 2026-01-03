@@ -22,3 +22,7 @@ form_values = {"Lemma":"",
 
 def inflect_word(event):
     form_values["Lemma"] = pyscript.document.querySelector("#lemma").value
+    form_values["Head"] = pyscript.document.querySelector("#POS").value
+    form_values["Order"] = pyscript.document.querySelector("#Order").value
+    sub = pyscript.document.querySelector("#S")
+    obj = pyscript.document.querySelector("#O")
