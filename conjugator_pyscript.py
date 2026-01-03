@@ -8,7 +8,7 @@ import conjugator
 
 #catch parameters from ux
 
-form_values = {"lemma":"",
+form_values = {"Lemma":"",
                "S":{"Pers":"", "Num":""}, 
                "O":{"Pers":"", "Num":""}, 
                "Head":"", 
@@ -20,3 +20,5 @@ form_values = {"lemma":"",
                "PosTheme":"", 
                "Pejorative":"" } 
 
+def inflect_word(event):
+    form_values["Lemma"] = pyscript.document.querySelector("#lemma").value
