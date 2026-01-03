@@ -25,15 +25,15 @@ layout: default
         <input type="text" size="30" id="lemma" placeholder="waabmaa">
     <label for="POS">Part of Speech:</label>
     <select id="POS">
-        <option value="NA">NA (noun for animates, as in living or otherwise remarkable things)</option>
-        <option value="NI">NI (noun for inanimates, as in everything that is not animate)</option>
-        <option value="NAD">NAD (noun for animates that must be possessed, as in family members, body parts)</option>
-        <option value="NID">NID (noun for inanimates that must be possessed, as in body parts)</option>
+        <option value="NA">NA (animate noun, generally refers to living things)</option>
+        <option value="NI">NI (inanimate noun, anything that isn't animate)</option>
+        <option value="NAD">NAD (obligatorily possessed animate noun, as in family members, body parts)</option>
+        <option value="NID">NID (obligatorily possessed inanimate noun, as in body parts)</option>
         <option disabled>______</option>
-        <option value="VAI">VAI (Verb for action/state of an animate entity/group - "animate x VERBs")</option>
-        <option value="VII">VII (Verb for action/state of an inanimate entity/group - "inanimate x VERBs")</option>
-        <option value="VTI">VTI (Verb that affects an inanimate entity/group - "x VERBs inanimate y")</option>
-        <option value="VTA">VTA (Verb that affects an animate entity/group - "x VERBs animate y")</option>
+        <option value="VAI">VAI (verb describing action/state of an animate entity/group - "NA VERBs")</option>
+        <option value="VII">VII (verb describing action/state of an inanimate entity/group - "NI VERBs")</option>
+        <option value="VTI">VTI (verb that affects an inanimate entity/group - "x VERBs NI")</option>
+        <option value="VTA">VTA (verb that affects an animate entity/group - "x VERBs NA")</option>
     </select>
     <!--<input type="text" size="4" id="pos" placeholder = "VTA">-->
     <hr/>
