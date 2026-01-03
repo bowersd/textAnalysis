@@ -31,13 +31,21 @@ def inflect_word(event):
     obj = pyscript.document.querySelector("#O")
     if form_values["Head"].startswith("N"): 
         sub = pyscript.document.querySelector("#Possessor")
-        per = pyscript.document.querySelector("#Periph")
+        form_values["Periph"] = pyscript.document.querySelector("#Periph")
         form_values["ConDim"] = pyscript.document.querySelector("#ConDim")
         form_values["PosTheme"] = pyscript.document.querySelector("#PosThm")
         form_values["Pejorative"] = pyscript.document.querySelector("#Pej")
+        nmode = pyscript.document.querySelector("#NMode")
+        if nmode == "VocPl":
+            form_values["Periph"] = "Pl"
+            form_values["Mode"] = ["Voc"]
+        else: form_values["Mode"] = ["Prt"]
     if sub: 
         form_values["S"]["Pers"] = sub[0]
         form_values["S"]["Num"] = sub[1:]
     if obj: 
         form_values["O"]["Pers"] = sub[0]
         form_values["O"]["Num"] = sub[1:]
+    if form_values["Head"].startswith("V") and prt: form_values["Mode"].append("Prt")
+    if form_values["Head"].startswith("V") and dub: form_values["Mode"].append("Dub")
+    if form_values["Head"].startswith("V") and neg: form_values["Neg"] = "Neg"
