@@ -10,7 +10,7 @@ import asyncio
 import tabulate
 import pyhfst
 import conjugator
-import main
+import pure_python_tmp_container
 
 #catch parameters from ux
 
@@ -63,9 +63,9 @@ def inflect_word(event):
     if form_values["Head"].startswith("V") and dub: form_values["Mode"].append("Dub")
     if form_values["Head"].startswith("V") and neg: form_values["Neg"] = "Neg"
     ###calculations on the values
-    broad_analysis = main.formatted(form_values)
+    broad_analysis = pure_python_tmp_container.formatted(form_values)
     narrow_analysis = conjugator.tag_linearize(form_values["Lemma"], **conjugator.tag_assemble(**form_values))
-    output = main.parse_pyhfst("./morphophonologyclitics_generate.hfstol", narrow_analysis)
+    output = pure_python_tmp_container.parse_pyhfst("./morphophonologyclitics_generate.hfstol", narrow_analysis)
     ###formatting the values
     table = [["Broad Analysis", broad_analysis], 
              ["Narrow Analysis", narrow_analysis],]

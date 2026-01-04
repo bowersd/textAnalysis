@@ -1,6 +1,6 @@
 packages = []
 [files] 
 "/textAnalysis/morphophonologyclitics_generate.hfstol" = "./morphophonologyclitics_generate.hfstol"
-"/textAnalysis/main.py" = "./main.py"
+"/textAnalysis/pure_python_tmp_container.py" = "./pure_python_tmp_container.py"
 "/textAnalysis/conjugator.py" = "./conjugator.py"
 
