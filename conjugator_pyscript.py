@@ -31,6 +31,7 @@ form_values = {"Lemma":"",
                } 
 
 def inflect_word(event):
+    ###shunting around the values from the html form
     form_values["Lemma"] = pyscript.document.querySelector("#lemma").value
     form_values["Head"] = pyscript.document.querySelector("#POS").value
     form_values["DerivChain"] = form_values["Head"] #not really available option now, but needed for post processing
@@ -60,10 +61,11 @@ def inflect_word(event):
     if form_values["Head"].startswith("V") and prt: form_values["Mode"].append("Prt")
     if form_values["Head"].startswith("V") and dub: form_values["Mode"].append("Dub")
     if form_values["Head"].startswith("V") and neg: form_values["Neg"] = "Neg"
-    output_div = pyscript.document.querySelector("#output")
+    ###calculations on the values
     broad_analysis = main.formatted(form_values)
-    narrow_analysis = tag_linearize(form_values["Lemma"], **tag_assemble(**form_values))
+    narrow_analysis = conjugator.tag_linearize(form_values["Lemma"], **conjugator.tag_assemble(**form_values))
     output = main.parse_pyhfst("./morphophonologyclitics_generate.hfstol", narrow_analysis)
+    ###formatting the values
     table = [["Broad Analysis", broad_analysis], 
              ["Narrow Analysis", narrow_analysis],]
     i = 0
@@ -71,6 +73,8 @@ def inflect_word(event):
         if i == 0 and len(output)==1: table.append(["Predicted form", output[i]])
         elif i == 0 and len(output)>1: table.append(["Predicted forms", output[i]])
         elif i != 0 and len(output)>1: table.append(["", output[i]])
+    ###printing the values
+    output_div = pyscript.document.querySelector("#output")
     output_div.innerHTML = tabulate.tabulate(table, tablefmt="html")
 
 
