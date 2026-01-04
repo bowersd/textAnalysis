@@ -2,9 +2,15 @@ import micropip
 await micropip.install(
     'https://files.pythonhosted.org/packages/e0/02/c10a69ff21d6679a6b6e28c42cd265bec2cdd9be3dcbbee830a10fa4b0e5/pyhfst-1.3.0-py2.py3-none-any.whl'
 )
+await micropip.install(
+    'https://files.pythonhosted.org/packages/40/44/4a5f08c96eb108af5cb50b41f76142f0afa346dfa99d5296fe7202a11854/tabulate-0.9.0-py3-none-any.whl'
+)
 import pyscript
 import asyncio
+import tabulate
+import pyhfst
 import conjugator
+import main
 
 #catch parameters from ux
 
@@ -49,3 +55,7 @@ def inflect_word(event):
     if form_values["Head"].startswith("V") and prt: form_values["Mode"].append("Prt")
     if form_values["Head"].startswith("V") and dub: form_values["Mode"].append("Dub")
     if form_values["Head"].startswith("V") and neg: form_values["Neg"] = "Neg"
+    parameter_div = pyscript.document.querySelector("#parameters")
+    output_div = pyscript.document.querySelector("#output")
+    linearized = tag_linearize(form_values["Lemma"], **tag_assemble(**form_values))
+    output = main.parse_pyhfst("./morphophonologyclitics_generate.hfstol", linearized)
