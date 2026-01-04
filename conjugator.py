@@ -1,5 +1,5 @@
 #import sys
-import parse
+#import parse
 #todo: passives, iteratives, participles, preverbs, imperatives, warnings/hints, vaios, shift to conjunct, required initial change, vocative singulars, [123]+Ext|Nul+
 
 def recreate_number_tags(person, number, prefix):
