@@ -36,8 +36,8 @@ def inflect_word(event):
     form_values["Head"] = pyscript.document.querySelector("#POS").value
     form_values["DerivChain"] = form_values["Head"] #not really available option now, but needed for post processing
     form_values["Order"] = pyscript.document.querySelector("#Order").value
-    prt = pyscript.document.querySelector("#Mode:Prt")
-    dub = pyscript.document.querySelector("#Mode:Dub")
+    prt = pyscript.document.querySelector("#ModePrt")
+    dub = pyscript.document.querySelector("#ModeDub")
     neg = pyscript.document.querySelector("#Neg")
     sub = pyscript.document.querySelector("#S")
     obj = pyscript.document.querySelector("#O")
@@ -49,10 +49,10 @@ def inflect_word(event):
         form_values["Pejorative"] = pyscript.document.querySelector("#Pej")
         form_values["Else"] = [x for x in [form_values["ConDim"], form_values["PosTheme"], form_values["Pejorative"]] if x]
         nmode = pyscript.document.querySelector("#NMode")
-        if nmode == "VocPl":
+        if nmode == "NModeVocPl":
             form_values["Periph"] = "Pl"
             form_values["Mode"] = ["Voc"]
-        else: form_values["Mode"] = ["Prt"]
+        elif nmode ==  "NModePrt": form_values["Mode"] = ["Prt"]
     if sub: 
         form_values["S"]["Pers"] = sub[0]
         form_values["S"]["Num"] = sub[1:]
