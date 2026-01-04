@@ -1,4 +1,4 @@
-import sys
+#import sys
 import parse
 #todo: passives, iteratives, participles, preverbs, imperatives, warnings/hints, vaios, shift to conjunct, required initial change, vocative singulars, [123]+Ext|Nul+
 
@@ -220,18 +220,18 @@ def tag_linearize(lemma, **algonquianized):
         if algonquianized[ss]: h.append(algonquianized[ss])
     return "+".join(h)
 
-if __name__ == "__main__":
-    #specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []} #going to have to be careful with Mode, Else... #original layout from alg_morphological ummary
-    specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "ConDim":"", "PosTheme":"", "Pejorative":"" } 
-    for x in sys.argv[2:]:
-        key, val = x.split(":")
-        if val[0] in ["1", "2", "3", "0"]:
-            specs[key]["Pers"] = val[0]
-            specs[key]["Num"] = val[1:]
-        elif key == "Mode": specs[key].append(val)
-        else: specs[key] = val
-    print(" ".join(sys.argv[1:]))
-    linearized = tag_linearize(sys.argv[1], **tag_assemble(**specs))
-    print(linearized)
-    output = parse.parse_native('../otw/src/morphophonologyclitics_generate.hfstol', linearized)
-    for o in output: print(output[o])
+#if __name__ == "__main__":
+#    #specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "DerivChain":"", "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "Pcp":{"Pers":"", "Num":""}, "Else": []} #going to have to be careful with Mode, Else... #original layout from alg_morphological ummary
+#    specs = {"S":{"Pers":"", "Num":""}, "O":{"Pers":"", "Num":""}, "Head":"", "Order":"", "Neg":"", "Mode":[], "Periph":"", "ConDim":"", "PosTheme":"", "Pejorative":"" } 
+#    for x in sys.argv[2:]:
+#        key, val = x.split(":")
+#        if val[0] in ["1", "2", "3", "0"]:
+#            specs[key]["Pers"] = val[0]
+#            specs[key]["Num"] = val[1:]
+#        elif key == "Mode": specs[key].append(val)
+#        else: specs[key] = val
+#    print(" ".join(sys.argv[1:]))
+#    linearized = tag_linearize(sys.argv[1], **tag_assemble(**specs))
+#    print(linearized)
+#    output = parse.parse_native('../otw/src/morphophonologyclitics_generate.hfstol', linearized)
+#    for o in output: print(output[o])
