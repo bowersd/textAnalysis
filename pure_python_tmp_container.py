@@ -1,3 +1,5 @@
+import pyhfst
+
 def parse_pyhfst(transducer, *strings):
     h = {}
     parser = pyhfst.HfstInputStream(transducer).read()
