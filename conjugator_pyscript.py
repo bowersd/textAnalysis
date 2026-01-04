@@ -55,12 +55,13 @@ def inflect_word(event):
             form_values["Mode"] = ["Voc"]
         elif nmode ==  "NModePrt": form_values["Mode"] = ["Prt"]
     print("2")
+    print("sub =", sub)
     if sub: 
         form_values["S"]["Pers"] = sub[0]
         form_values["S"]["Num"] = sub[1:]
     if obj: 
-        form_values["O"]["Pers"] = sub[0]
-        form_values["O"]["Num"] = sub[1:]
+        form_values["O"]["Pers"] = obj[0]
+        form_values["O"]["Num"] = obj[1:]
     if form_values["Head"].startswith("V") and prt: form_values["Mode"].append("Prt")
     if form_values["Head"].startswith("V") and dub: form_values["Mode"].append("Dub")
     if form_values["Head"].startswith("V") and neg: form_values["Neg"] = "Neg"
