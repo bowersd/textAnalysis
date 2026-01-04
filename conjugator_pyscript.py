@@ -60,7 +60,6 @@ def inflect_word(event):
     if form_values["Head"].startswith("V") and prt: form_values["Mode"].append("Prt")
     if form_values["Head"].startswith("V") and dub: form_values["Mode"].append("Dub")
     if form_values["Head"].startswith("V") and neg: form_values["Neg"] = "Neg"
-    parameter_div = pyscript.document.querySelector("#parameters")
     output_div = pyscript.document.querySelector("#output")
     broad_analysis = main.formatted(form_values)
     narrow_analysis = tag_linearize(form_values["Lemma"], **tag_assemble(**form_values))
