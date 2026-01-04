@@ -24,11 +24,16 @@ form_values = {"Lemma":"",
                "Periph":"", 
                "ConDim":"", 
                "PosTheme":"", 
-               "Pejorative":"" } 
+               "Pejorative":"" ,
+               "DerivChain":"", #options on this line and below are not available options now, but needed for post processing
+               "Pcp":{"Pers":"", "Num":""}, 
+               "Else":[]
+               } 
 
 def inflect_word(event):
     form_values["Lemma"] = pyscript.document.querySelector("#lemma").value
     form_values["Head"] = pyscript.document.querySelector("#POS").value
+    form_values["DerivChain"] = form_values["Head"] #not really available option now, but needed for post processing
     form_values["Order"] = pyscript.document.querySelector("#Order").value
     prt = pyscript.document.querySelector("#Mode:Prt")
     dub = pyscript.document.querySelector("#Mode:Dub")
@@ -57,5 +62,16 @@ def inflect_word(event):
     if form_values["Head"].startswith("V") and neg: form_values["Neg"] = "Neg"
     parameter_div = pyscript.document.querySelector("#parameters")
     output_div = pyscript.document.querySelector("#output")
-    linearized = tag_linearize(form_values["Lemma"], **tag_assemble(**form_values))
-    output = main.parse_pyhfst("./morphophonologyclitics_generate.hfstol", linearized)
+    broad_analysis = main.formatted(form_values)
+    narrow_analysis = tag_linearize(form_values["Lemma"], **tag_assemble(**form_values))
+    output = main.parse_pyhfst("./morphophonologyclitics_generate.hfstol", narrow_analysis)
+    table = [["Broad Analysis", broad_analysis], 
+             ["Narrow Analysis", narrow_analysis],]
+    i = 0
+    while i < len(output):
+        if i == 0 and len(output)==1: table.append(["Predicted form", output[i]])
+        elif i == 0 and len(output)>1: table.append(["Predicted forms", output[i]])
+        elif i != 0 and len(output)>1: table.append(["", output[i]])
+    output_div.innerHTML = tabulate.tabulate(table, tablefmt="html")
+
+
