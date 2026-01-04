@@ -76,10 +76,10 @@ def inflect_word(event):
     table = [["Broad Analysis", broad_analysis], 
              ["Narrow Analysis", narrow_analysis],]
     i = 0
-    while i < len(output):
-        if i == 0 and len(output)==1: table.append(["Predicted form", output[i]])
-        elif i == 0 and len(output)>1: table.append(["Predicted forms", output[i]])
-        elif i != 0 and len(output)>1: table.append(["", output[i]])
+    while i < len(output[narrow_analysis]):
+        if i == 0 and len(output)==1: table.append(["Predicted form", output[narrow_analysis][i][0]])
+        elif i == 0 and len(output)>1: table.append(["Predicted forms", output[narrow_analysis][i][0]])
+        elif i != 0 and len(output)>1: table.append(["", output[narrow_analysis][i][0]])
     ###printing the values
     output_div = pyscript.document.querySelector("#output")
     output_div.innerHTML = tabulate.tabulate(table, tablefmt="html")
