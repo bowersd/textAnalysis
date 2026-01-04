@@ -36,23 +36,25 @@ def inflect_word(event):
     form_values["Head"] = pyscript.document.querySelector("#POS").value
     form_values["DerivChain"] = form_values["Head"] #not really available option now, but needed for post processing
     form_values["Order"] = pyscript.document.querySelector("#Order").value
-    prt = pyscript.document.querySelector("#ModePrt")
-    dub = pyscript.document.querySelector("#ModeDub")
-    neg = pyscript.document.querySelector("#Neg")
-    sub = pyscript.document.querySelector("#S")
-    obj = pyscript.document.querySelector("#O")
+    prt = pyscript.document.querySelector("#ModePrt").value
+    dub = pyscript.document.querySelector("#ModeDub").value
+    neg = pyscript.document.querySelector("#Neg").value
+    sub = pyscript.document.querySelector("#S").value
+    obj = pyscript.document.querySelector("#O").value
+    print("1")
     if form_values["Head"].startswith("N"): 
-        sub = pyscript.document.querySelector("#Possessor")
-        form_values["Periph"] = pyscript.document.querySelector("#Periph")
-        form_values["ConDim"] = pyscript.document.querySelector("#ConDim")
-        form_values["PosTheme"] = pyscript.document.querySelector("#PosThm")
-        form_values["Pejorative"] = pyscript.document.querySelector("#Pej")
+        sub = pyscript.document.querySelector("#Possessor").value
+        form_values["Periph"] = pyscript.document.querySelector("#Periph").value
+        form_values["ConDim"] = pyscript.document.querySelector("#ConDim").value
+        form_values["PosTheme"] = pyscript.document.querySelector("#PosThm").value
+        form_values["Pejorative"] = pyscript.document.querySelector("#Pej").value
         form_values["Else"] = [x for x in [form_values["ConDim"], form_values["PosTheme"], form_values["Pejorative"]] if x]
-        nmode = pyscript.document.querySelector("#NMode")
+        nmode = pyscript.document.querySelector("#NMode").value
         if nmode == "NModeVocPl":
             form_values["Periph"] = "Pl"
             form_values["Mode"] = ["Voc"]
         elif nmode ==  "NModePrt": form_values["Mode"] = ["Prt"]
+    print("2")
     if sub: 
         form_values["S"]["Pers"] = sub[0]
         form_values["S"]["Num"] = sub[1:]
