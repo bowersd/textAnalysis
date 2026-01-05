@@ -211,9 +211,9 @@ def tag_assemble(**broad_analysis):
     return algonquianized
 
 def tag_linearize(lemma, **algonquianized):
-    suffix_slots = ["POS", "Order", "Theme_sign", "Neg", "Central", "Mode", "Periph"]
-    if algonquianized["POS"].startswith("N"):
-        suffix_slots = ["POS", "ConDim", "PosTheme", "Pejorative", "Central", "Mode", "Periph"]
+    suffix_slots = ["POS", "Order", "Neg", "Central", "Mode", "Periph"]
+    if algonquianized["POS"] == "VTA": suffix_slots = ["POS", "Order", "Theme_sign", "Neg", "Central", "Mode", "Periph"]
+    if algonquianized["POS"].startswith("N"): suffix_slots = ["POS", "ConDim", "PosTheme", "Pejorative", "Central", "Mode", "Periph"]
     h = [lemma]
     if algonquianized["Person_prefix"]: h = [algonquianized["Person_prefix"], lemma]
     for ss in suffix_slots: 
