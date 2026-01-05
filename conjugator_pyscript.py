@@ -12,25 +12,25 @@ import pyhfst
 import conjugator
 import pure_python_tmp_container
 
-#catch parameters from ux
 
-form_values = {"Lemma":"",
-               "S":{"Pers":"", "Num":""}, 
-               "O":{"Pers":"", "Num":""}, 
-               "Head":"", 
-               "Order":"", 
-               "Neg":"", 
-               "Mode":[], 
-               "Periph":"", 
-               "ConDim":"", 
-               "PosTheme":"", 
-               "Pejorative":"" ,
-               "DerivChain":"", #options on this line and below are not available options now, but needed for post processing
-               "Pcp":{"Pers":"", "Num":""}, 
-               "Else":[]
-               } 
 
 def inflect_word(event):
+    #initialize to zero (values were persisting across instances)
+    form_values = {"Lemma":"",
+                   "S":{"Pers":"", "Num":""}, 
+                   "O":{"Pers":"", "Num":""}, 
+                   "Head":"", 
+                   "Order":"", 
+                   "Neg":"", 
+                   "Mode":[], 
+                   "Periph":"", 
+                   "ConDim":"", 
+                   "PosTheme":"", 
+                   "Pejorative":"" , 
+                   "DerivChain":"", #options on this line and below are not available options now, but needed for post processing 
+                   "Pcp":{"Pers":"", "Num":""}, 
+                   "Else":[]
+               } 
     ###shunting around the values from the html form
     form_values["Lemma"] = pyscript.document.querySelector("#lemma").value
     form_values["Head"] = pyscript.document.querySelector("#POS").value
