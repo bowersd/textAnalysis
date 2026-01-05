@@ -1,6 +1,6 @@
 #import sys
 #import parse
-#todo: passives, iteratives, participles, preverbs, imperatives, warnings/hints, vaios, shift to conjunct, required initial change, vocative singulars, [123]+Ext|Nul+
+#todo: iteratives, participles, preverbs, imperatives, warnings/hints, shift to conjunct for prtdub, required initial change, vocative singulars, [123]+Ext|Nul+
 
 def recreate_number_tags(person, number, prefix):
     if person == "2" and number == "1Pl" and prefix: return "1Pl"
@@ -100,7 +100,7 @@ def vta_adjustments(**broad_analysis):
     #what about VTAs getting inanimate objects?
     h = {"Person_prefix":"", "Central":"", "Theme_sign":"", "Periph":""}
     check_for_person_ties(**broad_analysis)
-    if broad_analysis["S"]["Pers"] == "X": 
+    if broad_analysis["S"]["Pers"] == "X": #revise broad analysis and h for passive/unspecified subject
         broad_analysis["POS"] = "VAI"
         broad_analysis["Lemma"] += "+VTA+ThmPas"
         broad_analysis["S"] = broad_analysis["O"]
