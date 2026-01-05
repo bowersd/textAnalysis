@@ -138,7 +138,9 @@ def vti_adjustments(**broad_analysis):
 def vai_adjustments(**broad_analysis):
     h = {"Person_prefix":"", "Central":"", "Periph":""}
     if broad_analysis["Order"] == "Cnj": h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])
-    elif broad_analysis["Order"] == "Imp": pass
+    elif broad_analysis["Order"] == "Imp": 
+        h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])
+        #Delayed imperative tag is treated as part of the Neg category, and so is handled in the front end conversion
     else:
         if broad_analysis["S"]["Pers"] in ["1", "2"]: 
             h["Person_prefix"] = broad_analysis["S"]["Pers"]

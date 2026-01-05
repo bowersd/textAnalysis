@@ -39,6 +39,7 @@ def inflect_word(event):
     prt = pyscript.document.querySelector("#ModePrt:checked")
     dub = pyscript.document.querySelector("#ModeDub:checked")
     neg = pyscript.document.querySelector("#Neg:checked")
+    delayed = pyscript.document.querySelector("#Del:checked")
     sub = pyscript.document.querySelector("#S").value
     obj = pyscript.document.querySelector("#O").value
     if form_values["Head"].startswith("N"): 
@@ -62,6 +63,7 @@ def inflect_word(event):
     if form_values["Head"].startswith("V") and prt: form_values["Mode"].append("Prt")
     if form_values["Head"].startswith("V") and dub: form_values["Mode"].append("Dub")
     if form_values["Head"].startswith("V") and neg: form_values["Neg"] = "Neg"
+    if form_values["Head"].startswith("V") and delayed: form_values["Neg"] = "Del"
     ###calculations on the values
     for v in form_values:
         print(v, form_values[v])
