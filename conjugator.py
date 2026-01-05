@@ -100,7 +100,12 @@ def vta_adjustments(**broad_analysis):
     #what about VTAs getting inanimate objects?
     h = {"Person_prefix":"", "Central":"", "Theme_sign":"", "Periph":""}
     check_for_person_ties(**broad_analysis)
-    if broad_analysis["Order"] == "Cnj":
+    if broad_analysis["S"]["Pers"] == "X": 
+        broad_analysis["POS"] = "VAI"
+        broad_analysis["Lemma"] += "+VTA+ThmPas"
+        broad_analysis["S"] = broad_analysis["O"]
+        h = vai_adjustments(**broad_analysis)
+    elif broad_analysis["Order"] == "Cnj":
         h["Theme_sign"] = vta_cnj_theme_update(**broad_analysis)
         h["Central"] = vta_cnj_continuation(h["Theme_sign"], **broad_analysis) #independent central is in an analogous spot to the cnj argument elaborations
     elif broad_analysis["Order"] == "Imp":
@@ -124,7 +129,7 @@ def vti_adjustments(**broad_analysis):
         #no guidance on passive/unspecified subjects from Rand's book, worthwhile to flag to users
         h["Person_prefix"] = broad_analysis["S"]["Pers"]
         h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
-        if broad_analysis["S"]["Pers"] == "0": #presumably inanimate subjects are treated as 3 subjects? worthwhile to flag to users
+        if broad_analysis["S"]["Pers"] == "0": #presumably inanimate subjects are treated as 3 subjects ... but this would create a "person" tie? worthwhile to flag to users
             h["Person_prefix"] = "3"
             h["Central"] = recreate_number_tags("3", broad_analysis["S"]["Num"], True)
         h["Periph"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], False)
