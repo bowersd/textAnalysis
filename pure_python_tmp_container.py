@@ -1,4 +1,5 @@
 import pyhfst
+import regex
 
 def parse_pyhfst(transducer, *strings):
     h = {}
