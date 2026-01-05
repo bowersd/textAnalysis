@@ -45,8 +45,8 @@ def inflect_word(event):
         sub = pyscript.document.querySelector("#Possessor").value
         form_values["Periph"] = pyscript.document.querySelector("#Periph").value
         form_values["ConDim"] = pyscript.document.querySelector("#ConDim").value
-        form_values["PosTheme"] = pyscript.document.querySelector("#PosThm").value
-        form_values["Pejorative"] = pyscript.document.querySelector("#Pej").value
+        if pyscript.document.querySelector("#PosThm").value: form_values["PosTheme"] = "PosThm"
+        if pyscript.document.querySelector("#Pejorative").value: form_values["Pejorative"] = "Pej"
         form_values["Else"] = [x for x in [form_values["ConDim"], form_values["PosTheme"], form_values["Pejorative"]] if x]
         nmode = pyscript.document.querySelector("#NMode").value
         if nmode == "NModeVocPl":
