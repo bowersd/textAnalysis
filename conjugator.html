@@ -55,42 +55,42 @@ layout: default
     <p style="margin-left: 40px">
     <label for="S">Subject (filling in "x" in "x VERBs (y)"):</label>
     <select id="S">
-        <option value="1">I</option>
-        <option value="1Pl">We (excluding you)</option>
+        <option value="1">I (for VAI, VTI, VTA)</option>
+        <option value="1Pl">We (excluding you - for VAI, VTI, VTA)</option>
         <option disabled>______</option>
-        <option value="2">You</option>
-        <option value="2Pl">You guys</option>
-        <option value="21Pl">We (including you)</option>
+        <option value="2">You (for VAI, VTI, VTA)</option>
+        <option value="2Pl">You guys (for VAI, VTI, VTA)</option>
+        <option value="21Pl">We (including you - for VAI, VTI, VTA)</option>
         <option disabled>______</option>
-        <option value="3">He/She (animate third person)</option>
-        <option value="3Obv">Someone else (obviated animate third person)</option>
-        <option value="3Pl">They (animate third person plural)</option>
+        <option value="3">He/She (animate third person - for VAI, VTI, VTA)</option>
+        <option value="3Obv">Someone else (obviated animate third person - for VAI, VTI, VTA)</option>
+        <option value="3Pl">They (animate third person plural - for VAI, VTI, VTA)</option>
         <option disabled>______</option>
-        <option value="0">It (inanimate)</option>
-        <option value="0Obv">Something else (obviated inanimate)</option>
-        <option value="0Pl">Those (inanimate plural)</option>
-        <option value="0ObvPl">Those other things (obviated inanimate plural)</option>
+        <option value="0">It (inanimate noun - for VII, VTA)</option>
+        <option value="0Obv">Something else (obviated inanimate noun - for VII)</option>
+        <option value="0Pl">Those (inanimate plural - for VII, VTA)</option>
+        <option value="0ObvPl">Those other things (obviated inanimate plural - for VII)</option>
         <option disabled>______</option>
-        <option value="X">Unspecified/Passive</option>
+        <option value="X">Unspecified/Passive (for VAI, VTA)</option><!vti?>
     </select>
     </p>
     <p style="margin-left: 40px">
     <label for="O">Object (filling in "y" in "x VERBs y"):</label>
     <select id="O">
-        <option value="">(none, verb is VII or VAI)</option>
-        <option value="1">Me</option>
-        <option value="1Pl">Us (excluding you)</option>
+        <option value="">none (verb is VII or VAI)</option>
+        <option value="1">Me (for VTA)</option>
+        <option value="1Pl">Us (excluding you - for VTA)</option>
         <option disabled>______</option>
-        <option value="2">You</option>
-        <option value="2Pl">You guys</option>
-        <option value="21Pl">Us (including you)</option>
+        <option value="2">You (for VTA)</option>
+        <option value="2Pl">You guys (for VTA)</option>
+        <option value="21Pl">Us (including you - for VTA)</option>
         <option disabled>______</option>
-        <option value="3">Him/Her (animate third person)</option>
-        <option value="3Obv">Someone else (obviated animate third person)</option>
-        <option value="3Pl">Them (animate third person plural)</option>
+        <option value="3">Him/Her (animate third person - for VTA)</option>
+        <option value="3Obv">Someone else (obviated animate third person - for VTA)</option>
+        <option value="3Pl">Them (animate third person plural - for VTA)</option>
         <option disabled>______</option>
-        <option value="0">It (inanimate)</option>
-        <option value="0Pl">Those (inanimate plural)</option>
+        <option value="0">It (inanimate noun - for VTI)</option>
+        <option value="0Pl">Those (plural inanimate noun - for VTI)</option>
     </select>
     </p>
 
@@ -100,7 +100,7 @@ layout: default
     <input type="checkbox" id="ModeDub">
     <label for="ModeDub">Statement is inferred/doubted</label><br>
     <input type="checkbox" id="Neg">
-    <label for="Neg">"Not"</label>
+    <label for="Neg">Action did not occur (negation)</label>
     </p>
     <p>Noun options:</p>
     <p style="margin-left: 40px">
@@ -126,7 +126,7 @@ layout: default
     <p style="margin-left: 40px">
     <label for="Periph">Plural (etc):</label>
     <select id="Periph">
-        <option value="">(none)</option>
+        <option value="">none</option>
         <option value="Pl">Plural</option>
         <option value="Obv">Obviative</option>
         <option value="Loc">At/on a place</option>
@@ -161,227 +161,6 @@ layout: default
     <script type="py" src="./conjugator_pyscript.py" config="./conjugator.toml" async></script>
     <div id="output"></div>
     <hr/>
-    <p>Last updated: 01/04/2026 20:35</p>
+    <p>Last updated: 01/04/2026 20:58</p>
 </body>
 </html>
-
-    
-    <!--
-    <p>VTA</p>
-    <label for="Order">Sentence type:</label>)
-    <select id="Order">
-        <option value="Ind">(default)</option>
-        <option value="Cnj">That... (that he Xes)</option>
-        <option value="Imp">Do it! (an order)</option>
-    </select>
-
-    <label for="S">Subject:</label>
-    <select id="S">
-        <option value="1">I</option>
-        <option value="2">You</option>
-        <option value="3">He/She</option>
-        <option value="3Obv">Someone else</option>
-        <option value="0">It</option>
-        <option value="X">Unspecified/Passive</option>
-        <option value="1Pl">We</option>
-        <option value="21Pl">We (including you)</option>
-        <option value="2Pl">You guys</option>
-        <option value="3Pl">They</option>
-        <option value="0Pl">Those</option>
-    </select>
-
-    <label for="O">Object:</label>
-    <select id="O">
-        <option value="1">Me</option>
-        <option value="2">You</option>
-        <option value="3">Him/Her</option>
-        <option value="3Obv">Someone else</option>
-        <option value="1Pl">Us</option>
-        <option value="21Pl">Us (including you)</option>
-        <option value="2Pl">You guys</option>
-        <option value="3Pl">Them</option>
-    </select>
-
-    <p></p>
-    <input type="checkbox" id="Mode:Prt">
-    <label for="Mode:Prt">Action is finished</label><br>
-    <input type="checkbox" id="Mode:Dub">
-    <label for="Mode:Dub">Statement is inferred/doubted</label><br>
-    <input type="checkbox" id="Neg">
-    <label for="Neg">"Not"</label>
-
-    <p>VTI</p>
-    <label for="Order">Sentence type:</label>
-    <select id="Order">
-        <option value="Ind">(default)</option>
-        <option value="Cnj">That... (that he Xes)</option>
-        <option value="Imp">Do it! (an order)</option>
-    </select>
-
-    <label for="S">Subject:</label>
-    <select id="S">
-        <option value="1">I</option>
-        <option value="2">You</option>
-        <option value="3">He/She</option>
-        <option value="3Obv">Someone else</option>
-        <option value="0">It</option>
-        <option value="X">Unspecified/Passive</option>
-        <option value="1Pl">We</option>
-        <option value="21Pl">We (including you)</option>
-        <option value="2Pl">You guys</option>
-        <option value="3Pl">They</option>
-        <option value="0Pl">Those</option>
-    </select>
-
-    <label for="O">Object:</label>
-    <select id="O">
-        <option value="0">It</option>
-        <option value="0Pl">Those</option>
-    </select>
-
-    <p></p>
-    <input type="checkbox" id="Mode:Prt">
-    <label for="Mode:Prt">Action is finished</label><br>
-    <input type="checkbox" id="Mode:Dub">
-    <label for="Mode:Dub">Statement is inferred/doubted</label><br>
-    <input type="checkbox" id="Neg">
-    <label for="Neg">"Not"</label>
-
-    <p>VAIO</p>
-    <label for="Order">Sentence type:</label>
-    <select id="Order">
-        <option value="Ind">(default)</option>
-        <option value="Cnj">That... (that he Xes)</option>
-        <option value="Imp">Do it! (an order)</option>
-    </select>
-
-    <label for="S">Subject:</label>
-    <select id="S">
-        <option value="1">I</option>
-        <option value="2">You</option>
-        <option value="3">He/She</option>
-        <option value="3Obv">Someone else</option>
-        <option value="X">Unspecified/Passive</option>
-        <option value="1Pl">We</option>
-        <option value="21Pl">We (including you)</option>
-        <option value="2Pl">You guys</option>
-        <option value="3Pl">They</option>
-    </select>
-
-    <label for="O">Object:</label>
-    <select id="O">
-        <option value="3">He/She</option>
-        <option value="3Obv">Someone else</option>
-        <option value="0">It</option>
-        <option value="3Pl">They</option>
-        <option value="0Pl">Those</option>
-    </select>
-
-    <p></p>
-    <input type="checkbox" id="Mode:Prt">
-    <label for="Mode:Prt">Action is finished</label><br>
-    <input type="checkbox" id="Mode:Dub">
-    <label for="Mode:Dub">Statement is inferred/doubted</label><br>
-    <input type="checkbox" id="Neg">
-    <label for="Neg">"Not"</label>
-
-    <p>VAI</p>
-    <label for="Order">Sentence type:</label>
-    <select id="Order">
-        <option value="Ind">(default)</option>
-        <option value="Cnj">That... (that he Xes)</option>
-        <option value="Imp">Do it! (an order)</option>
-    </select>
-
-    <label for="S">Subject:</label>
-    <select id="S">
-        <option value="1">I</option>
-        <option value="2">You</option>
-        <option value="3">He/She</option>
-        <option value="3Obv">Someone else</option>
-        <option value="X">Unspecified/Passive</option>
-        <option value="1Pl">We</option>
-        <option value="21Pl">We (including you)</option>
-        <option value="2Pl">You guys</option>
-        <option value="3Pl">They</option>
-    </select>
-
-    <p></p>
-    <input type="checkbox" id="Mode:Prt">
-    <label for="Mode:Prt">Action is finished</label><br>
-    <input type="checkbox" id="Mode:Dub">
-    <label for="Mode:Dub">Statement is inferred/doubted</label><br>
-    <input type="checkbox" id="Neg">
-    <label for="Neg">"Not"</label>
-    
-    <p>VII</p>
-    <label for="Order">Sentence type:</label>
-    <select id="Order">
-        <option value="Ind">(default)</option>
-        <option value="Cnj">That... (that he Xes)</option>
-        <option value="Imp">Do it! (an order)</option>
-    </select>
-
-    <label for="S">Subject:</label>
-    <select id="S">
-        <option value="0">It</option>
-        <option value="0Obv">The other thing</option>
-        <option value="0Pl">Those</option>
-        <option value="0ObvPl">Those other things</option>
-    </select>
-
-    <p></p>
-    <input type="checkbox" id="Mode:Prt">
-    <label for="Mode:Prt">Action is finished</label><br>
-    <input type="checkbox" id="Mode:Dub">
-    <label for="Mode:Dub">Statement is inferred/doubted</label><br>
-    <input type="checkbox" id="Neg">
-    <label for="Neg">"Not"</label>
-
-    <p>NA/NI</p>
-    -->
-
-    <!--
-    <p>NAD/NID</p>
-    <label for="S">Possessor:</label>
-    <select id="S">
-        <option value="1">I</option>
-        <option value="2">You</option>
-        <option value="3">He/She</option>
-        <option value="3Obv">Someone else</option>
-        <option value="X">Unspecified</option>
-        <option value="1Pl">We</option>
-        <option value="21Pl">We (including you)</option>
-        <option value="2Pl">You guys</option>
-        <option value="3Pl">They</option>
-    </select>
-
-    <p></p>
-    <label for="Periph">Plural (etc):</label>
-    <select id="Periph">
-        <option value="">(none)</option>
-        <option value="Pl">Plural</option>
-        <option value="Obv">Obviative</option>
-        <option value="Loc">At/on a place</option>
-        <option value="DistLoc">Spread over a place</option>
-    </select>
-
-    <p></p>
-    <label for="ConDim">Affection (etc):</label>
-    <select id="ConDim">
-        <option value="">(none)</option>
-        <option value="Dim">Diminutive</option>
-        <option value="Con">Contemptive</option>
-    </select>
-
-    <p></p>
-    <input type="checkbox" id="Mode:Prt">
-    <label for="Mode:Prt">Noun is dead/broken</label><br>
-    <input type="checkbox" id="Mode:VocPl">
-    <label for="Mode:VocPl">O [noun]s! (addressing a group)</label><br>
-    <input type="checkbox" id="PosThm">
-    <label for="PosThm">Possessive suffix</label><br>
-    <input type="checkbox" id="Pej">
-    <label for="Pej">Noun is irksome</label><br>
-    -->
-    
