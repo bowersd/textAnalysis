@@ -1,4 +1,4 @@
-packages = []
+packages = ["regex"]
 [files] 
 "/textAnalysis/morphophonologyclitics_generate.hfstol" = "./morphophonologyclitics_generate.hfstol"
 "/textAnalysis/pure_python_tmp_container.py" = "./pure_python_tmp_container.py"
