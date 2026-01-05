@@ -109,7 +109,9 @@ def vta_adjustments(**broad_analysis):
         h["Theme_sign"] = vta_cnj_theme_update(**broad_analysis)
         h["Central"] = vta_cnj_continuation(h["Theme_sign"], **broad_analysis) #independent central is in an analogous spot to the cnj argument elaborations
     elif broad_analysis["Order"] == "Imp":
-        pass
+        h["Central"] = "".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])
+        h["Periph"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])
+        #Delayed imperative tag is treated as part of the Neg category, and so is handled in the front end conversion
     else:
         inversion = determine_inversion(**broad_analysis) #boolean
         theme_align = {0:"O", 1:"S"}
@@ -124,7 +126,10 @@ def vta_adjustments(**broad_analysis):
 def vti_adjustments(**broad_analysis):
     h = {"Person_prefix":"", "Central":"", "Periph":""}
     if broad_analysis["Order"] == "Cnj": h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]) #it is the exact same VAIs, worthwhile to flag to user
-    elif broad_analysis["Order"] == "Imp": pass
+    elif broad_analysis["Order"] == "Imp": 
+        h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])
+        if h["Central"] == "21Pl": h["Periph"] = "".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])
+        #Delayed imperative tag is treated as part of the Neg category, and so is handled in the front end conversion
     else:
         #no guidance on passive/unspecified subjects from Rand's book, worthwhile to flag to users
         h["Person_prefix"] = broad_analysis["S"]["Pers"]
