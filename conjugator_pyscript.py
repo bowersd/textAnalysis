@@ -63,6 +63,8 @@ def inflect_word(event):
     if form_values["Head"].startswith("V") and dub: form_values["Mode"].append("Dub")
     if form_values["Head"].startswith("V") and neg: form_values["Neg"] = "Neg"
     ###calculations on the values
+    for v in form_values:
+        print(v, form_values[v])
     broad_analysis = pure_python_tmp_container.formatted(form_values)
     narrow_analysis = conjugator.tag_linearize(form_values["Lemma"], **conjugator.tag_assemble(**form_values))
     output = pure_python_tmp_container.parse_pyhfst("./morphophonologyclitics_generate.hfstol", narrow_analysis)
