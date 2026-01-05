@@ -196,7 +196,7 @@ def tag_assemble(**broad_analysis):
     adjustments = {}
     if algonquianized["POS"] == "VTA": adjustments = vta_adjustments(**broad_analysis)
     elif algonquianized["POS"] == "VAI": adjustments = vai_adjustments(**broad_analysis)
-    elif algonquianized["POS"] == "VAIO": pass
+    elif algonquianized["POS"] == "VAIO": adjustments = vaio_adjustments(**broad_analysis)
     elif algonquianized["POS"] == "VTI": adjustments = vti_adjustments(**broad_analysis)
     elif algonquianized["POS"] == "VII": adjustments = vii_adjustments(**broad_analysis)
     elif algonquianized["POS"].startswith("N"): adjustments = n_adjustments(**broad_analysis)
