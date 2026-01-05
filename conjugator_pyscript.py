@@ -69,7 +69,7 @@ def inflect_word(event):
     narrow_analysis = conjugator.tag_linearize(form_values["Lemma"], **conjugator.tag_assemble(**form_values))
     output = pure_python_tmp_container.parse_pyhfst("./morphophonologyclitics_generate.hfstol", narrow_analysis)
     ###formatting the values
-    table = [["Broad Analysis", broad_analysis], 
+    table = [["Broad Analysis", form_values["Lemma"]+" "+broad_analysis], 
              ["Narrow Analysis", narrow_analysis],]
     i = 0
     total_variants = len(output[narrow_analysis])
