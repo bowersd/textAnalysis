@@ -121,8 +121,12 @@ def vti_adjustments(**broad_analysis):
     if broad_analysis["Order"] == "Cnj": h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]) #it is the exact same VAIs, worthwhile to flag to user
     elif broad_analysis["Order"] == "Imp": pass
     else:
+        #no guidance on passive/unspecified subjects from Rand's book, worthwhile to flag to users
         h["Person_prefix"] = broad_analysis["S"]["Pers"]
         h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
+        if broad_analysis["S"]["Pers"] == "0": #presumably inanimate subjects are treated as 3 subjects? worthwhile to flag to users
+            h["Person_prefix"] = "3"
+            h["Central"] = recreate_number_tags("3", broad_analysis["S"]["Num"], True)
         h["Periph"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], False)
     return h
 
@@ -144,6 +148,7 @@ def vaio_adjustments(**broad_analysis):
     if broad_analysis["Order"] == "Cnj": h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])
     elif broad_analysis["Order"] == "Imp": pass
     else:
+        #no guidance on passive/unspecified subjects from Rand's book, worthwhile to flag to users
         h["Person_prefix"] = broad_analysis["S"]["Pers"]
         h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
         if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3": h["Periph"] = "3Obv" #nest of obviation restrictions worthwhile to flag to user. Rand's book is a bit inconsistent (positives are not marked as obv, but negatives are)
