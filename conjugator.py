@@ -1,6 +1,6 @@
 #import sys
 #import parse
-#todo: iteratives, participles, preverbs, imperatives, warnings/hints, shift to conjunct for prtdub, required initial change, vocative singulars, [123]+Ext|Nul+
+#todo: iteratives, participles, preverbs, vaio imperatives, warnings/hints, shift to conjunct for prtdub, required initial change, vocative singulars, [123]+Ext|Nul+
 
 def recreate_number_tags(person, number, prefix):
     if person == "2" and number == "1Pl" and prefix: return "1Pl"
