@@ -36,9 +36,9 @@ def inflect_word(event):
     form_values["Head"] = pyscript.document.querySelector("#POS").value
     form_values["DerivChain"] = form_values["Head"] #not really available option now, but needed for post processing
     form_values["Order"] = pyscript.document.querySelector("#Order").value
-    prt = pyscript.document.querySelector("#ModePrt").value
-    dub = pyscript.document.querySelector("#ModeDub").value
-    neg = pyscript.document.querySelector("#Neg").value
+    prt = pyscript.document.querySelector("#ModePrt:checked")
+    dub = pyscript.document.querySelector("#ModeDub:checked")
+    neg = pyscript.document.querySelector("#Neg:checked")
     sub = pyscript.document.querySelector("#S").value
     obj = pyscript.document.querySelector("#O").value
     if form_values["Head"].startswith("N"): 
