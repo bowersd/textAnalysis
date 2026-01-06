@@ -84,4 +84,20 @@ def inflect_word(event):
     output_div = pyscript.document.querySelector("#output")
     output_div.innerHTML = tabulate.tabulate(table, tablefmt="html")
 
+def narrow_generate(event):
+    narrow_input = pyscript.document.querySelector("#narrow_input").value
+    output = pure_python_tmp_container.parse_pyhfst("./morphophonologyclitics_generate.hfstol", narrow_input)
+    ###formatting the values
+    table = [["Narrow Analysis", narrow_input]]
+    i = 0
+    total_variants = len(output[narrow_input])
+    while i < total_variants:
+        if i == 0 and total_variants==1: table.append(["Predicted form", output[narrow_input][i][0]])
+        elif i == 0 and total_variants>1: table.append(["Predicted forms", output[narrow_input][i][0]])
+        elif i != 0 and total_variants>1: table.append(["", output[narrow_input][i][0]])
+        i += 1
+    ###printing the values
+    narrow_output_div = pyscript.document.querySelector("#narrow_output")
+    narrow_output_div.innerHTML = tabulate.tabulate(table, tablefmt="html")
+
 
