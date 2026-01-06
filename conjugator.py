@@ -164,7 +164,7 @@ def vaio_adjustments(**broad_analysis):
         h["Person_prefix"] = broad_analysis["S"]["Pers"]
         h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
         if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3": h["Periph"] = "3Obv" #nest of obviation restrictions worthwhile to flag to user. Rand's book is a bit inconsistent (positives are not marked as obv, but negatives are)
-        elif not broad_analysis["S"]["Num"] and not broad_analysis["O"]["Num"]: h["Periph"] = broad_analysis["O"]["Pers"] #restriction to singular subjects worthwhile to flag to user. Rand's book is a bit inconsistent (positives have 3 v 0s, but not negatives)
+        elif not broad_analysis["S"]["Num"] and not broad_analysis["O"]["Num"] and not broad_analysis["Mode"]: h["Periph"] = broad_analysis["O"]["Pers"] #restriction to singular subjects worthwhile to flag to user. Rand's book is a bit inconsistent (positives have 3 v 0s, but not negatives)
         elif broad_analysis["O"]["Num"] == "Pl": h["Periph"] = "".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])  #this implements an obviation restriction by omission (you can't specify obviative objects outside of the 3v3 context). worthwhile to flag to user. 
     return h
 
