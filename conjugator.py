@@ -158,7 +158,9 @@ def vai_adjustments(**broad_analysis):
 def vaio_adjustments(**broad_analysis):
     h = {"Person_prefix":"", "Central":"", "Periph":""}
     if broad_analysis["Order"] == "Cnj": h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])
-    elif broad_analysis["Order"] == "Imp": pass
+    elif broad_analysis["Order"] == "Imp": 
+        h["Central"] = "".join([broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]])
+        if broad_analysis["S"] == {"Pers":"2", "Num":"1Pl"} and broad_analysis["O"]["Num"] == "Pl": h["Periph"] = "".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])
     else:
         #no guidance on passive/unspecified subjects from Rand's book, worthwhile to flag to users
         h["Person_prefix"] = broad_analysis["S"]["Pers"]
