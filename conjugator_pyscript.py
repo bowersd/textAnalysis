@@ -69,7 +69,8 @@ def inflect_word(event):
         print(v, form_values[v])
     broad_analysis = pure_python_tmp_container.formatted(form_values)
     narrow_analysis = conjugator.tag_linearize(form_values["Lemma"], **conjugator.tag_assemble(**form_values))
-    output = pure_python_tmp_container.parse_pyhfst("./morphophonologyclitics_generate.hfstol", narrow_analysis)
+    generator = pyscript.document.querySelector("#generator").value
+    output = pure_python_tmp_container.parse_pyhfst(generator, narrow_analysis)
     ###formatting the values
     table = [["Broad Analysis", form_values["Lemma"]+" "+broad_analysis], 
              ["Narrow Analysis", narrow_analysis],]
@@ -86,7 +87,8 @@ def inflect_word(event):
 
 def narrow_generate(event):
     narrow_input = pyscript.document.querySelector("#narrow_input").value
-    output = pure_python_tmp_container.parse_pyhfst("./morphophonologyclitics_generate.hfstol", narrow_input)
+    generator = pyscript.document.querySelector("#generator").value
+    output = pure_python_tmp_container.parse_pyhfst(generator, narrow_input)
     ###formatting the values
     table = [["Narrow Analysis", narrow_input]]
     i = 0

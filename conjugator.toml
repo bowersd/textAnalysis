@@ -1,6 +1,8 @@
 packages = ["regex"]
 [files] 
 "/textAnalysis/morphophonologyclitics_generate.hfstol" = "./morphophonologyclitics_generate.hfstol"
+"/textAnalysis/morphophonologyclitics_generate_mcor_spelling.hfstol" = "./morphophonologyclitics_generate_mcor_spelling.hfstol"
+"/textAnalysis/morphophonologyclitics_generate_unsyncopated.hfstol" = "./morphophonologyclitics_generate_unsyncopated.hfstol"
 "/textAnalysis/pure_python_tmp_container.py" = "./pure_python_tmp_container.py"
 "/textAnalysis/conjugator.py" = "./conjugator.py"
 
