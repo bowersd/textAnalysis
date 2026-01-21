@@ -8,7 +8,7 @@ def pos_check(lemma, analyzer, posregex):
     h = []
     #if test[lemma][0][0].endswith('+?'): confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
     for x in test[lemma]: 
-        pos = pp.pos_extract(x[0], posregex)
+        pos = pp.extract_pos(x[0], posregex)
         if pos not in h: h.append(pos)
     return h
 
