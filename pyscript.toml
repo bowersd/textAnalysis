@@ -18,4 +18,5 @@ packages = [
 "/textAnalysis/languageSpecificAuxiliaryFiles/ciw/pos_glosses/pos_regex_model.txt" = "./ciw_pos_regex_model.txt"
 "/textAnalysis/sentence_complexity.py" = "./sentence_complexity.py"
 "/textAnalysis/opd_links.py" = "./opd_links.py"
+"/textAnalysis/pure_python_tmp_container.py" = "./pure_python_tmp_container.py"
 "/textAnalysis/opd_manual_links.csv" = "./opd_manual_links.csv"

@@ -25,19 +25,9 @@ import pyhfst
 import tabulate
 import sentence_complexity as sc
 import opd_links as opd
+import pure_python_tmp_container as pp
 
 ###functions copied directly/modified from elsewhere in the repo
-def parse_pyhfst(transducer, *strings):
-    h = {}
-    parser = pyhfst.HfstInputStream(transducer).read()
-    for s in strings: 
-        if s not in h: 
-            h[s] = []
-            p = parser.lookup(s)
-            if not p: h[s].append((s+"+?", 0.00))
-            else: 
-                for q in p: h[s].append((regex.sub(r"@.*?@", "" ,q[0]), q[1])) #filtering out flag diacritics, which the hfst api does not do as of dec 2023
-    return h
 
 def sep_punct(string, drop_punct): #diy tokenization, use nltk?
     if not drop_punct: return "'".join(regex.sub(r"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", r" \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
@@ -162,21 +152,6 @@ def extract_pos(string, pos_regex):
     srch = regex.search(pos_regex, string) #first pos tag ... maybe want all (and especially then extract last!)
     if srch: return srch[0][1:] #want to drop the leading + sign
     return None
-
-def formatted(interpreted):
-    out = []
-    out.append(interpreted["Head"])
-    if interpreted["DerivChain"] != interpreted["Head"]: out.append("("+interpreted["DerivChain"]+")")
-    if interpreted["Periph"]: out.append(interpreted["Periph"])
-    if interpreted["Head"].startswith("N") and interpreted["S"]["Pers"]: out.append("Pos:"+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
-    if interpreted["S"]["Pers"] and not interpreted["Head"].startswith("N"): out.append("S:"+"".join([interpreted["S"]["Pers"], interpreted["S"]["Num"]]))
-    if interpreted["O"]["Pers"]: out.append("O:"+"".join([interpreted["O"]["Pers"], interpreted["O"]["Num"]]))
-    if interpreted["Order"]: out.append(interpreted["Order"])
-    if interpreted["Neg"]: out.append(interpreted["Neg"])
-    if interpreted["Mode"]: out.append(" ".join(interpreted["Mode"]))
-    if interpreted["Pcp"]["Pers"]: out.append(" ".join(["Pcp", "(Focus:{})".format(find_focus(**{x:interpreted[x] for x in ["S", "O", "Pcp"] if interpreted[x]["Pers"]}))]))
-    if any(interpreted["Else"]): out.append(" ".join([x for x in interpreted["Else"] if x]))
-    return " ".join(out)
 
 def find_focus(**kwargs):
     x =  [k for k in {kw:kwargs[kw] for kw in kwargs if kw != "Pcp"} if kwargs[k] == kwargs['Pcp']]
@@ -706,7 +681,7 @@ def parse_words_expanded(event):
     model_credit = {} #as of aug 2025, only using this data to allow correct formatting of western (OPD-based) lemmata urls vs eastern (NOD-based) lemmata. It could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
     #analyzers = await cascade_customization()
     for i in range(len(analyzers)):
-        analyzed = parse_pyhfst(analyzers[i], *to_analyze)
+        analyzed = pp.parse_pyhfst(analyzers[i], *to_analyze)
         to_analyze = []
         for w in analyzed:
             if analyzed[w][0][0].endswith('+?') and i+1 < len(analyzers): to_analyze.append(w)
@@ -719,12 +694,12 @@ def parse_words_expanded(event):
             else: 
                 parses[w] = analyzed[w]
                 model_credit[w] = analyzers[i]
-    #analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
+    #analyzed = pp.parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
     ##m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
     #re_analysis = []
     #for w in sep_punct(freeNish.lower(), True).split():
     #    if analyzed[w][0][0].endswith('+?'): re_analysis.append(w)
-    #re_analyzed = parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *re_analysis)
+    #re_analyzed = pp.parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *re_analysis)
     h = {"original":[],
          "m_parse_lo":[],
          "m_parse_hi":[],
@@ -738,7 +713,7 @@ def parse_words_expanded(event):
             #else: local.append(analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0])
         h["original"].append(sep_punct(line, True).split())
         h["m_parse_lo"].append(local)
-        #h["m_parse_hi"].append(["'"+formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
+        #h["m_parse_hi"].append(["'"+pp.formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
         his = []
         lemms = []
         lem_links = []
@@ -748,7 +723,7 @@ def parse_words_expanded(event):
                 pos = extract_pos(local[i], ciw_pos_regex_opd)
                 lemms.append(lem)
                 #populate hi
-                if regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+formatted(interpret_ciw(local[i], ciw_pos_regex_model))+"'")
+                if regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+pp.formatted(interpret_ciw(local[i], ciw_pos_regex_model))+"'")
                 if not regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'?'")
                 #populate lem
                 if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
@@ -760,7 +735,7 @@ def parse_words_expanded(event):
                 lemms.append(lem)
                 lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
                 #populate hi
-                if analysis_dict(local[i]): his.append("'"+formatted(interpret(analysis_dict(local[i])))+"'")
+                if analysis_dict(local[i]): his.append("'"+pp.formatted(interpret(analysis_dict(local[i])))+"'")
                 if not analysis_dict(local[i]): his.append("'?'")
         h["m_parse_hi"].append(his) 
         h["lemmata"].append(lemms) 
