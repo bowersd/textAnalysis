@@ -143,16 +143,6 @@ def lemmatize(pos_regex, *analysis):
     return [extract_lemma(a, pos_regex) for a in analysis]
 
 
-def extract_pos(string, pos_regex):
-    if "+Cmpd" in string:
-        cmpd = []
-        for x in regex.split(r"\+Cmpd", string):
-            cmpd.append(regex.search(pos_regex, x)[0][1:])
-        return "+".join(cmpd)
-    srch = regex.search(pos_regex, string) #first pos tag ... maybe want all (and especially then extract last!)
-    if srch: return srch[0][1:] #want to drop the leading + sign
-    return None
-
 def find_focus(**kwargs):
     x =  [k for k in {kw:kwargs[kw] for kw in kwargs if kw != "Pcp"} if kwargs[k] == kwargs['Pcp']]
     #if len(x) > 1: print(x) #there better not be ambiguity!!
@@ -720,7 +710,7 @@ def parse_words_expanded(event):
         for i in range(len(local)):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
                 lem = extract_lemma(local[i], ciw_pos_regex_opd)
-                pos = extract_pos(local[i], ciw_pos_regex_opd)
+                pos = pp.extract_pos(local[i], ciw_pos_regex_opd)
                 lemms.append(lem)
                 #populate hi
                 if regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+pp.formatted(interpret_ciw(local[i], ciw_pos_regex_model))+"'")

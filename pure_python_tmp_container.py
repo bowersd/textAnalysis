@@ -33,3 +33,13 @@ def find_focus(**kwargs):
     #if len(x) > 1: print(x) #there better not be ambiguity!!
     if x: return x[0]
     return "".join([kwargs["Pcp"]["Pers"], kwargs["Pcp"]["Num"]])
+
+def extract_pos(string, pos_regex):
+    if "+Cmpd" in string:
+        cmpd = []
+        for x in regex.split(r"\+Cmpd", string):
+            cmpd.append(regex.search(pos_regex, x)[0][1:])
+        return "+".join(cmpd)
+    srch = regex.search(pos_regex, string) #first pos tag ... maybe want all (and especially then extract last!)
+    if srch: return srch[0][1:] #want to drop the leading + sign
+    return None
