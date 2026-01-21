@@ -12,11 +12,13 @@ import pyhfst
 import conjugator
 import pure_python_tmp_container as pp
 
+pos_regex = "".join(pp.readin("./pos_regex.txt"))
+analyzer = "./morphophonologyclitics_analyze_mcor_spelling.hfstol"
 def user_word_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
-    possible = conjugator.pos_check(lemma, ANALYZER, POSREGEX)
+    possible = conjugator.pos_check(lemma, analyzer, pos_regex)
     if not possible: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
-    elif len(possible) == 1: confirmation = "The word '{0}' is a {1}. You don't need to specify the Part of Speech information".format(lemma, pp.extract_pos(test[lemma][0][0], POSREGEX))
+    elif len(possible) == 1: confirmation = "The word '{0}' is a {1}. You don't need to specify the Part of Speech information".format(lemma, possible[0])
     else: 
         confirmation = "The word '{0}' could be one of the following: {1}. Please specify the Part of Speech information in the menu below".format(lemma, ", ".join(possible))
     confirmation_div = pyscript.document.querySelector("#confirmation_output")
@@ -44,8 +46,8 @@ def inflect_word(event):
     ###shunting around the values from the html form
     form_values["Lemma"] = pyscript.document.querySelector("#lemma").value
     form_values["Head"] = pyscript.document.querySelector("#POS").value
-    #pos_values = conjugator.pos_check(form_values["Lemma"], ANALYZER, POSREGEX)
-    #if len(pos_values) == 1: form_values["Head"] = pos_values[0]
+    pos_values = conjugator.pos_check(form_values["Lemma"], analyzer, pos_regex)
+    if len(pos_values) == 1: form_values["Head"] = pos_values[0]
     form_values["DerivChain"] = form_values["Head"] #not really available option now, but needed for post processing
     form_values["Order"] = pyscript.document.querySelector("#Order").value
     prt = pyscript.document.querySelector("#ModePrt:checked")

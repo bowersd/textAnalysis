@@ -3,6 +3,8 @@ packages = ["regex"]
 "/textAnalysis/morphophonologyclitics_generate.hfstol" = "./morphophonologyclitics_generate.hfstol"
 "/textAnalysis/morphophonologyclitics_generate_mcor_spelling.hfstol" = "./morphophonologyclitics_generate_mcor_spelling.hfstol"
 "/textAnalysis/morphophonologyclitics_generate_unsyncopated.hfstol" = "./morphophonologyclitics_generate_unsyncopated.hfstol"
+"/textAnalysis/morphophonologyclitics_analyze_mcor_spelling.hfstol" = "./morphophonologyclitics_analyze_mcor_spelling.hfstol"
+"/textAnalysis/languageSpecificAuxiliaryFiles/otw/pos_glosses/pos_regex.txt" = "./pos_regex.txt"
 "/textAnalysis/pure_python_tmp_container.py" = "./pure_python_tmp_container.py"
 "/textAnalysis/conjugator.py" = "./conjugator.py"
 
