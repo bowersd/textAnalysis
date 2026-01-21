@@ -1,6 +1,14 @@
 import pyhfst
 import regex
 
+
+def readin(filename):
+    holder = []
+    with open(filename, 'r') as f_in:
+        for line in f_in:
+            holder.append(line.strip())
+    return holder
+
 def parse_pyhfst(transducer, *strings):
     h = {}
     parser = pyhfst.HfstInputStream(transducer).read()

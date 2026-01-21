@@ -69,13 +69,6 @@ def pad(*lists_of_strings):
         nu_lists.append(nu)
     return nu_lists
 
-def readin(filename):
-    holder = []
-    with open(filename, 'r') as f_in:
-        for line in f_in:
-            holder.append(line.strip())
-    return holder
-
 def mk_glossing_dict(*strings):
     gd = {}
     for s in strings:
@@ -386,13 +379,13 @@ def analysis_dict(analysis_string):
 #constants
 
 #analyzers = ["./morphophonologyclitics_analyze.hfstol"]
-gdict = mk_glossing_dict(*readin("./copilot_otw2eng.txt"))
-iddict = mk_glossing_dict(*readin("./otw2nishID.txt"))
-pos_regex = "".join(readin("./pos_regex.txt"))
-ciw_pos_regex_opd = "".join(readin("./ciw_pos_regex_opd.txt"))
-ciw_pos_regex_model = "".join(readin("./ciw_pos_regex_model.txt"))
+gdict = mk_glossing_dict(*pp.readin("./copilot_otw2eng.txt"))
+iddict = mk_glossing_dict(*pp.readin("./otw2nishID.txt"))
+pos_regex = "".join(pp.readin("./pos_regex.txt"))
+ciw_pos_regex_opd = "".join(pp.readin("./ciw_pos_regex_opd.txt"))
+ciw_pos_regex_model = "".join(pp.readin("./ciw_pos_regex_model.txt"))
 opd_manual_links = {}
-for row in readin("opd_manual_links.csv"):
+for row in pp.readin("opd_manual_links.csv"):
     tabbed = row.split(',')
     opd_manual_links[(tabbed[0], tabbed[1])] = tabbed[2]
 
