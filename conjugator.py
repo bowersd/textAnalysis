@@ -1,6 +1,16 @@
+import pure_python_tmp_container as pp
 #import sys
 #import parse
 #todo: iteratives, participles, preverbs, warnings/hints, shift to conjunct for prtdub, required initial change, vocative singulars, [123]+Ext|Nul+
+
+def pos_check(lemma, analyzer, posregex):
+    test = pp.parse_pyhfst(analyzer, lemma)
+    h = []
+    #if test[lemma][0][0].endswith('+?'): confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
+    for x in test[lemma]: 
+        pos = pp.pos_extract(x[0], posregex)
+        if pos not in h: h.append(pos)
+    return h
 
 def recreate_number_tags(person, number, prefix):
     if person == "2" and number == "1Pl" and prefix: return "1Pl"
