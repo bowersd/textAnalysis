@@ -10,8 +10,23 @@ import asyncio
 import tabulate
 import pyhfst
 import conjugator
-import pure_python_tmp_container
+import pure_python_tmp_container as pp
 
+def user_word_confirmation(event):
+    lemma = pyscript.document.querySelector("#lemma").value
+    test = pp.parse_pyhfst(ANALYZER, lemma)
+    if test[lemma][0][0].endswith('+?'): confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
+    elif len(test[lemma]) == 1 or all([pp.extract_pos(x[0], POSREGEX) == pp.extract_pos(test[lemma][0][0], POSREGEX) for x in test[lemma]]): 
+        confirmation = "The word '{0}' is a {1}. You don't need to specify the Part of Speech information".format(lemma, pp.extract_pos(test[lemma][0][0], POSREGEX))
+    else: 
+        possible = []
+        for x in test[lemma]:
+            pos = pp.extract_pos(x[0], POSREGEX)
+            if pos not in possible: possible.append(pos)
+        confirmation = "The word '{0}' could be one of the following: {1}. Please specify the Part of Speech information in the menu below".format(lemma, ", ".join(possible))
+    confirmation_div = pyscript.document.querySelector("#confirmation_output")
+    confirmation_div.innerHTML = confirmation
+    
 
 
 def inflect_word(event):
@@ -67,10 +82,10 @@ def inflect_word(event):
     ###calculations on the values
     for v in form_values:
         print(v, form_values[v])
-    broad_analysis = pure_python_tmp_container.formatted(form_values)
+    broad_analysis = pp.formatted(form_values)
     narrow_analysis = conjugator.tag_linearize(form_values["Lemma"], **conjugator.tag_assemble(**form_values))
     generator = pyscript.document.querySelector("#generator").value
-    output = pure_python_tmp_container.parse_pyhfst(generator, narrow_analysis)
+    output = pp.parse_pyhfst(generator, narrow_analysis)
     ###formatting the values
     table = [["Broad Analysis", form_values["Lemma"]+" "+broad_analysis], 
              ["Narrow Analysis", narrow_analysis],]
@@ -88,7 +103,7 @@ def inflect_word(event):
 def narrow_generate(event):
     narrow_input = pyscript.document.querySelector("#narrow_input").value
     generator = pyscript.document.querySelector("#generator").value
-    output = pure_python_tmp_container.parse_pyhfst(generator, narrow_input)
+    output = pp.parse_pyhfst(generator, narrow_input)
     ###formatting the values
     table = [["Narrow Analysis", narrow_input]]
     i = 0
