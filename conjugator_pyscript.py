@@ -14,6 +14,7 @@ import pure_python_tmp_container as pp
 
 pos_regex = "".join(pp.readin("./pos_regex.txt"))
 analyzer = "./morphophonologyclitics_analyze_mcor_spelling.hfstol"
+
 def user_word_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
     possible = conjugator.pos_check(lemma, analyzer, pos_regex)
