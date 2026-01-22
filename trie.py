@@ -1,5 +1,5 @@
 
-def rules(*lexicon):
+def initialize(*lexicon):
     r = []
     total = 0
     for w in lexicon:
@@ -14,4 +14,4 @@ def rules(*lexicon):
     return r
 
 if __name__ == "__main__":
-    for r in rules("cat", "call", "dog"): print(r)
+    for r in initialize("cat", "call", "dog"): print(r)
