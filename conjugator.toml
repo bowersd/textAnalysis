@@ -7,4 +7,6 @@ packages = ["regex"]
 "/textAnalysis/languageSpecificAuxiliaryFiles/otw/pos_glosses/pos_regex.txt" = "./pos_regex.txt"
 "/textAnalysis/pure_python_tmp_container.py" = "./pure_python_tmp_container.py"
 "/textAnalysis/conjugator.py" = "./conjugator.py"
+"/textAnalysis/trie.py" = "./trie.py"
+"/textAnalysis/nish_trie.py" = "./nish_trie.py"
 
