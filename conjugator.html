@@ -24,7 +24,8 @@ layout: default
     <p>1. Enter and confirm the the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a> entry you want to conjugate. Instructions will appear beneath the button.</p>
     <p style="margin-left: 40px">
         <label for="lemma">Dictionary entry:</label>
-        <input type="text" size="30" id="lemma" placeholder="mik">
+        <input type="text" size="30" id="lemma" placeholder="mik" py-keyup="user_prediction">
+        <div id="prediction_output"></div>
         <button py-click="user_pos_confirmation">Confirm</button>
         <div id="confirmation_output"></div>
     </p>
@@ -184,6 +185,6 @@ layout: default
     </p>
     <div id="narrow_output"></div>
     <hr/>
-    <p>Last updated: 01/21/2026 13:15</p>
+    <p>Last updated: 01/23/2026 12:29</p>
 </body>
 </html>
