@@ -59,7 +59,38 @@ def probabilize(*rules):
         denom = sum([r[-1] for r in adjust])
         for r in adjust: h.append([r[0], r[1], r[2]/denom])
     return h
-        
+
+def traverse(chars, rules):
+    state = [0]
+    for c in chars:
+        s = state.pop()
+        for r in rules:
+            if r[0] == s and r[1][0] == c: state.append(r[1][1])
+    return state
+
+def is_final(state, rules):
+    return any([r[:2] == [state, ()] for r in rules])
+
+def predict(chars, state, rules):
+    states = [(state, 1, chars)]
+    top_p = 0
+    prediction = ""
+    while states:
+        s = states.pop()
+        for r in rules:
+            p = r[-1]*s[1]
+            if r[0] == s[0] and p >= top_p:
+                if not r[1]: 
+                    prediction = s[-1]
+                    top_p = p
+                else:
+                    states.append((r[1][1], p, s[-1]+r[1][0]))
+    return prediction
+
+def main(chars, rules):
+    s = traverse(chars, rules)
+    if not s: print("input is outside of dictionary")
+    else: print(predict(chars, s[0], rules))
 
 if __name__ == "__main__":
     print("initialization")
@@ -74,3 +105,5 @@ if __name__ == "__main__":
     print("probabilistic")
     p = probabilize(*t)
     for x in p: print(x)
+    print("prediction for 'ca'")
+    print(predict('ca', traverse('ca', p)[0], p))
