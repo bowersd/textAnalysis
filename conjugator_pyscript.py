@@ -4617,7 +4617,7 @@ nod_entries = [
         ]
 
 def user_prediction(event):
-    chars = pyscript.document.querySelector("#lemma")
+    chars = pyscript.document.querySelector("#lemma").value
     predict_div = pyscript.document.querySelector("#prediction_output")
     predict_div.innerHTML = trie.main(chars, nod_entries)
 
