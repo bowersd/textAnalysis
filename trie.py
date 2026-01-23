@@ -89,8 +89,8 @@ def predict(chars, state, rules):
 
 def main(chars, rules):
     s = traverse(chars, rules)
-    if not s: print("input is outside of dictionary")
-    else: print(predict(chars, s[0], rules))
+    if not s: return "I'm sorry, I don't know any words that start like that"
+    else: return predict(chars, s[0], rules)
 
 if __name__ == "__main__":
     print("initialization")
