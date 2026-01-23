@@ -14,6 +14,12 @@ import pure_python_tmp_container as pp
 
 pos_regex = "".join(pp.readin("./pos_regex.txt"))
 analyzer = "./morphophonologyclitics_analyze_mcor_spelling.hfstol"
+nish_trie = None
+
+def user_prediction(event):
+    chars = pyscript.document.querySelector("#lemma")
+    predict_div = pyscript.document.querySelector("#prediction_output")
+    predict_div.innerHTML = trie.main(chars, nish_trie)
 
 def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
