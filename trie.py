@@ -38,6 +38,17 @@ def merge(*rules):
         state += 1
     return h
 
+def trim_dead(*rules):
+    h = []
+    states = [0]
+    while states:
+        cur = states.pop()
+        for rule in rules:
+            if rule[0] == cur:
+                h.append(rule)
+                if rule[1]: states.append(rule[1][1])
+    return h
+
 def probabilize(*rules):
     h = []
     states = []
@@ -57,6 +68,9 @@ if __name__ == "__main__":
     print("merge")
     m = merge(*init)
     for x in m: print(x)
+    print("trim")
+    t = trim_dead(*m)
+    for x in t: print(x)
     print("probabilistic")
-    p = probabilize(*m)
+    p = probabilize(*t)
     for x in p: print(x)
