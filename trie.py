@@ -25,7 +25,7 @@ def merge(*rules):
             nu = [x for x in cur]
             revise = []
             for i in reversed(range(len(collapsible))):
-                if collapsible[i][1][:1] == cur[1][:1]:
+                if collapsible[i][1][:1] == cur[1][:1]: #ranges to work around final states having empty right-hand sides
                     nu[-1] += cur[-1]
                     if cur[1]: revise.append(collapsible[i][1][1])
                     collapsible = collapsible[:i]+collapsible[i+1:]
@@ -52,7 +52,7 @@ def probabilize(*rules):
 
 if __name__ == "__main__":
     print("initialization")
-    init = initialize("cat", "call", "dog")
+    init = initialize("cat", "call", "cats", "dog")
     for i in init: print(i)
     print("merge")
     m = merge(*init)
