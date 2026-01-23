@@ -65,7 +65,7 @@ def traverse(chars, rules):
     for c in chars:
         s = state.pop()
         for r in rules:
-            if r[0] == s and r[1][0] == c: state.append(r[1][1])
+            if r[0] == s and c in r[1][:1]: state.append(r[1][1])
     return state
 
 def is_final(state, rules):
