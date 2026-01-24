@@ -20,8 +20,9 @@ analyzer = "./morphophonologyclitics_analyze_mcor_spelling.hfstol"
 
 def user_prediction(event):
     chars = pyscript.document.querySelector("#lemma").value
-    predict_div = pyscript.document.querySelector("#prediction_output")
-    predict_div.innerHTML = trie.main(chars, nish_trie.nod_entries)
+    if len(chars) > 3:
+        predict_div = pyscript.document.querySelector("#prediction_output")
+        predict_div.innerHTML = trie.main(chars, nish_trie.nod_entries)
 
 def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
