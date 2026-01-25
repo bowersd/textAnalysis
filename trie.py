@@ -97,7 +97,7 @@ def predict_short(chars, state, rules):
                 p = r[-1]*s[1]
                 if not r[1]: 
                     print(r)
-                    predictions.append((s[2], p, chars))
+                    predictions.append((s[2], p, s[-1]))
                     depth = s[2]
                 else:
                     states.append((r[1][1], p, s[2]+1, s[-1]+r[1][0]))
