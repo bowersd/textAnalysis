@@ -22,7 +22,7 @@ def user_prediction(event):
     chars = pyscript.document.querySelector("#lemma").value
     if len(chars) > 3:
         predict_div = pyscript.document.querySelector("#prediction_output")
-        predict_div.innerHTML = "Looking for this word: {0}?".format(trie.main(chars, nish_trie.nod_entries))
+        predict_div.innerHTML = "Likely target words: {0}, {1}".format(trie.main(chars, nish_trie.nod_entries, trie.predict_short), trie.main(chars, nish_trie.nod_entries, trie.predict))
 
 def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value

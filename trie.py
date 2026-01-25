@@ -70,14 +70,14 @@ def is_final(state, rules):
     return any([r[:2] == (state, ()) for r in rules])
 
 def predict(chars, state, rules):
-    states = [(state, 1, chars)]
+    states = [(state, 1, chars)] #state, p, chars
     top_p = 0
     prediction = ""
     while states:
         s = states.pop()
         for r in rules:
             p = r[-1]*s[1]
-            if r[0] == s[0] and p >= top_p:
+            if r[0] == s[0] and p >= top_p: #so there could be a tie, but only one survives
                 if not r[1]: 
                     prediction = s[-1]
                     top_p = p
@@ -85,10 +85,27 @@ def predict(chars, state, rules):
                     states.append((r[1][1], p, s[-1]+r[1][0]))
     return prediction
 
-def main(chars, rules):
+def predict_short(chars, state, rules):
+    states = [(state, 1, 0, chars)] #state, p, depth, chars
+    top_p = 0
+    predictions = []
+    depth = float("inf")
+    while states:
+        s = states.pop()
+        for r in rules:
+            if r[0] == s[0] and s[2] <= depth:
+                p = r[-1]*s[1]
+                if not r[1]: 
+                    predictions.append((s[2], p, chars))
+                    depth = s[2]
+                else:
+                    states.append((r[1][1], p, s[2]+1, s[-1]+r[1][0]))
+    return sorted(sorted(predictions, reverse=True, key=lambda x: x[1]), key=lambda x: x[0])[0][-1]
+
+def main(chars, rules, pred_func):
     s = traverse(chars, rules)
     if not s: return "I'm sorry, I don't know any words that start like that"
-    else: return predict(chars, s[0], rules)
+    else: return pred_func(chars, s[0], rules)
 
 if __name__ == "__main__":
     print("initialization")
