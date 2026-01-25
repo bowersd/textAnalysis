@@ -105,7 +105,7 @@ def predict_short(chars, state, rules):
 
 def main(chars, rules, pred_func):
     s = traverse(chars, rules)
-    if not s: return "I'm sorry, I don't know any words that start like that"
+    if not s: return "I'm sorry, I don't know any words that start with {0}".format(chars)
     else: return pred_func(chars, s[0], rules)
 
 if __name__ == "__main__":
