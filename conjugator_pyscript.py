@@ -31,6 +31,7 @@ def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
     possible = conjugator.pos_check(lemma, analyzer, pos_regex)
     if possible[0] == None: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
+    elif not (possible[0].startswith("N") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
     elif len(possible) == 1: confirmation = "The word '{0}' is a {1}. You don't need to specify the Part of Speech information".format(lemma, possible[0])
     else: 
         confirmation = "The word '{0}' could be one of the following: {1}. Please specify the Part of Speech information in the menu below".format(lemma, ", ".join(possible))
