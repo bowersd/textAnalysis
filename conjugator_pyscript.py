@@ -22,10 +22,14 @@ def user_prediction(event):
     chars = pyscript.document.querySelector("#lemma").value
     if len(chars) > 3:
         predict_div = pyscript.document.querySelector("#prediction_output")
-        short = trie.main(chars, nish_trie.nod_entries, trie.predict_short)
-        long = trie.main(chars, nish_trie.nod_entries, trie.predict)
-        if long != short: predict_div.innerHTML = "Suggested words: {0}, {1}".format(short, long)
-        else: predict_div.innerHTML = "Suggested words: {0}".format(short)
+        tries = [nish_trie.nod_entries_lemma_freq, nish_trie.nod_entries]
+        guessers = [trie.predict_short, trie.predict]
+        guesses = []
+        for t in tries:
+            for g in guessers:
+                guess = main(chars, t, g)
+                if guess not in guesses: guesses.append(guess)
+        predict_div.innerHTML = "Suggested words: {0}".format(", ".join(guesses))
 
 def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
