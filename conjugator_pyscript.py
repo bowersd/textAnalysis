@@ -27,7 +27,7 @@ def user_prediction(event):
         guesses = []
         for t in tries:
             for g in guessers:
-                guess = main(chars, t, g)
+                guess = trie.main(chars, t, g)
                 if guess not in guesses: guesses.append(guess)
         predict_div.innerHTML = "Suggested words: {0}".format(", ".join(guesses))
 
