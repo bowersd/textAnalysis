@@ -12,6 +12,10 @@ def pos_check(lemma, analyzer, posregex):
         if pos not in h: h.append(pos)
     return h
 
+def pos_defaults(*possibilities):
+    order = ("VAI", "VTA", "VII", "VTI", "VAIO", "NA", "NI", "NID", "NAD")
+    return order[min([order.index(tag) for tag in possibilities])]
+
 def recreate_number_tags(person, number, prefix):
     if person == "2" and number == "1Pl" and prefix: return "1Pl"
     elif person == "3" and number == "Pl" and prefix: return "2Pl"

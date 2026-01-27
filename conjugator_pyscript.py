@@ -38,7 +38,7 @@ def user_pos_confirmation(event):
     elif not (possible[0].startswith("N") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
     elif len(possible) == 1: confirmation = "The word '{0}' is a {1}. You don't need to specify the Part of Speech information".format(lemma, possible[0])
     else: 
-        confirmation = "The word '{0}' could be one of the following: {1}. Please specify the Part of Speech information in the menu below".format(lemma, ", ".join(possible))
+        confirmation = "The word '{0}' could be one of the following: {1}. If you do nothing, {2} will be chosen. If you want to specify another part of speech, pick a new value from the menu below".format(lemma, ", ".join(possible), conjugator.pos_defaults(*possible))
     confirmation_div = pyscript.document.querySelector("#confirmation_output")
     confirmation_div.innerHTML = confirmation
     
@@ -64,8 +64,7 @@ def inflect_word(event):
     ###shunting around the values from the html form
     form_values["Lemma"] = pyscript.document.querySelector("#lemma").value
     form_values["Head"] = pyscript.document.querySelector("#POS").value
-    pos_values = conjugator.pos_check(form_values["Lemma"], analyzer, pos_regex)
-    if len(pos_values) == 1 and pos_values[0]: form_values["Head"] = pos_values[0]
+    if form_values["Head"] == "def": form_values["Head"] = conjugator.pos_defaults(*conjugator.pos_check(form_values["Lemma"], analyzer, pos_regex))
     form_values["DerivChain"] = form_values["Head"] #not really available option now, but needed for post processing
     form_values["Order"] = pyscript.document.querySelector("#Order").value
     prt = pyscript.document.querySelector("#ModePrt:checked")
