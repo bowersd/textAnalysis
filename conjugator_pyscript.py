@@ -65,7 +65,7 @@ def inflect_word(event):
     form_values["Lemma"] = pyscript.document.querySelector("#lemma").value
     form_values["Head"] = pyscript.document.querySelector("#POS").value
     pos_values = conjugator.pos_check(form_values["Lemma"], analyzer, pos_regex)
-    if len(pos_values) == 1: form_values["Head"] = pos_values[0]
+    if len(pos_values) == 1 and pos_values[0]: form_values["Head"] = pos_values[0]
     form_values["DerivChain"] = form_values["Head"] #not really available option now, but needed for post processing
     form_values["Order"] = pyscript.document.querySelector("#Order").value
     prt = pyscript.document.querySelector("#ModePrt:checked")
