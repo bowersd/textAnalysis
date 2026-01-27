@@ -37,7 +37,7 @@ layout: default
         <!--input type="text" size="4" id="no_deletion_relaxed">
         <label for="no_deletion_relaxed">No Deletion relaxed  </label><input type="file" id="analyzer_no_deletion_relaxed" py-input="no_deletion_relaxed_handler()"><br--!>
         <input type="text" size="4" id="western" >
-        <label for="western">Anishinaabemod (Southwestern) - New! Border Lakes/Minnesota/Wisconsin dialects, as in the <a href="https://ojibwe.lib.umn.edu" target="_blank" rel="noopener noreferrer"><i>Ojibwe People's Dictionary</i></a></label><br>
+        <label for="western">Anishinaabemod (Southwestern) - Border Lakes/Minnesota/Wisconsin dialects, as in the <a href="https://ojibwe.lib.umn.edu" target="_blank" rel="noopener noreferrer"><i>Ojibwe People's Dictionary</i></a></label><br>
         <!--button py-click="cascade_customization">Customize!</button--!>
     <p>Note: These are strict analyzers! This means that they will fail to analyze almost any word that diverges even slightly from "correct" spelling rules. We may find a way to put relaxed analyzers on this site, but they are large and difficult to incorporate into the site's static design (<a href="./privacy.html"target="_blank" rel="noopener noreferrer">which is otherwise a good thing</a>). You can find more information about the analyzers on the <a href="./background.html"target="_blank" rel="noopener noreferrer">background page</a>.</p>
     <p>1. Select an analysis option below...</p>
@@ -60,8 +60,10 @@ layout: default
     -->
     </select>
 
-    <p><label for="larger_text_input">2. Type or paste Anishinaabemowin text here (samples available <a href="./sentences.html" target="_blank" rel="noopener noreferrer">here</a>):</label><p>
+    <p><label for="larger_text_input">2. Type or paste Anishinaabemowin text here (samples available <a href="./sentences.html" target="_blank" rel="noopener noreferrer">here</a>):</label></p>
 
+    <p><label for="english_separator">NEW! Separator character marking end of Nishnaabemwin and start of optional translation on the same line (use \t for "tab")</label><br>
+        <input type="text" size="4" id="english_separator" >
     <textarea id="larger_text_input" name="larger_text_input" rows="20" cols="100"></textarea>
     <p>3. Click this button:
     <button py-click="parse_words_expanded">Do it!</button>
@@ -131,6 +133,6 @@ layout: default
     <button name="load_trans">Add Sentence-by-Sentence Translation (optional, inactive)</button>
     <button name="do_it">Make Interlinearization (inactive)</button-->
     <hr/>
-    <p>Last updated: 11/15/2025 00:25</p>
+    <p>Last updated: 01/27/2026 14:37</p>
 </body>
 </html>

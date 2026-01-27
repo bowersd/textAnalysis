@@ -408,7 +408,7 @@ def interlinearize(parsed_data):
         lines_out = tabulate.tabulate(table, tablefmt='html')
         for lo in lines_out.split('\n'): #a loop isn't really necessary here
             if "NOD/OPD Entry" in lo: revised += undo_html(lo)+'\n'
-            elif "Terse Translation" in lo and parsed_data["english"][i]: 
+            elif "Terse Translation" in lo and parsed_data["english"]: 
                 revised += lo+'\n'
                 transline = '<tr><td>Free Translation</td><td colspan="{0}">'+"'{1}'<td></tr>\n"
                 revised += transline.format(str(len(parsed_data["m_parse_lo"])), parsed_data["english"][i])
@@ -598,7 +598,7 @@ def parse_words_expanded(event):
         #if form_values[x]["order"] and form_values[x]["url"]:
         #    form_values[x]["file"] = await pyfetch(form_values[x]["url"])
         if form_values[x]["order"] and form_values[x]["file"]: analyzers.append(form_values[x]["file"])
-    separator = ""
+    separator = pyscript.document.querySelector("#english_separator")
     english = []
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
@@ -650,7 +650,6 @@ def parse_words_expanded(event):
         his = []
         lemms = []
         lem_links = []
-        english = ""
         for i in range(len(local)):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
                 lem = extract_lemma(local[i], ciw_pos_regex_opd)
