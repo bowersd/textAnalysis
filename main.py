@@ -598,8 +598,17 @@ def parse_words_expanded(event):
         #if form_values[x]["order"] and form_values[x]["url"]:
         #    form_values[x]["file"] = await pyfetch(form_values[x]["url"])
         if form_values[x]["order"] and form_values[x]["file"]: analyzers.append(form_values[x]["file"])
+    separator = ""
+    english = []
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
+    if separator:
+        freeNish = ""
+        for it in input_text.split('\n'):
+            chopped = it.split(separator)
+            freeNish += chopped[0]+'\n'
+            if len(chopped) > 1: english.append(chopped[1])
+            else: english.append("")
     to_analyze = sep_punct(freeNish.lower(), True).split()
     parses = {}
     model_credit = {} #as of aug 2025, only using this data to allow correct formatting of western (OPD-based) lemmata urls vs eastern (NOD-based) lemmata. It could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
@@ -629,7 +638,7 @@ def parse_words_expanded(event):
          "lemmata":[],
          "lemma_links":[],
          "tinies":[],
-         "english":[]}
+         "english":english}
     for line in freeNish.lower().split('\n'):
         local = []
         for w in sep_punct(line, True).split(): local.append(parses[w][disambiguate(min_morphs(*parses[w]), min_morphs, *parses[w])][0])
@@ -641,6 +650,7 @@ def parse_words_expanded(event):
         his = []
         lemms = []
         lem_links = []
+        english = ""
         for i in range(len(local)):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
                 lem = extract_lemma(local[i], ciw_pos_regex_opd)
