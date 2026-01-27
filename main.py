@@ -13,9 +13,6 @@ await micropip.install(
 from pyweb import pydom
 import pyscript
 import asyncio
-from js import console, Uint8Array, File, FileReader, URL, document, window #File et seq were added for download, maybe pyscript.File, URL, document will work?
-import io #this was added for download
-#from pyodide import create_proxy
 from pyodide.ffi.wrappers import add_event_listener
 from pyodide.http import pyfetch
 #from pyodide.http import open_url
@@ -378,7 +375,6 @@ def analysis_dict(analysis_string):
 ###functions and constants for doing things within the web page
 #constants
 
-#analyzers = ["./morphophonologyclitics_analyze.hfstol"]
 gdict = mk_glossing_dict(*pp.readin("./copilot_otw2eng.txt"))
 iddict = mk_glossing_dict(*pp.readin("./otw2nishID.txt"))
 pos_regex = "".join(pp.readin("./pos_regex.txt"))
@@ -388,68 +384,6 @@ opd_manual_links = {}
 for row in pp.readin("opd_manual_links.csv"):
     tabbed = row.split(',')
     opd_manual_links[(tabbed[0], tabbed[1])] = tabbed[2]
-
-def cascade_customization(event):
-    form_values["rhodes"]["order"] = pyscript.document.querySelector("#rhodes").value
-    form_values["rhodes_relaxed"]["order"] = pyscript.document.querySelector("#rhodes_relaxed").value
-    form_values["corbiere"]["order"] = pyscript.document.querySelector("#corbiere").value
-    form_values["corbiere_relaxed"]["order"] = pyscript.document.querySelector("#corbiere_relaxed").value
-    form_values["no_deletion"]["order"] = pyscript.document.querySelector("#no_deletion").value
-    form_values["no_deletion_relaxed"]["order"] = pyscript.document.querySelector("#no_deletion_relaxed").value
-    print(f"Form values are: {form_values}")
-    analyzers = []
-    print("reset state of analyzers")
-    print(analyzers)
-    for x in sorted(form_values, key = lambda y: form_values[y]["order"]):
-        #if form_values[x]["order"] and form_values[x]["url"]:
-        #    form_values[x]["file"] = await pyfetch(form_values[x]["url"])
-        #    print(form_values[x]["file"])
-        print(form_values[x]["file"])
-        analyzers.append(form_values[x]["file"])
-    print("updated state of analyzers")
-    print(analyzers)
-    return analyzers
-
-#form_values["rhodes"]=Element("rhodes").element.value
-
-#Element("rhodes").element.oninput = rhodes_handler
-#Element("rhodes_relaxed").element.oninput = rhodes_relaxed_handler
-#Element("corbiere").element.oninput = corbiere_handler
-#Element("corbiere_relaxed").element.oninput = corbiere_relaxed_handler
-#Element("no_deletion").element.oninput = no_deletion_handler
-#Element("no_deletion_relaxed").element.oninput = no_deletion_relaxed_handler
-#Element("analyzer_cascade_customization").element.onsubmit = submit_handler
-
-def submit_handler(event=None):
-    if event:
-        event.preventDefault()
-        print(f"Form values are: {form_values}")
-        
-def rhodes_handler(event=None):
-    if event:
-        form_values["rhodes"]["file"] = event.target.value
-
-def rhodes_relaxed_handler(event=None):
-    if event:
-        form_values["rhodes_relaxed"]["file"] = event.target.value
-
-#add_event_listener(document.getElementById("rhodes_relaxed_upload"), "change", rhodes_relaxed_handler)
-
-def corbiere_handler(event=None):
-    if event:
-        form_values["corbiere"]["file"] = event.target.value
-
-def corbiere_relaxed_handler(event=None):
-    if event:
-        form_values["corbiere_relaxed"]["file"] = event.target.value
-
-def no_deletion_handler(event=None):
-    if event:
-        form_values["no_deletion"]["file"] = event.target.value
-
-def no_deletion_relaxed_handler(event=None):
-    if event:
-        form_values["no_deletion_relaxed"]["file"] = event.target.value
 
 form_values = {
         "rhodes":{"order":"1", "url":"", "file":"./morphophonologyclitics_analyze.hfstol"},
@@ -615,6 +549,7 @@ def take_windows(sentence_data, size, *addresses):
         windows.append(w)
     return windows
 
+#this is only called in commented out lines
 def retrieve_addrs(lexical_perspective, *keys):
     unanalyzed_token_addresses = []
     for key in keys:
@@ -662,7 +597,6 @@ def parse_words_expanded(event):
     to_analyze = sep_punct(freeNish.lower(), True).split()
     parses = {}
     model_credit = {} #as of aug 2025, only using this data to allow correct formatting of western (OPD-based) lemmata urls vs eastern (NOD-based) lemmata. It could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
-    #analyzers = await cascade_customization()
     for i in range(len(analyzers)):
         analyzed = pp.parse_pyhfst(analyzers[i], *to_analyze)
         to_analyze = []
