@@ -398,14 +398,20 @@ form_values = {
 def interlinearize(parsed_data):
     revised = ""
     for i in range(len(parsed_data["m_parse_lo"])):
-        lines_out = tabulate.tabulate([
-            ["Original Material:"] + parsed_data["original"][i],
-            ["Narrow Analysis:"] + parsed_data["m_parse_lo"][i], 
-            ["Broad Analysis:"] + parsed_data["m_parse_hi"][i], 
-            ["NOD/OPD Entry:"] + parsed_data["lemma_links"][i], 
-            ["Terse Translation:"] + parsed_data["tinies"][i]], tablefmt='html')
+        table = [
+                ["Original Material:"] + parsed_data["original"][i],
+                ["Narrow Analysis:"] + parsed_data["m_parse_lo"][i], 
+                ["Broad Analysis:"] + parsed_data["m_parse_hi"][i], 
+                ["NOD/OPD Entry:"] + parsed_data["lemma_links"][i], 
+                ["Terse Translation:"] + parsed_data["tinies"][i]
+                ] 
+        lines_out = tabulate.tabulate(table, tablefmt='html')
         for lo in lines_out.split('\n'): #a loop isn't really necessary here
             if "NOD/OPD Entry" in lo: revised += undo_html(lo)+'\n'
+            elif "Terse Translation" in lo and parsed_data["english"][i]: 
+                revised += lo+'\n'
+                transline = '<tr><td>Free Translation</td><td colspan="{0}">'+"'{1}'<td></tr>\n"
+                revised += transline.format(str(len(parsed_data["m_parse_lo"])), parsed_data["english"][i])
             else: revised += lo+'\n'
     return revised
 
