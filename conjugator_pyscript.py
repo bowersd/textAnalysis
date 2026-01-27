@@ -36,7 +36,7 @@ def user_pos_confirmation(event):
     possible = conjugator.pos_check(lemma, analyzer, pos_regex)
     if possible[0] == None: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
     elif not (possible[0].startswith("N") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
-    elif len(possible) == 1: confirmation = "The word '{0}' is a {1}. You don't need to specify the Part of Speech information".format(lemma, possible[0])
+    elif len(possible) == 1: confirmation = "The word '{0}' is a {1}. You don't need to specify part of speech information".format(lemma, possible[0])
     else: 
         confirmation = "The word '{0}' could be one of the following: {1}. If you do nothing, {2} will be chosen. If you want to specify another part of speech, pick a new value from the menu below".format(lemma, ", ".join(possible), conjugator.pos_defaults(*possible))
     confirmation_div = pyscript.document.querySelector("#confirmation_output")
