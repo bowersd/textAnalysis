@@ -35,7 +35,7 @@ layout: default
     <select id="POS">
         <option value="def">default (the best guess as stated above)</option>
         <option value="NA">NA (smb. alive, exe: aamoo 'bee')</option>
-        <option value="NI">NI (sth. not alive, exe: oodenaw 'town')</option>
+        <option value="NI">NI (sth. not alive, exe: jiimaan 'boat')</option>
         <option value="NAD">NAD (smb. that must be "owned", exe: noos 'my father')</option>
         <option value="NID">NID (sth. that must be "owned", exe: ndahiim 'my thing')</option>
         <option disabled>______</option>
@@ -67,7 +67,7 @@ layout: default
     </select>
     </p>
     <p style="margin-left: 40px">
-    <label for="S">Subject (the do-er, you must select an option for all verbs):</label>
+    <label for="S">Who did it (subject, you must select an option for all verbs):</label>
     <select id="S">
         <option value="2">You</option>
         <option value="2Pl">You guys</option>
@@ -75,7 +75,7 @@ layout: default
         <option value="1Pl">We (niinwi 'us but not you')</option>
         <option value="21Pl">We (giinwi 'us with you')</option>
         <option value="3">He/She (noos baapi 'my father laughs')</option>
-        <option value="3Obv">Smb. else (woosan baap(i)wan 'his father laughs')</option>
+        <option value="3Obv">Smb. else (woosan baap(i)wan 'his/her father laughs')</option>
         <option value="3Pl">They</option>
         <option disabled>______^above does not work for VII</option>
         <option value="0">It - (jiimaan mchaa 'the boat is big')</option>
@@ -87,7 +87,7 @@ layout: default
     </select>
     </p>
     <p style="margin-left: 40px">
-    <label for="O">Object (the do-ee, only for VTA, VTI, VAIO):</label>
+    <label for="O">Who was it done to (object, only for VTA, VTI, VAIO):</label>
     <select id="O">
         <option value="">none (verb is VII or VAI)</option>
         <option value="2">You</option>
@@ -108,29 +108,28 @@ layout: default
 
     <p style="margin-left: 40px">
     <input type="checkbox" id="ModePrt">
-    <label for="ModePrt">Action is finished</label><br>
+    <label for="ModePrt">-ba(n) form (baapwiba 's/he has laughed' - action is finished)</label><br>
     <input type="checkbox" id="ModeDub">
-    <label for="ModeDub">Statement is inferred/doubted</label><br>
+    <label for="ModeDub">-dig/wen form (baaapwidig 'I suspect s/he laughs - statement is inferred/doubted)</label><br>
     <input type="checkbox" id="Neg">
-    <label for="Neg">Action did not occur (negation, if command: "don't do it!")</label><br>
+    <label for="Neg">-si(i) form (baapsii 's/he doesn't laugh - negation; if command: "don't do it!")</label><br>
     <input type="checkbox" id="Del">
     <label for="Del">"Do it in a bit" (delayed command)</label>
     </p>
     <p>Noun options:</p>
     <p style="margin-left: 40px">
-    <label for="Possessor">Possessor (filling in "x" in "x's NOUN"):</label>
+    <label for="Possessor">Who owns it (possessor):</label>
     <select id="Possessor">
         <option value="">none</option>
         <option disabled>______</option>
-        <option value="1">My</option>
-        <option value="1Pl">Our (but not yours) </option>
-        <option disabled>______</option>
         <option value="2">Your</option>
-        <option value="2Pl">You guys'</option>
-        <option value="21Pl">Our (and yours)</option>
+        <option value="2Pl">Your guys's</option>
+        <option value="1">My</option>
+        <option value="1Pl">Our (niinwi 'ours but not yours') </option>
+        <option value="21Pl">Our (giinwi 'ours and yours')</option>
         <option disabled>______</option>
-        <option value="3">His/Her/It's</option>
-        <option value="3Obv">Someone else's (obviated third person)</option>
+        <option value="3">His/Her/It's (Aankod woosan 'Aan'kot's father')</option>
+        <option value="3Obv">Someone else's (Aankod woosan danmoshniwan 'Aan'kot's father's dog')</option>
         <option value="3Pl">Their</option>
         <option disabled>______</option>
         <option value="X">Unspecified</option>
@@ -138,35 +137,35 @@ layout: default
     </p>
 
     <p style="margin-left: 40px">
-    <label for="Periph">Plural (etc):</label>
+    <label for="Periph">Are there several/is it less important/is it a place:</label>
     <select id="Periph">
         <option value="">none</option>
-        <option value="Pl">Plural</option>
-        <option value="Obv">Obviative (less "topical")</option>
-        <option value="Loc">At/on a place</option>
-        <option value="DistLoc">Spread over a place</option>
+        <option value="Pl">There are several (aamoog 'bees' - plural)</option>
+        <option value="Obv">Less important (Aankod daamoon 'Aan'kot's bee' - obviative)</option>
+        <option value="Loc">Precise place (aamoong 'on the bee')</option>
+        <option value="DistLoc">General area (aamookaang 'all over the bee)</option>
     </select>
     </p>
     <p style="margin-left: 40px">
-    <label for="ConDim">Affection/contempt:</label>
+    <label for="ConDim">Is it little/ole:</label>
     <select id="ConDim">
         <option value="">none</option>
-        <option value="Dim">Diminutive</option>
-        <option value="Con">Contemptive</option>
+        <option value="Dim">little (jiimaanens 'little boat')</option>
+        <option value="Con">chummy (jiimaanenh 'ole boat')</option>
     </select>
     </p>
     <p style="margin-left: 40px">
     <label for="NMode">Other:</label>
     <select id="NMode">
         <option value="">none</option>
-        <option value="NModePrt">Noun is dead/broken</option>
-        <option value="NModeVocPl">O Nouns! (addressing a group)</option>
+        <option value="NModePrt">-ba(n) form (jiimaanba 'broken boat')</option>
+        <option value="NModeVocPl">-dig form (jiimaandig 'O boats!')</option>
     </select>
     <p style="margin-left: 40px">
     <input type="checkbox" id="PosThm">
-    <label for="PosThm">Possessive suffix</label><br>
+    <label for="PosThm">-m form (nbizhkiim 'my cow' - possessive)</label><br>
     <input type="checkbox" id="Pej">
-    <label for="Pej">Noun is irksome</label><br>
+    <label for="Pej">-ish form (mkiznish 'darn shoe' - pejorative)</label><br>
     </p>
     <hr/>
     <p>3. Click this button:
