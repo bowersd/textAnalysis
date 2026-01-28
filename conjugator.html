@@ -41,8 +41,8 @@ layout: default
         <option disabled>______</option>
         <option value="VAI">VAI (action done by smb., exe: baapi 's/he laughs')</option>
         <option value="VII">VII (action done by sth., exe: biidaasin 'it sails here')</option>
-        <option value="VTI">VTI (action done to sth., exe: (o)naadin  's/he goes to get it')</option>
-        <option value="VTA">VTA (action done to smb., exe: (o)waawiinaan 's/he names him/her')</option>
+        <option value="VTI">VTI (action done to sth., exe: (o)naadin  's/he fetches it')</option>
+        <option value="VTA">VTA (action done to smb., exe: (o)naagaa'aan 's/he delays him/her')</option>
         <option value="VAIO">VAIO (action done by smb. to sth/smb. exe: (o)noopon 's/he takes it for lunch')</option>
     </select>
     <p style="margin-left: 40px">
@@ -69,42 +69,40 @@ layout: default
     <p style="margin-left: 40px">
     <label for="S">Subject (the do-er, you must select an option for all verbs):</label>
     <select id="S">
-        <option value="1">I </option>
-        <option value="1Pl">We (niinwi 'us but not you')</option>
-        <option disabled>______</option>
         <option value="2">You</option>
         <option value="2Pl">You guys</option>
+        <option value="1">I </option>
+        <option value="1Pl">We (niinwi 'us but not you')</option>
         <option value="21Pl">We (giinwi 'us with you')</option>
-        <option disabled>______</option>
         <option value="3">He/She (noos baapi 'my father laughs')</option>
-        <option value="3Obv">Smb. else (oosan baap(i)wan 'his father laughs')</option>
+        <option value="3Obv">Smb. else (woosan baap(i)wan 'his father laughs')</option>
         <option value="3Pl">They</option>
-        <option disabled>______</option>
-        <option value="0">It - (jiimaan mchaa 'the boat is big' - only use for VII, VTA)</option>
-        <option value="0Obv">Sth. else (jiimaanan mchaani 'the other boat is big' - only use for VII)</option>
-        <option value="0Pl">Those (jiimaanan mchaawan 'the boats are big' - only for VII, VTA)</option>
-        <option value="0ObvPl">Sths. else (jiimaanan mchaanwan 'the other boats are big'- only for VII)</option>
-        <option disabled>______</option>
-        <option value="X">Unspecified/Passive (waawiinaa 's/he got named' - only for VAI, VTA)</option><!vti? vaio?>
+        <option disabled>______^above does not work for VII</option>
+        <option value="0">It - (jiimaan mchaa 'the boat is big')</option>
+        <option value="0Obv">Sth. else (jiimaanan mchaani 'the other boat is big' - VII only)</option>
+        <option value="0Pl">Those (jiimaanan mchaawan 'the boats are big')</option>
+        <option value="0ObvPl">Sths. else (jiimaanan mchaanwan 'the other boats are big'- VII only)</option>
+        <option disabled>______^above only works for VII, VTA</option>
+        <option value="X">Unspecified/Passive (naagaa'aa 's/he gets delayed' - only for VAI, VTA)</option><!vti? vaio?>
     </select>
     </p>
     <p style="margin-left: 40px">
     <label for="O">Object (the do-ee, only for VTA, VTI, VAIO):</label>
     <select id="O">
         <option value="">none (verb is VII or VAI)</option>
-        <option value="1">Me (for VTA)</option>
-        <option value="1Pl">Us (excluding you - for VTA)</option>
-        <option disabled>______</option>
-        <option value="2">You (for VTA)</option>
-        <option value="2Pl">You guys (for VTA)</option>
-        <option value="21Pl">Us (including you - for VTA)</option>
-        <option disabled>______</option>
-        <option value="3">Him/Her (animate third person - for VTA, VAIO)</option>
-        <option value="3Obv">Someone else (obviated animate third person - for VTA, VAIO)</option>
-        <option value="3Pl">Them (animate third person plural - for VTA, VAIO)</option>
-        <option disabled>______</option>
-        <option value="0">It (inanimate noun - for VTI, VAIO)</option>
-        <option value="0Pl">Those (plural inanimate noun - for VTI, VAIO)</option>
+        <option value="2">You</option>
+        <option value="2Pl">You guys</option>
+        <option value="1">Me</option>
+        <option value="1Pl">Us (niinwi 'us but not you')</option>
+        <option value="21Pl">Us (giinwi 'us with you')</option>
+        <option disabled>______ ^above only works with VTA</option>
+        <option value="3">Him/Her (gnaagaa'aa Aankod 'you delay Aan'kot')</option>
+        <option value="3Obv">Smb. else (naagaa'aan Aankodoon 'he delays Aan'kot')</option>
+        <option value="3Pl">Them</option>
+        <option disabled>______^above does not work with VTI</option>
+        <option value="0">It</option>
+        <option value="0Pl">Those</option>
+        <option disabled>______^above does not work with VTA</option>
     </select>
     </p>
 
