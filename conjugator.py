@@ -148,7 +148,9 @@ def vti_adjustments(**broad_analysis):
         #no guidance on passive/unspecified subjects from Rand's book, worthwhile to flag to users
         h["Person_prefix"] = broad_analysis["S"]["Pers"]
         h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
-        if broad_analysis["S"]["Pers"] == "0": #presumably inanimate subjects are treated as 3 subjects ... but this would create a "person" tie? worthwhile to flag to users
+        if broad_analysis["S"]["Pers"] == "0": #-> Per Rand, there is no way to make an inanimate subject for a VTI
+            raise ValueError("VTI verbs cannot have inanimate subjects.")
+            #presumably inanimate subjects are treated as 3 subjects ... but this would create a "person" tie? worthwhile to flag to users 
             h["Person_prefix"] = "3"
             h["Central"] = recreate_number_tags("3", broad_analysis["S"]["Num"], True)
         h["Periph"] = recreate_number_tags(broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"], False)
@@ -199,7 +201,6 @@ def n_adjustments(**broad_analysis):
             "Central":recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True), 
             "Periph":broad_analysis["Periph"]
             }
-    #worthwhile to flag requirement of prefixes on dependent stems
     if broad_analysis["Head"].endswith("D") and not h["Person_prefix"]: raise ValueError("NAD and NID nouns must be owned by someone, please specify the owner")
     if h["Person_prefix"] == "3" and broad_analysis["Periph"] != "Obv" and broad_analysis["Head"] in ("NAD", "NA"): raise ValueError("NA and NAD nouns that are owned by he/she/someone else must be marked as 'less important'") 
     #if h["Person_prefix"] == "3" and broad_analysis["Periph"] == "Pl": h["Periph"] = "" #worthwhile to flag to user -- When reviewing this, I cannot for the life of me think why I wrote this. There is a 3...obv requirement on NAs, but this does not enforce it. - It looks like this was maybe encoding a comment I sloppily wrote into the fst before I implemented the 3...NA...obv requirement
