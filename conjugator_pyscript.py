@@ -27,7 +27,7 @@ def user_prediction(event):
         guesses = []
         pairs = ((0, 0), (0, 1), (1, 1)) #not searching for a short prediction with frequency less trie
         for p in pairs:
-            guess = trie.main(chars, tries[p[0]], g[p[1]])
+            guess = trie.main(chars, tries[p[0]], guessers[p[1]])
             if guess not in guesses: guesses.append(guess)
         predict_div.innerHTML = "Suggested words: {0}".format(", ".join(guesses))
 
