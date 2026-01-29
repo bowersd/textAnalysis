@@ -197,12 +197,11 @@ def n_adjustments(**broad_analysis):
             "PosTheme":broad_analysis["PosTheme"], 
             "Pejorative":broad_analysis["Pejorative"], 
             "Central":recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True), 
-            "Mode":broad_analysis["Mode"] ,
             "Periph":broad_analysis["Periph"]
             }
     #worthwhile to flag requirement of prefixes on dependent stems
     if broad_analysis["Head"].endswith("D") and not h["Person_prefix"]: raise ValueError("dependent nouns require a possessor")
-    if h["Person_prefix"] == "3" and broad_analysis["Periph"] == "Pl": h["Periph"] = "" #worthwhile to flag to user
+    #if h["Person_prefix"] == "3" and broad_analysis["Periph"] == "Pl": h["Periph"] = "" #worthwhile to flag to user
     if not h["Person_prefix"] and h["PosTheme"]: h["PosTheme"] = "" #worthwhile to flag to user
     return h
 
