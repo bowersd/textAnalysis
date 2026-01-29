@@ -25,10 +25,10 @@ def user_prediction(event):
         tries = [nish_trie.nod_entries_lemma_freq, nish_trie.nod_entries]
         guessers = [trie.predict_short, trie.predict]
         guesses = []
-        for t in tries:
-            for g in guessers:
-                guess = trie.main(chars, t, g)
-                if guess not in guesses: guesses.append(guess)
+        pairs = ((0, 0), (0, 1), (1, 1))
+        for p in pairs:
+            guess = trie.main(chars, tries[p[0]], g[p[1]])
+            if guess not in guesses: guesses.append(guess)
         predict_div.innerHTML = "Suggested words: {0}".format(", ".join(guesses))
 
 def user_pos_confirmation(event):
