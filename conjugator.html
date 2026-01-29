@@ -39,11 +39,11 @@ layout: default
         <option value="NAD">NAD (smb. that must be "owned", exe: noos 'my father')</option>
         <option value="NID">NID (sth. that must be "owned", exe: ndahiim 'my thing')</option>
         <option disabled>______</option>
-        <option value="VAI">VAI (action done by smb., exe: baapi 's/he laughs')</option>
-        <option value="VII">VII (action done by sth., exe: biidaasin 'it sails here')</option>
-        <option value="VTI">VTI (action done to sth., exe: (o)naadin  's/he fetches it')</option>
-        <option value="VTA">VTA (action done to smb., exe: (o)naagaa'aan 's/he delays him/her')</option>
-        <option value="VAIO">VAIO (action done by smb. to sth/smb. exe: (o)noopon 's/he takes it for lunch')</option>
+        <option value="VAI">VAI (action done by smb., NOD exe: baapi 's/he laughs')</option>
+        <option value="VII">VII (action done by sth., NOD exe: biidaasin 'it sails here')</option>
+        <option value="VTI">VTI (action done to sth., NOD exe: naadin  's/he fetches it')</option>
+        <option value="VTA">VTA (action done to smb., NOD exe: naagaa'aan 's/he delays him/her')</option>
+        <option value="VAIO">VAIO (action done by smb. to sth/smb. NOD exe: noopon 's/he takes it for lunch')</option>
     </select>
     <p style="margin-left: 40px">
     <label for="generator">Spelling pattern:</label>
@@ -56,82 +56,19 @@ layout: default
     <!--<input type="text" size="4" id="pos" placeholder = "VTA">-->
     <hr/>
     <p>2. Select how you want to conjugate the word.</p>
-    <p>Verb options:</p>
-    <p style="margin-left: 40px">
-    <label for="Order">Sentence type:</label>
-    <select id="Order">
-        <option value="">default</option>
-        <option value="Cnj">If/that... (baapid 'if/that s/he laughs')</option>
-        <option value="Imp">Command (baapin! 'laugh!')</option>
-        <!-- <option value="Imp">Do it! (an order)</option>-->
-    </select>
-    </p>
-    <p style="margin-left: 40px">
-    <label for="S">Who did it (subject, you must select an option for all verbs):</label>
-    <select id="S">
-        <option value="2">You</option>
-        <option value="2Pl">You guys</option>
-        <option value="1">I </option>
-        <option value="1Pl">We (niinwi 'us but not you')</option>
-        <option value="21Pl">We (giinwi 'us with you')</option>
-        <option value="3">He/She (noos baapi 'my father laughs')</option>
-        <option value="3Obv">Smb. else (woosan baap(i)wan 'his/her father laughs')</option>
-        <option value="3Pl">They</option>
-        <option disabled>______^above does not work for VII</option>
-        <option value="0">It - (jiimaan mchaa 'the boat is big')</option>
-        <option value="0Obv">Sth. else (jiimaanan mchaani 'the other boat is big' - VII only)</option>
-        <option value="0Pl">Those (jiimaanan mchaawan 'the boats are big')</option>
-        <option value="0ObvPl">Sths. else (jiimaanan mchaanwan 'the other boats are big'- VII only)</option>
-        <option disabled>______^above only works for VII, VTA</option>
-        <option value="X">Unspecified/Passive (naagaa'aa 's/he gets delayed' - only for VAI, VTA)</option><!vti? vaio?>
-    </select>
-    </p>
-    <p style="margin-left: 40px">
-    <label for="O">Who was it done to (object, only for VTA, VTI, VAIO):</label>
-    <select id="O">
-        <option value="">none (verb is VII or VAI)</option>
-        <option value="2">You</option>
-        <option value="2Pl">You guys</option>
-        <option value="1">Me</option>
-        <option value="1Pl">Us (niinwi 'us but not you')</option>
-        <option value="21Pl">Us (giinwi 'us with you')</option>
-        <option disabled>______ ^above only works with VTA</option>
-        <option value="3">Him/Her (gnaagaa'aa Aankod 'you delay Aan'kot')</option>
-        <option value="3Obv">Smb. else (naagaa'aan Aankodoon 'he delays Aan'kot')</option>
-        <option value="3Pl">Them</option>
-        <option disabled>______^above does not work with VTI</option>
-        <option value="0">It</option>
-        <option value="0Pl">Those</option>
-        <option disabled>______^above does not work with VTA</option>
-    </select>
-    </p>
-
-    <p style="margin-left: 40px">
-    <input type="checkbox" id="ModePrt">
-    <label for="ModePrt">-ba(n) form (baapwiba 's/he has laughed' - action is finished)</label><br>
-    <input type="checkbox" id="ModeDub">
-    <label for="ModeDub">-dig/wen form (baaapwidig 'I suspect s/he laughs - statement is inferred/doubted)</label><br>
-    <input type="checkbox" id="Neg">
-    <label for="Neg">-si(i) form (baapsii 's/he doesn't laugh - negation; if command: "don't do it!")</label><br>
-    <input type="checkbox" id="Del">
-    <label for="Del">"Do it in a bit" (delayed command)</label>
-    </p>
     <p>Noun options:</p>
     <p style="margin-left: 40px">
     <label for="Possessor">Who owns it (possessor):</label>
     <select id="Possessor">
         <option value="">none</option>
-        <option disabled>______</option>
         <option value="2">Your</option>
         <option value="2Pl">Your guys's</option>
         <option value="1">My</option>
         <option value="1Pl">Our (niinwi 'ours but not yours') </option>
         <option value="21Pl">Our (giinwi 'ours and yours')</option>
-        <option disabled>______</option>
-        <option value="3">His/Her/It's (Aankod woosan 'Aan'kot's father')</option>
-        <option value="3Obv">Someone else's (Aankod woosan danmoshniwan 'Aan'kot's father's dog')</option>
+        <option value="3">His/Her/It's (Aan'kot woosan 'Aan'kot's father')</option>
+        <option value="3Obv">Someone else's (Aan'kot woosan danmoshniwan "Aan'kot's father's dog")</option>
         <option value="3Pl">Their</option>
-        <option disabled>______</option>
         <option value="X">Unspecified</option>
     </select>
     </p>
@@ -141,17 +78,17 @@ layout: default
     <select id="Periph">
         <option value="">none</option>
         <option value="Pl">There are several (aamoog 'bees' - plural)</option>
-        <option value="Obv">Less important (Aankod daamoon 'Aan'kot's bee' - obviative)</option>
+        <option value="Obv">Less important (Aan'kot daamoon "Aan'kot's bee" - obviative)</option>
         <option value="Loc">Precise place (aamoong 'on the bee')</option>
-        <option value="DistLoc">General area (aamookaang 'all over the bee)</option>
+        <option value="DistLoc">General area (aamookaang 'all over the bee')</option>
     </select>
     </p>
     <p style="margin-left: 40px">
-    <label for="ConDim">Is it little/ole:</label>
+    <label for="ConDim">Is it little/"ole":</label>
     <select id="ConDim">
         <option value="">none</option>
         <option value="Dim">little (jiimaanens 'little boat')</option>
-        <option value="Con">chummy (jiimaanenh 'ole boat')</option>
+        <option value="Con">"ole" (jiimaanenh 'ole boat')</option>
     </select>
     </p>
     <p style="margin-left: 40px">
@@ -166,6 +103,66 @@ layout: default
     <label for="PosThm">-m form (nbizhkiim 'my cow' - possessive)</label><br>
     <input type="checkbox" id="Pej">
     <label for="Pej">-ish form (mkiznish 'darn shoe' - pejorative)</label><br>
+    </p>
+    <p>Verb options:</p>
+    <p style="margin-left: 40px">
+    <label for="Order">Sentence type:</label>
+    <select id="Order">
+        <option value="">default</option>
+        <option value="Cnj">If/that... (baapit 'if/that s/he laughs')</option>
+        <option value="Imp">Command (baapin! 'laugh!')</option>
+        <!-- <option value="Imp">Do it! (an order)</option>-->
+    </select>
+    </p>
+    <p style="margin-left: 40px">
+    <label for="S">Who did it (subject, you must select an option for all verbs):</label>
+    <select id="S">
+        <option value="2">You</option>
+        <option value="2Pl">You guys</option>
+        <option value="1">I </option>
+        <option value="1Pl">We (niinwi 'us but not you')</option>
+        <option value="21Pl">We (giinwi 'us with you')</option>
+        <option value="3">He/She (noos baapi 'my father laughs')</option>
+        <option value="3Obv">Smb. else (woosan baapwan 'his/her father laughs')</option>
+        <option value="3Pl">They</option>
+        <option disabled>^The above options do not work if the verb is VII^</option>
+        <option value="0">It (jiimaan mchaa 'the boat is big')</option>
+        <option value="0Obv">Sth. else (jiimaanan mchaani 'the other boat is big' - VII only)</option>
+        <option value="0Pl">Those (jiimaanan mchaawan 'the boats are big')</option>
+        <option value="0ObvPl">Sths. else (jiimaanan mchaanwan 'the other boats are big'- VII only)</option>
+        <option disabled>^The above options only work if the verb is VII/VTA^</option>
+        <option value="X">Unspecified/Passive (naagaa'aa 's/he gets delayed' - only for VAI/VTA)</option><!vti? vaio?>
+    </select>
+    </p>
+    <p style="margin-left: 40px">
+    <label for="O">Who was it done to (object, only for VTA, VTI, VAIO):</label>
+    <select id="O">
+        <option value="">none (verb is VII or VAI)</option>
+        <option value="2">You</option>
+        <option value="2Pl">You guys</option>
+        <option value="1">Me</option>
+        <option value="1Pl">Us (niinwi 'us but not you')</option>
+        <option value="21Pl">Us (giinwi 'us with you')</option>
+        <option disabled>^The above options only work if the verb is VTA^</option>
+        <option value="3">Him/Her (gnaagaa'aa Aan'kot "you delay Aan'kot")</option>
+        <option value="3Obv">Smb. else (naagaa'aan Aankodoon "s/he delays Aan'kot")</option>
+        <option value="3Pl">Them</option>
+        <option disabled>^The above options do not work if the verb is VTI^</option>
+        <option value="0">It</option>
+        <option value="0Pl">Those</option>
+        <option disabled>^The above options do not work if the verb is VTA^</option>
+    </select>
+    </p>
+
+    <p style="margin-left: 40px">
+    <input type="checkbox" id="ModePrt">
+    <label for="ModePrt">-ba(n) form (baapwiba 's/he has laughed' - action is finished)</label><br>
+    <input type="checkbox" id="ModeDub">
+    <label for="ModeDub">-dig/-wen form (baaapwidig 's/he laughs, I suspect' - statement is inferred/doubted)</label><br>
+    <input type="checkbox" id="Neg">
+    <label for="Neg">-si(i) form (baapsii 's/he doesn't laugh' - negation; if command: "don't do it!")</label><br>
+    <input type="checkbox" id="Del">
+    <label for="Del">"Do it in a bit" (delayed command, cannot be combined with -sii form option)</label>
     </p>
     <hr/>
     <p>3. Click this button:
