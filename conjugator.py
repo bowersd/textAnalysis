@@ -203,7 +203,7 @@ def n_adjustments(**broad_analysis):
     if broad_analysis["Head"].endswith("D") and not h["Person_prefix"]: raise ValueError("dependent nouns require a possessor")
     if h["Person_prefix"] == "3" and broad_analysis["Periph"] != "Obv" and broad_analysis["Head"] in ("NAD", "NA"): raise ValueError("animate nouns with third person possessors must be obviative") 
     #if h["Person_prefix"] == "3" and broad_analysis["Periph"] == "Pl": h["Periph"] = "" #worthwhile to flag to user -- When reviewing this, I cannot for the life of me think why I wrote this. There is a 3...obv requirement on NAs, but this does not enforce it. - It looks like this was maybe encoding a comment I sloppily wrote into the fst before I implemented the 3...NA...obv requirement
-    if not h["Person_prefix"] and h["PosTheme"]: h["PosTheme"] = "" #worthwhile to flag to user
+    if not h["Person_prefix"] and h["PosTheme"]: raise ValueError("the -m form means the noun is owned, but the owner has not been specified")
     return h
 
 def tag_assemble(**broad_analysis):
