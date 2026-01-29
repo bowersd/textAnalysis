@@ -21,7 +21,7 @@ layout: default
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
-    <p>1. Enter and confirm the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a> entry you want to conjugate. Instructions will appear beneath the button.</p>
+    <p>1. Enter and confirm the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a> entry you want to conjugate. This is case-sensitive, so make sure the capitalization matches the dictionary. Instructions will appear beneath the button.</p>
     <p style="margin-left: 40px">
         <label for="lemma">Dictionary entry:</label>
         <input type="text" size="30" id="lemma" placeholder="mik" py-keyup="user_prediction">
@@ -33,16 +33,16 @@ layout: default
     <p style="margin-left: 40px">
     <label for="POS">Part of Speech (in this menu and elsewhere, somebody='smb.', something='sth.'):</label>
     <select id="POS">
-        <option value="def">default (the best guess as stated above)</option>
+        <option value="def">Default (the best guess as stated above)</option>
         <option value="NA">NA (smb. alive, exe: aamoo 'bee')</option>
         <option value="NI">NI (sth. not alive, exe: jiimaan 'boat')</option>
         <option value="NAD">NAD (smb. that must be "owned", exe: noos 'my father')</option>
         <option value="NID">NID (sth. that must be "owned", exe: ndahiim 'my thing')</option>
         <option disabled>______</option>
-        <option value="VAI">VAI (action done by smb., NOD exe: baapi 's/he laughs')</option>
-        <option value="VII">VII (action done by sth., NOD exe: biidaasin 'it sails here')</option>
-        <option value="VTI">VTI (action done to sth., NOD exe: naadin  's/he fetches it')</option>
-        <option value="VTA">VTA (action done to smb., NOD exe: naagaa'aan 's/he delays him/her')</option>
+        <option value="VAI">VAI (action done by smb., exe: baapi 's/he laughs')</option>
+        <option value="VII">VII (action done by sth., exe: biidaasin 'it sails here')</option>
+        <option value="VTI">VTI (action done to sth., exe: naadin  's/he fetches it')</option>
+        <option value="VTA">VTA (action done to smb., exe: naagaa'aan 's/he delays him/her')</option>
         <option value="VAIO">VAIO (action done by smb. to sth/smb. NOD exe: noopon 's/he takes it for lunch')</option>
     </select>
     <p style="margin-left: 40px">
@@ -60,14 +60,14 @@ layout: default
     <p style="margin-left: 40px">
     <label for="Possessor">Who owns it (possessor):</label>
     <select id="Possessor">
-        <option value="">none</option>
+        <option value="">No one</option>
         <option value="2">Your</option>
         <option value="2Pl">Your guys's</option>
         <option value="1">My</option>
         <option value="1Pl">Our (niinwi 'ours but not yours') </option>
         <option value="21Pl">Our (giinwi 'ours and yours')</option>
-        <option value="3">His/Her/It's (Aan'kot woosan 'Aan'kot's father')</option>
-        <option value="3Obv">Someone else's (Aan'kot woosan danmoshniwan "Aan'kot's father's dog")</option>
+        <option value="3">His/Her/It's ([Aan'kot] woosan 'Aan'kot's father')</option>
+        <option value="3Obv">Someone else's (Aan'kot [woosan] danmoshniwan "Aan'kot's father's dog")</option>
         <option value="3Pl">Their</option>
         <option value="X">Unspecified</option>
     </select>
@@ -76,7 +76,7 @@ layout: default
     <p style="margin-left: 40px">
     <label for="Periph">Are there several/is it less important/is it a place:</label>
     <select id="Periph">
-        <option value="">none</option>
+        <option value="">No</option>
         <option value="Pl">There are several (aamoog 'bees' - plural)</option>
         <option value="Obv">Less important (Aan'kot daamoon "Aan'kot's bee" - obviative)</option>
         <option value="Loc">Precise place (aamoong 'on the bee')</option>
@@ -84,17 +84,17 @@ layout: default
     </select>
     </p>
     <p style="margin-left: 40px">
-    <label for="ConDim">Is it little/"ole":</label>
+    <label for="ConDim">Is it little or something you might call "ole":</label>
     <select id="ConDim">
-        <option value="">none</option>
+        <option value="">No</option>
         <option value="Dim">little (jiimaanens 'little boat')</option>
         <option value="Con">"ole" (jiimaanenh 'ole boat')</option>
     </select>
     </p>
     <p style="margin-left: 40px">
-    <label for="NMode">Other:</label>
+    <label for="NMode">Is it broken or in a group you are calling to:</label>
     <select id="NMode">
-        <option value="">none</option>
+        <option value="">No</option>
         <option value="NModePrt">-ba(n) form (jiimaanba 'broken boat')</option>
         <option value="NModeVocPl">-dig form (jiimaandig 'O boats!')</option>
     </select>
@@ -108,7 +108,7 @@ layout: default
     <p style="margin-left: 40px">
     <label for="Order">Sentence type:</label>
     <select id="Order">
-        <option value="">default</option>
+        <option value="">Default</option>
         <option value="Cnj">If/that... (baapit 'if/that s/he laughs')</option>
         <option value="Imp">Command (baapin! 'laugh!')</option>
         <!-- <option value="Imp">Do it! (an order)</option>-->
@@ -137,7 +137,7 @@ layout: default
     <p style="margin-left: 40px">
     <label for="O">Who was it done to (object, only for VTA, VTI, VAIO):</label>
     <select id="O">
-        <option value="">none (verb is VII or VAI)</option>
+        <option value="">No one (verb is VII or VAI)</option>
         <option value="2">You</option>
         <option value="2Pl">You guys</option>
         <option value="1">Me</option>
