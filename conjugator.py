@@ -225,6 +225,7 @@ def tag_assemble(**broad_analysis):
                      }
     algonquianized["POS"] = broad_analysis["Head"]
     algonquianized["Order"] = broad_analysis["Order"]
+    if algonquianized["Order"] == "Imp" and broad_analysis["S"]["Pers"] != "2": raise ValueError("Commands must have a subject that is 'you', 'you guys', or 'us (including you)'. This is because in a command someone is being talked to and told to do something.")
     algonquianized["Neg"] = broad_analysis["Neg"]
     algonquianized["Mode"] = "+".join(broad_analysis["Mode"]) #Mode starts out as a list because you can have Dub, Prt, Prt Dub
     adjustments = {}
