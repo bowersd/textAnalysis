@@ -200,10 +200,10 @@ def n_adjustments(**broad_analysis):
             "Periph":broad_analysis["Periph"]
             }
     #worthwhile to flag requirement of prefixes on dependent stems
-    if broad_analysis["Head"].endswith("D") and not h["Person_prefix"]: raise ValueError("dependent nouns require a possessor")
-    if h["Person_prefix"] == "3" and broad_analysis["Periph"] != "Obv" and broad_analysis["Head"] in ("NAD", "NA"): raise ValueError("animate nouns with third person possessors must be obviative") 
+    if broad_analysis["Head"].endswith("D") and not h["Person_prefix"]: raise ValueError("NAD and NID nouns must be owned by someone, please specify the owner")
+    if h["Person_prefix"] == "3" and broad_analysis["Periph"] != "Obv" and broad_analysis["Head"] in ("NAD", "NA"): raise ValueError("NA and NAD nouns that are owned by he/she/someone else must be marked as 'less important'") 
     #if h["Person_prefix"] == "3" and broad_analysis["Periph"] == "Pl": h["Periph"] = "" #worthwhile to flag to user -- When reviewing this, I cannot for the life of me think why I wrote this. There is a 3...obv requirement on NAs, but this does not enforce it. - It looks like this was maybe encoding a comment I sloppily wrote into the fst before I implemented the 3...NA...obv requirement
-    if not h["Person_prefix"] and h["PosTheme"]: raise ValueError("the -m form means the noun is owned, but the owner has not been specified")
+    if not h["Person_prefix"] and h["PosTheme"]: raise ValueError("The -m form means the noun is owned, but the owner has not been specified. Please specify the owner.")
     return h
 
 def tag_assemble(**broad_analysis):
