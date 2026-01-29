@@ -25,7 +25,7 @@ def user_prediction(event):
         tries = [nish_trie.nod_entries_lemma_freq, nish_trie.nod_entries]
         guessers = [trie.predict_short, trie.predict]
         guesses = []
-        pairs = ((0, 0), (0, 1), (1, 1))
+        pairs = ((0, 0), (0, 1), (1, 1)) #not searching for a short prediction with frequency less trie
         for p in pairs:
             guess = trie.main(chars, tries[p[0]], g[p[1]])
             if guess not in guesses: guesses.append(guess)
