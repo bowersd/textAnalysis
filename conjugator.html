@@ -21,7 +21,7 @@ layout: default
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
-    <p>1. Find a word that you want to work with from the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a> and take note of its part of speech, which is listed right after the word. For instance, <i>nmadbi</i> 'sit' has the part of speech 'vai', while <i>waabmaa</i> 'see someone' has the part of speech 'vta'. When you are ready, click "Confirm", to double check the word and get further guidance. </p>
+    <p>1. Find a word that you want to work with from the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a> and take note of its part of speech, which is listed right after the word. For instance, <i>nmadbi</i> 'sit' has the part of speech 'vai', while <i>waabmaa</i> 'see someone' has the part of speech 'vta'. When you are ready, click "Confirm", to double check the word and get further guidance.</p>
     <p>This is case-sensitive, so make sure the capitalization matches the dictionary.</p>
     <p style="margin-left: 40px">
         <label for="lemma">Dictionary entry:</label>
@@ -40,7 +40,7 @@ layout: default
         <option value="NAD">NAD (smb. that must be "owned", exe: noos 'my father')</option>
         <option value="NID">NID (sth. that must be "owned", exe: ndahiim 'my thing')</option>
         <option disabled>______</option>
-        <option value="VAI">VAI (action done by smb., exe: baapi 's/he laughs')</option>
+        <option value="VAI">VAI (action done by smb., exe: nmadbi 's/he sits')</option>
         <option value="VII">VII (action done by sth., exe: biidaasin 'it sails here')</option>
         <option value="VTI">VTI (action done to sth., exe: naadin  's/he fetches it')</option>
         <option value="VTA">VTA (action done to smb., exe: naagaa'aan 's/he delays him/her')</option>
@@ -109,22 +109,22 @@ layout: default
     <p style="margin-left: 40px">
     <label for="Order">Sentence type:</label>
     <select id="Order">
-        <option value="">Default</option>
-        <option value="Cnj">If/that... (baapit 'if/that s/he laughs')</option>
-        <option value="Imp">Command (baapin! 'laugh!')</option>
+        <option value="">Main clause in a sentence (nmadbi 's/he sits' - independent)</option>
+        <option value="Cnj">Subordinate clause or Who/What/Where question (nmadbit 'if/that s/he sits' - conjunct)</option>
+        <option value="Imp">Command (nmadbin! 'sit!' - imperative)</option>
         <!-- <option value="Imp">Do it! (an order)</option>-->
     </select>
     </p>
     <p style="margin-left: 40px">
-    <label for="S">Who did it (subject, you must select an option for all verbs):</label>
+    <label for="S">Who did it/who has the property described by the verb (subject, you must select an option for all verbs):</label>
     <select id="S">
         <option value="2">You</option>
         <option value="2Pl">You guys</option>
         <option value="1">I </option>
         <option value="1Pl">We (niinwi 'us but not you')</option>
         <option value="21Pl">We (giinwi 'us with you')</option>
-        <option value="3">He/She (noos baapi 'my father laughs')</option>
-        <option value="3Obv">Smb. else (woosan baapwan 'his/her father laughs')</option>
+        <option value="3">He/She (noos nmadbi 'my father sits')</option>
+        <option value="3Obv">Smb. else (woosan nmadbiwan 'his/her father sits')</option>
         <option value="3Pl">They</option>
         <option disabled>^The above options do not work if the verb is VII^</option>
         <option value="0">It (jiimaan mchaa 'the boat is big')</option>
@@ -157,11 +157,11 @@ layout: default
 
     <p style="margin-left: 40px">
     <input type="checkbox" id="ModePrt">
-    <label for="ModePrt">-ba(n) form (baapwiba 's/he has laughed' - action is finished)</label><br>
+    <label for="ModePrt">-ba(n) form (nmadbiwba 's/he has sat' - action is finished)</label><br>
     <input type="checkbox" id="ModeDub">
-    <label for="ModeDub">-dig form (baaapwidig 's/he laughs, I suspect' - statement is inferred/doubted)</label><br>
+    <label for="ModeDub">-dig form (nmadbiwdig 's/he sits, I suspect' - statement is inferred/doubted)</label><br>
     <input type="checkbox" id="Neg">
-    <label for="Neg">-sii form (baapsii 's/he doesn't laugh' - negation; if command: "don't do it!")</label><br>
+    <label for="Neg">-sii form (nmadbisii 's/he doesn't sit' - negation; if command: "don't do it!")</label><br>
     <input type="checkbox" id="Del">
     <label for="Del">"Do it in a bit" (delayed command, cannot be combined with -sii form option)</label>
     </p>
