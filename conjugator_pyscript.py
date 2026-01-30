@@ -34,16 +34,16 @@ def user_prediction(event):
 def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
     possible = conjugator.pos_check(lemma, analyzer, pos_regex)
-    short_explanation = {"VAI": "a verb describing an action done by somebody",
+    short_explanation = {"VAI": "a verb describing an action done by somebody, like <i>baapi</i> 's/he laughs'",
 
-                   "VTI": "a verb describing an action done to something",
-                   "VTA": "a verb describing an action done to somebody",
-                   "VII": "a verb describing an action done by something",
-                   "VAIO": "a verb describing an action done by somebody to another thing (not to you/me/us, etc)",
-                   "NI": "a noun describing something that isn't alive",
-                   "NA": "a noun describing somebody that is alive",
-                   "NID": "a noun describing something that isn't alive and must be owned",
-                   "NAD": "a noun describing somebody that is alive and must be owned",
+                   "VTI": "a verb describing an action done to something, like <i>naadin</i> 's/he fetches it'",
+                   "VTA": "a verb describing an action done to somebody, like <i>naagaa'aan</i> 's/he delays him/her'",
+                   "VII": "a verb describing an action done by something, like <i>biidaasin</i> 'it sails here'",
+                   "VAIO": "a verb describing an action done by somebody to another thing (not to you/me/us, etc), like <i>noopon</i> 's/he takes it for lunch'",
+                   "NI": "a noun describing something that isn't alive, like <i>jiimaan</i> 'boat'",
+                   "NA": "a noun describing somebody that is alive, like <i>aamoo</i> 'bee'",
+                   "NID": "a noun describing something that isn't alive and must be 'owned', like <i>ndahiim</i> 'my thing'",
+                   "NAD": "a noun describing somebody that is alive and must be owned, like <i>noos</i> 'my father'",
                    }
     long_explanation = {"VAI": "The technical description for this is a <b>Verb</b> with only an <b>Animate</b> subject, i.e. it is <b>Intransitive</b>, abbreviated as <b>VAI</b>.",
 
