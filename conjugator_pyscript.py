@@ -34,11 +34,36 @@ def user_prediction(event):
 def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
     possible = conjugator.pos_check(lemma, analyzer, pos_regex)
+    short_explanation = {"VAI": "a verb describing an action done by somebody",
+
+                   "VTI": "a verb describing an action done to something",
+                   "VTA": "a verb describing an action done to somebody",
+                   "VII": "a verb describing an action done by something",
+                   "VAIO": "a verb describing an action done by somebody to another thing (not to you/me/us, etc)",
+                   "NI": "a noun describing something that isn't alive",
+                   "NA": "a noun describing somebody that is alive",
+                   "NID": "a noun describing something that isn't alive and must be owned",
+                   "NAD": "a noun describing somebody that is alive and must be owned",
+                   }
+    long_explanation = {"VAI": "The technical description for this is a Verb for an Animate that only has a subject, aka, it is Intransitive (so VAI for short).",
+
+                   "VTI": "The technical description for this is a Verb that is Transitive, aka it has an object, and that object is Inanimate (so VTI for short).",
+                   "VTA": "The technical description for this is a Verb that is Transitive, aka it has an object, and that object is Animate (so VTA for short).",
+                   "VII": "The technical description for this is a Verb for an Animate that only has a subject, aka, it is Intransitive (so VII for short).",
+                   "VAIO": "Strictly speaking, these verbs are a bit hard to classify with the (in)transitive/(in)animate system. They have an object, so they are transitive, but the object is not restricted to being animate or inanimate. In fact, the only restriction is that the subject be animate, which makes them like VAIs. These verbs resemble VAIs in other ways, so we call these VAIs with an Object (so VAIO for short).",
+                   "NI": "The technical description for this is a Noun that is Inanimate (so NI for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this).",
+                   "NA": "The technical description for this is a Noun that is Animate (so NA for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this).",
+                   "NID": "The technical description for this is a Noun that is Inanimate and Dependent (so NID for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this).",
+                   "NAD": "The technical description for this is a Noun that is Animate and Dependent (so NAD for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this).",
+                   }
     if possible[0] == None: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
-    elif not (possible[0].startswith("N") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
-    elif len(possible) == 1: confirmation = "The word '{0}' is a {1}. You don't need to specify part of speech information. If you are curious what {1} means, there is some explanation in the Part of Speech menu.".format(lemma, possible[0])
-    else: 
-        confirmation = "The word '{0}' could be one of the following: {1}. If you do nothing, {2} will be chosen. If you want to specify another part of speech, pick a new value from the menu below. If these abbreviations seem strange, the Part of Speech menu has some explanation.".format(lemma, ", ".join(possible), conjugator.pos_defaults(*possible))
+    elif not (possible[0][:2] in ("NI", "NA") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
+    elif len(possible) == 1: 
+        generic = "verb"
+        if possible[0][0] == "N": generic = "noun"
+        confirmation = "The word '{0}' is a {2}.\nSpecifically, it is {3}.\n{4}\nBecause there's no doubt about what type of word {0} is, you don't need to specify part of speech information in step 1.1.\nThe tool will only pay attention to the options you specify for {2}s in step 2. Be careful to follow any specific instructions for {1}s in step 2.".format(lemma, possible[0], generic, short_explanation[possible[0]], long_explanation[possible[0]])
+    else:
+        confirmation = "The word '{0}' could be one of several dictionary entries. The types of words that it could be are {2}, or {3}.\nIf you do nothing, {1} will be chosen.\nIf you want to specify another part of speech, pick a new value from the menu in step 1.1.\nWhatever type of word you select, in step 2 the tool will only pay attention to the options you select for that type of word. If these abbreviations seem strange, some further explanation is below:\n{4}.".format(lemma, conjugator.pos_defaults(*possible), ", ".join([short_explanation[p]+" ("+p+")" for p in possible[:-1]]), short_explanation[possible[-1]]+" ("+possible[-1]+")", "\n".join([p+": "+long_explanation[p] for p in possible))
     confirmation_div = pyscript.document.querySelector("#confirmation_output")
     confirmation_div.innerHTML = confirmation
     
