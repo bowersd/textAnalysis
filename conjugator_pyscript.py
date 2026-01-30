@@ -36,7 +36,7 @@ def user_pos_confirmation(event):
     possible = conjugator.pos_check(lemma, analyzer, pos_regex)
     explanation = {
             "VAI": {
-                "short": "a verb describing an action done by somebody, like <i>baapi</i> 's/he laughs'", 
+                "short": "a verb describing an action done by somebody, like <i>nmadbi</i> 's/he sits'", 
                 "technical": "The technical description for this is a <b>Verb</b> with only an <b>Animate</b> subject, i.e. it is <b>Intransitive</b>."}, 
             "VTI": {
                 "short": "a verb describing an action done to something, like <i>naadin</i> 's/he fetches it'", 
