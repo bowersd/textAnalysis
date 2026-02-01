@@ -602,14 +602,14 @@ def parse_words_expanded(event):
     english = []
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
-    if separator:
-        print("sep is ", separator)
-        freeNish = ""
-        for it in input_text.value.split('\n'):
-            chopped = it.split(separator)
-            freeNish += chopped[0]+'\n'
-            if len(chopped) > 1: english.append(chopped[1])
-            else: english.append("")
+    #if separator:
+    #    print("sep is ", separator)
+    #    freeNish = ""
+    #    for it in input_text.value.split('\n'):
+    #        chopped = it.split(separator)
+    #        freeNish += chopped[0]+'\n'
+    #        if len(chopped) > 1: english.append(chopped[1])
+    #        else: english.append("")
     to_analyze = sep_punct(freeNish.lower(), True).split()
     parses = {}
     model_credit = {} #as of aug 2025, only using this data to allow correct formatting of western (OPD-based) lemmata urls vs eastern (NOD-based) lemmata. It could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
