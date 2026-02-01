@@ -603,6 +603,7 @@ def parse_words_expanded(event):
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
     if separator:
+        print("sep is ", separator)
         freeNish = ""
         for it in input_text.split('\n'):
             chopped = it.split(separator)
