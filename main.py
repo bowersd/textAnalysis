@@ -605,7 +605,7 @@ def parse_words_expanded(event):
     if separator:
         print("sep is ", separator)
         freeNish = ""
-        for it in input_text.split('\n'):
+        for it in input_text.value.split('\n'):
             chopped = it.split(separator)
             freeNish += chopped[0]+'\n'
             if len(chopped) > 1: english.append(chopped[1])
