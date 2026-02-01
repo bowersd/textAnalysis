@@ -598,7 +598,7 @@ def parse_words_expanded(event):
         #if form_values[x]["order"] and form_values[x]["url"]:
         #    form_values[x]["file"] = await pyfetch(form_values[x]["url"])
         if form_values[x]["order"] and form_values[x]["file"]: analyzers.append(form_values[x]["file"])
-    separator = pyscript.document.querySelector("#english_separator")
+    separator = pyscript.document.querySelector("#english_separator").value
     english = []
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
