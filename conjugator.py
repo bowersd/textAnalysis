@@ -23,10 +23,14 @@ def recreate_number_tags(person, number, prefix):
     else: return ""
 
 def check_for_person_ties(**broad_analysis):
-    if broad_analysis["S"]["Pers"] in ["1", "2"] or broad_analysis["O"]["Pers"] in ["1", "2"]:
-        assert (not any([x == broad_analysis["O"]["Pers"] for x in [broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"]]])) and (not any([x == broad_analysis["S"]["Pers"] for x in [broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]]]))
+    if broad_analysis["S"]["Pers"] in ("1", "2") and ((broad_analysis["S"]["Pers"] in (broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"][:1])) or (broad_analysis["O"]["Pers"] in (broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"][:1]))): raise ValueError("Subject and object are currently specified to both be I/we/me/us (niinwi/giinwi), or specified to both be you/you guys/us (giinwi). This type of overlap is not allowed in Anishinaabemowin.")
+    #if broad_analysis["S"]["Pers"] in ["1", "2"] or broad_analysis["O"]["Pers"] in ["1", "2"]:
+    #    assert (not any([x == broad_analysis["O"]["Pers"] for x in [broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"][0]]])) and (not any([x == broad_analysis["S"]["Pers"] for x in [broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"][0]]]))
     if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3":
-        assert (broad_analysis["S"]["Num"] == "Obv" or broad_analysis["O"]["Num"] == "Obv") and not (broad_analysis["S"]["Num"] == "Obv" and broad_analysis["O"]["Num"] == "Obv")
+        obv_check = [x == "Obv" for x in (broad_analysis["S"]["Num"], broad_analysis["O"]["Num"])]
+        if (not any(obv_check)) or all(obv_check): raise ValueError("Subject and object are currently specified to both be he/she/they or both be 'somebody else'. This type of overlap is not allowed in Anishinaabemowin")
+    #if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3":
+    #    assert (broad_analysis["S"]["Num"] == "Obv" or broad_analysis["O"]["Num"] == "Obv") and not (broad_analysis["S"]["Num"] == "Obv" and broad_analysis["O"]["Num"] == "Obv")
 
 def determine_inversion(**broad_analysis):
     hierarchy = {"1":2, "2":1, "3":3, "0": 4,} 
@@ -181,7 +185,7 @@ def vaio_adjustments(**broad_analysis):
         #no guidance on passive/unspecified subjects from Rand's book, worthwhile to flag to users
         h["Person_prefix"] = broad_analysis["S"]["Pers"]
         h["Central"] = recreate_number_tags(broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"], True)
-        if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3": h["Periph"] = "3Obv" #nest of obviation restrictions worthwhile to flag to user. Rand's book is a bit inconsistent (positives are not marked as obv, but negatives are)
+        if broad_analysis["S"]["Pers"] == "3" and broad_analysis["O"]["Pers"] == "3": h["Periph"] = "3Obv" #nest of obviation restrictions worthwhile to flag to user. Rand's book is a bit inconsistent (positives are not marked as obv, but negatives are) -> could use check_for_person_ties(**broad_analysis)
         elif not broad_analysis["S"]["Num"] and not broad_analysis["O"]["Num"] and not broad_analysis["Mode"]: h["Periph"] = broad_analysis["O"]["Pers"] #restriction to singular subjects worthwhile to flag to user. Rand's book is a bit inconsistent (positives have 3 v 0s, but not negatives)
         elif broad_analysis["O"]["Num"] == "Pl": h["Periph"] = "".join([broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"]])  #this implements an obviation restriction by omission (you can't specify obviative objects outside of the 3v3 context). worthwhile to flag to user. 
     return h

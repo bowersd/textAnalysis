@@ -34,11 +34,43 @@ def user_prediction(event):
 def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
     possible = conjugator.pos_check(lemma, analyzer, pos_regex)
+    explanation = {
+            "VAI": {
+                "short": "a verb describing an action done by somebody, like <i>nmadbi</i> 's/he sits'", 
+                "technical": "The technical description for this is a <b>Verb</b> with only an <b>Animate</b> subject, i.e. it is <b>Intransitive</b>."}, 
+            "VTI": {
+                "short": "a verb describing an action done to something, like <i>naadin</i> 's/he fetches it'", 
+                "technical": "The technical description for this is a <b>Verb</b> that is <b>Transitive</b>, with an (<b>Inanimate</b>) object."}, 
+            "VTA": {
+                "short": "a verb describing an action done to somebody, like <i>naagaa'aan</i> 's/he delays him/her'",
+                "technical": "The technical description for this is a <b>Verb</b> that is <b>Transitive</b>, with an (<b>Animate</b>) object."}, 
+            "VII": {
+                "short": "a verb describing an action done by something, like <i>biidaasin</i> 'it sails here'",
+                "technical": "The technical description for this is a <b>Verb</b> with only an <b>Inanimate</b> subject, i.e. it is <b>Intransitive</b>."},
+            "VAIO": {
+                "short": "a verb describing an action done by somebody to another thing (not to you/me/us, etc), like <i>noopon</i> 's/he takes it for lunch'",
+                "technical": "Strictly speaking, these verbs are a bit hard to classify with the (in)transitive/(in)animate system. They have an object, so they are transitive, but the object is not restricted to being animate or inanimate. In fact, the only restriction is that the subject be animate, which makes them like VAIs. These verbs resemble VAIs in other ways, so we call these <b>VAI</b> with an <b>Object</b>,"}, 
+            "NI": {
+                "short": "a noun describing something that isn't alive, like <i>jiimaan</i> 'boat'",
+                "technical":"The technical description for this is a <b>Noun</b> that is <b>Inanimate</b>. There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."}, 
+            "NA": {
+                "short": "a noun describing somebody that is alive, like <i>aamoo</i> 'bee'",
+                "technical": "The technical description for this is a <b>Noun</b> that is <b>Animate</b>. There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
+                   "NID": {
+                       "short": "a noun describing something that isn't alive and must be 'owned', like <i>ndahiim</i> 'my thing'",
+                       "technical":"The technical description for this is a <b>Noun</b> that is <b>Inanimate</b> and <b>Dependent</b>. There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
+                   "NAD": {
+                       "short": "a noun describing somebody that is alive and must be 'owned', like <i>noos</i> 'my father'",
+                       "technical": "The technical description for this is a <b>Noun</b> that is <b>Animate</b> and <b>Dependent</b>. There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
+                   }
     if possible[0] == None: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
-    elif not (possible[0].startswith("N") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
-    elif len(possible) == 1: confirmation = "The word '{0}' is a {1}. You don't need to specify part of speech information. If you are curious what {1} means, there is some explanation in the Part of Speech menu.".format(lemma, possible[0])
-    else: 
-        confirmation = "The word '{0}' could be one of the following: {1}. If you do nothing, {2} will be chosen. If you want to specify another part of speech, pick a new value from the menu below. If these abbreviations seem strange, the Part of Speech menu has some explanation.".format(lemma, ", ".join(possible), conjugator.pos_defaults(*possible))
+    elif not (possible[0][:2] in ("NI", "NA") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
+    elif len(possible) == 1: 
+        generic = "verb"
+        if possible[0][0] == "N": generic = "noun"
+        confirmation = "The word <i>{0}</i> is a {2}. You can go straight to the {2} section in step 2. If you want more information about the specific word type, read on.<br>Specifically, <i>{0}</i> is {3}.<br>{4}<br><b>{1}</b> is the abbreviation for this.<br>Be careful to follow any specific instructions for {1}s in step 2.".format(lemma, possible[0], generic, explanation[possible[0]]["short"], explanation[possible[0]]["technical"])
+    else:
+        confirmation = "The word '{0}' could be one of several dictionary entries. The types of words that it could be are {2}, or {3}.<br>If you do nothing, {1} will be chosen.<br>If you want to specify another part of speech, pick a new value from the menu in step 1.1.<br>Whatever type of word you select, in step 2 the tool will only pay attention to the options you select for that type of word. If these abbreviations are unfamiliar, some further explanation is below:<br>{4}.".format(lemma, conjugator.pos_defaults(*[x for x in possible if x in ("VAI", "VTA", "VTI", "VII", "VAIO", "NA", "NAD", "NI", "NID")]), ", ".join([explanation[p]["short"]+" (abbreviated as <b>"+p+"</b>)" for p in possible[:-1]]), explanation[possible[-1]]["short"]+" ("+possible[-1]+")", "<br>".join([p+": "+explanation[p]["technical"] for p in possible]))
     confirmation_div = pyscript.document.querySelector("#confirmation_output")
     confirmation_div.innerHTML = confirmation
     

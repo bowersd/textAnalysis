@@ -21,7 +21,11 @@ layout: default
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
-    <p>1. Enter and confirm the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a> entry you want to conjugate. This is case-sensitive, so make sure the capitalization matches the dictionary. Instructions will appear beneath the button.</p>
+    <p>1. Find a word that you want to work with from the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a>.<br> 
+    Be sure to take note of its part of speech, which is listed right after the word. For instance, <i>nmadbi</i> 'sit' has the part of speech 'vai', while <i>waabmaa</i> 'see someone' has the part of speech 'vta'.<br>
+    When you are ready, click "Confirm", to double check the word and get further guidance.
+    </p>
+    <p>This is case-sensitive, so make sure the capitalization matches the dictionary.</p>
     <p style="margin-left: 40px">
         <label for="lemma">Dictionary entry:</label>
         <input type="text" size="30" id="lemma" placeholder="mik" py-keyup="user_prediction">
@@ -29,7 +33,7 @@ layout: default
         <div id="prediction_output"></div>
         <div id="confirmation_output"></div>
     </p>
-    <p>1.1 If needed, enter the word's part of speech, and select your desired spelling pattern.</p>
+    <p>1.1 If there are several possible parts of speech for your word, select the one you want below. You may also select your desired spelling pattern.</p>
     <p style="margin-left: 40px">
     <label for="POS">Part of Speech (in this menu and elsewhere, somebody='smb.', something='sth.'):</label>
     <select id="POS">
@@ -39,11 +43,11 @@ layout: default
         <option value="NAD">NAD (smb. that must be "owned", exe: noos 'my father')</option>
         <option value="NID">NID (sth. that must be "owned", exe: ndahiim 'my thing')</option>
         <option disabled>______</option>
-        <option value="VAI">VAI (action done by smb., exe: baapi 's/he laughs')</option>
+        <option value="VAI">VAI (action done by smb., exe: nmadbi 's/he sits')</option>
         <option value="VII">VII (action done by sth., exe: biidaasin 'it sails here')</option>
         <option value="VTI">VTI (action done to sth., exe: naadin  's/he fetches it')</option>
         <option value="VTA">VTA (action done to smb., exe: naagaa'aan 's/he delays him/her')</option>
-        <option value="VAIO">VAIO (action done by smb. to sth/smb. NOD exe: noopon 's/he takes it for lunch')</option>
+        <option value="VAIO">VAIO (action done by smb. to sth/smb. exe: noopon 's/he takes it for lunch')</option>
     </select>
     <p style="margin-left: 40px">
     <label for="generator">Spelling pattern:</label>
@@ -79,24 +83,24 @@ layout: default
         <option value="">No</option>
         <option value="Pl">There are several (aamoog 'bees' - plural)</option>
         <option value="Obv">Less important (Aan'kot daamoon "Aan'kot's bee" - obviative)</option>
-        <option value="Loc">Precise place (aamoong 'on the bee')</option>
-        <option value="DistLoc">General area (aamookaang 'all over the bee')</option>
+        <option value="Loc">Precise place (aamoong 'on the bee' - locative)</option>
+        <option value="DistLoc">General area (aamookaang 'all over the bee' - distributed locative)</option>
     </select>
     </p>
     <p style="margin-left: 40px">
     <label for="ConDim">Is it little or something you might call "ole":</label>
     <select id="ConDim">
         <option value="">No</option>
-        <option value="Dim">little (jiimaanens 'little boat')</option>
-        <option value="Con">"ole" (jiimaanenh 'ole boat')</option>
+        <option value="Dim">Little (jiimaanens 'little boat' - diminutive)</option>
+        <option value="Con">"Ole" (jiimaanenh 'ole boat' - contemptive)</option>
     </select>
     </p>
     <p style="margin-left: 40px">
     <label for="NMode">Is it broken or in a group you are calling to:</label>
     <select id="NMode">
         <option value="">No</option>
-        <option value="NModePrt">-ba(n) form (jiimaanba 'broken boat')</option>
-        <option value="NModeVocPl">-dig form (jiimaandig 'O boats!')</option>
+        <option value="NModePrt">-ba(n) form (jiimaanba 'broken boat' - preterit)</option>
+        <option value="NModeVocPl">-dig form (jiimaandig 'O boats!' - vocative plural)</option>
     </select>
     <p style="margin-left: 40px">
     <input type="checkbox" id="PosThm">
@@ -108,22 +112,22 @@ layout: default
     <p style="margin-left: 40px">
     <label for="Order">Sentence type:</label>
     <select id="Order">
-        <option value="">Default</option>
-        <option value="Cnj">If/that... (baapit 'if/that s/he laughs')</option>
-        <option value="Imp">Command (baapin! 'laugh!')</option>
+        <option value="">Main clause in a sentence (nmadbi 's/he sits' - independent)</option>
+        <option value="Cnj">Subordinate clause or Who/What/Where question (nmadbit 'if/that s/he sits' - conjunct)</option>
+        <option value="Imp">Command (nmadbin! 'sit!' - imperative)</option>
         <!-- <option value="Imp">Do it! (an order)</option>-->
     </select>
     </p>
     <p style="margin-left: 40px">
-    <label for="S">Who did it (subject, you must select an option for all verbs):</label>
+    <label for="S">Who did it/who has the property described by the verb (subject, you must select an option for all verbs):</label>
     <select id="S">
         <option value="2">You</option>
         <option value="2Pl">You guys</option>
         <option value="1">I </option>
         <option value="1Pl">We (niinwi 'us but not you')</option>
         <option value="21Pl">We (giinwi 'us with you')</option>
-        <option value="3">He/She (noos baapi 'my father laughs')</option>
-        <option value="3Obv">Smb. else (woosan baapwan 'his/her father laughs')</option>
+        <option value="3">He/She (noos nmadbi 'my father sits')</option>
+        <option value="3Obv">Smb. else (woosan nmadbiwan 'his/her father sits')</option>
         <option value="3Pl">They</option>
         <option disabled>^The above options do not work if the verb is VII^</option>
         <option value="0">It (jiimaan mchaa 'the boat is big')</option>
@@ -156,13 +160,13 @@ layout: default
 
     <p style="margin-left: 40px">
     <input type="checkbox" id="ModePrt">
-    <label for="ModePrt">-ba(n) form (baapwiba 's/he has laughed' - action is finished)</label><br>
+    <label for="ModePrt">-ba(n) form (nmadbiwba 's/he has sat' - action is finished, preterit)</label><br>
     <input type="checkbox" id="ModeDub">
-    <label for="ModeDub">-dig form (baaapwidig 's/he laughs, I suspect' - statement is inferred/doubted)</label><br>
+    <label for="ModeDub">-dig form (nmadbiwdig 's/he sits, I suspect' - statement is inferred/doubted, dubitative)</label><br>
     <input type="checkbox" id="Neg">
-    <label for="Neg">-sii form (baapsii 's/he doesn't laugh' - negation; if command: "don't do it!")</label><br>
+    <label for="Neg">-sii form (nmadbisii 's/he doesn't sit' - negation; if command: "don't do it!")</label><br>
     <input type="checkbox" id="Del">
-    <label for="Del">"Do it in a bit" (delayed command, cannot be combined with -sii form option)</label>
+    <label for="Del">"Do it in a bit" (delayed imperative, cannot be combined with -sii form option)</label>
     </p>
     <hr/>
     <p>3. Click this button:
@@ -180,6 +184,6 @@ layout: default
     </p>
     <div id="narrow_output"></div>
     <hr/>
-    <p>Last updated: 01/27/2026 10:24</p>
+    <p>Last updated: 01/30/2026 14:24</p>
 </body>
 </html>
