@@ -22,6 +22,10 @@ def recreate_number_tags(person, number, prefix):
     elif number: return "".join([person, number])
     else: return ""
 
+def check_for_gratuitious_obviation(**broad_analysis):
+    if ((broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv")) or ((broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv")):
+        raise ValueError("The 'somebody else' option has been used when it is not needed. It should only be used when both the subject and the object would be he/she/they.")#preventing obviation outside of 3v3
+
 def check_for_person_ties(**broad_analysis):
     if broad_analysis["S"]["Pers"] in ("1", "2") and ((broad_analysis["S"]["Pers"] in (broad_analysis["O"]["Pers"], broad_analysis["O"]["Num"][:1])) or (broad_analysis["O"]["Pers"] in (broad_analysis["S"]["Pers"], broad_analysis["S"]["Num"][:1]))): raise ValueError("Subject and object are currently specified to both be I/we/me/us (niinwi/giinwi), or specified to both be you/you guys/us (giinwi). This type of overlap is not allowed in Anishinaabemowin.")
     #if broad_analysis["S"]["Pers"] in ["1", "2"] or broad_analysis["O"]["Pers"] in ["1", "2"]:
@@ -113,10 +117,10 @@ def vta_cnj_continuation(theme_sign, **broad_analysis):
     
 
 def vta_adjustments(**broad_analysis):
-    assert (not (broad_analysis["S"]["Pers"] in ["1", "2", "0"] and broad_analysis["O"]["Num"] == "Obv")) and (not (broad_analysis["O"]["Pers"] in ["1", "2"] and broad_analysis["S"]["Num"] == "Obv")) #preventing obviation outside of 3v3
     #what about inanimate obviatives (they are only legal in VIIs, should we ban them here?)?
     #what about VTAs getting inanimate objects?
     h = {"Person_prefix":"", "Central":"", "Theme_sign":"", "Periph":""}
+    check_for_gratuitious_obviation(**broad_analysis)
     check_for_person_ties(**broad_analysis)
     if broad_analysis["S"]["Pers"] == "X": #revise broad analysis and h for passive/unspecified subject
         broad_analysis["POS"] = "VAI"
