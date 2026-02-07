@@ -548,6 +548,7 @@ def frequency_format(lemmata_data):
 def take_windows(sentence_data, size, *addresses):
     windows = []
     for a in addresses:
+        print(a)
         w = {}
         left_edge = 0
         if a[1]-size > 0: left_edge = a[1]-size
