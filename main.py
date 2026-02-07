@@ -552,7 +552,16 @@ def take_windows(sentence_data, size, *addresses):
         w = {}
         left_edge = 0
         if a[1]-size > 0: left_edge = a[1]-size
-        for sd in sentence_data: w[sd] = [sentence_data[sd][a[0]][left_edge:a[1]+size+1]]
+        print("###sentence data")
+        for sd in sentence_data: 
+            print("###data field")
+            print(sd)
+            print([sentence_data[sd]])
+            print("###sentence data -> line")
+            print([sentence_data[sd][a[0]]])
+            print("###sentence data -> line, word")
+            print([sentence_data[sd][a[0]][left_edge:a[1]+size+1]])
+            w[sd] = [sentence_data[sd][a[0]][left_edge:a[1]+size+1]]
         windows.append(w)
     return windows
 
