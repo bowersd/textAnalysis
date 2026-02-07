@@ -649,7 +649,8 @@ def parse_words_expanded(event):
          "lemmata":[],
          "lemma_links":[],
          "tinies":[],
-         "english":english}
+         #"english":english
+         }
     for line in freeNish.lower().split('\n'):
         local = []
         for w in sep_punct(line, True).split(): local.append(parses[w][disambiguate(min_morphs(*parses[w]), min_morphs, *parses[w])][0])
