@@ -408,10 +408,10 @@ def interlinearize(parsed_data):
         lines_out = tabulate.tabulate(table, tablefmt='html')
         for lo in lines_out.split('\n'): #a loop isn't really necessary here
             if "NOD/OPD Entry" in lo: revised += undo_html(lo)+'\n'
-            elif "Terse Translation" in lo and parsed_data["english"]: 
-                revised += lo+'\n'
-                transline = '<tr><td>Free Translation</td><td colspan="{0}">'+"'{1}'<td></tr>\n"
-                revised += transline.format(str(len(parsed_data["m_parse_lo"])), parsed_data["english"][i])
+            #elif "Terse Translation" in lo and parsed_data["english"]: 
+            #    revised += lo+'\n'
+            #    transline = '<tr><td>Free Translation</td><td colspan="{0}">'+"'{1}'<td></tr>\n"
+            #    revised += transline.format(str(len(parsed_data["m_parse_lo"])), parsed_data["english"][i])
             else: revised += lo+'\n'
     return revised
 
@@ -609,7 +609,7 @@ def parse_words_expanded(event):
         #    form_values[x]["file"] = await pyfetch(form_values[x]["url"])
         if form_values[x]["order"] and form_values[x]["file"]: analyzers.append(form_values[x]["file"])
     #separator = pyscript.document.querySelector("#english_separator").value
-    english = []
+    #english = []
     input_text = pyscript.document.querySelector("#larger_text_input")
     freeNish = input_text.value
     #if separator:
