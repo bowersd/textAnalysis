@@ -611,6 +611,12 @@ def parse_words_expanded(event):
     #        if len(chopped) > 1: english.append(chopped[1])
     #        else: english.append("")
     to_analyze = sep_punct(freeNish.lower(), True).split()
+    vital_stats = [
+            [len(to_analyze), "Overall raw word count"],
+            [0, "Analyzed raw word count"],
+            [0, "Analyzed processed word count (not counting repetititions/variants of 'the same word')"],
+            [0, "Unanalyzed raw word count"],
+            ]
     parses = {}
     model_credit = {} #as of aug 2025, only using this data to allow correct formatting of western (OPD-based) lemmata urls vs eastern (NOD-based) lemmata. It could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
     for i in range(len(analyzers)):
