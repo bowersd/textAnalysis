@@ -623,12 +623,6 @@ def parse_words_expanded(event):
     #        if len(chopped) > 1: english.append(chopped[1])
     #        else: english.append("")
     to_analyze = sep_punct(freeNish.lower(), True).split()
-    vital_stats = [
-            len(to_analyze), # "Overall raw word count"],
-            0,#, "Analyzed raw word count"],
-            0,#, "Analyzed processed word count (not counting repetititions/variants of 'the same word')"],
-            0,#, "Unanalyzed raw word count"],
-            ]
     parses = {}
     model_credit = {} #as of aug 2025, only using this data to allow correct formatting of western (OPD-based) lemmata urls vs eastern (NOD-based) lemmata. It could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
     for i in range(len(analyzers)):
@@ -639,14 +633,12 @@ def parse_words_expanded(event):
             elif analyzed[w][0][0].endswith('+?') and i+1 == len(analyzers): 
                 parses[w] = analyzed[w]
                 model_credit[w] = "unanalyzed" 
-                vital_stats[3] += 1
             #elif (not analyzed[w][0][0].endswith('+?')) and i+1 == len(analyzers): 
             #    parses[w] = analyzed[w]
             #    model_credit[w] = analyzers[i]
             else: 
                 parses[w] = analyzed[w]
                 model_credit[w] = analyzers[i]
-                vital_stats[1] += 1
     #analyzed = pp.parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
     ##m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
     #re_analysis = []
@@ -704,6 +696,25 @@ def parse_words_expanded(event):
         #        gloss = "?"
         #    tinies.append("'"+gloss+"'")
         #h["tinies"].append(tinies)
+    #this is yet another routine to collate information. it is inefficient to run through the data this many times. everything here could be collected at other points. trying to integrate it into the various other points was resulting in little bits of spaghetti code duplicated all over the place
+    vital_stats = [
+            0, # "Overall raw word count"], -> to_analyze gets reset as you work through the cascade, so the count needs to be here
+            0,#, "Analyzed raw word count"],
+            0,#, "Analyzed processed word count (not counting repetititions/variants of 'the same word')"],
+            0,#, "Unanalyzed raw word count"],
+            ]
+    general_lemmata = []
+    for w in sep_punct(freeNish.lower(), True).split():
+        vital_stats[0] += 1
+        if w in parses and not parses[w][0][0].endswith('+?'): 
+            vital_stats[1] += 1
+        else: 
+            vital_stats[3] += 1
+    for i in range(len(h["lemmata"])):
+        for j in range(len(h["lemmata"][i])):
+            if h["lemmata"][i][j] not in general_lemmata:
+                general_lemmata.append(h["lemmata"][i][j])
+        vital_stats[2] = len(general_lemmata)
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
@@ -728,10 +739,9 @@ def parse_words_expanded(event):
         output_div.innerHTML = interlinearize(h)+vital_statistics_format(True, vital_stats)
     elif analysis_mode.value == "glossary": 
         lp = lexical_perspective(h)
-        vital_stats[2] = len(lp)
-        if "'?'" in lp and vital_stats[2] > 0: vital_stats[2] -= 1
         unanalyzed_context_table = ""
         if "'?'" in lp:
+            unanalyzed_cnt = 0
             #context_size = 2
             #unanalyzed_addresses = retrieve_addrs(lp, "'?'")
             #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_addresses, *take_windows(h, context_size, *unanalyzed_addresses))
@@ -739,13 +749,12 @@ def parse_words_expanded(event):
             unanalyzed_token_addresses = []
             for t in sorted(lp["'?'"]["tokens"]):
                 unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
+                unanalyzed_cnt += lp["'?'"]["tokens"][t]["cnt"]
             context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
             unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
         output_div.innerHTML = glossary_format(lp)+unanalyzed_context_table+vital_statistics_format(False, vital_stats)
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
-        vital_stats[2] = len(lp)
-        if "'?'" in lp and vital_stats[2] > 0: vital_stats[2] -= 1
         unanalyzed_context_table = ""
         if "'?'" in lp:
             #context_size = 2
@@ -760,8 +769,6 @@ def parse_words_expanded(event):
         output_div.innerHTML = crib_format(lp)+unanalyzed_context_table+vital_statistics_format(False, vital_stats)
     elif analysis_mode.value == "frequency": 
         lp = lexical_perspective(h)
-        vital_stats[2] = len(lp)
-        if "'?'" in lp and vital_stats[2] > 0: vital_stats[2] -= 1
         output_div.innerHTML = frequency_format(lp)+vital_statistics_format(False, vital_statistics)
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
