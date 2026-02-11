@@ -2932,8 +2932,8 @@ biidii	chick
 biingeyaadkamik	concern
 bna	encourage
 bnagsha	observe
-na+Interj	silence
-ni+Interj	silence
+na	silence
+ni	silence
 aa	ok
 aakaa	uniqueness
 aanshge	proceed
@@ -2957,10 +2957,10 @@ nnaash	impatience
 se	disgust
 shwii	contrast
 was	dismiss
-na+Ipc	question
-sa+Ipc	conclusion
-go+Ipc	indeed
-gwa+Ipc	indeed
+na	question
+sa	conclusion
+go	indeed
+gwa	indeed
 dnawa	category
 gaawn-gegoon	nothing
 gchi-gegoo	significance
@@ -13852,7 +13852,7 @@ bgoneyaakshkaan	bore
 bgonezaan	heat
 bgonezhaan	cut
 myaawnaan	erect
-baagaakse+VTI	slam
+baagaakse	slam
 bzagwaaboo	thickener
 ndagkenmaa	check
 biindaabkinaan	put
@@ -17832,7 +17832,7 @@ giiyenh	what
 gegnaa	anyway
 genaa	anyway
 wegdagwen	why
-go+Ipc	indeed
+go	indeed
 gewiinwaa	them
 giigiinwi	us
 giigiinwaa	you
