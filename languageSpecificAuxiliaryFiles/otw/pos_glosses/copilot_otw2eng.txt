@@ -19979,7 +19979,7 @@ baapchi'aa	mock
 njinaazhkaan	relocate
 giishkgaadeshkaa	cut
 zhiwebnaan	throw
-wegwendig	anything
+wegwendik	anything
 gidaakiiwan	summit
 giishkkwegdaan	slit
 giishkjaanegdaan	sever
