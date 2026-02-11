@@ -583,18 +583,18 @@ def unanalyzed_format(size, addresses, *windows):
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
 
-def vital_statistics_format(short_form, vital_statistics):
-    if short_form: 
-        return "<p>Overall word count: {0}; Analyzed word count: {1}; Unanalyzed word count: {2} </p>".format(*[str(x) for x in vital_statistics[:2]+vital_statistics[3:]])
-    return """
-    <p>Summary counts:<br></p>
-    <p style="margin-left: 40px">
-        Overall word count: {0}<br>
-        Analyzed word count: {1}<br>
-        Analyzed unique word count: {2} (excludes repetitions/variants of 'the same word')<br>
-        Unanalyzed word count: {3}<br>
-    </p>
-    """.format(*[str(x) for x in vital_statistics])
+def vital_statistics_format(dont_make_rep_count, vital_statistics):
+    if dont_make_rep_count: return "<p>Overall word count: {0}; Analyzed word count: {1} (incl. repetitions/variants); Unanalyzed word count: {3} </p>".format(*[str(x) for x in vital_statistics])
+    return "<p>Overall word count: {0}; Analyzed word count: {1} ({2} w/out repetitions/variants); Unanalyzed word count: {3} </p>".format(*[str(x) for x in vital_statistics])
+    #return """
+    #<p>Summary counts:<br></p>
+    #<p style="margin-left: 40px">
+    #    Overall word count: {0}<br>
+    #    Analyzed word count: {1}<br>
+    #    Analyzed unique word count: {2} (excludes repetitions/variants of 'the same word')<br>
+    #    Unanalyzed word count: {3}<br>
+    #</p>
+    #""".format(*[str(x) for x in vital_statistics])
 
 ##this is the main function. it puts everything together
 def parse_words_expanded(event):
@@ -725,7 +725,7 @@ def parse_words_expanded(event):
         #        if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
         #        else: revised += nb+'\n'
         #output_div.innerHTML = revised
-        output_div.innerHTML = interlinearize(h)
+        output_div.innerHTML = interlinearize(h)+vital_statistics_format(True, vital_stats)
     elif analysis_mode.value == "glossary": 
         lp = lexical_perspective(h)
         vital_stats[2] = len(lp)
@@ -741,7 +741,7 @@ def parse_words_expanded(event):
                 unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
             context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
             unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
-        output_div.innerHTML = vital_statistics_format(False, vital_stats)+glossary_format(lp)+unanalyzed_context_table
+        output_div.innerHTML = glossary_format(lp)+unanalyzed_context_table+vital_statistics_format(False, vital_stats)
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
         vital_stats[2] = len(lp)
@@ -757,12 +757,12 @@ def parse_words_expanded(event):
                 unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
             context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
             unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
-        output_div.innerHTML = vital_statistics_format(False, vital_stats)+crib_format(lp)+unanalyzed_context_table
+        output_div.innerHTML = crib_format(lp)+unanalyzed_context_table+vital_statistics_format(False, vital_stats)
     elif analysis_mode.value == "frequency": 
         lp = lexical_perspective(h)
         vital_stats[2] = len(lp)
         if "'?'" in lp and vital_stats[2] > 0: vital_stats[2] -= 1
-        output_div.innerHTML = vital_statistics_format(False, vital_statistics)+frequency_format(lp) 
+        output_div.innerHTML = frequency_format(lp)+vital_statistics_format(False, vital_statistics)
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
@@ -781,13 +781,13 @@ def parse_words_expanded(event):
         sectioned.append([">>These sentences had no verbs found in them"])
         for x in sorted(categorized["(No verbs found)"], key = lambda y: y[0][-1][0]):
             sectioned.append([" ".join(x[1])])
-        output_div.innerHTML = vital_statistics_format(True, vital_stats)+tabulate.tabulate(sectioned, tablefmt="html")
+        output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(True, vital_stats)
     elif analysis_mode.value == "complexity":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         overall_score = sc.alg_morph_score_rate(*comp_counts)
         sectioned = [["Overall Score (Features per Sentence):",  str(overall_score[2])]]
         for ssp in sorted([x for x in zip(comp_counts, h["original"])], key = lambda y: y[0][-1][0]): sectioned.append([" ".join(ssp[1]), ssp[0][-1][0]])
-        output_div.innerHTML = vital_statistics_format(True, vital_stats)+tabulate.tabulate(sectioned, tablefmt="html")
+        output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(True, vital_stats)
     elif analysis_mode.value == "verb_collate":
         faced = sc.interface(pos_regex, *h["m_parse_lo"])
         verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
@@ -800,7 +800,7 @@ def parse_words_expanded(event):
         for c in verbcats:
             sectioned.append(["Found these verbs of category {}:".format(c), ""])
             for v in sorted(verbdict[c], key = lambda x: x[1]): sectioned.append([v[0], v[1]])
-        output_div.innerHTML = vital_statistics_format(True, vital_stats)+tabulate.tabulate(sectioned, tablefmt="html")
+        output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(True, vital_stats)
     elif analysis_mode.value in ["triage", "reversed_triage"]:
         recall_errors = []
         for i in range(len(h["original"])):
@@ -822,5 +822,5 @@ def parse_words_expanded(event):
         #    forwards += tabulate.tabulate([[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         #forwards = tabulate.tabulate([[[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]] for r in sorted(recall_errors)], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         forwards = tabulate.tabulate(ordered_recall_errors, headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
-        output_div.innerHTML = vital_statistics_format(True, vital_stats)+forwards
+        output_div.innerHTML = forwards+vital_statistics_format(True, vital_stats)
             
