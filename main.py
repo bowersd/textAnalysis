@@ -627,12 +627,14 @@ def parse_words_expanded(event):
             elif analyzed[w][0][0].endswith('+?') and i+1 == len(analyzers): 
                 parses[w] = analyzed[w]
                 model_credit[w] = "unanalyzed" 
+                vital_stats[3][0] += 1
             elif (not analyzed[w][0][0].endswith('+?')) and i+1 == len(analyzers): 
                 parses[w] = analyzed[w]
                 model_credit[w] = analyzers[i]
             else: 
                 parses[w] = analyzed[w]
                 model_credit[w] = analyzers[i]
+                vital_stats[1][0] += 1
     #analyzed = pp.parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
     ##m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
     #re_analysis = []
