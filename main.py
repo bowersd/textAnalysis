@@ -449,7 +449,8 @@ def lexical_perspective(parsed_data):
                             "cnt":1, 
                             "m_parse_hi":parsed_data["m_parse_hi"][i][j], 
                             "m_parse_lo":parsed_data["m_parse_lo"][i][j],
-                            "addr":[(i,j)]
+                            "addr":[(i,j)],
+                            "exe":{tuple(parsed_data["original"][i]):[j]}
                             }},
                     "link":parsed_data["lemma_links"][i][j],
                     "pos":parsed_data["m_parse_hi"][i][j].split()[0],
@@ -460,15 +461,18 @@ def lexical_perspective(parsed_data):
                             "cnt":1, 
                             "m_parse_hi":parsed_data["m_parse_hi"][i][j], 
                             "m_parse_lo":parsed_data["m_parse_lo"][i][j],
-                            "addr":[(i, j)]
+                            "addr":[(i, j)],
+                            "exe":{tuple(parsed_data["original"][i]):[j]}
                             }
             else: 
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["cnt"] += 1
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["addr"].append((i, j))
+                if tuple(parsed_data["original"][i]) in lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["exe"]: lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["exe"][parsed_data["original"][i]].append(j)
+                else: lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["exe"][parsed_data["original"][i]] = [j]
     return lemmata
 
 def glossary_format(lemmata_data):
-    header = [["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Addresses"]]
+    header = [["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Toggle Examples"]]
     nu_gloss = []
     for lem in lemmata_data: #make a neatly sorted list
         if lem != "'?'":
