@@ -472,7 +472,7 @@ def lexical_perspective(parsed_data):
     return lemmata
 
 def glossary_format(lemmata_data):
-    header = [["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Toggle Examples"]]
+    header = [["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Address"]]
     nu_gloss = []
     for lem in lemmata_data: #make a neatly sorted list
         if lem != "'?'":
