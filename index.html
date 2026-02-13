@@ -73,6 +73,14 @@ layout: default
     </p>
     <p>(Click on the 'NOD/OPD entry' values to see an entry in the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a> or <a href="https://ojibwe.lib.umn.edu" target="_blank" rel="noopener noreferrer"><i>Ojibwe People's Dictionary</i></a>.)</p>
     <p>(Explanations for grammatical codes are <a href="./explanation.html" target="_blank" rel="noopener noreferrer">here</a>.)</p>
+    <script>
+        function toggleRow(row) {
+            const next = row.parentElement.nextElementSibling;
+            if (next && next.classList.contains("child")) {
+                next.style.display = (next.style.display === "none") ? "table-row" : "none";
+            }
+        }
+    </script>
     <div id="output"></div>
     <!--
     <p>What to do with unanalyzed forms (it is something of a dark art)</p>
@@ -136,6 +144,6 @@ layout: default
     <button name="load_trans">Add Sentence-by-Sentence Translation (optional, inactive)</button>
     <button name="do_it">Make Interlinearization (inactive)</button-->
     <hr/>
-    <p>Last updated: 02/11/2026 22:49</p>
+    <p>Last updated: 02/11/2026 22:58</p>
 </body>
 </html>

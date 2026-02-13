@@ -475,14 +475,6 @@ def glossary_format(lemmata_data):
     header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Toggle Examples"])+"</td>\n</tr>\n"
     body = ""
     footer = "</tbody>\n</table>\n"
-    script = """<script>
-    function toggleRow(row) {   
-        const next = row.parentElement.nextElementSibling;
-        if (next && next.classList.contains("child")) {
-            next.style.display = (next.style.display === "none") ? "table-row" : "none";
-          } 
-        } 
-        </script>"""
     for lem in sorted(lemmata_data): #make a neatly sorted list
         if lem != "'?'":
             lem_cnt = 0 #sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]) #was going to use an accumulator and += in the for loop, but then I wouldn't have this value available for the unanalyzed forms #-> changed my mind, the unanalyzed forms should be handled differently anyway
@@ -501,7 +493,7 @@ def glossary_format(lemmata_data):
             body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt)])+'</td>\n<td onclick="toggleRow(this)">'+"Hide/Show Examples"+"</td>\n</tr>\n"
             body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="4">'+"<br>\n".join([" ".join(exes[e]) for e in exes])+'</td>\n</tr>\n'
             #body.append([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), [exes[e] for e in exes]])
-    return script+header+body+footer
+    return header+body+footer
 
 def crib_format(lemmata_data):
     header = [["Word", "NOD/OPD Entry",  "Broad Analysis", "Terse Translation", "Count", "Addresses"]]
