@@ -597,7 +597,7 @@ def unanalyzed_format(size, addresses, *windows):
 
 def vital_statistics_format(vital_statistics):
     #if dont_make_rep_count: return "<p>Overall word count: {0}; Analyzed word count: {1} (incl. repetitions/variants); Unanalyzed word count: {3} </p>".format(*[str(x) for x in vital_statistics])
-    return "<p>Overall word count: {0}; Analyzed word count: {1} ({2} w/out repetitions/variants); Unanalyzed word count: {3} </p>".format(*[str(x) for x in vital_statistics])
+    return "<p>Overall word count: {0}<br>Analyzed word count: {1} ({2} without repetitions/variants)<br>Unanalyzed word count: {3} </p>".format(*[str(x) for x in vital_statistics])
     #return """
     #<p>Summary counts:<br></p>
     #<p style="margin-left: 40px">
