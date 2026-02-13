@@ -443,7 +443,6 @@ def lexical_perspective(parsed_data):
     for i in range(len(parsed_data["lemmata"])): 
         for j in range(len(parsed_data["lemmata"][i])):
             if parsed_data["lemmata"][i][j] not in lemmata: 
-                print("this far")
                 lemmata[parsed_data["lemmata"][i][j]] = {
                     "tokens":{
                         parsed_data["original"][i][j]: {
@@ -458,7 +457,6 @@ def lexical_perspective(parsed_data):
                     "tiny":parsed_data["tinies"][i][j]
                     }
             elif parsed_data["original"][i][j] not in lemmata[parsed_data["lemmata"][i][j]]["tokens"]: 
-                print("further")
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]] = {
                             "cnt":1, 
                             "m_parse_hi":parsed_data["m_parse_hi"][i][j], 
@@ -467,7 +465,6 @@ def lexical_perspective(parsed_data):
                             "exe":{tuple(parsed_data["original"][i]):[j]}
                             }
             else: 
-                print("furthest")
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["cnt"] += 1
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["addr"].append((i, j))
                 if tuple(parsed_data["original"][i]) in lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["exe"]: lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["exe"][tuple(parsed_data["original"][i])].append(j)
