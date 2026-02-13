@@ -501,7 +501,7 @@ def glossary_format(lemmata_data):
             body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt)])+'</td>\n<td onclick="toggleRow(this)">'+"Hide/Show Examples"+"</td>\n</tr>\n"
             body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="4">'+"<br>\n".join([" ".join(exes[e]) for e in exes])+'</td>\n</tr>\n'
             #body.append([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), [exes[e] for e in exes]])
-    return header+body+footer+script
+    return script+header+body+footer
 
 def crib_format(lemmata_data):
     header = [["Word", "NOD/OPD Entry",  "Broad Analysis", "Terse Translation", "Count", "Addresses"]]
