@@ -472,7 +472,7 @@ def lexical_perspective(parsed_data):
     return lemmata
 
 def glossary_format(lemmata_data):
-    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Toggle Examples"])+"</td>\n</tr>\n"
+    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Show/Hide Examples"])+"</td>\n</tr>\n"
     body = ""
     footer = "</tbody>\n</table>\n"
     for lem in sorted(lemmata_data): #make a neatly sorted list
@@ -485,12 +485,12 @@ def glossary_format(lemmata_data):
                     if tuple(e) not in exes:
                         marked = []
                         for i in range(len(e)):
-                            if e[i] in lemmata_data[lem]["tokens"][tok]["exe"][e]: marked.append("<mark>"+e[i]+"</mark>")
+                            if i in lemmata_data[lem]["tokens"][tok]["exe"][e]: marked.append("<mark>"+e[i]+"</mark>")
                             else: marked.append(e[i])
                         exes[tuple(e)] = marked
                     else:
                         for x in lemmata_data[lem]["tokens"][tok]["exe"][e]: exes[tuple(e)][x] = "<mark>"+e[x]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
-            body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt)])+'</td>\n<td onclick="toggleRow(this)">'+"Hide/Show Examples"+"</td>\n</tr>\n"
+            body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt)])+'</td>\n<td onclick="toggleRow(this)">'+"(click for examples)"+"</td>\n</tr>\n"
             body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="4">'+"<br>\n".join([" ".join(exes[e]) for e in exes])+'</td>\n</tr>\n'
             #body.append([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), [exes[e] for e in exes]])
     return header+body+footer
