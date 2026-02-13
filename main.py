@@ -472,23 +472,36 @@ def lexical_perspective(parsed_data):
     return lemmata
 
 def glossary_format(lemmata_data):
-    header = [["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Address"]]
-    nu_gloss = []
-    for lem in lemmata_data: #make a neatly sorted list
+    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Address"])+"</td>\n</tr>\n"
+    body = ""
+    footer = "</tbody>\n</table>\n"
+    script = """<script>
+    function toggleRow(row) {   
+        const next = row.parentElement.nextElementSibling;
+        if (next && next.classList.contains("child")) {
+            next.style.display = (next.style.display === "none") ? "table-row" : "none";
+          } 
+        } 
+        </script>"""
+    for lem in sorted(lemmata_data): #make a neatly sorted list
         if lem != "'?'":
             lem_cnt = 0 #sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]) #was going to use an accumulator and += in the for loop, but then I wouldn't have this value available for the unanalyzed forms #-> changed my mind, the unanalyzed forms should be handled differently anyway
-            addresses = []
+            exes = {}
             for tok in lemmata_data[lem]["tokens"]:
                 lem_cnt += lemmata_data[lem]["tokens"][tok]["cnt"]
-                for a in lemmata_data[lem]["tokens"][tok]["addr"]: addresses.append(".".join([str(a[0]+1), str(a[1]+1)]))
-            nu_gloss.append([lem, lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), " ".join(addresses)])
-    nu_gloss = sorted(nu_gloss)
-    for i in range(len(nu_gloss)): # add in lemma links (perhaps just build the rows directly with them?) #no, we don't want spurious URL differences to muck up the alphabetization (we have 2 different sources of URLs!!)
-        nu_gloss[i][0] = lemmata_data[nu_gloss[i][0]]["link"]
-    table = tabulate.tabulate(header + nu_gloss, tablefmt='html')
-    revised_table = ""
-    for line in table.split('\n'): revised_table += undo_html(line)+'\n'
-    return revised_table
+                for e in lemmata_data[lem]["tokens"][tok]["exe"]: 
+                    if tuple(e) not in exes:
+                        marked = []
+                        for i in range(len(e)):
+                            if e[i] in lemmata_data[lem]["tokens"][tok]["exe"][e]: marked.append("<mark>"+e[i]+"</mark>")
+                            else: marked.append(e[i])
+                        exes[tuple(e)] = marked
+                    else:
+                        for x in lemmata_data[lem]["tokens"][tok]["exe"][e]: exes[tuple(e)][x] = "<mark>"+e[x]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
+            body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt)])+'</td>\n<td onclick="toggleRow(this)">'+"Hide/Show Examples"+"</td>\n</tr>\n"
+            body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="4">'+"<br>\n".join([exes[e] for e in exes])+'</td>\n</tr>\n'
+            #body.append([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), [exes[e] for e in exes]])
+    return header+body+footer+script
 
 def crib_format(lemmata_data):
     header = [["Word", "NOD/OPD Entry",  "Broad Analysis", "Terse Translation", "Count", "Addresses"]]
