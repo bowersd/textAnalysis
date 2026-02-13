@@ -452,8 +452,17 @@ def nu_lexical_perspective(parsed_data):
             elif parsed_data["original"][i][j] not in lemmata[parsed_data["lemmata"][i][j]]["tokens"]: 
                 lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]] = [(i, j)]
             else: 
-                lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["addr"].append((i, j))
+                lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]].append((i, j))
     return lemmata
+
+def nu_sublexical_perspective_init(token, coord, link, pos, tiny):
+    #as you go through the text, assign new lemmata to this
+    #update a lemma with new tokens by assigning x[lemma]["tokens"][coord] = token
+    #NEED TO PUT EVERYTHING WORD-SPECIFIC HERE. SENTENCES WILL JUST BE MATRICES OF 0 (unanalyzed), 1 (analyzed)
+    return {"tokens":{coord:token}, "link":link, "pos":pos, "tiny":tiny}
+
+def nu_sentential_perspective(token, parse_results):
+    return not parse_results[token][0].endswith('+?')
 
 def lexical_perspective(parsed_data):
     lemmata = {}
