@@ -438,6 +438,23 @@ def interlinearize_format(*blocks):
     return revised
 
 
+def nu_lexical_perspective(parsed_data):
+    lemmata = {}
+    for i in range(len(parsed_data["lemmata"])): 
+        for j in range(len(parsed_data["lemmata"][i])):
+            if parsed_data["lemmata"][i][j] not in lemmata: 
+                lemmata[parsed_data["lemmata"][i][j]] = {
+                    "tokens":{parsed_data["original"][i][j]: [(i,j)]},
+                    "link":parsed_data["lemma_links"][i][j],
+                    "pos":parsed_data["m_parse_hi"][i][j].split()[0],
+                    "tiny":parsed_data["tinies"][i][j]
+                    }
+            elif parsed_data["original"][i][j] not in lemmata[parsed_data["lemmata"][i][j]]["tokens"]: 
+                lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]] = [(i, j)]
+            else: 
+                lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["addr"].append((i, j))
+    return lemmata
+
 def lexical_perspective(parsed_data):
     lemmata = {}
     for i in range(len(parsed_data["lemmata"])): 
