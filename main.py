@@ -575,6 +575,22 @@ def retrieve_addrs(lexical_perspective, *keys):
             unanalyzed_token_addresses.extend(lexical_perspective["'?'"]["tokens"][t]["addr"])
     return unanalyzed_token_addresses
 
+def nu_unanalyzed_format(**tokens):
+    header = ""
+    body = ""
+    footer = ""
+    for t in tokens:
+        body += "<tr>\n<td>"+t+"</td>\n<td>"+tokens[t]["exe"][0]+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
+        pads = []
+        for i in range(len(tokens[t]["exe"][0])): pads.append(max([len(tokens[t]["exe"][0][i]), len(tokens[t]["terse"][0][i]), len(tokens[t]["broad"][0][i])]))
+        padded = [[], [], []]
+        for i in range(len(tokens[t]["exe"][0])):
+            padded[0].append(f'{tokens[t]["exe"][0][i]}: <{pads[i]}')
+            padded[1].append(f'{tokens[t]["terse"][0][i]}: <{pads[i]}')
+            padded[2].append(f'{tokens[t]["broad"][0][i]}: <{pads[i]}')
+        body += "<tr>\n<td>"+t+"</td>\n<td>"+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
+    return header+body+footer
+
 def unanalyzed_format(size, addresses, *windows):
     header = [ [""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
     rows = []
