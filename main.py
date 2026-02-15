@@ -599,20 +599,25 @@ def retrieve_addrs(lexical_perspective, *keys):
             unanalyzed_token_addresses.extend(lexical_perspective["'?'"]["tokens"][t]["addr"])
     return unanalyzed_token_addresses
 
-def nu_unanalyzed_format(**tokens):
+def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because we are assembling various pieces of analysis information for whole example sentences, and for historical reasons, that is where the information is
     header = ""
     body = ""
     footer = ""
-    for t in tokens:
-        body += "<tr>\n<td>"+t+"</td>\n<td>"+tokens[t]["exe"][0]+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
-        pads = []
-        for i in range(len(tokens[t]["exe"][0])): pads.append(max([len(tokens[t]["exe"][0][i]), len(tokens[t]["terse"][0][i]), len(tokens[t]["broad"][0][i])]))
-        padded = [[], [], []]
-        for i in range(len(tokens[t]["exe"][0])):
-            padded[0].append(f'{tokens[t]["exe"][0][i]}: <{pads[i]}')
-            padded[1].append(f'{tokens[t]["terse"][0][i]}: <{pads[i]}')
-            padded[2].append(f'{tokens[t]["broad"][0][i]}: <{pads[i]}')
-        body += "<tr>\n<td>"+t+"</td>\n<td>"+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
+    for t in sorted(tokens):
+        first_line = True
+        for e in tokens["exe"]:
+            if first_line:
+                marked = [wd for wd in e]
+                for index in tokens["exe"][e]: marked[index] = "<mark>"+marked[index]"</mark>"
+                body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(marked)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
+                for i in range(len(e)): 
+                padded = [[], [], []]
+                for i in range(len(e)):
+                    pad = max([len(e[i]), len(sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]), len(sentence_data["broad_analysis"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]])])
+                    padded[0].append(f'{e[i]}: <{pad}')
+                    padded[1].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
+                    padded[2].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
+                body += "<tr>\n<td>"+t+"</td>\n<td>"+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
     return header+body+footer
 
 def unanalyzed_format(size, addresses, *windows):
