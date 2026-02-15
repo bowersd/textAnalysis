@@ -458,7 +458,8 @@ def nu_lexical_perspective(parsed_data):
 def nu_sublexical_perspective_init(token, coord, link, pos, tiny):
     #as you go through the text, assign new lemmata to this
     #update a lemma with new tokens by assigning x[lemma]["tokens"][coord] = token
-    #NEED TO PUT EVERYTHING WORD-SPECIFIC HERE. SENTENCES WILL JUST BE MATRICES OF 0 (unanalyzed), 1 (analyzed)
+    #COULD PUT EVERYTHING WORD-SPECIFIC HERE. SENTENCES WOULD JUST BE VECTORS OF 0 (unanalyzed), 1 (analyzed)
+    #COULD JUST POPULATE THE ANALYSIS DICT WITH LEMMA INFORMATION, ETC WHEN IT IS BUILT (IT WOULD BE KEYED ON TOKENS INSTEAD OF TYPES)
     return {"tokens":{coord:token}, "link":link, "pos":pos, "tiny":tiny}
 
 def nu_sentential_perspective(token, parse_results):
