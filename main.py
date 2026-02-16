@@ -620,8 +620,8 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
                     pad = max([len(targ[i]), len(sentence_data["terse"][a[0]][a[1]]), len(sentence_data["m_parse_hi"][a[0]][a[1]])])
                     if i in to_mark: padded[0].append("<mark>"+f'{targ[i]}: <{pad}'+"</mark>")
                     else: padded[0].append(f'{e[i]}: <{pad}')
-                    padded[1].append(f'{sentence_data["m_parse_hi"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
-                    padded[2].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
+                    padded[1].append(f'{sentence_data["m_parse_hi"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]}: <{pad}')
+                    padded[2].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]}: <{pad}')
                 body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">'+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
     return header+body+footer
 
