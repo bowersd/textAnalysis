@@ -508,15 +508,15 @@ def glossary_format(sentence_data, lemmata_data):
             exes = {}
             for tok in lemmata_data[lem]["tokens"]:
                 lem_cnt += lemmata_data[lem]["tokens"][tok]["cnt"]
-                for e in lemmata_data[lem]["tokens"][tok]["exe"]: 
-                    if tuple(e) not in exes:
+                for a in lemmata_data[lem]["tokens"][tok]["addr"]: 
+                    targ = sentence_data["original"][a[0]]
+                    if tuple(targ) not in exes:
                         marked = []
-                        for i in range(len(e)):
-                            if i in lemmata_data[lem]["tokens"][tok]["exe"][e]: marked.append("<mark>"+e[i]+"</mark>")
-                            else: marked.append(e[i])
-                        exes[tuple(e)] = marked
-                    else:
-                        for x in lemmata_data[lem]["tokens"][tok]["exe"][e]: exes[tuple(e)][x] = "<mark>"+e[x]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
+                        for i in range(len(targ)):
+                            if i == a[1]: marked.append("<mark>"+targ[i]+"</mark>")
+                            else: marked.append(targ[i])
+                        exes[tuple(targ)] = marked
+                    else: exes[tuple(targ)][a[1]] = "<mark>"+targ[a[1]]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
             body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt)])+'</td>\n<td onclick="toggleRow(this)">'+"(click for examples)"+"</td>\n</tr>\n"
             body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="4">'+"<br>\n".join([" ".join(exes[e]) for e in exes])+'</td>\n</tr>\n'
             #body.append([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), [exes[e] for e in exes]])
@@ -812,7 +812,7 @@ def parse_words_expanded(event):
                 unanalyzed_cnt += lp["'?'"]["tokens"][t]["cnt"]
             context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
             unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
-        output_div.innerHTML = glossary_format(lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
+        output_div.innerHTML = glossary_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
