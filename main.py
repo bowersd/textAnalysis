@@ -600,9 +600,9 @@ def retrieve_addrs(lexical_perspective, *keys):
     return unanalyzed_token_addresses
 
 def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because we are assembling various pieces of analysis information for whole example sentences, and for historical reasons, that is where the information is
-    header = ""
+    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "Context", "Show/Hide Analysis"])+"</td>\n</tr>\n"
     body = ""
-    footer = ""
+    footer = "</tbody>\n</table>\n"
     for t in sorted(tokens):
         first_line = True
         for e in tokens["exe"]:
