@@ -613,7 +613,7 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
                 to_mark = []
                 for addr in tokens["exe"][targ]: 
                     to_mark.append(addr[1])
-                    marked[index] = "<mark>"+marked[addr[1]]"</mark>"
+                    marked[index] = "<mark>"+marked[addr[1]]+"</mark>"
                 body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(marked)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
                 padded = [[], [], []] #original, terse, broad
                 for i in range(len(targ)):
