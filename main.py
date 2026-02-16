@@ -498,7 +498,7 @@ def lexical_perspective(parsed_data):
                 else: lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["exe"][tuple(parsed_data["original"][i])] = [j]
     return lemmata
 
-def glossary_format(lemmata_data):
+def glossary_format(sentence_data, lemmata_data):
     header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Show/Hide Examples"])+"</td>\n</tr>\n"
     body = ""
     footer = "</tbody>\n</table>\n"
@@ -618,7 +618,7 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
                     pad = max([len(e[i]), len(sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]), len(sentence_data["broad_analysis"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]])])
                     if i in to_mark: padded[0].append("<mark>"+f'{e[i]}: <{pad}'+"</mark>")
                     else: padded[0].append(f'{e[i]}: <{pad}')
-                    padded[1].append(f'{sentence_data["broad_analysis"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
+                    padded[1].append(f'{sentence_data["m_parse_hi"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
                     padded[2].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
                 body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">'+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
     return header+body+footer
