@@ -617,7 +617,7 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
                     padded[0].append(f'{e[i]}: <{pad}')
                     padded[1].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
                     padded[2].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
-                body += "<tr>\n<td>"+t+"</td>\n<td>"+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
+                body += '<tr class="child" style="display: none;">\n<td>'+t+"</td>\n<td>"+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
     return header+body+footer
 
 def unanalyzed_format(size, addresses, *windows):
