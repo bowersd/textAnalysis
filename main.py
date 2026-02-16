@@ -608,9 +608,8 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
         for e in tokens["exe"]:
             if first_line:
                 marked = [wd for wd in e]
-                for index in tokens["exe"][e]: marked[index] = "<mark>"+marked[index]"</mark>"
+                for addr in tokens["exe"][e]: marked[index] = "<mark>"+marked[addr[1]]"</mark>"
                 body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(marked)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
-                for i in range(len(e)): 
                 padded = [[], [], []] #original, terse, broad
                 for i in range(len(e)):
                     pad = max([len(e[i]), len(sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]), len(sentence_data["broad_analysis"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]])])
