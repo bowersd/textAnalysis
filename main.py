@@ -608,15 +608,19 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
         for e in tokens["exe"]:
             if first_line:
                 marked = [wd for wd in e]
-                for addr in tokens["exe"][e]: marked[index] = "<mark>"+marked[addr[1]]"</mark>"
+                to_mark = []
+                for addr in tokens["exe"][e]: 
+                    to_mark.append(addr[1])
+                    marked[index] = "<mark>"+marked[addr[1]]"</mark>"
                 body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(marked)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
                 padded = [[], [], []] #original, terse, broad
                 for i in range(len(e)):
                     pad = max([len(e[i]), len(sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]), len(sentence_data["broad_analysis"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]])])
-                    padded[0].append(f'{e[i]}: <{pad}')
+                    if i in to_mark: padded[0].append("<mark>"+f'{e[i]}: <{pad}'+"</mark>")
+                    else: padded[0].append(f'{e[i]}: <{pad}')
                     padded[1].append(f'{sentence_data["broad_analysis"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
                     padded[2].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
-                body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+"</td>\n<td>"+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
+                body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">'+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
     return header+body+footer
 
 def unanalyzed_format(size, addresses, *windows):
