@@ -605,18 +605,20 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
     footer = "</tbody>\n</table>\n"
     for t in sorted(tokens):
         first_line = True
-        for e in tokens["exe"]:
+        #fix the looping over addr twice 
+        for a in tokens[t]["addr"]:
+            targ = sentence_data["original"][a[0]]
             if first_line:
-                marked = [wd for wd in e]
+                marked = [wd for wd in targ]
                 to_mark = []
-                for addr in tokens["exe"][e]: 
+                for addr in tokens["exe"][targ]: 
                     to_mark.append(addr[1])
                     marked[index] = "<mark>"+marked[addr[1]]"</mark>"
                 body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(marked)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
                 padded = [[], [], []] #original, terse, broad
-                for i in range(len(e)):
-                    pad = max([len(e[i]), len(sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]), len(sentence_data["broad_analysis"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]])])
-                    if i in to_mark: padded[0].append("<mark>"+f'{e[i]}: <{pad}'+"</mark>")
+                for i in range(len(targ)):
+                    pad = max([len(targ[i]), len(sentence_data["terse"][a[0]][a[1]]), len(sentence_data["m_parse_hi"][a[0]][a[1]])])
+                    if i in to_mark: padded[0].append("<mark>"+f'{targ[i]}: <{pad}'+"</mark>")
                     else: padded[0].append(f'{e[i]}: <{pad}')
                     padded[1].append(f'{sentence_data["m_parse_hi"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
                     padded[2].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]: <{pad}')
