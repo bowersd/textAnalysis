@@ -628,6 +628,7 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
             print(parent[cur_w])
             print(child[0][cur_w])
             parent[cur_w] = "<mark>"+parent[cur_w]+"</mark>"
+            print('child')
             child[0][cur_w] = "<mark>"+child[0][cur_w]+"</mark>"
             prev = cur_l
     return header+body+footer
