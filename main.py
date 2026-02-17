@@ -625,6 +625,8 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
                     child[1].append(f'{sentence_data["m_parse_hi"][cur_l][i]}: <{pad}')
                     child[2].append(f'{sentence_data["tinies"][cur_l][i]}: <{pad}')
             print('update level')
+            print(parent[cur_w])
+            print(child[0][cur_w])
             parent[cur_w] = "<mark>"+parent[cur_w]+"</mark>"
             child[0][cur_w] = "<mark>"+child[0][cur_w]+"</mark>"
             prev = cur_l
