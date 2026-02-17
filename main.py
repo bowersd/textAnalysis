@@ -615,7 +615,7 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
                 print(parent)
                 if parent: 
                     body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(parent)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
-                    body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">'+"<br>\n".join([" ".join(x) for x in child])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
+                    body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">\n'+"<pre>\n"+"<br>\n".join([" ".join(x) for x in child])+"</pre>"+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
                     print(body)
                 parent = []
                 child = [[],[],[]]
