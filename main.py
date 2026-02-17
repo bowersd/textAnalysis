@@ -619,7 +619,7 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
                 child = [[],[],[]]
                 for i in range(len(sentence_data["original"][cur_l])):
                     print('level 3')
-                    parent.append(sentence_data["original"][cur_l])
+                    parent.append(sentence_data["original"][cur_l][i])
                     pad = max([len(sentence_data["original"][cur_l][i]), len(sentence_data["tinies"][cur_l][i]), len(sentence_data["m_parse_hi"][cur_l][i])])
                     child[0].append(f'{sentence_data["original"][cur_l][i]}: <{pad}')
                     child[1].append(f'{sentence_data["m_parse_hi"][cur_l][i]}: <{pad}')
