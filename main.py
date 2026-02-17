@@ -605,6 +605,7 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
     footer = "</tbody>\n</table>\n"
     for t in sorted(tokens):
         print('level 1')
+        print(t)
         parent = []
         child = [[], [], []]
         prev = -1
