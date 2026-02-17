@@ -604,31 +604,26 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
     body = ""
     footer = "</tbody>\n</table>\n"
     for t in sorted(tokens):
-        print('level 1')
-        print(t)
         parent = []
         child = [[], [], []]
         prev = -1
         for cur_l, cur_w in sorted(tokens[t]["addr"]):
-            print('level 2')
             if cur_l != prev:
+                print(parent)
                 if parent: 
+                    print('check')
                     body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(parent)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
                     body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">'+"<br>\n".join([" ".join(x) for x in child])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
+                    print(body)
                 parent = []
                 child = [[],[],[]]
                 for i in range(len(sentence_data["original"][cur_l])):
-                    print('level 3')
                     parent.append(sentence_data["original"][cur_l][i])
                     pad = max([len(sentence_data["original"][cur_l][i]), len(sentence_data["tinies"][cur_l][i]), len(sentence_data["m_parse_hi"][cur_l][i])])
                     child[0].append(f'{sentence_data["original"][cur_l][i]}: <{pad}')
                     child[1].append(f'{sentence_data["m_parse_hi"][cur_l][i]}: <{pad}')
                     child[2].append(f'{sentence_data["tinies"][cur_l][i]}: <{pad}')
-            print('update level')
-            print(parent[cur_w])
-            print(child[0][cur_w])
             parent[cur_w] = "<mark>"+parent[cur_w]+"</mark>"
-            print('child')
             child[0][cur_w] = "<mark>"+child[0][cur_w]+"</mark>"
             prev = cur_l
     return header+body+footer
