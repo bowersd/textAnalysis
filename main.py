@@ -604,25 +604,25 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
     body = ""
     footer = "</tbody>\n</table>\n"
     for t in sorted(tokens):
-        first_line = True
-        #fix the looping over addr twice 
-        for a in tokens[t]["addr"]:
-            targ = sentence_data["original"][a[0]]
-            if first_line:
-                marked = [wd for wd in targ]
-                to_mark = []
-                for addr in tokens["exe"][targ]: 
-                    to_mark.append(addr[1])
-                    marked[index] = "<mark>"+marked[addr[1]]+"</mark>"
-                body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(marked)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
-                padded = [[], [], []] #original, terse, broad
-                for i in range(len(targ)):
-                    pad = max([len(targ[i]), len(sentence_data["terse"][a[0]][a[1]]), len(sentence_data["m_parse_hi"][a[0]][a[1]])])
-                    if i in to_mark: padded[0].append("<mark>"+f'{targ[i]}: <{pad}'+"</mark>")
-                    else: padded[0].append(f'{e[i]}: <{pad}')
-                    padded[1].append(f'{sentence_data["m_parse_hi"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]}: <{pad}')
-                    padded[2].append(f'{sentence_data["terse"][tokens[t]["exe"][e][0]][tokens[t]["exe"][e][1]]}: <{pad}')
-                body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">'+"<br>\n".join([" ".join(x) for x in padded])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
+        parent = []
+        child = [[], [], []]
+        prev = -1
+        for cur_l, cur_w in sorted(tokens[t]["addr"]):
+            if cur_l != prev:
+                if parent: 
+                    body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(parent)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
+                    body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">'+"<br>\n".join([" ".join(x) for x in child])+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
+                parent = []
+                child = [[],[],[]]
+                for i in range(len(sentence_data["original"][cur_l])):
+                    parent.append(sentence_data["original"][cur_l])
+                    pad = max([len(sentence_data["original"][cur_l][i]), len(sentence_data["terse"][cur_l][i]), len(sentence_data["m_parse_hi"][cur_l][i])])
+                    child[0].append(f'{sentence_data["original"][cur_l][i]}: <{pad}')
+                    child[1].append(f'{sentence_data["m_parse_hi"][cur_l][i]}: <{pad}')
+                    child[2].append(f'{sentence_data["terse"][cur_l][i]}: <{pad}')
+            parent[cur_w] = "<mark>"+parent[cur_w]+"</mark>"
+            child[0][cur_w] = "<mark>"+child[0][cur_w]+"</mark>"
+            prev = cur_l
     return header+body+footer
 
 def unanalyzed_format(size, addresses, *windows):
@@ -892,4 +892,4 @@ def parse_words_expanded(event):
         #forwards = tabulate.tabulate([[[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]] for r in sorted(recall_errors)], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         forwards = tabulate.tabulate(ordered_recall_errors, headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         output_div.innerHTML = forwards+vital_statistics_format(vital_stats)
-            
+           
