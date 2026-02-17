@@ -807,7 +807,7 @@ def parse_words_expanded(event):
     elif analysis_mode.value == "glossary": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
-        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"])
+        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
             #unanalyzed_cnt = 0
             ##context_size = 2
             ##unanalyzed_addresses = retrieve_addrs(lp, "'?'")
