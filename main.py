@@ -604,10 +604,12 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
     body = ""
     footer = "</tbody>\n</table>\n"
     for t in sorted(tokens):
+        print('level 1')
         parent = []
         child = [[], [], []]
         prev = -1
         for cur_l, cur_w in sorted(tokens[t]["addr"]):
+            print('level 2')
             if cur_l != prev:
                 if parent: 
                     body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(parent)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
@@ -615,11 +617,13 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
                 parent = []
                 child = [[],[],[]]
                 for i in range(len(sentence_data["original"][cur_l])):
+                    print('level 3')
                     parent.append(sentence_data["original"][cur_l])
                     pad = max([len(sentence_data["original"][cur_l][i]), len(sentence_data["terse"][cur_l][i]), len(sentence_data["m_parse_hi"][cur_l][i])])
                     child[0].append(f'{sentence_data["original"][cur_l][i]}: <{pad}')
                     child[1].append(f'{sentence_data["m_parse_hi"][cur_l][i]}: <{pad}')
                     child[2].append(f'{sentence_data["terse"][cur_l][i]}: <{pad}')
+            print('update level')
             parent[cur_w] = "<mark>"+parent[cur_w]+"</mark>"
             child[0][cur_w] = "<mark>"+child[0][cur_w]+"</mark>"
             prev = cur_l
