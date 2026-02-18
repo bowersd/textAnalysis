@@ -523,7 +523,7 @@ def glossary_format(sentence_data, lemmata_data):
     return header+body+footer
 
 def nu_crib_format(sentence_data, lemmata_data):
-    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "NOD/OPD Entry",  "Broad Analysis", "Terse Translation", "Count", "Addresses"])+"</td>\n</tr>\n"
+    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "NOD/OPD Entry",  "Broad Analysis", "Terse Translation", "Count", "Show/Hide Examples"])+"</td>\n</tr>\n"
     body = ""
     footer = "</tbody>\n</table>\n"
     nu_crib = []
@@ -543,7 +543,7 @@ def nu_crib_format(sentence_data, lemmata_data):
                 nu_crib.append(([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tiny"], str(lemmata_data[lem]["tokens"][tok]["cnt"])], [" ".join(exes[e]) for e in exes]))
     for pair in sorted(nu_crib):
         body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(pair[0])+'</td>\n<td onclick="toggleRow(this)">'+"(click for examples)"+"</td>\n</tr>\n"
-        body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="5">'+"<br>\n".join([pair[1])+'</td>\n</tr>\n'
+        body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="5">'+"<br>\n".join(pair[1])+'</td>\n</tr>\n'
     return header+body+footer
 
 def crib_format(lemmata_data):
@@ -575,6 +575,42 @@ def crib_format(lemmata_data):
     revised_table = ""
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
+
+def nu_frequency_format(lemmata_data):
+    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Entry Count", "NOD/OPD Entry", "Word Count", "Actual Word", "Show/Hide Examples"])+"</td>\n</tr>\n"
+    body = ""
+    footer = "</tbody>\n</table>\n"
+    nu_cnts = []
+    for lem in lemmata_data: #make a neatly sorted list
+        if lem != "'?'":
+            for tok in lemmata_data[lem]["tokens"]:
+                exes = {}
+                for a in lemmata_data[lem]["tokens"][tok]["addr"]: 
+                    targ = sentence_data["original"][a[0]]
+                    if tuple(targ) not in exes:
+                        marked = []
+                        for i in range(len(targ)):
+                            if i == a[1]: marked.append("<mark>"+targ[i]+"</mark>")
+                            else: marked.append(targ[i])
+                        exes[tuple(targ)] = marked
+                    else: exes[tuple(targ)][a[1]] = "<mark>"+targ[a[1]]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
+                nu_cnts.append(([sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]), lem, str(lemmata_data[lem]["tokens"][tok]["cnt"]), tok], [" ".join(exes[e]) for e in exes]))
+    nu_cnts = sorted(sorted(sorted(sorted(nu_cnts, key = lambda x: x[0][3]), key = lambda x: x[0][2], reverse = True), key = lambda x: x[0][1]), key = lambda x: x[0][0], reverse = True) #alphabetize tokens, then sort tokens by reverse frequency, then alphabetize lemmata, then sort lemmata by reverse frequency
+    prev = ""
+    for i in range(len(nu_cnts)): #zap out redundant header information on lines beneath the header, make strings where appropriate, add in lemma links
+        p, c = nu_cnts[i]
+        p[0] = str(p[0])
+        p[2] = str(p[2])
+        new = p[1]
+        if new != prev: 
+            prev = new
+            p[1] = lemmata_data[p[1]]["link"]
+        elif new == prev: 
+            p[0] = ""
+            p[1] = ""
+        body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(p)+'</td>\n<td onclick="toggleRow(this)">'+"(click for examples)"+"</td>\n</tr>\n"
+        body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="5">'+"<br>\n".join(c)+'</td>\n</tr>\n'
+    return header+body+footer
 
 def frequency_format(lemmata_data):
     header = [["Entry Count", "NOD/OPD Entry", "Word Count", "Actual Word"]]
