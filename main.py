@@ -576,7 +576,7 @@ def crib_format(lemmata_data):
     for line in table.split('\n'): revised_table += undo_html(line)+'\n'
     return revised_table
 
-def nu_frequency_format(lemmata_data):
+def nu_frequency_format(sentence_data, lemmata_data):
     header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Entry Count", "NOD/OPD Entry", "Word Count", "Actual Word", "Show/Hide Examples"])+"</td>\n</tr>\n"
     body = ""
     footer = "</tbody>\n</table>\n"
@@ -885,12 +885,12 @@ def parse_words_expanded(event):
             #    unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
             #context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
             #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
-        output_div.innerHTML = nu_crib_format(lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
+        output_div.innerHTML = nu_crib_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
     elif analysis_mode.value == "frequency": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
         if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
-        output_div.innerHTML = frequency_format(lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
+        output_div.innerHTML = nu_frequency_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
