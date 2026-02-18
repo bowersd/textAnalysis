@@ -799,7 +799,7 @@ def parse_words_expanded(event):
     elif analysis_mode.value == "glossary": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
-        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
+        if "'?'" in lp: unanalyzed_context_table = "<p>Context table for {0} unanalyzed words</p>".format(str(len(lp["'?'"]['tokens'])))+nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
             #unanalyzed_cnt = 0
             ##context_size = 2
             ##unanalyzed_addresses = retrieve_addrs(lp, "'?'")
@@ -815,7 +815,7 @@ def parse_words_expanded(event):
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
-        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
+        if "'?'" in lp: unanalyzed_context_table = "<p>Context table for {0} unanalyzed words</p>".format(str(len(lp["'?'"]['tokens'])))+nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
             ##context_size = 2
             ##unanalyzed_addresses = retrieve_addrs(lp, "'?'")
             ##unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_addresses, *take_windows(h, context_size, *unanalyzed_addresses))
