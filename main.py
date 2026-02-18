@@ -522,6 +522,27 @@ def glossary_format(sentence_data, lemmata_data):
             #body.append([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), [exes[e] for e in exes]])
     return header+body+footer
 
+def nu_crib_format(sentence_data, lemmata_data):
+    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "NOD/OPD Entry",  "Broad Analysis", "Terse Translation", "Count", "Addresses"])+"</td>\n</tr>\n"
+    body = ""
+    footer = "</tbody>\n</table>\n"
+    nu_crib = []
+    for lem in lemmata_data: 
+        if lem != "'?'":
+            exes = {}
+            for tok in sorted(lemmata_data[lem]["tokens"]): 
+                for a in lemmata_data[lem]["tokens"][tok]["addr"]: 
+                    targ = sentence_data["original"][a[0]]
+                    if tuple(targ) not in exes:
+                        marked = []
+                        for i in range(len(targ)):
+                            if i == a[1]: marked.append("<mark>"+targ[i]+"</mark>")
+                            else: marked.append(targ[i])
+                        exes[tuple(targ)] = marked
+                    else: exes[tuple(targ)][a[1]] = "<mark>"+targ[a[1]]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
+                body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tiny"], str(lemmata_data[lem]["tokens"][tok]["cnt"])])+'</td>\n<td onclick="toggleRow(this)">'+"(click for examples)"+"</td>\n</tr>\n"
+    return header+body+footer
+
 def crib_format(lemmata_data):
     header = [["Word", "NOD/OPD Entry",  "Broad Analysis", "Terse Translation", "Count", "Addresses"]]
     nu_crib = []
