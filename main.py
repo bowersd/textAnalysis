@@ -605,6 +605,7 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
     footer = "</tbody>\n</table>\n"
     for t in sorted(tokens):
         targets = {x[0]:[] for x in tokens[t]["addr"]}
+        first = True
         for cur_l, cur_w in tokens[t]["addr"]: targets[cur_l].append(cur_w)
         for tar in sorted(targets):
             parent = []
@@ -618,7 +619,10 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
             for j in targets[tar]:
                 parent[j] = "<mark>"+parent[j]+"</mark>"
                 child[0][j] = "<mark>"+child[0][j]+"</mark>"
-            body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(parent)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
+            if first: 
+                body += '<tr class="parent">\n<td>'+t+"</td>\n<td>"+" ".join(parent)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
+                first = False
+            else: body += '<tr class="parent">\n<td>'"</td>\n<td>"+" ".join(parent)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
             body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">\n'+"<pre>\n"+"<br>\n".join([" ".join(x) for x in child])+"</pre>"+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
     return header+body+footer
 
