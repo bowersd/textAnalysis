@@ -847,7 +847,7 @@ def parse_words_expanded(event):
             #    unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
             #context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
             #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
-        output_div.innerHTML = crib_format(lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
+        output_div.innerHTML = nu_crib_format(lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
     elif analysis_mode.value == "frequency": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
