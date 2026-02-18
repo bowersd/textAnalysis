@@ -556,16 +556,11 @@ def frequency_format(lemmata_data):
     header = [["Entry Count", "NOD/OPD Entry", "Word Count", "Actual Word"]]
     nu_cnts = []
     for lem in lemmata_data: #make a neatly sorted list
-        for tok in lemmata_data[lem]["tokens"]:
-            nu_cnts.append([sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]), lem, str(lemmata_data[lem]["tokens"][tok]["cnt"]), tok])
+        if lem != "'?'":
+            for tok in lemmata_data[lem]["tokens"]:
+                nu_cnts.append([sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]), lem, str(lemmata_data[lem]["tokens"][tok]["cnt"]), tok])
     nu_cnts = sorted(sorted(sorted(sorted(nu_cnts, key = lambda x: x[3]), key = lambda x: x[2], reverse = True), key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #alphabetize tokens, then sort tokens by reverse frequency, then alphabetize lemmata, then sort lemmata by reverse frequency
     prev = ""
-    unanalyzed_block = []
-    for i in range(len(nu_cnts)): #move unanalyzed words to end
-        x = nu_cnts.pop(0)
-        if x[1] == "'?'": unanalyzed_block.append(x)
-        else: nu_cnts.append(x)
-    nu_cnts.extend(unanalyzed_block)
     for i in range(len(nu_cnts)): #zap out redundant header information on lines beneath the header, make strings where appropriate, add in lemma links
         nu_cnts[i][0] = str(nu_cnts[i][0])
         nu_cnts[i][2] = str(nu_cnts[i][2])
@@ -600,6 +595,7 @@ def retrieve_addrs(lexical_perspective, *keys):
     return unanalyzed_token_addresses
 
 def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because we are assembling various pieces of analysis information for whole example sentences, and for historical reasons, that is where the information is
+    preamble = "<p>Context table for unanalyzed words:</p>\n"
     header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "Context", "Show/Hide Analysis"])+"</td>\n</tr>\n"
     body = ""
     footer = "</tbody>\n</table>\n"
@@ -624,7 +620,7 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
                 first = False
             else: body += '<tr class="parent">\n<td>'"</td>\n<td>"+" ".join(parent)+"</td>\n"+'<td onclick="toggleRow(this)">'+"(click for analysis)"+"</td></tr>\n" 
             body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">\n'+"<pre>\n"+"<br>\n".join([" ".join(x) for x in child])+"</pre>"+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
-    return header+body+footer
+    return preamble+header+body+footer
 
 def unanalyzed_format(size, addresses, *windows):
     header = [ [""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
@@ -803,7 +799,7 @@ def parse_words_expanded(event):
     elif analysis_mode.value == "glossary": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
-        if "'?'" in lp: unanalyzed_context_table = "<p>Context table for {0} unanalyzed words</p>".format(str(len(lp["'?'"]['tokens'])))+nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
+        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
             #unanalyzed_cnt = 0
             ##context_size = 2
             ##unanalyzed_addresses = retrieve_addrs(lp, "'?'")
@@ -819,7 +815,7 @@ def parse_words_expanded(event):
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
-        if "'?'" in lp: unanalyzed_context_table = "<p>Context table for {0} unanalyzed words</p>".format(str(len(lp["'?'"]['tokens'])))+nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
+        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
             ##context_size = 2
             ##unanalyzed_addresses = retrieve_addrs(lp, "'?'")
             ##unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_addresses, *take_windows(h, context_size, *unanalyzed_addresses))
@@ -832,7 +828,9 @@ def parse_words_expanded(event):
         output_div.innerHTML = crib_format(lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
     elif analysis_mode.value == "frequency": 
         lp = lexical_perspective(h)
-        output_div.innerHTML = frequency_format(lp)+vital_statistics_format(vital_statistics)
+        unanalyzed_context_table = ""
+        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
+        output_div.innerHTML = frequency_format(lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
