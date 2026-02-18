@@ -529,8 +529,8 @@ def nu_crib_format(sentence_data, lemmata_data):
     nu_crib = []
     for lem in lemmata_data: 
         if lem != "'?'":
-            exes = {}
             for tok in sorted(lemmata_data[lem]["tokens"]): 
+                exes = {}
                 for a in lemmata_data[lem]["tokens"][tok]["addr"]: 
                     targ = sentence_data["original"][a[0]]
                     if tuple(targ) not in exes:
@@ -541,6 +541,7 @@ def nu_crib_format(sentence_data, lemmata_data):
                         exes[tuple(targ)] = marked
                     else: exes[tuple(targ)][a[1]] = "<mark>"+targ[a[1]]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
                 body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tiny"], str(lemmata_data[lem]["tokens"][tok]["cnt"])])+'</td>\n<td onclick="toggleRow(this)">'+"(click for examples)"+"</td>\n</tr>\n"
+                body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="5">'+"<br>\n".join([" ".join(exes[e]) for e in exes])+'</td>\n</tr>\n'
     return header+body+footer
 
 def crib_format(lemmata_data):
