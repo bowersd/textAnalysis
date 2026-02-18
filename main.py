@@ -815,16 +815,16 @@ def parse_words_expanded(event):
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
-        if "'?'" in lp:
+        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
+            ##context_size = 2
+            ##unanalyzed_addresses = retrieve_addrs(lp, "'?'")
+            ##unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_addresses, *take_windows(h, context_size, *unanalyzed_addresses))
             #context_size = 2
-            #unanalyzed_addresses = retrieve_addrs(lp, "'?'")
-            #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_addresses, *take_windows(h, context_size, *unanalyzed_addresses))
-            context_size = 2
-            unanalyzed_token_addresses = []
-            for t in sorted(lp["'?'"]["tokens"]):
-                unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
-            context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
-            unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
+            #unanalyzed_token_addresses = []
+            #for t in sorted(lp["'?'"]["tokens"]):
+            #    unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
+            #context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
+            #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
         output_div.innerHTML = crib_format(lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
     elif analysis_mode.value == "frequency": 
         lp = lexical_perspective(h)
