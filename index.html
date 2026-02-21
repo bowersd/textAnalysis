@@ -6,6 +6,9 @@ layout: default
 <html lang="en">
 <head>
     <title>{{ page.title }}</title>
+    <base href="/textAnalysis/">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="assets/js/exportTables.js"></script>
 
     <!-- Recommended meta tags -->
     <meta charset="UTF-8">
@@ -95,7 +98,7 @@ layout: default
     <p>Warning: the most current version of the relaxed analyzer here is too large to host on this site (as of 8/21/2024). The version posted here is a slimmed down older version and may behave differently</p>
     <div id="outputRelaxed"></div>
     -->
-    <script type="py" src="./main.py" config="./pyscript.toml" async></script>
+    <script type="py" src="main.py" config="./pyscript.toml" async></script>
 
     <!--
     <p>Click on the "Browse..." button, and select a plain text* file. This will be analyzed using the strict analyzer and the analysis will be downloaded to your computer.</p>
@@ -130,6 +133,16 @@ layout: default
         <button type="button">Download</button>
     </a>
     -->
+<div id="export-controls" style="display:none; margin: 12px 0;">
+  <label for="tableSelect">Export:</label>
+  <select id="tableSelect"></select>
+
+  <button type="button" onclick="downloadSelectedTableCSV()">Download CSV</button>
+  <button type="button" onclick="downloadSelectedTableXLSX()">Download XLSX</button>
+
+  <button type="button" onclick="downloadAllTablesCSV()">Download ALL tables (CSV)</button>
+  <button type="button" onclick="downloadAllTablesXLSX()">Download ALL tables (XLSX)</button>
+</div>
     <div></div>
     <hr/>
     <!--
