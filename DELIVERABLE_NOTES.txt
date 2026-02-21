@@ -1,0 +1,51 @@
+DELIVERABLE: Table Export Functionality
+Date: 02/20/2026
+
+Suggested Future Enhancements
+------------------------------
+- Add light UI styling (CSS) to improve usability and visual clarity for non-technical users.
+- Consider grouping export controls into a styled toolbar component for improved discoverability.
+- Optional: minor layout refinements to improve readability when large tables are generated.
+
+Summary
+-------
+Adds CSV and XLSX export functionality for analysis tables generated on the main Analysis page (index.html).
+
+What Was Added
+--------------
+1. Export controls UI beneath generated output tables.
+   - Dropdown to select specific table.
+   - Download selected table (CSV).
+   - Download selected table (XLSX).
+   - Download all tables (CSV).
+   - Download all tables (XLSX).
+
+2. JavaScript export logic (assets/js/exportTables.js).
+   - Converts rendered HTML tables to CSV.
+   - Uses SheetJS (XLSX library) to export tables to .xlsx format.
+   - Automatically detects tables rendered in the #output container.
+   - Export controls are hidden when no tables are present.
+
+3. Post-render refresh hook in main.py.
+   - After PyScript updates the #output div, a JavaScript call refreshes export controls.
+   - Ensures dropdown and buttons reflect currently rendered tables.
+
+Dependencies
+------------
+- SheetJS (xlsx.full.min.js) loaded via CDN in index.html.
+- No changes to analyzer logic or linguistic data processing.
+
+Scope Notes
+-----------
+- No styling or UI redesign included in this deliverable.
+- No changes made to sentences.html or other unrelated pages.
+- No changes made to analysis algorithms.
+- Functionality limited strictly to exporting rendered tables.
+
+Tested
+------
+- Single table export (CSV and XLSX).
+- Multiple table export (CSV and XLSX).
+- Tables generated under different analysis modes.
+
+End of deliverable.
