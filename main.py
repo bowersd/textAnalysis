@@ -23,8 +23,17 @@ import tabulate
 import sentence_complexity as sc
 import opd_links as opd
 import pure_python_tmp_container as pp
+import js
 
 ###functions copied directly/modified from elsewhere in the repo
+
+# Post-render hook: lets standalone exportTables.js bind/refresh controls after innerHTML updates.
+def _after_render():
+    try:
+        js.refreshExportControls()
+    except Exception as e:
+        # Keep app alive even if exportTables.js didn't load
+        print("refreshExportControls unavailable:", e)
 
 def sep_punct(string, drop_punct): #diy tokenization, use nltk?
     if not drop_punct: return "'".join(regex.sub(r"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", r" \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
@@ -856,6 +865,7 @@ def parse_words_expanded(event):
         #        else: revised += nb+'\n'
         #output_div.innerHTML = revised
         output_div.innerHTML = interlinearize(h)+vital_statistics_format(vital_stats)
+        _after_render()
     elif analysis_mode.value == "glossary": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
@@ -872,6 +882,7 @@ def parse_words_expanded(event):
             #context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
             #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
         output_div.innerHTML = glossary_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
+        _after_render()
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
@@ -886,11 +897,13 @@ def parse_words_expanded(event):
             #context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
             #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
         output_div.innerHTML = nu_crib_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
+        _after_render()
     elif analysis_mode.value == "frequency": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
         if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
         output_div.innerHTML = nu_frequency_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
+        _after_render()
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         c_order = ["VTA", "VAIO", "VTI", "VAI", "VII", "(No verbs found)"] #need to specify order in order to sort by count of verb in the relevant category
@@ -910,12 +923,14 @@ def parse_words_expanded(event):
         for x in sorted(categorized["(No verbs found)"], key = lambda y: y[0][-1][0]):
             sectioned.append([" ".join(x[1])])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(vital_stats)
+        _after_render()
     elif analysis_mode.value == "complexity":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
         overall_score = sc.alg_morph_score_rate(*comp_counts)
         sectioned = [["Overall Score (Features per Sentence):",  str(overall_score[2])]]
         for ssp in sorted([x for x in zip(comp_counts, h["original"])], key = lambda y: y[0][-1][0]): sectioned.append([" ".join(ssp[1]), ssp[0][-1][0]])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(vital_stats)
+        _after_render()
     elif analysis_mode.value == "verb_collate":
         faced = sc.interface(pos_regex, *h["m_parse_lo"])
         verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
@@ -929,6 +944,7 @@ def parse_words_expanded(event):
             sectioned.append(["Found these verbs of category {}:".format(c), ""])
             for v in sorted(verbdict[c], key = lambda x: x[1]): sectioned.append([v[0], v[1]])
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(vital_stats)
+        _after_render()
     elif analysis_mode.value in ["triage", "reversed_triage"]:
         recall_errors = []
         for i in range(len(h["original"])):
@@ -951,4 +967,6 @@ def parse_words_expanded(event):
         #forwards = tabulate.tabulate([[[r[0][0], r[0][2]]+r[1], ["", ""]+r[2], ["", ""]+r[3], ["", ""]+r[4], ["", ""]+r[5]] for r in sorted(recall_errors)], headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         forwards = tabulate.tabulate(ordered_recall_errors, headers = ["error", "sentence_no", "left_context", "locus", "right_context"], tablefmt = "html")
         output_div.innerHTML = forwards+vital_statistics_format(vital_stats)
+        _after_render()
+        
            
