@@ -13,7 +13,7 @@ def pos_check(lemma, analyzer, posregex):
     return h
 
 def pos_defaults(*possibilities):
-    order = ("VAI", "VTA", "VII", "VTI", "VAIO", "NA", "NI", "NID", "NAD")
+    order = ("VAI", "VTA", "VII", "VTI", "VAIO", "NA", "NI", "NID", "NAD", "Conj", "Interj", "Num", "Pron", "Ipc", "Qnt", "Adv")
     return order[min([order.index(tag) for tag in possibilities])]
 
 def recreate_number_tags(person, number, prefix):
