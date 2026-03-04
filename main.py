@@ -510,7 +510,7 @@ def lexical_perspective(parsed_data):
 def glossary_format(sentence_data, lemmata_data):
     header = (
         "<table>\n<tbody>\n<tr>\n<td>"
-        + "</td>\n<td>".join(["NOD/OPD Entry", "Part of Speech", "Solution", "Count", "Example Sentence"])
+        + "</td>\n<td>".join(["NOD/OPD Entry", "Part of Speech", "Terse Translation", "Count", "Example Sentence"])
         + "</td>\n</tr>\n"
     )
 
