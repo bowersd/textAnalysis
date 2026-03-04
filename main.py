@@ -25,7 +25,6 @@ import opd_links as opd
 import pure_python_tmp_container as pp
 import js
 
-###functions copied directly/modified from elsewhere in the repo
 
 # Post-render hook: lets standalone exportTables.js bind/refresh controls after innerHTML updates.
 def _after_render():
@@ -35,6 +34,7 @@ def _after_render():
         # Keep app alive even if exportTables.js didn't load
         print("refreshExportControls unavailable:", e)
 
+###functions copied directly/modified from elsewhere in the repo
 def sep_punct(string, drop_punct): #diy tokenization, use nltk?
     if not drop_punct: return "'".join(regex.sub(r"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", r" \g<1> ", string).split("’")) #separate all punc, then replace single quote ’ with '
     return "'".join(regex.sub(r"(\"|“|\(|\)|”|…|:|;|,|\*|\.|\?|!|/)", " ", string).split("’")) #remove all punc, then replace single quote ’ with '
