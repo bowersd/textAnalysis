@@ -672,7 +672,7 @@ def nu_frequency_format(sentence_data, lemmata_data):
         elif new == prev: 
             p[0] = ""
             p[1] = ""
-        body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(p)+'</td>\n<td onclick="toggleRow(this) data-export="{export_sorted_sentences_from_exes([e for e in c])>'+"(click for examples)"+"</td>\n</tr>\n"
+        body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(p)+f'</td>\n<td onclick="toggleRow(this) data-export="{export_sorted_sentences_from_exes([e for e in c])}">'+"(click for examples)"+"</td>\n</tr>\n"
         body += '<tr class="child" style="display: none;">\n'+'<td colspan="5">'+"<br>\n".join([" ".join(c[e]) for e in c])+'</td>\n</tr>\n'
     return header+body+footer
 
