@@ -507,6 +507,38 @@ def lexical_perspective(parsed_data):
                 else: lemmata[parsed_data["lemmata"][i][j]]["tokens"][parsed_data["original"][i][j]]["exe"][tuple(parsed_data["original"][i])] = [j]
     return lemmata
 
+#def glossary_format(sentence_data, lemmata_data):
+#-    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["NOD/OPD Entry", "Part of Speech",  "Terse Translation", "Count", "Show/Hide Examples"])+"</td>\n</tr>\n"
+#     body = ""
+#     footer = "</tbody>\n</table>\n"
+#-    for lem in sorted(lemmata_data): #make a neatly sorted list
+#-        if lem != "'?'":
+#-            lem_cnt = 0 #sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]) #was going to use an accumulator and += in the for loop, but then I wouldn't have this value available for the unanalyzed forms #-> changed my mind, the unanalyzed forms should be handled differently anyway
+#-            exes = {}
+#-            for tok in lemmata_data[lem]["tokens"]:
+#-                lem_cnt += lemmata_data[lem]["tokens"][tok]["cnt"]
+#-                for a in lemmata_data[lem]["tokens"][tok]["addr"]: 
+#-                    targ = sentence_data["original"][a[0]]
+#-                    if tuple(targ) not in exes:
+#-                        marked = []
+#-                        for i in range(len(targ)):
+#-                            if i == a[1]: marked.append("<mark>"+targ[i]+"</mark>")
+#-                            else: marked.append(targ[i])
+#-                        exes[tuple(targ)] = marked
+#-                    else: exes[tuple(targ)][a[1]] = "<mark>"+targ[a[1]]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
+#-            body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt)])+'</td>\n<td onclick="toggleRow(this)">'+"(click for examples)"+"</td>\n</tr>\n"
+#-            body += '<tr class="child" style="display: none;">\n'+'<td></td>\n<td colspan="4">'+"<br>\n".join([" ".join(exes[e]) for e in exes])+'</td>\n</tr>\n'
+#-            #body.append([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), [exes[e] for e in exes]])
+#-    return header+body+footer
+
+def export_sorted_sentences_from_exes(exes: List[tuple]) -> str:
+    #if not exes:
+    #    return ""
+    #first_key = sorted(exes.keys())[0]
+    #s = " ".join(exes[first_key])
+    #return s.replace("<mark>", "").replace("</mark>", "")
+    return "\n".join([" ".join(exe) for exe in sorted(exes)])
+
 def glossary_format(sentence_data, lemmata_data):
     header = (
         "<table>\n<tbody>\n<tr>\n<td>"
@@ -516,27 +548,16 @@ def glossary_format(sentence_data, lemmata_data):
 
     body = ""
     footer = "</tbody>\n</table>\n"
-
-    def export_sentence_from_exes(exes: dict) -> str:
-        if not exes:
-            return ""
-        first_key = sorted(exes.keys())[0]
-        s = " ".join(exes[first_key])
-        return s.replace("<mark>", "").replace("</mark>", "")
-
     for lem in sorted(lemmata_data):
         if lem == "'?'":
             continue
-
         lem_cnt = 0
         exes = {}
-
         for tok in lemmata_data[lem]["tokens"]:
             lem_cnt += lemmata_data[lem]["tokens"][tok]["cnt"]
             for (sent_i, word_i) in lemmata_data[lem]["tokens"][tok]["addr"]:
                 targ = sentence_data["original"][sent_i]
                 key = tuple(targ)
-
                 if key not in exes:
                     exes[key] = [
                         f"<mark>{token}</mark>" if i == word_i else token
@@ -544,10 +565,7 @@ def glossary_format(sentence_data, lemmata_data):
                     ]
                 else:
                     exes[key][word_i] = f"<mark>{targ[word_i]}</mark>"
-
         click_label = "(click for examples)"
-        export_sentence = export_sentence_from_exes(exes)
-
         body += (
             '<tr class="parent">\n<td>'
             + "</td>\n<td>".join([
@@ -556,7 +574,7 @@ def glossary_format(sentence_data, lemmata_data):
                 lemmata_data[lem]["tiny"],
                 str(lem_cnt),
             ])
-            + f'</td>\n<td onclick="toggleRow(this)" data-export="{export_sentence}">{click_label}</td>\n'
+            + f'</td>\n<td onclick="toggleRow(this)" data-export="{export_sorted_sentences_from_exes([e for e in exes])}">{click_label}</td>\n'
             + "</tr>\n"
         )
 
