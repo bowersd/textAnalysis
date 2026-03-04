@@ -531,7 +531,7 @@ def lexical_perspective(parsed_data):
 #-            #body.append([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), [exes[e] for e in exes]])
 #-    return header+body+footer
 
-def export_sorted_sentences_from_exes(exes: List[tuple]) -> str:
+def export_sorted_sentences_from_exes(exes):
     #if not exes:
     #    return ""
     #first_key = sorted(exes.keys())[0]
