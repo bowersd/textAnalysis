@@ -606,7 +606,7 @@ def nu_crib_format(sentence_data, lemmata_data):
                     else: exes[tuple(targ)][a[1]] = "<mark>"+targ[a[1]]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
                 nu_crib.append(([tok, lemmata_data[lem]["link"], lemmata_data[lem]["tokens"][tok]["m_parse_hi"], lemmata_data[lem]["tiny"], str(lemmata_data[lem]["tokens"][tok]["cnt"])], exes)) #DAB 3/4/2026: second element was originally [" ".join(exes[e]) for e in exes], but we need to access the dictionary directly (data-export works on the keys, child works on the values ... NB neither is truly the original sentence, capitalization and punctuation have been stripped out
     for pair in sorted(nu_crib):
-        body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(pair[0])+'</td>\n<td onclick="toggleRow(this)" data-export="{export_sorted_sentences_from_exes([e for e in pair[1]])}">'+"(click for examples)"+"</td>\n</tr>\n"
+        body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(pair[0])+f'</td>\n<td onclick="toggleRow(this)" data-export="{export_sorted_sentences_from_exes([e for e in pair[1]])}">'+"(click for examples)"+"</td>\n</tr>\n"
         body += '<tr class="child" style="display: none;">\n'+'<td colspan="6">'+"<br>\n".join([" ".join(pair[1][e]) for e in pair[1]])+'</td>\n</tr>\n'
     return header+body+footer
 
