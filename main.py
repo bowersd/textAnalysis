@@ -658,7 +658,7 @@ def nu_frequency_format(sentence_data, lemmata_data):
                             else: marked.append(targ[i])
                         exes[tuple(targ)] = marked
                     else: exes[tuple(targ)][a[1]] = "<mark>"+targ[a[1]]+"</mark>" #no risk of double marking because the same index can't correspond to two tokens of a word
-                nu_cnts.append(([sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]), lem, str(lemmata_data[lem]["tokens"][tok]["cnt"]), tok], [" ".join(exes[e]) for e in exes]))
+                nu_cnts.append(([sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]), lem, str(lemmata_data[lem]["tokens"][tok]["cnt"]), tok], exes ))
     nu_cnts = sorted(sorted(sorted(sorted(nu_cnts, key = lambda x: x[0][3]), key = lambda x: x[0][2], reverse = True), key = lambda x: x[0][1]), key = lambda x: x[0][0], reverse = True) #alphabetize tokens, then sort tokens by reverse frequency, then alphabetize lemmata, then sort lemmata by reverse frequency
     prev = ""
     for i in range(len(nu_cnts)): #zap out redundant header information on lines beneath the header, make strings where appropriate, add in lemma links
@@ -672,8 +672,8 @@ def nu_frequency_format(sentence_data, lemmata_data):
         elif new == prev: 
             p[0] = ""
             p[1] = ""
-        body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(p)+'</td>\n<td onclick="toggleRow(this)">'+"(click for examples)"+"</td>\n</tr>\n"
-        body += '<tr class="child" style="display: none;">\n'+'<td colspan="5">'+"<br>\n".join(c)+'</td>\n</tr>\n'
+        body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(p)+'</td>\n<td onclick="toggleRow(this) data-export="{export_sorted_sentences_from_exes([e for e in c])>'+"(click for examples)"+"</td>\n</tr>\n"
+        body += '<tr class="child" style="display: none;">\n'+'<td colspan="5">'+"<br>\n".join([" ".join(c[e]) for e in c])+'</td>\n</tr>\n'
     return header+body+footer
 
 def frequency_format(lemmata_data):
