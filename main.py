@@ -586,7 +586,7 @@ def glossary_format(sentence_data, lemmata_data):
 #-            #body.append([lemmata_data[lem]["link"], lemmata_data[lem]["pos"].strip("'"), lemmata_data[lem]["tiny"], str(lem_cnt), [exes[e] for e in exes]])
 #-    return header+body+footer
 
-def nu_crib_format(sentence_data, lemmata_data):
+def crib_format(sentence_data, lemmata_data):
     header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "NOD/OPD Entry",  "Broad Analysis", "Terse Translation", "Count", "Show/Hide Examples"])+"</td>\n</tr>\n"
     body = ""
     footer = "</tbody>\n</table>\n"
@@ -610,7 +610,7 @@ def nu_crib_format(sentence_data, lemmata_data):
         body += '<tr class="child" style="display: none;">\n'+'<td colspan="6">'+"<br>\n".join([" ".join(pair[1][e]) for e in pair[1]])+'</td>\n</tr>\n'
     return header+body+footer
 
-def nu_frequency_format(sentence_data, lemmata_data):
+def frequency_format(sentence_data, lemmata_data):
     header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Entry Count", "NOD/OPD Entry", "Word Count", "Actual Word", "Show/Hide Examples"])+"</td>\n</tr>\n"
     body = ""
     footer = "</tbody>\n</table>\n"
@@ -654,7 +654,7 @@ def retrieve_addrs(lexical_perspective, *keys):
             unanalyzed_token_addresses.extend(lexical_perspective["'?'"]["tokens"][t]["addr"])
     return unanalyzed_token_addresses
 
-def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because we are assembling various pieces of analysis information for whole example sentences, and for historical reasons, that is where the information is
+def unanalyzed_format(sentence_data, **tokens): #sentence data needed because we are assembling various pieces of analysis information for whole example sentences, and for historical reasons, that is where the information is
     preamble = "<p>Context table for unanalyzed words:</p>\n"
     header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "Context", "Show/Hide Analysis"])+"</td>\n</tr>\n"
     body = ""
@@ -682,38 +682,8 @@ def nu_unanalyzed_format(sentence_data, **tokens): #sentence data needed because
             body += '<tr class="child" style="display: none;">\n<td>'+"<br>\n".join(["Original", "Broad Analysis", "Terse Translation"])+'</td>\n<td colspan="2">\n'+"<pre>\n"+"<br>\n".join([" ".join(x) for x in child])+"</pre>"+"</td>\n</tr>\n" #also want to get the index of the token for highlighting
     return preamble+header+body+footer
 
-def unanalyzed_format(size, addresses, *windows):
-    header = [ [""]+["-{}".format(str(i)) for i in reversed(range(1, size+1))]+["Target"]+["+{}".format(str(i)) for i in range(1, size+1)]]
-    rows = []
-    for i in range(len(addresses)):
-        #gosh it would be nice to print the whole sentence out, with the free translation under it
-        rows.append(["Sentence: {0}, Word: {1}".format(str(addresses[i][0]+1), str(addresses[i][1]+1))]+["" for i in range((size*2)+1)])
-        block = interlinearize_blocks(windows[i])
-        if addresses[i][1] < size: #need to pad left
-            for j in range(len(block)):
-                block[j] = [block[j][0]]+["" for k in range(size-addresses[i][1])]+block[j][1:]
-        span_len = len(block[0][1:])
-        for j in range(len(block)):
-            row = block[j] + ["" for k in range((size*2+1)-span_len)]
-            rows.append(row)
-    for r in header + rows: print(len(r))
-    table = tabulate.tabulate(header + rows, tablefmt='html')
-    revised_table = "\nBelow are {} unanalyzed words in context.\n".format(str(len(addresses)))
-    for line in table.split('\n'): revised_table += undo_html(line)+'\n'
-    return revised_table
-
 def vital_statistics_format(vital_statistics):
-    #if dont_make_rep_count: return "<p>Overall word count: {0}; Analyzed word count: {1} (incl. repetitions/variants); Unanalyzed word count: {3} </p>".format(*[str(x) for x in vital_statistics])
     return "<p>Overall word count: {0}<br>Analyzed word count: {1} ({2} without repetitions/variants)<br>Unanalyzed word count: {3} </p>".format(*[str(x) for x in vital_statistics])
-    #return """
-    #<p>Summary counts:<br></p>
-    #<p style="margin-left: 40px">
-    #    Overall word count: {0}<br>
-    #    Analyzed word count: {1}<br>
-    #    Analyzed unique word count: {2} (excludes repetitions/variants of 'the same word')<br>
-    #    Unanalyzed word count: {3}<br>
-    #</p>
-    #""".format(*[str(x) for x in vital_statistics])
 
 
 def _example_preview(exes: dict):
@@ -855,20 +825,20 @@ def parse_words_expanded(event):
     elif analysis_mode.value == "glossary": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
-        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
+        if "'?'" in lp: unanalyzed_context_table = unanalyzed_format(h, **lp["'?'"]['tokens'])
         output_div.innerHTML = glossary_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
         _after_render()
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
-        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
-        output_div.innerHTML = nu_crib_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
+        if "'?'" in lp: unanalyzed_context_table = unanalyzed_format(h, **lp["'?'"]['tokens'])
+        output_div.innerHTML = crib_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
         _after_render()
     elif analysis_mode.value == "frequency": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
-        if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
-        output_div.innerHTML = nu_frequency_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
+        if "'?'" in lp: unanalyzed_context_table = unanalyzed_format(h, **lp["'?'"]['tokens'])
+        output_div.innerHTML = frequency_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
         _after_render()
     elif analysis_mode.value == "verb_sort":
         comp_counts = sc.alg_morph_counts(*sc.interface(pos_regex, *h["m_parse_lo"]))
