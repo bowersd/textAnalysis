@@ -646,6 +646,29 @@ def frequency_format(sentence_data, lemmata_data):
         body += '<tr class="child" style="display: none;">\n'+'<td colspan="5">'+"<br>\n".join([" ".join(c[e]) for e in c])+'</td>\n</tr>\n'
     return header+body+footer
 
+def verb_collation_format(sentence_data, lemmata_data)
+    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "Broad Analysis", "Show/Hide Examples"])+"</td>\n</tr>\n"
+    body = ""
+    footer = "</tbody>\n</table>\n"
+    verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
+    verbdict = {x:[] for x in verbcats}
+    for lem in lemmata_data:
+        if lemmata_data[lem]["pos"] in verbcats:
+            for t in lemmata_data[lem]["tokens"]:
+                verbdict[lemmata_data[lem]["pos"]].append((t, lemmata_data[lem][t]["m_parse_hi"], lemmata_data[lem][t]["exe"])) 
+    return header+body+footer
+    #verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
+    #verbdict = {x:[] for x in verbcats}
+    #for i in range(len(faced)):
+    #    for j in range(len(faced[i])):
+    #        if faced[i][j]["pos"] in verbdict: 
+    #            if (sentence_data["original"][i][j], sentence_data["m_parse_hi"][i][j]) not in verbdict[faced[i][j]["pos"]]: verbdict[faced[i][j]["pos"]].append((sentence_data["original"][i][j], sentence_data["m_parse_hi"][i][j]))
+    #sectioned = [["Verbs", "Broad Analysis"]]
+    #for c in verbcats:
+    #    sectioned.append(["Found these verbs of category {}:".format(c), ""])
+    #    for v in sorted(verbdict[c], key = lambda x: x[1]): sectioned.append([v[0], v[1]])
+    #output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(vital_stats)
+
 #this is only called in commented out lines
 def retrieve_addrs(lexical_perspective, *keys):
     unanalyzed_token_addresses = []
