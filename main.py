@@ -610,36 +610,6 @@ def nu_crib_format(sentence_data, lemmata_data):
         body += '<tr class="child" style="display: none;">\n'+'<td colspan="6">'+"<br>\n".join([" ".join(pair[1][e]) for e in pair[1]])+'</td>\n</tr>\n'
     return header+body+footer
 
-def crib_format(lemmata_data):
-    header = [["Word", "NOD/OPD Entry",  "Broad Analysis", "Terse Translation", "Count", "Addresses"]]
-    nu_crib = []
-    for lem in lemmata_data: 
-        if lem != "'?'":
-            for tok in lemmata_data[lem]["tokens"]: 
-                addresses = " ".join([".".join([str(c[0]+1), str(c[1]+1)]) for c in lemmata_data[lem]["tokens"][tok]["addr"]])
-                nu_crib.append([
-                    tok, 
-                    lemmata_data[lem]["link"], 
-                    lemmata_data[lem]["tokens"][tok]["m_parse_hi"], 
-                    lemmata_data[lem]["tiny"], 
-                    lemmata_data[lem]["tokens"][tok]["cnt"], 
-                    addresses])
-                #print(tok)
-                #print(lem)
-                #print(addresses)
-                #filler = []
-                #filler.append(tok)
-                #filler.append(lemmata_data[lem]["link"])
-                #filler.append(lemmata_data[lem]["tiny"])
-                #filler.append(lemmata_data[lem]["tokens"][tok]["m_parse_hi"])
-                #filler.append(lemmata_data[lem]["tokens"][tok]["cnt"])
-                #filler.append(addresses)
-                #nu_crib.append(filler)
-    table = tabulate.tabulate(header + sorted(nu_crib), tablefmt='html') #with lemma links instead of lemmas, URLs could be a tie-breaker in sorting instead of lemmas. Such a tie should not happen
-    revised_table = ""
-    for line in table.split('\n'): revised_table += undo_html(line)+'\n'
-    return revised_table
-
 def nu_frequency_format(sentence_data, lemmata_data):
     header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Entry Count", "NOD/OPD Entry", "Word Count", "Actual Word", "Show/Hide Examples"])+"</td>\n</tr>\n"
     body = ""
@@ -675,40 +645,6 @@ def nu_frequency_format(sentence_data, lemmata_data):
         body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(p)+f'</td>\n<td onclick="toggleRow(this) data-export="{export_sorted_sentences_from_exes([e for e in c])}">'+"(click for examples)"+"</td>\n</tr>\n"
         body += '<tr class="child" style="display: none;">\n'+'<td colspan="5">'+"<br>\n".join([" ".join(c[e]) for e in c])+'</td>\n</tr>\n'
     return header+body+footer
-
-def frequency_format(lemmata_data):
-    header = [["Entry Count", "NOD/OPD Entry", "Word Count", "Actual Word"]]
-    nu_cnts = []
-    for lem in lemmata_data: #make a neatly sorted list
-        if lem != "'?'":
-            for tok in lemmata_data[lem]["tokens"]:
-                nu_cnts.append([sum([lemmata_data[lem]["tokens"][x]["cnt"] for x in lemmata_data[lem]["tokens"]]), lem, str(lemmata_data[lem]["tokens"][tok]["cnt"]), tok])
-    nu_cnts = sorted(sorted(sorted(sorted(nu_cnts, key = lambda x: x[3]), key = lambda x: x[2], reverse = True), key = lambda x: x[1]), key = lambda x: x[0], reverse = True) #alphabetize tokens, then sort tokens by reverse frequency, then alphabetize lemmata, then sort lemmata by reverse frequency
-    prev = ""
-    for i in range(len(nu_cnts)): #zap out redundant header information on lines beneath the header, make strings where appropriate, add in lemma links
-        nu_cnts[i][0] = str(nu_cnts[i][0])
-        nu_cnts[i][2] = str(nu_cnts[i][2])
-        new = nu_cnts[i][1]
-        if new != prev: 
-            prev = new
-            nu_cnts[i][1] = lemmata_data[nu_cnts[i][1]]["link"]
-        elif new == prev: 
-            nu_cnts[i][0] = ""
-            nu_cnts[i][1] = ""
-    table = tabulate.tabulate(header + nu_cnts, tablefmt='html')
-    revised_table = ""
-    for line in table.split('\n'): revised_table += undo_html(line)+'\n'
-    return revised_table
-
-def take_windows(sentence_data, size, *addresses):
-    windows = []
-    for a in addresses:
-        w = {}
-        left_edge = 0
-        if a[1]-size > 0: left_edge = a[1]-size
-        for sd in sentence_data: w[sd] = [sentence_data[sd][a[0]][left_edge:a[1]+size+1]]
-        windows.append(w)
-    return windows
 
 #this is only called in commented out lines
 def retrieve_addrs(lexical_perspective, *keys):
@@ -914,56 +850,18 @@ def parse_words_expanded(event):
     analysis_mode = pyscript.document.querySelector("#analysis_mode")
     output_div = pyscript.document.querySelector("#output")
     if analysis_mode.value == "interlinearize":
-        #revised = ""
-        #for i in range(len(h["m_parse_lo"])):
-        #    #lines_out += tabulate.tabulate([
-        #    #    ["Original Material:"] + h["original"][i],
-        #    #    ["Narrow Analysis:"] + h["m_parse_lo"][i], 
-        #    #    ["Broad Analysis:"] + h["m_parse_hi"][i], 
-        #    #    ["NOD Entry:"] + h["lemmata"][i],
-        #    #    ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
-        #    new_batch = tabulate.tabulate([
-        #        ["Original Material:"] + h["original"][i],
-        #        ["Narrow Analysis:"] + h["m_parse_lo"][i], 
-        #        ["Broad Analysis:"] + h["m_parse_hi"][i], 
-        #        ["NOD/OPD Entry:"] + h["lemma_links"][i], 
-        #        ["Terse Translation:"] + h["tinies"][i]], tablefmt='html')
-        #    for nb in new_batch.split('\n'):
-        #        if "NOD/OPD Entry" in nb: revised += undo_html(nb)+'\n'
-        #        else: revised += nb+'\n'
-        #output_div.innerHTML = revised
         output_div.innerHTML = interlinearize(h)+vital_statistics_format(vital_stats)
         _after_render()
     elif analysis_mode.value == "glossary": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
         if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
-            #unanalyzed_cnt = 0
-            ##context_size = 2
-            ##unanalyzed_addresses = retrieve_addrs(lp, "'?'")
-            ##unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_addresses, *take_windows(h, context_size, *unanalyzed_addresses))
-            #context_size = 2
-            #unanalyzed_token_addresses = []
-            #for t in sorted(lp["'?'"]["tokens"]):
-            #    unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
-            #    unanalyzed_cnt += lp["'?'"]["tokens"][t]["cnt"]
-            #context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
-            #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
         output_div.innerHTML = glossary_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
         _after_render()
     elif analysis_mode.value == "crib": 
         lp = lexical_perspective(h)
         unanalyzed_context_table = ""
         if "'?'" in lp: unanalyzed_context_table = nu_unanalyzed_format(h, **lp["'?'"]['tokens'])
-            ##context_size = 2
-            ##unanalyzed_addresses = retrieve_addrs(lp, "'?'")
-            ##unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_addresses, *take_windows(h, context_size, *unanalyzed_addresses))
-            #context_size = 2
-            #unanalyzed_token_addresses = []
-            #for t in sorted(lp["'?'"]["tokens"]):
-            #    unanalyzed_token_addresses.extend(lp["'?'"]["tokens"][t]["addr"])
-            #context_windows = take_windows(h, context_size, *unanalyzed_token_addresses)
-            #unanalyzed_context_table = unanalyzed_format(context_size, unanalyzed_token_addresses, *context_windows)
         output_div.innerHTML = nu_crib_format(h, lp)+unanalyzed_context_table+vital_statistics_format(vital_stats)
         _after_render()
     elif analysis_mode.value == "frequency": 
