@@ -668,7 +668,7 @@ def verb_collation_format(sentence_data, lemmata_data)
                     if i in row[2][e]: marked.append("<mark>"+row[2][i]+"</mark>")
                     else: marked.append(row[2][i])
                 marked_exes.append(" ".join(marked))
-            body += '<tr class="child" style="display: none;">\n'+'<td colspan="3">'+"<br>\n".join(marked_exes))+'</td>\n</tr>\n'
+            body += '<tr class="child" style="display: none;">\n'+'<td colspan="3">'+"<br>\n".join(marked_exes)+'</td>\n</tr>\n'
         h.append(preamble+header+body+footer)
     return "\n".join(h)
     #verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
