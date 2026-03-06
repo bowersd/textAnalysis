@@ -489,7 +489,7 @@ def lexical_perspective(parsed_data):
                             "exe":{tuple(parsed_data["original"][i]):[j]}
                             }},
                     "link":parsed_data["lemma_links"][i][j],
-                    "pos":parsed_data["m_parse_hi"][i][j].split()[0],
+                    "pos":parsed_data["m_parse_hi"][i][j].split()[0].strip("'"),
                     "tiny":parsed_data["tinies"][i][j]
                     }
             elif parsed_data["original"][i][j] not in lemmata[parsed_data["lemmata"][i][j]]["tokens"]: 
