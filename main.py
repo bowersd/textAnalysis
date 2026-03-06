@@ -668,8 +668,8 @@ def verb_collation_format(lemmata_data):
                 print("example", e)
                 marked = []
                 for i in range(len(e)):
-                    if i in row[2][e]: marked.append("<mark>"+row[2][i]+"</mark>")
-                    else: marked.append(row[2][i])
+                    if i in row[2][e]: marked.append("<mark>"+row[2][e][i]+"</mark>")
+                    else: marked.append(row[2][e][i])
                 marked_exes.append(" ".join(marked))
             print("marked examples", marked_exes)
             body += '<tr class="child" style="display: none;">\n'+'<td colspan="3">'+"<br>\n".join(marked_exes)+'</td>\n</tr>\n'
