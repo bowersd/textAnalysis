@@ -647,16 +647,30 @@ def frequency_format(sentence_data, lemmata_data):
     return header+body+footer
 
 def verb_collation_format(sentence_data, lemmata_data)
-    header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "Broad Analysis", "Show/Hide Examples"])+"</td>\n</tr>\n"
-    body = ""
-    footer = "</tbody>\n</table>\n"
-    verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
+    h = []
+    verbcats = ["VII", "VAI", "VAIO", "VTI", "VTA" ]
     verbdict = {x:[] for x in verbcats}
     for lem in lemmata_data:
         if lemmata_data[lem]["pos"] in verbcats:
             for t in lemmata_data[lem]["tokens"]:
                 verbdict[lemmata_data[lem]["pos"]].append((t, lemmata_data[lem][t]["m_parse_hi"], lemmata_data[lem][t]["exe"])) 
-    return header+body+footer
+    for c in verbcats:
+        preamble = "<p>Found these verbs of category {0}:</p>\n".format(c)
+        header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "Broad Analysis", "Show/Hide Examples"])+"</td>\n</tr>\n"
+        body = ""
+        footer = "</tbody>\n</table>\n"
+        for row in sorted(verbdict[c], key = lambda x: x[1]):
+            body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(row[0:2])+f'</td>\n<td onclick="toggleRow(this) data-export="{export_sorted_sentences_from_exes([e for e in row[2]])}">'+"(click for examples)"+"</td>\n</tr>\n"
+            marked_exes = []
+            for e in row[2]:
+                marked = []
+                for i in range(len(e)):
+                    if i in row[2][e]: marked.append("<mark>"+row[2][i]+"</mark>")
+                    else: marked.append(row[2][i])
+                marked_exes.append(" ".join(marked))
+            body += '<tr class="child" style="display: none;">\n'+'<td colspan="3">'+"<br>\n".join(marked_exes))+'</td>\n</tr>\n'
+        h.append(preamble+header+body+footer)
+    return "\n".join(h)
     #verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
     #verbdict = {x:[] for x in verbcats}
     #for i in range(len(faced)):
