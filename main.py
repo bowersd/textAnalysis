@@ -646,7 +646,7 @@ def frequency_format(sentence_data, lemmata_data):
         body += '<tr class="child" style="display: none;">\n'+'<td colspan="5">'+"<br>\n".join([" ".join(c[e]) for e in c])+'</td>\n</tr>\n'
     return header+body+footer
 
-def verb_collation_format(sentence_data, lemmata_data)
+def verb_collation_format(sentence_data, lemmata_data):
     h = []
     verbcats = ["VII", "VAI", "VAIO", "VTI", "VTA" ]
     verbdict = {x:[] for x in verbcats}
