@@ -483,8 +483,8 @@ def lexical_perspective(parsed_data):
                     "tokens":{
                         parsed_data["original"][i][j]: {
                             "cnt":1, 
-                            "m_parse_hi":parsed_data["m_parse_hi"][i][j], 
-                            "m_parse_lo":parsed_data["m_parse_lo"][i][j],
+                            "m_parse_hi":parsed_data["m_parse_hi"][i][j].strip("'"), 
+                            "m_parse_lo":parsed_data["m_parse_lo"][i][j].strip("'"),
                             "addr":[(i,j)],
                             "exe":{tuple(parsed_data["original"][i]):[j]}
                             }},
@@ -547,7 +547,7 @@ def glossary_format(sentence_data, lemmata_data):
             '<tr class="parent">\n<td>'
             + "</td>\n<td>".join([
                 lemmata_data[lem]["link"],
-                lemmata_data[lem]["pos"].strip("'"),
+                lemmata_data[lem]["pos"],
                 lemmata_data[lem]["tiny"],
                 str(lem_cnt),
             ])
