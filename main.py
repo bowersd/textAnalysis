@@ -668,8 +668,8 @@ def verb_collation_format(lemmata_data):
                 print("example", e)
                 marked = []
                 for i in range(len(e)):
-                    if i in row[2][e]: marked.append("<mark>"+row[2][e][i]+"</mark>")
-                    else: marked.append(row[2][e][i])
+                    if i in row[2][e]: marked.append("<mark>"+e[i]+"</mark>")
+                    else: marked.append(e[i])
                 marked_exes.append(" ".join(marked))
             print("marked examples", marked_exes)
             body += '<tr class="child" style="display: none;">\n'+'<td colspan="3">'+"<br>\n".join(marked_exes)+'</td>\n</tr>\n'
@@ -909,19 +909,19 @@ def parse_words_expanded(event):
         output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(vital_stats)
         _after_render()
     elif analysis_mode.value == "verb_collate":
-        faced = sc.interface(pos_regex, *h["m_parse_lo"])
-        verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
-        verbdict = {x:[] for x in verbcats}
-        for i in range(len(faced)):
-            for j in range(len(faced[i])):
-                if faced[i][j]["pos"] in verbdict: 
-                    if (h["original"][i][j], h["m_parse_hi"][i][j]) not in verbdict[faced[i][j]["pos"]]: verbdict[faced[i][j]["pos"]].append((h["original"][i][j], h["m_parse_hi"][i][j]))
-        sectioned = [["Verbs", "Broad Analysis"]]
-        for c in verbcats:
-            sectioned.append(["Found these verbs of category {}:".format(c), ""])
-            for v in sorted(verbdict[c], key = lambda x: x[1]): sectioned.append([v[0], v[1]])
-        output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(vital_stats)
-        #output_div.innerHTML = verb_collation_format(lexical_perspective(h))+vital_statistics_format(vital_stats)
+        #faced = sc.interface(pos_regex, *h["m_parse_lo"])
+        #verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
+        #verbdict = {x:[] for x in verbcats}
+        #for i in range(len(faced)):
+        #    for j in range(len(faced[i])):
+        #        if faced[i][j]["pos"] in verbdict: 
+        #            if (h["original"][i][j], h["m_parse_hi"][i][j]) not in verbdict[faced[i][j]["pos"]]: verbdict[faced[i][j]["pos"]].append((h["original"][i][j], h["m_parse_hi"][i][j]))
+        #sectioned = [["Verbs", "Broad Analysis"]]
+        #for c in verbcats:
+        #    sectioned.append(["Found these verbs of category {}:".format(c), ""])
+        #    for v in sorted(verbdict[c], key = lambda x: x[1]): sectioned.append([v[0], v[1]])
+        #output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(vital_stats)
+        output_div.innerHTML = verb_collation_format(lexical_perspective(h))+vital_statistics_format(vital_stats)
         _after_render()
     elif analysis_mode.value in ["triage", "reversed_triage"]:
         recall_errors = []
