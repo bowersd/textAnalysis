@@ -651,10 +651,8 @@ def verb_collation_format(lemmata_data):
     verbcats = ["VII", "VAI", "VAIO", "VTI", "VTA" ]
     verbdict = {x:[] for x in verbcats}
     for lem in lemmata_data:
-        print("pos", lemmata_data[lem]["pos"])
         if lemmata_data[lem]["pos"] in verbcats:
             for t in lemmata_data[lem]["tokens"]:
-                print("row",(t, lemmata_data[lem]["tokens"][t]["m_parse_hi"], lemmata_data[lem]["tokens"][t]["exe"]))
                 verbdict[lemmata_data[lem]["pos"]].append((t, lemmata_data[lem]["tokens"][t]["m_parse_hi"], lemmata_data[lem]["tokens"][t]["exe"])) 
     for c in verbcats:
         preamble = "<p>Found these verbs of category {0}:</p>\n".format(c)
@@ -665,27 +663,14 @@ def verb_collation_format(lemmata_data):
             body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(row[0:2])+f'</td>\n<td onclick="toggleRow(this) data-export="{export_sorted_sentences_from_exes([e for e in row[2]])}">'+"(click for examples)"+"</td>\n</tr>\n"
             marked_exes = []
             for e in row[2]:
-                print("example", e)
                 marked = []
                 for i in range(len(e)):
                     if i in row[2][e]: marked.append("<mark>"+e[i]+"</mark>")
                     else: marked.append(e[i])
                 marked_exes.append(" ".join(marked))
-            print("marked examples", marked_exes)
             body += '<tr class="child" style="display: none;">\n'+'<td colspan="3">'+"<br>\n".join(marked_exes)+'</td>\n</tr>\n'
         h.append(preamble+header+body+footer)
     return "\n".join(h)
-    #verbcats = ["VAI", "VTA", "VII", "VAIO", "VTI"]
-    #verbdict = {x:[] for x in verbcats}
-    #for i in range(len(faced)):
-    #    for j in range(len(faced[i])):
-    #        if faced[i][j]["pos"] in verbdict: 
-    #            if (sentence_data["original"][i][j], sentence_data["m_parse_hi"][i][j]) not in verbdict[faced[i][j]["pos"]]: verbdict[faced[i][j]["pos"]].append((sentence_data["original"][i][j], sentence_data["m_parse_hi"][i][j]))
-    #sectioned = [["Verbs", "Broad Analysis"]]
-    #for c in verbcats:
-    #    sectioned.append(["Found these verbs of category {}:".format(c), ""])
-    #    for v in sorted(verbdict[c], key = lambda x: x[1]): sectioned.append([v[0], v[1]])
-    #output_div.innerHTML = tabulate.tabulate(sectioned, tablefmt="html")+vital_statistics_format(vital_stats)
 
 #this is only called in commented out lines
 def retrieve_addrs(lexical_perspective, *keys):
