@@ -642,7 +642,7 @@ def frequency_format(sentence_data, lemmata_data):
         elif new == prev: 
             p[0] = ""
             p[1] = ""
-        body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(p)+f'</td>\n<td onclick="toggleRow(this) data-export="{export_sorted_sentences_from_exes([e for e in c])}">'+"(click for examples)"+"</td>\n</tr>\n"
+        body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(p)+f'</td>\n<td onclick="toggleRow(this)" data-export="{export_sorted_sentences_from_exes([e for e in c])}">'+"(click for examples)"+"</td>\n</tr>\n"
         body += '<tr class="child" style="display: none;">\n'+'<td colspan="5">'+"<br>\n".join([" ".join(c[e]) for e in c])+'</td>\n</tr>\n'
     return header+body+footer
 
@@ -660,7 +660,7 @@ def verb_collation_format(lemmata_data):
         body = ""
         footer = "</tbody>\n</table>\n"
         for row in sorted(verbdict[c], key = lambda x: x[1]):
-            body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(row[0:2])+f'</td>\n<td onclick="toggleRow(this) data-export="{export_sorted_sentences_from_exes([e for e in row[2]])}">'+"(click for examples)"+"</td>\n</tr>\n"
+            body += '<tr class="parent">\n'+"<td>"+"</td>\n<td>".join(row[0:2])+f'</td>\n<td onclick="toggleRow(this)" data-export="{export_sorted_sentences_from_exes([e for e in row[2]])}">'+"(click for examples)"+"</td>\n</tr>\n"
             marked_exes = []
             for e in row[2]:
                 marked = []
