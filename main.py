@@ -654,8 +654,8 @@ def verb_collation_format(lemmata_data):
         if lemmata_data[lem]["pos"] in verbcats:
             for t in lemmata_data[lem]["tokens"]:
                 verbdict[lemmata_data[lem]["pos"]].append((t, lemmata_data[lem]["tokens"][t]["m_parse_hi"], lemmata_data[lem]["tokens"][t]["exe"])) 
-    for c in verbcats:
-        preamble = "<p>Found these verbs of category {0}:</p>\n".format(c)
+    for j, c in enumerate(verbcats):
+        preamble = "<p>Table {1}: Found these verbs of category {0}:</p>\n".format(c, str(j+1))
         header = "<table>\n<tbody>\n<tr>\n<td>"+"</td>\n<td>".join(["Word", "Broad Analysis", "Show/Hide Examples"])+"</td>\n</tr>\n"
         body = ""
         footer = "</tbody>\n</table>\n"
