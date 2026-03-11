@@ -36,7 +36,6 @@ def _after_render():
         # Keep app alive even if exportTables.js didn't load
         print("refreshExportControls unavailable:", e)
 
-###functions copied directly/modified from elsewhere in the repo
 ###functions and constants for doing things within the web page
 #constants
 
