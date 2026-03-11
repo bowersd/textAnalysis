@@ -23,6 +23,7 @@ import tabulate
 import sentence_complexity as sc
 import opd_links as opd
 import pure_python_tmp_container as pp
+import pure_python_analysis as ppa
 import js
 
 
@@ -754,7 +755,7 @@ def parse_words_expanded(event):
     parses = {}
     model_credit = {} #as of aug 2025, only using this data to allow correct formatting of western (OPD-based) lemmata urls vs eastern (NOD-based) lemmata. It could be nice to flag misspelled words either to indicate less certainty or to encourage spelling improvement
     for i in range(len(analyzers)):
-        analyzed = pp.parse_pyhfst(analyzers[i], *to_analyze)
+        analyzed = ppa.parse_pyhfst(analyzers[i], *to_analyze)
         to_analyze = []
         for w in analyzed:
             if analyzed[w][0][0].endswith('+?') and i+1 < len(analyzers): to_analyze.append(w)
@@ -795,10 +796,10 @@ def parse_words_expanded(event):
         for i in range(len(local)):
             if model_credit[sep_punct(line, True).split()[i]] == "./morphophonology_analyze_border_lakes.hfstol": 
                 lem = extract_lemma(local[i], ciw_pos_regex_opd)
-                pos = pp.extract_pos(local[i], ciw_pos_regex_opd)
+                pos = ppa.extract_pos(local[i], ciw_pos_regex_opd)
                 lemms.append(lem)
                 #populate hi
-                if regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+pp.formatted(interpret_ciw(local[i], ciw_pos_regex_model))+"'")
+                if regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'"+ppa.formatted(interpret_ciw(local[i], ciw_pos_regex_model))+"'")
                 if not regex.search("({0})(.*({0}))?".format(ciw_pos_regex_model), local[i]): his.append("'?'")
                 #populate lem
                 if (lem, pos) in opd_manual_links: lem_links.append(opd.wrap_opd_url(opd_manual_links[(lem, pos)], lem)) 
@@ -810,7 +811,7 @@ def parse_words_expanded(event):
                 lemms.append(lem)
                 lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
                 #populate hi
-                if analysis_dict(local[i]): his.append("'"+pp.formatted(interpret(analysis_dict(local[i])))+"'")
+                if analysis_dict(local[i]): his.append("'"+ppa.formatted(interpret(analysis_dict(local[i])))+"'")
                 if not analysis_dict(local[i]): his.append("'?'")
         h["m_parse_hi"].append(his) 
         h["lemmata"].append(lemms) 

@@ -19,4 +19,5 @@ packages = [
 "/textAnalysis/sentence_complexity.py" = "./sentence_complexity.py"
 "/textAnalysis/opd_links.py" = "./opd_links.py"
 "/textAnalysis/pure_python_tmp_container.py" = "./pure_python_tmp_container.py"
+"/textAnalysis/pure_python_analysis.py" = "./pure_python_analysis.py"
 "/textAnalysis/opd_manual_links.csv" = "./opd_manual_links.csv"
