@@ -1,7 +1,7 @@
 import pure_python_analysis as ppa
 #import sys
 #import parse
-#todo: iteratives, participles, preverbs, warnings/hints, shift to conjunct for prtdub, required initial change, vocative singulars, [123]+Ext|Nul+
+#todo: derivation, iteratives, participles, preverbs, warnings/hints, shift to conjunct for prtdub, required initial change, vocative singulars, [123]+Ext|Nul+
 
 def pos_check(lemma, analyzer, posregex):
     test = ppa.parse_pyhfst(analyzer, lemma)
