@@ -20,4 +20,5 @@ packages = [
 "/textAnalysis/opd_links.py" = "./opd_links.py"
 "/textAnalysis/pure_python_basic_text.py" = "./pure_python_basic_text.py"
 "/textAnalysis/pure_python_analysis.py" = "./pure_python_analysis.py"
+"/textAnalysis/pure_python_glossing.py" = "./pure_python_glossing.py"
 "/textAnalysis/opd_manual_links.csv" = "./opd_manual_links.csv"

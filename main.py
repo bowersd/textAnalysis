@@ -24,6 +24,7 @@ import sentence_complexity as sc
 import opd_links as opd
 import pure_python_basic_text as ppbt
 import pure_python_analysis as ppa
+import pure_python_glossing as ppg
 import js
 
 
@@ -36,68 +37,6 @@ def _after_render():
         print("refreshExportControls unavailable:", e)
 
 ###functions copied directly/modified from elsewhere in the repo
-def pad(*lists_of_strings):
-    #lists must be same length!
-    nu_lists = []
-    padlen = []
-    for i in range(len(lists_of_strings)):
-        nu = []
-        for j in range(len(lists_of_strings[i])): #pad items in list to max length at their indices
-            if not i: padlen.append(max([len(lists_of_strings[k][j]) for k in range(len(lists_of_strings))]))
-            nu.append(lists_of_strings[i][j]+" "*(padlen[j]-len(lists_of_strings[i][j])))
-        nu_lists.append(nu)
-    return nu_lists
-
-def mk_glossing_dict(*strings):
-    gd = {}
-    for s in strings:
-        chunked = s.split("\t")
-        if chunked[0] not in gd: gd[chunked[0]] = chunked[1]
-        #else: gd[chunked[0]] = gd[chunked[0]] + " HOMOPHONE DEFINITION>" + chunked[1]
-        else: gd[chunked[0]] = gd[chunked[0]] + "/" + chunked[1]
-    return gd
-
-
-def retrieve_glosses(*lemmata, **gloss_dict):
-    tinies = []
-    for l in lemmata:
-        try: gloss = gloss_dict[l]
-        except KeyError:
-            if "+" in l: 
-                gloss = "-".join(retrieve_glosses(*l.split("+"), **gloss_dict, ))
-            else: gloss = "?"
-        tinies.append(gloss)
-    return tinies
-
-def wrap_glosses(*glosses):
-    return ["'"+g+"'" for g in glosses]
-
-def wrap_nod_entry_url(*lemmata, **nishIDdict):
-    h = []
-    #gotta split up the complex lemmata somehow
-    for l in lemmata:
-        tot = []
-        #if '+' in l: tot.append(l)
-        cmpd = l.split("+") #this can't do what is intended (split the IDs of conjuncts), and it is crashes when the word is not found in the dictionary
-        for c in cmpd:
-        #else:
-            #cmpd = regex.split("(?<=n)-(?=n)", nishIDdict[l]) #this can't do what is intended (split the IDs of conjuncts), and it is crashes when the word is not found in the dictionary
-            #for c in cmpd:
-            try: 
-                alts = regex.split("(?<=n)/(?=n)", nishIDdict[c])
-                for i in range(len(alts)):
-                    if i == 0: 
-                        tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}' target='_blank' rel='noopener noreferrer'>{1}</a>".format(alts[i], c))
-                    else: tot.append('<a href='+"'https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/{0}' target='_blank' rel='noopener noreferrer'>(alt {1})</a>".format(alts[i], str(i)))
-            except KeyError: tot.append(c)
-        h.append(" ".join(tot))
-    return h
-    #return ['<a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/entry/'+ln[1]+'">'+ln[0]+'</a>' for ln in lemmataAndNishIDs]
-
-def undo_html(string):
-    return regex.sub('&\#x27;', "'", regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
-    #return regex.sub('&quot;', '', regex.sub('&lt;', '<', regex.sub('&gt;', '>', string)))
-
 def extract_lemma(string, pos_regex):
     """pull lemma out of string"""
     #lemma is always followed by Part Of Speech regex
@@ -357,8 +296,8 @@ def analysis_dict(analysis_string):
 ###functions and constants for doing things within the web page
 #constants
 
-gdict = mk_glossing_dict(*ppbt.readin("./copilot_otw2eng.txt"))
-iddict = mk_glossing_dict(*ppbt.readin("./otw2nishID.txt"))
+gdict = ppg.mk_glossing_dict(*ppbt.readin("./copilot_otw2eng.txt"))
+iddict = ppg.mk_glossing_dict(*ppbt.readin("./otw2nishID.txt"))
 pos_regex = "".join(ppbt.readin("./pos_regex.txt"))
 ciw_pos_regex_opd = "".join(ppbt.readin("./ciw_pos_regex_opd.txt"))
 ciw_pos_regex_model = "".join(ppbt.readin("./ciw_pos_regex_model.txt"))
@@ -389,7 +328,7 @@ def interlinearize(parsed_data):
                 ] 
         lines_out = tabulate.tabulate(table, tablefmt='html')
         for lo in lines_out.split('\n'): #a loop isn't really necessary here
-            if "NOD/OPD Entry" in lo: revised += undo_html(lo)+'\n'
+            if "NOD/OPD Entry" in lo: revised += ppg.undo_html(lo)+'\n'
             #elif "Terse Translation" in lo and parsed_data["english"]: 
             #    revised += lo+'\n'
             #    transline = '<tr><td>Free Translation</td><td colspan="{0}">'+"'{1}'<td></tr>\n"
@@ -415,7 +354,7 @@ def interlinearize_format(*blocks):
     for b in blocks:
         lines_out = tabulate.tabulate(b, tablefmt='html')
         for lo in lines_out.split('\n'): #a loop isn't really necessary here
-            if "NOD/OPD Entry" in lo: revised += undo_html(lo)+'\n'
+            if "NOD/OPD Entry" in lo: revised += ppg.undo_html(lo)+'\n'
             else: revised += lo+'\n'
     return revised
 
@@ -773,7 +712,7 @@ def parse_words_expanded(event):
                 lem = extract_lemma(local[i], pos_regex)
                 if not lem: lem = "'?'"
                 lemms.append(lem)
-                lem_links.append(wrap_nod_entry_url(lem, **iddict)[0])
+                lem_links.append(ppg.wrap_nod_entry_url(lem, **iddict)[0])
                 #populate hi
                 if analysis_dict(local[i]): his.append("'"+ppa.formatted(interpret(analysis_dict(local[i])))+"'")
                 if not analysis_dict(local[i]): his.append("'?'")
@@ -781,7 +720,7 @@ def parse_words_expanded(event):
         h["lemmata"].append(lemms) 
         h["lemma_links"].append(lem_links) 
         #h["lemmata"].append([x if x else "?" for x in lemmatize(pos_regex, *local)]) 
-        h["tinies"].append(wrap_glosses(*retrieve_glosses(*h["lemmata"][-1], **gdict)))
+        h["tinies"].append(ppg.wrap_glosses(*ppg.retrieve_glosses(*h["lemmata"][-1], **gdict)))
         #tinies = []
         #for l in h["lemmata"][-1]:
         #    try: gloss = gdict[l]
