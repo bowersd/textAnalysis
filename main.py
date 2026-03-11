@@ -36,31 +36,6 @@ def _after_render():
         print("refreshExportControls unavailable:", e)
 
 ###functions copied directly/modified from elsewhere in the repo
-
-def min_morphs(*msds):
-    """the length of the shortest morphosyntactic description"""
-    return min([m[0].count("+") for m in msds])
-
-def score_edits(typed, *generated):
-    h = {}
-    for g in generated:
-        alnd = needleman.align(typed, g[0], -1, needleman.make_id_matrix(typed, g[0]))
-        h[g[0]] = sum([alnd[0][i] != alnd[1][i] for i in range(len(alnd[0]))])
-    return h
-
-def disambiguate2(scored, *msds):
-    """get the first of the lowest scored"""
-    lowest = min([scored[x] for x in scored])
-    return min([i for i in range(len(msds)) if scored[msds[i][0]] == lowest])
-
-def disambiguate(target, f, *msds): 
-    """the earliest of the morphosyntactic descriptions|f(m) = target"""
-    #prioritizing order allows weighting schemes to be exploited
-    for i in range(len(msds)):
-        if f(msds[i]) == target: return i
-    #first default
-    return 0
-
 def pad(*lists_of_strings):
     #lists must be same length!
     nu_lists = []
@@ -765,12 +740,6 @@ def parse_words_expanded(event):
             else: 
                 parses[w] = analyzed[w]
                 model_credit[w] = analyzers[i]
-    #analyzed = pp.parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *sep_punct(freeNish.lower(), True).split())
-    ##m_parse_lo = [analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0] for w in sep_punct(freeNish.lower(), True).split()]
-    #re_analysis = []
-    #for w in sep_punct(freeNish.lower(), True).split():
-    #    if analyzed[w][0][0].endswith('+?'): re_analysis.append(w)
-    #re_analyzed = pp.parse_pyhfst("./morphophonologyclitics_analyze.hfstol", *re_analysis)
     h = {"original":[],
          "m_parse_lo":[],
          "m_parse_hi":[],
@@ -781,9 +750,7 @@ def parse_words_expanded(event):
          }
     for line in freeNish.lower().split('\n'):
         local = []
-        for w in ppbt.sep_punct(line, True).split(): local.append(parses[w][disambiguate(min_morphs(*parses[w]), min_morphs, *parses[w])][0])
-            #if analyzed[w][0][0].endswith('+?'): local.append(re_analyzed[w][disambiguate(min_morphs(*re_analyzed[w]), min_morphs, *re_analyzed[w])][0])
-            #else: local.append(analyzed[w][disambiguate(min_morphs(*analyzed[w]), min_morphs, *analyzed[w])][0])
+        for w in ppbt.sep_punct(line, True).split(): local.append(parses[w][ppa.disambiguate(ppa.min_morphs(*parses[w]), ppa.min_morphs, *parses[w])][0])
         h["original"].append(ppbt.sep_punct(line, True).split())
         h["m_parse_lo"].append(local)
         #h["m_parse_hi"].append(["'"+pp.formatted(interpret(analysis_dict(x)))+"'" if analysis_dict(x) else "'?'" for x in local])
