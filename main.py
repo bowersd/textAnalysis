@@ -22,7 +22,7 @@ import pyhfst
 import tabulate
 import sentence_complexity as sc
 import opd_links as opd
-import pure_python_tmp_container as pp
+import pure_python_basic_text as ppbt
 import pure_python_analysis as ppa
 import js
 
@@ -385,13 +385,13 @@ def analysis_dict(analysis_string):
 ###functions and constants for doing things within the web page
 #constants
 
-gdict = mk_glossing_dict(*pp.readin("./copilot_otw2eng.txt"))
-iddict = mk_glossing_dict(*pp.readin("./otw2nishID.txt"))
-pos_regex = "".join(pp.readin("./pos_regex.txt"))
-ciw_pos_regex_opd = "".join(pp.readin("./ciw_pos_regex_opd.txt"))
-ciw_pos_regex_model = "".join(pp.readin("./ciw_pos_regex_model.txt"))
+gdict = mk_glossing_dict(*ppbt.readin("./copilot_otw2eng.txt"))
+iddict = mk_glossing_dict(*ppbt.readin("./otw2nishID.txt"))
+pos_regex = "".join(ppbt.readin("./pos_regex.txt"))
+ciw_pos_regex_opd = "".join(ppbt.readin("./ciw_pos_regex_opd.txt"))
+ciw_pos_regex_model = "".join(ppbt.readin("./ciw_pos_regex_model.txt"))
 opd_manual_links = {}
-for row in pp.readin("opd_manual_links.csv"):
+for row in ppbt.readin("opd_manual_links.csv"):
     tabbed = row.split(',')
     opd_manual_links[(tabbed[0], tabbed[1])] = tabbed[2]
 

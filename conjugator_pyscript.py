@@ -10,11 +10,11 @@ import asyncio
 import tabulate
 import pyhfst
 import conjugator
-import pure_python_tmp_container as pp
+import pure_python_basic_text as ppbt
 import trie
 import nish_trie
 
-pos_regex = "".join(pp.readin("./pos_regex.txt"))
+pos_regex = "".join(ppbt.readin("./pos_regex.txt"))
 analyzer = "./morphophonologyclitics_analyze_mcor_spelling.hfstol"
 
 
