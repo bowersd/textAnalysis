@@ -11,6 +11,7 @@ import tabulate
 import pyhfst
 import conjugator
 import pure_python_basic_text as ppbt
+import pure_python_analysis as ppa
 import trie
 import nish_trie
 
