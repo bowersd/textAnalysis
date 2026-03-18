@@ -10,4 +10,5 @@ packages = ["regex"]
 "/textAnalysis/conjugator.py" = "./conjugator.py"
 "/textAnalysis/trie.py" = "./trie.py"
 "/textAnalysis/nish_trie.py" = "./nish_trie.py"
+"/textAnalysis/nish_pos.py" = "./nish_pos.py"
 
