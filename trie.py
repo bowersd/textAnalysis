@@ -1,4 +1,21 @@
 
+def initialize_diacritic(*lexicon_w_diacritics):
+    r = []
+    dia = {}
+    for w in lexicon:
+        state = ""
+        for c in w[0]:
+            cand = (state, (c, state+c))
+            state += c
+            if cand not in r: r.append(cand)
+        final = (state, (),)
+        if final not in dia: 
+            dia[final] = [w[1]]
+        elif w[1] not in dia[final][1]:
+            dia[final].append(w[1])
+    r.extend([(f, tuple(dia[f])) for f in dia])
+    return tuple(r)
+
 def initialize(*lexicon):
     r = {}
     for w in lexicon:
@@ -108,10 +125,14 @@ def main(chars, rules, pred_func):
     else: return pred_func(chars, s[0], rules)
 
 if __name__ == "__main__":
-    print("initialization")
-    init = initialize("cat", "call", "cats", "can", "con", "dog")
-    print("probabilistic")
-    p = probabilize(init)
-    for x in p: print(x)
-    print("prediction for 'ca'")
-    print(predict('ca', traverse('ca', p)[0], p))
+    d = []
+    with open("nish_words_pos.txt") as data_in: 
+        for line in data_in: d.append(tuple(data_in.split('\t')))
+    print(initialize_diacritic(*d))
+    #print("initialization")
+    #init = initialize("cat", "call", "cats", "can", "con", "dog")
+    #print("probabilistic")
+    #p = probabilize(init)
+    #for x in p: print(x)
+    #print("prediction for 'ca'")
+    #print(predict('ca', traverse('ca', p)[0], p))
