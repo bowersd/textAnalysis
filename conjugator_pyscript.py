@@ -22,23 +22,39 @@ analyzer = "./morphophonologyclitics_analyze_mcor_spelling.hfstol"
 def user_prediction(event):
     chars = pyscript.document.querySelector("#lemma").value
     if len(chars) > 3:
+        cap_var = [chars[0].upper()+chars[1:], chars[0].lower()+chars[1:]]
         predict_div = pyscript.document.querySelector("#prediction_output")
         tries = [nish_trie.nod_entries_lemma_freq, nish_trie.nod_entries]
         guessers = [trie.predict_short, trie.predict]
         guesses = []
-        pairs = ((0, 0), (0, 1), (1, 1)) #not searching for a short prediction with frequency less trie
-        try:
-            for p in pairs:
-                guess = trie.main(chars, tries[p[0]], guessers[p[1]])
-                if guess not in guesses: guesses.append(guess)
-            predict_div.innerHTML = "Suggested words: {0}".format(", ".join(guesses))
-        except IndexError:
-            if chars != chars.lower():
-                for p in pairs:
-                    guess = trie.main(chars.lower(), tries[p[0]], guessers[p[1]])
-                    if guess not in guesses: guesses.append(guess)
-                predict_div.innerHTML = "Suggested words: {0}".format(", ".join(guesses))
-            else: predict_div.innerHTML = '<i>I cannot search the Nishnaabemwin Online Dictionary starting from the first letter that has been written. This must be fixed in order to move on to other steps.<br> One possibility is that the first letter is one of "q, r, u, f, l, x, v".</i>'
+        pairs = [(1, 1), (0, 1), (0, 0)] #not searching for a short prediction with frequency less trie
+        strikes = 0
+        mismatch = False
+        mismatch_msg = {0:"", 1:"<br><i>One or more suggested words has different capitalization that what you entered! Make sure  you have the capitalization that you intended</i>"}
+        for c in cap_var:
+            try:
+                while pairs and len(guesses) < 4:
+                    p = pairs.pop()
+                    guess = trie.main(c, tries[p[0]], guessers[p[1]])
+                    if guess not in guesses: 
+                        guesses.append(guess)
+                        if c != chars: mismatch = True
+            except IndexError:
+                strikes += 1
+        if strikes < 2: predict_div.innerHTML = "Suggested words: {0}{1}".format(", ".join(guesses), mismatch_msg[int(mismatch)])
+        else: predict_div.innerHTML = '<i>I cannot search the Nishnaabemwin Online Dictionary starting from the first letter that has been written. This must be fixed in order to move on to other steps.<br> One possibility is that the first letter is one of "q, r, u, f, l, x, v".</i>'
+        #try:
+        #    for p in pairs:
+        #        guess = trie.main(chars, tries[p[0]], guessers[p[1]])
+        #        if guess not in guesses: guesses.append(guess)
+        #    predict_div.innerHTML = "Suggested words: {0}".format(", ".join(guesses))
+        #except IndexError:
+        #    if chars != chars.lower():
+        #        for p in pairs:
+        #            guess = trie.main(chars.lower(), tries[p[0]], guessers[p[1]])
+        #            if guess not in guesses: guesses.append(guess)
+        #        predict_div.innerHTML = "Suggested words: {0}".format(", ".join(guesses))
+        #    else: predict_div.innerHTML = '<i>I cannot search the Nishnaabemwin Online Dictionary starting from the first letter that has been written. This must be fixed in order to move on to other steps.<br> One possibility is that the first letter is one of "q, r, u, f, l, x, v".</i>'
 
 def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
