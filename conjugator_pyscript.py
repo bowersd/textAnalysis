@@ -62,49 +62,49 @@ def user_pos_confirmation(event):
     diffs = [lemma[0].upper()+lemma[1:], lemma[0].lower()+lemma[1:]]
     if (lemma not in nish_pos.lexicon) and any([d in nish_pos.lexicon for d in diffs]):
         lemma = [d for d in diffs if d != lemma][0]
-    try:
+    if lemma in nish_pos.lexicon:
         possible = nish_pos.lexicon[lemma]
-    except KeyError:confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
     #possible = conjugator.pos_check(lemma, analyzer, pos_regex)
-    explanation = {
-            "VAI": {
-                "short": "a verb describing an action done by somebody, like <i>nmadbi</i> 's/he sits'", 
-                "technical": "The technical description for this is a <b>Verb</b> with only an <b>Animate</b> subject, i.e. it is <b>Intransitive</b> (<b>VAI</b> for short)."}, 
-            "VTI": {
-                "short": "a verb describing an action done to something, like <i>naadin</i> 's/he fetches it'", 
-                "technical": "The technical description for this is a <b>Verb</b> that is <b>Transitive</b>, with an (<b>Inanimate</b>) object (<b>VTI</b> for short)."}, 
-            "VTA": {
-                "short": "a verb describing an action done to somebody, like <i>naagaa'aan</i> 's/he delays him/her'",
-                "technical": "The technical description for this is a <b>Verb</b> that is <b>Transitive</b>, with an (<b>Animate</b>) object (<b>VTA</b> for short)."}, 
-            "VII": {
-                "short": "a verb describing an action done by something, like <i>biidaasin</i> 'it sails here'",
-                "technical": "The technical description for this is a <b>Verb</b> with only an <b>Inanimate</b> subject, i.e. it is <b>Intransitive</b> (<b>VII</b> for short)."},
-            "VAIO": {
-                "short": "a verb describing an action done by somebody to another thing (not to you/me/us, etc), like <i>noopon</i> 's/he takes it for lunch'",
-                "technical": "The technical description for this is a <b>Verb</b> with an <b>Animate</b> subject, and it generally works like <b>Intransitive</b> verbs, except it has an <b>Object</b> (<b>VAIO</b> for short).<br>If that seems a bit weird, you are right. Strictly speaking, these verbs are a bit hard to classify with the transitivity/animacy system. They have an object, so they are transitive. Unlike VTAs and VTIs, the object is not restricted to being animate or inanimate. The only restriction for the object is that it must be third person (he/she/it). The only animacy restriction for these verbs is that the subject be animate, which makes them like VAIs (and VTIs). These verbs resemble VAIs in other ways, so this category is just exceptional, and contradictory 'transitive intransitive verb'."}, 
-            "NI": {
-                "short": "a noun describing something that isn't alive, like <i>jiimaan</i> 'boat'",
-                "technical":"The technical description for this is a <b>Noun</b> that is <b>Inanimate</b> (<b>NI</b> for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."}, 
-            "NA": {
-                "short": "a noun describing somebody that is alive, like <i>aamoo</i> 'bee'",
-                "technical": "The technical description for this is a <b>Noun</b> that is <b>Animate</b> (<b>NA</b> for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
-                   "NID": {
-                       "short": "a noun describing something that isn't alive and must be 'owned', like <i>ndahiim</i> 'my thing'",
-                       "technical":"The technical description for this is a <b>Noun</b> that is <b>Inanimate</b> and <b>Dependent</b> (<b>NID</b> for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
-                   "NAD": {
-                       "short": "a noun describing somebody that is alive and must be 'owned', like <i>noos</i> 'my father'",
-                       "technical": "The technical description for this is a <b>Noun</b> that is <b>Animate</b> and <b>Dependent</b> (<b>NAD</b> for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
-                   }
-    #if possible[0] == None and lemma != lemma.lower(): 
-    #    confirmation = "I don't know the word '{0}'... Perhaps there is a capitalization mismatch? Check this by seeing if there are suggested words immediately above.".format(lemma)
-    if possible[0] == None: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
-    elif not (possible[0][:2] in ("NI", "NA") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
-    elif len(possible) == 1: 
-        generic = "verb"
-        if possible[0][0] == "N": generic = "noun"
-        confirmation = "The word <i>{0}</i> is a {2}. You can go straight to the {2} section in step 2. If you want more information about the specific word type, read on.<br>Specifically, <i>{0}</i> is {3}.<br>{4}<br>Be careful to follow any specific instructions for {1}s in step 2.".format(lemma, possible[0], generic, explanation[possible[0]]["short"], explanation[possible[0]]["technical"])
-    else:
-        confirmation = "The word '{0}' could be one of several dictionary entries. The types of words that it could be are {2}, or {3}.<br>If you do nothing, {1} will be chosen.<br>If you want to specify another part of speech, pick a new value from the menu in step 1.1.<br>Whatever type of word you select, in step 2 the tool will only pay attention to the options you select for that type of word. If these abbreviations are unfamiliar, some further explanation is below:<br>{4}.".format(lemma, conjugator.pos_defaults(*[x for x in possible if x in ("VAI", "VTA", "VTI", "VII", "VAIO", "NA", "NAD", "NI", "NID")]), ", ".join([explanation[p]["short"]+" (abbreviated as <b>"+p+"</b>)" for p in possible[:-1]]), explanation[possible[-1]]["short"]+" ("+possible[-1]+")", "<br>".join([p+": "+explanation[p]["technical"] for p in possible]))
+        explanation = {
+                "VAI": {
+                    "short": "a verb describing an action done by somebody, like <i>nmadbi</i> 's/he sits'", 
+                    "technical": "The technical description for this is a <b>Verb</b> with only an <b>Animate</b> subject, i.e. it is <b>Intransitive</b> (<b>VAI</b> for short)."}, 
+                "VTI": {
+                    "short": "a verb describing an action done to something, like <i>naadin</i> 's/he fetches it'", 
+                    "technical": "The technical description for this is a <b>Verb</b> that is <b>Transitive</b>, with an (<b>Inanimate</b>) object (<b>VTI</b> for short)."}, 
+                "VTA": {
+                    "short": "a verb describing an action done to somebody, like <i>naagaa'aan</i> 's/he delays him/her'",
+                    "technical": "The technical description for this is a <b>Verb</b> that is <b>Transitive</b>, with an (<b>Animate</b>) object (<b>VTA</b> for short)."}, 
+                "VII": {
+                    "short": "a verb describing an action done by something, like <i>biidaasin</i> 'it sails here'",
+                    "technical": "The technical description for this is a <b>Verb</b> with only an <b>Inanimate</b> subject, i.e. it is <b>Intransitive</b> (<b>VII</b> for short)."},
+                "VAIO": {
+                    "short": "a verb describing an action done by somebody to another thing (not to you/me/us, etc), like <i>noopon</i> 's/he takes it for lunch'",
+                    "technical": "The technical description for this is a <b>Verb</b> with an <b>Animate</b> subject, and it generally works like <b>Intransitive</b> verbs, except it has an <b>Object</b> (<b>VAIO</b> for short).<br>If that seems a bit weird, you are right. Strictly speaking, these verbs are a bit hard to classify with the transitivity/animacy system. They have an object, so they are transitive. Unlike VTAs and VTIs, the object is not restricted to being animate or inanimate. The only restriction for the object is that it must be third person (he/she/it). The only animacy restriction for these verbs is that the subject be animate, which makes them like VAIs (and VTIs). These verbs resemble VAIs in other ways, so this category is just exceptional, and contradictory 'transitive intransitive verb'."}, 
+                "NI": {
+                    "short": "a noun describing something that isn't alive, like <i>jiimaan</i> 'boat'",
+                    "technical":"The technical description for this is a <b>Noun</b> that is <b>Inanimate</b> (<b>NI</b> for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."}, 
+                "NA": {
+                    "short": "a noun describing somebody that is alive, like <i>aamoo</i> 'bee'",
+                    "technical": "The technical description for this is a <b>Noun</b> that is <b>Animate</b> (<b>NA</b> for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
+                       "NID": {
+                           "short": "a noun describing something that isn't alive and must be 'owned', like <i>ndahiim</i> 'my thing'",
+                           "technical":"The technical description for this is a <b>Noun</b> that is <b>Inanimate</b> and <b>Dependent</b> (<b>NID</b> for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
+                       "NAD": {
+                           "short": "a noun describing somebody that is alive and must be 'owned', like <i>noos</i> 'my father'",
+                           "technical": "The technical description for this is a <b>Noun</b> that is <b>Animate</b> and <b>Dependent</b> (<b>NAD</b> for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
+                       }
+        #if possible[0] == None and lemma != lemma.lower(): 
+        #    confirmation = "I don't know the word '{0}'... Perhaps there is a capitalization mismatch? Check this by seeing if there are suggested words immediately above.".format(lemma)
+        #if possible[0] == None: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
+        if not (possible[0][:2] in ("NI", "NA") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
+        elif len(possible) == 1: 
+            generic = "verb"
+            if possible[0][0] == "N": generic = "noun"
+            confirmation = "The word <i>{0}</i> is a {2}. You can go straight to the {2} section in step 2. If you want more information about the specific word type, read on.<br>Specifically, <i>{0}</i> is {3}.<br>{4}<br>Be careful to follow any specific instructions for {1}s in step 2.".format(lemma, possible[0], generic, explanation[possible[0]]["short"], explanation[possible[0]]["technical"])
+        else:
+            confirmation = "The word '{0}' could be one of several dictionary entries. The types of words that it could be are {2}, or {3}.<br>If you do nothing, {1} will be chosen.<br>If you want to specify another part of speech, pick a new value from the menu in step 1.1.<br>Whatever type of word you select, in step 2 the tool will only pay attention to the options you select for that type of word. If these abbreviations are unfamiliar, some further explanation is below:<br>{4}.".format(lemma, conjugator.pos_defaults(*[x for x in possible if x in ("VAI", "VTA", "VTI", "VII", "VAIO", "NA", "NAD", "NI", "NID")]), ", ".join([explanation[p]["short"]+" (abbreviated as <b>"+p+"</b>)" for p in possible[:-1]]), explanation[possible[-1]]["short"]+" ("+possible[-1]+")", "<br>".join([p+": "+explanation[p]["technical"] for p in possible]))
+    if lemma not in nish_pos.lexicon: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
     confirmation_div = pyscript.document.querySelector("#confirmation_output")
     confirmation_div.innerHTML = confirmation
     
@@ -130,7 +130,14 @@ def inflect_word(event):
     ###shunting around the values from the html form
     form_values["Lemma"] = pyscript.document.querySelector("#lemma").value
     form_values["Head"] = pyscript.document.querySelector("#POS").value
-    if form_values["Head"] == "def": form_values["Head"] = conjugator.pos_defaults(*conjugator.pos_check(form_values["Lemma"], analyzer, pos_regex))
+    if form_values["Head"] == "def": 
+        if form_values["Lemma"] in nish_pos.lexicon: form_values["Head"] = conjugator.pos_defaults(*nish_pos.lexicon[form_values["Lemma"]])
+        else: 
+            diffs = [form_values["Lemma"][0].upper()+form_values["Lemma"][1:], form_values["Lemma"][0].lower()+form_values["Lemma"][1:]] 
+            if any([d in nish_pos.lexicon for d in diffs]): 
+                form_values["Head"] = conjugator.pos_defaults(*nish_pos.lexicon[[d for d in diffs if d != form_values["Lemma"]][0]])
+            else: raise ValueError("The word you have asked to conjugate is not in my version of the dictionary")
+    #if form_values["Head"] == "def": form_values["Head"] = conjugator.pos_defaults(*conjugator.pos_check(form_values["Lemma"], analyzer, pos_regex))
     form_values["DerivChain"] = form_values["Head"] #not really available option now, but needed for post processing
     form_values["Order"] = pyscript.document.querySelector("#Order").value
     prt = pyscript.document.querySelector("#ModePrt:checked")
