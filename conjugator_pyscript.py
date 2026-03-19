@@ -14,6 +14,7 @@ import pure_python_basic_text as ppbt
 import pure_python_analysis as ppa
 import trie
 import nish_trie
+import nish_pos
 
 pos_regex = "".join(ppbt.readin("./pos_regex.txt"))
 analyzer = "./morphophonologyclitics_analyze_mcor_spelling.hfstol"
@@ -58,7 +59,13 @@ def user_prediction(event):
 
 def user_pos_confirmation(event):
     lemma = pyscript.document.querySelector("#lemma").value
-    possible = conjugator.pos_check(lemma, analyzer, pos_regex)
+    diffs = [lemma[0].upper()+lemma[1:], lemma[0].lower()+lemma[1:]]
+    if (lemma not in nish_pos.lexicon) and any([d in nish_pos.lexicon for d in diffs]):
+        lemma = [d for d in diffs if d != lemma][0]
+    try:
+        possible = nish_pos.lexicon[lemma]
+    except KeyError:confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
+    #possible = conjugator.pos_check(lemma, analyzer, pos_regex)
     explanation = {
             "VAI": {
                 "short": "a verb describing an action done by somebody, like <i>nmadbi</i> 's/he sits'", 
@@ -88,9 +95,9 @@ def user_pos_confirmation(event):
                        "short": "a noun describing somebody that is alive and must be 'owned', like <i>noos</i> 'my father'",
                        "technical": "The technical description for this is a <b>Noun</b> that is <b>Animate</b> and <b>Dependent</b> (<b>NAD</b> for short). There are exceptional cases where a noun that is not obviously living is classified as an NA, so the best check is to see if the plural ends in -n (only NIs do this) or -g/-k (only NAs do this)."},
                    }
-    if possible[0] == None and lemma != lemma.lower(): 
-        confirmation = "I don't know the word '{0}'... Perhaps there is a capitalization mismatch? Check this by seeing if there are suggested words immediately above.".format(lemma)
-    elif possible[0] == None: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
+    #if possible[0] == None and lemma != lemma.lower(): 
+    #    confirmation = "I don't know the word '{0}'... Perhaps there is a capitalization mismatch? Check this by seeing if there are suggested words immediately above.".format(lemma)
+    if possible[0] == None: confirmation = "I don't know the word '{0}'... Can you double check the Nishnaabemwin Online Dictionary?".format(lemma)
     elif not (possible[0][:2] in ("NI", "NA") or possible[0].startswith("V")): confirmation = "The word '{0}' is not a noun or a verb, so it can't be conjugated.".format(lemma)
     elif len(possible) == 1: 
         generic = "verb"
