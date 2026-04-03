@@ -21,7 +21,7 @@ layout: default
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
-    <p>1. Find a word that you want to work with from the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a>.<br> 
+    <p><b>1.</b> Find a word that you want to work with from the <a href="https://dictionary.nishnaabemwin.atlas-ling.ca/#/help" target="_blank" rel="noopener noreferrer"><i>Nishnaabemwin Online Dictionary</i></a>.<br> 
     Be sure to take note of its part of speech, which is listed right after the word. For instance, <i>nmadbi</i> 'sit' has the part of speech 'VAI', while <i>waabmaa</i> 'see someone' has the part of speech 'VTA'. This information will help you understand some of the options below. See the <a href="./explanation.html" target="_blank" rel="noopener noreferrer">code explanation page</a> for more discussion.<br>
     When you are ready, click "Confirm", to double check the word and get further guidance.
     </p>
@@ -33,7 +33,7 @@ layout: default
         <div id="prediction_output"></div>
         <div id="confirmation_output"></div>
     </p>
-    <p>1.1 If there are several possible parts of speech for your word, select the one you want below. You may also select your desired spelling pattern.</p>
+    <p><b>1.1</b> If there are several possible parts of speech for your word, select the one you want below. You may also select your desired spelling pattern.</p>
     <p style="margin-left: 40px">
     <label for="POS">Part of Speech (in this menu and elsewhere, somebody='smb.', something='sth.'):</label>
     <select id="POS">
@@ -59,7 +59,7 @@ layout: default
     </p>
     <!--<input type="text" size="4" id="pos" placeholder = "VTA">-->
     <hr/>
-    <p>2. Select how you want to conjugate the word.</p>
+    <p><b>2.</b> Select how you want to conjugate the word.</p>
     <p>Noun options:</p>
     <p style="margin-left: 40px">
     <label for="Possessor">Who owns it (possessor):</label>
@@ -169,7 +169,7 @@ layout: default
     <label for="Del">"Do it in a bit" (delayed imperative, cannot be combined with -sii form option)</label>
     </p>
     <hr/>
-    <p>3. Click this button:
+    <p><b>3.</b> Click this button:
     <button py-click="inflect_word">Do it!</button>
     </p>
     <script type="py" src="./conjugator_pyscript.py" config="./conjugator.toml" async></script>
