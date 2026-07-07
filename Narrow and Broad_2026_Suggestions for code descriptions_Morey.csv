@@ -1,0 +1,68 @@
+Code,Technical definition ,Informal explanation ,KM suggestions ,Notes 
+0,Inanimate ,"It, a thing ","One of two groups of nouns, often ‘it’ or ‘a thing.’ ",
+0Obv,Inanimate obviative,"the other thing, disambiguation of inanimate third persons","Noun inflection marking third person inanimate thing as backgrounding to differentiate between two inanimate third person things. For example, “The keys on the table.” The table is backgrounded compared to the focus placed on the keys. ",
+0Pl,Inanimate plural,many things,"Two or more things belonging to the inanimate group of nouns, might be “many things.” ",
+1,First person,I/me/my…,"Pronouns referring to oneself. For example, “I teach high school. My students emailed me.” ",
+1Pl,First person plural,we/us/our,"Not inclusive (lister is removed from the group reference) for example, “We (not you) saw you at the park. You told us to visit the pond.” ",
+2,Second person,you/your…,"Pronouns referring to the listener (singular). For example, “You are a student. Where do you go to school?” ",
+21Pl,First person plural inclusive,we/us/our ... including you,"The listener is included. For example, “Let’s tell someone what we just found.” The speaker is including the listener as part of the plural pronoun ‘we.’",
+2Pl,Second person plural,youse/youse's,"Second person addressing a group (two or more) like forms in some varieties of English such as: youse/youse’s, y’all/y’all’s, you all/ you all’s, or you guys/you guy’s. ",
+3,Third person,he/she/him/her/his/hers,,
+3Obv,Third person obviative,"the other one, disambiguation of third persons",The third person that is not the focus is marked with inflection and becomes backgrounded to keep the attention on the (proximate) focused third person.,
+3ObvPlus,Third person further obviative,"the other _other_ one, disambiguation of third persons","A way of distinguishing third persons. The noun (3rd person) with the obviative suffix is backgrounded. Further obviation makes another third person even further defocused. For example, “It was my dog that chased the squirrel past some kids!” The dog is most prominent, then the squirrel, and then the kids. ",
+3PL,Third person plural,they/them/theirs,"Pronouns referring to the third person for example, “The students were nervous. They had a test. I saw them cramming before class.” ",
+Adv,Adverbial ,,"There are time adverbs like ‘waabang,’ ‘tomorrow;’ location or place adverbs like ‘shaweyhiing,’ ‘alongside;’ manner adverbs like ‘gaawaanh,’ ‘barley;’ and circumstance adverbs like ‘njida,’ ‘on purpose,’ among other types of adverbs (Valentine 2001:138-147). ","This might be wrong… I had trouble finding a section on ""adverbials"" in the grammar and wasn't sure if it's just one thing in Nishnaabemwin. "
+AntPass,Antipassive verb,"A X's (B), aka actor-focus","The agent or “doer” of the verb stays the subject, but something like an object is removed (a semantic role is decreased), for example, “I ate (lunch).” An example is ‘gnaadmaage,’ ‘you (sg.) help’ (Valentine 2001:687). ",
+Benef,Benefactive,A X's for B,"Someone benefits from an action similar to “for” in English as in, “We carried boxes for her.” A X's for B.",
+Caus,Causative,A makes B do X,"Inflection indicating A makes B do X. For example, “I made my dog sit before getting a treat.” ",
+Cnj,Conjunct order,"used in questions, relative clauses, if-then statements","Verbal inflection for forming questions (who, what, etc., but not yes/no questions), if-then statements, and relative clauses (Valentine 2001:158). Verbs in conjunct order are subordinate to (supports) a main verb. Similar to, “I asked her to help me,” where ‘help’ supports the main verb ‘asked’ in English. ",
+Con,Contemptive,dislike/disdain/teasing for X,"The contemptive gives nouns a degraded sense, expressing a speaker’s negative attitude towards them. Valentine gives examples like, “of no great value,” “just an ordinary,” and “I shouldn’t buy that crummy table” (Valentine 2001:185). ",
+Conj,Conjunction,"and, or, but","Elements like ‘and,’ ‘or,’ and ‘but,’ that link phrases or words.  ‘Miinwa’ and ‘gye’ are two common examples of coordinating words (coordinative adverbs) (Valentine 2001:996).",
+Del,Delayed,do it in a while!',A delayed command such as “do it in a while!” Valentine gives the example of “Bi-zhaakan!” meaning “Come over later!” (Valentine 2001:222). ,
+Dim,Diminutive,cuteness/smallness/affection for X,"A noun ending that adds a quality of cuteness, smallness, and affection for X, like saying “doggie.” It can also mean a juvenile animal. Some nouns with a semantic meaning of smallness, like ‘baby,’ are always diminutive (Valentine 2001:494).",
+DistLoc,Distributed locative,around/among X,"A noun ending indicating location that could mean ‘around,’ ‘among,’ or ‘in.’ The distributed locative is most often with “mass nouns,” things like ‘grass,’ ‘woods,’ ‘water,’ and ‘sand,’ that aren’t counted and are already plural in their meaning. For example, “His daughters are playing in the sand” (Valentine 2001:746).",
+Dub,Dubitative,speaker doubts/needs to infer X,"Verbal inflection expressing the speaker is uncertain or doubts/questions something, like saying “supposedly” in English. ",
+Else,,,Leaving this note that you might have wanted to just pull this,
+Ext,Extended,the person prefix ni/gi/o- has been extended with da/di/doo,Modern forms of the person prefixes that emerged from language change. Modern speakers lengthened (extended) forms to further define forms them as they were reduced by (syncope) the deletion of vowels. ,
+Imp,Imperative order,used in commands,"The imperative order is verb inflection used for commands which includes immediate, delayed, and negative (prohibitive) commands. ",
+Interj,Interjection,ah!,"Short one or two (adverbial particles) expressions conveying emotion, like ‘aa!,’ ‘come on!,’ ‘aambe!,’ ‘let’s (go)!,’ and ‘enh,’ ‘yes’ (Valentine 2001:149). ",
+Ipc,Independent particle,the 'other' category,,
+Itr,Iterative,marks repeated actions,"Verbal inflection added to verbs in the conjunct order to express a repeated action. Could also be the relative preverb meaning ‘so many times,’ as in, ‘Endso-dgoshing,’ ‘every time he comes’ (Valentine 2001:801-802). ",
+Loc,Locative,on/in/at X,"A noun ending indicating location (locative) that could mean ‘on,’ ‘in,’ or ‘at.’ ",
+NA,Animate Noun,a being or remarkable thing,"One of the two groups (classes) of nouns. Generally, all living things are animate, but this does not always hold. Animacy has to be memorized by learners, as it is grammatical (agreement) and part of a speaker’s intuition of their first language.",
+NAD,Dependent Animate Noun,"an obligatorily posessed being or remarkable thing
+Flagging the typo (possessed) ","Some nouns must have a person possessing them (marked by a person prefix). These nouns are often body parts and family (kinship terms). It is not possible to just say ‘grandma,’ it has to be in relation to someone. For example, ‘nzid,’ ‘my foot’ (Valentine 2001:106). ",
+NI,Inanimate Noun,a thing,"One of the two groups (classes) of nouns, “it” or “a thing.” Inanimate nouns are generally non-living things, but this doesn’t always hold. Animacy has to be memorized by learners as it is grammatical (agreement) and part of a speaker’s intuition of their first language.",
+NID,Dependent Inanimate Noun,"an obligatorily posessed 
+Flagging the typo (possessed)",Some nouns must have a person possessing them (marked by a person prefix). Dependent nouns are most often animate nouns like kinship terms. Some clothing items are among the examples of dependent inanimate nouns (Valentine 2001:113). ,
+Neg,Negative,not,"Negation (meaning not) is formed by two parts that work together, ‘gaawiin’ (sometimes gaa wii or just gaa) and ‘-sii’ (sometimes siiw), like in “Gaa wii dash gii-naagzisii,” ‘he was not visible’ (Valentine 2001:838). The pair becomes ‘gego’ (or gegwa) and ‘-ke(n)’ (or -siidaa) when giving a negative command like “don’t do X!”                      ",
+Nul,,,,
+Num,Numeral,"1,2,3…","For example, ‘bezhig,’ ‘one,’ ‘niizh,’ ‘two,’ and nswi,’ ‘three,’ (Valentine 2001:874). ",
+Obv,Obviation,a way of distinguishing third persons from each other where the third person with obviation morphology becomes defocused or backgrounded. The obviated third person is backgrounded/less central,"A way of distinguishing more than one third persons. One noun becomes backgrounded when it takes the “obviative” suffix. For example, “It was the child that watched some geese.” The child would be (proximate), making them the focus, while “some geese” would have the “obviate” suffix that backgrounds them.   ",
+ObvPlus,Futher obviative    flagging typo ,a way of distinguishing backgrounded third persons from each other,"A way of distinguishing third persons from each other where one noun gets marked obviative with a suffix, causing it to become defocused or backgrounded. Further obviation makes another third person even less focused/further backgrounded. ",Small typo in the technical definition 
+PV/CCNJ,Changed conjunct form,,"The first vowel of verb complex (will show up on tense if present) in the conjunct order (inflection forming dependent verbs) shows a predictable vowel change. For example, the past tense ‘gii’ becomes ‘gaa’ (Valentine 2001:511).  ",
+Pass,Passive verb,A is X'ed,"Removes focus from the “doer” of an action like in the examples, “The sink was cleaned” and ‘gii-miinaawag,’ ‘were given’ (Valentine 2001:688). ",
+Pcp,Participle,relative clauses: they who X,"Similar to (gerund) “-ing forms” in English. Participles are (relative clauses) noun and verb like and made from any verb. For example, ‘nebaajig,’ ‘those who are sleeping’ (Valentine 2001:138). ",
+Pej,Pejorative,stronger dislike for X,"A negative sense expressing strong dislike. Such as, “this darn cat” in the example, “Gegeti gsha maaba gaazhgenzhish! Mii miin waa naami-nbaagan gii-oo-miiziid!” meaning “Oh this darn cat! It’s gone and pooped under the bed again!” (Valentine 2001: 190).",
+Pl,Plural,more than one,"Two or more. For example, ‘mtig,’ ‘tree’ and ‘mtigoog,’ ‘trees’ or ‘doopwin,’ ‘table’ (Valentine 2001:115). ",
+Poss,Verb of possession,A owns B,"“Have” or “own.” For example, ‘dayi,’ ‘have a dog’ and ‘niijaansi,’ ‘have a child’ (Valentine 2001:416).",
+Pron,Pronoun,I/you/that…,"Refers to someone or something, I/you/he/she/it/that/we/us/they/them. Also points to something with words like “this” or “these.” ",
+Prt,Preterit,"in verbs: X has been completed, in nouns: X is broken/deceased/no longer","On verbs in the independent order, the suffix has a temporal effect (something was completed). Verbs in the conjunct get a counterfactual (if something hypothetically were to happen) reading (Rice 2023). On nouns it can mean past possession; most often is used to mark someone who has passed away like saying, “my late friend.”  ","APA Citation: Rice, M. (2023). The preterit mode and counterfactuality in Ojibwe. In M. Macaulay & M. Noodin (Eds.), Papers of the Fifty-Second Algonquian Conference (pp. 263–283). Michigan State University Press"
+Qnt,Quantifier,some/all/most…,"Words like ‘aanind,’ ‘some,’ ‘gkina (kina),’ ‘all,’ and ‘niibwa (niibna),’ ‘many’ (Valentine 2001:144). ",
+Rcpl,Reciprocal,A and B do X to each other, “They helped each other.” A and B do X to each other.,
+Redup,Reduplication,"indicates intensity, repetitiveness, plurality of subject, etc.","Reduplication expresses things like intensity, repetitiveness, and plurality. For example, “It was cold cold!” (shows intensity) and “I saw mosquitos, mosquitos, mosquitos, everywhere” (shows plurality of the subject).",
+Rflx,Reflexive,A does X to A's self,"A reflexive is an action that is done to oneself. Reflexives are only formed by transitive animate verbs. A does X to A's self. For example, ‘Gziingwehdizo,’ ‘Wash/wipe one’s face’ (Valentine 2001: 408).",
+ThmPas,,,,
+VAI,Intransitive Verb with an Animate subject,description/action of a being or remarkable thing,"Verbs with animate subjects, for example, “s/he reads”. A few examples include, ‘zhiitaa,’ ‘ready,’ ‘dnizo,’ ‘cook there,’ and ‘oodetoo,’ ‘go to town’ (Valentine 2001:231).",
+VAIO,Intransitive' Verb with an Animate subject and an Object,action performed by a being or remarkable thing to something else,"Verbs with animate subject and an optional object. For example, “s/he reads (a book).”
+ 
+A few examples include, ‘miigwed,’ ‘give (object) away,’ ‘nokaazod,’ ‘use (something),’ and ‘gwid,’ ‘wear (something)’ (Valentine 2001:242). ",
+VII,Intransitive Verb with an Inanimate subject,description/action of a thing,"Verbs with an inanimate subject. For example, weather verbs, often “it is/be”. 
+
+A few examples include, ‘wiisgan,’ ‘be bitter,’ ‘mchaa,’ ‘be big,’ and ‘yaamgad,’ ‘be (there)’ (Valentine 2001:253). ",
+VTA,Transitive Verb with an Animate object,action performed on a being or remarkable thing,"Verbs with an animate object. For example, “Fred sees him” or ‘nwaabmaa,’ ‘I see her/him’ (Valentine 2001:279). ",
+VTI,Transitive Verb with an Inanimate object,action performed on a thing,"Verbs with an inanimate object. For example, “Fred sees it”.
+
+A few examples include, ‘nda-bzindaan,’ ‘I listen to inanimate noun,’ ‘nda-mnwendaan,’ ‘I like IN,’ and ‘ndebwetaan,’ ‘I believe IN’ (Valentine 2001:309). ",
+Voc,Vocative,calling to X,"Set of terms for directly addressing/calling out to someone. A few examples include, ‘noose!,’ ‘my father,’ ‘ndoodoo!,’ ‘my mother,’ and ‘biidii!,’ ‘chicks (chicken and turkeys)’ (Valentine 2001:205-206). ",
+X,,,,
