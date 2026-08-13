@@ -1,0 +1,11 @@
+﻿Code,Technical definition ,Informal explanation ,KM suggestions ,Notes 
+(Focus:3Obv),Relative clause focused on 3Obv,"Roughly in English: the one that the dog chased, or, the one that chased the dog",,"These seem helpful without adding more to them. I might try to find some examples in Rand's grammar in Nishnaabemwin, but otherwise I don't want to over complicate the descriptions. "
+(Focus:3Pl),Relative clause focused on 3Pl,"In English: they that bit the man, or, they that the man bit.",,See note above
+(Focus:O),Relative clause focused on the object,In English: the dogs that the man bit,,See note above
+(Focus:S),Relative clause focused on the subject,In English: the man that bit the dogs,,See note above
+O,Object,,"The thing that is impacted or acted on by the “doer” of the verb. For example, ‘toast’ as the object of ‘stealing’ in “The dog stole my toast.” ",
+PA,A pre-adverb,,"Pre-adverbs (part of speech) attach at the front of adverbs to express the extent or degree of something. For example, ‘gchi-’ ‘very’ and ‘mno-’ ‘good, well, sufficient’ (Valentine 2001:170).  ",
+PN,A prenoun,,"Prenouns (part of speech) come before nouns to express things like color such as ‘mkade-,’ ‘black.’ They can express numbers like ‘ngo-,’ ‘one’ and location such as ‘naami-,’ ‘under.’ Other prenouns are descriptive for example, ‘gete-,’ ‘old’ or ‘waawye-,’ ‘round’ (Valentine 2001:152-153). ",
+PV,A preverb,,"Preverbs (part of speech) come before verbs to express things like tense (future and past) and the kind of desire, possibility, and obligation that modals like ‘should,’ ‘could,’ and ‘would’ express in English (Valentine 2001: 154). ",
+Pos,Possessor,,"The possessor is the thing that has ownership of something. Nouns like family and body parts have to be possessed (marked by a person prefix) so they are in relation to someone. My/mine, yours, his/hers/its/theirs are possessive pronouns. ",
+S,Subject,,"The “doer” of a verb. For example, ‘dog’ in “The dog slept” or ‘kettle’ in “The kettle boiled over.” ",
