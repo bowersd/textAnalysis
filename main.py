@@ -578,3 +578,21 @@ def parse_words_expanded(event):
         _after_render()
         
            
+def _autorun_parse_words_expanded_from_query():
+    try:
+        params = js.URLSearchParams.new(js.window.location.search)
+        q = params.get("q")
+        if q is None:
+            return
+        q_text = str(q)
+        if q_text in ["", "null", "undefined"]:
+            return
+        input_text = pyscript.document.querySelector("#larger_text_input")
+        if input_text is not None:
+            input_text.value = q_text
+            parse_words_expanded(None)
+    except Exception as e:
+        print("query autorun skipped:", e)
+
+
+_autorun_parse_words_expanded_from_query()
